@@ -11,6 +11,8 @@
     "react-emotion": "^9.2.3"
   },
   "devDependencies": {
+    "emotion": "^9.2.3",
+    "emotion-theming": "^9.2.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.1.0",
@@ -18,10 +20,15 @@
     "jest-cli": "^23.1.0",
     "jest-emotion": "^9.2.2",
     "jest-enzyme": "^6.0.1",
+    "plop": "^2.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.3",
     "react-test-renderer": "^16.4.1"
   },
   "scripts": {
+    "create-component": "plop component",
     "test": "jest --coverage --no-cache"
   }
 }
