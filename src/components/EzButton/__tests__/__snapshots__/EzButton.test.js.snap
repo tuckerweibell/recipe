@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzButton should render primary button with destructive styles 1`] = `
+.recipe-0 {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #FFFFFF;
+  background-color: #db2828;
+}
+
+.recipe-0:hover:enabled {
+  background-color: #c52424;
+}
+
+.recipe-0:focus:enabled {
+  background-color: #af2020;
+}
+
+.recipe-0:active:enabled {
+  background-color: #991c1c;
+}
+
+<button
+  className="recipe-0 recipe-1"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render secondary button with destructive styles 1`] = `
+.recipe-0 {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: #db2828;
+  color: #db2828;
+}
+
+.recipe-0:hover:enabled {
+  border-color: #c52424;
+}
+
+.recipe-0:focus:enabled {
+  border-color: #af2020;
+}
+
+.recipe-0:active:enabled {
+  border-color: #991c1c;
+}
+
+.recipe-0:hover:enabled {
+  color: #c52424;
+}
+
+.recipe-0:focus:enabled {
+  color: #af2020;
+}
+
+.recipe-0:active:enabled {
+  color: #991c1c;
+}
+
+<button
+  className="recipe-0 recipe-1"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render with disabled styles 1`] = `
+.recipe-0 {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #FFFFFF;
+  background-color: #2484d7;
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.recipe-0:hover:enabled {
+  background-color: #2076c1;
+}
+
+.recipe-0:focus:enabled {
+  background-color: #1c69ac;
+}
+
+.recipe-0:active:enabled {
+  background-color: #195c96;
+}
+
+<button
+  className="recipe-0 recipe-1"
+  disabled={true}
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render with primary styles 1`] = `
+.recipe-0 {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #FFFFFF;
+  background-color: #2484d7;
+}
+
+.recipe-0:hover:enabled {
+  background-color: #2076c1;
+}
+
+.recipe-0:focus:enabled {
+  background-color: #1c69ac;
+}
+
+.recipe-0:active:enabled {
+  background-color: #195c96;
+}
+
+<button
+  className="recipe-0 recipe-1"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render with secondary styles 1`] = `
+.recipe-0 {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  border: solid 1px;
+  border-color: #2484d7;
+  color: #2484d7;
+}
+
+.recipe-0:hover:enabled {
+  border-color: #2076c1;
+}
+
+.recipe-0:focus:enabled {
+  border-color: #1c69ac;
+}
+
+.recipe-0:active:enabled {
+  border-color: #195c96;
+}
+
+.recipe-0:hover:enabled {
+  color: #2076c1;
+}
+
+.recipe-0:focus:enabled {
+  color: #1c69ac;
+}
+
+.recipe-0:active:enabled {
+  color: #195c96;
+}
+
+<button
+  className="recipe-0 recipe-1"
+>
+  Click Me
+</button>
+`;
