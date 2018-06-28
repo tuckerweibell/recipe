@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "ezCater's React UI Component library",
   "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
