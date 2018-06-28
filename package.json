@@ -1,8 +1,8 @@
 {
   "name": "@ezcater/recipe",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "ezCater's React UI Component library",
-  "main": "src/index.js",
+  "main": "dist/recipe.js",
   "publishConfig": {
     "access": "public"
   },
@@ -15,6 +15,9 @@
     "react-emotion": "^9.2.3"
   },
   "devDependencies": {
+    "babel-plugin-emotion": "^9.2.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-1": "^6.24.1",
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
     "enzyme": "^3.3.0",
@@ -29,12 +32,19 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.3",
-    "react-test-renderer": "^16.4.1"
+    "react-test-renderer": "^16.4.1",
+    "rollup": "^0.62.0",
+    "rollup-plugin-babel": "^3.0.5",
+    "rollup-plugin-bundle-size": "^1.0.1",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^4.0.0"
   },
   "scripts": {
+    "build": "rollup -c",
     "create-component": "plop component",
     "test": "jest --coverage --no-cache",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "npm test -- --watch"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
