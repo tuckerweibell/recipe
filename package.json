@@ -30,5 +30,8 @@
   "scripts": {
     "create-component": "plop component",
     "test": "jest --coverage --no-cache"
+  },
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }
