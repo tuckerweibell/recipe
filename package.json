@@ -1,6 +1,6 @@
 {
   "name": "@ezcater/recipe",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "ezCater's React UI Component library",
   "main": "dist/recipe.js",
   "publishConfig": {

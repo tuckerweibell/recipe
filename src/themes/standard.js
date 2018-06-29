@@ -3,10 +3,15 @@ const black = '#0F131A';
 
 const blues = {
   100: '#2484d7',
+  200: '#3E90D6',
 };
 
 const reds = {
   100: '#db2828',
+};
+
+const greys = {
+  100: '#CED4D9',
 };
 
 export const spacing = [0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4].map(rem => `${rem}rem`);
@@ -25,4 +30,6 @@ export const colors = {
   },
   white,
   black,
+  blues,
+  greys,
 };
