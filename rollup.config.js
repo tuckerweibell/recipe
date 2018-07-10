@@ -11,14 +11,14 @@ export default {
   },
   external: ['emotion', 'emotion-theming', 'polished', 'prop-types', 'react', 'react-emotion'],
   plugins: [
-    resolve(),
-    commonjs(),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
       presets: ['stage-1', 'react', ['env', {modules: false}]],
       plugins: ['emotion'],
     }),
+    resolve(),
+    commonjs(),
     uglify(),
   ],
 };

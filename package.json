@@ -14,6 +14,7 @@
   "devDependencies": {
     "babel-plugin-emotion": "^9.2.4",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "emotion": "^9.2.3",
     "emotion-theming": "^9.2.3",
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "build": "rollup -c",
+    "build:watch": "rollup -c -w",
     "create-component": "plop component",
     "test": "jest --coverage --no-cache",
     "test:watch": "npm test -- --watch"
