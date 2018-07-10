@@ -14,6 +14,10 @@ const greys = {
   100: '#CED4D9',
 };
 
+const blueGrays = {
+  100: '#8B99A6',
+};
+
 export const spacing = [0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4].map(rem => `${rem}rem`);
 
 export const borderRadius = ['1px', '4px'];
@@ -32,4 +36,15 @@ export const colors = {
   black,
   blues,
   greys,
+  blueGrays,
+};
+
+export const fontSizes = {
+  small: '0.85rem',
+  normal: '1rem',
+};
+
+export const fontWeights = {
+  base: 400,
+  medium: 700,
 };
