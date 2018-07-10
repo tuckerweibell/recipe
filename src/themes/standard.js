@@ -10,7 +10,7 @@ const reds = {
   100: '#db2828',
 };
 
-const greys = {
+const grays = {
   100: '#CED4D9',
 };
 
@@ -35,7 +35,7 @@ export const colors = {
   white,
   black,
   blues,
-  greys,
+  grays,
   blueGrays,
 };
 
