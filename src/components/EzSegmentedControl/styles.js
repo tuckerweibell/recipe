@@ -1,0 +1,75 @@
+import styled, {css} from 'react-emotion';
+import {hideVisually, shade} from 'polished';
+import {variants} from '../../styles/';
+
+const label = ({theme}) => css`
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid ${theme.colors.grays[100]};
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  color: ${theme.colors.grays[600]};
+  display: block;
+  flex: 1;
+  padding: ${theme.spacing[2]} ${theme.spacing[4]};
+  text-align: center;
+  margin-left: -1px;
+  line-height: 1em;
+  font-size: 0.85em;
+  flex-basis: auto;
+
+  &:first-of-type {
+    margin-left: 0;
+    border-top-left-radius: ${theme.borderRadius[1]};
+    border-bottom-left-radius: ${theme.borderRadius[1]};
+  }
+
+  &:last-of-type {
+    border-top-right-radius: ${theme.borderRadius[1]};
+    border-bottom-right-radius: ${theme.borderRadius[1]};
+  }
+
+  &:hover {
+    background-color: ${shade(0.97, 'white')};
+    border-color: ${shade(0.85, theme.colors.grays[100])};
+    color: ${shade(0.85, theme.colors.grays[600])};
+  }
+
+  input:checked + & {
+    color: ${theme.colors.blues[100]};
+    background: ${theme.colors.blues[50]};
+    border: 1px solid ${theme.colors.blues[100]};
+    position: relative;
+  }
+
+  input:focus + & {
+    border-color: ${theme.colors.blues[300]};
+    color: ${theme.colors.blues[300]};
+  }
+
+  input:disabled + & {
+    cursor: default;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+`;
+
+export const Label = styled.label(label);
+
+const labelPosition = variants('labelPosition', {
+  hidden: hideVisually,
+  left: ({theme}) => css`
+    color: ${theme.colors.blueGrays[100]};
+    margin-right: ${theme.spacing[3]};
+  `,
+});
+
+export const Legend = styled.div(labelPosition);
+
+export const Fieldset = styled.div`
+  display: flex;
+  align-items: center;
+
+  & input {
+    ${hideVisually()};
+  }
+`;

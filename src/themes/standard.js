@@ -2,8 +2,10 @@ const white = '#FFFFFF';
 const black = '#0F131A';
 
 const blues = {
-  100: '#2484d7',
-  200: '#3E90D6',
+  50: '#EBF7FF',
+  100: '#77b1e2',
+  200: '#2484d7',
+  300: '#3E90D6',
 };
 
 const reds = {
@@ -12,6 +14,7 @@ const reds = {
 
 const grays = {
   100: '#CED4D9',
+  600: 'rgba(0, 0, 0, 0.6)',
 };
 
 const blueGrays = {
@@ -25,7 +28,7 @@ export const borderWidth = ['1px', '2px', '4px'];
 
 export const colors = {
   primary: {
-    main: blues[100],
+    main: blues[200],
     contrastText: white,
   },
   destructive: {
