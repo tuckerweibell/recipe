@@ -57,7 +57,7 @@ EzLabelledItem.propTypes = {
   /**
    * The content to render in conjunction with the label
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
   /**
    * Determines the position of the label relative to its child content
    */
@@ -69,7 +69,7 @@ EzLabelledItem.propTypes = {
   /**
    * The text for label itself
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 EzLabelledItem.defaultProps = {theme: standard};
