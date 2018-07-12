@@ -20,3 +20,15 @@ After the CLI has finished, all files will have been created in the location you
 // inside src/index.js
 export {default as EzButton} from './components/EzButton';
 ```
+
+## Publishing
+
+After contributing updates to recipe, you'll need to publish the recipe package for changes to take effect in downstream projects (like ezmanage). To publish, you need to:
+
+* make sure your source is up-to-date and have run `npm install` from `packages/recipe`
+* bump the package version number in `packages/recipe/package.json`
+* run `npm run build` to locally build with the latest version that you wish to publish.
+* run `npm publish` to publish the new version of recipe to npm
+* run `npm install @ezcater/recipe --save` from the downstream project (e.g. to install the latest version of recipe in ezmanage)
+* run `npm run deploy` from `packages/doc-site` to ensure the documentation site reflects your changes
+* create a PR for the downsteam project
