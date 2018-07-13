@@ -47,7 +47,97 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
 }
 
 <button
-  className="recipe-0 recipe-1"
+  className="recipe-0"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render primary button with loading styles 1`] = `
+.recipe-0 {
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #FFFFFF;
+  border-color: #2484d7;
+  border-color: #2484d7;
+  background-color: #2484d7;
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+  position: relative;
+  color: transparent;
+}
+
+.recipe-0:hover:enabled {
+  border-color: #1e70b6;
+}
+
+.recipe-0:focus:enabled {
+  border-color: #1b63a1;
+}
+
+.recipe-0:active:enabled {
+  border-color: #1b63a1;
+}
+
+.recipe-0:hover:enabled {
+  background-color: #1e70b6;
+}
+
+.recipe-0:active:enabled {
+  background-color: #1b63a1;
+}
+
+.recipe-0::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.642857145rem 0 0 -0.642857145rem;
+  width: 1.28571429rem;
+  height: 1.28571429rem;
+  border-radius: 10rem;
+  border: 0.2rem solid rgba(0,0,0,0.15);
+}
+
+.recipe-0::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.642857145rem 0 0 -0.642857145rem;
+  width: 1.28571429rem;
+  height: 1.28571429rem;
+  -webkit-animation: animation-1c980os 0.6s linear;
+  animation: animation-1c980os 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  border-radius: 10rem;
+  border-color: #FFFFFF transparent transparent;
+  border-style: solid;
+  border-width: 0.2rem;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+<button
+  className="recipe-0"
+  disabled={true}
 >
   Click Me
 </button>
@@ -100,7 +190,97 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
 }
 
 <button
-  className="recipe-0 recipe-1"
+  className="recipe-0"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render secondary button with loading styles 1`] = `
+.recipe-0 {
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: white;
+  border: solid 1px;
+  border-color: #CED4D9;
+  color: #2484d7;
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+  position: relative;
+  color: transparent;
+}
+
+.recipe-0:hover:enabled {
+  border-color: #afb4b8;
+}
+
+.recipe-0:focus:enabled {
+  border-color: #3E90D6;
+}
+
+.recipe-0:active:enabled {
+  border-color: #9a9fa2;
+}
+
+.recipe-0:hover:enabled {
+  color: #1e70b6;
+}
+
+.recipe-0:active:enabled {
+  color: #1b63a1;
+}
+
+.recipe-0::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.642857145rem 0 0 -0.642857145rem;
+  width: 1.28571429rem;
+  height: 1.28571429rem;
+  border-radius: 10rem;
+  border: 0.2rem solid rgba(0,0,0,0.15);
+}
+
+.recipe-0::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -0.642857145rem 0 0 -0.642857145rem;
+  width: 1.28571429rem;
+  height: 1.28571429rem;
+  -webkit-animation: animation-1c980os 0.6s linear;
+  animation: animation-1c980os 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  border-radius: 10rem;
+  border-color: #767676 transparent transparent;
+  border-style: solid;
+  border-width: 0.2rem;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+<button
+  className="recipe-0"
+  disabled={true}
 >
   Click Me
 </button>
@@ -156,7 +336,7 @@ exports[`EzButton should render with disabled styles 1`] = `
 }
 
 <button
-  className="recipe-0 recipe-1"
+  className="recipe-0"
   disabled={true}
 >
   Click Me
@@ -210,7 +390,7 @@ exports[`EzButton should render with primary styles 1`] = `
 }
 
 <button
-  className="recipe-0 recipe-1"
+  className="recipe-0"
 >
   Click Me
 </button>
@@ -263,7 +443,7 @@ exports[`EzButton should render with secondary styles 1`] = `
 }
 
 <button
-  className="recipe-0 recipe-1"
+  className="recipe-0"
 >
   Click Me
 </button>

@@ -47,5 +47,8 @@
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "^0.6.3"
   }
 }

@@ -71,3 +71,15 @@ Used to indicate to the user that an action is not currently available. The surr
   </EzButton>
 </div>
 ```
+
+### Loading State
+
+Used to indicate to the user that an action is currently being processed. The button remains disabled and no further actions will be triggered until loading has completed.
+
+```jsx
+<div>
+  <EzButton use="primary" loading>
+    Save Changes
+  </EzButton>
+</div>
+```

@@ -15,6 +15,7 @@ const reds = {
 const grays = {
   100: '#CED4D9',
   600: 'rgba(0, 0, 0, 0.6)',
+  700: '#767676',
 };
 
 const blueGrays = {

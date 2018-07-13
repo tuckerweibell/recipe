@@ -33,6 +33,16 @@ describe('EzButton', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render primary button with loading styles', () => {
+    actual.setProps({loading: true, use: 'primary'});
+    expect(actual).toMatchSnapshot();
+  });
+
+  it('should render secondary button with loading styles', () => {
+    actual.setProps({loading: true, use: 'secondary'});
+    expect(actual).toMatchSnapshot();
+  });
+
   /**
    * Logic tests.
    */
@@ -62,6 +72,42 @@ describe('EzButton', () => {
       component.simulate('click');
 
       expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('loading', () => {
+    it('is not loading by default', () => {
+      expect(actual.prop('loading')).toBeUndefined();
+    });
+
+    it('is applies the disabled attribute to the button element', () => {
+      actual.setProps({disabled: true});
+      expect(actual.prop('disabled')).toBe(true);
+    });
+
+    it('is does not trigger clicks', () => {
+      const spy = jest.fn();
+
+      const component = mount(
+        <EzButton use="primary" onClick={spy} loading>
+          Click Me
+        </EzButton>
+      );
+
+      component.simulate('click');
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('valid props', () => {
+    it('renders valid props for html elements', () => {
+      actual.setProps({'data-test': 'my-test-selector'});
+      expect(actual.prop('data-test')).toEqual('my-test-selector');
+    });
+
+    it('does NOT render invalid props for html elements', () => {
+      expect(actual.prop('primary')).toBeUndefined();
     });
   });
 
