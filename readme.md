@@ -1,7 +1,23 @@
 # Installation
 
 ```
-npm add @ezcater-recipe
+npm install @ezcater/recipe --save
+```
+
+# importing components in downstream projects
+
+Import the Recipe package, just as you would any other package dependency:
+
+```js
+import {EzButton} from '@ezcater/recipe';
+
+export const MyComponent = () => (
+  <div>
+    <EzButton use="primary" onClick={() => alert('You clicked me!')}>
+      Click Me!
+    </EzButton>
+  </div>
+);
 ```
 
 # Contributing / Creating Components
