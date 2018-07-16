@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzTextStyle should render with strong styles 1`] = `
+.recipe-0 {
+  font-weight: 900;
+}
+
+<span
+  className="recipe-0 recipe-1"
+>
+  Strong Text
+</span>
+`;
+
+exports[`EzTextStyle should render with subdued styles 1`] = `
+.recipe-0 {
+  color: #8B99A6;
+}
+
+<span
+  className="recipe-0 recipe-1"
+>
+  Subdued Text
+</span>
+`;

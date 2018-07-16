@@ -51,4 +51,5 @@ export const fontSizes = {
 export const fontWeights = {
   base: 400,
   medium: 700,
+  bold: 900,
 };
