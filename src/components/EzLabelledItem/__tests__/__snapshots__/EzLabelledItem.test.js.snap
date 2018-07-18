@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzLabelledItem position left renders the label to the left of the content 1`] = `
+.recipe-0 {
+  color: #8B99A6;
+  font-size: 1rem;
+  font-weight: 400;
+  display: inline;
+  margin-right: 1rem;
+}
+
+<div>
+  <div
+    class="recipe-0 recipe-1"
+  >
+    Left Label
+  </div>
+  Some text
+</div>
+`;
+
+exports[`EzLabelledItem position top renders with a small label 1`] = `
+.recipe-0 {
+  color: #8B99A6;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+<div>
+  <div
+    class="recipe-0 recipe-1"
+  >
+    Top Label
+  </div>
+  Some text
+</div>
+`;
