@@ -74,10 +74,9 @@ EzSegmentedControl.propTypes = {
 /**
  * defaultProps
  * @property {bool} active - No option is selected by default.
- * @property {stribg} labelPosition - The label is positioned on the left of the control by default.
+ * @property {string} labelPosition - The label is positioned on the left of the control by default.
  * @property {bool} theme - uses the standard theme by default.
  */
-
 EzSegmentedControl.defaultProps = {
   active: undefined,
   labelPosition: 'left',
