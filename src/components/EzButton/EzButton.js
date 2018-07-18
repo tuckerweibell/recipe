@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
-import {base, primary, secondary, disabled, loading} from './styles';
+import {base, primary, secondary, disabled, loading} from './EzButton.styles';
 import {variants} from '../../styles/';
 import {standard} from '../../themes';
 import {filterValidProps} from '../../utils';

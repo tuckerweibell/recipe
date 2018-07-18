@@ -1,6 +1,6 @@
 import {css} from 'react-emotion';
 import {shade} from 'polished';
-import {keyframes, variants} from '../../styles/';
+import {keyframes, variants} from '../../styles';
 
 export const base = ({theme}) => css`
   border: ${theme.borderWidth[0]} solid;

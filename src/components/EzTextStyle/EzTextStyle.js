@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import {strong, subdued} from './EzTextStyle.styles';
 import {variants} from '../../styles/';
 import {standard} from '../../themes';
-import {strong, subdued} from './styles';
 
 const use = variants('use', {
   strong,

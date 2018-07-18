@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {Label, Legend, Fieldset} from './EzSegmentedControl.styles';
 import {standard} from '../../themes';
-import {Label, Legend, Fieldset} from './styles';
 
 const getId = (name, {value}) => `${name}-${value}`;
 

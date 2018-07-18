@@ -1,40 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'react-emotion';
-import {variants} from '../../styles/';
+import styled from 'react-emotion';
+import {base, position} from './EzLabelledItem.styles';
 import {standard} from '../../themes';
-
-const base = ({theme}) => css`
-  color: ${theme.colors.blueGrays[100]};
-`;
-
-const normalSize = ({theme}) => css`
-  font-size: ${theme.fontSizes.normal};
-  font-weight: ${theme.fontWeights.base};
-`;
-
-const top = ({size, theme}) => css`
-  font-size: ${theme.fontSizes[size]};
-  font-weight: ${size === 'small' && theme.fontWeights.medium};
-  margin-bottom: ${theme.spacing[1]};
-`;
-
-const bottom = props => css`
-  ${normalSize(props)};
-  margin-top: ${props.theme.spacing[1]};
-`;
-
-const left = props => css`
-  ${normalSize(props)};
-  display: inline;
-  margin-right: ${props.theme.spacing[3]};
-`;
-
-const position = variants('position', {
-  top,
-  bottom,
-  left,
-});
 
 const LabelWrapper = styled.div(base, position);
 LabelWrapper.defaultProps = {theme: standard};
