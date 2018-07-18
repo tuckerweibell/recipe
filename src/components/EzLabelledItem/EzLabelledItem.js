@@ -25,7 +25,7 @@ EzLabelledItem.propTypes = {
   /**
    * The content to render in conjunction with the label
    */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /**
    * Determines the position of the label relative to its child content
    */
@@ -35,12 +35,23 @@ EzLabelledItem.propTypes = {
    */
   size: PropTypes.oneOf(['normal', 'small']).isRequired,
   /**
+   * The theme controlling the default styles.
+   */
+  theme: PropTypes.shape({
+    colors: PropTypes.object,
+  }),
+  /**
    * The text for label itself
    */
   title: PropTypes.node.isRequired,
 };
 
-EzLabelledItem.defaultProps = {theme: standard};
+/**
+ * defaultProps
+ * @property {string} size - uses defaults to the base font size.
+ * @property {bool} theme - uses the standard theme by default.
+ */
+EzLabelledItem.defaultProps = {theme: standard, size: 'normal'};
 
 EzLabelledItem.displayName = 'EzLabelledItem';
 
