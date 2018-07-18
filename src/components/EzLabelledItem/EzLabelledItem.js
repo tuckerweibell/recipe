@@ -5,19 +5,18 @@ import {base, position} from './EzLabelledItem.styles';
 import {standard} from '../../themes';
 
 const LabelWrapper = styled.div(base, position);
-LabelWrapper.defaultProps = {theme: standard};
 
 /**
  * Provides a label that can appear in one of several positions relative to its associated content.
  * Typically used to label an interactive element or a short string of text.
  */
-const EzLabelledItem = ({children, position, size, title}) => (
+const EzLabelledItem = ({children, position: labelPosition, size, title, theme}) => (
   <div>
-    {position === 'bottom' && children}
-    <LabelWrapper position={position} size={size}>
+    {labelPosition === 'bottom' && children}
+    <LabelWrapper position={labelPosition} size={size} theme={theme}>
       {title}
     </LabelWrapper>
-    {['top', 'left'].includes(position) && children}
+    {['top', 'left'].includes(labelPosition) && children}
   </div>
 );
 
