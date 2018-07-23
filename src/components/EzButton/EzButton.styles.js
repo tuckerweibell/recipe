@@ -49,7 +49,7 @@ export const secondary = ({theme: {colors}, destructive}) => {
   return css`
     background-color: white;
     border: solid 1px;
-    ${elementStates('border-color', colors.grays[100], colors.blues[300])};
+    ${elementStates('border-color', colors.grays[400], colors.blues[300])};
     ${elementStates('color', main)};
   `;
 };

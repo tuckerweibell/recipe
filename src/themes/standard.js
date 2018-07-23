@@ -13,7 +13,8 @@ const reds = {
 };
 
 const grays = {
-  100: '#CED4D9',
+  100: '#f4f7f8',
+  400: '#CED4D9',
   600: 'rgba(0, 0, 0, 0.6)',
   700: '#767676',
 };
@@ -24,7 +25,7 @@ const blueGrays = {
 
 export const spacing = [0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4].map(rem => `${rem}rem`);
 
-export const borderRadius = ['1px', '4px'];
+export const borderRadius = ['1px', '4px', '6px'];
 export const borderWidth = ['1px', '2px', '4px'];
 
 export const colors = {
@@ -46,6 +47,7 @@ export const colors = {
 export const fontSizes = {
   small: '0.85rem',
   normal: '1rem',
+  medium: '1.25rem',
 };
 
 export const fontWeights = {

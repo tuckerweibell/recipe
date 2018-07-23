@@ -5,7 +5,7 @@ import {variants} from '../../styles/';
 const label = ({theme}) => css`
   cursor: pointer;
   background-color: white;
-  border: 1px solid ${theme.colors.grays[100]};
+  border: 1px solid ${theme.colors.grays[400]};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   color: ${theme.colors.grays[600]};
   display: block;
@@ -30,7 +30,7 @@ const label = ({theme}) => css`
 
   &:hover {
     background-color: ${shade(0.97, 'white')};
-    border-color: ${shade(0.85, theme.colors.grays[100])};
+    border-color: ${shade(0.85, theme.colors.grays[400])};
     color: ${shade(0.85, theme.colors.grays[600])};
   }
 

@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzCard should render card sections horizontally 1`] = `
+.recipe-6 {
+  background: #FFFFFF;
+  border: 1px solid #CED4D9;
+  border-radius: 6px;
+}
+
+.recipe-0 {
+  padding: 1.5rem;
+}
+
+.recipe-0 > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.recipe-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.recipe-4 > * {
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+<div
+  className="recipe-6 recipe-7"
+>
+  <div
+    className="recipe-4 recipe-5"
+  >
+    <div
+      className="recipe-0 recipe-1"
+    >
+      Lorem ipsum dolor
+    </div>
+    <div
+      className="recipe-0 recipe-1"
+    >
+      Lorem ipsum dolor
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EzCard should render with card sections 1`] = `
+.recipe-6 {
+  background: #FFFFFF;
+  border: 1px solid #CED4D9;
+  border-radius: 6px;
+}
+
+.recipe-4 > *:not(:first-child) {
+  border-top: 1px solid #CED4D9;
+}
+
+.recipe-0 {
+  padding: 1.5rem;
+}
+
+.recipe-0 > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+<div
+  className="recipe-6 recipe-7"
+>
+  <div
+    className="recipe-4 recipe-5"
+  >
+    <div
+      className="recipe-0 recipe-1"
+    >
+      Lorem ipsum dolor
+    </div>
+    <div
+      className="recipe-0 recipe-1"
+    >
+      Lorem ipsum dolor
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EzCard should render with default styles 1`] = `
+.recipe-4 {
+  background: #FFFFFF;
+  border: 1px solid #CED4D9;
+  border-radius: 6px;
+}
+
+.recipe-2 > *:not(:first-child) {
+  border-top: 1px solid #CED4D9;
+}
+
+.recipe-0 {
+  padding: 1.5rem;
+}
+
+.recipe-0 > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+<div
+  className="recipe-4 recipe-5"
+>
+  <div
+    className="recipe-2 recipe-3"
+  >
+    <div
+      className="recipe-0 recipe-1"
+    >
+      <p>
+        Lorem ipsum dolor
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EzCard should render with header styles 1`] = `
+.recipe-6 {
+  background: #FFFFFF;
+  border: 1px solid #CED4D9;
+  border-radius: 6px;
+}
+
+.recipe-4 > *:not(:first-child) {
+  border-top: 1px solid #CED4D9;
+}
+
+.recipe-2 {
+  padding: 1.5rem;
+}
+
+.recipe-2 > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.recipe-0 {
+  font-size: 1.25rem;
+  margin: 1.5rem 1.5rem 0;
+}
+
+<div
+  className="recipe-6 recipe-7"
+>
+  <h3
+    className="recipe-0 recipe-1"
+  >
+    Card Heading
+  </h3>
+  <div
+    className="recipe-4 recipe-5"
+  >
+    <div
+      className="recipe-2 recipe-3"
+    >
+      <p>
+        Lorem ipsum dolor
+      </p>
+    </div>
+  </div>
+</div>
+`;
