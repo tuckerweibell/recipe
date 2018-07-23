@@ -50,4 +50,24 @@ describe('EzCard', () => {
     const actual = await axe(wrapper);
     expect(actual).toHaveNoViolations();
   });
+
+  describe('valid props', () => {
+    let actual;
+    beforeEach(() => {
+      actual = shallow(
+        <EzCard>
+          <EzCardSection>Lorem ipsum dolor</EzCardSection>
+          <EzCardSection>Lorem ipsum dolor</EzCardSection>
+        </EzCard>
+      );
+    });
+    it('renders valid props for html elements', () => {
+      actual.setProps({'data-test': 'my-test-selector'});
+      expect(actual.prop('data-test')).toEqual('my-test-selector');
+    });
+
+    it('does NOT render invalid props for html elements', () => {
+      expect(actual.prop('primary')).toBeUndefined();
+    });
+  });
 });

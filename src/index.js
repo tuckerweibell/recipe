@@ -6,4 +6,5 @@ export {default as EzLabelledItem} from './components/EzLabelledItem';
 export {EzPageContent, EzContentGroup} from './components/EzPageContent';
 export {default as EzSegmentedControl} from './components/EzSegmentedControl';
 export {default as EzTextStyle} from './components/EzTextStyle';
+export {default as EzLayout} from './components/EzLayout';
 export {themes};

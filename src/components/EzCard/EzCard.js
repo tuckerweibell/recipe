@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {CardContainer, CardHeading, SectionContainer} from './EzCard.styles';
 import {EzCardSection} from './';
 import {standard} from '../../themes';
+import {filterValidProps} from '../../utils';
 
 function isEzCardSection(element) {
   return element.type && element.type.displayName === 'EzCardSection';
@@ -19,9 +20,9 @@ function wrappedChildren(children) {
 /**
  * Cards are the primary means of grouping content on a page.
  */
-const EzCard = props => (
-  <CardContainer>
-    {props.title && <CardHeading>{props.title}</CardHeading>}
+const EzCard = ({title, ...props}) => (
+  <CardContainer {...filterValidProps(props)}>
+    {title && <CardHeading>{title}</CardHeading>}
     <SectionContainer horizontal={props.horizontal}>
       {wrappedChildren(props.children)}
     </SectionContainer>
