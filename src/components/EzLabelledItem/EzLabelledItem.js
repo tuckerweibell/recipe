@@ -48,7 +48,7 @@ EzLabelledItem.propTypes = {
 /**
  * defaultProps
  * @property {string} size - uses defaults to the base font size.
- * @property {bool} theme - uses the standard theme by default.
+ * @property {object} theme - uses the standard theme by default.
  */
 EzLabelledItem.defaultProps = {theme: standard, size: 'normal'};
 
