@@ -19,6 +19,7 @@ module.exports = function(plop) {
   const COMPONENT_FILES = {
     COMPONENT: 'component',
     COMPONENT_TEST: 'component-test',
+    COMPONENT_STYLES: 'component-styles',
     COMPONENT_MARKDOWN: 'component-markdown'
   };
 
@@ -47,6 +48,7 @@ module.exports = function(plop) {
     const fileNameMap = {
       [COMPONENT_FILES.COMPONENT]: `${name}.js`,
       [COMPONENT_FILES.COMPONENT_TEST]: `/__tests__/${name}.test.js`,
+      [COMPONENT_FILES.COMPONENT_STYLES]: `${name}.styles.js`,
       [COMPONENT_FILES.COMPONENT_MARKDOWN]: `${name}.md`,
     };
     return fileNameMap[file];
@@ -99,6 +101,11 @@ module.exports = function(plop) {
           {
             name: 'Component test',
             value: COMPONENT_FILES.COMPONENT_TEST,
+            checked: true,
+          },
+          {
+            name: 'Component styles',
+            value: COMPONENT_FILES.COMPONENT_STYLES,
             checked: true,
           },
           {

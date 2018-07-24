@@ -1,23 +1,29 @@
 import PropTypes from 'prop-types';
-import styled, {css} from 'react-emotion';
-
-const baseStyles = ({theme}) => css`
-  label: {{ dashCase name }};
-`;
+import styled from 'react-emotion';
+import {base} from './{{ name }}.styles';
+import {standard} from '../../themes';
 
 /**
  * Describe {{ name }} here.
  */
-const {{ name }} = styled('element')(baseStyles);
+const {{ name }} = styled('div')(base);
 
 {{ name }}.propTypes = {
   /**
-   * A concise description of the example prop.
+   * The theme controlling the component styles.
    */
-  example: PropTypes.string
+  theme: PropTypes.shape({
+    colors: PropTypes.object,
+  }),
 };
 
-{{ name }}.defaultProps = {};
+/**
+ * defaultProps
+ * @property {object} theme - uses the standard theme by default.
+ */
+{{ name }}.defaultProps = {
+  theme: standard,
+};
 
 /**
  * @component
