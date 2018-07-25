@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CardContainer, CardHeading, SectionContainer} from './EzCard.styles';
-import {EzCardSection} from './';
+import EzCardSection from './EzCardSection';
 import {standard} from '../../themes';
 import {filterValidProps} from '../../utils';
 
