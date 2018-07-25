@@ -21,9 +21,9 @@ function wrappedChildren(children) {
  * Cards are the primary means of grouping content on a page.
  */
 const EzCard = ({title, ...props}) => (
-  <CardContainer {...filterValidProps(props)}>
-    {title && <CardHeading>{title}</CardHeading>}
-    <SectionContainer horizontal={props.horizontal}>
+  <CardContainer {...filterValidProps(props)} theme={props.theme}>
+    {title && <CardHeading theme={props.theme}>{title}</CardHeading>}
+    <SectionContainer horizontal={props.horizontal} theme={props.theme}>
       {wrappedChildren(props.children)}
     </SectionContainer>
   </CardContainer>
