@@ -26,6 +26,7 @@
     "jest-emotion": "^9.2.2",
     "jest-enzyme": "^6.0.1",
     "plop": "^2.0.0",
+    "polished": "1.9.2",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
