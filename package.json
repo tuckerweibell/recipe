@@ -5,7 +5,6 @@
   "main": "dist/recipe.js",
   "peerDependencies": {
     "emotion": "^9.2.3",
-    "emotion-theming": "^9.2.3",
     "polished": "^1.9.2",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
