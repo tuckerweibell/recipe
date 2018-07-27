@@ -28,6 +28,33 @@ exports[`EzLayout should render with a split layout 1`] = `
 </div>
 `;
 
+exports[`EzLayout should render with a stacked layout 1`] = `
+.recipe-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.recipe-0 > *:not(:first-child) {
+  margin-top: 0.75rem;
+}
+
+<div
+  className="recipe-0 recipe-1"
+>
+  <div>
+    Content
+  </div>
+  <div>
+    Content
+  </div>
+</div>
+`;
+
 exports[`EzLayout should render with default styles 1`] = `
 .recipe-0 {
   -webkit-align-items: center;

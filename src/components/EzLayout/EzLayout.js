@@ -12,7 +12,7 @@ EzLayout.propTypes = {
   /**
    * Controls the arrangement of items within the layout.
    */
-  layout: PropTypes.oneOf(['basic', 'right', 'equal', 'split']),
+  layout: PropTypes.oneOf(['basic', 'right', 'equal', 'split', 'stack']),
   /**
    * The theme controlling the default styles.
    */

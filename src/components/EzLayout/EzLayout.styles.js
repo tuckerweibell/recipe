@@ -1,8 +1,8 @@
 import {css} from 'react-emotion';
 import {variants} from '../../styles/';
 
-export const base = () => css`
-  align-items: center;
+export const base = ({layout}) => css`
+  ${layout !== 'stack' && 'align-items: center'};
   display: flex;
 `;
 
@@ -27,17 +27,30 @@ export const split = () => css`
   justify-content: space-between;
 `;
 
+export const stack = ({theme}) => css`
+  flex-direction: column;
+
+  > *:not(:first-child) {
+    margin-top: ${theme.spacing[2]};
+  }
+`;
+
 export const layout = variants('layout', {
   basic,
   right,
   equal,
   split,
+  stack,
 });
 
-export const spacing = ({layout, theme}) =>
-  layout !== 'split' &&
-  css`
-    > *:not(:first-child) {
-      margin-left: ${theme.spacing[2]};
-    }
-  `;
+const spacingStyle = ({theme}) => css`
+  > *:not(:first-child) {
+    margin-left: ${theme.spacing[2]};
+  }
+`;
+
+export const spacing = variants('layout', {
+  basic: spacingStyle,
+  right: spacingStyle,
+  equal: spacingStyle,
+});

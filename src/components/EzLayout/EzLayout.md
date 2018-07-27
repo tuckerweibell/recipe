@@ -4,7 +4,7 @@ title: Layout
 path: "/components/ez-layout"
 ---
 
-The layout component provide common ways to arrange the content of a screen. The layout component controls the horizontal spacing of its content.
+The layout component provide common ways to arrange the content of a screen. The layout component controls the spacing of its content. For horizontal layout types, the layout component will vertically center the content items.
 
 ---
 
@@ -12,7 +12,9 @@ The layout component provide common ways to arrange the content of a screen. The
 
 Layouts should:
 
-* Be used for small-scale layout tasks when you want to lay out a horizontal row of content
+* Be used for small-scale layout tasks
+* Be used when you want to lay out a horizontal row of content OR
+* Be used when you want to layout out a vertical stack of content that would otherwise be inline
 
 Layouts should not:
 
@@ -114,6 +116,25 @@ The `split` layout arranges content into two groups on a single row, one aligned
 </EzCard>
 ```
 
+### Stack layout
+
+The `stack` layout arranges content into a vertical column. The `stack` layout can be used, for example, when targeting small screen sizes, to organize content into stacked columns. In many cases, a `stack` layout may not be necessary; block level components will naturally stack in a container, and container components such as [`EzCard`](./ez-card) and [`EzPageContent`](./ez-page-content) will apply consistent spacing between content items.
+
+```jsx
+<EzCard
+  className={css(`
+  .stack > * {
+    background-color: lightgray;
+  }
+`)}
+>
+  <EzLayout layout="stack" className="stack">
+    <div>Stack Layout</div>
+    <div>Content</div>
+  </EzLayout>
+</EzCard>
+```
+
 ### Combining Layouts
 
 The layout component can be nested in order to provide more complex or unique arrangements of components. For example, a toolbar might use a basic layout inside of an equal layout, to arrange logical groupings of action buttons into visual groups with even spacing between the grouped buttons.
@@ -160,7 +181,6 @@ The layout component can be nested in order to provide more complex or unique ar
 
 ## Limitations
 
-* Layout does not currently support vertically stacked content
 * Layout does not currently support varying horizontal/vertical stacked layouts across breakpoints.
 
 ---

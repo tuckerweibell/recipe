@@ -42,6 +42,16 @@ describe('EzLayout', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with a stacked layout', () => {
+    const actual = create(
+      <EzLayout layout="stack">
+        <div>Content</div>
+        <div>Content</div>
+      </EzLayout>
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(
       <EzLayout layout="basic">
