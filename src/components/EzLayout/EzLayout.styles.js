@@ -37,9 +37,7 @@ export const layout = variants('layout', {
 export const spacing = ({layout, theme}) =>
   layout !== 'split' &&
   css`
-    > * {
-      &:not(:first-child) {
-        margin-left: ${theme.spacing[2]};
-      }
+    > *:not(:first-child) {
+      margin-left: ${theme.spacing[2]};
     }
   `;
