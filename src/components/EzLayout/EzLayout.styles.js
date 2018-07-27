@@ -34,8 +34,8 @@ export const layout = variants('layout', {
   split,
 });
 
-export const spacing = ({position, theme}) =>
-  position !== 'split' &&
+export const spacing = ({layout, theme}) =>
+  layout !== 'split' &&
   css`
     > * {
       &:not(:first-child) {

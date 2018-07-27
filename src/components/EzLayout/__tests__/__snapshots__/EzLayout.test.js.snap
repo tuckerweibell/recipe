@@ -16,10 +16,6 @@ exports[`EzLayout should render with a split layout 1`] = `
   justify-content: space-between;
 }
 
-.recipe-0 > *:not(:first-child) {
-  margin-left: 0.75rem;
-}
-
 <div
   className="recipe-0 recipe-1"
 >
