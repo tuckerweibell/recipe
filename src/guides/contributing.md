@@ -168,7 +168,7 @@ npm run test:watch
 After contributing updates to recipe, you'll need to publish the recipe package for changes to take effect in downstream projects. To publish, you need to:
 
 * make sure your source is up-to-date and have run `npm install` from `packages/recipe`
-* bump the package version number in `packages/recipe/package.json` (and lock file) by running `npm version patch`
+* bump the package version number in `packages/recipe/package.json` (and lock file) by running `npm version major`, `npm version minor` or `npm version patch` (see our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) if you're unsure which to use).
 * Update `changelog.md`
 * run `npm run build` to locally build with the latest version that you wish to publish.
 * run `npm publish` to publish the new version of recipe to npm
