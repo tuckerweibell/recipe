@@ -113,4 +113,4 @@ Sections can also be laid out horizontally. There is no separator when sections 
 
 ## Related components
 
-* [Page Content](./ez-page-content)
+* [Page Content](/components/ez-page-content)

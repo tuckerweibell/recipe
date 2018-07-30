@@ -89,4 +89,4 @@ Content Groups can be laid out horizontally.
 
 ## Related components
 
-* [Card](./ez-card)
+* [Card](/components/ez-card)

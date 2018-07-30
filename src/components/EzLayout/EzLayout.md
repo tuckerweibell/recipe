@@ -18,7 +18,7 @@ Layouts should:
 
 Layouts should not:
 
-* Be used for large-scale page layout. For large-scale layouts, consider using a [Card](./ez-card) within [Page Content](./ez-page-content)
+* Be used for large-scale page layout. For large-scale layouts, consider using a [Card](/components/ez-card) within [Page Content](/components/ez-page-content)
 * Wrap content onto multiple lines. The content inside a layout should be designed as not to exceed the available horizontal space.
 
 ---
@@ -118,7 +118,7 @@ The `split` layout arranges content into two groups on a single row, one aligned
 
 ### Stack layout
 
-The `stack` layout arranges content into a vertical column. The `stack` layout can be used, for example, when targeting small screen sizes, to organize content into stacked columns. In many cases, a `stack` layout may not be necessary; block level components will naturally stack in a container, and container components such as [`EzCard`](./ez-card) and [`EzPageContent`](./ez-page-content) will apply consistent spacing between content items.
+The `stack` layout arranges content into a vertical column. The `stack` layout can be used, for example, when targeting small screen sizes, to organize content into stacked columns. In many cases, a `stack` layout may not be necessary; block level components will naturally stack in a container, and container components such as [`EzCard`](/components/ez-card) and [`EzPageContent`](/components/ez-page-content) will apply consistent spacing between content items.
 
 ```jsx
 <EzCard
@@ -187,5 +187,5 @@ The layout component can be nested in order to provide more complex or unique ar
 
 ## Related components
 
-* [Card](./ez-card)
-* [Page Content](./ez-page-content)
+* [Card](/components/ez-card)
+* [Page Content](/components/ez-page-content)

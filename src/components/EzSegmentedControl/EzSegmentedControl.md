@@ -20,7 +20,7 @@ Segmented controls should:
 
 ## Content guidelines
 
-Follow the [content guidelines](./ez-button) outlined in the button component.
+Follow the [content guidelines](/components/ez-button) outlined in the button component.
 
 ## Examples
 
@@ -96,4 +96,4 @@ Used to indicate to the user that an action is not currently available. Disabled
 
 ## Related components
 
-* For individal buttons, [use the button component](./ez-button)
+* For individal buttons, [use the button component](/components/ez-button)
