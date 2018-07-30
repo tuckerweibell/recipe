@@ -24,7 +24,7 @@ People should be able to immediately recognize that an interface belongs to the 
 
 ### Freedom through limitation
 
-Existing component libraries (like Semantic or Bootstrap, etc.) provide a huge variety of options for designers and developers to use. By contrast, Recipe restrict the number of options available allow more polished interfaces to be designed and provide designers and developers the freedom to focus on creating a cohesive experience, instead of spending time making a decision about which component to use.
+Existing component libraries (like Semantic or Bootstrap, etc.) provide a huge variety of options for designers and developers to use. By contrast, Recipe restrict the number of options available to allow more polished interfaces to be designed and provide designers and developers the freedom to focus on creating a cohesive experience, instead of spending time making a decision about which component to use.
 
 ### Containers are responsible for layout
 
