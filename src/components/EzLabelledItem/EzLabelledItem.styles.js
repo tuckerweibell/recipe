@@ -13,18 +13,18 @@ const normalSize = ({theme}) => css`
 const top = ({size, theme}) => css`
   font-size: ${theme.fontSizes[size]};
   font-weight: ${size === 'small' && theme.fontWeights.medium};
-  margin-bottom: ${theme.spacing[1]};
+  margin-bottom: ${theme.spacing.xs2};
 `;
 
 const bottom = props => css`
   ${normalSize(props)};
-  margin-top: ${props.theme.spacing[1]};
+  margin-top: ${props.theme.spacing.xs2};
 `;
 
 const left = props => css`
   ${normalSize(props)};
   display: inline;
-  margin-right: ${props.theme.spacing[3]};
+  margin-right: ${props.theme.spacing.sm};
 `;
 
 export const position = variants('position', {

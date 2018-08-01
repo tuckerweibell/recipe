@@ -6,7 +6,7 @@ exports[`EzLabelledItem position left renders the label to the left of the conte
   font-size: 1rem;
   font-weight: 400;
   display: inline;
-  margin-right: 1rem;
+  margin-right: 0.8571428571428571rem;
 }
 
 <div>
@@ -24,7 +24,7 @@ exports[`EzLabelledItem position top renders with a small label 1`] = `
   color: #8B99A6;
   font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2857142857142857rem;
 }
 
 <div>

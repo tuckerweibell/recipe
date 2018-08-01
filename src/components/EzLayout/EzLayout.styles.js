@@ -31,7 +31,7 @@ export const stack = ({theme}) => css`
   flex-direction: column;
 
   > *:not(:first-child) {
-    margin-top: ${theme.spacing[2]};
+    margin-top: ${theme.spacing.sm};
   }
 `;
 
@@ -45,7 +45,7 @@ export const layout = variants('layout', {
 
 const spacingStyle = ({theme}) => css`
   > *:not(:first-child) {
-    margin-left: ${theme.spacing[2]};
+    margin-left: ${theme.spacing.sm};
   }
 `;
 

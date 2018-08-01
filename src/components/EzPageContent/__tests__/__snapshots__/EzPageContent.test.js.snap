@@ -3,11 +3,11 @@
 exports[`EzPageContent should render EzContentGroup content with horizontal styles 1`] = `
 .recipe-2 {
   background: #f4f7f8;
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-2 > *:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 2.5714285714285716rem;
 }
 
 .recipe-0 {
@@ -28,7 +28,7 @@ exports[`EzPageContent should render EzContentGroup content with horizontal styl
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-left: 1.5rem;
+  margin-left: 1.4285714285714286rem;
 }
 
 <div
@@ -50,15 +50,15 @@ exports[`EzPageContent should render EzContentGroup content with horizontal styl
 exports[`EzPageContent should render EzContentGroup with default styles 1`] = `
 .recipe-2 {
   background: #f4f7f8;
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-2 > *:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 2.5714285714285716rem;
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 1.5rem;
+  margin-top: 1.1428571428571428rem;
 }
 
 <div
@@ -80,11 +80,11 @@ exports[`EzPageContent should render EzContentGroup with default styles 1`] = `
 exports[`EzPageContent should render with default styles 1`] = `
 .recipe-0 {
   background: #f4f7f8;
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 2.5714285714285716rem;
 }
 
 <div

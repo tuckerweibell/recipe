@@ -11,8 +11,8 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -64,8 +64,8 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -154,8 +154,8 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -207,8 +207,8 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -297,8 +297,8 @@ exports[`EzButton should render with disabled styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -354,8 +354,8 @@ exports[`EzButton should render with primary styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -407,8 +407,8 @@ exports[`EzButton should render with secondary styles 1`] = `
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.25rem;
-  padding: 0.75rem 1.5rem;
+  margin-right: 0.2857142857142857rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;

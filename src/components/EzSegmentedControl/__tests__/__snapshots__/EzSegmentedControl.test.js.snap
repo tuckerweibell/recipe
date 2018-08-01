@@ -29,7 +29,7 @@ exports[`EzSegmentedControl should render with default styles 1`] = `
 
 .recipe-0 {
   color: #8B99A6;
-  margin-right: 1rem;
+  margin-right: 1.1428571428571428rem;
 }
 
 .recipe-2 {
@@ -42,7 +42,7 @@ exports[`EzSegmentedControl should render with default styles 1`] = `
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
   text-align: center;
   margin-left: -1px;
   line-height: 1em;

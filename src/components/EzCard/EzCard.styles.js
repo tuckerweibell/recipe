@@ -8,7 +8,7 @@ export const CardContainer = styled.div`
 
 export const CardHeading = styled.h3`
   font-size: ${props => props.theme.fontSizes.medium};
-  margin: ${props => props.theme.spacing[4]} ${props => props.theme.spacing[4]} 0;
+  margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
 `;
 
 const vertical = ({horizontal, theme}) =>

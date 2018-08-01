@@ -4,7 +4,7 @@ export const vertical = ({horizontal, theme}) =>
   !horizontal &&
   css`
     > *:not(:first-child) {
-      margin-top: ${theme.spacing[4]};
+      margin-top: ${theme.spacing.md};
     }
   `;
 
@@ -18,7 +18,7 @@ export const horizontal = ({horizontal, theme}) =>
       flex-grow: 1;
 
       &: not(:first-child) {
-        margin-left: ${theme.spacing[4]};
+        margin-left: ${theme.spacing.lg};
       }
     }
   `;

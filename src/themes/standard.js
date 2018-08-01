@@ -23,7 +23,22 @@ const blueGrays = {
   100: '#8B99A6',
 };
 
-export const spacing = [0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4].map(rem => `${rem}rem`);
+export const baseFontSize = 14;
+
+const rem = pixels => `${pixels / baseFontSize}rem`;
+
+export const spacing = {
+  xs2: rem(4),
+  xs: rem(8),
+  sm: rem(12),
+  md: rem(16),
+  lg: rem(20),
+  xl: rem(24),
+  xl2: rem(36),
+  xl3: rem(48),
+  xl4: rem(60),
+  xl5: rem(84),
+};
 
 export const borderRadius = ['1px', '4px', '6px'];
 export const borderWidth = ['1px', '2px', '4px'];

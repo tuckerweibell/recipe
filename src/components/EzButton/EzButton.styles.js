@@ -12,8 +12,8 @@ export const base = ({theme}) => css`
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   line-height: 1em;
   min-height: 1em;
-  margin-right: ${theme.spacing[0]};
-  padding: ${theme.spacing[2]} ${theme.spacing[4]};
+  margin-right: ${theme.spacing.xs2};
+  padding: ${theme.spacing.xs} ${theme.spacing.md};
   text-decoration: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;

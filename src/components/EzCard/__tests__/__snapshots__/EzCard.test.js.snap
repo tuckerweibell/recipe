@@ -8,11 +8,11 @@ exports[`EzCard should render card sections horizontally 1`] = `
 }
 
 .recipe-0 {
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.1428571428571428rem;
 }
 
 .recipe-4 {
@@ -64,11 +64,11 @@ exports[`EzCard should render with card sections 1`] = `
 }
 
 .recipe-0 {
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.1428571428571428rem;
 }
 
 <div
@@ -103,11 +103,11 @@ exports[`EzCard should render with default styles 1`] = `
 }
 
 .recipe-0 {
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.1428571428571428rem;
 }
 
 <div
@@ -139,16 +139,16 @@ exports[`EzCard should render with header styles 1`] = `
 }
 
 .recipe-2 {
-  padding: 1.5rem;
+  padding: 1.4285714285714286rem;
 }
 
 .recipe-2 > *:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.1428571428571428rem;
 }
 
 .recipe-0 {
   font-size: 1.25rem;
-  margin: 1.5rem 1.5rem 0;
+  margin: 1.4285714285714286rem 1.4285714285714286rem 0;
 }
 
 <div

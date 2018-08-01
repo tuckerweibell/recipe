@@ -40,7 +40,7 @@ exports[`EzLayout should render with a stacked layout 1`] = `
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 0.75rem;
+  margin-top: 0.8571428571428571rem;
 }
 
 <div
@@ -72,7 +72,7 @@ exports[`EzLayout should render with default styles 1`] = `
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-left: 0.75rem;
+  margin-left: 0.8571428571428571rem;
 }
 
 <div
@@ -114,7 +114,7 @@ exports[`EzLayout should render with equally sized content 1`] = `
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-left: 0.75rem;
+  margin-left: 0.8571428571428571rem;
 }
 
 <div
@@ -146,7 +146,7 @@ exports[`EzLayout should render with right aligned content 1`] = `
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-left: 0.75rem;
+  margin-left: 0.8571428571428571rem;
 }
 
 <div

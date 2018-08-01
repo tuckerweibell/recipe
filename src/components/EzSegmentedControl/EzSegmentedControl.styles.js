@@ -10,7 +10,7 @@ const label = ({theme}) => css`
   color: ${theme.colors.grays[600]};
   display: block;
   flex: 1;
-  padding: ${theme.spacing[2]} ${theme.spacing[4]};
+  padding: ${theme.spacing.xs} ${theme.spacing.md};
   text-align: center;
   margin-left: -1px;
   line-height: 1em;
@@ -59,7 +59,7 @@ const labelPosition = variants('labelPosition', {
   hidden: hideVisually,
   left: ({theme}) => css`
     color: ${theme.colors.blueGrays[100]};
-    margin-right: ${theme.spacing[3]};
+    margin-right: ${theme.spacing.md};
   `,
 });
 
