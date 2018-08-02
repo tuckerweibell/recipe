@@ -9,6 +9,7 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -19,6 +20,7 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   color: #FFFFFF;
   border-color: #db2828;
@@ -62,6 +64,7 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -72,6 +75,7 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   color: #FFFFFF;
   border-color: #2484d7;
@@ -152,6 +156,7 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -162,6 +167,7 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;
@@ -205,6 +211,7 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -215,6 +222,7 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;
@@ -295,6 +303,7 @@ exports[`EzButton should render with disabled styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -305,6 +314,7 @@ exports[`EzButton should render with disabled styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   color: #FFFFFF;
   border-color: #2484d7;
@@ -352,6 +362,7 @@ exports[`EzButton should render with primary styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -362,6 +373,7 @@ exports[`EzButton should render with primary styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   color: #FFFFFF;
   border-color: #2484d7;
@@ -405,6 +417,7 @@ exports[`EzButton should render with secondary styles 1`] = `
   display: inline-block;
   outline: 0;
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
@@ -415,6 +428,7 @@ exports[`EzButton should render with secondary styles 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;

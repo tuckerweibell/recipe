@@ -10,12 +10,14 @@ export const base = ({theme}) => css`
   display: inline-block;
   outline: 0;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: ${theme.fontWeights.bold};
   line-height: 1em;
   min-height: 1em;
   margin-right: ${theme.spacing.xs2};
   padding: ${theme.spacing.xs} ${theme.spacing.md};
   text-decoration: none;
   user-select: none;
+  white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 `;
 
