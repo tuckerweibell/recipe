@@ -6,13 +6,13 @@ export const base = ({theme}) => css`
 `;
 
 const normalSize = ({theme}) => css`
-  font-size: ${theme.fontSizes.normal};
-  font-weight: ${theme.fontWeights.base};
+  font-size: ${theme.fontSizes[300]};
+  font-weight: ${theme.fontWeights.normal};
 `;
 
 const top = ({size, theme}) => css`
-  font-size: ${theme.fontSizes[size]};
-  font-weight: ${size === 'small' && theme.fontWeights.medium};
+  font-size: ${size === 'small' && theme.fontSizes[200]};
+  font-weight: ${size === 'small' && theme.fontWeights.bold};
   margin-bottom: ${theme.spacing.xs2};
 `;
 

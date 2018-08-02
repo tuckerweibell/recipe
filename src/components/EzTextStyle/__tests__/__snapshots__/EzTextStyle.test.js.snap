@@ -2,7 +2,7 @@
 
 exports[`EzTextStyle should render with strong styles 1`] = `
 .recipe-0 {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 <span

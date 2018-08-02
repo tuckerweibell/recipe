@@ -7,7 +7,7 @@ export const CardContainer = styled.div`
 `;
 
 export const CardHeading = styled.h3`
-  font-size: ${props => props.theme.fontSizes.medium};
+  font-size: ${props => props.theme.fontSizes[500]};
   margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
 `;
 

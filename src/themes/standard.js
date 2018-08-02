@@ -23,9 +23,9 @@ const blueGrays = {
   100: '#8B99A6',
 };
 
-export const baseFontSize = 14;
+export const baseFontSize = '14px';
 
-const rem = pixels => `${pixels / baseFontSize}rem`;
+const rem = pixels => `${pixels / baseFontSize.replace('px', '')}rem`;
 
 export const spacing = {
   xs2: rem(4),
@@ -60,13 +60,17 @@ export const colors = {
 };
 
 export const fontSizes = {
-  small: '0.85rem',
-  normal: '1rem',
-  medium: '1.25rem',
+  100: rem(10),
+  200: rem(12),
+  300: rem(14),
+  400: rem(16),
+  500: rem(18),
+  600: rem(21),
+  700: rem(32),
+  900: rem(60),
 };
 
 export const fontWeights = {
-  base: 400,
-  medium: 700,
-  bold: 900,
+  normal: 400,
+  bold: 700,
 };

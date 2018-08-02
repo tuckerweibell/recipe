@@ -147,7 +147,7 @@ exports[`EzCard should render with header styles 1`] = `
 }
 
 .recipe-0 {
-  font-size: 1.25rem;
+  font-size: 1.2857142857142858rem;
   margin: 1.4285714285714286rem 1.4285714285714286rem 0;
 }
 
