@@ -18,6 +18,11 @@ describe('EzButton', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with tertiary styles', () => {
+    actual.setProps({use: 'tertiary'});
+    expect(actual).toMatchSnapshot();
+  })
+
   it('should render with disabled styles', () => {
     actual.setProps({disabled: true});
     expect(actual).toMatchSnapshot();
@@ -30,6 +35,11 @@ describe('EzButton', () => {
 
   it('should render secondary button with destructive styles', () => {
     actual.setProps({destructive: true, use: 'secondary'});
+    expect(actual).toMatchSnapshot();
+  });
+
+  it('should render tertiary button with destructive styles', () => {
+    actual.setProps({destructive: true, use: 'tertiary'});
     expect(actual).toMatchSnapshot();
   });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
-import {base, primary, secondary, disabled, loading} from './EzButton.styles';
+import {base, primary, secondary, tertiary, disabled, loading, outline} from './EzButton.styles';
 import {variants} from '../../styles/';
 import {standard} from '../../themes';
 import {filterValidProps} from '../../utils';
@@ -9,9 +9,10 @@ import {filterValidProps} from '../../utils';
 const use = variants('use', {
   primary,
   secondary,
+  tertiary,
 });
 
-const baseStyles = [base, use, disabled, loading];
+const baseStyles = [base, use, disabled, loading, outline];
 
 /**
  * Buttons represent actions on a page that can be triggered with one click.
@@ -39,12 +40,21 @@ EzButton.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, indicates that the button action is being processed and that the button is currently unavailable to be interacted with.
+   * Cannot be used in combination with tertiary button types.
    */
-  loading: PropTypes.bool,
+  loading: function (props) {
+    if (props['use'] === 'tertiary' && props['loading']) {
+      return new Error('Don\'t use loading in combination with tertiary');
+    }
+
+    if (!['undefined', 'boolean'].includes(typeof props['loading'])){
+      return new Error('loading must be a boolean if provided');
+    }
+  },
   /**
    * Determines the emphasis of the button.
    */
-  use: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  use: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 };
 
 /**

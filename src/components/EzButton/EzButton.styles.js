@@ -3,9 +3,6 @@ import {shade} from 'polished';
 import {keyframes, variants} from '../../styles';
 
 export const base = ({theme}) => css`
-  border: ${theme.borderWidth[0]} solid;
-  border-radius: ${theme.borderRadius[1]};
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -14,7 +11,6 @@ export const base = ({theme}) => css`
   line-height: 1em;
   min-height: 1em;
   margin-right: ${theme.spacing.xs2};
-  padding: ${theme.spacing.xs} ${theme.spacing.md};
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
@@ -36,6 +32,18 @@ const elementStates = (style, color, focusColor) => ({
   ['&:active:enabled']: {[style]: shade(0.75, color)},
 });
 
+const outlineStyles = ({theme}) => css`
+  border: ${theme.borderWidth[0]} solid;
+  border-radius: ${theme.borderRadius[1]};
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  padding: ${theme.spacing.xs} ${theme.spacing.md};
+`;
+
+export const outline = ({use, theme}) => variants('use', {
+  primary: outlineStyles,
+  secondary: outlineStyles,
+})({use, theme});
+
 export const primary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
@@ -52,6 +60,15 @@ export const secondary = ({theme: {colors}, destructive}) => {
     background-color: white;
     border: solid 1px;
     ${elementStates('border-color', colors.grays[400], colors.blues[300])};
+    ${elementStates('color', main)};
+  `;
+};
+
+export const tertiary = ({theme: {colors}, destructive}) => {
+  const {main} = destructive ? colors.destructive : colors.primary;
+  return css`
+    background: none;
+    border: none;
     ${elementStates('color', main)};
   `;
 };

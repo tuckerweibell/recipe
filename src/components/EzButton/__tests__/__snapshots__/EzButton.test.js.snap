@@ -2,9 +2,6 @@
 
 exports[`EzButton should render primary button with destructive styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -13,7 +10,6 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -26,6 +22,10 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   border-color: #db2828;
   border-color: #db2828;
   background-color: #db2828;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -57,9 +57,6 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
 
 exports[`EzButton should render primary button with loading styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -68,7 +65,6 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -86,6 +82,10 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   pointer-events: none;
   position: relative;
   color: transparent;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -149,9 +149,6 @@ exports[`EzButton should render primary button with loading styles 1`] = `
 
 exports[`EzButton should render secondary button with destructive styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -160,7 +157,6 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -173,6 +169,10 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   border: solid 1px;
   border-color: #CED4D9;
   color: #db2828;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -204,9 +204,6 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
 
 exports[`EzButton should render secondary button with loading styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -215,7 +212,6 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -233,6 +229,10 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   pointer-events: none;
   position: relative;
   color: transparent;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -294,11 +294,8 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
 </button>
 `;
 
-exports[`EzButton should render with disabled styles 1`] = `
+exports[`EzButton should render tertiary button with destructive styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -307,7 +304,44 @@ exports[`EzButton should render with disabled styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  background: none;
+  border: none;
+  color: #db2828;
+}
+
+.recipe-0:hover:enabled {
+  color: #ba2222;
+}
+
+.recipe-0:active:enabled {
+  color: #a41e1e;
+}
+
+<button
+  className="recipe-0"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render with disabled styles 1`] = `
+.recipe-0 {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.2857142857142857rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -323,6 +357,10 @@ exports[`EzButton should render with disabled styles 1`] = `
   cursor: default;
   opacity: 0.45;
   pointer-events: none;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -355,9 +393,6 @@ exports[`EzButton should render with disabled styles 1`] = `
 
 exports[`EzButton should render with primary styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -366,7 +401,6 @@ exports[`EzButton should render with primary styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -379,6 +413,10 @@ exports[`EzButton should render with primary styles 1`] = `
   border-color: #2484d7;
   border-color: #2484d7;
   background-color: #2484d7;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -410,9 +448,6 @@ exports[`EzButton should render with primary styles 1`] = `
 
 exports[`EzButton should render with secondary styles 1`] = `
 .recipe-0 {
-  border: 1px solid;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -421,7 +456,6 @@ exports[`EzButton should render with secondary styles 1`] = `
   line-height: 1em;
   min-height: 1em;
   margin-right: 0.2857142857142857rem;
-  padding: 0.5714285714285714rem 1.1428571428571428rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -434,6 +468,10 @@ exports[`EzButton should render with secondary styles 1`] = `
   border: solid 1px;
   border-color: #CED4D9;
   color: #2484d7;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
 .recipe-0:hover:enabled {
@@ -446,6 +484,44 @@ exports[`EzButton should render with secondary styles 1`] = `
 
 .recipe-0:active:enabled {
   border-color: #9a9fa2;
+}
+
+.recipe-0:hover:enabled {
+  color: #1e70b6;
+}
+
+.recipe-0:active:enabled {
+  color: #1b63a1;
+}
+
+<button
+  className="recipe-0"
+>
+  Click Me
+</button>
+`;
+
+exports[`EzButton should render with tertiary styles 1`] = `
+.recipe-0 {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.2857142857142857rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  background: none;
+  border: none;
+  color: #2484d7;
 }
 
 .recipe-0:hover:enabled {

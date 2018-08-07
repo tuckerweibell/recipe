@@ -45,6 +45,16 @@ Secondary buttons are used for action on a page that are important, but aren't t
 <EzButton use="secondary">Edit</EzButton>
 ```
 
+### Tertiary Button
+
+Tertiary buttons are used when a section or page has too many actions of varying importance. A page should always have one primary action, and may have one or two secondary actions. Any actions that aren’t as important as these primary and secondary actions should use a tertiary button style. For example, on an order details page, if we’re asking the user to accept the order (primary), and reject or request ezDispatch (secondary actions), then any other actions aren’t as important and should use a tertiary button.
+
+Tertiary buttons should also be used when space is a constraint or when content is repeated many times on a page. For example, an action in a table row should use a tertiary button since space is limited and having the outline around the button text in multiple table rows would distract the user from the action we want them to take.
+
+```jsx
+<EzButton use="tertiary">Save as PDF</EzButton>
+```
+
 ### Destructive Button
 
 When an action will delete data, or discard the current page state, a destructive button should be used. Destructive buttons should trigger a confirmation dialog before the action is completed. Destructive buttons should typically be secondary buttons, but are promoted to primary buttons on confirmation dialogs.
@@ -56,6 +66,9 @@ When an action will delete data, or discard the current page state, a destructiv
   </EzButton>
   <EzButton use="primary" destructive>
     Confirm Deletion
+  </EzButton>
+  <EzButton use="tertiary" destructive>
+    Delete Item
   </EzButton>
 </div>
 ```
