@@ -6,9 +6,17 @@ export const CardContainer = styled.div`
   border-radius: ${props => props.theme.borderRadius[2]};
 `;
 
+export const CardHeadingContainer = styled.div`
+  margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
+`;
+
 export const CardHeading = styled.h3`
   font-size: ${props => props.theme.fontSizes[500]};
-  margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
+  margin: 0;
+`;
+
+export const CardSubheading = styled.div`
+  margin-top: ${props => props.theme.spacing.xs};
 `;
 
 const vertical = ({horizontal, theme}) =>

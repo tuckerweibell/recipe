@@ -20,6 +20,15 @@ describe('EzCard', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with header and subheader styles', () => {
+    const actual = create(
+      <EzCard title="Card Heading" subtitle="Card Subheading">
+        <p>Lorem ipsum dolor</p>
+      </EzCard>
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
   it('should render with card sections', () => {
     const actual = create(
       <EzCard>

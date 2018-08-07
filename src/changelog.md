@@ -7,6 +7,18 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.3.0 - 2018-08-07
+
+### Enhancements
+
+* Added tertiary button use type to [EzButton](/components/ez-button)
+* Added optional subtitle prop to [EzCard](/components/ez-card)
+
+### Documentation
+
+* Added guidance on when and how to use tertiary buttons
+* Added guidance on when and how to use EzCards with subheadings
+
 ## 1.2.0 - 2018-08-02
 
 ### Enhancements

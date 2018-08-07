@@ -49,10 +49,23 @@ Used to separate a screen's main content into meaningful groups.
 
 ### Card with Heading
 
-Cards can have an optional heading. Headings should be descriptive of the entire card, not just the first section. Headins should be used when you want the content to be identifiable at a glance.
+Cards can have an optional heading. Headings should be descriptive of the entire card, not just the first section. Headings should be used when you want the content to be identifiable at a glance.
 
 ```jsx
 <EzCard title="Card Heading">
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </div>
+</EzCard>
+```
+
+### Card with Subheading
+
+Cards can have an optional subheading to provide further information for the card. A subheading should only be used with a heading and should also describe the entire card, not just a particular section.
+
+```jsx
+<EzCard title="Card Heading" subtitle="Descriptive information about the card">
   <div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
     maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.

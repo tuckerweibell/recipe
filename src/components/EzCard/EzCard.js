@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CardContainer, CardHeading, SectionContainer} from './EzCard.styles';
+import {CardContainer, CardHeading, CardHeadingContainer, SectionContainer, CardSubheading} from './EzCard.styles';
 import EzCardSection from './EzCardSection';
+import EzTextStyle from '../EzTextStyle';
 import {standard} from '../../themes';
 import {filterValidProps} from '../../utils';
 
@@ -20,9 +21,14 @@ function wrappedChildren(children) {
 /**
  * Cards are the primary means of grouping content on a page.
  */
-const EzCard = ({title, ...props}) => (
+const EzCard = ({title, subtitle, ...props}) => (
   <CardContainer {...filterValidProps(props)} theme={props.theme}>
-    {title && <CardHeading theme={props.theme}>{title}</CardHeading>}
+    {title && <CardHeadingContainer theme={props.theme}>
+      <CardHeading theme={props.theme}>{title}</CardHeading>
+      {subtitle && <CardSubheading theme={props.theme}>
+        <EzTextStyle use="subdued">{subtitle}</EzTextStyle>
+        </CardSubheading>}
+      </CardHeadingContainer>}
     <SectionContainer horizontal={props.horizontal} theme={props.theme}>
       {wrappedChildren(props.children)}
     </SectionContainer>
