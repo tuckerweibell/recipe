@@ -27,6 +27,8 @@ export const baseFontSize = '14px';
 
 const rem = pixels => `${pixels / baseFontSize.replace('px', '')}rem`;
 
+const em = pixels => `${pixels / 16}em`;
+
 export const spacing = {
   xs2: rem(4),
   xs: rem(8),
@@ -74,3 +76,5 @@ export const fontWeights = {
   normal: 400,
   bold: 700,
 };
+
+export const breakpoints = {medium: em(768), large: em(1061)};

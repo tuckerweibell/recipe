@@ -177,11 +177,34 @@ The layout component can be nested in order to provide more complex or unique ar
 </EzCard>
 ```
 
----
+### Responsive Layouts
 
-## Limitations
+The layout component can be used to optimize the layout of content to suit various device sizes. For example, a group of action buttons may use the `stack` layout on small screens where horizontal space limited, and the `basic` layout on larger screens.
 
-* Layout does not currently support varying horizontal/vertical stacked layouts across breakpoints.
+If you provide more than one layout, you should think of it as progressive enhancement. The `base` layout will be applied from the smallest devices up, until reaching the other layout. Then that second layout will takeover for larger devices. You can control where the transition happens.
+
+While it is technically possible to pass more than two layouts (e.g. have a different layout each for phone, tablet, desktop) we don't see a need for that at this time. If designers run into a case for this kind of behavior they should bring it up for discussion.
+
+```jsx
+<EzCard
+  className={css(`
+  .responsive > * {
+    background-color: lightgreen;
+  }
+`)}
+>
+  <EzLayout
+    layout={{
+      base: 'stack',
+      medium: 'basic',
+    }}
+    className="responsive"
+  >
+    <div>Stack Layout</div>
+    <div>Content</div>
+  </EzLayout>
+</EzCard>
+```
 
 ---
 

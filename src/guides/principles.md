@@ -29,3 +29,7 @@ Existing component libraries (like Semantic or Bootstrap, etc.) provide a huge v
 ### Containers are responsible for layout
 
 We consider properties such as `margin` and `position` to be aspects of layout. Individual components should not have opinions about layout. Instead layout is applied by containers to their children.
+
+### Progressive enhancement
+
+Design layouts with a mobile first approach. Use responsive design to enhance layouts to make better use of the space available on larger devices.

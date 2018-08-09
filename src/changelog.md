@@ -7,6 +7,16 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.4.0 - 2018-08-08
+
+### Enhancements
+
+* Added responsive layout options to [EzLayout](/components/ez-layout)
+
+### Documentation
+
+* Added info on progressive enhancement to [Principles](/guides/principles)
+
 ## 1.3.0 - 2018-08-07
 
 ### Enhancements

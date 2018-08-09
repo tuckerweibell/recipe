@@ -2,14 +2,14 @@
 
 exports[`EzLayout should render with a split layout 1`] = `
 .recipe-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -55,16 +55,98 @@ exports[`EzLayout should render with a stacked layout 1`] = `
 </div>
 `;
 
-exports[`EzLayout should render with default styles 1`] = `
+exports[`EzLayout should render with a stacked layout on small screens, and equal layouts on larger screens 1`] = `
 .recipe-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@media screen and (min-width:66.3125em) {
+  .recipe-0 {
+    -webkit-align-items: normal;
+    -webkit-box-align: normal;
+    -ms-flex-align: normal;
+    align-items: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: normal;
+    -webkit-justify-content: normal;
+    -ms-flex-pack: normal;
+    justify-content: normal;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .recipe-0 > * {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+  }
+
+  .recipe-0 > * {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+}
+
+.recipe-0 > *:not(:first-child) {
+  margin-top: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:66.3125em) {
+  .recipe-0 > *:not(:first-child) {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .recipe-0 > *:not(:first-child) {
+    margin-left: 0.8571428571428571rem;
+  }
+}
+
+<div
+  className="recipe-0 recipe-1"
+>
+  <div>
+    Content
+  </div>
+  <div>
+    Content
+  </div>
+</div>
+`;
+
+exports[`EzLayout should render with default styles 1`] = `
+.recipe-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
@@ -89,14 +171,14 @@ exports[`EzLayout should render with default styles 1`] = `
 
 exports[`EzLayout should render with equally sized content 1`] = `
 .recipe-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -131,14 +213,14 @@ exports[`EzLayout should render with equally sized content 1`] = `
 
 exports[`EzLayout should render with right aligned content 1`] = `
 .recipe-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;

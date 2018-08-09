@@ -52,6 +52,16 @@ describe('EzLayout', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with a stacked layout on small screens, and equal layouts on larger screens', () => {
+    const actual = create(
+      <EzLayout layout={{base: 'stack', large: 'equal'}}>
+        <div>Content</div>
+        <div>Content</div>
+      </EzLayout>
+    );
+    expect(actual).toMatchSnapshot();
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(
       <EzLayout layout="basic">

@@ -1,20 +1,34 @@
 import {css} from 'react-emotion';
-import {variants} from '../../styles/';
+import {margin} from 'polished';
+import {responsive} from '../../styles/';
 
 export const base = ({layout}) => css`
-  ${layout !== 'stack' && 'align-items: center'};
   display: flex;
 `;
 
+const reset = css`
+  align-items: normal;
+  flex-direction: row;
+  justify-content: normal;
+
+  > * {
+    flex-basis: auto;
+    flex-grow: 0;
+  }
+`;
+
 export const basic = () => css`
+  align-items: center;
   justify-content: flex-start;
 `;
 
 export const right = css`
+  align-items: center;
   justify-content: flex-end;
 `;
 
 export const equal = () => css`
+  align-items: center;
   justify-content: space-between;
 
   > * {
@@ -24,33 +38,35 @@ export const equal = () => css`
 `;
 
 export const split = () => css`
+  align-items: center;
   justify-content: space-between;
 `;
 
 export const stack = ({theme}) => css`
   flex-direction: column;
-
-  > *:not(:first-child) {
-    margin-top: ${theme.spacing.sm};
-  }
 `;
 
-export const layout = variants('layout', {
+export const layout = responsive('layout', {
   basic,
   right,
   equal,
   split,
   stack,
+  reset,
 });
 
-const spacingStyle = ({theme}) => css`
+const setSpacing = (top, left) => css`
   > *:not(:first-child) {
-    margin-left: ${theme.spacing.sm};
+    ${margin(top, null, null, left)};
   }
 `;
+const leftSpacing = ({theme}) => setSpacing(null, theme.spacing.sm);
+const topSpacing = ({theme}) => setSpacing(theme.spacing.sm, null);
 
-export const spacing = variants('layout', {
-  basic: spacingStyle,
-  right: spacingStyle,
-  equal: spacingStyle,
+export const spacing = responsive('layout', {
+  basic: leftSpacing,
+  right: leftSpacing,
+  equal: leftSpacing,
+  stack: topSpacing,
+  reset: setSpacing(0, 0),
 });

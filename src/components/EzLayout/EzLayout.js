@@ -3,6 +3,8 @@ import styled from 'react-emotion';
 import {base, layout, spacing} from './EzLayout.styles';
 import {standard} from '../../themes';
 
+const layoutTypes = PropTypes.oneOf(['basic', 'right', 'equal', 'split', 'stack']);
+
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
  */
@@ -12,7 +14,7 @@ EzLayout.propTypes = {
   /**
    * Controls the arrangement of items within the layout.
    */
-  layout: PropTypes.oneOf(['basic', 'right', 'equal', 'split', 'stack']),
+  layout: PropTypes.oneOfType([layoutTypes, PropTypes.shape({base: layoutTypes})]),
   /**
    * The theme controlling the default styles.
    */
