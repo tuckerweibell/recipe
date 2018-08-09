@@ -33,16 +33,17 @@ const elementStates = (style, color, focusColor) => ({
 });
 
 const outlineStyles = ({theme}) => css`
-  border: ${theme.borderWidth[0]} solid;
   border-radius: ${theme.borderRadius[1]};
+  border-style: solid;
+  border-width: ${theme.borderWidth[0]};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   padding: ${theme.spacing.xs} ${theme.spacing.md};
 `;
 
-export const outline = ({use, theme}) => variants('use', {
+export const outline = variants('use', {
   primary: outlineStyles,
   secondary: outlineStyles,
-})({use, theme});
+});
 
 export const primary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
