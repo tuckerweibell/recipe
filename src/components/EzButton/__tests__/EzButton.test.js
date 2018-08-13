@@ -21,7 +21,7 @@ describe('EzButton', () => {
   it('should render with tertiary styles', () => {
     actual.setProps({use: 'tertiary'});
     expect(actual).toMatchSnapshot();
-  })
+  });
 
   it('should render with disabled styles', () => {
     actual.setProps({disabled: true});
@@ -91,7 +91,7 @@ describe('EzButton', () => {
     });
 
     it('is applies the disabled attribute to the button element', () => {
-      actual.setProps({disabled: true});
+      actual.setProps({loading: true});
       expect(actual.prop('disabled')).toBe(true);
     });
 
