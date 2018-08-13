@@ -108,6 +108,18 @@ describe('EzButton', () => {
 
       expect(spy).not.toHaveBeenCalled();
     });
+
+    it('cannot be applied to tertiary button', () => {
+      spyOn(console, 'error');
+      actual.setProps({use: 'tertiary', loading: true});
+      expect(console.error).toHaveBeenCalled();
+    });
+
+    it('accepts only boolean values for loading', () => {
+      spyOn(console, 'error');
+      actual.setProps({use: 'tertiary', loading: 0});
+      expect(console.error).toHaveBeenCalled();
+    });
   });
 
   describe('valid props', () => {
