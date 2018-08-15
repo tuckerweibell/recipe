@@ -19,6 +19,7 @@ Cards should:
 * Position calls-to-action for next steps at the bottom of the card, and use the space in the top right for optional actions.
 * Use [Card Sections](#card-with-sections) for related but distinct content. Multiple sections can help break up complicated concepts to make them easier to scan.
 * Optionally use a heading to help identify the contents of the card at-a-glance.
+* Cards with accents should be used sparingly.
 
 Cards should not:
 
@@ -112,6 +113,21 @@ Sections can also be laid out horizontally. There is no separator when sections 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
     maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
   </EzCardSection>
+</EzCard>
+```
+
+### Cards with Accents
+
+#### Info Accent
+
+Accented info cards can be used when you want to draw attention to a card that does not need immediate action.
+
+```jsx
+<EzCard title="Card Heading" accent="info">
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </div>
 </EzCard>
 ```
 

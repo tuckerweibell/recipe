@@ -49,6 +49,16 @@ describe('EzCard', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with info accent', () => {
+    const actual = create(
+      <EzCard accent="info">
+        <div>Lorem ipsum</div>
+      </EzCard>
+    );
+
+    expect(actual).toMatchSnapshot();
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(
       <EzCard title="Card Heading">

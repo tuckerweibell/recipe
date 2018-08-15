@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.5.0 - 2018-08-15
+
+### Enhancements
+
+* Added optional accent prop to [EzCard](/components/ez-card)
+
 ## 1.4.1 - 2018-08-13
 
 ### Bug fixes

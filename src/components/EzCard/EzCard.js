@@ -21,8 +21,8 @@ function wrappedChildren(children) {
 /**
  * Cards are the primary means of grouping content on a page.
  */
-const EzCard = ({title, subtitle, ...props}) => (
-  <CardContainer {...filterValidProps(props)} theme={props.theme}>
+const EzCard = ({title, subtitle, accent, ...props}) => (
+  <CardContainer {...filterValidProps(props)} accent={accent} theme={props.theme}>
     {title && <CardHeadingContainer theme={props.theme}>
       <CardHeading theme={props.theme}>{title}</CardHeading>
       {subtitle && <CardSubheading theme={props.theme}>
@@ -48,6 +48,14 @@ EzCard.propTypes = {
    * An optional heading for the card.
    */
   title: PropTypes.string,
+  /**
+   * An optional subheading for the card.
+   */
+  subtitle: PropTypes.string,
+  /**
+   * An optional accent for the card.
+   */
+  accent: PropTypes.oneOf(['info']),
 };
 
 EzCard.defaultProps = {
