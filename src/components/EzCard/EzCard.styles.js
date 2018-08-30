@@ -1,15 +1,16 @@
 import styled, {css} from 'react-emotion';
 
-const accentStyles = ({accent, theme}) => 
-  accent && css`
-    border-left: 5px solid ${theme.colors.blues[300]};  
+const accentStyles = ({accent, theme}) =>
+  accent &&
+  css`
+    border-left: 5px solid ${theme.colors.blues[600]};
   `;
 
 export const CardContainer = styled.div`
   background: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.grays[400]};
   border-radius: ${props => props.theme.borderRadius[2]};
-  ${accentStyles}
+  ${accentStyles};
 `;
 
 export const CardHeadingContainer = styled.div`

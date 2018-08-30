@@ -7,7 +7,7 @@ const label = ({theme}) => css`
   background-color: white;
   border: 1px solid ${theme.colors.grays[400]};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  color: ${theme.colors.grays[600]};
+  color: ${theme.colors.grays[700]};
   display: block;
   flex: 1;
   padding: ${theme.spacing.xs} ${theme.spacing.md};
@@ -31,19 +31,19 @@ const label = ({theme}) => css`
   &:hover {
     background-color: ${shade(0.97, 'white')};
     border-color: ${shade(0.85, theme.colors.grays[400])};
-    color: ${shade(0.85, theme.colors.grays[600])};
+    color: ${shade(0.85, theme.colors.grays[700])};
   }
 
   input:checked + & {
-    color: ${theme.colors.blues[100]};
-    background: ${theme.colors.blues[50]};
-    border: 1px solid ${theme.colors.blues[100]};
+    color: ${theme.colors.blues[500]};
+    background: ${theme.colors.blues[200]};
+    border: 1px solid ${theme.colors.blues[500]};
     position: relative;
   }
 
   input:focus + & {
-    border-color: ${theme.colors.blues[300]};
-    color: ${theme.colors.blues[300]};
+    border-color: ${theme.colors.blues[600]};
+    color: ${theme.colors.blues[600]};
   }
 
   input:disabled + & {
@@ -58,7 +58,7 @@ export const Label = styled.label(label);
 const labelPosition = variants('labelPosition', {
   hidden: hideVisually,
   left: ({theme}) => css`
-    color: ${theme.colors.blueGrays[100]};
+    color: ${theme.colors.grays[600]};
     margin-right: ${theme.spacing.md};
   `,
 });

@@ -14,7 +14,7 @@ exports[`EzTextStyle should render with strong styles 1`] = `
 
 exports[`EzTextStyle should render with subdued styles 1`] = `
 .recipe-0 {
-  color: #8B99A6;
+  color: #8b99a6;
 }
 
 <span

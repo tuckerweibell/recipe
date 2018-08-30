@@ -2,7 +2,7 @@ import {css} from 'react-emotion';
 import {variants} from '../../styles/';
 
 export const base = ({theme}) => css`
-  color: ${theme.colors.blueGrays[100]};
+  color: ${theme.colors.grays[600]};
 `;
 
 const normalSize = ({theme}) => css`

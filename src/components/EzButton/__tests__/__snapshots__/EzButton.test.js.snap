@@ -18,10 +18,10 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  color: #FFFFFF;
-  border-color: #db2828;
-  border-color: #db2828;
-  background-color: #db2828;
+  color: #ffffff;
+  border-color: #ec5353;
+  border-color: #ec5353;
+  background-color: #ec5353;
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -30,23 +30,23 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  border-color: #ba2222;
+  border-color: #c84646;
 }
 
 .recipe-0:focus:enabled {
-  border-color: #a41e1e;
+  border-color: #b13e3e;
 }
 
 .recipe-0:active:enabled {
-  border-color: #a41e1e;
+  border-color: #b13e3e;
 }
 
 .recipe-0:hover:enabled {
-  background-color: #ba2222;
+  background-color: #c84646;
 }
 
 .recipe-0:active:enabled {
-  background-color: #a41e1e;
+  background-color: #b13e3e;
 }
 
 <button
@@ -74,10 +74,10 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  color: #FFFFFF;
-  border-color: #2484d7;
-  border-color: #2484d7;
-  background-color: #2484d7;
+  color: #ffffff;
+  border-color: #3e90d6;
+  border-color: #3e90d6;
+  background-color: #3e90d6;
   cursor: default;
   opacity: 0.45;
   pointer-events: none;
@@ -91,23 +91,23 @@ exports[`EzButton should render primary button with loading styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  border-color: #1e70b6;
+  border-color: #347ab5;
 }
 
 .recipe-0:focus:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:active:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:hover:enabled {
-  background-color: #1e70b6;
+  background-color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  background-color: #1b63a1;
+  background-color: #2e6ca0;
 }
 
 .recipe-0::before {
@@ -135,7 +135,7 @@ exports[`EzButton should render primary button with loading styles 1`] = `
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   border-radius: 10rem;
-  border-color: #FFFFFF transparent transparent;
+  border-color: #ffffff transparent transparent;
   border-style: solid;
   border-width: 0.2rem;
   box-shadow: 0 0 0 1px transparent;
@@ -169,8 +169,8 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;
-  border-color: #CED4D9;
-  color: #db2828;
+  border-color: #ced4d9;
+  color: #ec5353;
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -183,7 +183,7 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
 }
 
 .recipe-0:focus:enabled {
-  border-color: #3E90D6;
+  border-color: #3e90d6;
 }
 
 .recipe-0:active:enabled {
@@ -191,11 +191,11 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  color: #ba2222;
+  color: #c84646;
 }
 
 .recipe-0:active:enabled {
-  color: #a41e1e;
+  color: #b13e3e;
 }
 
 <button
@@ -225,8 +225,8 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;
-  border-color: #CED4D9;
-  color: #2484d7;
+  border-color: #ced4d9;
+  color: #3e90d6;
   cursor: default;
   opacity: 0.45;
   pointer-events: none;
@@ -244,7 +244,7 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
 }
 
 .recipe-0:focus:enabled {
-  border-color: #3E90D6;
+  border-color: #3e90d6;
 }
 
 .recipe-0:active:enabled {
@@ -252,11 +252,11 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  color: #1e70b6;
+  color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  color: #1b63a1;
+  color: #2e6ca0;
 }
 
 .recipe-0::before {
@@ -284,7 +284,7 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   border-radius: 10rem;
-  border-color: #767676 transparent transparent;
+  border-color: #565a5c transparent transparent;
   border-style: solid;
   border-width: 0.2rem;
   box-shadow: 0 0 0 1px transparent;
@@ -318,15 +318,15 @@ exports[`EzButton should render tertiary button with destructive styles 1`] = `
   -webkit-tap-highlight-color: transparent;
   background: none;
   border: none;
-  color: #db2828;
+  color: #ec5353;
 }
 
 .recipe-0:hover:enabled {
-  color: #ba2222;
+  color: #c84646;
 }
 
 .recipe-0:active:enabled {
-  color: #a41e1e;
+  color: #b13e3e;
 }
 
 <button
@@ -354,10 +354,10 @@ exports[`EzButton should render with disabled styles 1`] = `
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  color: #FFFFFF;
-  border-color: #2484d7;
-  border-color: #2484d7;
-  background-color: #2484d7;
+  color: #ffffff;
+  border-color: #3e90d6;
+  border-color: #3e90d6;
+  background-color: #3e90d6;
   cursor: default;
   opacity: 0.45;
   pointer-events: none;
@@ -369,23 +369,23 @@ exports[`EzButton should render with disabled styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  border-color: #1e70b6;
+  border-color: #347ab5;
 }
 
 .recipe-0:focus:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:active:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:hover:enabled {
-  background-color: #1e70b6;
+  background-color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  background-color: #1b63a1;
+  background-color: #2e6ca0;
 }
 
 <button
@@ -414,10 +414,10 @@ exports[`EzButton should render with primary styles 1`] = `
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  color: #FFFFFF;
-  border-color: #2484d7;
-  border-color: #2484d7;
-  background-color: #2484d7;
+  color: #ffffff;
+  border-color: #3e90d6;
+  border-color: #3e90d6;
+  background-color: #3e90d6;
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -426,23 +426,23 @@ exports[`EzButton should render with primary styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  border-color: #1e70b6;
+  border-color: #347ab5;
 }
 
 .recipe-0:focus:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:active:enabled {
-  border-color: #1b63a1;
+  border-color: #2e6ca0;
 }
 
 .recipe-0:hover:enabled {
-  background-color: #1e70b6;
+  background-color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  background-color: #1b63a1;
+  background-color: #2e6ca0;
 }
 
 <button
@@ -472,8 +472,8 @@ exports[`EzButton should render with secondary styles 1`] = `
   -webkit-tap-highlight-color: transparent;
   background-color: white;
   border: solid 1px;
-  border-color: #CED4D9;
-  color: #2484d7;
+  border-color: #ced4d9;
+  color: #3e90d6;
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -486,7 +486,7 @@ exports[`EzButton should render with secondary styles 1`] = `
 }
 
 .recipe-0:focus:enabled {
-  border-color: #3E90D6;
+  border-color: #3e90d6;
 }
 
 .recipe-0:active:enabled {
@@ -494,11 +494,11 @@ exports[`EzButton should render with secondary styles 1`] = `
 }
 
 .recipe-0:hover:enabled {
-  color: #1e70b6;
+  color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  color: #1b63a1;
+  color: #2e6ca0;
 }
 
 <button
@@ -528,15 +528,15 @@ exports[`EzButton should render with tertiary styles 1`] = `
   -webkit-tap-highlight-color: transparent;
   background: none;
   border: none;
-  color: #2484d7;
+  color: #3e90d6;
 }
 
 .recipe-0:hover:enabled {
-  color: #1e70b6;
+  color: #347ab5;
 }
 
 .recipe-0:active:enabled {
-  color: #1b63a1;
+  color: #2e6ca0;
 }
 
 <button
