@@ -5,7 +5,7 @@ title: "Styles"
 
 ## Colors
 
-Coming soon...
+<ColorVariables></ColorVariables>
 
 ## Spacing
 

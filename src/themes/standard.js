@@ -1,12 +1,12 @@
-const white = '#ffffff';
-const black = '#000000';
-
 const brandColors = {
   ezOrange: '#ff6b1e',
   ezLogoGreen: '#88bb40',
   ezGreen: '#609b3b',
   ezBlue: '#3e90d6',
 };
+
+const white = '#ffffff';
+const black = '#000000';
 
 const grays = {
   0: white,

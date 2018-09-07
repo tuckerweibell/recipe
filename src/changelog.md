@@ -7,6 +7,16 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## TBD version
+
+### Enhancements
+
+* Refactored color variable names and added new colors
+
+### Documentation
+
+* Added documentation for [colors](/styles/style/#colors)
+
 ## 1.5.0 - 2018-08-15
 
 ### Enhancements
