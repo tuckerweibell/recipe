@@ -59,12 +59,14 @@ const teals = {
   lighter: '#effaf8',
   light: '#6fd5c0',
   base: '#1bbc9b',
+  dark: '#008066',
 };
 
 const purples = {
   lighter: '#f8f3fa',
   light: '#b98acb',
   base: '#9b59b6',
+  dark: '#7f379c',
 };
 
 export const colors = {
