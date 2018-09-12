@@ -1,8 +1,6 @@
 import styled, {css} from 'react-emotion';
 import {variants} from '../../styles';
 
-const MAX_ALERT_WIDTH = '500px';
-
 const sharedDirectionalStyles = spacing => css`
   border-width: 6px;
   border-style: solid;

@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.7.0 - 2018-09-12
+
+### Enhancements
+
+* Added [EzAlert](/components/ez-alert) component and accompanying documentation
+
 ## 1.6.0 - 2018-09-07
 
 ### Enhancements
