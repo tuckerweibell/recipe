@@ -29,7 +29,7 @@ const icons = {
 const EzAlert = ({arrow, tagline, headline, theme, use}) => (
   <AlertContainer arrow={arrow} theme={theme} use={use}>
     {icons[use]}
-    <AlertContent>
+    <AlertContent theme={theme}>
       <EzTextStyle use="strong">{headline}</EzTextStyle>
       <div>{tagline}</div>
     </AlertContent>
