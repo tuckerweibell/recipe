@@ -132,7 +132,7 @@ cd /packages/doc-site
 npm i
 ```
 
-### Working on a component
+### Working on a component using the doc site
 
 The doc-site provides live examples to document the various states of your components. The doc-site is a great environment to start developing your component as the environment has hot reloading and components can be added on the fly through various doc files. Look for any file in the component's folder with an `.md` extension for examples of component code that will run in the doc-site automatically.
 
@@ -144,6 +144,33 @@ npm run develop
 ```
 
 Go to http://localhost:8000/ to see the doc-site and http://localhost:8000/components/ to view all components.
+
+### Working on a component using ezmanage-ui
+
+If you want to test your local component code from within ezmanage-ui, you'll need to setup a link.
+
+First setup the link from recipe (you may need to use `sudo` for the `npm link` step):
+
+```term
+cd /packages/recipe
+npm link
+```
+
+Then setup the link in the root of ezcater-ezmanage-ui:
+
+```term
+cd ezcater-ezmanage-ui
+npm link @ezcater/recipe
+```
+
+You may need to rebuild recipe to see your changes.
+
+```term
+cd /packages/recipe
+npm run build
+```
+
+And in some cases you may also need to restart your server.
 
 ### Testing
 
