@@ -7,6 +7,14 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.8.0 - 2018-09-17
+
+### Enhancements
+
+* Adds new [EzHeading](/components/ez-heading) component.
+* Changed value of `spacing.xl2`.
+* Made [EzPageContent](/components/ez-page-content) padding responsive.
+
 ## 1.7.1 - 2018-09-14
 
 ### Bug fixes
