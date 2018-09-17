@@ -104,7 +104,7 @@ export const spacing = {
   md: rem(16),
   lg: rem(20),
   xl: rem(24),
-  xl2: rem(36),
+  xl2: rem(32),
   xl3: rem(48),
   xl4: rem(60),
   xl5: rem(84),

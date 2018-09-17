@@ -3,11 +3,17 @@
 exports[`EzPageContent should render EzContentGroup content with horizontal styles 1`] = `
 .recipe-2 {
   background: #f4f7f8;
-  padding: 1.4285714285714286rem;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    padding: 2.2857142857142856rem;
+  }
 }
 
 .recipe-2 > *:not(:first-child) {
-  margin-top: 2.5714285714285716rem;
+  margin-top: 2.2857142857142856rem;
 }
 
 .recipe-0 {
@@ -50,11 +56,17 @@ exports[`EzPageContent should render EzContentGroup content with horizontal styl
 exports[`EzPageContent should render EzContentGroup with default styles 1`] = `
 .recipe-2 {
   background: #f4f7f8;
-  padding: 1.4285714285714286rem;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    padding: 2.2857142857142856rem;
+  }
 }
 
 .recipe-2 > *:not(:first-child) {
-  margin-top: 2.5714285714285716rem;
+  margin-top: 2.2857142857142856rem;
 }
 
 .recipe-0 > *:not(:first-child) {
@@ -80,11 +92,17 @@ exports[`EzPageContent should render EzContentGroup with default styles 1`] = `
 exports[`EzPageContent should render with default styles 1`] = `
 .recipe-0 {
   background: #f4f7f8;
-  padding: 1.4285714285714286rem;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    padding: 2.2857142857142856rem;
+  }
 }
 
 .recipe-0 > *:not(:first-child) {
-  margin-top: 2.5714285714285716rem;
+  margin-top: 2.2857142857142856rem;
 }
 
 <div
