@@ -15,6 +15,12 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 * Changed value of `spacing.xl2`.
 * Made [EzPageContent](/components/ez-page-content) padding responsive.
 
+## 1.7.2 - 2018-09-17
+
+### Bug fixes
+
+* Clean up some design fixes for [EzAlert](/components/ez-alert)
+
 ## 1.7.1 - 2018-09-14
 
 ### Bug fixes

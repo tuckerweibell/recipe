@@ -6,7 +6,7 @@ const sharedDirectionalStyles = spacing => css`
   border-style: solid;
   color: transparent;
   content: '';
-  left: ${spacing.sm};
+  left: 13px;
   position: absolute;
 `;
 
@@ -80,6 +80,7 @@ export const AlertContainer = styled.div`
   border-width: 0;
   display: inline-flex;
   padding: ${props => props.theme.spacing.sm};
+  padding-right: ${props => props.theme.spacing.lg};
   position: relative;
 
   ${useStyles};
