@@ -7,7 +7,7 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
-## 1.8.0 - 2018-09-17
+## 1.8.1 - 2018-09-17
 
 ### Enhancements
 
