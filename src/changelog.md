@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.8.2 - 2018-09-17
+
+### Bug fixes
+
+* Removes an unnecessary addition of `className` to [EzAlert](/components/ez-alert)
+
 ## 1.8.1 - 2018-09-17
 
 ### Enhancements

@@ -26,8 +26,8 @@ const icons = {
  * Alerts represent highlighted messages on a page that call out important information.
  * Alerts can be used both with page content as well as a subheader as a status for the entire page.
  */
-const EzAlert = ({arrow, className, tagline, headline, theme, use}) => (
-  <AlertContainer arrow={arrow} className={className} theme={theme} use={use}>
+const EzAlert = ({arrow, tagline, headline, theme, use}) => (
+  <AlertContainer arrow={arrow} theme={theme} use={use}>
     {icons[use]}
     <AlertContent theme={theme}>
       <EzTextStyle use="strong">{headline}</EzTextStyle>
