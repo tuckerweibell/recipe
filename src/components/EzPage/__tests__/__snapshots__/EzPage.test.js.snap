@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzPage should render EzPageSection content with right sidebar styles 1`] = `
+.recipe-4 {
+  background: #f4f7f8;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-4 {
+    padding: 2.2857142857142856rem;
+  }
+}
+
+.recipe-4 p {
+  margin: 0;
+}
+
+.recipe-4 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-4 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    width: 290px;
+  }
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .recipe-2 + .recipe-1 {
+    margin-left: 3.4285714285714284rem;
+  }
+}
+
+.recipe-2 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-2 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    width: calc(100% - 290px - 3.4285714285714284rem);
+  }
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .recipe-0 + .recipe-1 {
+    margin-left: 3.4285714285714284rem;
+  }
+}
+
+.recipe-0 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-0 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+<div
+  className="recipe-4 recipe-5"
+>
+  <div
+    className="recipe-0 recipe-1"
+  >
+    <p>
+      Lorem ipsum dolor
+    </p>
+    <p>
+      Lorem ipsum dolor
+    </p>
+  </div>
+  <div
+    className="recipe-2 recipe-1"
+  >
+    <p>
+      Lorem ipsum dolor
+    </p>
+    <p>
+      Lorem ipsum dolor
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
+.recipe-4 {
+  background: #f4f7f8;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-4 {
+    padding: 2.2857142857142856rem;
+  }
+}
+
+.recipe-4 p {
+  margin: 0;
+}
+
+.recipe-4 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-4 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    width: 290px;
+  }
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .recipe-0 + .recipe-1 {
+    margin-left: 3.4285714285714284rem;
+  }
+}
+
+.recipe-0 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-0 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    width: calc(100% - 290px - 3.4285714285714284rem);
+  }
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .recipe-2 + .recipe-1 {
+    margin-left: 3.4285714285714284rem;
+  }
+}
+
+.recipe-2 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-2 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+<div
+  className="recipe-4 recipe-5"
+>
+  <div
+    className="recipe-0 recipe-1"
+  >
+    <p>
+      Lorem ipsum dolor
+    </p>
+    <p>
+      Lorem ipsum dolor
+    </p>
+  </div>
+  <div
+    className="recipe-2 recipe-1"
+  >
+    <p>
+      Lorem ipsum dolor
+    </p>
+    <p>
+      Lorem ipsum dolor
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EzPage should render with default styles 1`] = `
+.recipe-0 {
+  background: #f4f7f8;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 {
+    padding: 2.2857142857142856rem;
+  }
+}
+
+.recipe-0 p {
+  margin: 0;
+}
+
+.recipe-0 > *:not(:last-child) {
+  margin-bottom: 2.2857142857142856rem;
+}
+
+.recipe-0 > .e1mn1gux1 {
+  margin-bottom: 1.1428571428571428rem;
+}
+
+<div
+  className="recipe-0 recipe-1"
+>
+  <p>
+    Lorem ipsum dolor
+  </p>
+  <p>
+    Lorem ipsum dolor
+  </p>
+</div>
+`;

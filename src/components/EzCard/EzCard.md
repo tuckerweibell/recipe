@@ -36,16 +36,18 @@ Card Sections should not:
 Used to separate a screen's main content into meaningful groups.
 
 ```jsx
-<EzCard>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </div>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </div>
-</EzCard>
+<EzPage>
+  <EzCard>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
 ```
 
 ### Card with Heading
@@ -53,12 +55,14 @@ Used to separate a screen's main content into meaningful groups.
 Cards can have an optional heading. Headings should be descriptive of the entire card, not just the first section. Headings should be used when you want the content to be identifiable at a glance.
 
 ```jsx
-<EzCard title="Card Heading">
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </div>
-</EzCard>
+<EzPage>
+  <EzCard title="Card Heading">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
 ```
 
 ### Card with Subheading
@@ -66,12 +70,14 @@ Cards can have an optional heading. Headings should be descriptive of the entire
 Cards can have an optional subheading to provide further information for the card. A subheading should only be used with a heading and should also describe the entire card, not just a particular section.
 
 ```jsx
-<EzCard title="Card Heading" subtitle="Descriptive information about the card">
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </div>
-</EzCard>
+<EzPage>
+  <EzCard title="Card Heading" subtitle="Descriptive information about the card">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
 ```
 
 ### Card with Sections
@@ -81,22 +87,24 @@ Cards can have multiple sections to break up complex content into easier to dige
 You don't need to use an `EzCardSection` if you only have one section in your panel (the component automatically wraps the content in a single section if needed).
 
 ```jsx
-<EzCard title="Card Heading">
-  <EzCardSection>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </EzCardSection>
-  <EzCardSection>
-    <div>
+<EzPage>
+  <EzCard title="Card Heading">
+    <EzCardSection>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
       maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-    </div>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-    </div>
-  </EzCardSection>
-</EzCard>
+    </EzCardSection>
+    <EzCardSection>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      </p>
+    </EzCardSection>
+  </EzCard>
+</EzPage>
 ```
 
 ### Card with Horizontal Sections
@@ -104,16 +112,18 @@ You don't need to use an `EzCardSection` if you only have one section in your pa
 Sections can also be laid out horizontally. There is no separator when sections are displayed horizontally.
 
 ```jsx
-<EzCard title="Card Heading" horizontal>
-  <EzCardSection>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </EzCardSection>
-  <EzCardSection>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </EzCardSection>
-</EzCard>
+<EzPage>
+  <EzCard title="Card Heading" horizontal>
+    <EzCardSection>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </EzCardSection>
+    <EzCardSection>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </EzCardSection>
+  </EzCard>
+</EzPage>
 ```
 
 ### Cards with Accents
@@ -123,12 +133,14 @@ Sections can also be laid out horizontally. There is no separator when sections 
 Accented info cards can be used when you want to draw attention to a card that does not need immediate action.
 
 ```jsx
-<EzCard title="Card Heading" accent="info">
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-  </div>
-</EzCard>
+<EzPage>
+  <EzCard title="Card Heading" accent="info">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
 ```
 
 ---

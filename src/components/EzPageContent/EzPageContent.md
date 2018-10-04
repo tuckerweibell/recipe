@@ -5,6 +5,14 @@ category: layout
 path: "/components/ez-page-content"
 ---
 
+<EzAlert
+  headline="This component is deprecated"
+  tagline="EzPage Content and EzContentGroup are deprecated. Use EzPage and EzPageLayout for new pages instead."
+  use="error"
+/>
+
+##
+
 Page Content is the main content container for a page. The Page Content component controls the horizontal margins of the content area, as well as the vertical spacing between content.
 
 These examples mostly use Cards, but you can put multiple kinds of content in Page Content.

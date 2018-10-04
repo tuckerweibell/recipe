@@ -7,13 +7,13 @@ import {standard} from '../../themes';
 /**
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
-const EzHeading = ({as, children, size: headingSize, subheading, theme}) => {
+const EzHeading = ({as, children, className, size: headingSize, subheading, theme}) => {
   const headingElement = as || 'h' + headingSize;
   const Heading = styled(headingElement)(size);
   const useSubheading = subheading && (headingSize === '3' || headingSize === '5');
 
   return (
-    <Heading size={headingSize} theme={theme}>
+    <Heading className={className} size={headingSize} theme={theme}>
       {children}
       {useSubheading && <Subheading theme={theme}>{subheading}</Subheading>}
     </Heading>
@@ -46,4 +46,4 @@ EzHeading.defaultProps = {
 /**
  * @component
  */
-export default EzHeading;
+export default styled(EzHeading)();
