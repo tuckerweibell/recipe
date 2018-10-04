@@ -7,6 +7,13 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.9.0 - 2018-10-4
+
+###
+
+* Adds new [EzPage](/components/ez-page) component.
+* Deprecates [EzPageContent](/components/ez-page-content).
+
 ## 1.8.2 - 2018-09-17
 
 ### Bug fixes
