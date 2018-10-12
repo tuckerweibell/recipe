@@ -49,6 +49,7 @@
     "yarn": "YARN NO LONGER USED - use npm instead."
   },
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.6.3"
+    "@emotion/is-prop-valid": "^0.6.3",
+    "styled-component-variant": "^1.0.0"
   }
 }

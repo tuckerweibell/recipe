@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
+import variant from 'styled-component-variant';
 import {base, primary, secondary, tertiary, disabled, loading, outline} from './EzButton.styles';
-import {variants} from '../../styles/';
 import {standard} from '../../themes';
 import {filterValidProps} from '../../utils';
 
-const use = variants('use', {
+const use = variant('use', {
   primary,
   secondary,
   tertiary,
@@ -42,12 +42,12 @@ EzButton.propTypes = {
    * If `true`, indicates that the button action is being processed and that the button is currently unavailable to be interacted with.
    * Cannot be used in combination with tertiary button types.
    */
-  loading: function (props) {
+  loading: function(props) {
     if (props['use'] === 'tertiary' && props['loading']) {
-      return new Error('Don\'t use loading in combination with tertiary');
+      return new Error("Don't use loading in combination with tertiary");
     }
 
-    if (!['undefined', 'boolean'].includes(typeof props['loading'])){
+    if (!['undefined', 'boolean'].includes(typeof props['loading'])) {
       return new Error('loading must be a boolean if provided');
     }
   },

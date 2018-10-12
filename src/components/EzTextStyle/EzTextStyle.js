@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import variant from 'styled-component-variant';
 import {strong, subdued} from './EzTextStyle.styles';
-import {variants} from '../../styles/';
 import {standard} from '../../themes';
 
-const use = variants('use', {
+const use = variant('use', {
   strong,
   subdued,
 });

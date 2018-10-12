@@ -1,5 +1,5 @@
 import styled, {css} from 'react-emotion';
-import {variants} from '../../styles/';
+import variant from 'styled-component-variant';
 
 export const Subheading = styled.div`
   color: ${props => props.theme.colors.grays[600]};
@@ -13,7 +13,7 @@ const heading = (size, weight) => ({theme}) => css`
   margin: 0;
 `;
 
-export const size = variants('size', {
+export const size = variant('size', {
   '1': heading(700, 'normal'),
   '2': heading(600, 'normal'),
   '3': heading(500, 'bold'),

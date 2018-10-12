@@ -1,5 +1,5 @@
 import styled, {css} from 'react-emotion';
-import {variants} from '../../styles/';
+import variant from 'styled-component-variant';
 import {childStyles} from './styles';
 
 const asideWidth = '290px';
@@ -16,7 +16,7 @@ const main = ({theme}) => css`
   }
 `;
 
-const use = variants('use', {
+const use = variant('use', {
   aside,
   main,
 });

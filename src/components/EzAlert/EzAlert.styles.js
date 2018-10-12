@@ -1,5 +1,5 @@
 import styled, {css} from 'react-emotion';
-import {variants} from '../../styles';
+import variant from 'styled-component-variant';
 
 const sharedDirectionalStyles = spacing => css`
   border-width: 6px;
@@ -61,12 +61,12 @@ const tipStyles = ({theme: {colors}}) => css`
   ${coloredStyles(colors.purples.lighter, colors.purples.dark)};
 `;
 
-const arrowStyles = variants('arrow', {
+const arrowStyles = variant('arrow', {
   bottom: bottomStyles,
   top: topStyles,
 });
 
-const useStyles = variants('use', {
+const useStyles = variant('use', {
   error: errorStyles,
   tip: tipStyles,
   info: infoStyles,

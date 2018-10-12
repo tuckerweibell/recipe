@@ -1,6 +1,7 @@
 import {css} from 'react-emotion';
 import {shade} from 'polished';
-import {keyframes, variants} from '../../styles';
+import variant from 'styled-component-variant';
+import {keyframes} from '../../styles';
 
 export const base = ({theme}) => css`
   cursor: pointer;
@@ -40,7 +41,7 @@ const outlineStyles = ({theme}) => css`
   padding: ${theme.spacing.xs} ${theme.spacing.md};
 `;
 
-export const outline = variants('use', {
+export const outline = variant('use', {
   primary: outlineStyles,
   secondary: outlineStyles,
 });
@@ -117,7 +118,7 @@ const spinner = ({margin, size, radius, thickness, color}) => css`
 `;
 
 export const loading = ({loading, use, theme: {colors}}) => {
-  const color = variants('use', {
+  const color = variant('use', {
     primary: colors.white,
     secondary: colors.grays[700],
   })({use});

@@ -1,5 +1,5 @@
 import {css} from 'react-emotion';
-import variants from './variants';
+import variant from 'styled-component-variant';
 
 const getValue = (props, variant) => (typeof variant === 'function' ? variant(props) : variant);
 const createMediaQuery = (n, styles, reset) => css`
@@ -14,7 +14,7 @@ export default (prop, values) => props => {
 
   const propValue = props[prop];
 
-  if (typeof propValue === 'string') return variants(prop, values)(props);
+  if (typeof propValue === 'string') return variant(prop, values)(props);
 
   const base = propValue && propValue.base;
 

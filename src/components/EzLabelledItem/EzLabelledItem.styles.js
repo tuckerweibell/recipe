@@ -1,5 +1,5 @@
 import {css} from 'react-emotion';
-import {variants} from '../../styles/';
+import variant from 'styled-component-variant';
 
 export const base = ({theme}) => css`
   color: ${theme.colors.grays[600]};
@@ -27,7 +27,7 @@ const left = props => css`
   margin-right: ${props.theme.spacing.sm};
 `;
 
-export const position = variants('position', {
+export const position = variant('position', {
   top,
   bottom,
   left,

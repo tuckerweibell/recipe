@@ -1,6 +1,6 @@
 import styled, {css} from 'react-emotion';
 import {hideVisually, shade} from 'polished';
-import {variants} from '../../styles/';
+import variant from 'styled-component-variant';
 
 const label = ({theme}) => css`
   cursor: pointer;
@@ -55,7 +55,7 @@ const label = ({theme}) => css`
 
 export const Label = styled.label(label);
 
-const labelPosition = variants('labelPosition', {
+const labelPosition = variant('labelPosition', {
   hidden: hideVisually,
   left: ({theme}) => css`
     color: ${theme.colors.grays[600]};
