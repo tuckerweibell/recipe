@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import {base, position} from './EzLabelledItem.styles';
-import {standard} from '../../themes';
 
 const LabelWrapper = styled.div(base, position);
 
@@ -10,10 +9,10 @@ const LabelWrapper = styled.div(base, position);
  * Provides a label that can appear in one of several positions relative to its associated content.
  * Typically used to label an interactive element or a short string of text.
  */
-const EzLabelledItem = ({children, position: labelPosition, size, title, theme}) => (
+const EzLabelledItem = ({children, position: labelPosition, size, title}) => (
   <div>
     {labelPosition === 'bottom' && children}
-    <LabelWrapper position={labelPosition} size={size} theme={theme}>
+    <LabelWrapper position={labelPosition} size={size}>
       {title}
     </LabelWrapper>
     {['top', 'left'].includes(labelPosition) && children}
@@ -34,12 +33,6 @@ EzLabelledItem.propTypes = {
    */
   size: PropTypes.oneOf(['normal', 'small']).isRequired,
   /**
-   * The theme controlling the default styles.
-   */
-  theme: PropTypes.shape({
-    colors: PropTypes.object,
-  }),
-  /**
    * The text for label itself
    */
   title: PropTypes.node.isRequired,
@@ -48,9 +41,8 @@ EzLabelledItem.propTypes = {
 /**
  * defaultProps
  * @property {string} size - uses defaults to the base font size.
- * @property {object} theme - uses the standard theme by default.
  */
-EzLabelledItem.defaultProps = {theme: standard, size: 'normal'};
+EzLabelledItem.defaultProps = {size: 'normal'};
 
 EzLabelledItem.displayName = 'EzLabelledItem';
 

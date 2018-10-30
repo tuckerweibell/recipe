@@ -10,15 +10,14 @@ import {
   HeaderContainer,
   ContentContainer,
   ModalContainer,
-  reactModalFromTheme,
+  Modal,
   reactModalHtmlOpen,
   reactModalAfterOpen,
   reactModalOverlay,
 } from './EzModal.styles';
-import {standard} from '../../themes';
 
-const CloseIcon = ({theme, onClick, dismissLabel}) => (
-  <CloseButton role="button" onClick={onClick} theme={theme}>
+const CloseIcon = ({onClick, dismissLabel}) => (
+  <CloseButton role="button" onClick={onClick}>
     <svg
       aria-label={dismissLabel}
       width="16px"
@@ -61,24 +60,23 @@ class EzModal extends React.Component {
     } = this.props;
 
     return (
-      <ReactModal
+      <Modal
         isOpen={isOpen}
         onRequestClose={onDismiss}
-        className={reactModalFromTheme({theme})}
         overlayClassName={reactModalOverlay}
         afterOpenClassName={reactModalAfterOpen}
         htmlOpenClassName={reactModalHtmlOpen}
       >
         {isOpen && (
-          <ModalContainer theme={theme}>
-            <HeaderContainer theme={theme}>
+          <ModalContainer>
+            <HeaderContainer>
               <EzHeading size="2">{headerText}</EzHeading>
-              <CloseIcon theme={theme} dismissLabel={dismissLabel} onClick={onDismiss} />
+              <CloseIcon dismissLabel={dismissLabel} onClick={onDismiss} />
             </HeaderContainer>
 
-            <ContentContainer theme={theme}>{children}</ContentContainer>
+            <ContentContainer>{children}</ContentContainer>
 
-            <ButtonFooter theme={theme}>
+            <ButtonFooter>
               <EzLayout layout={{base: 'stack', medium: 'basic'}}>
                 {submitLabel && (
                   <EzButton
@@ -86,19 +84,18 @@ class EzModal extends React.Component {
                     destructive={destructive}
                     onClick={onSubmit}
                     loading={isSubmitting}
-                    theme={theme}
                   >
                     {submitLabel}
                   </EzButton>
                 )}
-                <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss} theme={theme}>
+                <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
                   {dismissLabel}
                 </EzButton>
               </EzLayout>
             </ButtonFooter>
           </ModalContainer>
         )}
-      </ReactModal>
+      </Modal>
     );
   }
 }
@@ -157,11 +154,6 @@ EzModal.propTypes = {
    * Label for the submit button. Omitting this prop will suppress the submit button
    */
   submitLabel: PropTypes.string,
-
-  /**
-   * Theme object to control the style of the modal
-   */
-  theme: PropTypes.object,
 };
 
 EzModal.defaultProps = {
@@ -171,7 +163,6 @@ EzModal.defaultProps = {
   onDismiss() {},
   onSubmit() {},
   submitLabel: null,
-  theme: standard,
 };
 
 export default EzModal;

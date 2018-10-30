@@ -1,10 +1,9 @@
-import React from 'react';
+import {createElement} from 'react';
 import PropTypes from 'prop-types';
-import {css} from 'react-emotion';
+import styled from 'react-emotion';
 import variant from 'styled-component-variant';
 import {base, primary, secondary, tertiary, disabled, loading, outline} from './EzButton.styles';
 import {standard} from '../../themes';
-import {filterValidProps} from '../../utils';
 
 const use = variant('use', {
   primary,
@@ -19,14 +18,11 @@ const baseStyles = [base, use, disabled, loading, outline];
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
 const EzButton = props => {
-  const mergedProps = {
+  const StyledButton = styled('button')(...baseStyles);
+  return createElement(StyledButton, {
     ...props,
     disabled: props.disabled || props.loading,
-  };
-
-  mergedProps.className = css.apply({mergedProps}, baseStyles);
-
-  return React.createElement('button', filterValidProps(mergedProps));
+  });
 };
 
 EzButton.propTypes = {

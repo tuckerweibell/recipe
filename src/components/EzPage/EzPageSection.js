@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {standard} from '../../themes';
 import {PageSection} from './EzPageSection.styles';
 
 /**
@@ -16,14 +15,6 @@ EzPageSection.propTypes = {
    * The kind of section to render
    */
   use: PropTypes.oneOf(['aside', 'main']).isRequired,
-};
-
-/**
- * defaultProps
- * @property {object} theme - used the standard theme by default.
- */
-EzPageSection.defaultProps = {
-  theme: standard,
 };
 
 EzPageSection.displayName = 'EzPageSection';

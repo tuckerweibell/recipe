@@ -1,25 +1,15 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Label, Legend, Fieldset} from './EzSegmentedControl.styles';
-import {standard} from '../../themes';
 
 const getId = (name, {value}) => `${name}-${value}`;
 
 /**
  * EzSegmentedControls present mutually exclusive options as buttons.
  */
-const EzSegmentedControl = ({
-  active,
-  className,
-  label,
-  labelPosition,
-  name,
-  onChange,
-  options,
-  theme,
-}) => (
+const EzSegmentedControl = ({active, className, label, labelPosition, name, onChange, options}) => (
   <Fieldset className={className} role="radiogroup" aria-labelledby={`radiogroup-${name}`}>
-    <Legend id={`radiogroup-${name}`} labelPosition={labelPosition} theme={theme}>
+    <Legend id={`radiogroup-${name}`} labelPosition={labelPosition}>
       {label}
     </Legend>
     {options.map(option => (
@@ -32,7 +22,7 @@ const EzSegmentedControl = ({
           onChange={() => onChange && onChange(option.value)}
           disabled={option.disabled}
         />
-        <Label theme={theme} key={option.value} htmlFor={getId(name, option)}>
+        <Label key={option.value} htmlFor={getId(name, option)}>
           {option.label}
         </Label>
       </Fragment>
@@ -63,12 +53,6 @@ EzSegmentedControl.propTypes = {
    * - label: the label used to describe the option value
    */
   options: PropTypes.array.isRequired,
-  /**
-   * The theme controlling the default styles for the segmented control.
-   */
-  theme: PropTypes.shape({
-    colors: PropTypes.object,
-  }),
 };
 
 /**
@@ -80,7 +64,6 @@ EzSegmentedControl.propTypes = {
 EzSegmentedControl.defaultProps = {
   active: undefined,
   labelPosition: 'left',
-  theme: standard,
 };
 
 /**

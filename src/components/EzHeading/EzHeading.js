@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import {size, Subheading} from './EzHeading.styles';
-import {standard} from '../../themes';
 
 /**
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
-const EzHeading = ({as, children, className, size: headingSize, subheading, theme}) => {
+const EzHeading = ({as, children, className, size: headingSize, subheading}) => {
   const headingElement = as || 'h' + headingSize;
   const Heading = styled(headingElement)(size);
   const useSubheading = subheading && (headingSize === '3' || headingSize === '5');
 
   return (
-    <Heading className={className} size={headingSize} theme={theme}>
+    <Heading className={className} size={headingSize}>
       {children}
-      {useSubheading && <Subheading theme={theme}>{subheading}</Subheading>}
+      {useSubheading && <Subheading>{subheading}</Subheading>}
     </Heading>
   );
 };
@@ -37,10 +36,6 @@ EzHeading.propTypes = {
    * An optional subheading. Only supported with size 3 and size 5 headings.
    */
   subheading: PropTypes.string,
-};
-
-EzHeading.defaultProps = {
-  theme: standard,
 };
 
 /**

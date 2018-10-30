@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EzModal should render with default styles 1`] = `
-.recipe-18.ReactModal__Overlay--after-open {
+.recipe-21.ReactModal__Overlay--after-open {
   background-color: rgba(0,0,0,0.6);
   position: fixed;
   top: 0;
@@ -10,7 +10,7 @@ exports[`EzModal should render with default styles 1`] = `
   left: 0;
 }
 
-.recipe-17 {
+.recipe-19 {
   left: 50%;
   min-height: 100%;
   min-width: 100%;
@@ -24,12 +24,12 @@ exports[`EzModal should render with default styles 1`] = `
   transition: top 0.5s;
 }
 
-.recipe-17.ReactModal__Content--after-open {
+.recipe-19.ReactModal__Content--after-open {
   top: 50%;
 }
 
 @media screen and (min-width:48em) {
-  .recipe-17 {
+  .recipe-19 {
     border-radius: 12px;
     left: 50%;
     min-height: 0;
@@ -40,11 +40,11 @@ exports[`EzModal should render with default styles 1`] = `
   }
 }
 
-.recipe-17:focus {
+.recipe-19:focus {
   outline: 0;
 }
 
-.recipe-15 {
+.recipe-17 {
   background: #ffffff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -60,7 +60,7 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 @media screen and (min-width:48em) {
-  .recipe-15 {
+  .recipe-17 {
     max-height: calc(100vh - 4.285714285714286rem);
     position: relative;
   }
@@ -147,7 +147,7 @@ exports[`EzModal should render with default styles 1`] = `
   }
 }
 
-.recipe-13 {
+.recipe-15 {
   background: #f4f7f8;
   border-top: 1px solid #e6e9eb;
   -webkit-flex: 0 0 auto;
@@ -156,7 +156,7 @@ exports[`EzModal should render with default styles 1`] = `
   padding: 1.7142857142857142rem;
 }
 
-.recipe-11 {
+.recipe-13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -167,7 +167,7 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 @media screen and (min-width:48em) {
-  .recipe-11 {
+  .recipe-13 {
     -webkit-align-items: normal;
     -webkit-box-align: normal;
     -ms-flex-align: normal;
@@ -189,7 +189,7 @@ exports[`EzModal should render with default styles 1`] = `
     justify-content: flex-start;
   }
 
-  .recipe-11 > * {
+  .recipe-13 > * {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -200,17 +200,17 @@ exports[`EzModal should render with default styles 1`] = `
   }
 }
 
-.recipe-11 > *:not(:first-child) {
+.recipe-13 > *:not(:first-child) {
   margin-top: 0.8571428571428571rem;
 }
 
 @media screen and (min-width:48em) {
-  .recipe-11 > *:not(:first-child) {
+  .recipe-13 > *:not(:first-child) {
     margin-top: 0;
     margin-left: 0;
   }
 
-  .recipe-11 > *:not(:first-child) {
+  .recipe-13 > *:not(:first-child) {
     margin-left: 0.8571428571428571rem;
   }
 }
@@ -263,7 +263,7 @@ exports[`EzModal should render with default styles 1`] = `
   background-color: #2e6ca0;
 }
 
-.recipe-10 {
+.recipe-11 {
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -291,36 +291,36 @@ exports[`EzModal should render with default styles 1`] = `
   padding: 0.5714285714285714rem 1.1428571428571428rem;
 }
 
-.recipe-10:hover:enabled {
+.recipe-11:hover:enabled {
   border-color: #afb4b8;
 }
 
-.recipe-10:focus:enabled {
+.recipe-11:focus:enabled {
   border-color: #3e90d6;
 }
 
-.recipe-10:active:enabled {
+.recipe-11:active:enabled {
   border-color: #9a9fa2;
 }
 
-.recipe-10:hover:enabled {
+.recipe-11:hover:enabled {
   color: #347ab5;
 }
 
-.recipe-10:active:enabled {
+.recipe-11:active:enabled {
   color: #2e6ca0;
 }
 
 <div
   aria-modal="true"
-  className="ReactModal__Overlay ReactModal__Overlay--after-open recipe-18"
+  className="ReactModal__Overlay ReactModal__Overlay--after-open recipe-21"
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}
   style={Object {}}
 >
   <div
-    className="ReactModal__Content ReactModal__Content--after-open recipe-17"
+    className="ReactModal__Content ReactModal__Content--after-open recipe-19 recipe-20"
     onClick={[Function]}
     onKeyDown={[Function]}
     onMouseDown={[Function]}
@@ -329,7 +329,7 @@ exports[`EzModal should render with default styles 1`] = `
     tabIndex="-1"
   >
     <div
-      className="recipe-15 recipe-16"
+      className="recipe-17 recipe-18"
     >
       <div
         className="recipe-5 recipe-6"
@@ -376,20 +376,20 @@ exports[`EzModal should render with default styles 1`] = `
         children
       </div>
       <div
-        className="recipe-13 recipe-14"
+        className="recipe-15 recipe-16"
       >
         <div
-          className="recipe-11 recipe-12"
+          className="recipe-13 recipe-14"
         >
           <button
-            className="recipe-9"
+            className="recipe-9 recipe-10"
             disabled={false}
             onClick={[Function]}
           >
             Submit
           </button>
           <button
-            className="recipe-10"
+            className="recipe-11 recipe-10"
             onClick={[Function]}
           >
             Dismiss

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {AlertContainer, AlertContent} from './EzAlert.styles';
 import EzTextStyle from '../EzTextStyle';
-import {standard} from '../../themes';
-import {filterValidProps} from '../../utils';
 import {
   ErrorIcon,
   InfoIcon,
@@ -26,10 +24,10 @@ const icons = {
  * Alerts represent highlighted messages on a page that call out important information.
  * Alerts can be used both with page content as well as a subheader as a status for the entire page.
  */
-const EzAlert = ({arrow, tagline, headline, theme, use}) => (
-  <AlertContainer arrow={arrow} theme={theme} use={use}>
+const EzAlert = ({arrow, tagline, headline, use}) => (
+  <AlertContainer arrow={arrow} use={use}>
     {icons[use]}
-    <AlertContent theme={theme}>
+    <AlertContent>
       <EzTextStyle use="strong">{headline}</EzTextStyle>
       <div>{tagline}</div>
     </AlertContent>
@@ -57,11 +55,9 @@ EzAlert.propTypes = {
 
 /**
  * defaultProps
- * @property {object} theme - used the standard theme by default.
  * @property {string} use - Alerts are considered info by default.
  */
 EzAlert.defaultProps = {
-  theme: standard,
   use: 'info',
 };
 

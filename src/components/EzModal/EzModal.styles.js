@@ -1,5 +1,6 @@
 import styled, {css} from 'react-emotion';
 import {size, padding, position} from 'polished';
+import ReactModal from 'react-modal';
 
 const circleHeight = '40px';
 const closeIconHeight = '16px';
@@ -22,7 +23,7 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const reactModalFromTheme = ({theme}) => css`
+export const Modal = styled(ReactModal)`
   left: 50%;
   min-height: 100%;
   min-width: 100%;
@@ -36,7 +37,7 @@ export const reactModalFromTheme = ({theme}) => css`
     top: 50%;
   }
 
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
+  @media screen and (min-width: ${({theme}) => theme.breakpoints.medium}) {
     border-radius: 12px;
     left: 50%;
     min-height: 0;

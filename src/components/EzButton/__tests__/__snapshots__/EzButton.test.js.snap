@@ -50,7 +50,7 @@ exports[`EzButton should render primary button with destructive styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>
@@ -142,8 +142,8 @@ exports[`EzButton should render primary button with loading styles 1`] = `
 }
 
 <button
-  className="recipe-0"
-  disabled={true}
+  class="recipe-0 recipe-1"
+  disabled=""
 >
   Click Me
 </button>
@@ -199,7 +199,7 @@ exports[`EzButton should render secondary button with destructive styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>
@@ -291,8 +291,8 @@ exports[`EzButton should render secondary button with loading styles 1`] = `
 }
 
 <button
-  className="recipe-0"
-  disabled={true}
+  class="recipe-0 recipe-1"
+  disabled=""
 >
   Click Me
 </button>
@@ -330,7 +330,7 @@ exports[`EzButton should render tertiary button with destructive styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>
@@ -389,8 +389,8 @@ exports[`EzButton should render with disabled styles 1`] = `
 }
 
 <button
-  className="recipe-0"
-  disabled={true}
+  class="recipe-0 recipe-1"
+  disabled=""
 >
   Click Me
 </button>
@@ -446,7 +446,7 @@ exports[`EzButton should render with primary styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>
@@ -502,7 +502,7 @@ exports[`EzButton should render with secondary styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>
@@ -540,7 +540,7 @@ exports[`EzButton should render with tertiary styles 1`] = `
 }
 
 <button
-  className="recipe-0"
+  class="recipe-0 recipe-1"
 >
   Click Me
 </button>

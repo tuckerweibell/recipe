@@ -10,54 +10,51 @@ describe('EzButton', () => {
    * Style tests.
    */
   it('should render with primary styles', () => {
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with secondary styles', () => {
     actual.setProps({use: 'secondary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with tertiary styles', () => {
     actual.setProps({use: 'tertiary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with disabled styles', () => {
     actual.setProps({disabled: true});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render primary button with destructive styles', () => {
     actual.setProps({destructive: true});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render secondary button with destructive styles', () => {
     actual.setProps({destructive: true, use: 'secondary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render tertiary button with destructive styles', () => {
     actual.setProps({destructive: true, use: 'tertiary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render primary button with loading styles', () => {
     actual.setProps({loading: true, use: 'primary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render secondary button with loading styles', () => {
     actual.setProps({loading: true, use: 'secondary'});
-    expect(actual).toMatchSnapshot();
+    expect(actual.render()).toMatchSnapshot();
   });
 
-  /**
-   * Logic tests.
-   */
   it('renders a button element by default', () => {
-    expect(actual.name()).toEqual('button');
+    expect(actual.render()[0].name).toEqual('button');
   });
 
   describe('disabled', () => {
