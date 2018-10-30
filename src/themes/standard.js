@@ -12,7 +12,7 @@ const grays = {
   0: white,
   100: '#fafafb',
   200: '#f4f7f8',
-  300: '#e9eff5',
+  300: '#e6e9eb',
   400: '#ced4d9',
   500: '#b2b3b3',
   600: '#8b99a6',

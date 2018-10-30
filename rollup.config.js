@@ -9,7 +9,15 @@ export default {
     file: 'dist/recipe.js',
     format: 'cjs',
   },
-  external: ['emotion', 'emotion-theming', 'polished', 'prop-types', 'react', 'react-emotion'],
+  external: [
+    'emotion',
+    'emotion-theming',
+    'polished',
+    'prop-types',
+    'react',
+    'react-dom',
+    'react-emotion',
+  ],
   plugins: [
     babel({
       babelrc: false,

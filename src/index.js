@@ -5,6 +5,7 @@ export {default as EzButton} from './components/EzButton';
 export {EzCard, EzCardSection} from './components/EzCard';
 export {default as EzHeading} from './components/EzHeading';
 export {default as EzLabelledItem} from './components/EzLabelledItem';
+export {default as EzModal} from './components/EzModal';
 export {EzPage, EzPageSection} from './components/EzPage';
 export {EzPageContent, EzContentGroup} from './components/EzPageContent';
 export {default as EzSegmentedControl} from './components/EzSegmentedControl';

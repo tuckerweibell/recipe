@@ -1,0 +1,402 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzModal should render with default styles 1`] = `
+.recipe-18.ReactModal__Overlay--after-open {
+  background-color: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.recipe-17 {
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  overflow-y: hidden;
+  position: fixed;
+  top: 150%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  -webkit-transition: top .5s;
+  transition: top .5s;
+}
+
+.recipe-17.ReactModal__Content--after-open {
+  top: 50%;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-17 {
+    border-radius: 12px;
+    left: 50%;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    top: 50%;
+    width: 500px;
+  }
+}
+
+.recipe-17:focus {
+  outline: 0;
+}
+
+.recipe-15 {
+  background: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-15 {
+    max-height: calc(100vh - 4.285714285714286rem);
+    position: relative;
+  }
+}
+
+.recipe-5 {
+  border-bottom: 1px solid #e6e9eb;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1.1428571428571428rem 1.7142857142857142rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-5 {
+    border-bottom: none;
+    padding-top: 2.2857142857142856rem;
+    padding-right: 2.2857142857142856rem;
+    padding-bottom: 1.7142857142857142rem;
+    padding-left: 2.2857142857142856rem;
+  }
+}
+
+.recipe-1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.recipe-3 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-right: calc((16px - 40px) / 2);
+  margin-top: calc((16px - 40px) / 2);
+  outline: none;
+  height: 40px;
+  width: 40px;
+}
+
+.recipe-3:hover {
+  background-color: #f4f7f8;
+}
+
+.recipe-7 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 0;
+  overflow-y: auto;
+  padding-top: 1.7142857142857142rem;
+  padding-right: 1.7142857142857142rem;
+  padding-bottom: 0;
+  padding-left: 1.7142857142857142rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-7 {
+    padding-top: 0;
+    padding-right: 2.2857142857142856rem;
+    padding-bottom: 2.2857142857142856rem;
+    padding-left: 2.2857142857142856rem;
+  }
+}
+
+.recipe-13 {
+  background: #f4f7f8;
+  border-top: 1px solid #e6e9eb;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding: 1.7142857142857142rem;
+}
+
+.recipe-11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-11 {
+    -webkit-align-items: normal;
+    -webkit-box-align: normal;
+    -ms-flex-align: normal;
+    align-items: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: normal;
+    -webkit-justify-content: normal;
+    -ms-flex-pack: normal;
+    justify-content: normal;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  .recipe-11 > * {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+  }
+}
+
+.recipe-11 > *:not(:first-child) {
+  margin-top: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-11 > *:not(:first-child) {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .recipe-11 > *:not(:first-child) {
+    margin-left: 0.8571428571428571rem;
+  }
+}
+
+.recipe-9 {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.2857142857142857rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  color: #ffffff;
+  border-color: #3e90d6;
+  border-color: #3e90d6;
+  background-color: #3e90d6;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
+}
+
+.recipe-9:hover:enabled {
+  border-color: #347ab5;
+}
+
+.recipe-9:focus:enabled {
+  border-color: #2e6ca0;
+}
+
+.recipe-9:active:enabled {
+  border-color: #2e6ca0;
+}
+
+.recipe-9:hover:enabled {
+  background-color: #347ab5;
+}
+
+.recipe-9:active:enabled {
+  background-color: #2e6ca0;
+}
+
+.recipe-10 {
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+  line-height: 1em;
+  min-height: 1em;
+  margin-right: 0.2857142857142857rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  background-color: white;
+  border: solid 1px;
+  border-color: #ced4d9;
+  color: #3e90d6;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.12);
+  padding: 0.5714285714285714rem 1.1428571428571428rem;
+}
+
+.recipe-10:hover:enabled {
+  border-color: #afb4b8;
+}
+
+.recipe-10:focus:enabled {
+  border-color: #3e90d6;
+}
+
+.recipe-10:active:enabled {
+  border-color: #9a9fa2;
+}
+
+.recipe-10:hover:enabled {
+  color: #347ab5;
+}
+
+.recipe-10:active:enabled {
+  color: #2e6ca0;
+}
+
+<div
+  aria-modal="true"
+  className="ReactModal__Overlay ReactModal__Overlay--after-open recipe-18"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+  style={Object {}}
+>
+  <div
+    className="ReactModal__Content ReactModal__Content--after-open recipe-17"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={Object {}}
+    tabIndex="-1"
+  >
+    <div
+      className="recipe-15 recipe-16"
+    >
+      <div
+        className="recipe-5 recipe-6"
+      >
+        <h2
+          className="recipe-0 recipe-1 recipe-2"
+          size="2"
+        >
+          Header
+        </h2>
+        <button
+          className="recipe-3 recipe-4"
+          onClick={[Function]}
+          role="button"
+        >
+          <svg
+            aria-label="Dismiss"
+            height="16px"
+            version="1.1"
+            viewBox="0 0 16 16"
+            width="16px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              fill="none"
+              fillRule="evenodd"
+              id="Artboard"
+              stroke="none"
+              strokeWidth="1"
+            >
+              <path
+                d="M6.5,6.5 L6.5,-1 L9.5,-1 L9.5,6.5 L17,6.5 L17,9.5 L9.5,9.5 L9.5,17 L6.5,17 L6.5,9.5 L-1,9.5 L-1,6.5 L6.5,6.5 Z"
+                fill="#3A81BE"
+                id="Close-Button"
+                transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) "
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+      <div
+        className="recipe-7 recipe-8"
+      >
+        children
+      </div>
+      <div
+        className="recipe-13 recipe-14"
+      >
+        <div
+          className="recipe-11 recipe-12"
+        >
+          <button
+            className="recipe-9"
+            disabled={false}
+            onClick={[Function]}
+          >
+            Submit
+          </button>
+          <button
+            className="recipe-10"
+            onClick={[Function]}
+          >
+            Dismiss
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
