@@ -50,12 +50,10 @@ with your modal
           isOpen={state.isOpen}
           appElement=".appElement"
           onSubmit={() => {
-            alert('Submitted!');
             setState({isOpen: false});
           }}
           submitLabel="Submit"
           onDismiss={() => {
-            alert('Dismissed!');
             setState({isOpen: false});
           }}
           dismissLabel="Dismiss"
