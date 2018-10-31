@@ -7,6 +7,10 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.10.0 - 2018-10-30
+
+* Adds new [EzModal](/components/ez-modal) component.
+
 ## 1.9.0 - 2018-10-4
 
 ###
