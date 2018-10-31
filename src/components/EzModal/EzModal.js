@@ -7,7 +7,6 @@ import EzLayout from '../EzLayout';
 import {
   CloseButton,
   ButtonFooter,
-  ButtonContainer,
   HeaderContainer,
   ContentContainer,
   ModalContainer,
@@ -39,10 +38,6 @@ const CloseIcon = ({theme, onClick, dismissLabel}) => (
     </svg>
   </CloseButton>
 );
-
-/**
- * Describe EzModal here.
- */
 
 class EzModal extends React.Component {
   componentDidMount() {

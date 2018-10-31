@@ -14,7 +14,6 @@ export const CloseButton = styled.button`
   justify-content: center;
   margin-right: calc((${closeIconHeight} - ${circleHeight}) / 2);
   margin-top: calc((${closeIconHeight} - ${circleHeight}) / 2);
-
   outline: none;
   ${size('40px')};
 
@@ -31,7 +30,7 @@ export const reactModalFromTheme = ({theme}) => css`
   position: fixed;
   top: 150%;
   transform: translate(-50%, -50%);
-  transition: top .5s;
+  transition: top 0.5s;
 
   &.ReactModal__Content--after-open {
     top: 50%;
@@ -54,7 +53,7 @@ export const reactModalFromTheme = ({theme}) => css`
 
 export const reactModalOverlay = css`
   &.ReactModal__Overlay--after-open {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     ${position('fixed', 0, 0, 0, 0)};
   }
 `;
