@@ -41,30 +41,39 @@ with your modal
 ### Basic Modal
 
 ```jsx live
-<Component initialState={{isOpen: false}}>
-  {({state, setState}) => (
-    <React.Fragment>
-      <div className="appElement">
+<div className="appElement">
+  <Component initialState={{isOpen: false}}>
+    {({state, setState}) => (
+      <EzCard>
         <button onClick={() => setState({isOpen: true})}>Button</button>
         <EzModal
           isOpen={state.isOpen}
           appElement=".appElement"
           onSubmit={() => {
-            setState({isOpen: false});
+            setState({isOpen: false, submitted: true});
           }}
           submitLabel="Submit"
           onDismiss={() => {
-            setState({isOpen: false});
+            setState({isOpen: false, submitted: false});
           }}
           dismissLabel="Dismiss"
           headerText="Header goes here"
         >
           Modal content goes here!
         </EzModal>
-      </div>
-    </React.Fragment>
-  )}
-</Component>
+        <div>
+          {'submitted' in state ? (
+            state.submitted ? (
+              <EzAlert headline="Submitted" use="success" />
+            ) : (
+              <EzAlert headline="Dismissed" use="info" />
+            )
+          ) : null}
+        </div>
+      </EzCard>
+    )}
+  </Component>
+</div>
 ```
 
 ### Only dismiss button
