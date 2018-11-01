@@ -47,9 +47,9 @@ module.exports = function(plop) {
 
   const getFileName = (file, name) => {
     const fileNameMap = {
-      [COMPONENT_FILES.COMPONENT]: `${name}.js`,
-      [COMPONENT_FILES.COMPONENT_TEST]: `/__tests__/${name}.test.js`,
-      [COMPONENT_FILES.COMPONENT_STYLES]: `${name}.styles.js`,
+      [COMPONENT_FILES.COMPONENT]: `${name}.tsx`,
+      [COMPONENT_FILES.COMPONENT_TEST]: `/__tests__/${name}.test.tsx`,
+      [COMPONENT_FILES.COMPONENT_STYLES]: `${name}.styles.tsx`,
       [COMPONENT_FILES.COMPONENT_MARKDOWN]: `${name}.md`,
     };
     return fileNameMap[file];
@@ -137,7 +137,7 @@ module.exports = function(plop) {
         [
           {
             type: 'add',
-            path: path.join(absDestinationPath, capitalizedName, 'index.js'),
+            path: path.join(absDestinationPath, capitalizedName, 'index.tsx'),
             templateFile: `${__dirname}/templates/component/index.hbs`,
           },
         ]

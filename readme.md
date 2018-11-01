@@ -30,10 +30,10 @@ This project uses [plop](https://www.npmjs.com/package/plop) to generate new Rea
 
 To create a new component, run `npm run create-component` inside the project. You'll see a CLI that guides you through the process.
 
-After the CLI has finished, all files will have been created in the location you specified. You'll need to add an export for your component to `src/index.js`. For example:
+After the CLI has finished, all files will have been created in the location you specified. You'll need to add an export for your component to `src/index.tsx`. For example:
 
-```js
-// inside src/index.js
+```tsx
+// inside src/index.tsx
 export {default as EzButton} from './components/EzButton';
 ```
 

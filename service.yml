@@ -7,8 +7,5 @@ tests:
         NODE_ENV: 'test'
   steps:
     - run:
-        test: Code quality validations
-        command: npx eslint .
-    - run:
         test: Units Tests
         command: npm run test
