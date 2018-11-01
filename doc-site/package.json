@@ -1,0 +1,38 @@
+{
+  "name": "ez-ui-site",
+  "description": "Documentation for ez UI, ezCater's design system library",
+  "version": "1.0.0",
+  "dependencies": {
+    "@brainly/html-sketchapp": "^3.2.0",
+    "@ezcater/recipe": "^1.10.0",
+    "copy-to-clipboard": "^3.0.8",
+    "emotion": "^9.2.3",
+    "emotion-theming": "^9.2.4",
+    "gatsby": "^1.9.271",
+    "gatsby-link": "^1.6.40",
+    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby-plugin-react-next": "^1.0.11",
+    "gatsby-remark-autolink-headers": "^1.4.19",
+    "gatsby-source-filesystem": "^1.5.38",
+    "gatsby-transformer-remark": "^1.7.42",
+    "js-file-download": "^0.4.1",
+    "polished": "^1.9.2",
+    "prismjs": "^1.14.0",
+    "react-component-component": "^1.2.1",
+    "react-emotion": "^9.2.3",
+    "react-helmet": "^5.2.0",
+    "react-live": "^1.10.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0",
+    "prettier": "^1.12.0"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
+    "develop": "gatsby develop"
+  },
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
+  }
+}

@@ -1,0 +1,7 @@
+# Project dependencies
+.cache
+node_modules
+npm-debug.log*
+
+# Build directory
+/public
