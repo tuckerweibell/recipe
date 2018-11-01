@@ -1,0 +1,11 @@
+name: recipe
+tests:
+  primary:
+    - name: tester
+      command: tail -f /dev/null
+      environment:
+        NODE_ENV: 'test'
+  steps:
+    - run:
+        test: Units Tests
+        command: npm run test
