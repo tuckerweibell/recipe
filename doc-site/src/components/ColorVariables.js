@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'react-emotion';
-import {EzTextStyle} from '@ezcater/recipe';
-import {standard} from '../../../recipe/src/themes';
+import {EzTextStyle, themes} from '@ezcater/recipe';
+
+const {standard} = themes;
 
 const ColorContainer = styled.div`
   display: inline-flex;

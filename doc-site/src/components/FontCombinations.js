@@ -1,6 +1,8 @@
 import React from 'react';
 import {css} from 'react-emotion';
-import {standard} from '../../../recipe/src/themes';
+import {themes} from '@ezcater/recipe';
+
+const {standard} = themes;
 
 function remToPx(rem) {
   return rem.replace('rem', '') * standard.baseFontSize.replace('px', '') + 'px';

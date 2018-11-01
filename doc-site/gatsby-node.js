@@ -4,7 +4,7 @@ exports.modifyWebpackConfig = ({config}) => {
   config.merge({
     resolve: {
       alias: {
-        '@ezcater/recipe': path.resolve(__dirname, '../recipe/src'),
+        '@ezcater/recipe': path.resolve(__dirname, '../src'),
       },
     },
   });
