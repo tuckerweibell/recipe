@@ -38,6 +38,48 @@ Note all examples include a div with class appElement. In practice this div
 will be your application's root element and does not need to reside directly
 with your modal
 
+## Properties
+
+### appElement (string)
+
+A query selector identifying the root of your app. The modal uses this selector to indicate to screen readers that this content should be hidden (via the aria-hidden attribute) while the modal is open.
+
+### children (node) - required
+
+Arbitrary children for the modal contents.
+
+### headerText (string) - required
+
+Text to display in the header.
+
+### destructive (bool) 
+
+When true will display the modal in destructive styles (aka a destructive submit button).
+
+### dismissLabel (string) - required
+
+Label for the dismiss button. Omitting this prop will suppress the dismiss button.
+
+### isOpen (bool) - required
+
+Dictates whether the modal is open. You must still render the component even if isOpen is false to allow for the opening transition to occur (if present).
+
+### isSubmitting (bool) 
+
+When true will render the modal with appropriate styles to signify a loading state. Useful when the submit handler has an asynchronous success condition.
+
+### onDismiss (func)
+
+Callback for when dismiss button is clicked.
+
+### onSubmit (func)
+
+Callback for when submit button is clicked.
+
+### submitLabel (string)
+
+Label for the submit button. Omitting this prop will suppress the submit button.
+
 ### Basic Modal
 
 ```jsx live

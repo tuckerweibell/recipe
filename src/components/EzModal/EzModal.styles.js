@@ -7,8 +7,8 @@ const closeIconHeight = '16px';
 
 export const CloseButton = styled.button`
   align-items: center;
-  border: 0;
   background-color: transparent;
+  border: 0;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -16,7 +16,7 @@ export const CloseButton = styled.button`
   margin-right: calc((${closeIconHeight} - ${circleHeight}) / 2);
   margin-top: calc((${closeIconHeight} - ${circleHeight}) / 2);
   outline: none;
-  ${size('40px')};
+  ${size(circleHeight)};
 
   :hover {
     background-color: ${props => props.theme.colors.grays[200]};
@@ -85,7 +85,6 @@ export const ModalContainer = styled.div`
 export const HeaderContainer = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
   display: flex;
-  flex: 0 0 auto;
   justify-content: space-between;
   padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.xl};
 
@@ -97,9 +96,8 @@ export const HeaderContainer = styled.div`
 
 export const ContentContainer = styled.div`
   flex: 1;
-  margin-top: 0;
   overflow-y: auto;
-  ${({theme: {spacing: {xl}}}) => padding(xl, xl, 0, xl)};
+  ${({theme: {spacing: {xl}}}) => padding(xl, xl, xl, xl)};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     ${({theme: {spacing: {xl2}}}) => padding(0, xl2, xl2, xl2)};
@@ -109,6 +107,5 @@ export const ContentContainer = styled.div`
 export const ButtonFooter = styled.div`
   background: ${props => props.theme.colors.grays[200]};
   border-top: 1px solid ${props => props.theme.colors.grays[300]};
-  flex: 0 0 auto;
-  padding: ${props => props.theme.spacing.xl};
+  padding: ${props => props.theme.spacing.xl2};
 `;
