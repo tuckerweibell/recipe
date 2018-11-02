@@ -4,7 +4,9 @@ import EzButton from '../EzButton';
 describe('EzButton', () => {
   let actual;
 
-  beforeEach(() => (actual = shallow(<EzButton use="primary">Click Me</EzButton>)));
+  beforeEach(() => {
+    actual = shallow(<EzButton use="primary">Click Me</EzButton>);
+  });
 
   /**
    * Style tests.
@@ -109,12 +111,14 @@ describe('EzButton', () => {
     it('cannot be applied to tertiary button', () => {
       spyOn(console, 'error');
       actual.setProps({use: 'tertiary', loading: true});
+      // eslint-disable-next-line
       expect(console.error).toHaveBeenCalled();
     });
 
     it('accepts only boolean values for loading', () => {
       spyOn(console, 'error');
       actual.setProps({use: 'tertiary', loading: 0});
+      // eslint-disable-next-line
       expect(console.error).toHaveBeenCalled();
     });
   });
@@ -135,7 +139,7 @@ describe('EzButton', () => {
    */
   it('should meet accessibility guidelines for buttons', async () => {
     const wrapper = renderToHtml(<EzButton use="primary">Click Me</EzButton>);
-    const actual = await axe(wrapper);
-    expect(actual).toHaveNoViolations();
+    const html = await axe(wrapper);
+    expect(html).toHaveNoViolations();
   });
 });

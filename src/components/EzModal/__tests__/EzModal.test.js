@@ -1,6 +1,6 @@
 import React from 'react';
-import EzModal from '../EzModal';
 import ReactModal from 'react-modal';
+import EzModal from '../EzModal';
 import {standard} from '../../../themes';
 import EzButton from '../../EzButton';
 
@@ -12,11 +12,13 @@ jest.mock('react-dom', () => ({
 }));
 
 describe('EzModal', () => {
+  let appElement;
+
   beforeAll(() => {
     // We need to create an arbitrary element for the modal to target as the app element
     // React modal does not see the element if you mount it via enzyme with the modal component
     // so we set up the element directly on the document
-    const appElement = document.createElement('div');
+    appElement = document.createElement('div');
     ReactModal.setAppElement(appElement);
   });
 
@@ -27,7 +29,7 @@ describe('EzModal', () => {
   it('should render with default styles', () => {
     const actual = create(
       <EzModal
-        isOpen={true}
+        isOpen
         submitLabel="Submit"
         dismissLabel="Dismiss"
         headerText="Header"
@@ -51,7 +53,7 @@ describe('EzModal', () => {
 
   it('calls react modals set app element on mount', () => {
     const spy = jest.spyOn(ReactModal, 'setAppElement').mockImplementation(() => {});
-    const appElement = 'myElement';
+    appElement = 'myElement';
     mount(
       <EzModal
         isOpen
@@ -71,22 +73,20 @@ describe('EzModal', () => {
     const submitLabel = 'submit';
     const component = mount(
       <EzModal
-        isOpen={true}
+        isOpen
         submitLabel={submitLabel}
         onSubmit={clickSpy}
         appElement={null}
         dismissLabel="dismiss"
         headerText="header"
       >
-        Test>
+        Test
       </EzModal>
     );
 
     // Find and click the first node with text corresponding to the submit label
     component
-      .findWhere(node => {
-        return node.type() && node.text() === submitLabel;
-      })
+      .findWhere(node => node.type() && node.text() === submitLabel)
       .at(0)
       .simulate('click');
     expect(clickSpy).toHaveBeenCalled();
@@ -97,22 +97,20 @@ describe('EzModal', () => {
     const dismissLabel = 'dismiss';
     const component = mount(
       <EzModal
-        isOpen={true}
+        isOpen
         dismissLabel={dismissLabel}
         submitLabel="submit"
         onDismiss={clickSpy}
         appElement={null}
         headerText="header"
       >
-        Test>
+        Test
       </EzModal>
     );
 
     // Find and click the first node with text corresponding to the dismiss label
     component
-      .findWhere(node => {
-        return node.type() && node.text() === dismissLabel;
-      })
+      .findWhere(node => node.type() && node.text() === dismissLabel)
       .at(0)
       .simulate('click');
 
@@ -123,7 +121,7 @@ describe('EzModal', () => {
     const submitLabel = 'submit';
     const component = mount(
       <EzModal
-        isOpen={true}
+        isOpen
         submitLabel={submitLabel}
         destructive
         appElement={null}
@@ -135,9 +133,9 @@ describe('EzModal', () => {
     );
 
     // Find the button with text submit
-    const submitButton = component.findWhere(node => {
-      return node.type() && node.is(EzButton) && node.text() === submitLabel;
-    });
+    const submitButton = component.findWhere(
+      node => node.type() && node.is(EzButton) && node.text() === submitLabel
+    );
     expect(submitButton.prop('destructive')).toBe(true);
   });
 
@@ -155,9 +153,9 @@ describe('EzModal', () => {
         test
       </EzModal>
     );
-    const submitButton = component.findWhere(node => {
-      return node.type() && node.is(EzButton) && node.text() === submitLabel;
-    });
+    const submitButton = component.findWhere(
+      node => node.type() && node.is(EzButton) && node.text() === submitLabel
+    );
     expect(submitButton.prop('loading')).toBe(true);
   });
 
@@ -174,9 +172,9 @@ describe('EzModal', () => {
         test
       </EzModal>
     );
-    const dismissButton = component.findWhere(node => {
-      return node.type() && node.is(EzButton) && node.text() === dismissLabel;
-    });
+    const dismissButton = component.findWhere(
+      node => node.type() && node.is(EzButton) && node.text() === dismissLabel
+    );
     expect(dismissButton.prop('disabled')).toBe(true);
   });
 
@@ -186,7 +184,7 @@ describe('EzModal', () => {
   describe('Accessibility tests', () => {
     it('should meet accessibility guidelines when required labels / text are given', async () => {
       const wrapper = mount(
-        <EzModal isOpen={true} dismissLabel="dismiss" headerText="header" appElement={null}>
+        <EzModal isOpen dismissLabel="dismiss" headerText="header" appElement={null}>
           test
         </EzModal>
       );
@@ -197,7 +195,7 @@ describe('EzModal', () => {
     it('should meet accessibility guidelines when all labels / text are given', async () => {
       const wrapper = mount(
         <EzModal
-          isOpen={true}
+          isOpen
           headerText="Header"
           submitLabel="submit"
           dismissLabel="dismiss"

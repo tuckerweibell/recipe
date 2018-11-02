@@ -1,4 +1,4 @@
-import styled, {css} from 'react-emotion';
+import {css} from 'react-emotion';
 
 export const base = ({theme}) => css`
   background: ${theme.colors.grays[200]};
@@ -10,7 +10,7 @@ export const base = ({theme}) => css`
 `;
 
 // This allows us to gradually roll out style resets. Eventually they will move to a more typically global location.
-export const resets = ({theme}) => css`
+export const resets = css`
   p {
     margin: 0;
   }

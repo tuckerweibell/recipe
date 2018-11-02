@@ -36,12 +36,12 @@ describe('EzHeading', () => {
   });
 
   ['1', '2', '3', '4', '5', '6'].forEach(n => {
-    let actual = render(
+    const actual = render(
       <EzHeading size={n} subheading="Subheading">
         Heading
       </EzHeading>
     );
-    let shown = n === '3' || n === '5' ? 1 : 0;
+    const shown = n === '3' || n === '5' ? 1 : 0;
     expect(actual.find('div')).toHaveLength(shown);
   });
 

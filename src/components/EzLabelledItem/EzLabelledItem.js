@@ -31,7 +31,7 @@ EzLabelledItem.propTypes = {
   /**
    * Determines the size of the label text
    */
-  size: PropTypes.oneOf(['normal', 'small']).isRequired,
+  size: PropTypes.oneOf(['normal', 'small']),
   /**
    * The text for label itself
    */

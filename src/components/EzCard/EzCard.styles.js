@@ -34,8 +34,8 @@ const vertical = ({horizontal, theme}) =>
     }
   `;
 
-const horizontal = ({horizontal, theme}) =>
-  horizontal &&
+const horizontal = ({horizontal: isHorizontal}) =>
+  isHorizontal &&
   css`
     display: flex;
 

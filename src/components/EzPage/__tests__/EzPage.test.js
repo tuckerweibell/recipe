@@ -1,5 +1,5 @@
 import React from 'react';
-import {EzPage, EzPageSection} from '../';
+import {EzPage, EzPageSection} from '..';
 
 describe('EzPage', () => {
   it('should render with default styles', () => {

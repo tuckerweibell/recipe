@@ -18,8 +18,8 @@ export const base = ({theme}) => css`
   -webkit-tap-highlight-color: transparent;
 `;
 
-export const disabled = ({disabled}) =>
-  disabled &&
+export const disabled = ({disabled: isDisabled}) =>
+  isDisabled &&
   css`
     cursor: default;
     opacity: 0.45;
@@ -28,9 +28,9 @@ export const disabled = ({disabled}) =>
 
 const elementStates = (style, color, focusColor) => ({
   [style]: color,
-  ['&:hover:enabled']: {[style]: shade(0.85, color)},
-  ['&:focus:enabled']: focusColor && {[style]: focusColor},
-  ['&:active:enabled']: {[style]: shade(0.75, color)},
+  '&:hover:enabled': {[style]: shade(0.85, color)},
+  '&:focus:enabled': focusColor && {[style]: focusColor},
+  '&:active:enabled': {[style]: shade(0.75, color)},
 });
 
 const outlineStyles = ({theme}) => css`
@@ -117,10 +117,10 @@ const spinner = ({margin, size, radius, thickness, color}) => css`
   }
 `;
 
-export const loading = ({loading, use, theme: {colors}}) => {
+export const loading = ({loading: isLoading, use, theme: {colors}}) => {
   const color = variant('use', {
     primary: colors.white,
     secondary: colors.grays[700],
   })({use});
-  return loading && spinner({...spinnerOptions, color});
+  return isLoading && spinner({...spinnerOptions, color});
 };

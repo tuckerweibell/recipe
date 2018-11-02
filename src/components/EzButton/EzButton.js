@@ -38,14 +38,14 @@ EzButton.propTypes = {
    * If `true`, indicates that the button action is being processed and that the button is currently unavailable to be interacted with.
    * Cannot be used in combination with tertiary button types.
    */
-  loading: function(props) {
-    if (props['use'] === 'tertiary' && props['loading']) {
+  loading(props) {
+    if (props.use === 'tertiary' && props.loading)
       return new Error("Don't use loading in combination with tertiary");
-    }
 
-    if (!['undefined', 'boolean'].includes(typeof props['loading'])) {
+    if (!['undefined', 'boolean'].includes(typeof props.loading))
       return new Error('loading must be a boolean if provided');
-    }
+
+    return undefined;
   },
   /**
    * Determines the emphasis of the button.

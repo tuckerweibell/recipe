@@ -1,10 +1,8 @@
 import {createElement} from 'react';
-import {standard} from '../themes';
 import {ThemeProvider} from 'emotion-theming';
+import {standard} from '../themes';
 
-const themeOrStandard = props => ancestorTheme => {
-  return props.theme || ancestorTheme || standard;
-};
+const themeOrStandard = props => ancestorTheme => props.theme || ancestorTheme || standard;
 
 export default Component => props =>
   createElement(ThemeProvider, {theme: themeOrStandard(props)}, createElement(Component, props));

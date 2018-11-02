@@ -7,7 +7,7 @@ import {size, Subheading} from './EzHeading.styles';
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
 const EzHeading = ({as, children, className, size: headingSize, subheading}) => {
-  const headingElement = as || 'h' + headingSize;
+  const headingElement = as || `h${headingSize}`;
   const Heading = styled(headingElement)(size);
   const useSubheading = subheading && (headingSize === '3' || headingSize === '5');
 

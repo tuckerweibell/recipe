@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'react-emotion';
-import {responsive} from '../';
+import {responsive} from '..';
 
 describe('responsive()', () => {
   let fn;

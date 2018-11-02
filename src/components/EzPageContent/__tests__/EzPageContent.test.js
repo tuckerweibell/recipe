@@ -1,5 +1,5 @@
 import React from 'react';
-import {EzPageContent, EzContentGroup} from '../';
+import {EzPageContent, EzContentGroup} from '..';
 
 describe('EzPageContent', () => {
   it('should render with default styles', () => {

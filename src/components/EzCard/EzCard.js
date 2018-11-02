@@ -16,9 +16,7 @@ function isEzCardSection(element) {
 }
 
 function wrappedChildren(children) {
-  if (isEzCardSection(children[0] || children)) {
-    return children;
-  }
+  if (isEzCardSection(children[0] || children)) return children;
 
   return <EzCardSection>{children}</EzCardSection>;
 }

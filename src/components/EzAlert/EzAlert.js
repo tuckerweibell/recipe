@@ -50,7 +50,7 @@ EzAlert.propTypes = {
   /**
    * Determines the color scheme of the alert.
    */
-  use: PropTypes.oneOf(['success', 'error', 'warning', 'tip', 'info', 'marketing']).isRequired,
+  use: PropTypes.oneOf(['success', 'error', 'warning', 'tip', 'info', 'marketing']),
 };
 
 /**

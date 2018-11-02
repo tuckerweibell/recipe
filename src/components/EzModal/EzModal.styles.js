@@ -90,17 +90,29 @@ export const HeaderContainer = styled.div`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     border-bottom: none;
-    ${({theme: {spacing: {xl, xl2}}}) => padding(xl2, xl2, xl, xl2)};
+    ${({
+      theme: {
+        spacing: {xl, xl2},
+      },
+    }) => padding(xl2, xl2, xl, xl2)};
   }
 `;
 
 export const ContentContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  ${({theme: {spacing: {xl}}}) => padding(xl, xl, xl, xl)};
+  ${({
+    theme: {
+      spacing: {xl},
+    },
+  }) => padding(xl, xl, xl, xl)};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    ${({theme: {spacing: {xl2}}}) => padding(0, xl2, xl2, xl2)};
+    ${({
+      theme: {
+        spacing: {xl2},
+      },
+    }) => padding(0, xl2, xl2, xl2)};
   }
 `;
 

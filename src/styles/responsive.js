@@ -1,7 +1,7 @@
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
 
-const getValue = (props, variant) => (typeof variant === 'function' ? variant(props) : variant);
+const getValue = (props, val) => (typeof val === 'function' ? val(props) : val);
 const createMediaQuery = (n, styles, reset) => css`
   @media screen and (min-width: ${n}) {
     ${reset};
@@ -10,7 +10,7 @@ const createMediaQuery = (n, styles, reset) => css`
 `;
 
 export default (prop, values) => props => {
-  if (!(prop in props)) return;
+  if (!(prop in props)) return undefined;
 
   const propValue = props[prop];
 

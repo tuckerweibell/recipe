@@ -1,5 +1,5 @@
 import React from 'react';
-import {EzCard, EzCardSection} from '../';
+import {EzCard, EzCardSection} from '..';
 
 describe('EzCard', () => {
   it('should render with default styles', () => {

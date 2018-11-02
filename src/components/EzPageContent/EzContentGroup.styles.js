@@ -8,8 +8,8 @@ export const vertical = ({horizontal, theme}) =>
     }
   `;
 
-export const horizontal = ({horizontal, theme}) =>
-  horizontal &&
+export const horizontal = ({horizontal: isHorizontal, theme}) =>
+  isHorizontal &&
   css`
     display: flex;
 
@@ -17,7 +17,7 @@ export const horizontal = ({horizontal, theme}) =>
       flex-basis: 0;
       flex-grow: 1;
 
-      &: not(:first-child) {
+      &:not(:first-child) {
         margin-left: ${theme.spacing.lg};
       }
     }

@@ -3,8 +3,8 @@ import styled from 'react-emotion';
 import renderer from 'react-test-renderer';
 import {createMatchers} from 'jest-emotion';
 import * as emotion from 'emotion';
-import {withTheme} from '../';
 import {ThemeProvider} from 'emotion-theming';
+import {withTheme} from '..';
 
 expect.extend(createMatchers(emotion));
 

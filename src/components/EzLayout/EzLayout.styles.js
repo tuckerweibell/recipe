@@ -1,8 +1,8 @@
 import {css} from 'react-emotion';
 import {margin} from 'polished';
-import {responsive} from '../../styles/';
+import {responsive} from '../../styles';
 
-export const base = ({layout}) => css`
+export const base = css`
   display: flex;
 `;
 
@@ -42,7 +42,7 @@ export const split = () => css`
   justify-content: space-between;
 `;
 
-export const stack = ({theme}) => css`
+export const stack = css`
   flex-direction: column;
 `;
 

@@ -40,9 +40,9 @@ const CloseIcon = ({onClick, dismissLabel}) => (
 
 class EzModal extends React.Component {
   componentDidMount() {
-    if (this.props.appElement) {
-      ReactModal.setAppElement(this.props.appElement);
-    }
+    const {appElement} = this.props;
+
+    if (appElement) ReactModal.setAppElement(appElement);
   }
 
   render() {
@@ -56,7 +56,6 @@ class EzModal extends React.Component {
       onDismiss,
       onSubmit,
       submitLabel,
-      theme,
     } = this.props;
 
     return (

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 
 module.exports = function(plop) {
@@ -20,7 +21,7 @@ module.exports = function(plop) {
     COMPONENT: 'component',
     COMPONENT_TEST: 'component-test',
     COMPONENT_STYLES: 'component-styles',
-    COMPONENT_MARKDOWN: 'component-markdown'
+    COMPONENT_MARKDOWN: 'component-markdown',
   };
 
   const raiseErrorAndExit = message => {
@@ -119,24 +120,30 @@ module.exports = function(plop) {
     actions: ({name, type, files, destinationPath}) => {
       const absDestinationPath = `${plop.getPlopfilePath()}/${destinationPath}`;
       const capitalizedName = pascalCase(name);
-      const actions = files.reduce((acc, file) => {
-        if (!Object.values(COMPONENT_FILES).includes(file)) {
-          raiseErrorAndExit(ERRORS.INVALID_FILE);
-        }
+      const actions = files.reduce(
+        (acc, file) => {
+          if (!Object.values(COMPONENT_FILES).includes(file)) {
+            raiseErrorAndExit(ERRORS.INVALID_FILE);
+          }
 
-        const templateFileName =
-          file === COMPONENT_FILES.COMPONENT ? getComponentTemplateName(type) : `${file}.hbs`;
-        return acc.concat({
-          type: 'add',
-          path: path.join(absDestinationPath, capitalizedName, getFileName(file, name)),
-          templateFile: path.join(`${__dirname}/templates/component`, templateFileName),
-        });
-      }, [{
-        type: 'add',
-        path: path.join(absDestinationPath, capitalizedName, 'index.js'),
-        templateFile: `${__dirname}/templates/component/index.hbs`,
-      }]);
+          const templateFileName =
+            file === COMPONENT_FILES.COMPONENT ? getComponentTemplateName(type) : `${file}.hbs`;
+          return acc.concat({
+            type: 'add',
+            path: path.join(absDestinationPath, capitalizedName, getFileName(file, name)),
+            templateFile: path.join(`${__dirname}/templates/component`, templateFileName),
+          });
+        },
+        [
+          {
+            type: 'add',
+            path: path.join(absDestinationPath, capitalizedName, 'index.js'),
+            templateFile: `${__dirname}/templates/component/index.hbs`,
+          },
+        ]
+      );
       return actions;
     },
   });
 };
+/* eslint-enable */

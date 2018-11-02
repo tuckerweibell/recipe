@@ -1,7 +1,7 @@
 import styled, {css} from 'react-emotion';
 import variant from 'styled-component-variant';
 
-const sharedDirectionalStyles = spacing => css`
+const sharedDirectionalStyles = css`
   border-width: 6px;
   border-style: solid;
   color: transparent;
@@ -10,16 +10,16 @@ const sharedDirectionalStyles = spacing => css`
   position: absolute;
 `;
 
-const bottomStyles = ({theme: {spacing}}) => css`
+const bottomStyles = css`
   &::after {
-    ${sharedDirectionalStyles(spacing)};
+    ${sharedDirectionalStyles};
     bottom: -12px;
   }
 `;
 
-const topStyles = ({theme: {spacing}}) => css`
+const topStyles = css`
   &::before {
-    ${sharedDirectionalStyles(spacing)};
+    ${sharedDirectionalStyles};
     top: -12px;
   }
 `;
