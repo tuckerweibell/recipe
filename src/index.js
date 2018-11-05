@@ -14,6 +14,7 @@ export const EzPageSection = withTheme(components.EzPageSection);
 export const EzPageContent = withTheme(components.EzPageContent);
 export const EzContentGroup = withTheme(components.EzContentGroup);
 export const EzSegmentedControl = withTheme(components.EzSegmentedControl);
+export const EzTable = withTheme(components.EzTable);
 export const EzTextStyle = withTheme(components.EzTextStyle);
 export const EzLayout = withTheme(components.EzLayout);
 
