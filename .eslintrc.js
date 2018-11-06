@@ -8,6 +8,7 @@ module.exports = {
     create: true,
     shallow: true,
     mount: true,
+    fullRender: true,
     render: true,
     renderToHtml: true,
     axe: true,
@@ -24,5 +25,18 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'import/no-namespace': 'off',
     'import/prefer-default-export': 'off',
+    'class-methods-use-this': [
+      'error',
+      {
+        exceptMethods: [
+          'render',
+          'componentDidMount',
+          'componentDidUpdate',
+          'getSnapshotBeforeUpdate',
+          'shouldComponentUpdate',
+          'componentWillUnmount',
+        ],
+      },
+    ],
   },
 };

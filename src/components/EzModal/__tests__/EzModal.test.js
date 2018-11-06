@@ -1,82 +1,43 @@
 import React from 'react';
-import ReactModal from 'react-modal';
+import {fireEvent, cleanup} from 'react-testing-library';
+import 'jest-dom/extend-expect';
 import EzModal from '../EzModal';
 import {standard} from '../../../themes';
-import EzButton from '../../EzButton';
 
-// We need to mock out the portal functionality as react test renderer does not
-// support portals currently :( . our mock forces portal s to just behave like any
-// other node
-jest.mock('react-dom', () => ({
-  createPortal: node => node,
-}));
+afterEach(cleanup);
 
 describe('EzModal', () => {
-  let appElement;
-
-  beforeAll(() => {
-    // We need to create an arbitrary element for the modal to target as the app element
-    // React modal does not see the element if you mount it via enzyme with the modal component
-    // so we set up the element directly on the document
-    appElement = document.createElement('div');
-    ReactModal.setAppElement(appElement);
-  });
-
-  afterAll(() => {
-    document.removeChild(appElement);
+  beforeEach(() => {
+    // suppress import style warning from Reach Modal
+    jest.spyOn(CSSStyleDeclaration.prototype, 'getPropertyValue').mockReturnValue('1');
   });
 
   it('should render with default styles', () => {
-    const actual = create(
-      <EzModal
-        isOpen
-        submitLabel="Submit"
-        dismissLabel="Dismiss"
-        headerText="Header"
-        theme={standard}
-        appElement={null}
-      >
+    const {baseElement} = fullRender(
+      <EzModal isOpen submitLabel="Submit" dismissLabel="Dismiss" headerText="Header">
         children
       </EzModal>
     );
-    expect(actual).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   it('does not render the children if not open', () => {
-    const component = mount(
-      <EzModal isOpen={false} appElement={null} dismissLabel="dismiss" headerText="header">
-        <div data-test-id="test">foo</div>
+    const {queryByText} = fullRender(
+      <EzModal isOpen={false} dismissLabel="dismiss" headerText="header">
+        <div>foo</div>
       </EzModal>
     );
-    expect(component.find('[data-test-id="test"]')).toHaveLength(0);
-  });
-
-  it('calls react modals set app element on mount', () => {
-    const spy = jest.spyOn(ReactModal, 'setAppElement').mockImplementation(() => {});
-    appElement = 'myElement';
-    mount(
-      <EzModal
-        isOpen
-        appElement={appElement}
-        submitLabel="Submit"
-        dismissLabel="Dismiss"
-        headerText="Header"
-      >
-        children
-      </EzModal>
-    );
-    expect(spy).toHaveBeenCalledWith(appElement);
+    expect(queryByText('foo')).toBeNull();
   });
 
   it('calls submit handler when submit button is clicked', () => {
     const clickSpy = jest.fn();
     const submitLabel = 'submit';
-    const component = mount(
+    const {getByText} = fullRender(
       <EzModal
         isOpen
         submitLabel={submitLabel}
         onSubmit={clickSpy}
-        appElement={null}
         dismissLabel="dismiss"
         headerText="header"
       >
@@ -84,47 +45,36 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    // Find and click the first node with text corresponding to the submit label
-    component
-      .findWhere(node => node.type() && node.text() === submitLabel)
-      .at(0)
-      .simulate('click');
+    fireEvent.click(getByText(submitLabel));
     expect(clickSpy).toHaveBeenCalled();
   });
 
   it('calls dismiss handler when dismiss button is clicked', () => {
     const clickSpy = jest.fn();
     const dismissLabel = 'dismiss';
-    const component = mount(
+    const {getByText} = fullRender(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
         submitLabel="submit"
         onDismiss={clickSpy}
-        appElement={null}
         headerText="header"
       >
         Test
       </EzModal>
     );
 
-    // Find and click the first node with text corresponding to the dismiss label
-    component
-      .findWhere(node => node.type() && node.text() === dismissLabel)
-      .at(0)
-      .simulate('click');
-
+    fireEvent.click(getByText(dismissLabel));
     expect(clickSpy).toHaveBeenCalled();
   });
 
   it('passes through the destructive prop to the submit button ', () => {
     const submitLabel = 'submit';
-    const component = mount(
+    const {getByText} = fullRender(
       <EzModal
         isOpen
         submitLabel={submitLabel}
         destructive
-        appElement={null}
         dismissLabel="dismiss"
         headerText="header"
       >
@@ -132,50 +82,36 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    // Find the button with text submit
-    const submitButton = component.findWhere(
-      node => node.type() && node.is(EzButton) && node.text() === submitLabel
-    );
-    expect(submitButton.prop('destructive')).toBe(true);
+    const submitButton = getByText(submitLabel);
+    expect(submitButton).toHaveStyle(`background-color: ${standard.colors.destructive}`);
   });
 
-  it('sets the loading prop on submit button when isSubmitting is true', () => {
+  it('disables the submit button when the form is submitting', () => {
     const submitLabel = 'submit';
-    const component = mount(
+    const {getByText} = fullRender(
       <EzModal
         isOpen
         isSubmitting
         submitLabel={submitLabel}
-        appElement={null}
         dismissLabel="dismiss"
         headerText="header"
       >
         test
       </EzModal>
     );
-    const submitButton = component.findWhere(
-      node => node.type() && node.is(EzButton) && node.text() === submitLabel
-    );
-    expect(submitButton.prop('loading')).toBe(true);
+    const submitButton = getByText(submitLabel);
+    expect(submitButton).toHaveAttribute('disabled');
   });
 
   it('sets the disabled prop on dismiss button when isSubmitting is true', () => {
-    const dismissLabel = 'submit';
-    const component = mount(
-      <EzModal
-        isOpen
-        isSubmitting
-        dismissLabel={dismissLabel}
-        appElement={null}
-        headerText="header"
-      >
+    const dismissLabel = 'dismiss';
+    const {getByText} = fullRender(
+      <EzModal isOpen isSubmitting dismissLabel={dismissLabel} headerText="header">
         test
       </EzModal>
     );
-    const dismissButton = component.findWhere(
-      node => node.type() && node.is(EzButton) && node.text() === dismissLabel
-    );
-    expect(dismissButton.prop('disabled')).toBe(true);
+    const dismissButton = getByText(dismissLabel);
+    expect(dismissButton).toHaveAttribute('disabled');
   });
 
   /**
@@ -183,28 +119,24 @@ describe('EzModal', () => {
    */
   describe('Accessibility tests', () => {
     it('should meet accessibility guidelines when required labels / text are given', async () => {
-      const wrapper = mount(
-        <EzModal isOpen dismissLabel="dismiss" headerText="header" appElement={null}>
+      const {baseElement, unmount} = fullRender(
+        <EzModal isOpen dismissLabel="dismiss" headerText="header">
           test
         </EzModal>
       );
-      const actual = await axe(wrapper.html());
+      unmount();
+      const actual = await axe(baseElement.innerHTML);
       expect(actual).toHaveNoViolations();
     });
 
     it('should meet accessibility guidelines when all labels / text are given', async () => {
-      const wrapper = mount(
-        <EzModal
-          isOpen
-          headerText="Header"
-          submitLabel="submit"
-          dismissLabel="dismiss"
-          appElement={null}
-        >
+      const {baseElement, unmount} = fullRender(
+        <EzModal isOpen headerText="Header" submitLabel="submit" dismissLabel="dismiss">
           test
         </EzModal>
       );
-      const actual = await axe(wrapper.html());
+      unmount();
+      const actual = await axe(baseElement.innerHTML);
       expect(actual).toHaveNoViolations();
     });
   });
