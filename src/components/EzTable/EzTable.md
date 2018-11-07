@@ -13,6 +13,14 @@ Tables can also:
 * Support sorting and filtering
 * Support pagination to handle larger data sets
 
+<EzAlert
+  headline="This component is under development"
+  tagline="There will likely be breaking changes to the API. Proceeed with caution."
+  use="warning"
+/>
+
+##
+
 ---
 
 ## Best Practices
