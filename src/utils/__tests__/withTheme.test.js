@@ -52,4 +52,10 @@ describe('withTheme', () => {
       .toJSON();
     expect(tree).toHaveStyleRule('background-color', 'pink');
   });
+
+  it('should retain the correct displayName', () => {
+    Component = () => null;
+    Component.displayName = 'MyComponent';
+    expect(withTheme(Component).displayName).toEqual('MyComponent');
+  });
 });
