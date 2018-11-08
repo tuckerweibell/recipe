@@ -4,14 +4,9 @@ title: Table
 path: "/components/ez-table"
 ---
 
-Tables are use to display information from a data set in a way that's easy to scan. Tables allow users to compare and analyze the data to look for patterns and insights. Tables will often be the primary content within a [Card](/components/ez-card).
+Tables are used to display information from a data set in a way that's easy to scan. Tables allow users to compare and analyze the data to look for patterns and insights. Tables will often be the primary content within a [Card](/components/ez-card).
 
-Tables can also:
-
-* Support customized cell content
-* Include bulk actions so users can act on multiple records at once
-* Support sorting and filtering
-* Support pagination to handle larger data sets
+---
 
 <EzAlert
   headline="This component is under development"
@@ -20,6 +15,22 @@ Tables can also:
 />
 
 ##
+
+Features still in consideration include:
+
+* Responsive variants (cards with repeated labels, transpose table)
+* Column pinning to support horizontal scrolling
+* Headerless table
+* Sorting
+* Filtering
+* Row hover styles (interactive)
+* Zebra Striping
+* Pagination
+* Table Actions (print, download etc)
+* Bulk Actions (multi-select)
+* Column width options (fixed, grow, auto, ellipsis, tooltip)
+* Headerless columns (content between columns, e.g. formula operators)
+* Sticky headers
 
 ---
 
@@ -30,9 +41,7 @@ Tables should:
 * Be used to show homogeneous content.
 * Help users visualize values from a data set.
 * Only display values supporting the data's purpose.
-* Allow filtering and sorting when embedded in a card.
-* Optionally include a heading to help identify the contents of the table at-a-glance.
-* Optionally allow sorting and filtering interactions so that user's can view the data in meaningful ways.
+* Include a heading to help identify the contents of the table at-a-glance.
 
 ## Alignment
 
