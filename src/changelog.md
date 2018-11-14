@@ -7,7 +7,7 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
-## 1.11.2 - 2018-11-14
+## 1.11.3 - 2018-11-14
 * Fixes cross-browser bugs and removes slide up animation on [EzModal](/components/ez-modal) component.
 
 ## 1.11.1 - 2018-11-13
