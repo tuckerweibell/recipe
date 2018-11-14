@@ -17,6 +17,7 @@ const CloseIcon = ({onClick, dismissLabel}) => (
   <CloseButton role="button" onClick={onClick}>
     <svg
       aria-label={dismissLabel}
+      display="block"
       width="16px"
       height="16px"
       viewBox="0 0 16 16"

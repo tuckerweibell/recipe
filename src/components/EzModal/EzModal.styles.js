@@ -1,23 +1,20 @@
 import styled from 'react-emotion';
-import {size, padding, position} from 'polished';
+import {padding, position} from 'polished';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
-import {keyframes} from '../../styles';
 
 const circleHeight = '40px';
+const closeIconBorderRadius = '50%';
 const closeIconHeight = '16px';
 
 export const CloseButton = styled.button`
-  align-items: center;
   background-color: transparent;
   border: 0;
-  border-radius: 50%;
+  border-radius: ${closeIconBorderRadius};
   cursor: pointer;
-  display: flex;
-  justify-content: center;
   margin-right: calc((${closeIconHeight} - ${circleHeight}) / 2);
   margin-top: calc((${closeIconHeight} - ${circleHeight}) / 2);
   outline: none;
-  ${size(circleHeight)};
+  padding: calc((${circleHeight} - ${closeIconHeight}) / 2);
 
   :hover {
     background-color: ${props => props.theme.colors.grays[200]};
@@ -35,8 +32,6 @@ export const Overlay = styled(DialogOverlay)`
 `;
 
 export const ModalContainer = styled(DialogContent)`
-  animation: ${keyframes.slideInUp()} 0.5s linear;
-  animation-iteration-count: 1;
   background: ${props => props.theme.colors.white};
   display: flex;
   flex-direction: column;
@@ -46,7 +41,6 @@ export const ModalContainer = styled(DialogContent)`
   width: 100%;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    animation: none;
     border-radius: 12px;
     height: auto;
     overflow: hidden; /* so the border-radius is applies to child content  */
@@ -58,6 +52,7 @@ export const ModalContainer = styled(DialogContent)`
 export const HeaderContainer = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
   display: flex;
+  flex: none;
   justify-content: space-between;
   padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.xl};
 
@@ -72,7 +67,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  flex: 1;
+  flex: auto;
   overflow-y: auto;
   ${({
     theme: {
@@ -92,5 +87,6 @@ export const ContentContainer = styled.div`
 export const ButtonFooter = styled.div`
   background: ${props => props.theme.colors.grays[200]};
   border-top: 1px solid ${props => props.theme.colors.grays[300]};
+  flex: none;
   padding: ${props => props.theme.spacing.xl2};
 `;
