@@ -3,6 +3,9 @@
 exports[`EzTable should render with default styles 1`] = `
 .recipe-18 {
   margin: 0;
+  line-height: 1.5rem;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .recipe-18 th,
@@ -10,16 +13,25 @@ exports[`EzTable should render with default styles 1`] = `
   border: none;
 }
 
+.recipe-6 {
+  text-align: left;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
 .recipe-0 {
+  text-align: left;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
   color: #8b99a6;
 }
 
 .recipe-8 {
   text-align: right;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
 }
 
 .recipe-2 {
   text-align: right;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
   color: #8b99a6;
 }
 
@@ -87,6 +99,9 @@ exports[`EzTable should render with default styles 1`] = `
 exports[`EzTable should render with full bleed styles 1`] = `
 .recipe-22 {
   margin: 0;
+  line-height: 1.5rem;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .recipe-22 th,
@@ -94,16 +109,25 @@ exports[`EzTable should render with full bleed styles 1`] = `
   border: none;
 }
 
+.recipe-10 {
+  text-align: left;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
+}
+
 .recipe-4 {
+  text-align: left;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
   color: #8b99a6;
 }
 
 .recipe-12 {
   text-align: right;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
 }
 
 .recipe-6 {
   text-align: right;
+  padding: 0.8571428571428571rem 0.5714285714285714rem;
   color: #8b99a6;
 }
 

@@ -6,10 +6,16 @@ title: "Getting Started"
 ### Installation
 
 ```term
-npm install @ezcater/recipe --save
+npm install @ezcater/recipe
 ```
 
-After installing recipe in your new application you may need to install some additional peer dependencies, check the warnings in your terminal for what those are as well as the `package.json` file. There is a section specifically for `peerDependencies` which need to be installed by the parent application.  
+After installing recipe in your new application you may need to install some additional peer dependencies, check the warnings in your terminal for what those are as well as the `package.json` file. There is a section specifically for `peerDependencies` which need to be installed by the parent application.
+
+Aside from React and React DOM, Recipe requires the following `peerDependencies` to be provided by your project:
+
+```term
+npm install emotion react-emotion emotion-theming polished
+```
 
 ## Importing components in downstream projects
 

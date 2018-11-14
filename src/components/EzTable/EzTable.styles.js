@@ -5,27 +5,22 @@ const fullBleed = css`
   padding: 0;
 `;
 
-const spacing = ({
-  theme: {
-    spacing: {lg},
-  },
-}) => css`
+const spacing = ({theme}) => css`
   th,
   td {
     &:first-child {
-      padding-left: ${lg};
+      padding-left: ${theme.spacing.lg};
     }
     &:last-child {
-      padding-right: ${lg};
+      padding-right: ${theme.spacing.lg};
     }
   }
 `;
 
-const cell = ({numeric}) =>
-  numeric !== undefined &&
-  css`
-    text-align: right;
-  `;
+const cell = ({theme, numeric}) => css`
+  text-align: ${numeric ? 'right' : 'left'};
+  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+`;
 
 const heading = ({theme}) => css`
   color: ${theme.colors.grays[600]};
@@ -52,6 +47,9 @@ TableCardSection.displayName = EzCardSection.displayName;
 
 const base = css`
   margin: 0;
+  line-height: 1.5rem;
+  border-collapse: collapse;
+  width: 100%;
 
   th,
   td {
