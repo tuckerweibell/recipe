@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactModal from 'react-modal';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
-import ScrollLock from './ScrollLock';
 import {
   CloseButton,
   ButtonFooter,
   HeaderContainer,
   ContentContainer,
   ModalContainer,
-  Overlay,
+  Modal,
+  reactModalHtmlOpen,
+  reactModalAfterOpen,
+  reactModalOverlay,
 } from './EzModal.styles';
 
 const CloseIcon = ({onClick, dismissLabel}) => (
@@ -36,49 +39,75 @@ const CloseIcon = ({onClick, dismissLabel}) => (
   </CloseButton>
 );
 
-const EzModal = ({
-  children,
-  headerText,
-  destructive,
-  dismissLabel,
-  isOpen,
-  isSubmitting,
-  onDismiss,
-  onSubmit,
-  submitLabel,
-}) => (
-  <Overlay isOpen={isOpen} onDismiss={onDismiss}>
-    <ModalContainer>
-      <ScrollLock />
-      <HeaderContainer>
-        <EzHeading size="2">{headerText}</EzHeading>
-        <CloseIcon dismissLabel={dismissLabel} onClick={onDismiss} />
-      </HeaderContainer>
+class EzModal extends React.Component {
+  componentDidMount() {
+    const {appElement} = this.props;
 
-      <ContentContainer>{children}</ContentContainer>
+    if (appElement) ReactModal.setAppElement(appElement);
+  }
 
-      <ButtonFooter>
-        <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-          {submitLabel && (
-            <EzButton
-              use="primary"
-              destructive={destructive}
-              onClick={onSubmit}
-              loading={isSubmitting}
-            >
-              {submitLabel}
-            </EzButton>
-          )}
-          <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-            {dismissLabel}
-          </EzButton>
-        </EzLayout>
-      </ButtonFooter>
-    </ModalContainer>
-  </Overlay>
-);
+  render() {
+    const {
+      children,
+      headerText,
+      destructive,
+      dismissLabel,
+      isOpen,
+      isSubmitting,
+      onDismiss,
+      onSubmit,
+      submitLabel,
+    } = this.props;
+
+    return (
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={onDismiss}
+        overlayClassName={reactModalOverlay}
+        afterOpenClassName={reactModalAfterOpen}
+        htmlOpenClassName={reactModalHtmlOpen}
+      >
+        {isOpen && (
+          <ModalContainer>
+            <HeaderContainer>
+              <EzHeading size="2">{headerText}</EzHeading>
+              <CloseIcon dismissLabel={dismissLabel} onClick={onDismiss} />
+            </HeaderContainer>
+
+            <ContentContainer>{children}</ContentContainer>
+
+            <ButtonFooter>
+              <EzLayout layout={{base: 'stack', medium: 'basic'}}>
+                {submitLabel && (
+                  <EzButton
+                    use="primary"
+                    destructive={destructive}
+                    onClick={onSubmit}
+                    loading={isSubmitting}
+                  >
+                    {submitLabel}
+                  </EzButton>
+                )}
+                <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                  {dismissLabel}
+                </EzButton>
+              </EzLayout>
+            </ButtonFooter>
+          </ModalContainer>
+        )}
+      </Modal>
+    );
+  }
+}
 
 EzModal.propTypes = {
+  /**
+   * A query selector identifying the root of your app.
+   * Ezmodal uses this selector to indicate to screen readers that this content
+   * should be hidden (via the aria-hidden attribute) while the modal is open.
+   */
+  appElement: PropTypes.string,
+
   /**
    * Arbitrary children for the modal contents
    */
@@ -128,6 +157,7 @@ EzModal.propTypes = {
 };
 
 EzModal.defaultProps = {
+  appElement: '#root',
   destructive: false,
   isSubmitting: false,
   onDismiss() {},

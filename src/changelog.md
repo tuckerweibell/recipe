@@ -7,6 +7,11 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 1.12.0 - 2018-11-15
+* Switches [EzModal](/components/ez-modal) component to use react-modal
+  * Adds `appElement` prop to `EzModal`
+  * Adds back slide up amination
+
 ## 1.11.3 - 2018-11-14
 * Fixes cross-browser bugs and removes slide up animation on [EzModal](/components/ez-modal) component.
 

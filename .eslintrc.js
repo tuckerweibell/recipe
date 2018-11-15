@@ -8,7 +8,6 @@ module.exports = {
     create: true,
     shallow: true,
     mount: true,
-    fullRender: true,
     render: true,
     renderToHtml: true,
     axe: true,
