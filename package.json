@@ -1,6 +1,6 @@
 {
   "name": "@ezcater/recipe",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "ezCater's React UI Component library",
   "main": "dist/recipe.js",
   "peerDependencies": {
@@ -46,9 +46,6 @@
     "create-component": "plop component",
     "test": "jest --coverage --no-cache",
     "test:watch": "npm test -- --watch"
-  },
-  "engines": {
-    "yarn": "YARN NO LONGER USED - use npm instead."
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.6.3",
