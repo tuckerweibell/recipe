@@ -1,6 +1,6 @@
-import styled, {css} from 'react-emotion';
+import styled from 'react-emotion';
 import {padding, position} from 'polished';
-import ReactModal from 'react-modal';
+import {DialogContent, DialogOverlay} from '@reach/dialog';
 
 const circleHeight = '40px';
 const closeIconBorderRadius = '50%';
@@ -21,62 +21,31 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const Modal = styled(ReactModal)`
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  overflow-y: hidden;
-  position: fixed;
-  top: 150%;
-  transform: translate(-50%, -50%);
-  transition: top 0.5s;
-
-  &.ReactModal__Content--after-open {
-    top: 50%;
-  }
-
-  @media screen and (min-width: ${({theme}) => theme.breakpoints.medium}) {
-    border-radius: 12px;
-    left: 50%;
-    min-height: 0;
-    min-width: 0;
-    overflow: hidden;
-    top: 50%;
-    width: 500px;
-  }
-
-  :focus {
-    outline: 0;
-  }
-`;
-
-export const reactModalOverlay = css`
-  &.ReactModal__Overlay--after-open {
-    background-color: rgba(0, 0, 0, 0.6);
-    ${position('fixed', 0, 0, 0, 0)};
-  }
-`;
-
-export const reactModalHtmlOpen = css`
+export const Overlay = styled(DialogOverlay)`
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  ${position('fixed', 0, 0, 0, 0)};
 `;
 
-export const reactModalAfterOpen = css`
-  top: 50%;
-`;
-
-export const ModalContainer = styled.div`
+export const ModalContainer = styled(DialogContent)`
   background: ${props => props.theme.colors.white};
   display: flex;
   flex-direction: column;
   height: 100%;
   max-height: 100vh;
-  position: absolute;
+  outline: none;
   width: 100%;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
+    border-radius: 12px;
+    height: auto;
+    overflow: hidden; /* so the border-radius is applies to child content  */
     max-height: calc(100vh - ${props => props.theme.spacing.xl4});
-    position: relative;
+    width: 500px;
   }
 `;
 

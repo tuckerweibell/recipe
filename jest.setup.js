@@ -8,6 +8,7 @@ import {axe, toHaveNoViolations} from 'jest-axe';
 import {create} from 'react-test-renderer';
 import * as emotion from 'emotion';
 import {ThemeProvider} from 'emotion-theming';
+import {render as rtlRender} from 'react-testing-library';
 
 import {standard} from './src/themes';
 
@@ -36,6 +37,7 @@ const mountWithTheme = tree => {
 
 global.shallow = shallowWithTheme;
 global.render = renderWithTheme(render);
+global.fullRender = renderWithTheme(rtlRender);
 global.create = renderWithTheme(create);
 global.mount = mountWithTheme;
 global.renderToHtml = renderWithTheme(renderToStaticMarkup);

@@ -18,11 +18,6 @@ Modals should not:
    * Don’t use a “cancel” or “close” button on informational modals or editing modals.
 
 ## Examples
-
-Note all examples include a div with class appElement. In practice this div
-will be your application's root element and does not need to reside directly
-with your modal
-
 ### Informational
 Informational modals are used to focus the user’s attention on a specific chunk of information. Use when providing information about something that’s not essential to completing the actions on the page (e.g. more information about ezDispatch), especially if content formatting is needed or there’s too much content to display in a tooltip.
 
@@ -39,9 +34,6 @@ Use a confirmation modal to ask the user to confirm changes they’re about to m
 
 ## Properties
 
-### appElement (string)
-
-A query selector identifying the root of your app. The modal uses this selector to indicate to screen readers that this content should be hidden (via the aria-hidden attribute) while the modal is open.
 
 ### children (node) - required
 
@@ -79,42 +71,41 @@ Callback for when submit button is clicked.
 
 Label for the submit button. Omitting this prop will suppress the submit button.
 
+## Examples
+
 ### Basic Modal
 
 ```jsx live
-<div className="appElement">
-  <Component initialState={{isOpen: false}}>
-    {({state, setState}) => (
-      <EzCard>
-        <button onClick={() => setState({isOpen: true})}>Button</button>
-        <EzModal
-          isOpen={state.isOpen}
-          appElement=".appElement"
-          onSubmit={() => {
-            setState({isOpen: false, submitted: true});
-          }}
-          submitLabel="Submit"
-          onDismiss={() => {
-            setState({isOpen: false, submitted: false});
-          }}
-          dismissLabel="Dismiss"
-          headerText="Header goes here"
-        >
-          Modal content goes here!
-        </EzModal>
-        <div>
-          {'submitted' in state ? (
-            state.submitted ? (
-              <EzAlert headline="Submitted" use="success" />
-            ) : (
-              <EzAlert headline="Dismissed" use="info" />
-            )
-          ) : null}
-        </div>
-      </EzCard>
-    )}
-  </Component>
-</div>
+<Component initialState={{isOpen: false}}>
+  {({state, setState}) => (
+    <EzCard>
+      <button onClick={() => setState({isOpen: true})}>Button</button>
+      <EzModal
+        isOpen={state.isOpen}
+        onSubmit={() => {
+          setState({isOpen: false, submitted: true});
+        }}
+        submitLabel="Submit"
+        onDismiss={() => {
+          setState({isOpen: false, submitted: false});
+        }}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+      <div>
+        {'submitted' in state ? (
+          state.submitted ? (
+            <EzAlert headline="Submitted" use="success" />
+          ) : (
+            <EzAlert headline="Dismissed" use="info" />
+          )
+        ) : null}
+      </div>
+    </EzCard>
+  )}
+</Component>
 ```
 
 ### Only dismiss button
@@ -125,18 +116,15 @@ For a purely informational modal you can omit the submitLabel prop which will su
 <Component initialState={{isOpen: false}}>
   {({state, setState}) => (
     <React.Fragment>
-      <div className="appElement">
-        <button onClick={() => setState({isOpen: true})}>Button</button>
-        <EzModal
-          isOpen={state.isOpen}
-          appElement=".appElement"
-          onDismiss={() => setState({isOpen: false})}
-          dismissLabel="Dismiss"
-          headerText="Header goes here"
-        >
-          Modal content goes here!
-        </EzModal>
-      </div>
+      <button onClick={() => setState({isOpen: true})}>Button</button>
+      <EzModal
+        isOpen={state.isOpen}
+        onDismiss={() => setState({isOpen: false})}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
     </React.Fragment>
   )}
 </Component>
@@ -150,21 +138,18 @@ If the submit action is destructive you can set the destructive prop
 <Component initialState={{isOpen: false}}>
   {({state, setState}) => (
     <React.Fragment>
-      <div className="appElement">
-        <button onClick={() => setState({isOpen: true})}>Button</button>
-        <EzModal
-          destructive
-          isOpen={state.isOpen}
-          appElement=".appElement"
-          onSubmit={() => setState({isOpen: false})}
-          submitLabel="Submit"
-          onDismiss={() => setState({isOpen: false})}
-          dismissLabel="Dismiss"
-          headerText="Header goes here"
-        >
-          Modal content goes here!
-        </EzModal>
-      </div>
+      <button onClick={() => setState({isOpen: true})}>Button</button>
+      <EzModal
+        destructive
+        isOpen={state.isOpen}
+        onSubmit={() => setState({isOpen: false})}
+        submitLabel="Submit"
+        onDismiss={() => setState({isOpen: false})}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
     </React.Fragment>
   )}
 </Component>
@@ -178,21 +163,18 @@ You can set the isSubmitting to trigger the loading state for the modal
 <Component initialState={{isOpen: false}}>
   {({state, setState}) => (
     <React.Fragment>
-      <div className="appElement">
-        <button onClick={() => setState({isOpen: true})}>Button</button>
-        <EzModal
-          isSubmitting
-          isOpen={state.isOpen}
-          appElement=".appElement"
-          onSubmit={() => setState({isOpen: false})}
-          submitLabel="Submit"
-          onDismiss={() => setState({isOpen: false})}
-          dismissLabel="Dismiss"
-          headerText="Header goes here"
-        >
-          Modal content goes here!
-        </EzModal>
-      </div>
+      <button onClick={() => setState({isOpen: true})}>Button</button>
+      <EzModal
+        isSubmitting
+        isOpen={state.isOpen}
+        onSubmit={() => setState({isOpen: false})}
+        submitLabel="Submit"
+        onDismiss={() => setState({isOpen: false})}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
     </React.Fragment>
   )}
 </Component>

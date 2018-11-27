@@ -1,47 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EzModal should render with default styles 1`] = `
-.recipe-21.ReactModal__Overlay--after-open {
+.recipe-19 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: rgba(0,0,0,0.6);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-}
-
-.recipe-19 {
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  overflow-y: hidden;
-  position: fixed;
-  top: 150%;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
-}
-
-.recipe-19.ReactModal__Content--after-open {
-  top: 50%;
-}
-
-@media screen and (min-width:48em) {
-  .recipe-19 {
-    border-radius: 12px;
-    left: 50%;
-    min-height: 0;
-    min-width: 0;
-    overflow: hidden;
-    top: 50%;
-    width: 500px;
-  }
-}
-
-.recipe-19:focus {
-  outline: 0;
 }
 
 .recipe-17 {
@@ -55,14 +37,17 @@ exports[`EzModal should render with default styles 1`] = `
   flex-direction: column;
   height: 100%;
   max-height: 100vh;
-  position: absolute;
+  outline: none;
   width: 100%;
 }
 
 @media screen and (min-width:48em) {
   .recipe-17 {
+    border-radius: 12px;
+    height: auto;
+    overflow: hidden;
     max-height: calc(100vh - 4.285714285714286rem);
-    position: relative;
+    width: 500px;
   }
 }
 
@@ -297,93 +282,85 @@ exports[`EzModal should render with default styles 1`] = `
   color: #2e6ca0;
 }
 
-<div
-  aria-modal="true"
-  className="ReactModal__Overlay ReactModal__Overlay--after-open recipe-21"
-  onClick={[Function]}
-  onMouseDown={[Function]}
-  onMouseUp={[Function]}
-  style={Object {}}
->
+<body>
   <div
-    className="ReactModal__Content ReactModal__Content--after-open recipe-19 recipe-20"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    style={Object {}}
-    tabIndex="-1"
-  >
+    aria-hidden="true"
+  />
+  <reach-portal>
     <div
-      className="recipe-17 recipe-18"
+      class="recipe-19 recipe-20"
+      data-reach-dialog-overlay="true"
     >
       <div
-        className="recipe-5 recipe-6"
-      >
-        <h2
-          className="recipe-0 recipe-1 recipe-2"
-          size="2"
-        >
-          Header
-        </h2>
-        <button
-          className="recipe-3 recipe-4"
-          onClick={[Function]}
-          role="button"
-        >
-          <svg
-            aria-label="Dismiss"
-            display="block"
-            height="16px"
-            version="1.1"
-            viewBox="0 0 16 16"
-            width="16px"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g
-              fill="none"
-              fillRule="evenodd"
-              id="Artboard"
-              stroke="none"
-              strokeWidth="1"
-            >
-              <path
-                d="M6.5,6.5 L6.5,-1 L9.5,-1 L9.5,6.5 L17,6.5 L17,9.5 L9.5,9.5 L9.5,17 L6.5,17 L6.5,9.5 L-1,9.5 L-1,6.5 L6.5,6.5 Z"
-                fill="#3A81BE"
-                id="Close-Button"
-                transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) "
-              />
-            </g>
-          </svg>
-        </button>
-      </div>
-      <div
-        className="recipe-7 recipe-8"
-      >
-        children
-      </div>
-      <div
-        className="recipe-15 recipe-16"
+        aria-modal="true"
+        class="recipe-17 recipe-18"
+        data-reach-dialog-content="true"
+        tabindex="-1"
       >
         <div
-          className="recipe-13 recipe-14"
+          class="recipe-5 recipe-6"
         >
-          <button
-            className="recipe-9 recipe-10"
-            disabled={false}
-            onClick={[Function]}
+          <h2
+            class="recipe-0 recipe-1 recipe-2"
+            size="2"
           >
-            Submit
-          </button>
+            Header
+          </h2>
           <button
-            className="recipe-11 recipe-10"
-            onClick={[Function]}
+            class="recipe-3 recipe-4"
+            role="button"
           >
-            Dismiss
+            <svg
+              aria-label="Dismiss"
+              display="block"
+              height="16px"
+              version="1.1"
+              viewBox="0 0 16 16"
+              width="16px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="none"
+                fill-rule="evenodd"
+                id="Artboard"
+                stroke="none"
+                stroke-width="1"
+              >
+                <path
+                  d="M6.5,6.5 L6.5,-1 L9.5,-1 L9.5,6.5 L17,6.5 L17,9.5 L9.5,9.5 L9.5,17 L6.5,17 L6.5,9.5 L-1,9.5 L-1,6.5 L6.5,6.5 Z"
+                  fill="#3A81BE"
+                  id="Close-Button"
+                  transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) "
+                />
+              </g>
+            </svg>
           </button>
+        </div>
+        <div
+          class="recipe-7 recipe-8"
+        >
+          children
+        </div>
+        <div
+          class="recipe-15 recipe-16"
+        >
+          <div
+            class="recipe-13 recipe-14"
+          >
+            <button
+              class="recipe-9 recipe-10"
+            >
+              Submit
+            </button>
+            <button
+              class="recipe-11 recipe-10"
+            >
+              Dismiss
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </reach-portal>
+</body>
 `;

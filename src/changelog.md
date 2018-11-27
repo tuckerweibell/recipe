@@ -9,7 +9,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## 1.12.0 - 2018-11-15
 * Switches [EzModal](/components/ez-modal) component to use react-modal
-  * Adds `appElement` prop to `EzModal`
+  * Adds `appElement` prop to `EzModal`
   * Adds back slide up amination
 
 ## 1.11.3 - 2018-11-14
