@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled, {css} from 'react-emotion';
 import {padding, position} from 'polished';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
 
@@ -49,44 +49,39 @@ export const ModalContainer = styled(DialogContent)`
   }
 `;
 
+const containerPadding = ({theme: {spacing, breakpoints}}) => css`
+  ${padding(spacing.md, spacing.xl)};
+
+  @media screen and (min-width: ${breakpoints.medium}) {
+    ${padding(spacing.xl, spacing.xl2)};
+  }
+`;
+
 export const HeaderContainer = styled.div`
+  ${containerPadding};
   border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
   display: flex;
   flex: none;
   justify-content: space-between;
-  padding: ${props => props.theme.spacing.md} ${props => props.theme.spacing.xl};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     border-bottom: none;
-    ${({
-      theme: {
-        spacing: {xl, xl2},
-      },
-    }) => padding(xl2, xl2, xl, xl2)};
   }
 `;
 
 export const ContentContainer = styled.div`
+  ${containerPadding};
   flex: auto;
   overflow-y: auto;
-  ${({
-    theme: {
-      spacing: {xl},
-    },
-  }) => padding(xl, xl, xl, xl)};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    ${({
-      theme: {
-        spacing: {xl2},
-      },
-    }) => padding(0, xl2, xl2, xl2)};
+    padding-top: 0;
   }
 `;
 
 export const ButtonFooter = styled.div`
+  ${containerPadding};
   background: ${props => props.theme.colors.grays[200]};
   border-top: 1px solid ${props => props.theme.colors.grays[300]};
   flex: none;
-  padding: ${props => props.theme.spacing.xl2};
 `;
