@@ -2,19 +2,17 @@ import styled, {css} from 'react-emotion';
 import {padding, position} from 'polished';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
 
-const circleHeight = '40px';
 const closeIconBorderRadius = '50%';
-const closeIconHeight = '16px';
+const clickTargetPadding = '12px';
 
 export const CloseButton = styled.button`
   background-color: transparent;
   border: 0;
   border-radius: ${closeIconBorderRadius};
   cursor: pointer;
-  margin-right: calc((${closeIconHeight} - ${circleHeight}) / 2);
-  margin-top: calc((${closeIconHeight} - ${circleHeight}) / 2);
   outline: none;
-  padding: calc((${circleHeight} - ${closeIconHeight}) / 2);
+  margin: -${clickTargetPadding}; /* negate the impact of the extra padding on the elements containers height */
+  padding: ${clickTargetPadding};
 
   :hover {
     background-color: ${props => props.theme.colors.grays[200]};
@@ -59,6 +57,7 @@ const containerPadding = ({theme: {spacing, breakpoints}}) => css`
 
 export const HeaderContainer = styled.div`
   ${containerPadding};
+  align-items: baseline;
   border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
   display: flex;
   flex: none;
