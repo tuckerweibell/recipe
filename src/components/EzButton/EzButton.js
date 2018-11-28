@@ -12,18 +12,17 @@ const use = variant('use', {
 });
 
 const baseStyles = [base, use, disabled, loading, outline];
+const StyledButton = styled('button')(...baseStyles);
 
 /**
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-const EzButton = props => {
-  const StyledButton = styled('button')(...baseStyles);
-  return createElement(StyledButton, {
+const EzButton = props =>
+  createElement(StyledButton, {
     ...props,
     disabled: props.disabled || props.loading,
   });
-};
 
 EzButton.propTypes = {
   /**
