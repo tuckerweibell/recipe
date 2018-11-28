@@ -1,9 +1,9 @@
-import {css} from 'react-emotion';
+import styled, {css} from 'react-emotion';
 import {shade} from 'polished';
 import variant from 'styled-component-variant';
 import {keyframes} from '../../styles';
 
-export const base = ({theme}) => css`
+const base = ({theme}) => css`
   cursor: pointer;
   display: inline-block;
   outline: 0;
@@ -18,7 +18,7 @@ export const base = ({theme}) => css`
   -webkit-tap-highlight-color: transparent;
 `;
 
-export const disabled = ({disabled: isDisabled}) =>
+const disabled = ({disabled: isDisabled}) =>
   isDisabled &&
   css`
     cursor: default;
@@ -41,12 +41,12 @@ const outlineStyles = ({theme}) => css`
   padding: ${theme.spacing.xs} ${theme.spacing.md};
 `;
 
-export const outline = variant('use', {
+const outline = variant('use', {
   primary: outlineStyles,
   secondary: outlineStyles,
 });
 
-export const primary = ({theme: {colors}, destructive}) => {
+const primary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
     color: ${colors.primary.contrastText};
@@ -56,7 +56,7 @@ export const primary = ({theme: {colors}, destructive}) => {
   `;
 };
 
-export const secondary = ({theme: {colors}, destructive}) => {
+const secondary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
     background-color: white;
@@ -66,7 +66,7 @@ export const secondary = ({theme: {colors}, destructive}) => {
   `;
 };
 
-export const tertiary = ({theme: {colors}, destructive}) => {
+const tertiary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
     background: none;
@@ -117,10 +117,20 @@ const spinner = ({margin, size, radius, thickness, color}) => css`
   }
 `;
 
-export const loading = ({loading: isLoading, use, theme: {colors}}) => {
+const loading = ({loading: isLoading, use, theme: {colors}}) => {
   const color = variant('use', {
     primary: colors.white,
     secondary: colors.grays[700],
   })({use});
   return isLoading && spinner({...spinnerOptions, color});
 };
+
+const use = variant('use', {
+  primary,
+  secondary,
+  tertiary,
+});
+
+const baseStyles = [base, use, disabled, loading, outline];
+
+export default styled('button')(...baseStyles);

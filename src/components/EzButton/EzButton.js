@@ -1,18 +1,7 @@
 import {createElement} from 'react';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
-import variant from 'styled-component-variant';
-import {base, primary, secondary, tertiary, disabled, loading, outline} from './EzButton.styles';
+import StyledButton from './EzButton.styles';
 import {standard} from '../../themes';
-
-const use = variant('use', {
-  primary,
-  secondary,
-  tertiary,
-});
-
-const baseStyles = [base, use, disabled, loading, outline];
-const StyledButton = styled('button')(...baseStyles);
 
 /**
  * Buttons represent actions on a page that can be triggered with one click.
