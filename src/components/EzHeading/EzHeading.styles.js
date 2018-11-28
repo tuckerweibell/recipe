@@ -13,7 +13,7 @@ const heading = (size, weight) => ({theme}) => css`
   margin: 0;
 `;
 
-export const size = variant('size', {
+const size = variant('size', {
   1: heading(700, 'normal'),
   2: heading(600, 'normal'),
   3: heading(500, 'bold'),
@@ -21,3 +21,8 @@ export const size = variant('size', {
   5: heading(300, 'bold'),
   6: heading(200, 'normal'),
 });
+
+export const headings = ['1', '2', '3', '4', '5', '6'].reduce((res, n) => {
+  const tag = `h${n}`;
+  return Object.assign({[tag]: styled(tag)(size)}, res);
+}, {});

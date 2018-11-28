@@ -35,6 +35,15 @@ describe('EzHeading', () => {
     expect(actual).toMatchSnapshot();
   });
 
+  it('should render with the specified tag', () => {
+    const actual = create(
+      <EzHeading as="h1" size="6">
+        Heading
+      </EzHeading>
+    );
+    expect(actual.toJSON().type).toEqual('h1');
+  });
+
   ['1', '2', '3', '4', '5', '6'].forEach(n => {
     const actual = render(
       <EzHeading size={n} subheading="Subheading">
