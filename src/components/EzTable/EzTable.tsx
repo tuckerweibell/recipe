@@ -1,5 +1,5 @@
 import React from 'react';
-import {EzCard} from '..';
+import {EzCard} from '../EzCard';
 import {Table, Th, Td, TableCardSection} from './EzTable.styles';
 
 const Thead = ({columns}) => (
