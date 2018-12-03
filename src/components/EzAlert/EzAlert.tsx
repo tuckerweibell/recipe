@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {AlertContainer, AlertContent} from './EzAlert.styles';
 import EzTextStyle from '../EzTextStyle';
 import {
@@ -21,10 +20,10 @@ const icons = {
 };
 
 type AlertProps = {
-  arrow?: string;
-  use?: string;
-  tagline?: string;
+  arrow?: "top" | "bottom";
   headline: string;
+  tagline?: string;
+  use?: "success" | "error" | "warning" | "tip" | "info" | "marketing";
 };
 
 /**
@@ -40,25 +39,6 @@ const EzAlert: React.SFC<AlertProps> = ({arrow, tagline, headline, use}) => (
     </AlertContent>
   </AlertContainer>
 );
-
-EzAlert.propTypes = {
-  /**
-   * An optional speech bubble arrow added to the Alert, indicating which side you want the arrow to appear.
-   */
-  arrow: PropTypes.oneOf(['top', 'bottom']),
-  /**
-   * The primary content messaging that is highlighted within the alert.
-   */
-  headline: PropTypes.string.isRequired,
-  /**
-   * The secondary content explaining further (if necessary) what is indicated within the `headline` object.
-   */
-  tagline: PropTypes.string,
-  /**
-   * Determines the color scheme of the alert.
-   */
-  use: PropTypes.oneOf(['success', 'error', 'warning', 'tip', 'info', 'marketing']),
-};
 
 /**
  * defaultProps

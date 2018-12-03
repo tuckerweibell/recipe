@@ -6,7 +6,6 @@
   "peerDependencies": {
     "emotion": "^9.2.3",
     "polished": "^1.9.2",
-    "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-emotion": "^9.2.3",
     "emotion-theming": "^9.2.3"
@@ -42,7 +41,6 @@
     "plop": "^2.0.0",
     "polished": "2.0.0",
     "prettier": "1.15.2",
-    "prop-types": "^15.6.1",
     "react": "^16.5.2",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.12",

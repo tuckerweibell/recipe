@@ -48,8 +48,10 @@ describe('EzHeading', () => {
   });
 
   ['1', '2', '3', '4', '5', '6'].forEach(n => {
+    const size = n as '1' | '2' | '3' | '4' | '5' | '6';
+
     const actual = render(
-      <EzHeading size={n} subheading="Subheading">
+      <EzHeading size={size} subheading="Subheading">
         Heading
       </EzHeading>
     );

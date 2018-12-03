@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import variant from 'styled-component-variant';
 import {strong, subdued} from './EzTextStyle.styles';
 import styled from '../../themes/styled';
@@ -8,29 +7,16 @@ const use = variant('use', {
   subdued,
 });
 
+type StringOrNumber = string | number;
+
 type Props = {
-  use: string;
+  use: 'strong' | 'subdued';
+  children: StringOrNumber | StringOrNumber[];
 };
 /**
  * Enhances text with styles to communicate emphasis.
  */
 const EzTextStyle = styled.span<Props>(use);
-
-//@ts-ignore
-EzTextStyle.propTypes = {
-  /**
-   * The content that should be styled.
-   */
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  ]),
-  /**
-   * Describes the usage of the text in order to determine visual presentation.
-   */
-  use: PropTypes.oneOf(['strong', 'subdued']).isRequired,
-};
 
 /**
  * @component

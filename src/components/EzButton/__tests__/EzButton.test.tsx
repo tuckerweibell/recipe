@@ -5,70 +5,77 @@ import {axe} from 'jest-axe';
 import {shallow, mount, renderToHtml} from '../../../jest-globals';
 
 describe('EzButton', () => {
-  let actual;
+  const shallowWithProps = props => {
+    props = {use: 'primary', ...props};
+    return shallow(<EzButton {...props}>Click Me</EzButton>);
+  };
 
-  beforeEach(() => {
-    actual = shallow(<EzButton use="primary">Click Me</EzButton>);
-  });
+  const mountWithProps = props => {
+    props = {use: 'primary', ...props};
+    return mount(<EzButton {...props}>Click Me</EzButton>);
+  };
 
   /**
    * Style tests.
    */
   it('should render with primary styles', () => {
+    const actual = mountWithProps({});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with secondary styles', () => {
-    actual.setProps({use: 'secondary'});
+    const actual = mountWithProps({use: 'secondary'});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with tertiary styles', () => {
-    actual.setProps({use: 'tertiary'});
+    const actual = mountWithProps({use: 'tertiary'});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render with disabled styles', () => {
-    actual.setProps({disabled: true});
+    const actual = mountWithProps({disabled: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render primary button with destructive styles', () => {
-    actual.setProps({destructive: true});
+    const actual = mountWithProps({destructive: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render secondary button with destructive styles', () => {
-    actual.setProps({destructive: true, use: 'secondary'});
+    const actual = mountWithProps({use: 'secondary', destructive: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render tertiary button with destructive styles', () => {
-    actual.setProps({destructive: true, use: 'tertiary'});
+    const actual = mountWithProps({use: 'tertiary', destructive: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render primary button with loading styles', () => {
-    actual.setProps({loading: true, use: 'primary'});
+    const actual = mountWithProps({use: 'primary', loading: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('should render secondary button with loading styles', () => {
-    actual.setProps({loading: true, use: 'secondary'});
+    const actual = mountWithProps({use: 'secondary', loading: true});
     expect(actual.render()).toMatchSnapshot();
   });
 
   it('renders a button element by default', () => {
+    const actual = mountWithProps({});
     expect(actual.render()[0].name).toEqual('button');
   });
 
   describe('disabled', () => {
     it('is not disabled by default', () => {
+      const actual = mountWithProps({});
       expect(actual.prop('disabled')).toBeUndefined();
     });
 
     it('is applied to the button element when defined', () => {
-      actual.setProps({disabled: true});
+      const actual = mountWithProps({disabled: true});
       expect(actual.prop('disabled')).toBe(true);
     });
 
@@ -89,12 +96,13 @@ describe('EzButton', () => {
 
   describe('loading', () => {
     it('is not loading by default', () => {
+      const actual = shallowWithProps({});
       expect(actual.prop('loading')).toBeUndefined();
     });
 
     it('is applies the disabled attribute to the button element', () => {
-      actual.setProps({loading: true});
-      expect(actual.prop('disabled')).toBe(true);
+      const foo = shallowWithProps({loading: true});
+      expect(foo.prop('disabled')).toBe(true);
     });
 
     it('is does not trigger clicks', () => {
@@ -110,27 +118,16 @@ describe('EzButton', () => {
 
       expect(spy).not.toHaveBeenCalled();
     });
-
-    it('cannot be applied to tertiary button', () => {
-      spyOn(console, 'error');
-      actual.setProps({use: 'tertiary', loading: true});
-      expect(console.error).toHaveBeenCalled();
-    });
-
-    it('accepts only boolean values for loading', () => {
-      spyOn(console, 'error');
-      actual.setProps({use: 'tertiary', loading: 0});
-      expect(console.error).toHaveBeenCalled();
-    });
   });
 
   describe('valid props', () => {
     it('renders valid props for html elements', () => {
-      actual.setProps({'data-test': 'my-test-selector'});
+      const actual = shallowWithProps({'data-test': 'my-test-selector'});
       expect(actual.prop('data-test')).toEqual('my-test-selector');
     });
 
     it('does NOT render invalid props for html elements', () => {
+      const actual = shallowWithProps({});
       expect(actual.prop('primary')).toBeUndefined();
     });
   });

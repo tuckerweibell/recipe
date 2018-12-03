@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {ThemeProvider} from 'emotion-theming';
 import {themes} from '@ezcater/recipe';
@@ -30,10 +29,6 @@ const Layout = ({children, data}) => (
     </ThemeProvider>
   </div>
 );
-
-Layout.propTypes = {
-  children: PropTypes.func,
-};
 
 export default Layout;
 

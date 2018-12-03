@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
@@ -37,7 +36,7 @@ const CloseIcon = ({onClick, dismissLabel}) => (
 );
 
 type Props = {
-  appElement?: string;
+  children: React.ReactNode;
   headerText: string;
   destructive?: boolean;
   dismissLabel: string;
@@ -46,7 +45,7 @@ type Props = {
   onDismiss?: () => void;
   onSubmit?: () => void;
   submitLabel?: string;
-  children: any;
+  appElement?: string;
 };
 
 const EzModal: React.SFC<Props> = ({

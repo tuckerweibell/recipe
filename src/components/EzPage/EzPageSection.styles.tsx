@@ -22,7 +22,12 @@ const use = variant('use', {
   main,
 });
 
-export const PageSection = styled.div`
+type PageSectionProps = {
+  children: React.ReactNode;
+  use: 'aside' | 'main';
+};
+
+export const PageSection = styled.div<PageSectionProps>`
   ${use};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {

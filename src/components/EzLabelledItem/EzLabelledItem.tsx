@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '../../themes/styled';
 
 import {base, position} from './EzLabelledItem.styles';
@@ -15,9 +14,9 @@ const LabelWrapper = styled.div<LabelWrapperProps>(base, position);
  * Typically used to label an interactive element or a short string of text.
  */
 type ItemProps = {
-  children: any;
-  position?: string;
-  size?: string;
+  children: React.ReactNode;
+  position: 'top' | 'bottom' | 'left';
+  size?: 'normal' | 'small';
   title: string;
 };
 

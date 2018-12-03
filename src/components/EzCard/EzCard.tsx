@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   CardContainer,
   CardHeading,
@@ -23,10 +22,11 @@ function wrappedChildren(children) {
 }
 
 type CardProps = {
+  children: React.ReactNode;
+  horizontal?: boolean;
   title?: string;
   subtitle?: string;
-  accent?: string;
-  horizontal?: boolean;
+  accent?: 'info';
 };
 
 /**

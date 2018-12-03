@@ -1,6 +1,12 @@
 import {css} from 'react-emotion';
+import {Theme} from '../../themes/styled';
 
-export const vertical = ({horizontal, theme}) =>
+type Props = {
+  horizontal?: boolean;
+  theme: Theme;
+};
+
+export const vertical = ({horizontal, theme}: Props) =>
   !horizontal &&
   css`
     > *:not(:first-child) {
@@ -8,7 +14,7 @@ export const vertical = ({horizontal, theme}) =>
     }
   `;
 
-export const horizontal = ({horizontal: isHorizontal, theme}) =>
+export const horizontal = ({horizontal: isHorizontal, theme}: Props) =>
   isHorizontal &&
   css`
     display: flex;
