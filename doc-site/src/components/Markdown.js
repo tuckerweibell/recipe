@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled, {css} from 'react-emotion';
+import {graphql} from 'gatsby';
 import Component from 'react-component-component';
 import Playground from './Playground';
 import * as Components from '@ezcater/recipe';
@@ -9,6 +10,7 @@ import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
 import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
+import Layout from './Layout';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -75,13 +77,13 @@ const HtmlAst = ({htmlAst, scope}) => {
 
 export default ({data: {markdownRemark: page}}) => {
   return (
-    <div>
+    <Layout>
       <Helmet title={`recipe - ${page.frontmatter.title}`} />
       <div>
         <h1>{page.frontmatter.title}</h1>
         <HtmlAst htmlAst={page.htmlAst} scope={{...Components, styled, css, Component}} />
       </div>
-    </div>
+    </Layout>
   );
 };
 

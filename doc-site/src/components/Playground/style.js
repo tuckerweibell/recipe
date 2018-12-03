@@ -1,4 +1,4 @@
-import styled, {css, injectGlobal} from 'react-emotion';
+import styled, {injectGlobal} from 'react-emotion';
 import {rem, darken} from 'polished';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import reactLiveStyles from 'react-live/lib/constants/css';

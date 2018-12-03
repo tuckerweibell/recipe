@@ -5,7 +5,7 @@ module.exports = {
     description: "Documentation for Recipe, ezCater's design system library",
   },
   plugins: [
-    'gatsby-plugin-react-next',
+    'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',

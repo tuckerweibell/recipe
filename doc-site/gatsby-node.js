@@ -1,17 +1,7 @@
 const path = require('path');
 
-exports.modifyWebpackConfig = ({config}) => {
-  config.merge({
-    resolve: {
-      alias: {
-        '@ezcater/recipe': path.resolve(__dirname, '../src'),
-      },
-    },
-  });
-};
-
-exports.createPages = ({boundActionCreators, graphql}) => {
-  const {createPage} = boundActionCreators;
+exports.createPages = ({actions, graphql}) => {
+  const {createPage} = actions;
   return graphql(`
     {
       allMarkdownRemark {
