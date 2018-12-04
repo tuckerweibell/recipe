@@ -7,6 +7,13 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.0.0-alpha.0
+
+#### Breaking changes
+
+- Upgraded Recipe to Typescript
+- Removed internal `withTheme` wrapper around components; Recipe components must now be used inside a `ThemeProvider`
+
 ## 1.13.0 - 2018-11-28
 
 #### Enhancements
