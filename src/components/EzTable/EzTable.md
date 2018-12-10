@@ -1,7 +1,7 @@
 ---
 name: Table
 title: Table
-path: "/components/ez-table"
+path: '/components/ez-table'
 ---
 
 Tables are used to display information from a data set in a way that's easy to scan. Tables allow users to compare and analyze the data to look for patterns and insights. Tables will often be the primary content within a [Card](/components/ez-card).
@@ -18,19 +18,19 @@ Tables are used to display information from a data set in a way that's easy to s
 
 Features still in consideration include:
 
-* Responsive variants (cards with repeated labels, transpose table)
-* Column pinning to support horizontal scrolling
-* Headerless table
-* Sorting
-* Filtering
-* Row hover styles (interactive)
-* Zebra Striping
-* Pagination
-* Table Actions (print, download etc)
-* Bulk Actions (multi-select)
-* Column width options (fixed, grow, auto, ellipsis, tooltip)
-* Headerless columns (content between columns, e.g. formula operators)
-* Sticky headers
+- Responsive variants (cards with repeated labels, transpose table)
+- Column pinning to support horizontal scrolling
+- Headerless table
+- Sorting
+- Filtering
+- Row hover styles (interactive)
+- Zebra Striping
+- Pagination
+- Table Actions (print, download etc)
+- Bulk Actions (multi-select)
+- Column width options (fixed, grow, auto, ellipsis, tooltip)
+- Headerless columns (content between columns, e.g. formula operators)
+- Sticky headers
 
 ---
 
@@ -38,18 +38,18 @@ Features still in consideration include:
 
 Tables should:
 
-* Be used to show homogeneous content.
-* Help users visualize values from a data set.
-* Only display values supporting the data's purpose.
-* Include a heading to help identify the contents of the table at-a-glance.
+- Be used to show homogeneous content.
+- Help users visualize values from a data set.
+- Only display values supporting the data's purpose.
+- Include a heading to help identify the contents of the table at-a-glance.
 
 ## Alignment
 
 Column content types can be varied using component props to enable the following alignment rules:
 
-* Numerical values should be right aligned
-* Textual values should be left aligned
-* Headers (where present) should align with their data
+- Numerical values should be right aligned
+- Textual values should be left aligned
+- Headers (where present) should align with their data
 
 ---
 
@@ -57,13 +57,13 @@ Column content types can be varied using component props to enable the following
 
 Tables should:
 
-* Include concise but descriptive headers
-* Avoid truncating content where possible
+- Include concise but descriptive headers
+- Avoid truncating content where possible
 
 Tables can also:
-* Support items that perform an action when clicked. For example, navigating to the item's details page or provide more detail about the item.
-* Provide bulk actions for tasks that are applicable to many items at once.
 
+- Support items that perform an action when clicked. For example, navigating to the item's details page or provide more detail about the item.
+- Provide bulk actions for tasks that are applicable to many items at once.
 
 ## Examples
 
@@ -75,7 +75,7 @@ Used whenever the tablular data is directly related to the preceeding or subsequ
 <EzPage>
   <EzCard>
     <EzHeading
-      size="3" 
+      size="3"
     >
       Card Title
     </EzHeading>
@@ -158,5 +158,3 @@ Use when more fine-grained control over the table content is desired (in favor o
   }}
 </Component>
 ```
-
----

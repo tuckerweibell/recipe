@@ -1,7 +1,7 @@
 ---
 name: Modal
 title: Modal
-path: "/components/ez-modal"
+path: '/components/ez-modal'
 ---
 
 Modals display content in a layer on top of the application. Modals should be used when it’s necessary to interrupt the user or ensure their attention is focused on a specific chunk of information. Modals can also be used when you’d like the user to accomplish a lower-priority action without changing the state of the page they’re working in.
@@ -9,31 +9,38 @@ Modals display content in a layer on top of the application. Modals should be us
 ---
 
 ## Best Practices
+
 Modals should:
-   * Provide the user with clear paths forward (a primary action) and out of the modal (close icon in the upper right). For confirmation modals, include a secondary “no” or “cancel” action.
-   * Use a footer to provide a consistent location for key actions. For modals with many equally-weighted actions, a footer isn’t necessary and the actions can live in the body of the modal.
+
+- Provide the user with clear paths forward (a primary action) and out of the modal (close icon in the upper right). For confirmation modals, include a secondary “no” or “cancel” action.
+- Use a footer to provide a consistent location for key actions. For modals with many equally-weighted actions, a footer isn’t necessary and the actions can live in the body of the modal.
 
 Modals should not:
-   * Create a “wizard” flow with three or more steps. A secondary step with a back button is acceptable, but discouraged.
-   * Don’t use a “cancel” or “close” button on informational modals or editing modals.
+
+- Create a “wizard” flow with three or more steps. A secondary step with a back button is acceptable, but discouraged.
+- Don’t use a “cancel” or “close” button on informational modals or editing modals.
 
 ## Examples
+
 ### Informational
+
 Informational modals are used to focus the user’s attention on a specific chunk of information. Use when providing information about something that’s not essential to completing the actions on the page (e.g. more information about ezDispatch), especially if content formatting is needed or there’s too much content to display in a tooltip.
 
 ### Editing
+
 Editing modals can contain any form elements and should be kept as brief as possible. Long or complex forms should almost always be done in a new section/page instead of a modal.
 
 ### Confirmation
+
 Use a confirmation modal to ask the user to confirm changes they’re about to make or confirm a destructive action they’re about to take.
 
 #### Make sure to:
-   * Use destructive buttons to clearly designate actions with destructive consequences
-   * Provide a cancel option with a clear label. Make sure the copy isn’t confusing when placed next to a destructive action (cancel order, cancel).
-   * Provide appropriate detail so the user can make an informed decision.
+
+- Use destructive buttons to clearly designate actions with destructive consequences
+- Provide a cancel option with a clear label. Make sure the copy isn’t confusing when placed next to a destructive action (cancel order, cancel).
+- Provide appropriate detail so the user can make an informed decision.
 
 ## Properties
-
 
 ### children (node) - required
 
@@ -43,7 +50,7 @@ Arbitrary children for the modal contents.
 
 Text to display in the header.
 
-### destructive (bool) 
+### destructive (bool)
 
 When true will display the modal in destructive styles (aka a destructive submit button).
 
@@ -55,7 +62,7 @@ Label for the dismiss button. Omitting this prop will suppress the dismiss butto
 
 Dictates whether the modal is open. You must still render the component even if isOpen is false to allow for the opening transition to occur (if present).
 
-### isSubmitting (bool) 
+### isSubmitting (bool)
 
 When true will render the modal with appropriate styles to signify a loading state. Useful when the submit handler has an asynchronous success condition.
 
@@ -179,9 +186,3 @@ You can set the isSubmitting to trigger the loading state for the modal
   )}
 </Component>
 ```
-
----
-
-## Related components
-
-\*
