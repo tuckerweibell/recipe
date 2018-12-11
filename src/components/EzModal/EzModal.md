@@ -4,7 +4,7 @@ title: Modal
 path: '/components/ez-modal'
 ---
 
-Modals display content in a layer on top of the application. Modals should be used when it’s necessary to interrupt the user or ensure their attention is focused on a specific chunk of information. Modals can also be used when you’d like the user to accomplish a lower-priority action without changing the state of the page they’re working in.
+Modals display content in a layer on top of the application. Modals should be used when it’s necessary to interrupt the user or ensure their attention is focused on specific information. Modals can also be used when you’d like the user to accomplish a lower-priority action without changing the state of the page they’re working in.
 
 ---
 
@@ -12,75 +12,48 @@ Modals display content in a layer on top of the application. Modals should be us
 
 Modals should:
 
-- Provide the user with clear paths forward (a primary action) and out of the modal (close icon in the upper right). For confirmation modals, include a secondary “no” or “cancel” action.
-- Use a footer to provide a consistent location for key actions. For modals with many equally-weighted actions, a footer isn’t necessary and the actions can live in the body of the modal.
+- Provide the user with clear paths forward and/or out of the modal.
+- Provide tabbable elements in the dialog context when providing content for editing.
 
 Modals should not:
 
-- Create a “wizard” flow with three or more steps. A secondary step with a back button is acceptable, but discouraged.
-- Don’t use a “cancel” or “close” button on informational modals or editing modals.
+- Create a “wizard” flow with two or more steps.
 
 ## Examples
 
-### Informational
+### Informational modal
 
-Informational modals are used to focus the user’s attention on a specific chunk of information. Use when providing information about something that’s not essential to completing the actions on the page (e.g. more information about ezDispatch), especially if content formatting is needed or there’s too much content to display in a tooltip.
+Informational modals are used to focus the user’s attention on specific information. Use when providing information about something that’s not essential to completing the actions on the page, especially if content formatting is needed or there’s too much content to display in a tooltip.
 
-### Editing
+The `isOpen` prop controls whether or not the dialog is displayed to the user, and will only render the `children` content when `isOpen` is `true`.
 
-Editing modals can contain any form elements and should be kept as brief as possible. Long or complex forms should almost always be done in a new section/page instead of a modal.
+A title for the modal should be provided by using the `headerText` prop.
 
-### Confirmation
+When the user clicks outside the modal, hits the escape key, or hits close, the `onDismiss` function will be called. The user may also trigger the `onDismiss` function by clicking the button labelled by the provided `dismissLabel`.
 
-Use a confirmation modal to ask the user to confirm changes they’re about to make or confirm a destructive action they’re about to take.
+```jsx live
+<Component initialState={{isOpen: false}}>
+  {({state, setState}) => (
+    <React.Fragment>
+      <button onClick={() => setState({isOpen: true})}>Button</button>
+      <EzModal
+        isOpen={state.isOpen}
+        onDismiss={() => setState({isOpen: false})}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </React.Fragment>
+  )}
+</Component>
+```
 
-#### Make sure to:
+### Editing modals
 
-- Use destructive buttons to clearly designate actions with destructive consequences
-- Provide a cancel option with a clear label. Make sure the copy isn’t confusing when placed next to a destructive action (cancel order, cancel).
-- Provide appropriate detail so the user can make an informed decision.
+Editing modals can contain any form elements and should be kept as brief as possible. Long or complex forms should almost always be done in a new section/page instead of a modal. Editing modals are suitable for prompting the user to take a specific action before they are allowed proceed with their regular page interactions.
 
-## Properties
-
-### children (node) - required
-
-Arbitrary children for the modal contents.
-
-### headerText (string) - required
-
-Text to display in the header.
-
-### destructive (bool)
-
-When true will display the modal in destructive styles (aka a destructive submit button).
-
-### dismissLabel (string) - required
-
-Label for the dismiss button. Omitting this prop will suppress the dismiss button.
-
-### isOpen (bool) - required
-
-Dictates whether the modal is open. You must still render the component even if isOpen is false to allow for the opening transition to occur (if present).
-
-### isSubmitting (bool)
-
-When true will render the modal with appropriate styles to signify a loading state. Useful when the submit handler has an asynchronous success condition.
-
-### onDismiss (func)
-
-Callback for when dismiss button is clicked.
-
-### onSubmit (func)
-
-Callback for when submit button is clicked.
-
-### submitLabel (string)
-
-Label for the submit button. Omitting this prop will suppress the submit button.
-
-## Examples
-
-### Basic Modal
+The `onSubmit` function will be called when the user clicking the button labelled by the provided `submitLabel`.
 
 ```jsx live
 <Component initialState={{isOpen: false}}>
@@ -115,31 +88,15 @@ Label for the submit button. Omitting this prop will suppress the submit button.
 </Component>
 ```
 
-### Only dismiss button
+### Confirmation modals
 
-For a purely informational modal you can omit the submitLabel prop which will suppress the submit button
+Use a confirmation modal to ask the user to confirm changes they’re about to make or confirm a destructive action they’re about to take.
 
-```jsx live
-<Component initialState={{isOpen: false}}>
-  {({state, setState}) => (
-    <React.Fragment>
-      <button onClick={() => setState({isOpen: true})}>Button</button>
-      <EzModal
-        isOpen={state.isOpen}
-        onDismiss={() => setState({isOpen: false})}
-        dismissLabel="Dismiss"
-        headerText="Header goes here"
-      >
-        Modal content goes here!
-      </EzModal>
-    </React.Fragment>
-  )}
-</Component>
-```
+- Use destructive buttons to clearly designate actions with destructive consequences
+- Provide a cancel option with a clear label. Make sure the copy isn’t confusing when placed next to a destructive action (cancel order, cancel).
+- Provide appropriate detail so the user can make an informed decision.
 
-### Destructive
-
-If the submit action is destructive you can set the destructive prop
+The `destructive` prop should be used to indicate that the `onSubmit` function is destructive.
 
 ```jsx live
 <Component initialState={{isOpen: false}}>
@@ -162,19 +119,24 @@ If the submit action is destructive you can set the destructive prop
 </Component>
 ```
 
-### isSubmitting
+### Asynchronous actions
 
-You can set the isSubmitting to trigger the loading state for the modal
+When triggering an action that may take some time, is can be useful for the user to remain on the modal until the action has completed.
+
+You can set the `isSubmitting` prop to indicate that the modal is processing the action.
 
 ```jsx live
-<Component initialState={{isOpen: false}}>
+<Component initialState={{isOpen: false, isSubmitting: false}}>
   {({state, setState}) => (
     <React.Fragment>
       <button onClick={() => setState({isOpen: true})}>Button</button>
       <EzModal
-        isSubmitting
+        isSubmitting={state.isSubmitting}
         isOpen={state.isOpen}
-        onSubmit={() => setState({isOpen: false})}
+        onSubmit={() => {
+          setState({isSubmitting: true});
+          setTimeout(() => setState({isOpen: false, isSubmitting: false}), 2000);
+        }}
         submitLabel="Submit"
         onDismiss={() => setState({isOpen: false})}
         dismissLabel="Dismiss"
