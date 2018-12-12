@@ -1,12 +1,24 @@
 import {base, layout, spacing} from './EzLayout.styles';
 import styled from '../../themes/styled';
+import {breakpoints} from '../../themes/standard';
+
+/**
+ * Union of properties from T
+ */
+type Properties<T> = {[K in keyof T]: Pick<T, K>}[keyof T];
+
+/**
+ * Require at least one of the properties of T
+ */
+type RequireAtLeastOne<T> = Required<Properties<T>>;
 
 type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack';
-type Large = {base: 'stack'; large: LayoutTypes};
-type Medium = {base: 'stack'; medium: LayoutTypes};
+type Sizes = keyof typeof breakpoints;
+type Breakpoints = {[P in Sizes]?: LayoutTypes};
+type Responsive = {base: LayoutTypes} & Breakpoints & RequireAtLeastOne<Breakpoints>;
 
 type LayoutProps = {
-  layout: LayoutTypes | Large | Medium;
+  layout: LayoutTypes | Responsive;
 };
 
 /**
