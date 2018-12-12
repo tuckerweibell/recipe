@@ -7,6 +7,14 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.0.0-alpha.1
+
+#### Bug fixes
+
+- Fixed bug in `EzLayout` type definition that prevented the base layout (mobile view) of a responsive layout from using any layout other than stack
+- Fixed bug in `EzLayout` type definition that prevented multiple breakpoints being specified for responsive layouts
+- Linked the `EzLayout` type definition to the breakpoints specified by the `theme`, such that changes to the number of breakpoints don't require changes to `EzLayout`.
+
 ## 2.0.0-alpha.0
 
 #### Breaking changes
