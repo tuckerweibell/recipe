@@ -7,6 +7,14 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.0.0-alpha.2
+
+#### Documentation
+
+- Removed empty bullet list of "related components" section in several components
+- Updated structure of `EzModal` docs to follow the same format of other components
+  - Removed "props table" style documentation in favor of demonstrating how properties are applied to achieve various usecases
+
 ## 2.0.0-alpha.1
 
 #### Bug fixes
