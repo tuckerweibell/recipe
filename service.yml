@@ -1,4 +1,6 @@
 name: recipe
+pipeline:
+  skip_push_image: true
 tests:
   primary:
     - name: tester
@@ -7,5 +9,17 @@ tests:
         NODE_ENV: 'test'
   steps:
     - run:
+        test: Fetch the latest CodeClimate test reporter script
+        command: wget -O cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    - run:
+        test: Make the test reporter executable
+        command: chmod +x ./cc-test-reporter
+    - run:
+        test: Setup Code Climate test-reporter
+        command: ./cc-test-reporter before-build
+    - run:
         test: Units Tests
         command: npm run test
+    - run:
+        test: Code Climate Test Coverage
+        command: ./cc-test-reporter after-build
