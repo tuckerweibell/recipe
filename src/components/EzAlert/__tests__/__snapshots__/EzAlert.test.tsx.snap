@@ -1,15 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EzAlert should render with arrow styles (alternate) 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -23,15 +29,15 @@ exports[`EzAlert should render with arrow styles (alternate) 1`] = `
   color: #1e70bf;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #ebf7ff;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #ebf7ff;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-width: 6px;
   border-style: solid;
   color: transparent;
@@ -42,13 +48,12 @@ exports[`EzAlert should render with arrow styles (alternate) 1`] = `
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       info-icon
@@ -68,10 +73,10 @@ exports[`EzAlert should render with arrow styles (alternate) 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -81,15 +86,21 @@ exports[`EzAlert should render with arrow styles (alternate) 1`] = `
 `;
 
 exports[`EzAlert should render with arrow styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -103,15 +114,15 @@ exports[`EzAlert should render with arrow styles 1`] = `
   color: #1e70bf;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #ebf7ff;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #ebf7ff;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-width: 6px;
   border-style: solid;
   color: transparent;
@@ -122,13 +133,12 @@ exports[`EzAlert should render with arrow styles 1`] = `
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       info-icon
@@ -148,10 +158,10 @@ exports[`EzAlert should render with arrow styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -161,7 +171,13 @@ exports[`EzAlert should render with arrow styles 1`] = `
 `;
 
 exports[`EzAlert should render with default styles 1`] = `
-.recipe-4 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -175,30 +191,29 @@ exports[`EzAlert should render with default styles 1`] = `
   color: #1e70bf;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #ebf7ff;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #ebf7ff;
 }
 
-.recipe-2 {
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       info-icon
@@ -218,10 +233,10 @@ exports[`EzAlert should render with default styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -231,15 +246,21 @@ exports[`EzAlert should render with default styles 1`] = `
 `;
 
 exports[`EzAlert should render with error styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -253,22 +274,21 @@ exports[`EzAlert should render with error styles 1`] = `
   color: #ae4d4d;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #fdefef;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #fdefef;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       error-icon
@@ -288,10 +308,10 @@ exports[`EzAlert should render with error styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -301,15 +321,21 @@ exports[`EzAlert should render with error styles 1`] = `
 `;
 
 exports[`EzAlert should render with marketing styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -323,22 +349,21 @@ exports[`EzAlert should render with marketing styles 1`] = `
   color: #008066;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #effaf8;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #effaf8;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       marketing-icon
@@ -358,10 +383,10 @@ exports[`EzAlert should render with marketing styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -371,15 +396,21 @@ exports[`EzAlert should render with marketing styles 1`] = `
 `;
 
 exports[`EzAlert should render with success styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -393,22 +424,21 @@ exports[`EzAlert should render with success styles 1`] = `
   color: #609b3b;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #f3f8eb;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #f3f8eb;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       success-icon
@@ -428,10 +458,10 @@ exports[`EzAlert should render with success styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -441,7 +471,13 @@ exports[`EzAlert should render with success styles 1`] = `
 `;
 
 exports[`EzAlert should render with tagline 1`] = `
-.recipe-4 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -455,30 +491,29 @@ exports[`EzAlert should render with tagline 1`] = `
   color: #1e70bf;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #ebf7ff;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #ebf7ff;
 }
 
-.recipe-2 {
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       info-icon
@@ -498,10 +533,10 @@ exports[`EzAlert should render with tagline 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -513,15 +548,21 @@ exports[`EzAlert should render with tagline 1`] = `
 `;
 
 exports[`EzAlert should render with tip styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -535,22 +576,21 @@ exports[`EzAlert should render with tip styles 1`] = `
   color: #7f379c;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #f8f3fa;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #f8f3fa;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       tip-icon
@@ -570,10 +610,10 @@ exports[`EzAlert should render with tip styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>
@@ -583,15 +623,21 @@ exports[`EzAlert should render with tip styles 1`] = `
 `;
 
 exports[`EzAlert should render with warning styles 1`] = `
-.recipe-2 {
+.recipe-0 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-3 {
   margin-left: 0.5714285714285714rem;
 }
 
-.recipe-0 {
+.recipe-1 {
   font-weight: 700;
 }
 
-.recipe-4 {
+.recipe-5 {
   border-radius: 4px;
   border-width: 0;
   display: -webkit-inline-box;
@@ -605,22 +651,21 @@ exports[`EzAlert should render with warning styles 1`] = `
   color: #926a00;
 }
 
-.recipe-4::after {
+.recipe-5::after {
   border-top-color: #fcf6e5;
 }
 
-.recipe-4::before {
+.recipe-5::before {
   border-bottom-color: #fcf6e5;
 }
 
 <div
-  class="recipe-4 recipe-5"
+  class="recipe-5 recipe-6"
 >
   <svg
-    height="17px"
+    class="recipe-0"
     version="1.1"
     viewBox="0 0 14 14"
-    width="14px"
   >
     <title>
       warning-icon
@@ -640,10 +685,10 @@ exports[`EzAlert should render with warning styles 1`] = `
     </g>
   </svg>
   <div
-    class="recipe-2 recipe-3"
+    class="recipe-3 recipe-4"
   >
     <span
-      class="recipe-0 recipe-1"
+      class="recipe-1 recipe-2"
     >
       Header
     </span>

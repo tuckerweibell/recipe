@@ -1,7 +1,14 @@
 import React from 'react';
+import {css} from 'react-emotion';
+
+const alignBaseline = css`
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+`;
 
 const SvgAlertIcon = ({children, title}) => (
-  <svg height="17px" version="1.1" viewBox="0 0 14 14" width="14px">
+  <svg version="1.1" viewBox="0 0 14 14" className={alignBaseline}>
     <title>{title}</title>
     <g id={title} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       {children}
