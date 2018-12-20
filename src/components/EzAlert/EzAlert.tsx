@@ -1,14 +1,7 @@
 import React from 'react';
 import {AlertContainer, AlertContent} from './EzAlert.styles';
 import EzTextStyle from '../EzTextStyle';
-import {
-  ErrorIcon,
-  InfoIcon,
-  MarketingIcon,
-  SuccessIcon,
-  TipIcon,
-  WarningIcon,
-} from './EzAlert.icons';
+import {ErrorIcon, InfoIcon, MarketingIcon, SuccessIcon, TipIcon, WarningIcon} from '../Icons';
 
 const icons = {
   error: <ErrorIcon />,
@@ -20,10 +13,10 @@ const icons = {
 };
 
 type AlertProps = {
-  arrow?: "top" | "bottom";
+  arrow?: 'top' | 'bottom';
   headline: string;
   tagline?: string;
-  use?: "success" | "error" | "warning" | "tip" | "info" | "marketing";
+  use?: 'success' | 'error' | 'warning' | 'tip' | 'info' | 'marketing';
 };
 
 /**
