@@ -1,0 +1,12 @@
+{
+  "exclude_patterns": [
+    "coverage",
+    "node_modules",
+    "dist",
+    "doc-site",
+    "lib",
+    "templates",
+    "plopfile.js",
+    "__tests__/"
+  ]
+}
