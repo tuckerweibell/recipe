@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzFormLayout should render with default styles 1`] = `
+.recipe-8 > *:not(:first-child) {
+  margin-top: 1.7142857142857142rem;
+}
+
+.recipe-2 {
+  position: relative;
+}
+
+.recipe-2 > input,
+.recipe-2 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+<body>
+  <div>
+    <div
+      class="recipe-8 recipe-9"
+    >
+      <div
+        class="recipe-2 recipe-3"
+      >
+        <label
+          class="recipe-0 recipe-1"
+          for="control$1"
+        >
+          First field
+        </label>
+        <input
+          id="control$1"
+          label="First field"
+          name="control$1"
+          type="text"
+        />
+      </div>
+      <div
+        class="recipe-2 recipe-3"
+      >
+        <label
+          class="recipe-0 recipe-1"
+          for="control$2"
+        >
+          Second field
+        </label>
+        <input
+          id="control$2"
+          label="Second field"
+          name="control$2"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

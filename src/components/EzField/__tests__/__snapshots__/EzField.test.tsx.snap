@@ -1,0 +1,566 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EzField check box list should render checklist options 1`] = `
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.recipe-8 {
+  position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-8 > input,
+.recipe-8 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-2 {
+  display: block;
+  margin-top: 0.8571428571428571rem;
+}
+
+.recipe-2 input {
+  margin-right: 0.5714285714285714rem;
+}
+
+<fieldset
+  class="recipe-8 recipe-9"
+>
+  <legend
+    class="recipe-0 recipe-1"
+    for="control$12"
+  >
+    Multiple choice list
+  </legend>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice A"
+      name="control$12[]"
+      type="checkbox"
+      value="a"
+    />
+    Choice A
+  </label>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice B"
+      name="control$12[]"
+      type="checkbox"
+      value="b"
+    />
+    Choice B
+  </label>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice C"
+      name="control$12[]"
+      type="checkbox"
+      value="c"
+    />
+    Choice C
+  </label>
+</fieldset>
+`;
+
+exports[`EzField radio button list should render radio button options 1`] = `
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.recipe-8 {
+  position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-8 > input,
+.recipe-8 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-2 {
+  display: block;
+  margin-top: 0.8571428571428571rem;
+}
+
+.recipe-2 input {
+  margin-right: 0.5714285714285714rem;
+}
+
+<fieldset
+  class="recipe-8 recipe-9"
+>
+  <legend
+    class="recipe-0 recipe-1"
+    for="control$8"
+  >
+    Single choice list
+  </legend>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice A"
+      name="control$8"
+      type="radio"
+      value="a"
+    />
+    Choice A
+  </label>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice B"
+      name="control$8"
+      type="radio"
+      value="b"
+    />
+    Choice B
+  </label>
+  <label
+    class="recipe-2 recipe-3"
+  >
+    <input
+      label="Choice C"
+      name="control$8"
+      type="radio"
+      value="c"
+    />
+    Choice C
+  </label>
+</fieldset>
+`;
+
+exports[`EzField should render basic text field with default styles 1`] = `
+.recipe-2 {
+  position: relative;
+}
+
+.recipe-2 > input,
+.recipe-2 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+<div
+  class="recipe-2 recipe-3"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$1"
+  >
+    Basic text
+  </label>
+  <input
+    id="control$1"
+    label="Basic text"
+    name="control$1"
+    type="text"
+  />
+</div>
+`;
+
+exports[`EzField should render textarea field 1`] = `
+.recipe-2 {
+  position: relative;
+}
+
+.recipe-2 > input,
+.recipe-2 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+<div
+  class="recipe-2 recipe-3"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$2"
+  >
+    Long text
+  </label>
+  <textarea
+    id="control$2"
+    label="Long text"
+    name="control$2"
+    type="textarea"
+  />
+</div>
+`;
+
+exports[`EzField should render with custom input 1`] = `
+.recipe-2 {
+  position: relative;
+}
+
+.recipe-2 > input,
+.recipe-2 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+<div
+  class="recipe-2 recipe-3"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$4"
+  >
+    Custom input
+  </label>
+  <input
+    value="1234"
+  />
+</div>
+`;
+
+exports[`EzField should render with error styles 1`] = `
+.recipe-2 {
+  height: 1em;
+  position: relative;
+  top: 0.125em;
+}
+
+.recipe-7 {
+  position: relative;
+}
+
+.recipe-7 > input,
+.recipe-7 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+  border-color: #ec5353;
+  padding-right: 24px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-7 > input,
+  .recipe-7 > textarea {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ec5353;
+}
+
+.recipe-3 {
+  position: absolute;
+  right: 24px;
+  color: #ec5353;
+}
+
+.recipe-3 svg {
+  top: -1.75em;
+  position: absolute;
+}
+
+fieldset .recipe-3 svg {
+  top: -1.1em;
+}
+
+.recipe-5 {
+  background-color: #ec5353;
+  color: #ffffff;
+  font-size: 0.8571428571428571rem;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  position: relative;
+  right: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+fieldset .recipe-5 {
+  margin-top: 0.5em;
+  box-shadow: 0 2px 4px 0 rgba(34,36,38,0.12),0 2px 10px 0 rgba(34,36,38,0.15);
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.recipe-5::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #ec5353;
+  position: absolute;
+  top: -5px;
+  right: 12px;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-5 {
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,0.12),0 2px 10px 0 rgba(34,36,38,0.15);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    margin-top: -0.2857142857142857rem;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0px;
+    -webkit-clip: rect(0 0 0 0);
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0px;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+<div
+  class="recipe-7 recipe-8"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$3"
+  >
+    Field with error
+  </label>
+  <input
+    id="control$3"
+    label="Field with error"
+    name="control$3"
+    type="text"
+  />
+  <div
+    class="recipe-3 recipe-4"
+  >
+    <svg
+      class="recipe-2"
+      version="1.1"
+      viewBox="0 0 14 14"
+    >
+      <title>
+        error-icon
+      </title>
+      <g
+        fill="none"
+        fill-rule="evenodd"
+        id="error-icon"
+        stroke="none"
+        stroke-width="1"
+      >
+        <path
+          d="M13.3686039,10.9424748 C13.4890502,11.1833678 13.5266898,11.4280244 13.4815224,11.6764452 C13.436355,11.9248659 13.3159087,12.135647 13.1201832,12.3087888 C12.9244577,12.4819306 12.6910929,12.5685014 12.4200885,12.5685014 L1.57991154,12.5685014 C1.30890712,12.5685014 1.07554232,12.4819306 0.879816786,12.3087888 C0.684091255,12.135647 0.563644959,11.9248659 0.518477556,11.6764452 C0.473310152,11.4280244 0.51094977,11.1833678 0.631396065,10.9424748 L6.05148452,1.54765486 C6.18698673,1.30676192 6.3789482,1.14491229 6.62736892,1.06210527 C6.87578964,0.979298245 7.12421036,0.979298245 7.37263108,1.06210527 C7.6210518,1.14491229 7.81301327,1.30676192 7.94851548,1.54765486 L13.3686039,10.9424748 Z M7,9.00027648 C6.71393966,9.00027648 6.46928301,9.10190314 6.26602969,9.30515646 C6.06277637,9.50840978 5.96114971,9.75306643 5.96114971,10.0391268 C5.96114971,10.3251871 6.06277637,10.5698438 6.26602969,10.7730971 C6.46928301,10.9763504 6.71393966,11.0779771 7,11.0779771 C7.28606034,11.0779771 7.53071699,10.9763504 7.73397031,10.7730971 C7.93722363,10.5698438 8.03885029,10.3251871 8.03885029,10.0391268 C8.03885029,9.75306643 7.93722363,9.50840978 7.73397031,9.30515646 C7.53071699,9.10190314 7.28606034,9.00027648 7,9.00027648 Z M6.00631712,5.27396567 L6.18698673,8.34534913 C6.18698673,8.40557245 6.2133345,8.4620317 6.26602969,8.51472689 C6.31872488,8.56742208 6.38271226,8.59376985 6.45799115,8.59376985 L7.54200885,8.59376985 C7.61728774,8.59376985 7.68127512,8.56742208 7.73397031,8.51472689 C7.7866655,8.4620317 7.81301327,8.40557245 7.81301327,8.34534913 L7.99368288,5.27396567 C7.99368288,5.18363086 7.96733512,5.11211569 7.91463993,5.0594205 C7.86194474,5.00672531 7.79795735,4.98037755 7.72267846,4.98037755 L6.27732154,4.98037755 C6.20204265,4.98037755 6.13805526,5.00672531 6.08536007,5.0594205 C6.03266488,5.11211569 6.00631712,5.18363086 6.00631712,5.27396567 Z"
+          fill="currentColor"
+          id="exclamation-triangle"
+        />
+      </g>
+    </svg>
+  </div>
+  <div
+    class="recipe-5 recipe-6"
+  >
+    An error occurred
+  </div>
+</div>
+`;
+
+exports[`EzField should render with helper text, placeholder and character count 1`] = `
+.recipe-6 {
+  position: relative;
+}
+
+.recipe-6 > input,
+.recipe-6 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.recipe-2 {
+  font-size: 0.8571428571428571rem;
+  color: #8b99a6;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-4 {
+  font-size: 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+<div
+  class="recipe-6 recipe-7"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$5"
+  >
+    Character Name
+  </label>
+  <div
+    class="recipe-2 recipe-3"
+  >
+    Provide the name of your favorite Sesame Street character.
+  </div>
+  <input
+    id="control$5"
+    label="Character Name"
+    maxlength="120"
+    name="control$5"
+    placeholder="e.g. Big Bird"
+    type="text"
+  />
+  <div
+    class="recipe-4 recipe-5"
+  >
+    0
+    /
+    120
+  </div>
+</div>
+`;
+
+exports[`EzField should render with hidden label 1`] = `
+.recipe-2 {
+  position: relative;
+}
+
+.recipe-2 > input,
+.recipe-2 > textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ced4d9;
+  border-radius: 4px;
+  padding: 0.5714285714285714rem 0.8571428571428571rem;
+  margin-top: 0.5714285714285714rem;
+}
+
+.recipe-0 {
+  color: #565a5c;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 0px;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0px;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+<div
+  class="recipe-2 recipe-3"
+>
+  <label
+    class="recipe-0 recipe-1"
+    for="control$6"
+  >
+    Hidden Label
+  </label>
+  <input
+    id="control$6"
+    label="Hidden Label"
+    name="control$6"
+    type="text"
+  />
+</div>
+`;
