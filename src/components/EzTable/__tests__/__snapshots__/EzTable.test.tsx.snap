@@ -138,7 +138,23 @@ exports[`EzTable should render with full bleed styles 1`] = `
 }
 
 .recipe-2 {
-  margin: 1.4285714285714286rem 1.4285714285714286rem 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: -1.4285714285714286rem 0 0 -2.2857142857142856rem;
+  padding: 1.4285714285714286rem 1.4285714285714286rem 0;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.recipe-2 > * {
+  margin: 1.4285714285714286rem 0 0 2.2857142857142856rem;
 }
 
 .recipe-0 {
@@ -184,11 +200,13 @@ exports[`EzTable should render with full bleed styles 1`] = `
   <div
     className="recipe-2 recipe-3"
   >
-    <h3
-      className="recipe-0 recipe-1"
-    >
-      My Table
-    </h3>
+    <header>
+      <h3
+        className="recipe-0 recipe-1"
+      >
+        My Table
+      </h3>
+    </header>
   </div>
   <div
     className="recipe-26 recipe-27"

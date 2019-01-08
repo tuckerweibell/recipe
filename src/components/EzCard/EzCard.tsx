@@ -9,7 +9,6 @@ import {
 import EzCardSection from './EzCardSection';
 import EzTextStyle from '../EzTextStyle';
 import {filterValidProps} from '../../utils';
-import {Theme} from '../../themes/styled';
 
 function isEzCardSection(element) {
   return element.type && element.type.displayName === 'EzCardSection';
@@ -21,10 +20,19 @@ function wrappedChildren(children) {
   return <EzCardSection>{children}</EzCardSection>;
 }
 
-type CardProps = {
+type ActionsProps = {
+  actions: React.ReactNode;
+  title: string;
+};
+
+type OptionalTitle = {
+  actions?: never;
+  title?: string;
+};
+
+type CardProps = (ActionsProps | OptionalTitle) & {
   children: React.ReactNode;
   horizontal?: boolean;
-  title?: string;
   subtitle?: string;
   accent?: 'info';
 };
@@ -32,16 +40,19 @@ type CardProps = {
 /**
  * Cards are the primary means of grouping content on a page.
  */
-const EzCard: React.SFC<CardProps> = ({title, subtitle, accent, ...props}) => (
+const EzCard: React.SFC<CardProps> = ({title, subtitle, accent, actions, ...props}) => (
   <CardContainer {...filterValidProps(props)} accent={accent}>
     {title && (
       <CardHeadingContainer>
-        <CardHeading>{title}</CardHeading>
-        {subtitle && (
-          <CardSubheading>
-            <EzTextStyle use="subdued">{subtitle}</EzTextStyle>
-          </CardSubheading>
-        )}
+        <header>
+          <CardHeading>{title}</CardHeading>
+          {subtitle && (
+            <CardSubheading>
+              <EzTextStyle use="subdued">{subtitle}</EzTextStyle>
+            </CardSubheading>
+          )}
+        </header>
+        {actions}
       </CardHeadingContainer>
     )}
     <SectionContainer horizontal={props.horizontal}>

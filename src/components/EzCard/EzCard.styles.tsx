@@ -20,7 +20,15 @@ export const CardContainer = styled.div<CardContainerProps>`
 `;
 
 export const CardHeadingContainer = styled.div`
-  margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -${({theme}) => theme.spacing.lg} 0 0 -${({theme}) => theme.spacing.xl2};
+  padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
+  justify-content: space-between;
+
+  > * {
+    margin: ${({theme}) => theme.spacing.lg} 0 0 ${({theme}) => theme.spacing.xl2};
+  }
 `;
 
 export const CardHeading = styled.h3`

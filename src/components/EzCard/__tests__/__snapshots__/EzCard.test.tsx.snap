@@ -147,7 +147,23 @@ exports[`EzCard should render with header and subheader styles 1`] = `
 }
 
 .recipe-6 {
-  margin: 1.4285714285714286rem 1.4285714285714286rem 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: -1.4285714285714286rem 0 0 -2.2857142857142856rem;
+  padding: 1.4285714285714286rem 1.4285714285714286rem 0;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.recipe-6 > * {
+  margin: 1.4285714285714286rem 0 0 2.2857142857142856rem;
 }
 
 .recipe-0 {
@@ -169,20 +185,22 @@ exports[`EzCard should render with header and subheader styles 1`] = `
   <div
     className="recipe-6 recipe-7"
   >
-    <h3
-      className="recipe-0 recipe-1"
-    >
-      Card Heading
-    </h3>
-    <div
-      className="recipe-4 recipe-5"
-    >
-      <span
-        className="recipe-2 recipe-3"
+    <header>
+      <h3
+        className="recipe-0 recipe-1"
       >
-        Card Subheading
-      </span>
-    </div>
+        Card Heading
+      </h3>
+      <div
+        className="recipe-4 recipe-5"
+      >
+        <span
+          className="recipe-2 recipe-3"
+        >
+          Card Subheading
+        </span>
+      </div>
+    </header>
   </div>
   <div
     className="recipe-10 recipe-11"
@@ -218,7 +236,23 @@ exports[`EzCard should render with header styles 1`] = `
 }
 
 .recipe-2 {
-  margin: 1.4285714285714286rem 1.4285714285714286rem 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: -1.4285714285714286rem 0 0 -2.2857142857142856rem;
+  padding: 1.4285714285714286rem 1.4285714285714286rem 0;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.recipe-2 > * {
+  margin: 1.4285714285714286rem 0 0 2.2857142857142856rem;
 }
 
 .recipe-0 {
@@ -232,11 +266,13 @@ exports[`EzCard should render with header styles 1`] = `
   <div
     className="recipe-2 recipe-3"
   >
-    <h3
-      className="recipe-0 recipe-1"
-    >
-      Card Heading
-    </h3>
+    <header>
+      <h3
+        className="recipe-0 recipe-1"
+      >
+        Card Heading
+      </h3>
+    </header>
   </div>
   <div
     className="recipe-6 recipe-7"

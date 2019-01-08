@@ -2,7 +2,7 @@ import React from 'react';
 import {EzCard, EzCardSection} from '..';
 import {axe} from 'jest-axe';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {create, shallow, renderToHtml} from '../../../jest-globals';
+import {create, shallow, mount, renderToHtml} from '../../../jest-globals';
 
 describe('EzCard', () => {
   it('should render with default styles', () => {
@@ -31,6 +31,13 @@ describe('EzCard', () => {
     );
     expect(actual).toMatchSnapshot();
   });
+
+  it('should render with an action', () => {
+    const Action = () => <div>Lorem ipsum</div>
+    const component = mount(<EzCard title="Card Heading" actions={<Action/>}>Lorem ipsum dolor</EzCard>);
+
+    expect(component.find(Action)).toHaveLength(1);
+  })
 
   it('should render with card sections', () => {
     const actual = create(
