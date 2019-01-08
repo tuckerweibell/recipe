@@ -1,7 +1,7 @@
 import React from 'react';
 import {EzCard, EzCardSection} from '..';
 import {axe} from 'jest-axe';
-
+import {renderToStaticMarkup} from 'react-dom/server';
 import {create, shallow, renderToHtml} from '../../../jest-globals';
 
 describe('EzCard', () => {
@@ -60,6 +60,15 @@ describe('EzCard', () => {
     );
 
     expect(actual).toMatchSnapshot();
+  });
+
+  it('should NOT throw if no ThemeProvider is configured', () => {
+    const actual = renderToStaticMarkup(
+      <EzCard>
+        <p>Lorem ipsum dolor</p>
+      </EzCard>
+    );
+    expect(actual).toContain('Lorem ipsum dolor');
   });
 
   it('should meet accessibility guidelines', async () => {
