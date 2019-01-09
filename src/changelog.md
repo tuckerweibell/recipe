@@ -7,6 +7,28 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.0.0
+
+#### Breaking changes
+
+- Removed `styled<Theme>` export from Recipe's public api. This undocumented api became available as part of the 2.0.0-alpha.0 release, but the api is too broad for the scope of Recipe.
+
+#### Enhancements
+
+- Restored backwards-compatible behavior of providing the `standard` theme to Recipe components where no `ThemeProvider` is in use. This was a breaking change for the 2.0.0-alpha.0 release, but the impact on downstream projects would delayed the upgrade path to 2.0.0 with this change in place.
+
+#### Documentation
+
+- Added documentation for the upcoming `EzFormLayout` and `EzFormField` components
+- Fix `Lato` font import in the doc-site
+
+#### Development wokflow
+
+- Integrated code climate with CI build
+- Added code climate config to separate doc-site from recipe code quality checks
+- Added `npm run build:watch` mode for TypeScript builds
+- Suppress lint warning from development doc-site builds
+
 ## 2.0.0-alpha.2
 
 #### Documentation
