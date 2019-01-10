@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  CardContainer,
-  CardHeading,
-  CardHeadingContainer,
-  SectionContainer,
-  CardSubheading,
-} from './EzCard.styles';
+import {CardContainer, CardHeadingContainer, SectionContainer, CardLayout} from './EzCard.styles';
 import EzCardSection from './EzCardSection';
-import EzTextStyle from '../EzTextStyle';
 import {filterValidProps} from '../../utils';
+import EzHeading from '../EzHeading';
 
 function isEzCardSection(element) {
   return element.type && element.type.displayName === 'EzCardSection';
@@ -38,28 +32,31 @@ type CardProps = (ActionsProps | OptionalTitle) & {
 };
 
 /**
- * Cards are the primary means of grouping content on a page.
+ * Cards are the primary means of grouping sections on a page.
  */
-const EzCard: React.SFC<CardProps> = ({title, subtitle, accent, actions, ...props}) => (
-  <CardContainer {...filterValidProps(props)} accent={accent}>
-    {title && (
-      <CardHeadingContainer>
-        <header>
-          <CardHeading>{title}</CardHeading>
-          {subtitle && (
-            <CardSubheading>
-              <EzTextStyle use="subdued">{subtitle}</EzTextStyle>
-            </CardSubheading>
-          )}
-        </header>
-        {actions}
-      </CardHeadingContainer>
-    )}
-    <SectionContainer horizontal={props.horizontal}>
-      {wrappedChildren(props.children)}
-    </SectionContainer>
-  </CardContainer>
-);
+const EzCard: React.SFC<CardProps> = ({title, subtitle, accent, actions, ...props}) => {
+  const heading = title && (
+    <EzHeading size="3" subheading={subtitle}>
+      {title}
+    </EzHeading>
+  );
+
+  const layout = actions && (
+    <CardLayout>
+      {heading}
+      {actions}
+    </CardLayout>
+  );
+
+  return (
+    <CardContainer {...filterValidProps(props)} accent={accent}>
+      {title && <CardHeadingContainer>{actions ? layout : heading}</CardHeadingContainer>}
+      <SectionContainer horizontal={props.horizontal}>
+        {wrappedChildren(props.children)}
+      </SectionContainer>
+    </CardContainer>
+  );
+};
 
 EzCard.displayName = 'EzCard';
 
