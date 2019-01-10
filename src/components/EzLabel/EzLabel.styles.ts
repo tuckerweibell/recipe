@@ -1,6 +1,7 @@
 import {css} from 'react-emotion';
-import styled, {Themed} from '../../themes/styled';
 import variant from 'styled-component-variant';
+import {hideVisually} from 'polished';
+import styled, {Themed} from '../../themes/styled';
 
 const base = ({theme}: Themed) => css`
   line-height: ${theme.lineHeights.heading};
@@ -39,6 +40,7 @@ const position = variant('position', {
   top,
   bottom,
   left,
+  hidden: hideVisually(),
 });
 
 export default styled.div<any>(base, position, size);

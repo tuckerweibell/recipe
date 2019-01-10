@@ -1,5 +1,5 @@
 import React from 'react';
-import LabelledItem from './EzLabelledItem.styles';
+import Label from '../EzLabel';
 
 /**
  * Provides a label that can appear in one of several positions relative to its associated content.
@@ -15,9 +15,9 @@ type ItemProps = {
 const EzLabelledItem: React.SFC<ItemProps> = ({children, position: labelPosition, size, title}) => (
   <div>
     {labelPosition === 'bottom' && children}
-    <LabelledItem position={labelPosition} size={size}>
+    <Label position={labelPosition} size={size}>
       {title}
-    </LabelledItem>
+    </Label>
     {['top', 'left'].includes(labelPosition) && children}
   </div>
 );
