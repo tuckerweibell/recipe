@@ -2,8 +2,10 @@
 
 exports[`EzHeading should render size 1 with size 700, weight normal 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 2.2857142857142856rem;
   font-weight: 400;
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -17,8 +19,10 @@ exports[`EzHeading should render size 1 with size 700, weight normal 1`] = `
 
 exports[`EzHeading should render size 2 with size 600, weight normal 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 1.5rem;
   font-weight: 400;
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -32,8 +36,10 @@ exports[`EzHeading should render size 2 with size 600, weight normal 1`] = `
 
 exports[`EzHeading should render size 3 with size 500, weight bold 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 1.2857142857142858rem;
   font-weight: 700;
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -47,8 +53,10 @@ exports[`EzHeading should render size 3 with size 500, weight bold 1`] = `
 
 exports[`EzHeading should render size 4 with size 400, weight normal 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 1.1428571428571428rem;
   font-weight: 400;
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -62,8 +70,10 @@ exports[`EzHeading should render size 4 with size 400, weight normal 1`] = `
 
 exports[`EzHeading should render size 5 with size 300, weight bold 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 1rem;
   font-weight: 700;
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -77,8 +87,10 @@ exports[`EzHeading should render size 5 with size 300, weight bold 1`] = `
 
 exports[`EzHeading should render size 6 with size 200, weight normal 1`] = `
 .recipe-1 {
+  color: #565a5c;
   font-size: 0.8571428571428571rem;
   font-weight: 400;
+  line-height: 1.35;
   margin: 0;
 }
 

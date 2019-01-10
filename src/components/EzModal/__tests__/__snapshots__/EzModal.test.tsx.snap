@@ -90,8 +90,10 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 .recipe-1 {
+  color: #565a5c;
   font-size: 1.5rem;
   font-weight: 400;
+  line-height: 1.35;
   margin: 0;
 }
 

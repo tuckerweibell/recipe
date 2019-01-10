@@ -15,20 +15,31 @@ type HeadingProps = {
  */
 const EzHeading: React.SFC<HeadingProps> = ({
   as,
-  children,
+  children: title,
   className,
   size: headingSize,
-  subheading,
+  subheading: subtitle,
 }) => {
   const headingElement = as || `h${headingSize}`;
   const Heading = headings[headingElement];
-  const useSubheading = subheading && (headingSize === '3' || headingSize === '5'); //
+
+  const heading = (
+    <Heading className={className} size={headingSize}>
+      {title}
+    </Heading>
+  );
+
+  const subheading = subtitle && (headingSize === '3' || headingSize === '5') && (
+    <Subheading>{subtitle}</Subheading>
+  );
+
+  if (!subheading) return heading;
 
   return (
-    <Heading className={className} size={headingSize}>
-      {children}
-      {useSubheading && <Subheading>{subheading}</Subheading>}
-    </Heading>
+    <header>
+      {heading}
+      {subheading}
+    </header>
   );
 };
 
