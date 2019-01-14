@@ -56,7 +56,7 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "npm run build:js -- --watch",
     "create-component": "plop component",
     "test": "jest --coverage --no-cache",
     "test:watch": "npm test -- --watch"
