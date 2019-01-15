@@ -2,10 +2,11 @@
 
 exports[`EzField check box list should render checklist options 1`] = `
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 .recipe-8 {
@@ -82,10 +83,11 @@ exports[`EzField check box list should render checklist options 1`] = `
 
 exports[`EzField radio button list should render radio button options 1`] = `
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 .recipe-8 {
@@ -177,10 +179,11 @@ exports[`EzField should render basic text field with default styles 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <div
@@ -218,10 +221,11 @@ exports[`EzField should render textarea field 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <div
@@ -259,10 +263,11 @@ exports[`EzField should render with custom input 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <div
@@ -315,10 +320,11 @@ exports[`EzField should render with error styles 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
   color: #ec5353;
 }
 
@@ -463,10 +469,11 @@ exports[`EzField should render with helper text, placeholder and character count
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 .recipe-2 {
@@ -529,9 +536,7 @@ exports[`EzField should render with hidden label 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
   border: 0px;
   -webkit-clip: rect(0 0 0 0);
@@ -545,6 +550,8 @@ exports[`EzField should render with hidden label 1`] = `
   position: absolute;
   white-space: nowrap;
   width: 1px;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <div

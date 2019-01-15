@@ -36,6 +36,12 @@ const left = ({theme}: Themed) => css`
   margin-right: ${theme.spacing.sm};
 `;
 
+const error = ({error, theme}) =>
+  error &&
+  css`
+    color: ${theme.colors.reds.base};
+  `;
+
 const position = variant('position', {
   top,
   bottom,
@@ -43,4 +49,4 @@ const position = variant('position', {
   hidden: hideVisually(),
 });
 
-export default styled.div<any>(base, position, size);
+export default styled.div<any>(base, position, size, error);

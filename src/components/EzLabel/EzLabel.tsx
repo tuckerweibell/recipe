@@ -14,6 +14,10 @@ type Props = React.LabelHTMLAttributes<any> & {
    * changes the styles of the label for the selected size
    */
   size?: 'normal' | 'small';
+  /**
+   * changes the styles of the label to indicate an error state
+   */
+  error?: boolean;
 };
 
 const labels = {

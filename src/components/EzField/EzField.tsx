@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  Field,
-  Label,
-  Helper,
-  InlineError,
-  CharacterLimit,
-  InputIconContainer,
-} from './EzField.styles';
+import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
+import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
 import {use, useRef, useFocus, useHover, useInput} from '../../utils/hooks';
 import {filterValidProps} from '../../utils';
@@ -22,8 +16,8 @@ const getUniqueId = (() => {
   return () => `control$${index++}`;
 })();
 
-const Error = ({touched, error, active}: any) =>
-  touched && error ? (
+const Error = ({showError, error, active}: any) =>
+  showError ? (
     <>
       <InputIconContainer>
         <ErrorIcon />
@@ -72,18 +66,20 @@ const EzField = use((props: Props) => {
   const [hovered, mouseEvents] = useHover();
   const {value, onChange} = useInput(props.value || '');
   const active = focused || hovered;
+  const showError = Boolean(touched && error);
   const fieldType = isChoiceElement ? 'fieldset' : undefined;
-  const labelType = isChoiceElement ? 'legend' : undefined;
+  const labelType = isChoiceElement ? 'legend' : 'label';
+  const labelPosition = labelHidden ? 'hidden' : undefined;
 
   return (
     <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
-      <Label htmlFor={id} as={labelType} touched={touched} error={error} labelHidden={labelHidden}>
+      <Label htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}
       </Label>
-      {!isHtmlElement && <Error touched={touched} error={error} active={active} />}
+      {!isHtmlElement && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
       <Input id={id} {...props} {...wrapEvents(props, {onBlur, onFocus, onChange})} />
-      {isHtmlElement && <Error touched={touched} error={error} active={active} />}
+      {isHtmlElement && <Error showError={showError} error={error} active={active} />}
       {'maxLength' in props && typeof value === 'string' && (
         <CharacterLimit>
           {value.length}/{maxLength}

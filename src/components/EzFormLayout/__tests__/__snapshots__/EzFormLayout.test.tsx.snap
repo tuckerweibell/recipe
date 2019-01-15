@@ -21,10 +21,11 @@ exports[`EzFormLayout should render with default styles 1`] = `
 }
 
 .recipe-0 {
-  color: #565a5c;
-  display: block;
-  font-size: 1rem;
+  line-height: 1.35;
   font-weight: 700;
+  margin-bottom: 0.2857142857142857rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <body>

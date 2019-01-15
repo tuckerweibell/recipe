@@ -38,28 +38,6 @@ const inputDisabled = ({theme, disabled}) =>
     border: 1px solid ${theme.colors.grays[300]};
   `;
 
-const labelError = ({theme, error, touched}) =>
-  error &&
-  touched &&
-  css`
-    color: ${theme.colors.reds.base};
-  `;
-
-const labelHidden = props => props.labelHidden && hideVisually();
-
-const labelBase = ({theme}) => css`
-  color: ${theme.colors.grays[700]};
-  display: block;
-  font-size: ${theme.fontSizes[300]};
-  font-weight: ${theme.fontWeights.bold};
-`;
-
-const StyledLabel = styled.label`
-  ${labelBase};
-  ${labelHidden};
-  ${labelError};
-`;
-
 const StyledField = styled.div`
   position: relative;
 
@@ -151,14 +129,7 @@ const fieldsetResets = css`
 
 const FieldSet = styled(StyledField)(fieldsetResets).withComponent('fieldset');
 
-const Legend = StyledLabel.withComponent('legend');
-
 export const Field = props => {
   const Component = props.as === 'fieldset' ? FieldSet : StyledField;
   return React.createElement(Component as any, props);
-};
-
-export const Label = props => {
-  const Component = props.as === 'legend' ? Legend : StyledLabel;
-  return React.createElement(Component, props);
 };
