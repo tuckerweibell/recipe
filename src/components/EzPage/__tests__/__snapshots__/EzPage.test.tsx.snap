@@ -17,7 +17,13 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-4 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-4 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-4 > .e1xv9tqn0 {
@@ -42,7 +48,13 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-2 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-2 > .e1xv9tqn0 {
@@ -67,7 +79,13 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-0 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-0 > .e1xv9tqn0 {
@@ -117,7 +135,13 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-4 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-4 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-4 > .e1xv9tqn0 {
@@ -142,7 +166,13 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-0 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-0 > .e1xv9tqn0 {
@@ -167,7 +197,13 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-2 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-2 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-2 > .e1xv9tqn0 {
@@ -217,7 +253,13 @@ exports[`EzPage should render with default styles 1`] = `
 }
 
 .recipe-0 > *:not(:last-child) {
-  margin-bottom: 2.2857142857142856rem;
+  margin-bottom: 0.8571428571428571rem;
+}
+
+@media screen and (min-width:48em) {
+  .recipe-0 > *:not(:last-child) {
+    margin-bottom: 1.7142857142857142rem;
+  }
 }
 
 .recipe-0 > .e1xv9tqn0 {
