@@ -1,34 +1,44 @@
 import {css} from 'react-emotion';
+import styled, {Themed} from '../../themes/styled';
 import variant from 'styled-component-variant';
 
-export const base = ({theme}) => css`
+const base = ({theme}: Themed) => css`
+  line-height: ${theme.lineHeights.heading};
+  font-weight: ${theme.fontWeights.bold};
+`;
+
+const small = ({theme}: Themed) => css`
   color: ${theme.colors.grays[600]};
+  font-size: ${theme.fontSizes[200]};
 `;
 
-const normalSize = ({theme}) => css`
+const normal = ({theme}: Themed) => css`
+  color: ${theme.colors.grays[700]};
   font-size: ${theme.fontSizes[300]};
-  font-weight: ${theme.fontWeights.normal};
 `;
 
-const top = ({size, theme}) => css`
-  font-size: ${size === 'small' && theme.fontSizes[200]};
-  font-weight: ${size === 'small' && theme.fontWeights.bold};
+const size = variant('size', {
+  small,
+  normal,
+});
+
+const top = ({theme}: Themed) => css`
   margin-bottom: ${theme.spacing.xs2};
 `;
 
-const bottom = props => css`
-  ${normalSize(props)};
-  margin-top: ${props.theme.spacing.xs2};
+const bottom = ({theme}: Themed) => css`
+  margin-top: ${theme.spacing.xs2};
 `;
 
-const left = props => css`
-  ${normalSize(props)};
+const left = ({theme}: Themed) => css`
   display: inline;
-  margin-right: ${props.theme.spacing.sm};
+  margin-right: ${theme.spacing.sm};
 `;
 
-export const position = variant('position', {
+const position = variant('position', {
   top,
   bottom,
   left,
 });
+
+export default styled.div<any>(base, position, size);

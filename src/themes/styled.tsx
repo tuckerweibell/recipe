@@ -2,6 +2,7 @@ import styled, {CreateStyled, StyledOptions} from 'react-emotion';
 import * as standard from './standard';
 
 export type Theme = typeof standard;
+export type Themed = {theme: Theme};
 
 const wrapWithStandardTheme = interpolation => {
   if (typeof interpolation !== 'function') return interpolation;

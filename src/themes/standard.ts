@@ -113,6 +113,10 @@ export const spacing = {
 export const borderRadius = ['1px', '4px', '6px'];
 export const borderWidth = ['1px', '2px', '4px'];
 
+export const lineHeights = {
+  heading: 1.35,
+};
+
 export const fontSizes = {
   100: rem(10),
   200: rem(12),

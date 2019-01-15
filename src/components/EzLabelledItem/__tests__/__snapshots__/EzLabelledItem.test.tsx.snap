@@ -2,11 +2,12 @@
 
 exports[`EzLabelledItem position left renders the label to the left of the content 1`] = `
 .recipe-0 {
-  color: #8b99a6;
-  font-size: 1rem;
-  font-weight: 400;
+  line-height: 1.35;
+  font-weight: 700;
   display: inline;
   margin-right: 0.8571428571428571rem;
+  color: #565a5c;
+  font-size: 1rem;
 }
 
 <div>
@@ -21,10 +22,11 @@ exports[`EzLabelledItem position left renders the label to the left of the conte
 
 exports[`EzLabelledItem position top renders with a small label 1`] = `
 .recipe-0 {
-  color: #8b99a6;
-  font-size: 0.8571428571428571rem;
+  line-height: 1.35;
   font-weight: 700;
   margin-bottom: 0.2857142857142857rem;
+  color: #8b99a6;
+  font-size: 0.8571428571428571rem;
 }
 
 <div>
