@@ -50,7 +50,7 @@ const Input = props => {
 const wrapEvent = (handler: React.ReactEventHandler, callback: React.ReactEventHandler) => {
   if (!handler) return callback;
   return (event: React.SyntheticEvent) => {
-    if (handler) handler(event);
+    handler(event);
     if (!event.defaultPrevented) {
       callback(event);
     }
