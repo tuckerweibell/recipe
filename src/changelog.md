@@ -7,6 +7,29 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.2.0
+
+#### New components
+
+- Add new [EzField](/components/ez-field) and [EzFormLayout](/components/ez-form-layout) components
+
+#### Enhancements
+
+- apply line-height/color/spacing to `EzHeading`
+- internally updated `EzCard` to use `EzHeading` for consistency
+
+#### Bug fixes
+
+- fixed type definiton of `EzButton` onClick to `MouseEventHandler`
+
+#### Documentation
+
+- Added titles to [EzHeading](/components/ez-heading) docs
+
+#### Development wokflow
+
+- Fixed `npm run build:watch` mode for TypeScript builds
+
 ## 2.1.0
 
 #### Enhancements
