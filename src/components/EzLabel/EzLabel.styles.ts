@@ -1,6 +1,6 @@
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
-import {hideVisually} from 'polished';
+import {hideVisually, margin} from 'polished';
 import styled, {Themed} from '../../themes/styled';
 
 const base = ({theme}: Themed) => css`
@@ -8,32 +8,22 @@ const base = ({theme}: Themed) => css`
   font-weight: ${theme.fontWeights.bold};
 `;
 
-const small = ({theme}: Themed) => css`
-  color: ${theme.colors.grays[600]};
-  font-size: ${theme.fontSizes[200]};
-`;
-
-const normal = ({theme}: Themed) => css`
-  color: ${theme.colors.grays[700]};
-  font-size: ${theme.fontSizes[300]};
+const typography = ({shade, size}) => ({theme}: Themed) => css`
+  color: ${theme.colors.grays[shade]};
+  font-size: ${theme.fontSizes[size]};
 `;
 
 const size = variant('size', {
-  small,
-  normal,
+  small: typography({shade: 600, size: 200}),
+  normal: typography({shade: 700, size: 300}),
 });
 
-const top = ({theme}: Themed) => css`
-  margin-bottom: ${theme.spacing.xs2};
-`;
-
-const bottom = ({theme}: Themed) => css`
-  margin-top: ${theme.spacing.xs2};
-`;
+const top = ({theme}: Themed) => margin(null, null, theme.spacing.xs2, null);
+const bottom = ({theme}: Themed) => margin(theme.spacing.xs2, null, null, null);
 
 const left = ({theme}: Themed) => css`
   display: inline;
-  margin-right: ${theme.spacing.sm};
+  ${margin(null, theme.spacing.sm, null, null)};
 `;
 
 const error = ({error, theme}) =>
