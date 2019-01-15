@@ -1,9 +1,8 @@
 import {css} from 'react-emotion';
-import styled from '../../themes/styled';
+import styled, {Themed} from '../../themes/styled';
 import {hideVisually, shade} from 'polished';
-import variant from 'styled-component-variant';
 
-const label = ({theme}) => css`
+const label = ({theme}: Themed) => css`
   cursor: pointer;
   background-color: white;
   border: 1px solid ${theme.colors.grays[400]};
@@ -54,25 +53,7 @@ const label = ({theme}) => css`
   }
 `;
 
-type LabelProps = {
-  theme?: string;
-};
-
-export const Label = styled.label<LabelProps>(label);
-
-const labelPosition = variant('labelPosition', {
-  hidden: hideVisually,
-  left: ({theme}) => css`
-    color: ${theme.colors.grays[600]};
-    margin-right: ${theme.spacing.md};
-  `,
-});
-
-type LegendProps = {
-  labelPosition: string;
-};
-
-export const Legend = styled.div<LegendProps>(labelPosition);
+export const Option = styled.label<Partial<Themed>>(label);
 
 export const Fieldset = styled.div`
   display: flex;

@@ -1,29 +1,40 @@
 import React, {Fragment} from 'react';
-import {Label, Legend, Fieldset} from './EzSegmentedControl.styles';
+import {Option, Fieldset} from './EzSegmentedControl.styles';
+import Label from '../EzLabel';
 
 const getId = (name, {value}) => `${name}-${value}`;
 
 type Button = {
   value: string;
   label: string;
+  disabled?: boolean;
 };
 
-type SegmentedControlProps = {
-  active: any;
+type Props = React.FieldsetHTMLAttributes<any> & {
+  active?: any;
   label: React.ReactNode;
   labelPosition: 'left' | 'hidden';
   name: string;
   options: Button[];
+  onChange: (value: string) => void;
 };
 
 /**
  * EzSegmentedControls present mutually exclusive options as buttons.
  */
-const EzSegmentedControl = ({active, className, label, labelPosition, name, onChange, options}) => (
+const EzSegmentedControl: React.SFC<Props> = ({
+  active,
+  className,
+  label,
+  labelPosition,
+  name,
+  onChange,
+  options,
+}) => (
   <Fieldset className={className} role="radiogroup" aria-labelledby={`radiogroup-${name}`}>
-    <Legend id={`radiogroup-${name}`} labelPosition={labelPosition}>
+    <Label id={`radiogroup-${name}`} position={labelPosition}>
       {label}
-    </Legend>
+    </Label>
     {options.map(option => (
       <Fragment key={option.value}>
         <input
@@ -34,9 +45,9 @@ const EzSegmentedControl = ({active, className, label, labelPosition, name, onCh
           onChange={() => onChange && onChange(option.value)}
           disabled={option.disabled}
         />
-        <Label key={option.value} htmlFor={getId(name, option)}>
+        <Option key={option.value} htmlFor={getId(name, option)}>
           {option.label}
-        </Label>
+        </Option>
       </Fragment>
     ))}
   </Fieldset>
@@ -46,10 +57,8 @@ const EzSegmentedControl = ({active, className, label, labelPosition, name, onCh
  * defaultProps
  * @property {bool} active - No option is selected by default.
  * @property {string} labelPosition - The label is positioned on the left of the control by default.
- * @property {object} theme - uses the standard theme by default.
  */
 EzSegmentedControl.defaultProps = {
-  active: undefined,
   labelPosition: 'left',
 };
 
