@@ -8,7 +8,7 @@ type ButtonProps = RegularProps | TertiaryProps;
 type SharedButtonProps = {
   destructive?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler;
 };
 
 type RegularProps = {
