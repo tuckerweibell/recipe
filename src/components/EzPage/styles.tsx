@@ -13,6 +13,6 @@ export const childStyles = ({theme}) => css`
   }
 
   > ${EzHeading} {
-    margin-bottom: ${theme.spacing.md};
+    margin-bottom: ${theme.spacing.sm};
   }
 `;

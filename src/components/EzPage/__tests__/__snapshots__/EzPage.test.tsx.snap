@@ -27,7 +27,7 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-4 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 @media screen and (min-width:48em) {
@@ -58,7 +58,7 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-2 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 @media screen and (min-width:48em) {
@@ -89,7 +89,7 @@ exports[`EzPage should render EzPageSection content with right sidebar styles 1`
 }
 
 .recipe-0 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 <div
@@ -145,7 +145,7 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-4 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 @media screen and (min-width:48em) {
@@ -176,7 +176,7 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-0 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 @media screen and (min-width:48em) {
@@ -207,7 +207,7 @@ exports[`EzPage should render EzPageSection with left sidebar styles 1`] = `
 }
 
 .recipe-2 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 <div
@@ -263,7 +263,7 @@ exports[`EzPage should render with default styles 1`] = `
 }
 
 .recipe-0 > .e1xv9tqn0 {
-  margin-bottom: 1.1428571428571428rem;
+  margin-bottom: 0.8571428571428571rem;
 }
 
 <div
