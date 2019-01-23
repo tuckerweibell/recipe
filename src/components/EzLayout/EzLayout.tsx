@@ -18,7 +18,7 @@ type Breakpoints = {[P in Sizes]?: LayoutTypes};
 type Responsive = {base: LayoutTypes} & Breakpoints & RequireAtLeastOne<Breakpoints>;
 
 type LayoutProps = {
-  layout: LayoutTypes | Responsive;
+  layout?: LayoutTypes | Responsive;
 };
 
 /**
