@@ -71,7 +71,7 @@ Tables can also:
 
 Used whenever the tablular data is directly related to the preceeding or subsequent content. Simple tables should be used as a direct child of a [Card](/components/ez-card) component.
 
-```jsx-wide
+```jsxwide
 <EzPage>
   <EzCard>
     <EzHeading
@@ -103,7 +103,7 @@ Used whenever the tablular data is directly related to the preceeding or subsequ
 
 Used whenever the tablular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional actions.
 
-```jsx-wide
+```jsxwide
 <EzPage>
   <EzTable
     title="All Stores"
@@ -124,7 +124,7 @@ Used whenever the tablular data alone represents a cohesive set of content. Shou
 
 Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content).
 
-```jsx-wide
+```jsxwide
 <Component>
   {() => {
     // declare any component to define your custom column template

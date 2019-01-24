@@ -2,7 +2,7 @@
 name: EzPage
 title: Page
 category: layout
-path: "/components/ez-page"
+path: '/components/ez-page'
 ---
 
 Page is the main content container for a page. The Page component controls the horizontal margins of the content area, as well as the vertical spacing between content.
@@ -15,13 +15,13 @@ These examples mostly use Cards, but you can put multiple kinds of content in Pa
 
 Page should:
 
-* Be used as the top level container for most pages.
-* Use [Page Sections](#page-sections) to create sidebar layouts within a page.
+- Be used as the top level container for most pages.
+- Use [Page Sections](#page-sections) to create sidebar layouts within a page.
 
 Page Section should not:
 
-* Be used anywhere except as an immediate descendant of `EzPage`.
-* Be used to put more than one sidebar section on the same page. This is unsupported and will render incorrectly if you put two sidebars one after the other.
+- Be used anywhere except as an immediate descendant of `EzPage`.
+- Be used to put more than one sidebar section on the same page. This is unsupported and will render incorrectly if you put two sidebars one after the other.
 
 ## Examples
 
@@ -56,7 +56,7 @@ Page will provide appropriate margin on Headings.
 
 You can use `EzPageSection` to create layouts that have a left or right sidebar. Passing `use="aside"` createds a sidebar and `use="main"` creates the associated "two thirds ish" section.
 
-```jsx-wide foo
+```jsxwide
 <EzPage>
   <EzCard title="Card">
     <p>
@@ -97,7 +97,7 @@ You can use `EzPageSection` to create layouts that have a left or right sidebar.
 
 Just change the order of the aside and main sections if you want a right sidebar layout.
 
-```jsx-wide foo
+```jsxwide
 <EzPage>
   <EzCard title="Card">
     <p>
@@ -138,4 +138,4 @@ Just change the order of the aside and main sections if you want a right sidebar
 
 ## Related components
 
-* [Card](/components/ez-card)
+- [Card](/components/ez-card)
