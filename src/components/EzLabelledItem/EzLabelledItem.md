@@ -43,7 +43,7 @@ Labelled items should
 
 A label that appears above its content.
 
-```jsx live
+```jsx
 <EzLabelledItem position="top" size="normal" title="Top Label">
   Some text
 </EzLabelledItem>
@@ -53,7 +53,7 @@ A label that appears above its content.
 
 This is alternative style of top label.
 
-```jsx live
+```jsx
 <EzLabelledItem position="top" size="small" title="Small Label">
   Some text
 </EzLabelledItem>
@@ -63,7 +63,7 @@ This is alternative style of top label.
 
 A label that appears next to its content.
 
-```jsx live
+```jsx
 <EzLabelledItem position="left" size="normal" title="Left Label">
   Some text
 </EzLabelledItem>
@@ -73,7 +73,7 @@ A label that appears next to its content.
 
 A label that appears below its content.
 
-```jsx live
+```jsx
 <EzLabelledItem position="bottom" size="normal" title="Bottom Label">
   Some text
 </EzLabelledItem>

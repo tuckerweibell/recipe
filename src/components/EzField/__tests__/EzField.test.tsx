@@ -1,57 +1,18 @@
 import React from 'react';
-import EzField from '../EzField';
+import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
 import 'jest-dom/extend-expect';
-import {cleanup, getByLabelText, fireEvent} from 'react-testing-library';
+import {getByLabelText, fireEvent} from 'react-testing-library';
+import Component from 'react-component-component';
+import markdown from '../EzField.md';
+import EzField from '../EzField';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
+import {EzFormLayout} from '../../index';
+
+const scope = {EzField, EzFormLayout, Component};
 
 describe('EzField', () => {
-  afterEach(cleanup);
-
-  it('should render basic text field with default styles', () => {
-    const {container} = render(<EzField label="Basic text" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render textarea field', () => {
-    const {container} = render(<EzField type="textarea" label="Long text" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render with error styles', () => {
-    const {container} = render(
-      <EzField label="Field with error" error="An error occurred" touched />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render with custom input', () => {
-    const {container} = render(
-      <EzField
-        label="Custom input"
-        value="1234"
-        type={({value, onChange}) => <input value={value} onChange={onChange} />}
-      />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render with helper text, placeholder and character count', () => {
-    const {container} = render(
-      <EzField
-        label="Character Name"
-        helperText="Provide the name of your favorite Sesame Street character."
-        maxLength={120}
-        placeholder="e.g. Big Bird"
-      />
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should render with hidden label', () => {
-    const {container} = render(<EzField label="Hidden Label" labelHidden />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
+  visualSnapshots({markdown, scope});
 
   it('should render with disabled input', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
@@ -69,11 +30,6 @@ describe('EzField', () => {
         {label: 'Choice C', value: 'c'},
       ],
     };
-
-    it('should render radio button options', () => {
-      const {container} = render(<EzField {...radiobuttonProps} />);
-      expect(container.firstChild).toMatchSnapshot();
-    });
 
     it('should render radio button with correct selection', () => {
       const {container} = render(<EzField {...radiobuttonProps} value={'c'} />);
@@ -117,11 +73,6 @@ describe('EzField', () => {
         {label: 'Choice C', value: 'c'},
       ],
     };
-
-    it('should render checklist options', () => {
-      const {container} = render(<EzField {...checkboxProps} />);
-      expect(container.firstChild).toMatchSnapshot();
-    });
 
     it('should render checklist with correctly selected options', () => {
       const {container} = render(<EzField {...checkboxProps} value={['a', 'c']} />);
@@ -204,9 +155,6 @@ describe('EzField', () => {
     expect(container).toHaveTextContent('0/120');
   });
 
-  /**
-   * Accessibility tests.
-   */
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzField label="Basic text" />);
     const actual = await axe(wrapper);

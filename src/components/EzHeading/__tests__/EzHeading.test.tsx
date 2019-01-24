@@ -1,42 +1,15 @@
 import React from 'react';
-import EzHeading from '../EzHeading';
 import {axe} from 'jest-axe';
-
+import {visualSnapshots} from 'sosia';
+import markdown from '../EzHeading.md';
+import EzHeading from '../EzHeading';
+import {EzCard} from '../../index';
 import {create, render, renderToHtml} from '../../../jest-globals';
 
+const scope = {EzHeading, EzCard, React};
+
 describe('EzHeading', () => {
-  /**
-   * Style tests.
-   */
-  it('should render size 1 with size 700, weight normal', () => {
-    const actual = create(<EzHeading size="1">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render size 2 with size 600, weight normal', () => {
-    const actual = create(<EzHeading size="2">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render size 3 with size 500, weight bold', () => {
-    const actual = create(<EzHeading size="3">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render size 4 with size 400, weight normal', () => {
-    const actual = create(<EzHeading size="4">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render size 5 with size 300, weight bold', () => {
-    const actual = create(<EzHeading size="5">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render size 6 with size 200, weight normal', () => {
-    const actual = create(<EzHeading size="6">Heading</EzHeading>);
-    expect(actual).toMatchSnapshot();
-  });
+  visualSnapshots({markdown, scope});
 
   it('should render with the specified tag', () => {
     const actual = create(
@@ -59,9 +32,6 @@ describe('EzHeading', () => {
     expect(actual.find('div')).toHaveLength(shown);
   });
 
-  /**
-   * Accessibility tests.
-   */
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzHeading size="1">Heading</EzHeading>);
     const actual = await axe(wrapper);

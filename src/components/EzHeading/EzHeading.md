@@ -32,7 +32,7 @@ Use sentence case for content in headings (only capitalize the first word).
 
 We support six sizes of heading. Headings don't have margin...in our current model margin is applied by containers to their children.
 
-```jsx live
+```jsx
 <React.Fragment>
   <EzHeading size="1">Page titles</EzHeading>
   <EzHeading size="2">On-page headings</EzHeading>
@@ -47,7 +47,7 @@ We support six sizes of heading. Headings don't have margin...in our current mod
 
 You can provide an optional subheading. At this time you should only use subheadings with `3` and `5` headings. If you provide a `subheading` prop to other sizes it will not be rendered.
 
-```jsx live
+```jsx
 <EzCard>
   <EzHeading size="3" subheading="I'm a subheading">
     Container headings
@@ -62,7 +62,7 @@ You can provide an optional subheading. At this time you should only use subhead
 
 Normally heading size numbers correspond directly to the same size `h` tag, but you can provide an optional `as` property to override the markup that is rendered for heading. You should only need to use this property sparingly and only for accessibility or SEM purposes. For example: an empty state might call for a visually larger heading, but it's position in the page hierarchy might make a lower level `h` tag the appropriate markup.
 
-```jsx live
+```jsx
 <EzHeading size="3" as="h1">
   Container headings
 </EzHeading>

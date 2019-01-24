@@ -1,43 +1,15 @@
 import React from 'react';
-import {EzPageContent, EzContentGroup} from '..';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
+import markdown from '../EzPageContent.md';
+import {EzPageContent, EzContentGroup} from '..';
+import {renderToHtml} from '../../../jest-globals';
+import {EzCard, EzSegmentedControl} from '../../index';
 
-import {create, renderToHtml} from '../../../jest-globals';
+const scope = {EzPageContent, EzCard, EzContentGroup, EzSegmentedControl};
 
 describe('EzPageContent', () => {
-  it('should render with default styles', () => {
-    const actual = create(
-      <EzPageContent>
-        <p>Lorem ipsum dolor</p>
-        <p>Lorem ipsum dolor</p>
-      </EzPageContent>
-    );
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render EzContentGroup with default styles', () => {
-    const actual = create(
-      <EzPageContent>
-        <EzContentGroup>
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzContentGroup>
-      </EzPageContent>
-    );
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render EzContentGroup content with horizontal styles', () => {
-    const actual = create(
-      <EzPageContent>
-        <EzContentGroup horizontal>
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzContentGroup>
-      </EzPageContent>
-    );
-    expect(actual).toMatchSnapshot();
-  });
+  visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(

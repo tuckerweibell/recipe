@@ -7,15 +7,14 @@ path: '/components/ez-field'
 
 Form fields provide inputs for form data, such as text, dates, emails and other data types. Fields have a range of options to support several value formats. Further customization of Fields can be achieved by providing a custom input component, such as an application-specific control.
 
-##
-
 <EzAlert
   headline="This component is under development"
   tagline="There will likely be breaking changes to the API. Proceeed with caution."
   use="warning"
 />
 
-##
+<br />
+<br />
 
 Features still in consideration include:
 

@@ -1,10 +1,17 @@
 import React from 'react';
-import EzTable from '../EzTable';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
+import Component from 'react-component-component';
+import markdown from '../EzTable.md';
+import EzTable from '../EzTable';
+import {EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
+import {renderToHtml} from '../../../jest-globals';
 
-import {create, renderToHtml} from '../../../jest-globals';
+const scope = {EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Component};
 
 describe('EzTable', () => {
+  visualSnapshots({markdown, scope});
+
   const columns = [
     {heading: 'Store name', accessor: ({item}) => item.store},
     {heading: 'Total sales', accessor: 'total', numeric: true},
@@ -15,19 +22,6 @@ describe('EzTable', () => {
     {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
   ];
 
-  it('should render with default styles', () => {
-    const actual = create(<EzTable columns={columns} items={items} />);
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render with full bleed styles', () => {
-    const actual = create(<EzTable title="My Table" columns={columns} items={items} />);
-    expect(actual).toMatchSnapshot();
-  });
-
-  /**
-   * Accessibility tests.
-   */
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzTable columns={columns} items={items} />);
     const actual = await axe(wrapper);

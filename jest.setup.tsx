@@ -31,8 +31,20 @@ injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin');
 
   html {
+    box-sizing: border-box;
     font-size: 14px;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  * {
+    box-sizing: inherit;
+  }
+
+  /* disable animations in visual snapshots */
+  *, ::before, ::after {
+    transition-property: none !important;
+    transform: none !important;
+    animation: none !important;
   }
 `;
 

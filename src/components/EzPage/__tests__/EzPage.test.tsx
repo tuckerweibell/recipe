@@ -1,51 +1,15 @@
 import React from 'react';
-import {EzPage, EzPageSection} from '..';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
+import markdown from '../EzPage.md';
+import {EzPage, EzPageSection} from '..';
+import {renderToHtml} from '../../../jest-globals';
+import {EzCard, EzHeading} from '../../index';
 
-import {create, renderToHtml} from '../../../jest-globals';
+const scope = {EzPage, EzPageSection, EzCard, EzHeading};
 
 describe('EzPage', () => {
-  it('should render with default styles', () => {
-    const actual = create(
-      <EzPage>
-        <p>Lorem ipsum dolor</p>
-        <p>Lorem ipsum dolor</p>
-      </EzPage>
-    );
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render EzPageSection with left sidebar styles', () => {
-    const actual = create(
-      <EzPage>
-        <EzPageSection use="aside">
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzPageSection>
-        <EzPageSection use="main">
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzPageSection>
-      </EzPage>
-    );
-    expect(actual).toMatchSnapshot();
-  });
-
-  it('should render EzPageSection content with right sidebar styles', () => {
-    const actual = create(
-      <EzPage>
-        <EzPageSection use="main">
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzPageSection>
-        <EzPageSection use="aside">
-          <p>Lorem ipsum dolor</p>
-          <p>Lorem ipsum dolor</p>
-        </EzPageSection>
-      </EzPage>
-    );
-    expect(actual).toMatchSnapshot();
-  });
+  visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(

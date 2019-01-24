@@ -1,37 +1,15 @@
 import React from 'react';
-import EzSegmentedControl from '../EzSegmentedControl';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
+import markdown from '../EzSegmentedControl.md';
+import EzSegmentedControl from '../EzSegmentedControl';
+import {mount, renderToHtml} from '../../../jest-globals';
 
-import {render, mount, renderToHtml} from '../../../jest-globals';
+const scope = {EzSegmentedControl};
 
 describe('EzSegmentedControl', () => {
-  /**
-   * Style tests.
-   */
-  it('should render with default styles', () => {
-    const spy = jest.fn();
+  visualSnapshots({markdown, scope});
 
-    const actual = render(
-      <EzSegmentedControl
-        name="test-segment"
-        label="test segment"
-        active="firstValue"
-        className="test"
-        labelPosition="left"
-        onChange={spy}
-        options={[
-          {label: 'first', value: 'firstValue'},
-          {label: 'second', value: 'secondValue'},
-          {label: 'third', value: 'thirdValue', disabled: true},
-        ]}
-      />
-    );
-    expect(actual).toMatchSnapshot();
-  });
-
-  /**
-   * onChange tests.
-   */
   describe('onChange', () => {
     it('is triggers onChange when segment is clicked', () => {
       const spy = jest.fn();
@@ -61,9 +39,6 @@ describe('EzSegmentedControl', () => {
     });
   });
 
-  /**
-   * Accessibility tests.
-   */
   it('should meet accessibility guidelines', async () => {
     const spy = jest.fn();
 

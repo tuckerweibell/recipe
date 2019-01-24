@@ -1,6 +1,6 @@
-import styled, {css} from 'react-emotion';
+import {css} from 'emotion';
 import {EzCardSection} from '../EzCard';
-import {Theme} from '../../themes/styled';
+import styled, {Theme} from '../../themes/styled';
 
 const fullBleed = css`
   padding: 0;

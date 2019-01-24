@@ -14,7 +14,8 @@ Tables are used to display information from a data set in a way that's easy to s
   use="warning"
 />
 
-##
+<br/>
+<br/>
 
 Features still in consideration include:
 

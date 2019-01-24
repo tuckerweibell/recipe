@@ -2,7 +2,7 @@
 name: EzPageContent
 title: Page Content
 category: layout
-path: "/components/ez-page-content"
+path: '/components/ez-page-content'
 ---
 
 <EzAlert
@@ -11,7 +11,8 @@ path: "/components/ez-page-content"
   use="error"
 />
 
-##
+<br/>
+<br/>
 
 Page Content is the main content container for a page. The Page Content component controls the horizontal margins of the content area, as well as the vertical spacing between content.
 
@@ -23,12 +24,12 @@ These examples mostly use Cards, but you can put multiple kinds of content in Pa
 
 Page Content should:
 
-* Be used as the top level container for most pages.
-* Use [Content Groups](#organizing-with-content-group) to visually group related content with tighter spacing.
+- Be used as the top level container for most pages.
+- Use [Content Groups](#organizing-with-content-group) to visually group related content with tighter spacing.
 
 Content Group should not:
 
-* Be used anywhere except as an immediate descendant of `EzPageContent`.
+- Be used anywhere except as an immediate descendant of `EzPageContent`.
 
 ## Examples
 
@@ -90,11 +91,11 @@ Content Groups can be laid out horizontally.
 
 ## Limitations
 
-* Sidebar content is not currently supported
-* Content Groups currently do not support varying horizontal/vertical layouts across breakpoint.
+- Sidebar content is not currently supported
+- Content Groups currently do not support varying horizontal/vertical layouts across breakpoint.
 
 ---
 
 ## Related components
 
-* [Card](/components/ez-card)
+- [Card](/components/ez-card)
