@@ -60,3 +60,6 @@ configureSosia({
     documentation: new MarkdownSource(),
   },
 });
+
+// extend jest timeout for snapshots running on CI
+jest.setTimeout(10000);
