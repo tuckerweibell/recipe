@@ -28,7 +28,6 @@ Features still in consideration include:
 - Zebra Striping
 - Pagination
 - Table Actions (print, download etc)
-- Bulk Actions (multi-select)
 - Column width options (fixed, grow, auto, ellipsis, tooltip)
 - Headerless columns (content between columns, e.g. formula operators)
 - Sticky headers
@@ -153,6 +152,85 @@ Use when more fine-grained control over the table content is desired (in favor o
           items={[
             {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
             {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
+          ]} />
+      </EzPage>
+    );
+  }}
+</Component>
+```
+
+### Bulk row selection
+
+Use when multiple rows of a table can be selected together in order to perform an action in bulk.
+
+Providing the bulk select event handler props (`onRowClick`, `onBulkSelectClick`, `rowIsSelected`) will add a column to each table row containing a checkbox input, along with a corresponding column header containing a checkbox input.
+
+The row-level checkbox input can be toggled to indicate that the current row should be included in a particular action. This functionality is handled by the `rowIsSelected` and `onRowClick` props. `rowIsSelected` is a Function that is used to determine the row-level checkbox input state. It is called when rendering each row, and is passed the row's `item` object as the single argument. `onRowClick` is a Function that is bound to the row-level checkbox input change handler. It is called when the input state changes, and is passed the row's `item` object as the single argument.
+
+The column header checkbox input can be toggled to select or deselect all currently visible rows. This functionality is handled by the `onBulkSelectClick` prop. This should be a Function that handles the behavior of selecting or deselecting all the visible table rows.
+
+The column header checkbox input state and behavior is determined by evaluating the state of each visible table row. If all rows are selected, then the checkbox will appear as selected, and deselecting the input should deselect all rows. If some of the rows are selected, the checkbox will appear as 'partially selected', and deselecting the input should deselect all rows. If no rows are selected, the checkbox will appear deselected, and selecting the input will should select all rows.
+
+```jsx-wide
+<Component initialState={{selectedStoreIds: []}}>
+  {({state, setState}) => {
+    const storeIds = ['#001', '#002'];
+
+    const selectAll = () => {
+      setState({selectedStoreIds: storeIds});
+    }
+
+    const deselectAll = () => {
+      setState({selectedStoreIds: []});
+    }
+
+    const selectRow = item => {
+      const {selectedStoreIds} = state;
+
+      if (!selectedStoreIds.includes(item.id)) {
+        const newStoreIds = [...selectedStoreIds];
+        newStoreIds.push(item.id);
+        setState({selectedStoreIds: newStoreIds});
+      }
+    }
+
+    const deselectRow = item => {
+      const {selectedStoreIds} = state;
+      const newStoreIds = [...selectedStoreIds].filter(id => id !== item.id);
+      setState({selectedStoreIds: newStoreIds});
+    }
+
+    const rowIsSelected = item => {
+      const {selectedStoreIds} = state;
+      return selectedStoreIds.some(id => id === item.id);
+    }
+
+    const onBulkSelectClick = () => {
+      const {selectedStoreIds} = state;
+
+      selectedStoreIds.length > 0 ? deselectAll() : selectAll();
+    }
+
+    const onRowClick = item => {
+      rowIsSelected(item) ? deselectRow(item) : selectRow(item);
+    }
+
+    return (
+      <EzPage>
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          onBulkSelectClick={onBulkSelectClick}
+          onRowClick={onRowClick}
+          rowIsSelected={rowIsSelected}
+          columns={[
+            {heading: 'Store name', accessor: 'store'},
+            {heading: 'Total sales', accessor: 'total', numeric: true},
+            {heading: 'Average order value', accessor: 'average', numeric: true}
+          ]}
+          items={[
+            {id: storeIds[0], store: '123 Example Store', total: 23267, average: 327.79},
+            {id: storeIds[1], store: '45 Meadowview Lane', total: 22788, average: 367.55},
           ]} />
       </EzPage>
     );
