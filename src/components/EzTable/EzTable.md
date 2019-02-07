@@ -169,9 +169,9 @@ The row-level checkbox input can be toggled to indicate that the current row sho
 
 The column header checkbox input can be toggled to select or deselect all currently visible rows. This functionality is handled by the `onBulkSelectClick` prop. This should be a Function that handles the behavior of selecting or deselecting all the visible table rows.
 
-The column header checkbox input state and behavior is determined by evaluating the state of each visible table row. If all rows are selected, then the checkbox will appear as selected, and deselecting the input should deselect all rows. If some of the rows are selected, the checkbox will appear as 'partially selected', and deselecting the input should deselect all rows. If no rows are selected, the checkbox will appear deselected, and selecting the input will should select all rows.
+The column header checkbox input state and behavior is determined by evaluating the state of each visible table row. If all rows are selected, then the checkbox will appear selected, and deselecting the input should deselect all rows. If some or none of the rows are selected, the checkbox will appear deselected, and selecting the input should select all rows.
 
-```jsx-wide
+```jsxwide
 <Component initialState={{selectedStoreIds: []}}>
   {({state, setState}) => {
     const storeIds = ['#001', '#002'];
@@ -208,10 +208,10 @@ The column header checkbox input state and behavior is determined by evaluating 
     const onBulkSelectClick = () => {
       const {selectedStoreIds} = state;
 
-      selectedStoreIds.length > 0 ? deselectAll() : selectAll();
+      selectedStoreIds.length === storeIds.length ? deselectAll() : selectAll();
     }
 
-    const onRowClick = item => {
+    const onRowClick = (_event, {item}) => {
       rowIsSelected(item) ? deselectRow(item) : selectRow(item);
     }
 
