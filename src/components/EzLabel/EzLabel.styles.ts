@@ -1,6 +1,5 @@
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
-import {margin} from 'polished';
 import {hideVisually} from '../../styles';
 import styled, {Themed} from '../../themes/styled';
 
@@ -19,12 +18,12 @@ const size = variant('size', {
   normal: typography({shade: 700, size: 300}),
 });
 
-const top = ({theme}: Themed) => margin(null, null, theme.spacing.xs2, null);
-const bottom = ({theme}: Themed) => margin(theme.spacing.xs2, null, null, null);
+const top = ({theme}: Themed) => ({'margin-bottom': theme.spacing.xs2});
+const bottom = ({theme}: Themed) => ({'margin-top': theme.spacing.xs2});
 
 const left = ({theme}: Themed) => css`
   display: inline;
-  ${margin(null, theme.spacing.sm, null, null)};
+  margin-right: ${theme.spacing.sm};
 `;
 
 const error = ({error, theme}) =>

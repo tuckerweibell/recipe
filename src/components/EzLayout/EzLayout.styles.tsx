@@ -1,5 +1,4 @@
 import {css} from 'react-emotion';
-import {margin} from 'polished';
 import {responsive} from '../../styles';
 
 export const base = css`
@@ -57,7 +56,8 @@ export const layout = responsive('layout', {
 
 const setSpacing = (top, left) => css`
   > *:not(:first-child) {
-    ${margin(top, null, null, left)};
+    margin-top: ${top};
+    margin-left: ${left};
   }
 `;
 const leftSpacing = ({theme}) => setSpacing(null, theme.spacing.sm);
