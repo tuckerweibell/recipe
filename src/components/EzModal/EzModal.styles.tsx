@@ -1,5 +1,5 @@
 import {css} from 'react-emotion';
-import {padding, position} from 'polished';
+import {padding} from 'polished';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
 import styled, {Theme} from '../../themes/styled';
 
@@ -27,7 +27,11 @@ export const Overlay = styled(DialogOverlay)`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  ${position('fixed', 0, 0, 0, 0)};
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 `;
 
 export const ModalContainer = styled(DialogContent)`
