@@ -1,6 +1,5 @@
 import React from 'react';
 import {css} from 'react-emotion';
-import {borderRadius} from 'polished';
 import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
 
@@ -8,6 +7,13 @@ import styled from '../../themes/styled';
 const iconOffset = '24px';
 const inputBorderRadius = '4px';
 const calloutBorderRadius = '3px';
+
+function borderRadius(side: 'top' | 'bottom', radius: string | number) {
+  return css`
+    border-${side}-right-radius: ${radius};
+    border-${side}-left-radius: ${radius};
+  `;
+}
 
 const inputBase = ({theme}) => css`
   display: block;
