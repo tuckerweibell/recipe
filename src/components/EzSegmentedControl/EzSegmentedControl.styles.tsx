@@ -1,6 +1,7 @@
 import {css} from 'react-emotion';
 import styled, {Themed} from '../../themes/styled';
-import {hideVisually, shade} from 'polished';
+import {shade} from 'polished';
+import {hideVisually} from '../../styles';
 
 const label = ({theme}: Themed) => css`
   cursor: pointer;

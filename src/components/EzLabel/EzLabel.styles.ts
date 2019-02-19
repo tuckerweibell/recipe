@@ -1,6 +1,7 @@
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
-import {hideVisually, margin} from 'polished';
+import {margin} from 'polished';
+import {hideVisually} from '../../styles';
 import styled, {Themed} from '../../themes/styled';
 
 const base = ({theme}: Themed) => css`

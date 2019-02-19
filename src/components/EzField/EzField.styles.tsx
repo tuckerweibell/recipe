@@ -1,6 +1,7 @@
 import React from 'react';
 import {css} from 'react-emotion';
-import {borderRadius, hideVisually} from 'polished';
+import {borderRadius} from 'polished';
+import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
 
 // pre-calculate where to put the error icon (icon width + right padding of input)
