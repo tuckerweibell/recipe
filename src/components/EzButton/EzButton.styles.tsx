@@ -71,7 +71,12 @@ const tertiary = ({theme: {colors, spacing}, destructive}) => {
   return css`
     background: none;
     border: none;
+    padding: ${spacing.xs2} ${spacing.xs};
     ${elementStates('color', main)};
+
+    &:focus {
+      outline: auto;
+    }
   `;
 };
 
