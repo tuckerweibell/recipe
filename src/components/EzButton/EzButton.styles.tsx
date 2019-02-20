@@ -1,8 +1,7 @@
 import {css} from 'react-emotion';
 import styled from '../../themes/styled';
-import {shade} from 'polished';
 import variant from 'styled-component-variant';
-import {keyframes} from '../../styles';
+import {keyframes, darken} from '../../styles';
 
 const base = ({theme}) => css`
   cursor: pointer;
@@ -29,9 +28,9 @@ const disabled = ({disabled: isDisabled}) =>
 
 const elementStates = (style, color, focusColor?) => ({
   [style]: color,
-  '&:hover:enabled': {[style]: shade(0.85, color)},
+  '&:hover:enabled': {[style]: darken(color, 0.15)},
   '&:focus:enabled': focusColor && {[style]: focusColor},
-  '&:active:enabled': {[style]: shade(0.75, color)},
+  '&:active:enabled': {[style]: darken(color, 0.25)},
 });
 
 const outlineStyles = ({theme}) => css`
@@ -52,7 +51,7 @@ const primary = ({theme: {colors}, destructive}) => {
   return css`
     color: ${colors.primary.contrastText};
     border-color: ${main};
-    ${elementStates('border-color', main, shade(0.75, main))};
+    ${elementStates('border-color', main, darken(main, 0.25))};
     ${elementStates('background-color', main)};
   `;
 };
@@ -67,7 +66,7 @@ const secondary = ({theme: {colors}, destructive}) => {
   `;
 };
 
-const tertiary = ({theme: {colors}, destructive}) => {
+const tertiary = ({theme: {colors, spacing}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
     background: none;

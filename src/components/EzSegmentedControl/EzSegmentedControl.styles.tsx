@@ -1,6 +1,5 @@
 import {css} from 'react-emotion';
 import styled, {Themed} from '../../themes/styled';
-import {shade} from 'polished';
 import {hideVisually} from '../../styles';
 
 const label = ({theme}: Themed) => css`
@@ -30,9 +29,8 @@ const label = ({theme}: Themed) => css`
   }
 
   &:hover {
-    background-color: ${shade(0.97, 'white')};
-    border-color: ${shade(0.85, theme.colors.grays[400])};
-    color: ${shade(0.85, theme.colors.grays[700])};
+    background-color: ${theme.colors.grays[100]};
+    border-color: ${theme.colors.grays[500]};
   }
 
   input:checked + & {
