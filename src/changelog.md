@@ -7,6 +7,17 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.4.0
+
+#### Enhancements
+
+- Added focus styles for tertiary buttons (to improve accessibility)
+- Minor padding changes for tertiary buttons (to improve accessibility)
+
+#### Dependency upgrades
+
+- Removed peerDependency on polished (Fixes [#44](https://github.com/ezcater/recipe/issues/44))
+
 ## 2.3.0
 
 #### Enhancements
