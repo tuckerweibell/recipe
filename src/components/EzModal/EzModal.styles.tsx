@@ -1,7 +1,6 @@
 import {css} from 'react-emotion';
-import {padding} from 'polished';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
-import styled, {Theme} from '../../themes/styled';
+import styled from '../../themes/styled';
 
 const closeIconBorderRadius = '50%';
 const clickTargetPadding = '12px';
@@ -53,10 +52,10 @@ export const ModalContainer = styled(DialogContent)`
 `;
 
 const containerPadding = ({theme: {spacing, breakpoints}}) => css`
-  ${padding(spacing.md, spacing.xl)};
+  padding: ${spacing.md} ${spacing.xl};
 
   @media screen and (min-width: ${breakpoints.medium}) {
-    ${padding(spacing.xl, spacing.xl2)};
+    padding: ${spacing.xl} ${spacing.xl2};
   }
 `;
 

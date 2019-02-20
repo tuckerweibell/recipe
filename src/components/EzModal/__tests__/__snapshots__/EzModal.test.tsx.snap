@@ -52,10 +52,7 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 .recipe-5 {
-  padding-top: 1.1428571428571428rem;
-  padding-right: 1.7142857142857142rem;
-  padding-bottom: 1.1428571428571428rem;
-  padding-left: 1.7142857142857142rem;
+  padding: 1.1428571428571428rem 1.7142857142857142rem;
   -webkit-align-items: baseline;
   -webkit-box-align: baseline;
   -ms-flex-align: baseline;
@@ -76,10 +73,7 @@ exports[`EzModal should render with default styles 1`] = `
 
 @media screen and (min-width:48em) {
   .recipe-5 {
-    padding-top: 1.7142857142857142rem;
-    padding-right: 2.2857142857142856rem;
-    padding-bottom: 1.7142857142857142rem;
-    padding-left: 2.2857142857142856rem;
+    padding: 1.7142857142857142rem 2.2857142857142856rem;
   }
 }
 
@@ -112,10 +106,7 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 .recipe-7 {
-  padding-top: 1.1428571428571428rem;
-  padding-right: 1.7142857142857142rem;
-  padding-bottom: 1.1428571428571428rem;
-  padding-left: 1.7142857142857142rem;
+  padding: 1.1428571428571428rem 1.7142857142857142rem;
   -webkit-flex: auto;
   -ms-flex: auto;
   flex: auto;
@@ -124,10 +115,7 @@ exports[`EzModal should render with default styles 1`] = `
 
 @media screen and (min-width:48em) {
   .recipe-7 {
-    padding-top: 1.7142857142857142rem;
-    padding-right: 2.2857142857142856rem;
-    padding-bottom: 1.7142857142857142rem;
-    padding-left: 2.2857142857142856rem;
+    padding: 1.7142857142857142rem 2.2857142857142856rem;
   }
 }
 
@@ -138,10 +126,7 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 .recipe-15 {
-  padding-top: 1.1428571428571428rem;
-  padding-right: 1.7142857142857142rem;
-  padding-bottom: 1.1428571428571428rem;
-  padding-left: 1.7142857142857142rem;
+  padding: 1.1428571428571428rem 1.7142857142857142rem;
   background: #f4f7f8;
   border-top: 1px solid #e6e9eb;
   -webkit-flex: none;
@@ -151,10 +136,7 @@ exports[`EzModal should render with default styles 1`] = `
 
 @media screen and (min-width:48em) {
   .recipe-15 {
-    padding-top: 1.7142857142857142rem;
-    padding-right: 2.2857142857142856rem;
-    padding-bottom: 1.7142857142857142rem;
-    padding-left: 2.2857142857142856rem;
+    padding: 1.7142857142857142rem 2.2857142857142856rem;
   }
 }
 
