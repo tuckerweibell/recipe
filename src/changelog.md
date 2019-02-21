@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 3.0.0
+
+#### Breaking changes
+
+- Updated internals of EzField to use React hooks, which required a peerDependency bump of React to a >16.8 version.
+
 ## 2.4.1
 
 #### Dependency upgrades
