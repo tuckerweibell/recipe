@@ -14,7 +14,7 @@ module.exports = {
     '^.+\\.md?$': 'jest-raw-loader',
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(j|t)sx?$',
-  setupTestFrameworkScriptFile: '<rootDir>/jest.setup.tsx',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
   globals: {
     'ts-jest': {
       babelConfig: '<rootDir>/.babelrc',
