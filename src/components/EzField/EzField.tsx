@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
-import {use, useRef, useFocus, useHover, useInput} from '../../utils/hooks';
+import {useFocus, useHover, useInput} from '../../utils/hooks';
 import {filterValidProps} from '../../utils';
 import EzChoice from './EzChoice';
 import {Props} from './EzField.types';
@@ -57,7 +57,7 @@ const wrapEvents = (props, events) =>
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
  */
-const EzField = use((props: Props) => {
+const EzField = (props: Props) => {
   const {current: id} = useRef(getUniqueId());
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
   const isHtmlElement = htmlElements.includes(type as string);
@@ -87,7 +87,7 @@ const EzField = use((props: Props) => {
       )}
     </Field>
   );
-});
+};
 
 /**
  * defaultProps

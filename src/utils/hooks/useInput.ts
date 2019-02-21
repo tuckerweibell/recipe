@@ -1,5 +1,4 @@
-import React from 'react';
-import {useState} from './react';
+import React, {useState, useCallback} from 'react';
 
 type InputBindings<TValue> = {
   value: TValue;
@@ -8,7 +7,7 @@ type InputBindings<TValue> = {
 
 const useInput = <TValue>(initialValue: TValue): InputBindings<TValue> => {
   const [value, setValue] = useState(initialValue);
-  const onChange = e => setValue(e.target.value);
+  const onChange = useCallback(e => setValue(e.target.value), []);
 
   return {
     value,

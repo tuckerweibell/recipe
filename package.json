@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "peerDependencies": {
     "emotion": "^9.2.3",
-    "react": "^16.4.1",
+    "react": "^16.8.2",
     "react-emotion": "^9.2.3",
     "emotion-theming": "^9.2.3"
   },
