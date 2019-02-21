@@ -31,3 +31,13 @@ exports.createPages = ({actions, graphql}) => {
     );
   });
 };
+
+exports.onCreateWebpackConfig = ({actions}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        react: path.resolve(path.join(__dirname, './node_modules/react')),
+      },
+    },
+  });
+};
