@@ -7,6 +7,14 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 2.4.1
+
+#### Dependency upgrades
+
+- Updated minor version of @emotion/is-prop-valid dependency
+- Update patch version of @reach/dialog dependency
+- Updated various dev dependencies
+
 ## 2.4.0
 
 #### Enhancements
