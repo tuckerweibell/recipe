@@ -1,5 +1,6 @@
 import React from 'react';
 import {EzCard} from '../EzCard';
+import {EzCheckbox} from '../EzCheckbox';
 import {Table, Th, Td, TableCardSection} from './EzTable.styles';
 
 interface OnRowClickData {
@@ -41,9 +42,8 @@ type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
 
 const BulkSelector = ({items, onBulkSelectClick, rowIsSelected}) => (
   <Th numeric={false}>
-    <input
+    <EzCheckbox
       aria-label="Select all"
-      type="checkbox"
       onChange={event => onBulkSelectClick(event)}
       checked={items.every(item => rowIsSelected(item))}
     />
@@ -52,9 +52,8 @@ const BulkSelector = ({items, onBulkSelectClick, rowIsSelected}) => (
 
 const RowSelector = ({item, onRowClick, rowIsSelected}) => (
   <Td numeric={false}>
-    <input
+    <EzCheckbox
       aria-label="Select row"
-      type="checkbox"
       checked={rowIsSelected(item)}
       onChange={event => onRowClick(event, {item})}
     />
