@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 3.0.1
+
+#### Enhancements
+
+- Visual changes to the [EzTable bulk select](components/ez-table#bulk-row-selection) feature. Checkboxes now use custom styling rather than the browser default.
+
 ## 3.0.0
 
 #### Breaking changes
