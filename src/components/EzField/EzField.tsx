@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
-import {useFocus, useHover, useInput} from '../../utils/hooks';
+import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
 import {filterValidProps} from '../../utils';
 import EzChoice from './EzChoice';
 import {Props} from './EzField.types';
@@ -10,11 +10,6 @@ import {Props} from './EzField.types';
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
 const htmlElements = [...inputElements, 'textarea'];
-
-const getUniqueId = (() => {
-  let index = 1;
-  return () => `control$${index++}`;
-})();
 
 const Error = ({showError, error, active}: any) =>
   showError ? (
@@ -58,7 +53,7 @@ const wrapEvents = (props, events) =>
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
  */
 const EzField = (props: Props) => {
-  const {current: id} = useRef(getUniqueId());
+  const id = useUniqueId();
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
   const isHtmlElement = htmlElements.includes(type as string);
   const isChoiceElement = choiceElements.includes(type as string);
