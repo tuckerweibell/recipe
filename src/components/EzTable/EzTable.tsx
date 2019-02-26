@@ -43,7 +43,7 @@ type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
 const BulkSelector = ({items, onBulkSelectClick, rowIsSelected}) => (
   <Th numeric={false}>
     <EzCheckbox
-      aria-label="Select all"
+      label="Select all"
       onChange={event => onBulkSelectClick(event)}
       checked={items.every(item => rowIsSelected(item))}
     />
@@ -53,7 +53,7 @@ const BulkSelector = ({items, onBulkSelectClick, rowIsSelected}) => (
 const RowSelector = ({item, onRowClick, rowIsSelected}) => (
   <Td numeric={false}>
     <EzCheckbox
-      aria-label="Select row"
+      label="Select row"
       checked={rowIsSelected(item)}
       onChange={event => onRowClick(event, {item})}
     />
