@@ -207,7 +207,6 @@ exports[`EzModal should render with default styles 1`] = `
   font-weight: 700;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.2857142857142857rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;
@@ -255,7 +254,6 @@ exports[`EzModal should render with default styles 1`] = `
   font-weight: 700;
   line-height: 1em;
   min-height: 1em;
-  margin-right: 0.2857142857142857rem;
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-user-select: none;

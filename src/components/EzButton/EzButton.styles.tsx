@@ -11,7 +11,6 @@ const base = ({theme}) => css`
   font-weight: ${theme.fontWeights.bold};
   line-height: 1em;
   min-height: 1em;
-  margin-right: ${theme.spacing.xs2};
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
@@ -71,7 +70,6 @@ const tertiary = ({theme: {colors, spacing}, destructive}) => {
   return css`
     background: none;
     border: none;
-    padding: ${spacing.xs2} ${spacing.xs};
     ${elementStates('color', main)};
 
     &:focus {

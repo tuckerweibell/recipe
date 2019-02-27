@@ -1,7 +1,7 @@
 ---
 name: EzButton
 title: Button
-path: "/components/ez-button"
+path: '/components/ez-button'
 ---
 
 Buttons represent actions on a page that can be triggered with one click. Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
@@ -12,14 +12,14 @@ Buttons represent actions on a page that can be triggered with one click. Button
 
 Buttons should:
 
-* Be clearly labeled, or provide an accessible name (icon buttons)
-* Be positioned in consistent locations
-* Use spacing to separate them from other interactive content
-* Not wrap text. For maximum legibility, a label should remain on a single line
+- Be clearly labeled, or provide an accessible name (icon buttons)
+- Be positioned in consistent locations
+- Use spacing to separate them from other interactive content
+- Not wrap text. For maximum legibility, a label should remain on a single line
 
 Buttons should not:
 
-* Be used be used in place of a more semantic element. For example, favor anchors for navigation.
+- Be used be used in place of a more semantic element. For example, favor anchors for navigation.
 
 ---
 
@@ -60,7 +60,7 @@ Tertiary buttons should also be used when space is a constraint or when content 
 When an action will delete data, or discard the current page state, a destructive button should be used. Destructive buttons should trigger a confirmation dialog before the action is completed. Destructive buttons should typically be secondary buttons, but are promoted to primary buttons on confirmation dialogs.
 
 ```jsx
-<div>
+<EzLayout layout="basic">
   <EzButton use="secondary" destructive>
     Delete Draft
   </EzButton>
@@ -70,7 +70,7 @@ When an action will delete data, or discard the current page state, a destructiv
   <EzButton use="tertiary" destructive>
     Delete Item
   </EzButton>
-</div>
+</EzLayout>
 ```
 
 ### Disabled State

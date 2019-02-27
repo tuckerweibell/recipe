@@ -3,9 +3,10 @@ import EzButton from '../EzButton';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import markdown from '../EzButton.md';
+import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
-const scope = {EzButton};
+const scope = {EzButton, EzLayout};
 
 describe('EzButton', () => {
   visualSnapshots({markdown, scope});
