@@ -39,7 +39,7 @@ const borders = ({theme}) => css`
 `;
 
 type CellProps = {
-  numeric: boolean;
+  numeric?: boolean;
 };
 
 export const Th = styled.th<CellProps>(cell, heading);

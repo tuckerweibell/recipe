@@ -34,15 +34,15 @@ describe('EzTable', () => {
 
   describe('bulk-select', () => {
     describe('when a bulk-select is requested', () => {
-      const onRowClick = jest.fn();
+      const onRowSelectClick = jest.fn();
       const onBulkSelectClick = jest.fn();
-      const rowIsSelected = jest.fn() as any;
-      const props = {columns, items, onBulkSelectClick, onRowClick, rowIsSelected};
+      const isRowSelected = jest.fn() as any;
+      const props = {columns, items, onBulkSelectClick, onRowSelectClick, isRowSelected};
 
       beforeEach(() => {
-        onRowClick.mockClear();
+        onRowSelectClick.mockClear();
         onBulkSelectClick.mockClear();
-        rowIsSelected.mockImplementation(() => false);
+        isRowSelected.mockImplementation(() => false);
       });
 
       it('renders a bulk-select input in a column header', () => {
@@ -74,17 +74,17 @@ describe('EzTable', () => {
           });
 
           it('is checked when every row has been selected', () => {
-            rowIsSelected.mockImplementation(() => true);
+            isRowSelected.mockImplementation(() => true);
             expectedState = true;
           });
 
           it('is not checked when only some rows are selected', () => {
-            rowIsSelected.mockImplementation(item => item.id === items[0].id);
+            isRowSelected.mockImplementation(item => item.id === items[0].id);
             expectedState = false;
           });
 
           it('is not checked when no rows are selected', () => {
-            rowIsSelected.mockImplementation(() => false);
+            isRowSelected.mockImplementation(() => false);
             expectedState = false;
           });
         });
@@ -96,12 +96,12 @@ describe('EzTable', () => {
 
           fireEvent.click(rowSelectInputs[0]);
 
-          expect(onRowClick).toHaveBeenCalledTimes(1);
-          expect(onRowClick).toHaveBeenCalledWith(expect.any(Object), {item: items[0]});
+          expect(onRowSelectClick).toHaveBeenCalledTimes(1);
+          expect(onRowSelectClick).toHaveBeenCalledWith(expect.any(Object), {item: items[0]});
         });
 
         it('determines its checked state based on the provided function', () => {
-          rowIsSelected.mockImplementation(item => item.id === items[0].id);
+          isRowSelected.mockImplementation(item => item.id === items[0].id);
 
           const {rowSelectInputs} = render(props);
 
@@ -129,8 +129,8 @@ describe('EzTable', () => {
           columns={columns}
           items={items}
           onBulkSelectClick={() => null}
-          onRowClick={() => null}
-          rowIsSelected={() => false}
+          onRowSelectClick={() => null}
+          isRowSelected={() => false}
         />
       );
       const actual = await axe(wrapper);

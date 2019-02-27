@@ -3,34 +3,22 @@ import {EzCard} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
 import {Table, Th, Td, TableCardSection} from './EzTable.styles';
 
-interface OnRowClickData {
-  item: object;
-}
-
-interface OnRowClick {
-  (event?: object, data?: OnRowClickData): null;
-}
-
-interface OnBulkSelectClick {
-  (event?: object): null;
-}
-
-interface RowIsSelected {
-  (item: object): boolean;
-}
-
 type Column = {
   heading: string;
   accessor: any;
   numeric?: boolean;
 };
 
-type BulkSelectionDisabled = {onBulkSelectClick?: never; onRowClick?: never; rowIsSelected?: never};
+type BulkSelectionDisabled = {
+  onBulkSelectClick?: never;
+  onRowSelectClick?: never;
+  isRowSelected?: never;
+};
 
 type BulkSelectionProps = {
-  onRowClick: OnRowClick;
-  onBulkSelectClick: OnBulkSelectClick;
-  rowIsSelected: RowIsSelected;
+  onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
+  onBulkSelectClick: React.MouseEventHandler;
+  isRowSelected: (item: any) => boolean;
 };
 
 type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
@@ -40,35 +28,17 @@ type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
   items: any[];
 };
 
-const BulkSelector = ({items, onBulkSelectClick, rowIsSelected}) => (
-  <Th numeric={false}>
-    <EzCheckbox
-      label="Select all"
-      onChange={event => onBulkSelectClick(event)}
-      checked={items.every(item => rowIsSelected(item))}
-    />
-  </Th>
-);
-
-const RowSelector = ({item, onRowClick, rowIsSelected}) => (
-  <Td numeric={false}>
-    <EzCheckbox
-      label="Select row"
-      checked={rowIsSelected(item)}
-      onChange={event => onRowClick(event, {item})}
-    />
-  </Td>
-);
-
-const Thead = ({columns, items, onBulkSelectClick, rowIsSelected}) => (
+const Thead = ({columns, items, onBulkSelectClick, isRowSelected}) => (
   <thead>
     <tr>
       {onBulkSelectClick && (
-        <BulkSelector
-          items={items}
-          onBulkSelectClick={onBulkSelectClick}
-          rowIsSelected={rowIsSelected}
-        />
+        <Th>
+          <EzCheckbox
+            label="Select all"
+            onChange={onBulkSelectClick}
+            checked={items.every(isRowSelected)}
+          />
+        </Th>
       )}
       {columns.map(({heading, numeric}, cellIndex) => (
         <Th key={cellIndex} numeric={numeric}>
@@ -79,12 +49,18 @@ const Thead = ({columns, items, onBulkSelectClick, rowIsSelected}) => (
   </thead>
 );
 
-const Tbody = ({columns, items, onBulkSelectClick, onRowClick, rowIsSelected}) => (
+const Tbody = ({columns, items, onRowSelectClick, isRowSelected}) => (
   <tbody>
     {items.map((item, rowIndex) => (
       <tr key={rowIndex}>
-        {onBulkSelectClick && (
-          <RowSelector item={item} rowIsSelected={rowIsSelected} onRowClick={onRowClick} />
+        {onRowSelectClick && (
+          <Td>
+            <EzCheckbox
+              label="Select row"
+              checked={isRowSelected(item)}
+              onChange={event => onRowSelectClick(event, {item})}
+            />
+          </Td>
         )}
         {columns.map(({accessor, numeric}, cellIndex) => (
           <Td key={cellIndex} numeric={numeric}>
@@ -107,8 +83,8 @@ const EzTable: React.SFC<TableProps> = ({
   columns,
   items,
   onBulkSelectClick,
-  onRowClick,
-  rowIsSelected,
+  onRowSelectClick,
+  isRowSelected,
 }) => {
   const table = (
     <Table>
@@ -116,27 +92,24 @@ const EzTable: React.SFC<TableProps> = ({
         columns={columns}
         items={items}
         onBulkSelectClick={onBulkSelectClick}
-        rowIsSelected={rowIsSelected}
+        isRowSelected={isRowSelected}
       />
       <Tbody
         columns={columns}
         items={items}
-        onBulkSelectClick={onBulkSelectClick}
-        onRowClick={onRowClick}
-        rowIsSelected={rowIsSelected}
+        onRowSelectClick={onRowSelectClick}
+        isRowSelected={isRowSelected}
       />
     </Table>
   );
 
-  if (title) {
-    return (
-      <EzCard title={title} subtitle={subtitle}>
-        <TableCardSection>{table}</TableCardSection>
-      </EzCard>
-    );
-  }
+  if (!title) return table;
 
-  return table;
+  return (
+    <EzCard title={title} subtitle={subtitle}>
+      <TableCardSection>{table}</TableCardSection>
+    </EzCard>
+  );
 };
 
 export default EzTable;

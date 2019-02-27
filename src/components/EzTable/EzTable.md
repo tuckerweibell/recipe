@@ -163,9 +163,9 @@ Use when more fine-grained control over the table content is desired (in favor o
 
 Use when multiple rows of a table can be selected together in order to perform an action in bulk.
 
-Providing the bulk select event handler props (`onRowClick`, `onBulkSelectClick`, `rowIsSelected`) will add a column to each table row containing a checkbox input, along with a corresponding column header containing a checkbox input.
+Providing the bulk select event handler props (`onRowSelectClick`, `onBulkSelectClick`, `isRowSelected`) will add a column to each table row containing a checkbox input, along with a corresponding column header containing a checkbox input.
 
-The row-level checkbox input can be toggled to indicate that the current row should be included in a particular action. This functionality is handled by the `rowIsSelected` and `onRowClick` props. `rowIsSelected` is a Function that is used to determine the row-level checkbox input state. It is called when rendering each row, and is passed the row's `item` object as the single argument. `onRowClick` is a Function that is bound to the row-level checkbox input change handler. It is called when the input state changes, and is passed the row's `item` object as the single argument.
+The row-level checkbox input can be toggled to indicate that the current row should be included in a particular action. This functionality is handled by the `isRowSelected` and `onRowSelectClick` props. `isRowSelected` is a Function that is used to determine the row-level checkbox input state. It is called when rendering each row, and is passed the row's `item` object as the single argument. `onRowSelectClick` is a Function that is bound to the row-level checkbox input change handler. It is called when the input state changes, and is passed the row's `item` object as the single argument.
 
 The column header checkbox input can be toggled to select or deselect all currently visible rows. This functionality is handled by the `onBulkSelectClick` prop. This should be a Function that handles the behavior of selecting or deselecting all the visible table rows.
 
@@ -200,7 +200,7 @@ The column header checkbox input state and behavior is determined by evaluating 
       setState({selectedStoreIds: newStoreIds});
     }
 
-    const rowIsSelected = item => {
+    const isRowSelected = item => {
       const {selectedStoreIds} = state;
       return selectedStoreIds.some(id => id === item.id);
     }
@@ -211,8 +211,8 @@ The column header checkbox input state and behavior is determined by evaluating 
       selectedStoreIds.length === storeIds.length ? deselectAll() : selectAll();
     }
 
-    const onRowClick = (_event, {item}) => {
-      rowIsSelected(item) ? deselectRow(item) : selectRow(item);
+    const onRowSelectClick = (_event, {item}) => {
+      isRowSelected(item) ? deselectRow(item) : selectRow(item);
     }
 
     return (
@@ -221,8 +221,8 @@ The column header checkbox input state and behavior is determined by evaluating 
           title="All Stores"
           subtitle="Compared to the same period last year"
           onBulkSelectClick={onBulkSelectClick}
-          onRowClick={onRowClick}
-          rowIsSelected={rowIsSelected}
+          onRowSelectClick={onRowSelectClick}
+          isRowSelected={isRowSelected}
           columns={[
             {heading: 'Store name', accessor: 'store'},
             {heading: 'Total sales', accessor: 'total', numeric: true},
