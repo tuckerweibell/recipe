@@ -125,38 +125,36 @@ Used whenever the tablular data alone represents a cohesive set of content. Shou
 Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content).
 
 ```jsxwide
-<Component>
-  {() => {
-    // declare any component to define your custom column template
-    const StoreName = ({item: {store, id}}) => (
+() => {
+  // declare any component to define your custom column template
+  const StoreName = ({item: {store, id}}) => (
+    <div>
       <div>
-        <div>
-          <a href="javascript:void(0);">{store}</a>
-        </div>
-        <div>
-          <EzTextStyle use="subdued">{id}</EzTextStyle>
-        </div>
+        <a href="javascript:void(0);">{store}</a>
       </div>
-    );
+      <div>
+        <EzTextStyle use="subdued">{id}</EzTextStyle>
+      </div>
+    </div>
+  );
 
-    return (
-      <EzPage>
-        <EzTable
-          title="All Stores"
-          subtitle="Compared to the same period last year"
-          columns={[
-            {heading: 'Store name', accessor: StoreName},
-            {heading: 'Total sales', accessor: 'total', numeric: true},
-            {heading: 'Average order value', accessor: 'average', numeric: true}
-          ]}
-          items={[
-            {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
-            {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
-          ]} />
-      </EzPage>
-    );
-  }}
-</Component>
+  return (
+    <EzPage>
+      <EzTable
+        title="All Stores"
+        subtitle="Compared to the same period last year"
+        columns={[
+          {heading: 'Store name', accessor: StoreName},
+          {heading: 'Total sales', accessor: 'total', numeric: true},
+          {heading: 'Average order value', accessor: 'average', numeric: true}
+        ]}
+        items={[
+          {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
+          {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
+        ]} />
+    </EzPage>
+  );
+}
 ```
 
 ### Bulk row selection
@@ -172,68 +170,46 @@ The column header checkbox input can be toggled to select or deselect all curren
 The column header checkbox input state and behavior is determined by evaluating the state of each visible table row. If all rows are selected, then the checkbox will appear selected, and deselecting the input should deselect all rows. If some or none of the rows are selected, the checkbox will appear deselected, and selecting the input should select all rows.
 
 ```jsxwide
-<Component initialState={{selectedStoreIds: []}}>
-  {({state, setState}) => {
-    const storeIds = ['#001', '#002'];
+() => {
+  const items = [
+    {store: '123 Example Store', total: 23267, average: 327.79},
+    {store: '45 Meadowview Lane', total: 22788, average: 367.55},
+  ];
 
-    const selectAll = () => {
-      setState({selectedStoreIds: storeIds});
-    }
+  const Table = () => {
+    const [selection, setSelection] = React.useState([]);
 
-    const deselectAll = () => {
-      setState({selectedStoreIds: []});
-    }
-
-    const selectRow = item => {
-      const {selectedStoreIds} = state;
-
-      if (!selectedStoreIds.includes(item.id)) {
-        const newStoreIds = [...selectedStoreIds];
-        newStoreIds.push(item.id);
-        setState({selectedStoreIds: newStoreIds});
-      }
-    }
-
-    const deselectRow = item => {
-      const {selectedStoreIds} = state;
-      const newStoreIds = [...selectedStoreIds].filter(id => id !== item.id);
-      setState({selectedStoreIds: newStoreIds});
-    }
-
-    const isRowSelected = item => {
-      const {selectedStoreIds} = state;
-      return selectedStoreIds.some(id => id === item.id);
-    }
+    const selectRow = item => setSelection(selection.concat(item));
+    const deselectRow = item => setSelection(selection.filter(x => x !== item));
+    const isRowSelected = item => selection.includes(item);
 
     const onBulkSelectClick = () => {
-      const {selectedStoreIds} = state;
-
-      selectedStoreIds.length === storeIds.length ? deselectAll() : selectAll();
-    }
+      const newSelection = selection.length === items.length ? [] : items;
+      setSelection(newSelection);
+    };
 
     const onRowSelectClick = (_event, {item}) => {
       isRowSelected(item) ? deselectRow(item) : selectRow(item);
-    }
+    };
 
     return (
       <EzPage>
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
-          onBulkSelectClick={onBulkSelectClick}
           onRowSelectClick={onRowSelectClick}
+          onBulkSelectClick={onBulkSelectClick}
           isRowSelected={isRowSelected}
           columns={[
             {heading: 'Store name', accessor: 'store'},
             {heading: 'Total sales', accessor: 'total', numeric: true},
             {heading: 'Average order value', accessor: 'average', numeric: true}
           ]}
-          items={[
-            {id: storeIds[0], store: '123 Example Store', total: 23267, average: 327.79},
-            {id: storeIds[1], store: '45 Meadowview Lane', total: 22788, average: 367.55},
-          ]} />
+          items={items} />
       </EzPage>
     );
-  }}
-</Component>
+  }
+
+  return <Table />;
+}
 ```
