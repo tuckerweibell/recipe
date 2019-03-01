@@ -7,6 +7,26 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.0.0
+
+#### Breaking changes
+
+- Removed `margin-right` from [EzButton](/components/ez-button). To apply spacing between buttons, the preferred approach is to use an [EzLayout](/components/ez-layout) as the direct parent of the buttons.
+- Removed padding from the [`tertiary` variant of EzButton](/components/ez-button#tertiary-button). As with other buttons, spacing between sibling buttons should be applied via a direct parent [EzLayout](/components/ez-layout).
+- Replaced `onRowClick` property on [EzTable](/components/ez-table) with `onRowSelectClick` to more closely align with the existing `onBulkSelectClick` property.
+- Replaced `rowIsSelected` property on [EzTable](/components/ez-table) with `isRowSelected`. Using question phrasing to more clearly indicate that this property is a function.
+
+#### Enhancements
+
+- Simplified internal type definitions for [EzTable](/components/ez-table) bulk selection properties. Replaced custom type definitions for click handlers with `React.MouseEvent` based handlers.
+
+#### Documentation
+
+- Simplified [EzTable](/components/ez-table) examples in the documentation
+  - Replaced `Component` wrapper for state with `useState` hooks
+  - Remove unneeded `Component` wrapper from example that didn't use state
+  - Use reference equality for bulk selection example to simplify selection logic
+
 ## 3.0.1
 
 #### Enhancements
