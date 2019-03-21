@@ -65,11 +65,12 @@ const secondary = ({theme: {colors}, destructive}) => {
   `;
 };
 
-const tertiary = ({theme: {colors, spacing}, destructive}) => {
+const tertiary = ({theme: {colors}, destructive}) => {
   const {main} = destructive ? colors.destructive : colors.primary;
   return css`
     background: none;
     border: none;
+    padding: 0;
     ${elementStates('color', main)};
 
     &:focus {
