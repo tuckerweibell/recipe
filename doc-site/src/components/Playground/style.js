@@ -49,7 +49,7 @@ export const StyledEditor = styled(LiveEditor)`
 
 export const StyledPreview = styled(LivePreview)`
   position: relative;
-  padding: 1rem;
+  padding: ${({wide}) => (wide ? 0 : '1rem')};
   background: white;
   color: black;
   height: auto;
