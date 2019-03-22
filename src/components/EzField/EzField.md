@@ -9,7 +9,7 @@ Form fields provide inputs for form data, such as text, dates, emails and other 
 
 <EzAlert
   headline="This component is under development"
-  tagline="There will likely be breaking changes to the API. Proceeed with caution."
+  tagline="There will likely be breaking changes to the API. Proceed with caution."
   use="warning"
 />
 
@@ -81,7 +81,7 @@ Allows the user to provide numeric input values.
 
 ### Multiple choice input field
 
-Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or checkboxes. Use `type="checkbox"` to enable the user to select multiple choices, or `type="radio"` to enable the user to select only one choice.
+Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to enable the user to select multiple choices, or `type="radio"` to enable the user to select only one choice.
 
 ```jsx
 <Component initialState={{selectedChoice: null, selectedChoices: []}}>

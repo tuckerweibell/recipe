@@ -21,7 +21,7 @@ Features still in consideration include:
 
 - Responsive variants (cards with repeated labels, transpose table)
 - Column pinning to support horizontal scrolling
-- Headerless table
+- Header-less table
 - Sorting
 - Filtering
 - Row hover styles (interactive)
@@ -29,7 +29,7 @@ Features still in consideration include:
 - Pagination
 - Table Actions (print, download etc)
 - Column width options (fixed, grow, auto, ellipsis, tooltip)
-- Headerless columns (content between columns, e.g. formula operators)
+- Header-less columns (content between columns, e.g. formula operators)
 - Sticky headers
 
 ---
@@ -69,7 +69,7 @@ Tables can also:
 
 ### Simple table
 
-Used whenever the tablular data is directly related to the preceeding or subsequent content. Simple tables should be used as a direct child of a [Card](/components/ez-card) component.
+Used whenever the tabular data is directly related to the preceding or subsequent content. Simple tables should be used as a direct child of a [Card](/components/ez-card) component.
 
 ```jsxwide
 <EzPage>
@@ -101,7 +101,7 @@ Used whenever the tablular data is directly related to the preceeding or subsequ
 
 ### Tables that fill a Card
 
-Used whenever the tablular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional actions.
+Used whenever the tabular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional actions.
 
 ```jsxwide
 <EzPage>

@@ -1,7 +1,7 @@
 ---
 name: EzSegmentedControl
 title: Segmented Control
-path: "/components/ez-segmented-control"
+path: '/components/ez-segmented-control'
 ---
 
 A segmented control is a group of two or more options which function as mutually exclusive buttons. Within the control, all segments are equal width.
@@ -12,9 +12,9 @@ A segmented control is a group of two or more options which function as mutually
 
 Segmented controls should:
 
-* Have a limited number of options
-* Try to keep segment content size consistent
-* Avoid mixing text and icons inside a Segmented Control
+- Have a limited number of options
+- Try to keep segment content size consistent
+- Avoid mixing text and icons inside a Segmented Control
 
 ---
 
@@ -96,4 +96,4 @@ Used to indicate to the user that an action is not currently available. Disabled
 
 ## Related components
 
-* For individal buttons, [use the button component](/components/ez-button)
+- For individual buttons, [use the button component](/components/ez-button)

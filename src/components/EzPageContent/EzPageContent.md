@@ -7,7 +7,7 @@ path: '/components/ez-page-content'
 
 <EzAlert
   headline="This component is deprecated"
-  tagline="EzPage Content and EzContentGroup are deprecated. Use EzPage and EzPageLayout for new pages instead."
+  tagline="EzPage Content and EzContentGroup are deprecated. Use EzPage and EzLayout for new pages instead."
   use="error"
 />
 
@@ -99,3 +99,4 @@ Content Groups can be laid out horizontally.
 ## Related components
 
 - [Card](/components/ez-card)
+- [Page](/components/ez-page)

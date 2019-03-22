@@ -31,7 +31,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 #### Enhancements
 
-- Visual changes to the [EzTable bulk select](components/ez-table#bulk-row-selection) feature. Checkboxes now use custom styling rather than the browser default.
+- Visual changes to the [EzTable bulk select](components/ez-table#bulk-row-selection) feature. Check boxes now use custom styling rather than the browser default.
 
 ## 3.0.0
 
@@ -77,13 +77,13 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 #### Bug fixes
 
-- fixed type definiton of `EzButton` onClick to `MouseEventHandler`
+- fixed type definition of `EzButton` onClick to `MouseEventHandler`
 
 #### Documentation
 
 - Added titles to [EzHeading](/components/ez-heading) docs
 
-#### Development wokflow
+#### Development workflow
 
 - Fixed `npm run build:watch` mode for TypeScript builds
 
@@ -121,7 +121,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 - Removed empty bullet list of "related components" section in several components
 - Updated structure of `EzModal` docs to follow the same format of other components
-  - Removed "props table" style documentation in favor of demonstrating how properties are applied to achieve various usecases
+  - Removed "props table" style documentation in favor of demonstrating how properties are applied to achieve various use cases
 
 ## 2.0.0-alpha.1
 
@@ -151,7 +151,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 #### Bug fixes
 
 - EzModal close button stretching when heading flows onto multiple lines
-- Render bug with EzModal and EzHeading causing unnecessary rerenders and event handlers to be removed/reapplied every render
+- Render bug with EzModal and EzHeading causing unnecessary re-renders and event handlers to be removed/reapplied every render
 
 #### Documentation
 

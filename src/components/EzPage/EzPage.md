@@ -54,7 +54,7 @@ Page will provide appropriate margin on Headings.
 
 ### Page Sections
 
-You can use `EzPageSection` to create layouts that have a left or right sidebar. Passing `use="aside"` createds a sidebar and `use="main"` creates the associated "two thirds ish" section.
+You can use `EzPageSection` to create layouts that have a left or right sidebar. Passing `use="aside"` creates a sidebar and `use="main"` creates the associated "two thirds ish" section.
 
 ```jsxwide
 <EzPage>

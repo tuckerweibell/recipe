@@ -11,7 +11,7 @@ Form layouts are used to arrange fields within a form using standard spacing. Fi
 
 <EzAlert
   headline="This component is under development"
-  tagline="There will likely be breaking changes to the API. Proceeed with caution."
+  tagline="There will likely be breaking changes to the API. Proceed with caution."
   use="warning"
 />
 
