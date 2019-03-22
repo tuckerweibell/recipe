@@ -7,6 +7,25 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.1.0
+
+#### New components
+
+- Added new [EzPageHeader](/components/ez-page-header) component
+
+#### Documentation
+
+- Fixed spelling/typos in changelog and other docs
+- Corrected deprecation warning of EzPageContent component to refer to EzLayout
+
+#### Dependency upgrades
+
+- Switched usage of React.SFC to React.FC as [React.SFC is now deprecated](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/30364).
+
+#### Development workflow
+
+- Removed google font loading service from visual testing path to reduce visual test flakiness caused by delay in font-loading
+
 ## 4.0.0
 
 #### Breaking changes
