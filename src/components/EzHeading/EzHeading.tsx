@@ -13,7 +13,7 @@ type HeadingProps = {
 /**
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
-const EzHeading: React.SFC<HeadingProps> = ({
+const EzHeading: React.FC<HeadingProps> = ({
   as,
   children: title,
   className,

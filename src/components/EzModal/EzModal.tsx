@@ -48,7 +48,7 @@ type Props = {
   appElement?: string;
 };
 
-const EzModal: React.SFC<Props> = ({
+const EzModal: React.FC<Props> = ({
   children,
   headerText,
   destructive,

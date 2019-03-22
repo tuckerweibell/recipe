@@ -34,7 +34,7 @@ type CardProps = (ActionsProps | OptionalTitle) & {
 /**
  * Cards are the primary means of grouping sections on a page.
  */
-const EzCard: React.SFC<CardProps> = ({title, subtitle, accent, actions, ...props}) => {
+const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, ...props}) => {
   const heading = title && (
     <EzHeading size="3" subheading={subtitle}>
       {title}

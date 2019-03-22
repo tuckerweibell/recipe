@@ -24,8 +24,8 @@ type TertiaryProps = {
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-// const EzButton: React.SFC<ButtonProps> = props =>
-const EzButton: React.SFC<ButtonProps> = props => createElement(StyledButton, buildProps(props));
+// const EzButton: React.FC<ButtonProps> = props =>
+const EzButton: React.FC<ButtonProps> = props => createElement(StyledButton, buildProps(props));
 
 const buildProps = (props: ButtonProps) => {
   if (props.use === 'tertiary') {

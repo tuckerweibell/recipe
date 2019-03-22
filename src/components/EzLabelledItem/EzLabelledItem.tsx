@@ -12,7 +12,7 @@ type ItemProps = {
   title: string;
 };
 
-const EzLabelledItem: React.SFC<ItemProps> = ({children, position: labelPosition, size, title}) => (
+const EzLabelledItem: React.FC<ItemProps> = ({children, position: labelPosition, size, title}) => (
   <div>
     {labelPosition === 'bottom' && children}
     <Label position={labelPosition} size={size}>

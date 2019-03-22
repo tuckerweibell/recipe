@@ -8,7 +8,7 @@ type Props = {
   checked: boolean;
 };
 
-const EzCheckbox: React.SFC<Props> = ({label, checked, onChange}) => {
+const EzCheckbox: React.FC<Props> = ({label, checked, onChange}) => {
   const id = useUniqueId();
   return (
     <SvgCheckbox htmlFor={id}>

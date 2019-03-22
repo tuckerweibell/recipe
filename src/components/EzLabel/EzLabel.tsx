@@ -29,7 +29,7 @@ const labels = {
 /**
  * A component to provide consistent styling for Primary and Secondary labels.
  */
-const EzLabel: React.SFC<Props> = ({as, ...props}) => {
+const EzLabel: React.FC<Props> = ({as, ...props}) => {
   const Label = labels[as] as React.ComponentClass;
   return <Label {...props} />;
 };

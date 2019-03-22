@@ -25,7 +25,7 @@ type HtmlInputProps = {
 };
 
 type CustomFieldProps = {
-  type: React.SFC<any> | React.ComponentClass<any>;
+  type: React.FC<any> | React.ComponentClass<any>;
   value?: any;
 };
 

@@ -77,7 +77,7 @@ const Tbody = ({columns, items, onRowSelectClick, isRowSelected}) => (
  * so that users can look for patterns and insights.
  * They can be embedded in primary content, such as cards.
  */
-const EzTable: React.SFC<TableProps> = ({
+const EzTable: React.FC<TableProps> = ({
   title,
   subtitle,
   columns,

@@ -22,7 +22,7 @@ type Props = React.FieldsetHTMLAttributes<any> & {
 /**
  * EzSegmentedControls present mutually exclusive options as buttons.
  */
-const EzSegmentedControl: React.SFC<Props> = ({
+const EzSegmentedControl: React.FC<Props> = ({
   active,
   className,
   label,

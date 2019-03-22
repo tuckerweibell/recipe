@@ -23,7 +23,7 @@ type AlertProps = {
  * Alerts represent highlighted messages on a page that call out important information.
  * Alerts can be used both with page content as well as a subheader as a status for the entire page.
  */
-const EzAlert: React.SFC<AlertProps> = ({arrow, tagline, headline, use}) => (
+const EzAlert: React.FC<AlertProps> = ({arrow, tagline, headline, use}) => (
   <AlertContainer arrow={arrow} use={use}>
     {icons[use]}
     <AlertContent>

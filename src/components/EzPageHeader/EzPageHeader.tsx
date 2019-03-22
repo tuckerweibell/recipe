@@ -23,7 +23,7 @@ const StyledActions = styled.div(actions as any);
 /**
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.
  */
-const EzPageHeader: React.SFC<HeaderProps> = ({actions, breadcrumb, status, title}) => (
+const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title}) => (
   <StyledHeading>
     <EzLayout
       layout={{
