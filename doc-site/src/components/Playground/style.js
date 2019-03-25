@@ -51,7 +51,6 @@ export const StyledPreview = styled(LivePreview)`
   position: relative;
   padding: ${({wide}) => (wide ? 0 : '1rem')};
   background: white;
-  color: black;
   height: auto;
   overflow: hidden;
 `;
