@@ -9,6 +9,8 @@ html {
 body {
   margin: 0;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 article,
 aside,
@@ -200,7 +202,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: #565a5c;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
