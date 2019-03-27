@@ -213,3 +213,46 @@ The column header checkbox input state and behavior is determined by evaluating 
   return <Table />;
 }
 ```
+
+### With sortable columns
+
+Use column sorting to help users find items quicker in larger data sets. Column sorting is switched off for all columns by default. Table data can only be sorted by a single column at a time.
+
+To turn on column sorting, set the `sortBy` property for each column where sorting is supported. `sortBy` is a string identifying the attribute to be sorted on. It should be a value that can be used by the client when executing the sort functionality.
+
+The client code must also provide an `onSortClick` function as a prop to `EzTable`. When the column header for a sortable column is clicked, `EzTable` will notify the client that sorting is requested by calling the provided `onSortClick` function. The function is called with the click event as the first argument, and an object with the properties `column` and `direction` as the second argument. `column` is the object representing the column being sorted (of which `sortBy` is a property), and `direction` is a string whose value represents the direction the sort should use, either `asc` or `desc`. The default sort direction is `asc`.
+
+```jsxwide
+() => {
+  const initialItems = [
+    {name: 'Joan Jett', storeCount: 12},
+    {name: 'David Bowie', storeCount: 6},
+  ];
+
+  const Table = () => {
+    const [items, updateItems] = React.useState(initialItems);
+
+    const onSortClick = (_event, {column, direction}) => {
+      const newItems = [...items].sort(
+        (a, b) => (a[column.sortBy] > b[column.sortBy]) ? 1 : -1
+      );
+      updateItems(direction === 'desc' ? newItems.reverse() : newItems)
+    };
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          onSortClick={onSortClick}
+          columns={[
+            {heading: 'Name', accessor: 'name', sortBy: 'NAME'},
+            {heading: 'Store Count', accessor: 'storeCount', sortBy: 'STORE_COUNT'},
+          ]}
+          items={items} />
+      </EzPage>
+    );
+  }
+
+  return <Table />;
+}
+```
