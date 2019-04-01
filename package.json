@@ -66,7 +66,9 @@
     "build:watch": "npm run build:js -- --watch",
     "create-component": "plop component",
     "test": "jest --coverage --no-cache",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "lint": "ez-scripts lint",
+    "lint:fix": "ez-scripts lint --fix"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.3",

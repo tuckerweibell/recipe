@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+doc-site
+dist/
+build/
+lib/
+.next/
+.github/
