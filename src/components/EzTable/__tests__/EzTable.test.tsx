@@ -32,6 +32,61 @@ describe('EzTable', () => {
     };
   }
 
+  describe('column sorting', () => {
+    describe('when the user requests a column to be sorted', () => {
+      const onSortClick = jest.fn();
+      const sortableColumns = [
+        {heading: 'Store name', accessor: 'name', sortable: true},
+        {heading: 'Total sales', accessor: 'total', sortable: true},
+      ];
+      const props = {columns: sortableColumns, items, onSortClick};
+      const mockEvent = expect.any(Object);
+
+      beforeEach(() => {
+        onSortClick.mockClear();
+      });
+
+      it('notifies the client that sort is requested', () => {
+        const {getByText} = fullRender(<EzTable {...props} />);
+
+        fireEvent.click(getByText(sortableColumns[0].heading));
+
+        expect(onSortClick).toHaveBeenCalledTimes(1);
+        expect(onSortClick).toHaveBeenCalledWith(
+          mockEvent,
+          expect.objectContaining({
+            column: sortableColumns[0],
+            direction: 'asc',
+          })
+        );
+      });
+
+      it('can sort a single column in both ascending and descending order', () => {
+        const {getByText} = fullRender(<EzTable {...props} />);
+
+        fireEvent.click(getByText(sortableColumns[1].heading));
+
+        expect(onSortClick).toHaveBeenCalledWith(
+          mockEvent,
+          expect.objectContaining({
+            column: sortableColumns[1],
+            direction: 'asc',
+          })
+        );
+
+        fireEvent.click(getByText(sortableColumns[1].heading));
+
+        expect(onSortClick).toHaveBeenCalledWith(
+          mockEvent,
+          expect.objectContaining({
+            column: sortableColumns[1],
+            direction: 'desc',
+          })
+        );
+      });
+    });
+  });
+
   describe('bulk-select', () => {
     describe('when a bulk-select is requested', () => {
       const onRowSelectClick = jest.fn();

@@ -18,7 +18,13 @@ const spacing = ({theme}) => css`
   }
 `;
 
-const cell = ({theme, numeric}) => css`
+const interactiveStyles = css`
+  cursor: pointer;
+  user-select: none;
+`;
+
+const cell = ({theme, numeric, clickable}) => css`
+  ${clickable && interactiveStyles};
   text-align: ${numeric ? 'right' : 'left'};
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
 `;
@@ -38,8 +44,20 @@ const borders = ({theme}) => css`
   }
 `;
 
+type ColumnSortIndicatorProps = {
+  isActive: boolean;
+};
+
+export const ColumnSortIndicator = styled.span<ColumnSortIndicatorProps>`
+  fill: ${({theme}) => theme.colors.grays[600]};
+  margin-left: ${({theme}) => theme.spacing.xs};
+  opacity: ${props => (props.isActive ? '1' : '0')};
+  vertical-align: text-bottom;
+`;
+
 type CellProps = {
   numeric?: boolean;
+  clickable?: boolean;
 };
 
 export const Th = styled.th<CellProps>(cell, heading);

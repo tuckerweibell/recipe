@@ -218,9 +218,9 @@ The column header checkbox input state and behavior is determined by evaluating 
 
 Use column sorting to help users find items quicker in larger data sets. Column sorting is switched off for all columns by default. Table data can only be sorted by a single column at a time.
 
-To turn on column sorting, set the `sortBy` property for each column where sorting is supported. `sortBy` is a string identifying the attribute to be sorted on. It should be a value that can be used by the client when executing the sort functionality.
+To turn on column sorting, set the `sortable` flag for each column where sorting is supported. Sorting columns with custom cell rendering is currently not supported.
 
-The client code must also provide an `onSortClick` function as a prop to `EzTable`. When the column header for a sortable column is clicked, `EzTable` will notify the client that sorting is requested by calling the provided `onSortClick` function. The function is called with the click event as the first argument, and an object with the properties `column` and `direction` as the second argument. `column` is the object representing the column being sorted (of which `sortBy` is a property), and `direction` is a string whose value represents the direction the sort should use, either `asc` or `desc`. The default sort direction is `asc`.
+The client code must also provide an `onSortClick` function as a prop to `EzTable`. When the column header for a sortable column is clicked, `EzTable` will notify the client that sorting is requested by calling the provided `onSortClick` function. The function is called with the click event as the first argument, and an object with the properties `column` and `direction` as the second argument. `column` is the object representing the column being sorted and `direction` is a string whose value represents the direction the sort should use, either `asc` or `desc`. When sorting an unsorted column, the initial sort direction is `asc`.
 
 ```jsxwide
 () => {
@@ -233,10 +233,16 @@ The client code must also provide an `onSortClick` function as a prop to `EzTabl
     const [items, updateItems] = React.useState(initialItems);
 
     const onSortClick = (_event, {column, direction}) => {
-      const newItems = [...items].sort(
-        (a, b) => (a[column.sortBy] > b[column.sortBy]) ? 1 : -1
+      const newItems = [...initialItems].sort(
+        (a, b) => {
+          const val1 = a[column.accessor];
+          const val2 = b[column.accessor];
+
+          return (direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
+        }
       );
-      updateItems(direction === 'desc' ? newItems.reverse() : newItems)
+
+      updateItems(newItems);
     };
 
     return (
@@ -245,8 +251,8 @@ The client code must also provide an `onSortClick` function as a prop to `EzTabl
           title="Store Owners"
           onSortClick={onSortClick}
           columns={[
-            {heading: 'Name', accessor: 'name', sortBy: 'NAME'},
-            {heading: 'Store Count', accessor: 'storeCount', sortBy: 'STORE_COUNT'},
+            {heading: 'Name', accessor: 'name', sortable: true},
+            {heading: 'Store Count', accessor: 'storeCount', sortable: true},
           ]}
           items={items} />
       </EzPage>
