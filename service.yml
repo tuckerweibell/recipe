@@ -18,6 +18,9 @@ tests:
         test: Setup Code Climate test-reporter
         command: ./cc-test-reporter before-build
     - run:
+        test: Code quality validations
+        command: npm run lint
+    - run:
         test: Units Tests
         command: npm run test
     - run:
