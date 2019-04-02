@@ -1,9 +1,9 @@
 import React from 'react';
 import {EzCard, EzCardSection} from '..';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {renderToHtml} from '../../../jest-globals';
-import {visualSnapshots} from 'sosia';
 import markdown from '../EzCard.md';
 import {EzPage, EzLayout, EzButton} from '../../index';
 

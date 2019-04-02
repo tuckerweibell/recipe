@@ -1,4 +1,4 @@
-import {darken} from '../';
+import {darken} from '..';
 
 describe('darken(hexColor, amount)', () => {
   it("doesn't modify hex black", () => {

@@ -15,7 +15,8 @@ const wrapWithStandardTheme = interpolation => {
 
 const createStyled = (tag: any, options?: StyledOptions) => {
   const createStyledComponent = styled(tag, options);
-  return function() {
+  return function styledWithStandardTheme() {
+    // eslint-disable-next-line prefer-rest-params
     const argsWithStandardTheme = [...arguments].map(wrapWithStandardTheme);
     return createStyledComponent(...argsWithStandardTheme);
   };

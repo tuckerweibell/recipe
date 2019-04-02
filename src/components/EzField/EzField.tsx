@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
@@ -40,9 +40,7 @@ const wrapEvent = (handler: React.ReactEventHandler, callback: React.ReactEventH
   if (!handler) return callback;
   return (event: React.SyntheticEvent) => {
     handler(event);
-    if (!event.defaultPrevented) {
-      callback(event);
-    }
+    if (!event.defaultPrevented) callback(event);
   };
 };
 

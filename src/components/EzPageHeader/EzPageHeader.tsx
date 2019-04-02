@@ -2,7 +2,7 @@ import React from 'react';
 import EzHeading from '../EzHeading';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
-import {base, actions} from './EzPageHeader.styles';
+import {base, actions as actionStyles} from './EzPageHeader.styles';
 import styled from '../../themes/styled';
 
 type Breadcrumb = {
@@ -18,7 +18,7 @@ type HeaderProps = {
 };
 
 const StyledHeading = styled.div(base as any);
-const StyledActions = styled.div(actions as any);
+const StyledActions = styled.div(actionStyles as any);
 
 /**
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.

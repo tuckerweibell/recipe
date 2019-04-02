@@ -1,7 +1,7 @@
 import React from 'react';
 import {base, resets} from './EzPage.styles';
 import {childStyles} from './styles';
-import styled, {Theme} from '../../themes/styled';
+import styled from '../../themes/styled';
 
 type PageProps = {
   children: React.ReactNode;

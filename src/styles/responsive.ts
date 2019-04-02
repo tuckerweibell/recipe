@@ -21,8 +21,7 @@ export default (prop, values) => props => {
   if (!base)
     throw new Error('Argument Error: A base variant must be provided when using responsive props.');
 
-  //@ts-ignore
-  const {theme: {breakpoints} = {}} = props;
+  const {theme: {breakpoints} = {breakpoints: undefined}} = props;
 
   if (!breakpoints)
     throw new Error('Argument Error: breakpoints must be provided when variant is an Array.');

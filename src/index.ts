@@ -1,4 +1,4 @@
 import * as themes from './themes';
-export * from './components';
 
+export * from './components';
 export {themes};

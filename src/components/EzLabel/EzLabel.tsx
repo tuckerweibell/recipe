@@ -1,5 +1,5 @@
 import React from 'react';
-import Label from './EzLabel.styles';
+import StyledLabel from './EzLabel.styles';
 
 type Props = React.LabelHTMLAttributes<any> & {
   /**
@@ -21,9 +21,9 @@ type Props = React.LabelHTMLAttributes<any> & {
 };
 
 const labels = {
-  label: Label.withComponent('label'),
-  legend: Label.withComponent('legend'),
-  div: Label,
+  label: StyledLabel.withComponent('label'),
+  legend: StyledLabel.withComponent('legend'),
+  div: StyledLabel,
 };
 
 /**

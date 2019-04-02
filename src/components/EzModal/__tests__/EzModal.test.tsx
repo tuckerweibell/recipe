@@ -1,10 +1,9 @@
 import React from 'react';
 import {fireEvent, cleanup} from 'react-testing-library';
 import 'jest-dom/extend-expect';
+import {axe} from 'jest-axe';
 import EzModal from '../EzModal';
 import {standard} from '../../../themes';
-import {axe} from 'jest-axe';
-
 import {fullRender} from '../../../jest-globals';
 
 afterEach(cleanup);

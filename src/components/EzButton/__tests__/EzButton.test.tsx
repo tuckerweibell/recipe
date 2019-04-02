@@ -1,7 +1,7 @@
 import React from 'react';
-import EzButton from '../EzButton';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import EzButton from '../EzButton';
 import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
@@ -19,7 +19,7 @@ describe('EzButton', () => {
   describe('disabled', () => {
     it('it disables the button element', () => {
       const {getByText} = fullRender(
-        <EzButton use="primary" disabled={true}>
+        <EzButton use="primary" disabled>
           Click Me
         </EzButton>
       );
@@ -31,7 +31,7 @@ describe('EzButton', () => {
   describe('loading', () => {
     it('is applies the disabled attribute to the button element', () => {
       const {getByText} = fullRender(
-        <EzButton use="primary" loading={true}>
+        <EzButton use="primary" loading>
           Click Me
         </EzButton>
       );

@@ -32,7 +32,7 @@ describe('EzField', () => {
     };
 
     it('should render radio button with correct selection', () => {
-      const {container} = render(<EzField {...radiobuttonProps} value={'c'} />);
+      const {container} = render(<EzField {...radiobuttonProps} value="c" />);
 
       expect(getByLabelText(container, 'Choice A')).toHaveProperty('checked', false);
       expect(getByLabelText(container, 'Choice B')).toHaveProperty('checked', false);
@@ -52,7 +52,7 @@ describe('EzField', () => {
       const onChange = e => {
         selected = e.target.selected;
       };
-      const {container} = render(<EzField {...radiobuttonProps} onChange={onChange} value={'c'} />);
+      const {container} = render(<EzField {...radiobuttonProps} onChange={onChange} value="c" />);
 
       const input = getByLabelText(container, 'Choice B');
 

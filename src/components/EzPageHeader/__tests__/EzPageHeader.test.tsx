@@ -17,7 +17,7 @@ describe('EzHeading', () => {
         title="Order # XYZ-123"
         breadcrumb={{
           label: 'Back to Orders',
-          onClick: () => alert('Clicked back'),
+          onClick: () => {},
         }}
       />
     );

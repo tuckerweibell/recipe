@@ -1,7 +1,5 @@
-import React from 'react';
-import {createElement} from 'react';
+import React, {createElement} from 'react';
 import StyledButton from './EzButton.styles';
-// import {standard} from '../../themes';
 
 type ButtonProps = RegularProps | TertiaryProps;
 
@@ -28,11 +26,9 @@ type TertiaryProps = {
 const EzButton: React.FC<ButtonProps> = props => createElement(StyledButton, buildProps(props));
 
 const buildProps = (props: ButtonProps) => {
-  if (props.use === 'tertiary') {
-    return props;
-  } else {
-    return {...props, disabled: props.disabled || props.loading};
-  }
+  if (props.use === 'tertiary') return props;
+
+  return {...props, disabled: props.disabled || props.loading};
 };
 
 /**

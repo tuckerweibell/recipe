@@ -26,8 +26,8 @@ const left = ({theme}: Themed) => css`
   margin-right: ${theme.spacing.sm};
 `;
 
-const error = ({error, theme}) =>
-  error &&
+const error = ({error: hasError, theme}) =>
+  hasError &&
   css`
     color: ${theme.colors.reds.base};
   `;

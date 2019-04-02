@@ -48,12 +48,12 @@ const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, ...props
     </CardLayout>
   );
 
+  const {horizontal, children} = props;
+
   return (
     <CardContainer {...filterValidProps(props)} accent={accent}>
       {title && <CardHeadingContainer>{actions ? layout : heading}</CardHeadingContainer>}
-      <SectionContainer horizontal={props.horizontal}>
-        {wrappedChildren(props.children)}
-      </SectionContainer>
+      <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
     </CardContainer>
   );
 };

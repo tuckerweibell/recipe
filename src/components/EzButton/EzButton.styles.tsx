@@ -1,6 +1,6 @@
 import {css} from 'react-emotion';
-import styled from '../../themes/styled';
 import variant from 'styled-component-variant';
+import styled from '../../themes/styled';
 import {keyframes, darken} from '../../styles';
 
 const base = ({theme}) => css`
