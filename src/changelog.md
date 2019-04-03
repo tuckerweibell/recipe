@@ -7,6 +7,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.1.1
+
+#### Development workflow
+
+- Re-enabled linting using [ez-scripts](https://github.com/ezcater/ez-scripts)
+
 ## 4.1.0
 
 #### New components
