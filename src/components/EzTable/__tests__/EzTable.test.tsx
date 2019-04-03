@@ -167,13 +167,13 @@ describe('EzTable', () => {
     });
 
     describe('when a bulk-select functionality is not requested', () => {
-      const {bulkSelectInput, rowSelectInputs} = render({columns, items});
-
       it('does not render a bulk-select input in a column header', () => {
+        const {bulkSelectInput} = render({columns, items});
         expect(bulkSelectInput).toBeNull();
       });
 
       it('does not render a row-select input for each row', () => {
+        const {rowSelectInputs} = render({columns, items});
         expect(rowSelectInputs[0]).toBeUndefined();
       });
     });
