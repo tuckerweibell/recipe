@@ -227,6 +227,8 @@ The client code must also provide an `onSortClick` function as a prop to `EzTabl
   const initialItems = [
     {name: 'Joan Jett', storeCount: 12},
     {name: 'David Bowie', storeCount: 6},
+    {name: 'Sheena Easton', storeCount: 6},
+    {name: 'Stevie Nicks', storeCount: 1},
   ];
 
   const Table = () => {
