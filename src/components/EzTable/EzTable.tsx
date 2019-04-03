@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {EzCard} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
-import {Table, Th, Td, TableCardSection, ColumnSortIndicator} from './EzTable.styles';
+import {Table, Th, Td, TableCardSection} from './EzTable.styles';
 
 type Column = {
   heading: string;
@@ -55,6 +55,19 @@ const handleSortClick = ({
   onSortClick(event, {column, direction: newSortDirection});
 };
 
+const SortDirection = ({direction}) => (
+  <svg
+    width="0.5em"
+    height="0.4em"
+    viewBox="0 0 1 1"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+  >
+    {direction === 'asc' ? <polygon points="0.5,0 1,1 0,1" /> : <polygon points="0.5,1 0,0 1,0" />}
+  </svg>
+);
+
 const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) => {
   const [activeSortValue, updateActiveSortValue] = useState(null);
   const [sortDirection, updateSortDirection] = useState('asc');
@@ -76,6 +89,7 @@ const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) 
             key={cellIndex}
             numeric={column.numeric}
             clickable={column.sortable}
+            sorted={activeSortValue && activeSortValue === column.accessor}
             onClick={
               column.sortable &&
               handleSortClick({
@@ -88,25 +102,9 @@ const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) 
               })
             }
           >
-            {column.heading}{' '}
-            {column.sortable && (
-              <ColumnSortIndicator isActive={column.accessor === activeSortValue}>
-                <svg
-                  width="0.5em"
-                  height="0.4em"
-                  viewBox="0 0 1 1"
-                  preserveAspectRatio="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.1"
-                >
-                  {sortDirection === 'asc' ? (
-                    <polygon points="0.5,0 1,1 0,1" />
-                  ) : (
-                    <polygon points="0.5,1 0,0 1,0" />
-                  )}
-                </svg>
-              </ColumnSortIndicator>
-            )}
+            <span>
+              {column.heading} {column.sortable && <SortDirection direction={sortDirection} />}
+            </span>
           </Th>
         ))}
       </tr>

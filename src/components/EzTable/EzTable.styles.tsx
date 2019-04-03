@@ -44,23 +44,25 @@ const borders = ({theme}) => css`
   }
 `;
 
-type ColumnSortIndicatorProps = {
-  isActive: boolean;
-};
-
-export const ColumnSortIndicator = styled.span<ColumnSortIndicatorProps>`
-  fill: ${({theme}) => theme.colors.grays[600]};
-  margin-left: ${({theme}) => theme.spacing.xs};
-  opacity: ${props => (props.isActive ? '1' : '0')};
-  vertical-align: text-bottom;
+const sortable = ({theme, sorted}) => css`
+  span {
+    display: inline-flex;
+    align-items: center;
+  }
+  svg {
+    fill: ${theme.colors.grays[600]};
+    margin-left: ${theme.spacing.xs};
+    opacity: ${sorted ? '1' : '0'};
+  }
 `;
 
 type CellProps = {
   numeric?: boolean;
   clickable?: boolean;
+  sorted?: boolean;
 };
 
-export const Th = styled.th<CellProps>(cell, heading);
+export const Th = styled.th<CellProps>(cell, heading, sortable);
 export const Td = styled.td<CellProps>(cell);
 
 type TableCardSectionProps = {
