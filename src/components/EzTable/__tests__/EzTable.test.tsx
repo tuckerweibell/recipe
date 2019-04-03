@@ -24,14 +24,6 @@ describe('EzTable', () => {
     {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
   ];
 
-  function render(props) {
-    const {queryByLabelText, queryAllByLabelText} = fullRender(<EzTable {...props} />);
-    return {
-      bulkSelectInput: queryByLabelText('Select all'),
-      rowSelectInputs: queryAllByLabelText('Select row'),
-    };
-  }
-
   describe('column sorting', () => {
     describe('when the user requests a column to be sorted', () => {
       const onSortClick = jest.fn();
@@ -88,6 +80,14 @@ describe('EzTable', () => {
   });
 
   describe('bulk-select', () => {
+    function render(props) {
+      const {queryByLabelText, queryAllByLabelText} = fullRender(<EzTable {...props} />);
+      return {
+        bulkSelectInput: queryByLabelText('Select all'),
+        rowSelectInputs: queryAllByLabelText('Select row'),
+      };
+    }
+
     describe('when a bulk-select is requested', () => {
       const onRowSelectClick = jest.fn();
       const onBulkSelectClick = jest.fn();
