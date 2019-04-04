@@ -1,59 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {EzCard} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
+import {TableProps} from './EzTable.types';
 import {Table, Th, Td, TableCardSection} from './EzTable.styles';
-
-type Column = {
-  heading: string;
-  accessor: any;
-  numeric?: boolean;
-  sortable?: boolean;
-};
-
-type BulkSelectionDisabled = {
-  onBulkSelectClick?: never;
-  onRowSelectClick?: never;
-  isRowSelected?: never;
-};
-
-type BulkSelectionProps = {
-  onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
-  onBulkSelectClick: React.MouseEventHandler;
-  isRowSelected: (item: any) => boolean;
-};
-
-type OnSortClickOptions = {
-  column: Column;
-  direction: 'asc' | 'desc';
-};
-
-type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
-  title?: string;
-  subtitle?: string;
-  columns: Column[];
-  items: any[];
-  onSortClick?: (event: React.MouseEvent<HTMLInputElement>, options: OnSortClickOptions) => void;
-};
-
-const handleSortClick = ({
-  onSortClick,
-  column,
-  activeSortValue,
-  updateActiveSortValue,
-  sortDirection,
-  updateSortDirection,
-}) => event => {
-  const newSortDirection =
-    column.accessor === activeSortValue
-      ? sortDirection === 'asc'
-        ? 'desc'
-        : 'asc'
-      : sortDirection;
-
-  updateSortDirection(newSortDirection);
-  updateActiveSortValue(column.accessor);
-  onSortClick(event, {column, direction: newSortDirection});
-};
+import useSorting from './useSorting';
 
 const SortDirection = ({direction}) => (
   <svg
@@ -69,9 +19,7 @@ const SortDirection = ({direction}) => (
 );
 
 const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) => {
-  const [activeSortValue, updateActiveSortValue] = useState(null);
-  const [sortDirection, updateSortDirection] = useState('asc');
-
+  const {direction, onClick, isSorted} = useSorting();
   return (
     <thead>
       <tr>
@@ -84,29 +32,22 @@ const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) 
             />
           </Th>
         )}
-        {columns.map((column, cellIndex) => (
-          <Th
-            key={cellIndex}
-            numeric={column.numeric}
-            clickable={column.sortable}
-            sorted={activeSortValue && activeSortValue === column.accessor}
-            onClick={
-              column.sortable &&
-              handleSortClick({
-                column,
-                onSortClick,
-                activeSortValue,
-                updateActiveSortValue,
-                sortDirection,
-                updateSortDirection,
-              })
-            }
-          >
-            <span>
-              {column.heading} {column.sortable && <SortDirection direction={sortDirection} />}
-            </span>
-          </Th>
-        ))}
+        {columns.map((column, cellIndex) => {
+          const {sortable, heading, numeric} = column;
+          return (
+            <Th
+              key={cellIndex}
+              numeric={numeric}
+              clickable={sortable}
+              sorted={isSorted(column)}
+              onClick={event => onClick(event, column, onSortClick)}
+            >
+              <span>
+                {heading} {sortable && <SortDirection direction={direction} />}
+              </span>
+            </Th>
+          );
+        })}
       </tr>
     </thead>
   );

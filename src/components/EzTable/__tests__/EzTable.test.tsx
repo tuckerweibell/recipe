@@ -53,6 +53,22 @@ describe('EzTable', () => {
         );
       });
 
+      it('does NOT notify the client of a sort when a column is not sortable', () => {
+        const {getByText} = fullRender(
+          <EzTable
+            {...props}
+            columns={[
+              {heading: 'Store name', accessor: 'name', sortable: false},
+              {heading: 'Total sales', accessor: 'total', sortable: true},
+            ]}
+          />
+        );
+
+        fireEvent.click(getByText(sortableColumns[0].heading));
+
+        expect(onSortClick).not.toHaveBeenCalled();
+      });
+
       it('can sort a single column in both ascending and descending order', () => {
         const {getByText} = fullRender(<EzTable {...props} />);
 
@@ -73,6 +89,32 @@ describe('EzTable', () => {
           expect.objectContaining({
             column: sortableColumns[1],
             direction: 'desc',
+          })
+        );
+      });
+
+      it('should not change the sort order if the provided onSortClick callback prevents default', () => {
+        const {getByText} = fullRender(<EzTable {...props} />);
+
+        onSortClick.mockImplementation(event => event.preventDefault());
+
+        fireEvent.click(getByText(sortableColumns[1].heading));
+
+        expect(onSortClick).toHaveBeenCalledWith(
+          mockEvent,
+          expect.objectContaining({
+            column: sortableColumns[1],
+            direction: 'asc',
+          })
+        );
+
+        fireEvent.click(getByText(sortableColumns[1].heading));
+
+        expect(onSortClick).toHaveBeenCalledWith(
+          mockEvent,
+          expect.objectContaining({
+            column: sortableColumns[1],
+            direction: 'asc',
           })
         );
       });
