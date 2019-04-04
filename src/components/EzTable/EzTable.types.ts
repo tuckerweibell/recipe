@@ -1,9 +1,17 @@
-type Column = {
+type Column = (SortEnabledColumn | SortDisabledColumn) & {
   heading: string;
-  accessor: any;
   numeric?: boolean;
-  sortable?: boolean;
   defaultSort?: Direction;
+};
+
+type SortEnabledColumn = {
+  sortable: boolean;
+  accessor: string;
+};
+
+type SortDisabledColumn = {
+  sortable?: never;
+  accessor: any;
 };
 
 export enum Direction {
