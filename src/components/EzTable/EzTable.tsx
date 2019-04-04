@@ -19,7 +19,9 @@ const SortDirection = ({direction}) => (
 );
 
 const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) => {
-  const {direction, onClick, isSorted} = useSorting();
+  const col = columns.find(c => c.defaultSort);
+  const initialSort = col && {column: col, direction: col.defaultSort};
+  const {direction, onClick, isSorted} = useSorting(initialSort);
   return (
     <thead>
       <tr>

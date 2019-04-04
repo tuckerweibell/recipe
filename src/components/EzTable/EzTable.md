@@ -222,6 +222,8 @@ To turn on column sorting, set the `sortable` flag for each column where sorting
 
 The client code must also provide an `onSortClick` function as a prop to `EzTable`. When the column header for a sortable column is clicked, `EzTable` will notify the client that sorting is requested by calling the provided `onSortClick` function. The function is called with the click event as the first argument, and an object with the properties `column` and `direction` as the second argument. `column` is the object representing the column being sorted and `direction` is a string whose value represents the direction the sort should use, either `asc` or `desc`. When sorting an unsorted column, the initial sort direction is `asc`.
 
+When providing pre-sorted data to EzTable, the relevant column should have a `defaultSort` value set to either `asc` or `desc` to indicate the sort order applied to the data.
+
 ```jsxwide
 () => {
   const initialItems = [
@@ -254,7 +256,7 @@ The client code must also provide an `onSortClick` function as a prop to `EzTabl
           onSortClick={onSortClick}
           columns={[
             {heading: 'Name', accessor: 'name', sortable: true},
-            {heading: 'Store Count', accessor: 'storeCount', sortable: true},
+            {heading: 'Store Count', accessor: 'storeCount', sortable: true, defaultSort: 'desc'},
           ]}
           items={items} />
       </EzPage>

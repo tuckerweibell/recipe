@@ -3,6 +3,7 @@ type Column = {
   accessor: any;
   numeric?: boolean;
   sortable?: boolean;
+  defaultSort?: Direction;
 };
 
 export enum Direction {
