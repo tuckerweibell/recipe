@@ -7,6 +7,14 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.2.0
+
+#### Enhancements
+
+- Added support for [sorting EzTable](/components/ez-table#with-sortable-columns).
+  - Can now mark columns as `sortable`. EzTable will call `onSortClick` when sortable columns are clicked.
+  - Can mark column as `defaultSort: 'asc' | 'desc'` to indicate the default sort order for data sets
+
 ## 4.1.1
 
 #### Development workflow
