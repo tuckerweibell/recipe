@@ -11,6 +11,7 @@ import FontCombinations from './FontCombinations';
 import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
+import TimelineStatus from './TimelineStatus';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -56,6 +57,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     fontsizes: FontSizes,
     fontweights: FontWeights,
     ezalert: Components.EzAlert,
+    timelinestatus: TimelineStatus,
   };
 
   const renderTag = (node, i) => {

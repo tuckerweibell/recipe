@@ -5,51 +5,51 @@ title: 'Timeline'
 
 > Current status of components in the pipeline.
 
-| Component                            | Code                                                            | Design and Concept                                           |
-| ------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------ |
-| Order summary                        | ◒ [In development](https://github.com/ezcater/recipe/issues/56) | ◒ [In progress](https://github.com/ezcater/recipe/issues/56) |
-| Table                                | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Table select all banner              | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Table row hover                      | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Table actions                        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Card footer                          | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Link                                 | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Pagination                           | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Table sorting                        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Order status (badges)                | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Subnavigation                        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Title bar                            | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Page layouts                         | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Left navigation                      | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Date picker                          | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Toggles                              | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Search input                         | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Checkbox                             | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Radio buttons                        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Icons                                | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Flash messages                       | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Variables                            | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Skin doc site                        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Inline saving feedback               | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Tooltip (text)                       | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Tooltip (varied)                     | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Global fonts + reset                 | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Banners                              | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Marketing containers                 | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Blank state                          | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Select dropdown                      | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Time picker                          | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Text area size                       | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Toolbars                             | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Advanced filtering                   | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Progress feedback                    | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Card loading state                   | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Expandable card (card footer)        | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Super radio buttons                  | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Make form docs live editable         | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Make segmented control like editable | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Table zebra striping                 | ◯ Under consideration                                           | ◯ Under consideration                                        |
-| Tables (the rest)                    | ◯ Under consideration                                           | ◯ Under consideration                                        |
+| Component                            | Code                                                                                               | Design and Concept                                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Order summary                        | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/56"></TimelineStatus> | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/56"></TimelineStatus> |
+| Table                                | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Table select all banner              | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Table row hover                      | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Table actions                        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Card footer                          | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Link                                 | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Pagination                           | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Table sorting                        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Order status (badges)                | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Subnavigation                        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Title bar                            | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Page layouts                         | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Left navigation                      | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Date picker                          | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Toggles                              | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Search input                         | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Checkbox                             | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Radio buttons                        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Icons                                | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Flash messages                       | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Variables                            | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Skin doc site                        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Inline saving feedback               | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Tooltip (text)                       | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Tooltip (varied)                     | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Global fonts + reset                 | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Banners                              | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Marketing containers                 | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Blank state                          | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Select dropdown                      | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Time picker                          | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Text area size                       | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Toolbars                             | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Advanced filtering                   | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Progress feedback                    | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Card loading state                   | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Expandable card (card footer)        | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Super radio buttons                  | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Make form docs live editable         | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Make segmented control like editable | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Table zebra striping                 | <TimelineStatus type="pending"></TimelineStatus>                                                   | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Tables (the rest)                    | <TimelineStatus type="unknown"></TimelineStatus>                                                   | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
 
 | Component                                             | Release                       | Platform |
 | ----------------------------------------------------- | ----------------------------- | -------- |
