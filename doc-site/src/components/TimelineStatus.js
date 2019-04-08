@@ -3,7 +3,7 @@ import React from 'react';
 const TIMELINE_STATUS = Object.freeze({
   active: {
     icon: '/images/icons/in-progress.png',
-    label: 'In Progress',
+    label: 'In progress',
   },
   pending: {
     icon: '/images/icons/under-consideration.png',
