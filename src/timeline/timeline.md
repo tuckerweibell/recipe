@@ -65,6 +65,6 @@ title: 'Timeline'
 | [Page](/components/ez-page)                           | @ezcater/recipe - since 1.0.0 | Web Only |
 | [Page Content](/components/ez-page-content)           | @ezcater/recipe - since 1.0.0 | Web Only |
 | [Page Header](/components/ez-page-header)             | @ezcater/recipe - since 1.0.0 | Web Only |
-| [Segmented Control](/components/ez-segmented-control) | @ezcater/recipe - since 1.0.0 | Web Only |
+| [Segmented Control](/components/ez-segmented-control) | @ezcater/recipe - since 1.0.10 | Web Only |
 | [Table](/components/ez-table)                         | @ezcater/recipe - since 1.0.0 | Web Only |
 | [Text Style](/components/ez-text-style)               | @ezcater/recipe - since 1.0.0 | Web Only |
