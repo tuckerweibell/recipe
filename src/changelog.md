@@ -145,7 +145,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - Added documentation for the upcoming `EzFormLayout` and `EzFormField` components
 - Fix `Lato` font import in the doc-site
 
-#### Development wokflow
+#### Development workflow
 
 - Integrated code climate with CI build
 - Added code climate config to separate doc-site from recipe code quality checks
