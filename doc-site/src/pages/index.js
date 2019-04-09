@@ -35,14 +35,12 @@ const IndexPage = () => (
         </p>
       </div>
     </EzLayout>
-    <EzLayout layout="equal">
-      <div>
-        <h2>
-          <Link to="/timeline/">Timeline</Link>
-        </h2>
-        <p>Current status of components in the pipeline.</p>
-      </div>
-    </EzLayout>
+    <div>
+      <h2>
+        <Link to="/timeline/">Timeline</Link>
+      </h2>
+      <p>Current status of components in the pipeline.</p>
+    </div>
 
     <div>
       <h2>Want to contribute to Recipe?</h2>
