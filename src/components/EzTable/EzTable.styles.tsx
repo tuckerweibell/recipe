@@ -23,8 +23,7 @@ const interactiveStyles = css`
   user-select: none;
 `;
 
-const cell = ({theme, numeric, clickable}) => css`
-  ${clickable && interactiveStyles};
+const cell = ({theme, numeric}) => css`
   text-align: ${numeric ? 'right' : 'left'};
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
 `;
@@ -44,25 +43,28 @@ const borders = ({theme}) => css`
   }
 `;
 
-const sortable = ({theme, sorted}) => css`
-  span {
-    display: inline-flex;
-    align-items: center;
-  }
-  svg {
-    fill: ${theme.colors.grays[600]};
-    margin-left: ${theme.spacing.xs};
-    opacity: ${sorted ? '1' : '0'};
-  }
-`;
+const sortable = ({theme, sorted, sortable: isSortable}) =>
+  isSortable &&
+  css`
+    ${interactiveStyles};
+
+    span {
+      display: inline-flex;
+      align-items: center;
+    }
+    svg {
+      fill: ${theme.colors.grays[600]};
+      margin-left: ${theme.spacing.xs};
+      opacity: ${sorted ? '1' : '0'};
+    }
+  `;
 
 type CellProps = {
   numeric?: boolean;
-  clickable?: boolean;
   sorted?: boolean;
 };
 
-export const Th = styled.th<CellProps>(cell, heading, sortable);
+export const Th = styled.th<CellProps & {sortable?: boolean}>(cell, heading, sortable);
 export const Td = styled.td<CellProps>(cell);
 
 type TableCardSectionProps = {

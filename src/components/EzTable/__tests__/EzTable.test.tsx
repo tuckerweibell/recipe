@@ -3,6 +3,7 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import Component from 'react-component-component';
 import {fireEvent, cleanup} from 'react-testing-library';
+import regressionTests from './EzTable.test.md';
 import markdown from '../EzTable.md';
 import EzTable from '../EzTable';
 import {EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
@@ -12,6 +13,7 @@ const scope = {EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Compone
 
 describe('EzTable', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope});
   afterEach(cleanup);
 
   const columns = [

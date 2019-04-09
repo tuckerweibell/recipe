@@ -40,7 +40,7 @@ const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) 
             <Th
               key={cellIndex}
               numeric={numeric}
-              clickable={sortable}
+              sortable={sortable}
               sorted={isSorted(column)}
               onClick={event => onClick(event, column, onSortClick)}
             >
