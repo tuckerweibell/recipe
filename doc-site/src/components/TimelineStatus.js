@@ -1,7 +1,5 @@
 import React from 'react';
-
 import {withPrefix} from 'gatsby';
-
 import styled from 'react-emotion';
 
 const Icon = styled.img`
