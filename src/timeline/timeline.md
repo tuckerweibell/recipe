@@ -53,18 +53,18 @@ title: 'Timeline'
 
 | Component                                             | Release                        |
 | ----------------------------------------------------- | ------------------------------ |
-| [Alert](/components/ez-alert)                         | @ezcater/recipe - since 1.0.0  |
+| [Alert](/components/ez-alert)                         | @ezcater/recipe - since 1.7.0  |
 | [Button](/components/ez-button)                       | @ezcater/recipe - since 1.0.0  |
-| [Card](/components/ez-card)                           | @ezcater/recipe - since 1.0.0  |
-| [Form Field](/components/ez-field)                    | @ezcater/recipe - since 1.0.0  |
-| [Form Layout](/components/ez-form-layout)             | @ezcater/recipe - since 1.0.0  |
-| [Heading](/components/ez-heading)                     | @ezcater/recipe - since 1.0.0  |
-| [Labelled Item](/components/ez-labelled-item)         | @ezcater/recipe - since 1.0.0  |
-| [Layout](/components/ez-layout)                       | @ezcater/recipe - since 1.0.0  |
-| [Modal](/components/ez-modal)                         | @ezcater/recipe - since 1.0.0  |
-| [Page](/components/ez-page)                           | @ezcater/recipe - since 1.0.0  |
-| [Page Content](/components/ez-page-content)           | @ezcater/recipe - since 1.0.0  |
-| [Page Header](/components/ez-page-header)             | @ezcater/recipe - since 1.0.0  |
+| [Card](/components/ez-card)                           | @ezcater/recipe - since 1.0.16 |
+| [Form Field](/components/ez-field)                    | @ezcater/recipe - since 2.2.0  |
+| [Form Layout](/components/ez-form-layout)             | @ezcater/recipe - since 2.2.0  |
+| [Heading](/components/ez-heading)                     | @ezcater/recipe - since 1.8.1  |
+| [Labelled Item](/components/ez-labelled-item)         | @ezcater/recipe - since 1.0.9  |
+| [Layout](/components/ez-layout)                       | @ezcater/recipe - since 1.1.0  |
+| [Modal](/components/ez-modal)                         | @ezcater/recipe - since 1.10.0 |
+| [Page](/components/ez-page)                           | @ezcater/recipe - since 1.9.0  |
+| [Page Content](/components/ez-page-content)           | @ezcater/recipe - since 1.0.16 |
+| [Page Header](/components/ez-page-header)             | @ezcater/recipe - since 4.1.0  |
 | [Segmented Control](/components/ez-segmented-control) | @ezcater/recipe - since 1.0.10 |
-| [Table](/components/ez-table)                         | @ezcater/recipe - since 1.0.0  |
-| [Text Style](/components/ez-text-style)               | @ezcater/recipe - since 1.0.0  |
+| [Table](/components/ez-table)                         | @ezcater/recipe - since 1.11.0 |
+| [Text Style](/components/ez-text-style)               | @ezcater/recipe - since 1.0.15 |
