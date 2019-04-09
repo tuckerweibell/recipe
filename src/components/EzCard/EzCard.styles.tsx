@@ -26,12 +26,7 @@ export const CardHeadingContainer = styled.div`
 export const CardLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: -${({theme}) => theme.spacing.lg} 0 0 -${({theme}) => theme.spacing.xl2};
   justify-content: space-between;
-
-  > * {
-    margin: ${({theme}) => theme.spacing.lg} 0 0 ${({theme}) => theme.spacing.xl2};
-  }
 `;
 
 const vertical = ({horizontal, theme}) =>
