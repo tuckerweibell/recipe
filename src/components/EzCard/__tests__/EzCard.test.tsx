@@ -4,6 +4,7 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {renderToHtml} from '../../../jest-globals';
+import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzLayout, EzButton} from '../../index';
 
@@ -11,6 +12,7 @@ const scope = {EzButton, EzCard, EzCardSection, EzLayout, EzPage};
 
 describe('EzCard', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope});
 
   it('should NOT throw if no ThemeProvider is configured', () => {
     const actual = renderToStaticMarkup(

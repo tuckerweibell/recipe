@@ -26,6 +26,7 @@ export const CardHeadingContainer = styled.div`
 export const CardLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
 `;
 
