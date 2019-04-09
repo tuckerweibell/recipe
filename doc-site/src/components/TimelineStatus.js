@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {withPrefix} from 'gatsby';
 import styled from 'react-emotion';
 
 const Icon = styled.img`
@@ -27,7 +27,7 @@ const TimelineStatus = ({type = 'unknown', link}) => {
 
   return (
     <span>
-      <Icon alt={TIMELINE_STATUS[type].label} src={TIMELINE_STATUS[type].icon} />{' '}
+      <Icon alt={TIMELINE_STATUS[type].label} src={withPrefix(TIMELINE_STATUS[type].icon)} />{' '}
       {link ? <a href={link}>{TIMELINE_STATUS[type].label}</a> : TIMELINE_STATUS[type].label}
     </span>
   );
