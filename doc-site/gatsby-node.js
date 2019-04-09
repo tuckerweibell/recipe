@@ -22,12 +22,14 @@ exports.createPages = ({actions, graphql}) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-    result.data.allMarkdownRemark.edges.forEach(({node}) =>
-      createPage({
-        path: node.frontmatter.path,
-        component: path.resolve('src/components/Markdown.js'),
-        context: {},
-      })
+    result.data.allMarkdownRemark.edges.forEach(
+      ({node}) =>
+        node.frontmatter.path &&
+        createPage({
+          path: node.frontmatter.path,
+          component: path.resolve('src/components/Markdown.js'),
+          context: {},
+        })
     );
   });
 };
