@@ -49,7 +49,7 @@ title: 'Timeline'
 | Make form docs live editable         | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Make segmented control like editable | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Table zebra striping                 | <TimelineStatus type="pending"></TimelineStatus>                                                   |
-| Tables (the rest)                    | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Tables (the rest)                    | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 
 | Component                                             | Release                        |
 | ----------------------------------------------------- | ------------------------------ |
