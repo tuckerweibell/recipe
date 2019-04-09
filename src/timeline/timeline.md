@@ -50,6 +50,16 @@ title: 'Timeline'
 | Make segmented control like editable | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Table zebra striping                 | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Tables (the rest)                    | <TimelineStatus type="pending"></TimelineStatus>                                                   |
+| Bucketing flash messages + banners   | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Accordion                            | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Tabs                                 | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Grid system                          | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Sketch export                        | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Tags                                 | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Date wells                           | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Timeline                             | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Bordered checkbox                    | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
+| Table filtering                      | <TimelineStatus type="unknown"></TimelineStatus>                                                   |
 
 | Component                                             | Release                        |
 | ----------------------------------------------------- | ------------------------------ |
