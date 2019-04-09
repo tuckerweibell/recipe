@@ -7,10 +7,6 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
-## Unreleased Changes
-
-- Added timeline page with current status of components in pipeline
-
 ## 4.2.0
 
 #### Enhancements
