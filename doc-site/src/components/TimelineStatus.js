@@ -7,7 +7,7 @@ const Icon = styled.img`
   margin: 0;
 `;
 
-const TIMELINE_STATUS = Object.freeze({
+const TIMELINE_STATUS = {
   active: {
     icon: '/images/icons/in-progress.png',
     label: 'In progress',
@@ -20,7 +20,7 @@ const TIMELINE_STATUS = Object.freeze({
     icon: '/images/icons/not-currently-planned.png',
     label: 'Not currently planned',
   },
-});
+};
 
 const TimelineStatus = ({type = 'unknown', link}) => {
   if (!TIMELINE_STATUS[type]) throw new Error('Invalid timeline status type');
