@@ -7,6 +7,17 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.2.1
+
+#### Bug fixes
+
+- Fixed [regression in table select all](https://github.com/ezcater/recipe/issues/71).
+- Fixed [Card action stretching](https://github.com/ezcater/recipe/issues/62).
+
+#### Documentation
+
+- Added timeline page with current status of components in pipeline
+
 ## 4.2.0
 
 #### Enhancements
