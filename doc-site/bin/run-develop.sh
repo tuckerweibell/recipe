@@ -4,7 +4,7 @@ DOC_SITE_DIR=$(cd "$(dirname "$0")" && cd ../ && pwd)
 
 (
 
-    cd "${DOC_SITE_DIR}"
+    cd "${DOC_SITE_DIR}" || exit
 
     PACKAGE_NAME="@ezcater/recipe"
     PACKGE_DIR="${DOC_SITE_DIR}/node_modules/${PACKAGE_NAME}"
