@@ -11,10 +11,10 @@ Current status of components in the pipeline.
 | Card footer                        | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/65"></TimelineStatus> |
 | Pagination                         | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/42"></TimelineStatus> |
 | Table select all banner            | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/69"></TimelineStatus> |
+| Order summary                      | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/56"></TimelineStatus> |
 | Table row hover                    | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Table actions                      | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Expandable card                    | <TimelineStatus type="pending"></TimelineStatus>                                                   |
-| Order summary                      | <TimelineStatus type="active" link="https://github.com/ezcater/recipe/issues/56"></TimelineStatus> |
 | Order status (badges)              | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Sub-navigation                     | <TimelineStatus type="pending"></TimelineStatus>                                                   |
 | Title bar                          | <TimelineStatus type="pending"></TimelineStatus>                                                   |
