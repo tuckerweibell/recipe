@@ -11,7 +11,7 @@ DOC_SITE_DIR=$(cd "$(dirname "$0")" && cd ../ && pwd)
 
     if [[ -d "${PACKGE_DIR}" && -h "${PACKGE_DIR}" ]]
     then
-        echo "${PACKAGE_NAME} is already linked via npm link"
+        printf "${PACKAGE_NAME} is already linked via npm link\n\n"
     else
         (cd ../ && npm link)
         npm link "${PACKAGE_NAME}"
