@@ -22,7 +22,6 @@ Features still in consideration include:
 - Responsive variants (cards with repeated labels, transpose table)
 - Column pinning to support horizontal scrolling
 - Header-less table
-- Sorting
 - Filtering
 - Row hover styles (interactive)
 - Zebra Striping
