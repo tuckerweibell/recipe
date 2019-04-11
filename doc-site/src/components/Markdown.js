@@ -12,6 +12,7 @@ import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
+import * as router from 'react-router-dom';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -77,13 +78,15 @@ const HtmlAst = ({htmlAst, scope}) => {
   return htmlAst.children.map(renderTag);
 };
 
+const require = () => router;
+
 export default ({data: {markdownRemark: page}}) => {
   return (
     <Layout>
       <Helmet title={`recipe - ${page.frontmatter.title}`} />
       <div>
         <h1>{page.frontmatter.title}</h1>
-        <HtmlAst htmlAst={page.htmlAst} scope={{...Components, styled, css, Component}} />
+        <HtmlAst htmlAst={page.htmlAst} scope={{...Components, styled, css, Component, require}} />
       </div>
     </Layout>
   );
