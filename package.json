@@ -47,6 +47,7 @@
     "react-component-component": "^1.2.1",
     "react-dom": "^16.8.2",
     "react-emotion": "^9.2.12",
+    "react-router-dom": "^5.0.0",
     "react-test-renderer": "^16.8.2",
     "react-testing-library": "^5.9.0",
     "sosia": "^1.1.0",

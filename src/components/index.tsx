@@ -5,6 +5,7 @@ export {default as EzField} from './EzField';
 export {default as EzFormLayout} from './EzFormLayout';
 export {default as EzHeading} from './EzHeading';
 export {default as EzLabelledItem} from './EzLabelledItem';
+export {default as EzLink} from './EzLink';
 export {default as EzModal} from './EzModal';
 export {EzPage, EzPageSection} from './EzPage';
 export {default as EzPageHeader} from './EzPageHeader';
