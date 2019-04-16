@@ -1,7 +1,7 @@
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
-import {keyframes, darken} from '../../styles';
+import {keyframes, darken, pseudoClasses} from '../../styles';
 
 const base = ({theme}) => css`
   cursor: pointer;
@@ -25,13 +25,6 @@ const disabled = ({disabled: isDisabled}) =>
     pointer-events: none;
   `;
 
-const elementStates = (style, color, focusColor?) => ({
-  [style]: color,
-  '&:hover:enabled': {[style]: darken(color, 0.15)},
-  '&:focus:enabled': focusColor && {[style]: focusColor},
-  '&:active:enabled': {[style]: darken(color, 0.25)},
-});
-
 const outlineStyles = ({theme}) => css`
   border-radius: ${theme.borderRadius[1]};
   border-style: solid;
@@ -50,8 +43,8 @@ const primary = ({theme: {colors}, destructive}) => {
   return css`
     color: ${colors.primary.contrastText};
     border-color: ${main};
-    ${elementStates('border-color', main, darken(main, 0.25))};
-    ${elementStates('background-color', main)};
+    ${pseudoClasses('border-color', {color: main, focusColor: darken(main, 0.25)})};
+    ${pseudoClasses('background-color', {color: main})};
   `;
 };
 
@@ -60,8 +53,8 @@ const secondary = ({theme: {colors}, destructive}) => {
   return css`
     background-color: white;
     border: solid 1px;
-    ${elementStates('border-color', colors.grays[400], colors.blues[600])};
-    ${elementStates('color', main)};
+    ${pseudoClasses('border-color', {color: colors.grays[400], focusColor: colors.blues[600]})};
+    ${pseudoClasses('color', {color: main})};
   `;
 };
 
@@ -71,7 +64,7 @@ const tertiary = ({theme: {colors}, destructive}) => {
     background: none;
     border: none;
     padding: 0;
-    ${elementStates('color', main)};
+    ${pseudoClasses('color', {color: main})};
 
     &:focus {
       outline: auto;
