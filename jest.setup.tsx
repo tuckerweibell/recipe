@@ -62,6 +62,10 @@ injectGlobal`
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 
+  body {
+    color: #565a5c;
+  }
+
   * {
     box-sizing: inherit;
   }
