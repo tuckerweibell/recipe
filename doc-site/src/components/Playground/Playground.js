@@ -17,7 +17,7 @@ const Playground = ({code, scope, wide}) => (
     </Actions>
     <LiveWrapper wide={wide}>
       <StyledEditor />
-      <StyledPreview wide={wide} />
+      <StyledPreview wide={wide && 'wide'} />
     </LiveWrapper>
     <StyledError />
   </StyledProvider>
