@@ -17,6 +17,4 @@ DOC_SITE_DIR=$(cd "$(dirname "$0")" && cd ../ && pwd)
         npm link "${PACKAGE_NAME}"
     fi
 
-    npx gatsby develop
-
 )
