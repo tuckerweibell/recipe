@@ -27,8 +27,8 @@
       onClick: e => {
         e.preventDefault();
       },
+      isExpanded: false,
     }}
-    isExpanded={false}
   >
     <EzCardSection>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -55,8 +55,8 @@
       onClick: e => {
         e.preventDefault();
       },
+      isExpanded: true,
     }}
-    isExpanded={true}
   >
     <EzCardSection>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
