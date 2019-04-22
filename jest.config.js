@@ -5,6 +5,8 @@ module.exports = {
   collectCoverageFrom: [
     'src/@(components|util|styles)/**/*.{ts,tsx}',
     '!src/@(components|util|styles)/**/index.{ts,tsx}',
+    '!src/@(components|util|styles)/**/*types.{ts,tsx}',
+    '!src/@(components|util|styles)/**/en.{ts,tsx}',
     '!**/node_modules/**',
   ],
   moduleDirectories: ['node_modules', 'src'],
