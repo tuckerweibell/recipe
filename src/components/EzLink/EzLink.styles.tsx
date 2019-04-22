@@ -6,6 +6,10 @@ const base = ({theme}) => css`
   font-weight: bold;
   text-decoration: none;
   ${pseudoClasses('color', {color: theme.colors.primary.main})};
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const link = p => css`

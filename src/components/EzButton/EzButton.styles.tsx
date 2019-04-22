@@ -69,6 +69,10 @@ const tertiary = ({theme: {colors}, destructive}) => {
     &:focus {
       outline: auto;
     }
+
+    &:hover {
+      text-decoration: underline;
+    }
   `;
 };
 
