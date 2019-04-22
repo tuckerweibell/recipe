@@ -19,6 +19,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Added base font color to doc-site and test suite (in lieu of global style reset)
+
 #### Documentation
 
 #### Dependency upgrades
