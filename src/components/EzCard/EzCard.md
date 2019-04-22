@@ -29,6 +29,15 @@ Card Sections should not:
 
 - Be used outside of a Card
 
+<br/>
+<br/>
+
+Features still in consideration include:
+
+- Stepped expand/reveal
+
+---
+
 ## Examples
 
 ### Basic Card
@@ -78,6 +87,56 @@ Cards can have an optional subheading to provide further information for the car
     </p>
   </EzCard>
 </EzPage>
+```
+
+### Card with Footer
+
+Cards can have an optional footer to provide a link to expand more contents of the card.
+
+#### Expandable
+
+Cards can sometimes contain a large amount of content when only a fraction of the content needs to be available at-a-glance. Expandable cards can be used to offer at-a-glance content, with the option to show more on demand.
+
+Expandable cards should be used when space is a constraint and where the information is either not frequently used, or is not critical for the user to make informed choices.
+
+When the `expandable` attribute is set a footer will appear at the bottom of `EzCard` for toggling `EzCardExpandable` components. To get the `EzCardExpandable` component to toggle, an `isExpanded` state must be passed down to both the `EzCard` and `EzCardExpandable` components. The `expandLabel`, `collapseLabel` and `onClick` properties are all required in the `expandable` attribute.
+
+```jsx
+() => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  return (
+    <EzPage>
+      <EzCard
+        title="Card Heading"
+        expandable={{
+          expandLabel: 'See more orders',
+          collapseLabel: 'See fewer orders',
+          onClick: e => {
+            e.preventDefault();
+
+            setIsExpanded(!isExpanded);
+          },
+        }}
+        isExpanded={isExpanded}
+      >
+        <EzCardSection>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <EzCardExpandable isExpanded={isExpanded}>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+          </EzCardExpandable>
+        </EzCardSection>
+      </EzCard>
+    </EzPage>
+  );
+};
 ```
 
 ### Card with Actions

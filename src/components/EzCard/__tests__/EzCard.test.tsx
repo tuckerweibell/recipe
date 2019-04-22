@@ -1,5 +1,5 @@
 import React from 'react';
-import {EzCard, EzCardSection} from '..';
+import {EzCard, EzCardSection, EzCardExpandable} from '..';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {renderToStaticMarkup} from 'react-dom/server';
@@ -8,7 +8,7 @@ import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzLayout, EzButton} from '../../index';
 
-const scope = {EzButton, EzCard, EzCardSection, EzLayout, EzPage};
+const scope = {EzButton, EzCard, EzCardSection, EzCardExpandable, EzLayout, EzPage};
 
 describe('EzCard', () => {
   visualSnapshots({markdown, scope});
