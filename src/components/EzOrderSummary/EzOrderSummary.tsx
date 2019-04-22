@@ -1,6 +1,8 @@
 import React from 'react';
 import {ItemsSection, Total, SummarySection, SpecialInstructions} from './EzOrderSummary.styles';
 import {EzCard, EzTable, EzTextStyle, EzLayout} from '..';
+import en from './en';
+import {useTranslation} from '../../utils/hooks';
 
 type LabelValuePair = {label: string; value: string};
 type Price = string;
@@ -33,48 +35,52 @@ type Props = {
   summary: Summary;
 };
 
-const Item = ({item}) => (
-  <div>
+const Item = ({item}) => {
+  const {t} = useTranslation(en);
+  return (
     <div>
-      {item.name ? (
-        <span>
-          {item.name} @ {item.price}
-        </span>
-      ) : (
-        <span>Tableware</span>
+      <div>
+        {item.name ? (
+          <span>
+            {item.name} @ {item.price}
+          </span>
+        ) : (
+          <span>{t('Tableware')}</span>
+        )}
+      </div>
+      {item.options &&
+        item.options.map((option, index) => (
+          <div key={index}>
+            <EzTextStyle use="subdued">
+              {option.label}: {option.value}
+            </EzTextStyle>
+          </div>
+        ))}
+      {item.specialInstructions && (
+        <SpecialInstructions>
+          <div>
+            <EzTextStyle use="strong">{t('Special Instructions:')}</EzTextStyle>
+          </div>
+          {item.specialInstructions}
+        </SpecialInstructions>
       )}
     </div>
-    {item.options &&
-      item.options.map((option, index) => (
-        <div key={index}>
-          <EzTextStyle use="subdued">
-            {option.label}: {option.value}
-          </EzTextStyle>
-        </div>
-      ))}
-    {item.specialInstructions && (
-      <SpecialInstructions>
-        <div>
-          <EzTextStyle use="strong">Special Instructions:</EzTextStyle>
-        </div>
-        {item.specialInstructions}
-      </SpecialInstructions>
-    )}
-  </div>
-);
+  );
+};
 
 /**
  * An order summary is an at-a-glance breakdown of billable items that make up an order.
  */
 const EzOrderSummary: React.FC<Props> = ({actions, items, subtitle, tableware, title, summary}) => {
+  const {t} = useTranslation(en);
   return (
     <EzCard actions={actions} title={title} subtitle={subtitle}>
       <ItemsSection>
         <EzTable
           columns={[
-            {heading: 'Qty', accessor: 'quantity', numeric: true},
-            {heading: 'Item', accessor: Item},
-            {heading: 'Price', accessor: 'total', numeric: true},
+            {heading: t('Qty'), accessor: 'quantity', numeric: true},
+            {heading: t('Item'), accessor: Item},
+            {heading: t('Price'), accessor: 'total', numeric: true},
           ]}
           items={[...items, tableware]}
         />
@@ -92,13 +98,15 @@ const EzOrderSummary: React.FC<Props> = ({actions, items, subtitle, tableware, t
         </table>
         <div>
           <EzLayout layout="split">
-            <Total>Total</Total>
+            <Total>{t('Total')}</Total>
             <Total>{summary.total}</Total>
           </EzLayout>
           {summary.perHead && (
             <EzLayout layout="split">
-              <EzTextStyle use="subdued">Price per head</EzTextStyle>
-              <EzTextStyle use="subdued">{summary.perHead}/person</EzTextStyle>
+              <EzTextStyle use="subdued">{t('Price per head')}</EzTextStyle>
+              <EzTextStyle use="subdued">
+                {t('{{perHead}}/person', {perHead: summary.perHead})}
+              </EzTextStyle>
             </EzLayout>
           )}
         </div>
