@@ -12,7 +12,7 @@ import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
-import * as router from 'react-router-dom';
+import {Link, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -78,7 +78,14 @@ const HtmlAst = ({htmlAst, scope}) => {
   return htmlAst.children.map(renderTag);
 };
 
-const require = () => router;
+const require = () => ({
+  Link,
+  BrowserRouter:
+    typeof window === 'undefined'
+      ? () => <StaticRouter context={{}} location="/" />
+      : BrowserRouter,
+  Route,
+});
 
 export default ({data: {markdownRemark: page}}) => {
   return (
