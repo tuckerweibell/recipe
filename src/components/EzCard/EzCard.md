@@ -117,8 +117,8 @@ When the `expandable` attribute is set a footer will appear at the bottom of `Ez
 
             setIsExpanded(!isExpanded);
           },
+          isExpanded: isExpanded,
         }}
-        isExpanded={isExpanded}
       >
         <EzCardSection>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

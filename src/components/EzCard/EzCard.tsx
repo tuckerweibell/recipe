@@ -30,6 +30,7 @@ type ExpandableCardFooter = {
   expandLabel: string;
   collapseLabel: string;
   onClick: React.MouseEventHandler;
+  isExpanded?: boolean;
 };
 
 type CardProps = (ActionsProps | OptionalTitle) & {
@@ -38,7 +39,6 @@ type CardProps = (ActionsProps | OptionalTitle) & {
   subtitle?: string;
   accent?: 'info';
   expandable?: ExpandableCardFooter;
-  isExpanded?: boolean;
 };
 
 const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFooter =>
@@ -47,15 +47,7 @@ const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFo
 /**
  * Cards are the primary means of grouping sections on a page.
  */
-const EzCard: React.FC<CardProps> = ({
-  title,
-  subtitle,
-  accent,
-  actions,
-  expandable,
-  isExpanded,
-  ...props
-}) => {
+const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, expandable, ...props}) => {
   const heading = title && (
     <EzHeading size="3" subheading={subtitle}>
       {title}
@@ -78,7 +70,7 @@ const EzCard: React.FC<CardProps> = ({
       {isExpandableCardFooter(expandable) && (
         <EzCardFooter>
           <EzLink href="#" onClick={expandable.onClick}>
-            {isExpanded && expandable.collapseLabel
+            {expandable.isExpanded && expandable.collapseLabel
               ? expandable.collapseLabel
               : expandable.expandLabel}
           </EzLink>
