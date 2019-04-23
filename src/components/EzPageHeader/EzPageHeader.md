@@ -201,7 +201,7 @@ Use for detail pages, which should have return links and may also often have rel
         title="Order # XYZ-123"
         breadcrumb={{
           label: 'Back to Orders',
-          onClick: () => alert('Clicked back'),
+          onClick: () => {},
         }}
         status={<EzAlert headline="Verified" use="marketing" />}
         subnav={{tabs, selected, onChange}}
@@ -213,19 +213,12 @@ Use for detail pages, which should have return links and may also often have rel
             }}
             className="responsive"
           >
-            <EzButton use="secondary" destructive>
-              Reject Order
-            </EzButton>
             <EzButton use="secondary">Request Third Party Delivery</EzButton>
             <EzButton use="primary">Accept Order</EzButton>
           </EzLayout>
         }
       />
-      <EzPage>
-        <EzCard>
-          <div>{selected && selected.accessibilityLabel}</div>
-        </EzCard>
-      </EzPage>
+      <EzPage />
     </>
   );
 };
