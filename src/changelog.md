@@ -7,6 +7,28 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 4.3.0
+
+#### New components
+
+- Added new [EzLink](/components/ez-link) component
+
+#### Enhancements
+
+- Added underline styles to [EzButton](/components/ez-button) component, consistent with [EzLink](/components/ez-link) component.
+- Added support for collapsible/expandable [EzCard](/components/ez-card#expandable).
+
+#### Design updates
+
+- set base font color in doc-site (in lieu of global style reset)
+- set base font color in visual regression test suite
+- enable font antialiasing in doc-site
+- remove unwanted font-size media query from doc-site (causing inconsistencies between how doc-site and production sites behave)
+
+#### Bug fixes
+
+- fixed runtime error in doc-site when rendering `jsxwide` examples
+
 ## 4.2.1
 
 #### Bug fixes
