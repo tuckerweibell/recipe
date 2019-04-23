@@ -19,7 +19,7 @@ A Page header is used to build the outer structure of a page, including the page
 
 Features still in consideration include:
 
-- Sub Navigation (tabs)
+- Responsive subnavigation variants (collapsing tabs into menu when space constrained)
 
 ---
 
@@ -103,45 +103,139 @@ Consider wrapping actions in an EzLayout to manage how they stack at smaller bre
 />
 ```
 
-#### Page with all header elements
+### Page header with subnavigation
 
-Use for detail pages, which should have return links and may also often have page actions.
+Use page header with subnavigation to offer multiple views related to the page. To enable subnavigation, use the `subnav` prop.
+
+The `subnav` prop should be provided an object that describes paths to related pages and the current selection.
+
+The `subnav` object can have the following properties:
+
+- `tabs` (required): an array that represents each of the related views available for navigation.
+- `selected`: A tab from the `tabs` array that represents the currently displayed view.
+- `onChange`: An event handler for notifying when the user has selected a link to view.
+
+Each entry in the `tabs` array must provide a `label` for the related page and can optionally provide an `accessibilityLabel` for providing additional context to improve accessibility.
+
+The following example demonstrates how subnavigation can use `onChange` events to switch which view to display. Page navigation can also be triggered using links as shown in the [Page header with subnavigation links example](#page-header-with-subnavigation-links).
 
 ```jsxwide
-<>
-  <EzPageHeader
-    title="Order # XYZ-123"
-    breadcrumb={{
-      label: 'Back to Orders',
-      onClick: () => alert('Clicked back'),
-    }}
-    status={<EzAlert headline="Verified" use="marketing" />}
-    actions={
-      <EzLayout
-        layout={{
-          base: 'stack',
-          medium: 'basic',
+() => {
+  const [tabs] = React.useState([
+    {label: 'All', accessibilityLabel: 'All orders'},
+    {label: 'Accepted', accessibilityLabel: 'Accepted orders'},
+    {label: 'Draft', accessibilityLabel: 'Draft orders'},
+  ]);
+  const [selected, onChange] = React.useState(tabs[0]);
+  return (
+    <>
+      <EzPageHeader
+        title="Order # XYZ-123"
+        subnav={{tabs, selected, onChange}}
+      />
+      <EzPage>
+        <EzCard>
+          <div>{selected && selected.accessibilityLabel}</div>
+        </EzCard>
+      </EzPage>
+    </>
+  );
+};
+```
+
+### Page header with subnavigation links
+
+Use page header with subnavigation to offer url-accessible related views.
+
+Instead of providing an `onChange` handler as demonstrated in the [Page header with subnavigation example](#page-header-with-subnavigation), Page navigation can also be triggered using links.
+
+Each entry in the `tabs` array can be used to render a link by proving an `href` property for each tab.
+
+Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can instead provide a Link component, such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link) to render via the optional `as` property. When using the `as` property, you must use the `to` prop in place of `href` to provide the destination url for the link.
+
+```jsxwide
+() => {
+  const {Link, BrowserRouter: Router, Route} = require('react-router-dom');
+  const tabs = [
+    {label: 'Header', to: '/components/ez-page-header/', as: Link},
+    {label: 'Button', to: '/components/ez-button/', as: Link},
+    {label: 'Link', to: '/components/ez-link/', as: Link},
+  ];
+  return (
+    <Router>
+      <Route
+        render={({location}) => (
+          <EzPageHeader
+            title="Components"
+            subnav={{tabs, selected: tabs.find(tab => tab.to === location.pathname)}}
+          />
+        )}
+      />
+      <EzPage>
+        <EzCard>
+          <Route exact path="/components/ez-page-header/" component={() => 'Page header content'} />
+          <Route exact path="/components/ez-button/" component={() => 'Button content'} />
+          <Route exact path="/components/ez-link/" component={() => 'Link content'} />
+        </EzCard>
+      </EzPage>
+    </Router>
+  );
+};
+```
+
+#### Page with all header elements
+
+Use for detail pages, which should have return links and may also often have related pages and page actions.
+
+```jsxwide
+() => {
+  const [tabs] = React.useState([
+    {label: 'All', accessibilityLabel: 'All orders'},
+    {label: 'Accepted', accessibilityLabel: 'Accepted orders'},
+    {label: 'Draft', accessibilityLabel: 'Draft orders'},
+  ]);
+  const [selected, onChange] = React.useState(tabs[0]);
+  return (
+    <>
+      <EzPageHeader
+        title="Order # XYZ-123"
+        breadcrumb={{
+          label: 'Back to Orders',
+          onClick: () => alert('Clicked back'),
         }}
-        className="responsive"
-      >
-        <EzButton use="secondary" destructive>
-          Reject Order
-        </EzButton>
-        <EzButton use="secondary">Request Third Party Delivery</EzButton>
-        <EzButton use="primary">Accept Order</EzButton>
-      </EzLayout>
-    }
-  />
-  <EzPage>
-    <EzCard>Page Content</EzCard>
-  </EzPage>
-</>
+        status={<EzAlert headline="Verified" use="marketing" />}
+        subnav={{tabs, selected, onChange}}
+        actions={
+          <EzLayout
+            layout={{
+              base: 'stack',
+              medium: 'basic',
+            }}
+            className="responsive"
+          >
+            <EzButton use="secondary" destructive>
+              Reject Order
+            </EzButton>
+            <EzButton use="secondary">Request Third Party Delivery</EzButton>
+            <EzButton use="primary">Accept Order</EzButton>
+          </EzLayout>
+        }
+      />
+      <EzPage>
+        <EzCard>
+          <div>{selected && selected.accessibilityLabel}</div>
+        </EzCard>
+      </EzPage>
+    </>
+  );
+};
 ```
 
 ---
 
 ## Related components
 
-- [Page](/components/ez-page)
 - [Button](/components/ez-button)
 - [Layout](/components/ez-layout)
+- [Link](/components/ez-link)
+- [Page](/components/ez-page)
