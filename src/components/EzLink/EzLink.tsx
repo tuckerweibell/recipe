@@ -1,14 +1,6 @@
 import React from 'react';
 import {StyledLink, StyledAnchor} from './EzLink.styles';
-
-type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-  href: string;
-};
-
-type LinkProps = {
-  to: string;
-  as: React.ComponentType<{to: string}>;
-};
+import {AnchorProps, LinkProps} from './EzLink.types';
 
 type Props = (AnchorProps | LinkProps) & {
   children: React.ReactNode;
