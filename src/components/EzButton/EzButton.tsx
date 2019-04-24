@@ -1,7 +1,7 @@
 import React, {createElement} from 'react';
 import StyledButton from './EzButton.styles';
 
-type ButtonProps = RegularProps | TertiaryProps;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & (RegularProps | TertiaryProps);
 
 type SharedButtonProps = {
   destructive?: boolean;
