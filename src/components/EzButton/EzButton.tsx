@@ -1,4 +1,4 @@
-import React, {createElement} from 'react';
+import React, {createElement, forwardRef} from 'react';
 import StyledButton from './EzButton.styles';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & (RegularProps | TertiaryProps);
@@ -22,10 +22,11 @@ type TertiaryProps = {
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-// const EzButton: React.FC<ButtonProps> = props =>
-const EzButton: React.FC<ButtonProps> = props => createElement(StyledButton, buildProps(props));
+const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) =>
+  createElement(StyledButton, buildProps({...props, innerRef: ref}))
+);
 
-const buildProps = (props: ButtonProps) => {
+const buildProps = (props: ButtonProps & {innerRef: React.Ref<HTMLElement>}) => {
   if (props.use === 'tertiary') return props;
 
   return {...props, disabled: props.disabled || props.loading};
