@@ -82,7 +82,7 @@ const require = () => ({
   Link,
   BrowserRouter:
     typeof window === 'undefined'
-      ? () => <StaticRouter context={{}} location="/" />
+      ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
       : BrowserRouter,
   Route,
 });
