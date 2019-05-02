@@ -70,3 +70,29 @@
   </EzCard>
 </EzPage>
 ```
+
+#### Card with multiple actions causing wrap
+
+```jsx
+<EzPage>
+  <EzPageSection use="aside">
+    <EzCard
+      title="Card Heading"
+      actions={
+        <EzLayout layout="basic">
+          <EzButton use="secondary" destructive>
+            Delete
+          </EzButton>
+          <EzButton>Edit</EzButton>
+          <EzButton>View</EzButton>
+        </EzLayout>
+      }
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      </p>
+    </EzCard>
+  </EzPageSection>
+</EzPage>
+```

@@ -6,9 +6,9 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
-import {EzPage, EzLayout, EzButton} from '../../index';
+import {EzPage, EzPageSection, EzLayout, EzButton} from '../../index';
 
-const scope = {EzButton, EzCard, EzCardSection, EzCardExpandable, EzLayout, EzPage};
+const scope = {EzButton, EzCard, EzCardSection, EzCardExpandable, EzLayout, EzPage, EzPageSection};
 
 describe('EzCard', () => {
   visualSnapshots({markdown, scope});

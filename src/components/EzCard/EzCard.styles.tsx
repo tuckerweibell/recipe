@@ -27,7 +27,12 @@ export const CardLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  margin: -${({theme}) => theme.spacing.sm} 0 0 -${({theme}) => theme.spacing.sm};
   justify-content: space-between;
+
+  > * {
+    margin: ${({theme}) => theme.spacing.sm} 0 0 ${({theme}) => theme.spacing.sm};
+  }
 `;
 
 const vertical = ({horizontal, theme}) =>

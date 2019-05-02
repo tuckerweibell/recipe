@@ -56,8 +56,8 @@ const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, expandab
 
   const layout = actions && (
     <CardLayout>
-      {heading}
-      {actions}
+      <div>{heading}</div>
+      <div>{actions}</div>
     </CardLayout>
   );
 
