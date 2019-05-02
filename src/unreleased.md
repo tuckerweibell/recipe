@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Improved visibility of the inline code tags.
+
 #### Dependency upgrades
 
 #### Development workflow
