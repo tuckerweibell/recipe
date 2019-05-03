@@ -4,6 +4,7 @@ import {EzButton, EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
 import {base, actions as actionStyles} from './EzPageHeader.styles';
 import styled from '../../themes/styled';
+import {wrapEvent} from '../../utils';
 
 type Breadcrumb = {
   label: string;
@@ -13,6 +14,7 @@ type Breadcrumb = {
 type Tab = {
   label: string;
   accessibilityLabel?: string;
+  onClick?: React.MouseEventHandler;
 };
 
 type Changeable<T> = {onChange: (tab: T) => void};
@@ -108,7 +110,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title
               active={selected === tab}
               aria-label={tab.accessibilityLabel}
               {...tab}
-              onClick={subnav.onChange && (() => subnav.onChange(tab as any))}
+              onClick={wrapEvent(tab.onClick, () => subnav.onChange && subnav.onChange(tab as any))}
             >
               {tab.label}
             </Tab>

@@ -115,7 +115,7 @@ The `subnav` object can have the following properties:
 - `selected`: A tab from the `tabs` array that represents the currently displayed view.
 - `onChange`: An event handler for notifying when the user has selected a link to view.
 
-Each entry in the `tabs` array must provide a `label` for the related page and can optionally provide an `accessibilityLabel` for providing additional context to improve accessibility.
+Each entry in the `tabs` array must provide a `label` for the related page and can optionally provide an `accessibilityLabel` for providing additional context to improve accessibility. Optionally, tabs may include an `onClick` handler to support the handling of actions that occur when tabs are clicked (such as logging page views);
 
 The following example demonstrates how subnavigation can use `onChange` events to switch which view to display. Page navigation can also be triggered using links as shown in the [Page header with subnavigation links example](#page-header-with-subnavigation-links).
 
