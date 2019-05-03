@@ -3,7 +3,7 @@ import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
-import {filterValidProps} from '../../utils';
+import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
 import {Props} from './EzField.types';
 
@@ -35,17 +35,6 @@ const Input = props => {
   };
   return <Component {...inputProps} />;
 };
-
-const wrapEvent = (handler: React.ReactEventHandler, callback: React.ReactEventHandler) => {
-  if (!handler) return callback;
-  return (event: React.SyntheticEvent) => {
-    handler(event);
-    if (!event.defaultPrevented) callback(event);
-  };
-};
-
-const wrapEvents = (props, events) =>
-  Object.assign({}, ...Object.keys(events).map(e => ({[e]: wrapEvent(props[e], events[e])})));
 
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
