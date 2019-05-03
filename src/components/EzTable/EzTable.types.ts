@@ -26,6 +26,8 @@ type OnSortClickOptions = {
 
 type onSortClick = (event: React.MouseEvent<HTMLElement>, options: OnSortClickOptions) => void;
 
+type onRowsPerPageChange = (event: any) => void;
+
 type BulkSelectionDisabled = {
   onBulkSelectClick?: never;
   onRowSelectClick?: never;
@@ -38,12 +40,23 @@ type BulkSelectionProps = {
   isRowSelected: (item: any) => boolean;
 };
 
+type PaginationProps = {
+  currentPage: number;
+  totalRows: number;
+  rowsPerPage: number;
+  rowsPerPageOptions: [number];
+  onPrevPageClick: React.MouseEventHandler;
+  onNextPageClick: React.MouseEventHandler;
+  onRowsPerPageChange: onRowsPerPageChange;
+};
+
 export type TableProps = (BulkSelectionProps | BulkSelectionDisabled) & {
   title?: string;
   subtitle?: string;
   columns: Column[];
   items: any[];
   onSortClick?: onSortClick;
+  pagination?: PaginationProps;
 };
 
 export type Sortable = {

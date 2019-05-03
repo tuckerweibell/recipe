@@ -33,3 +33,109 @@
   return <Table />;
 };
 ```
+
+### Pagination, testing last page
+
+```jsx
+() => {
+  const allItems = [
+    {first: 'Tiffany', last: 'Morin'},
+    {first: 'Mitchell', last: 'Hoffman'},
+    {first: 'Léo', last: 'Gonzalez'},
+    {first: 'Alberto', last: 'Arias'},
+    {first: 'Olivier', last: 'Campos'},
+    {first: 'Ömür', last: 'Ekici'},
+    {first: 'Énio', last: 'Barros'},
+    {first: 'Ava', last: 'Ma'},
+    {first: 'Norberta', last: 'Novaes'},
+    {first: 'Deni', last: 'Lubbers'},
+  ];
+
+  const Table = () => {
+    const state = {
+      currentPage: 2,
+      totalRows: 10,
+      rowsPerPage: 5,
+    };
+
+    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          columns={[
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
+          pagination={{
+            currentPage: state.currentPage,
+            totalRows: state.totalRows,
+            rowsPerPage: state.rowsPerPage,
+            rowsPerPageOptions: [5, 10, 20, 30],
+            onPrevPageClick: () => {},
+            onNextPageClick: () => {},
+            onRowsPerPageChange: () => {},
+          }}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
+};
+```
+
+### Pagination, changing default rows per page
+
+```jsx
+() => {
+  const allItems = [
+    {first: 'Tiffany', last: 'Morin'},
+    {first: 'Mitchell', last: 'Hoffman'},
+    {first: 'Léo', last: 'Gonzalez'},
+    {first: 'Alberto', last: 'Arias'},
+    {first: 'Olivier', last: 'Campos'},
+    {first: 'Ömür', last: 'Ekici'},
+    {first: 'Énio', last: 'Barros'},
+    {first: 'Ava', last: 'Ma'},
+    {first: 'Norberta', last: 'Novaes'},
+    {first: 'Deni', last: 'Lubbers'},
+  ];
+
+  const Table = () => {
+    const state = {
+      currentPage: 1,
+      totalRows: 10,
+      rowsPerPage: 10,
+    };
+
+    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          columns={[
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
+          pagination={{
+            currentPage: state.currentPage,
+            totalRows: state.totalRows,
+            rowsPerPage: state.rowsPerPage,
+            rowsPerPageOptions: [5, 10, 20, 30],
+            onPrevPageClick: () => {},
+            onNextPageClick: () => {},
+            onRowsPerPageChange: () => {},
+          }}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
+};
+```

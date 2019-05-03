@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added pagination support to EzTable.
+
 #### Design updates
 
 #### Bug fixes

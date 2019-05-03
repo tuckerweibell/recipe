@@ -77,6 +77,30 @@ export const TableCardSection = styled(EzCardSection)<TableCardSectionProps>(
   borders
 );
 
+export const TablePaginationNavItem = styled.span`
+  padding-right: ${props => props.theme.spacing.lg};
+`;
+
+// `direction: rtl` on the select is used to align the text in the select box to the right, changing direction in the option tag prevents the text contents from displaying RTL.
+export const TablePaginationRowCountDropdown = styled.select`
+  padding-right: ${props => props.theme.spacing.md};
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: ${prop => prop.theme.fontSizes[300]};
+  font-weight: bold;
+  color: ${props => props.theme.colors.primary.main};
+  border: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48cGF0aCBkPSJNMTIyLjI0MiAxMC40MTVsMy40MzYgMy40MzZjLjAwMy4wMDQuMDA0LjAwOS4wMDguMDEzYS44MjcuODI3IDAgMCAwIC41ODkuMjQxYy4yMTMgMCAuNDI3LS4wOC41ODktLjI0MS4wMDQtLjAwNC4wMDUtLjAxLjAwOC0uMDEzbDMuNDM2LTMuNDM2YS44MzIuODMyIDAgMCAwIDAtMS4xNzMuODMyLjgzMiAwIDAgMC0xLjE3MyAwbC0yLjg2IDIuODYtMi44Ni0yLjg2YS44MzIuODMyIDAgMCAwLTEuMTczIDAgLjgzMi44MzIgMCAwIDAgMCAxLjE3M3oiIGlkPSJhIi8+PC9kZWZzPjx1c2UgZmlsbD0iIzNFOTBENiIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyMiAtOSkiLz48L3N2Zz4=');
+  background-repeat: no-repeat;
+  background-position: right 60%;
+  background-color: transparent;
+  appearance: none;
+  cursor: pointer;
+  direction: rtl;
+  option {
+    direction: ltr;
+  }
+`;
+
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 

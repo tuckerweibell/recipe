@@ -1,9 +1,20 @@
 import React from 'react';
-import {EzCard} from '../EzCard';
+import {EzCard, EzCardFooter} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
+import EzButton from '../EzButton';
+import EzLayout from '../EzLayout';
 import {TableProps} from './EzTable.types';
-import {Table, Th, Td, TableCardSection} from './EzTable.styles';
+import {
+  Table,
+  Th,
+  Td,
+  TableCardSection,
+  TablePaginationNavItem,
+  TablePaginationRowCountDropdown,
+} from './EzTable.styles';
 import useSorting from './useSorting';
+import en from './en';
+import {useTranslation} from '../../utils/hooks';
 
 const SortDirection = ({direction}) => (
   <svg
@@ -78,6 +89,55 @@ const Tbody = ({columns, items, onRowSelectClick, isRowSelected}) => (
   </tbody>
 );
 
+const TablePagination = ({pagination}) => {
+  const {t} = useTranslation(en);
+  const pages = Math.ceil(pagination.totalRows / pagination.rowsPerPage);
+
+  return (
+    <EzCardFooter>
+      <EzLayout layout="split" className="split">
+        <div>
+          <TablePaginationNavItem>
+            <EzButton
+              use="tertiary"
+              onClick={pagination.onPrevPageClick}
+              disabled={pagination.currentPage === 1}
+            >
+              {'‹ '}
+              {t('Previous Page')}
+            </EzButton>
+          </TablePaginationNavItem>
+          <TablePaginationNavItem>
+            {t('Page {{currentPage}} of {{pages}}', {currentPage: pagination.currentPage, pages})}
+          </TablePaginationNavItem>
+          <TablePaginationNavItem>
+            <EzButton
+              use="tertiary"
+              onClick={pagination.onNextPageClick}
+              disabled={pagination.currentPage === pages}
+            >
+              {t('Next Page')}
+              {' ›'}
+            </EzButton>
+          </TablePaginationNavItem>
+        </div>
+        <div>
+          <TablePaginationRowCountDropdown
+            defaultValue={pagination.rowsPerPage}
+            onChange={pagination.onRowsPerPageChange}
+          >
+            {pagination.rowsPerPageOptions.map(value => (
+              <option key={value} value={value}>
+                {t('{{num}} rows per page', {num: value})}
+              </option>
+            ))}
+          </TablePaginationRowCountDropdown>
+        </div>
+      </EzLayout>
+    </EzCardFooter>
+  );
+};
+
 /**
  * Tables display information in a way that’s easy to scan,
  * so that users can look for patterns and insights.
@@ -92,6 +152,7 @@ const EzTable: React.FC<TableProps> = ({
   onRowSelectClick,
   isRowSelected,
   onSortClick,
+  pagination,
 }) => {
   const table = (
     <Table>
@@ -116,6 +177,7 @@ const EzTable: React.FC<TableProps> = ({
   return (
     <EzCard title={title} subtitle={subtitle}>
       <TableCardSection>{table}</TableCardSection>
+      {pagination && <TablePagination pagination={pagination} />}
     </EzCard>
   );
 };
