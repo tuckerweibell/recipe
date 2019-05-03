@@ -119,6 +119,30 @@ Used whenever the tabular data alone represents a cohesive set of content. Shoul
 </EzPage>
 ```
 
+### Table with actions
+
+Tables that fill a card can also offer actions that operate on the table data, or are related to the table content.
+
+Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how actions stack at smaller breakpoints.
+
+```jsxwide
+<EzPage>
+  <EzTable
+    title="All Orders"
+    actions={<EzButton>View related orders</EzButton>}
+    columns={[
+      {heading: 'Order number', accessor: 'id'},
+      {heading: 'Event date', accessor: 'date'},
+      {heading: 'Total', accessor: 'total', numeric: true},
+    ]}
+    items={[
+      {id: '#004', date: '02/28/18', total: '$3267'},
+      {id: '#007', date: '02/28/18', total: '$3214'},
+    ]}
+  />
+</EzPage>
+```
+
 ### Custom cell rendering
 
 Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content).

@@ -6,10 +6,10 @@ import {fireEvent, cleanup} from 'react-testing-library';
 import regressionTests from './EzTable.test.md';
 import markdown from '../EzTable.md';
 import EzTable from '../EzTable';
-import {EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
+import {EzButton, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
-const scope = {EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Component};
+const scope = {EzButton, EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Component};
 
 describe('EzTable', () => {
   visualSnapshots({markdown, scope});

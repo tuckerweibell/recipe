@@ -144,6 +144,7 @@ const TablePagination = ({pagination}) => {
  * They can be embedded in primary content, such as cards.
  */
 const EzTable: React.FC<TableProps> = ({
+  actions,
   title,
   subtitle,
   columns,
@@ -175,7 +176,7 @@ const EzTable: React.FC<TableProps> = ({
   if (!title) return table;
 
   return (
-    <EzCard title={title} subtitle={subtitle}>
+    <EzCard title={title} subtitle={subtitle} actions={actions}>
       <TableCardSection>{table}</TableCardSection>
       {pagination && <TablePagination pagination={pagination} />}
     </EzCard>
