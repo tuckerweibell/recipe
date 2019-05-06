@@ -1,37 +1,25 @@
 import React, {createRef, useRef} from 'react';
-import {AnchorProps, LinkProps} from '../EzLink/EzLink.types';
-import {EzButton, EzHeading, EzLayout} from '..';
+import LinkButton from './LinkButton';
+import {Link, LinkButton as LinkButtonType, Labelled} from '../EzLink/EzLink.types';
+import {EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
 import {base, actions as actionStyles} from './EzPageHeader.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import styled from '../../themes/styled';
 import {wrapEvent} from '../../utils';
 
-type Breadcrumb = {
-  label: string;
-  onClick: React.MouseEventHandler;
-};
-
-type Tab = {
-  label: string;
-  accessibilityLabel?: string;
-  onClick?: React.MouseEventHandler;
-};
-
 type Changeable<T> = {onChange: (tab: T) => void};
 
-type TabLink = Tab & (AnchorProps | LinkProps);
-
-type SubNavProps<T> = (T extends TabLink ? Partial<Changeable<T>> : Changeable<T>) & {
+type SubNavProps<T> = (T extends Link ? Partial<Changeable<T>> : Changeable<T>) & {
   tabs: T[];
   selected?: T;
 };
 
-type SubNav = SubNavProps<Tab> | SubNavProps<TabLink>;
+type SubNav = SubNavProps<Labelled> | SubNavProps<Labelled & Link>;
 
 type HeaderProps = {
   actions?: React.ReactNode;
-  breadcrumb?: Breadcrumb;
+  breadcrumb?: LinkButtonType;
   status?: React.ReactNode;
   title: string;
   subnav?: SubNav;
@@ -85,11 +73,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title
           }}
         >
           <div>
-            {breadcrumb && (
-              <EzButton use="tertiary" onClick={breadcrumb.onClick}>
-                ← {breadcrumb.label}
-              </EzButton>
-            )}
+            {breadcrumb && <LinkButton {...breadcrumb} label={`← ${breadcrumb.label}`} />}
             <EzLayout
               layout={{
                 base: 'stack',
@@ -106,21 +90,18 @@ const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title
       {subnav && (
         <MaxWidth>
           <TabList onKeyDown={handleKeyDown(refs, subnav)}>
-            {(subnav.tabs as Tab[]).map((tab, i) => (
+            {(subnav.tabs as Labelled[]).map((tab, i) => (
               <Tab
                 ref={refs[i]}
                 key={tab.label}
                 tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
                 active={selected === tab}
-                aria-label={tab.accessibilityLabel}
                 {...tab}
                 onClick={wrapEvent(
                   tab.onClick,
                   () => subnav.onChange && subnav.onChange(tab as any)
                 )}
-              >
-                {tab.label}
-              </Tab>
+              />
             ))}
           </TabList>
         </MaxWidth>

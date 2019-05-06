@@ -54,14 +54,35 @@ Used for summary or detail pages with no further action to take.
 
 ### Page header with breadcrumb
 
-Used when a page belongs to a parent page or collection. The `breadcrumb` prop must include a label and an `onClick` action.
+Used when a page belongs to a parent page or collection. The `breadcrumb` prop must include a label. Optionally, the breadcrumb may include an `onClick` to trigger navigation or support the handling side effects (such as logging page views).
+
+Optionally, an `accessibilityLabel` to render a visibly hidden label for providing additional context to improve accessibility.
 
 ```jsxwide
 <EzPageHeader
   title="Order # XYZ-123"
   breadcrumb={{
     label: 'Back to Orders',
+    accessibilityLabel: 'Orders list',
     onClick: () => alert('Clicked back'),
+  }}
+/>
+```
+
+### Page header with breadcrumb links
+
+Instead of providing an `onChange` handler as demonstrated in the [Page header with breadcrumb example](#page-header-with-breadcrumb), Page navigation can also be triggered using links.
+
+The breadcrumb can be used to render a link by proving an `href` property.
+
+Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can instead provide a Link component, such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link) to render via the optional `as` property. When using the `as` property, you must use the `to` prop in place of `href` to provide the destination url for the link.
+
+```jsxwide
+<EzPageHeader
+  title="Order # XYZ-123"
+  breadcrumb={{
+    label: 'Back to Orders',
+    href: '/components/ez-page-header#page-header-with-breadcrumb-links',
   }}
 />
 ```

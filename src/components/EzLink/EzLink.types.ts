@@ -6,3 +6,14 @@ export type LinkProps = {
   to: string;
   as: React.ComponentType<{to: string}>;
 };
+
+export type Clickable = {onClick: React.MouseEventHandler};
+
+export type Labelled = Partial<Clickable> & {
+  label: string;
+  accessibilityLabel?: string;
+};
+
+export type Link = AnchorProps | LinkProps;
+
+export type LinkButton = Labelled & (Clickable | Link);
