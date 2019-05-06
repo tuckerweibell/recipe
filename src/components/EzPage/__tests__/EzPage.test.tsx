@@ -4,9 +4,18 @@ import {visualSnapshots} from 'sosia';
 import markdown from '../EzPage.md';
 import {EzPage, EzPageSection} from '..';
 import {renderToHtml} from '../../../jest-globals';
-import {EzCard, EzHeading} from '../../index';
+import {EzCard, EzHeading, EzPageHeader, EzLayout, EzButton, EzAppLayout} from '../../index';
 
-const scope = {EzPage, EzPageSection, EzCard, EzHeading};
+const scope = {
+  EzPage,
+  EzPageSection,
+  EzCard,
+  EzHeading,
+  EzPageHeader,
+  EzLayout,
+  EzButton,
+  EzAppLayout,
+};
 
 describe('EzPage', () => {
   visualSnapshots({markdown, scope});

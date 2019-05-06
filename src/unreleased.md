@@ -9,6 +9,8 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added EzAppLayout which is used for centering page content at a fixed or full width.
+
 #### Enhancements
 
 - Added pagination support to EzTable.

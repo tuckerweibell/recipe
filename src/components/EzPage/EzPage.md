@@ -134,6 +134,50 @@ Just change the order of the aside and main sections if you want a right sidebar
 </EzPage>
 ```
 
+### Centered Header and Page Content
+
+```jsxwide
+<EzAppLayout layout="centered">
+  <EzPageHeader
+    title="Reviews"
+    actions={
+      <EzLayout
+        layout={{
+          base: 'stack',
+          medium: 'basic',
+        }}
+        className="responsive"
+      >
+        <EzButton use="secondary">Change store or group</EzButton>
+      </EzLayout>
+    }
+  />
+
+  <EzPage>
+    <EzPageSection use="aside">
+      <EzCard title="Card (in aside)">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+    </EzPageSection>
+    <EzPageSection use="main">
+      <EzCard title="Card (in main)">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+    </EzPageSection>
+  </EzPage>
+</EzAppLayout>
+```
+
 ---
 
 ## Related components

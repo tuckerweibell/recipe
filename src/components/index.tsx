@@ -1,4 +1,5 @@
 export {default as EzAlert} from './EzAlert';
+export {default as EzAppLayout} from './EzAppLayout';
 export {default as EzButton} from './EzButton';
 export {EzCard, EzCardSection, EzCardExpandable} from './EzCard';
 export {default as EzField} from './EzField';

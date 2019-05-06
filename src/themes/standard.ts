@@ -133,4 +133,6 @@ export const fontWeights = {
   bold: 700,
 };
 
+export const pageContentWidth = {base: rem(1000)};
+
 export const breakpoints = {medium: em(768), large: em(1061)};

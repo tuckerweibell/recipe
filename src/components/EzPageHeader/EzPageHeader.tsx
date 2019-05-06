@@ -3,6 +3,7 @@ import {AnchorProps, LinkProps} from '../EzLink/EzLink.types';
 import {EzButton, EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
 import {base, actions as actionStyles} from './EzPageHeader.styles';
+import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import styled from '../../themes/styled';
 import {wrapEvent} from '../../utils';
 
@@ -76,46 +77,53 @@ const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title
   const selected = subnav && subnav.selected;
   return (
     <StyledHeading subnav={subnav}>
-      <EzLayout
-        layout={{
-          base: 'stack',
-          medium: 'equal',
-        }}
-      >
-        <div>
-          {breadcrumb && (
-            <EzButton use="tertiary" onClick={breadcrumb.onClick}>
-              ← {breadcrumb.label}
-            </EzButton>
-          )}
-          <EzLayout
-            layout={{
-              base: 'stack',
-              medium: 'basic',
-            }}
-          >
-            <EzHeading size="1">{title}</EzHeading>
-            <div>{status}</div>
-          </EzLayout>
-        </div>
-        {actions && <StyledActions>{actions}</StyledActions>}
-      </EzLayout>
-      {subnav && (
-        <TabList onKeyDown={handleKeyDown(refs, subnav)}>
-          {(subnav.tabs as Tab[]).map((tab, i) => (
-            <Tab
-              ref={refs[i]}
-              key={tab.label}
-              tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
-              active={selected === tab}
-              aria-label={tab.accessibilityLabel}
-              {...tab}
-              onClick={wrapEvent(tab.onClick, () => subnav.onChange && subnav.onChange(tab as any))}
+      <MaxWidth>
+        <EzLayout
+          layout={{
+            base: 'stack',
+            medium: 'equal',
+          }}
+        >
+          <div>
+            {breadcrumb && (
+              <EzButton use="tertiary" onClick={breadcrumb.onClick}>
+                ← {breadcrumb.label}
+              </EzButton>
+            )}
+            <EzLayout
+              layout={{
+                base: 'stack',
+                medium: 'basic',
+              }}
             >
-              {tab.label}
-            </Tab>
-          ))}
-        </TabList>
+              <EzHeading size="1">{title}</EzHeading>
+              <div>{status}</div>
+            </EzLayout>
+          </div>
+          {actions && <StyledActions>{actions}</StyledActions>}
+        </EzLayout>
+      </MaxWidth>
+      {subnav && (
+        <MaxWidth>
+          <TabList onKeyDown={handleKeyDown(refs, subnav)}>
+            {(subnav.tabs as Tab[]).map((tab, i) => (
+              <Tab
+                ref={refs[i]}
+                key={tab.label}
+                tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
+                active={selected === tab}
+                aria-label={tab.accessibilityLabel}
+                {...tab}
+                onClick={wrapEvent(
+                  tab.onClick,
+                  () => subnav.onChange && subnav.onChange(tab as any)
+                )}
+              >
+                {tab.label}
+              </Tab>
+            ))}
+          </TabList>
+        </MaxWidth>
       )}
     </StyledHeading>
   );
