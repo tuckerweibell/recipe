@@ -20,6 +20,7 @@ title: 'Unreleased changes'
 - Add type definitions to enable support for EzButton to accept/pass through standard HTML button props (such as type, role, etc) to the underlying DOM element
 - Add support for [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) on EzButton and EzLink components to allow access to underlying DOM element
 - Support URL and client-side router links in [EzPageHeader](/components/ez-page-header/#page-header-with-breadcrumb-links). Closes issue [#60](https://github.com/ezcater/recipe/issues/60);
+- Add support for using components to define custom cell content in [EzTable](./components/ez-table#custom-cell-rendering). Closes [#92](https://github.com/ezcater/recipe/issues/92). Previously, the EzTable accessor allowed functions to be provided to define a template for custom cell content. By supporting Components instead of basic functions, we allow access to the full set of React features (state, life cycle etc) when rendering each custom cell.
 
 #### Design updates
 
