@@ -182,7 +182,7 @@ Use when more fine-grained control over the table content is desired (in favor o
 
 Use when multiple rows of a table can be selected together in order to perform an action in bulk.
 
-When enabled, table selection provides the user with options to select or deselect either individual rows from a data set, or all the currently visible rows in the table. When using pagination, table selection enables all rows to be selected from the current page.
+When enabled, table selection provides the user with options to select or deselect either individual rows from a data set, or all the currently visible rows in the table. When using pagination, table selection enables all rows to be selected from the current page, or from the data set as a whole. To see selection and pagination features used together, see the [bulk row selection across pages](/components/ez-table/#bulk-row-selection-across-pages) example.
 
 The following properties are required when using selection:
 
@@ -305,6 +305,8 @@ Pagination is enabled by adding the `pagination` attribute to `EzTable` with the
 - `onNextPageClick` (required): an event that is fired when the "Next Page" link is clicked.
 - `onRowsPerPageChange` (required): an event that is fired when the "n rows per page" select value is changed.
 
+To see selection and pagination features used together, see the [bulk row selection across pages](/components/ez-table/#bulk-row-selection-across-pages) example.
+
 #### Local Data
 
 ```jsxwide
@@ -424,6 +426,112 @@ Pagination is enabled by adding the `pagination` attribute to `EzTable` with the
           ]}
           items={items.slice(startIndex, startIndex + rowsPerPage)}
           onSortClick={onSortClick}
+          pagination={{
+            currentPage,
+            totalRows,
+            rowsPerPage,
+            rowsPerPageOptions: [5, 10, 20, 30],
+            onPrevPageClick,
+            onNextPageClick,
+            onRowsPerPageChange,
+          }}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
+};
+```
+
+### Bulk row selection across pages
+
+When interacting with large data sets that span multiple pages, managing the selection of records in order to perform an action in bulk can be a challenge. To simplify this experience, users are presented with a summary of their selection with options to select all records across all pages of the data set, or clear their current selection.
+
+The following additional properties are required when using selection and pagination features together:
+
+- `selection`
+  - `onSelectAllClick` (required): an event that is fired when the "Select all" message is clicked.
+  - `onSelectNoneClick` (required): an event that is fired when the "Clear selection" message is clicked.
+
+```jsxwide
+() => {
+  const allItems = [
+    {first: 'Tiffany', last: 'Morin'},
+    {first: 'Mitchell', last: 'Hoffman'},
+    {first: 'Léo', last: 'Gonzalez'},
+    {first: 'Alberto', last: 'Arias'},
+    {first: 'Olivier', last: 'Campos'},
+    {first: 'Ömür', last: 'Ekici'},
+    {first: 'Énio', last: 'Barros'},
+    {first: 'Ava', last: 'Ma'},
+    {first: 'Norberta', last: 'Novaes'},
+    {first: 'Deni', last: 'Lubbers'},
+  ];
+
+  const Table = () => {
+    const [state, setState] = React.useState({
+      currentPage: 1,
+      totalRows: 10,
+      rowsPerPage: 5,
+    });
+
+    const {currentPage, totalRows, rowsPerPage} = state;
+    const updateState = changes => setState({...state, ...changes});
+
+    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
+    const currentPageItems = allItems.slice(startIndex, startIndex + state.rowsPerPage);
+
+    const [selection, setSelection] = React.useState([]);
+
+    const selectRow = item => setSelection(selection.concat(item));
+    const deselectRow = item => setSelection(selection.filter(x => x !== item));
+    const isRowSelected = item => selection.includes(item);
+
+    const onSelectAllClick = () => setSelection(allItems);
+    const onSelectNoneClick = () => setSelection([]);
+
+    const onBulkSelectClick = () => {
+      const selectedPageItems = currentPageItems.filter(isRowSelected);
+
+      setSelection(
+        selectedPageItems.length === currentPageItems.length
+          ? selection.filter(item => !selectedPageItems.includes(item))
+          : selection.concat(currentPageItems)
+      );
+    };
+
+    const onRowSelectClick = (_event, {item}) => {
+      isRowSelected(item) ? deselectRow(item) : selectRow(item);
+    };
+
+    const onPrevPageClick = () => updateState({currentPage: currentPage - 1});
+    const onNextPageClick = () => updateState({currentPage: currentPage + 1});
+    const onRowsPerPageChange = e =>
+      updateState({
+        rowsPerPage: e.target.value,
+        currentPage: 1,
+      });
+
+    // clear current selection when changing pagination options
+    React.useEffect(() => setSelection([]), [currentPage, rowsPerPage]);
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          columns={[
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
+          selection={{
+            onRowSelectClick,
+            onBulkSelectClick,
+            isRowSelected,
+            onSelectAllClick,
+            onSelectNoneClick,
+          }}
           pagination={{
             currentPage,
             totalRows,
