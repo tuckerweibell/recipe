@@ -19,6 +19,7 @@ title: 'Unreleased changes'
 - Added sub navigation support to EzPageHeader, either via state change or via route change
 - Add type definitions to enable support for EzButton to accept/pass through standard HTML button props (such as type, role, etc) to the underlying DOM element
 - Add support for [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) on EzButton and EzLink components to allow access to underlying DOM element
+- Support URL and client-side router links in [EzPageHeader](/components/ez-page-header/#page-header-with-breadcrumb-links). Closes issue [#60](https://github.com/ezcater/recipe/issues/60);
 
 #### Design updates
 
