@@ -145,7 +145,7 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
 
 ### Custom cell rendering
 
-Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content).
+Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content). To provide custom content, the `accessor` property of each column can be provided any [React element](https://reactjs.org/docs/rendering-elements.html) or custom React component. Custom components will be provided an `item` prop with the record to be rendered.
 
 ```jsxwide
 () => {

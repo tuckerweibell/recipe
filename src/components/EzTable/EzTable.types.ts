@@ -11,7 +11,7 @@ type SortEnabledColumn = {
 
 type SortDisabledColumn = {
   sortable?: never;
-  accessor: any;
+  accessor: React.ReactNode | React.ComponentType;
 };
 
 export enum Direction {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createElement} from 'react';
 import {EzCard, EzCardFooter} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
 import EzButton from '../EzButton';
@@ -81,7 +81,7 @@ const Tbody = ({columns, items, onRowSelectClick, isRowSelected}) => (
         )}
         {columns.map(({accessor, numeric}, cellIndex) => (
           <Td key={cellIndex} numeric={numeric}>
-            {typeof accessor === 'function' ? accessor({item}) : item[accessor]}
+            {typeof accessor === 'function' ? createElement(accessor, {item}) : item[accessor]}
           </Td>
         ))}
       </tr>
