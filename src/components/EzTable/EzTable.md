@@ -25,8 +25,6 @@ Features still in consideration include:
 - Filtering
 - Row hover styles (interactive)
 - Zebra Striping
-- Pagination
-- Table Actions (print, download etc)
 - Column width options (fixed, grow, auto, ellipsis, tooltip)
 - Header-less columns (content between columns, e.g. formula operators)
 - Sticky headers
