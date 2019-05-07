@@ -154,7 +154,7 @@ const EzTable: React.FC<TableProps> = ({
   pagination,
 }) => {
   const table = (
-    <Table>
+    <Table selectable={!!selection}>
       <Thead columns={columns} items={items} onSortClick={onSortClick} selection={selection} />
       <Tbody columns={columns} items={items} selection={selection} />
     </Table>

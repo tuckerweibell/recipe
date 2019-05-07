@@ -33,8 +33,8 @@ const heading = ({theme}) => css`
 `;
 
 const borders = ({theme}) => css`
-  th,
-  td {
+  && th,
+  && td {
     border-bottom: 1px solid ${theme.colors.grays[300]};
   }
 
@@ -101,6 +101,24 @@ export const TablePaginationRowCountDropdown = styled.select`
   }
 `;
 
+/*
+  With table-layout: auto, widths of table cells only shrink to the size of their content, 
+  so setting the width to a size smaller than the content size causes the cell to always fit 
+  the content and not stretch to fill the available space.
+*/
+const cellFitContent = '1%';
+
+type Selectable = {selectable?: boolean};
+
+const selectionColumn = ({selectable}: Selectable) =>
+  selectable &&
+  css`
+    th:first-child,
+    td:first-child {
+      width: ${cellFitContent};
+    }
+  `;
+
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 
@@ -116,4 +134,4 @@ const base = css`
   }
 `;
 
-export const Table = styled.table(base);
+export const Table = styled.table<Selectable>(base, selectionColumn);

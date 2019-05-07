@@ -11,7 +11,7 @@ import styled from '../../themes/styled';
 const cellFitContent = '1%';
 
 export const ItemsSection = styled(TableCardSection)`
-  td {
+  && table td {
     border: none;
     vertical-align: top;
   }
