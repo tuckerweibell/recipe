@@ -29,19 +29,19 @@ const SortDirection = ({direction}) => (
   </svg>
 );
 
-const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) => {
+const Thead = ({columns, items, onSortClick, selection}) => {
   const col = columns.find(c => c.defaultSort);
   const initialSort = col && {column: col, direction: col.defaultSort};
   const {direction, onClick, isSorted} = useSorting(initialSort);
   return (
     <thead>
       <tr>
-        {onBulkSelectClick && (
+        {selection && (
           <Th>
             <EzCheckbox
               label="Select all"
-              onChange={onBulkSelectClick}
-              checked={items.every(isRowSelected)}
+              onChange={selection.onBulkSelectClick}
+              checked={items.every(selection.isRowSelected)}
             />
           </Th>
         )}
@@ -66,16 +66,16 @@ const Thead = ({columns, items, onBulkSelectClick, onSortClick, isRowSelected}) 
   );
 };
 
-const Tbody = ({columns, items, onRowSelectClick, isRowSelected}) => (
+const Tbody = ({columns, items, selection}) => (
   <tbody>
     {items.map((item, rowIndex) => (
       <tr key={rowIndex}>
-        {onRowSelectClick && (
+        {selection && (
           <Td>
             <EzCheckbox
               label="Select row"
-              checked={isRowSelected(item)}
-              onChange={event => onRowSelectClick(event, {item})}
+              checked={selection.isRowSelected(item)}
+              onChange={event => selection.onRowSelectClick(event, {item})}
             />
           </Td>
         )}
@@ -149,27 +149,14 @@ const EzTable: React.FC<TableProps> = ({
   subtitle,
   columns,
   items,
-  onBulkSelectClick,
-  onRowSelectClick,
-  isRowSelected,
+  selection,
   onSortClick,
   pagination,
 }) => {
   const table = (
     <Table>
-      <Thead
-        columns={columns}
-        items={items}
-        onBulkSelectClick={onBulkSelectClick}
-        onSortClick={onSortClick}
-        isRowSelected={isRowSelected}
-      />
-      <Tbody
-        columns={columns}
-        items={items}
-        onRowSelectClick={onRowSelectClick}
-        isRowSelected={isRowSelected}
-      />
+      <Thead columns={columns} items={items} onSortClick={onSortClick} selection={selection} />
+      <Tbody columns={columns} items={items} selection={selection} />
     </Table>
   );
 

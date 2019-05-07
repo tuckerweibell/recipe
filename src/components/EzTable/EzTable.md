@@ -182,13 +182,14 @@ Use when more fine-grained control over the table content is desired (in favor o
 
 Use when multiple rows of a table can be selected together in order to perform an action in bulk.
 
-Providing the bulk select event handler props (`onRowSelectClick`, `onBulkSelectClick`, `isRowSelected`) will add a column to each table row containing a checkbox input, along with a corresponding column header containing a checkbox input.
+When enabled, table selection provides the user with options to select or deselect either individual rows from a data set, or all the currently visible rows in the table. When using pagination, table selection enables all rows to be selected from the current page.
 
-The row-level checkbox input can be toggled to indicate that the current row should be included in a particular action. This functionality is handled by the `isRowSelected` and `onRowSelectClick` props. `isRowSelected` is a Function that is used to determine the row-level checkbox input state. It is called when rendering each row, and is passed the row's `item` object as the single argument. `onRowSelectClick` is a Function that is bound to the row-level checkbox input change handler. It is called when the input state changes, and is passed the row's `item` object as the single argument.
+The following properties are required when using selection:
 
-The column header checkbox input can be toggled to select or deselect all currently visible rows. This functionality is handled by the `onBulkSelectClick` prop. This should be a Function that handles the behavior of selecting or deselecting all the visible table rows.
-
-The column header checkbox input state and behavior is determined by evaluating the state of each visible table row. If all rows are selected, then the checkbox will appear selected, and deselecting the input should deselect all rows. If some or none of the rows are selected, the checkbox will appear deselected, and selecting the input should select all rows.
+- `selection`
+  - `onRowSelectClick` (required): an event that is fired when the user toggles to select or deselect a row in the table. The event handler function will receive two arguments, the click event and an object containing the row's data `item`.
+  - `onBulkSelectClick` (required): an event that is fired when the user toggles to select or deselect all currently visible rows.
+  - `isRowSelected` (required): a function used to determine whether a row is currently marked as selected or not. The function accepts the row's `item` object as an argument, and should return `true` if the item is selected, or `false` otherwise.
 
 ```jsxwide
 () => {
@@ -218,21 +219,24 @@ The column header checkbox input state and behavior is determined by evaluating 
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
-          onRowSelectClick={onRowSelectClick}
-          onBulkSelectClick={onBulkSelectClick}
-          isRowSelected={isRowSelected}
+          selection={{
+            onRowSelectClick,
+            onBulkSelectClick,
+            isRowSelected,
+          }}
           columns={[
             {heading: 'Store name', accessor: 'store'},
             {heading: 'Total sales', accessor: 'total', numeric: true},
-            {heading: 'Average order value', accessor: 'average', numeric: true}
+            {heading: 'Average order value', accessor: 'average', numeric: true},
           ]}
-          items={items} />
+          items={items}
+        />
       </EzPage>
     );
-  }
+  };
 
   return <Table />;
-}
+};
 ```
 
 ### With sortable columns

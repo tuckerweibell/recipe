@@ -136,7 +136,8 @@ describe('EzTable', () => {
       const onRowSelectClick = jest.fn();
       const onBulkSelectClick = jest.fn();
       const isRowSelected = jest.fn() as any;
-      const props = {columns, items, onBulkSelectClick, onRowSelectClick, isRowSelected};
+      const selection = {onBulkSelectClick, onRowSelectClick, isRowSelected};
+      const props = {columns, items, selection};
 
       beforeEach(() => {
         onRowSelectClick.mockClear();
@@ -227,9 +228,11 @@ describe('EzTable', () => {
         <EzTable
           columns={columns}
           items={items}
-          onBulkSelectClick={() => null}
-          onRowSelectClick={() => null}
-          isRowSelected={() => false}
+          selection={{
+            onBulkSelectClick: () => null,
+            onRowSelectClick: () => null,
+            isRowSelected: () => false,
+          }}
         />
       );
       const actual = await axe(wrapper);

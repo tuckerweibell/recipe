@@ -40,7 +40,7 @@ type BulkSelectionEnabled = {
   isRowSelected: (item: any) => boolean;
 };
 
-type BulkSelection = BulkSelectionEnabled | BulkSelectionDisabled;
+type BulkSelection = {selection?: BulkSelectionEnabled | BulkSelectionDisabled};
 
 type ActionsProps = {
   actions: React.ReactNode;
