@@ -20,3 +20,5 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+
+- Added the `--open` flag to `gatsby develop` NPM target. This will launch the doc site during development similar to how create-react-app auto launches when running.

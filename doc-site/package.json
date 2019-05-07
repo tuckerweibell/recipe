@@ -34,7 +34,7 @@
   "scripts": {
     "build": "gatsby build",
     "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
-    "develop": "./bin/create-link.sh && gatsby develop",
+    "develop": "./bin/create-link.sh && gatsby develop --open",
     "clean": "rm -rf .cache && rm -rf public"
   },
   "engines": {
