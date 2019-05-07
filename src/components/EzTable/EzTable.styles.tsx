@@ -33,7 +33,10 @@ const heading = ({theme}) => css`
 `;
 
 const borders = ({theme}) => css`
-  && th,
+  tbody tr:first-child td {
+    border-top: 1px solid ${theme.colors.grays[300]};
+  }
+
   && td {
     border-bottom: 1px solid ${theme.colors.grays[300]};
   }
@@ -110,12 +113,25 @@ const cellFitContent = '1%';
 
 type Selectable = {selectable?: boolean};
 
-const selectionColumn = ({selectable}: Selectable) =>
+const selectionColumn = ({theme, selectable}) =>
   selectable &&
   css`
     th:first-child,
     td:first-child {
       width: ${cellFitContent};
+    }
+
+    && thead tr + tr {
+      td {
+        background-color: ${theme.colors.blues[200]};
+        border-bottom: solid 1px ${theme.colors.blues[400]};
+        border-top: solid 1px ${theme.colors.blues[400]};
+        padding: ${theme.spacing.xs};
+
+        > * {
+          justify-content: center;
+        }
+      }
     }
   `;
 

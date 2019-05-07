@@ -240,6 +240,59 @@ describe('EzTable', () => {
     });
   });
 
+  describe('table select banner', () => {
+    const data = [
+      {first: 'Tiffany', last: 'Morin'},
+      {first: 'Mitchell', last: 'Hoffman'},
+      {first: 'Léo', last: 'Gonzalez'},
+      {first: 'Alberto', last: 'Arias'},
+      {first: 'Olivier', last: 'Campos'},
+      {first: 'Ömür', last: 'Ekici'},
+      {first: 'Énio', last: 'Barros'},
+      {first: 'Ava', last: 'Ma'},
+      {first: 'Norberta', last: 'Novaes'},
+      {first: 'Deni', last: 'Lubbers'},
+    ];
+
+    it('shows option to select all rows when a page is selected', () => {
+      const onSelectAllClick = jest.fn();
+
+      const {getByText} = fullRender(
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          selection={{
+            onRowSelectClick: () => {},
+            onBulkSelectClick: () => {},
+            isRowSelected: () => true,
+            onSelectAllClick,
+            onSelectNoneClick: () => {},
+          }}
+          columns={[
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={data.slice(0, 5)}
+          pagination={{
+            currentPage: 1,
+            totalRows: 10,
+            rowsPerPage: 5,
+            rowsPerPageOptions: [5, 10, 20, 30],
+            onPrevPageClick: () => {},
+            onNextPageClick: () => {},
+            onRowsPerPageChange: () => {},
+          }}
+        />
+      );
+
+      const selectAllButton = getByText('Select all 10 rows');
+
+      fireEvent.click(selectAllButton);
+
+      expect(onSelectAllClick).toHaveBeenCalled();
+    });
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzTable columns={columns} items={items} />);
     const actual = await axe(wrapper);

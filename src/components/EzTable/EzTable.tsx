@@ -1,4 +1,4 @@
-import React, {createElement} from 'react';
+import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
 import {EzCard, EzCardFooter} from '../EzCard';
 import {EzCheckbox} from '../EzCheckbox';
 import EzButton from '../EzButton';
@@ -14,7 +14,10 @@ import {
 } from './EzTable.styles';
 import useSorting from './useSorting';
 import en from './en';
+import {wrapEvent} from '../../utils';
 import {useTranslation} from '../../utils/hooks';
+
+const TableContext = createContext(null);
 
 const SortDirection = ({direction}) => (
   <svg
@@ -29,7 +32,8 @@ const SortDirection = ({direction}) => (
   </svg>
 );
 
-const Thead = ({columns, items, onSortClick, selection}) => {
+const Thead = () => {
+  const {columns, items, sorting, selection} = React.useContext(TableContext);
   const col = columns.find(c => c.defaultSort);
   const initialSort = col && {column: col, direction: col.defaultSort};
   const {direction, onClick, isSorted} = useSorting(initialSort);
@@ -41,7 +45,7 @@ const Thead = ({columns, items, onSortClick, selection}) => {
             <EzCheckbox
               label="Select all"
               onChange={selection.onBulkSelectClick}
-              checked={items.every(selection.isRowSelected)}
+              checked={items.length === selection.selected.length}
             />
           </Th>
         )}
@@ -53,7 +57,7 @@ const Thead = ({columns, items, onSortClick, selection}) => {
               numeric={numeric}
               sortable={sortable}
               sorted={isSorted(column)}
-              onClick={event => onClick(event, column, onSortClick)}
+              onClick={event => onClick(event, column, sorting.onSortClick)}
             >
               <span>
                 {heading} {sortable && <SortDirection direction={direction} />}
@@ -62,32 +66,81 @@ const Thead = ({columns, items, onSortClick, selection}) => {
           );
         })}
       </tr>
+      <SelectionStateBanner />
     </thead>
   );
 };
 
-const Tbody = ({columns, items, selection}) => (
-  <tbody>
-    {items.map((item, rowIndex) => (
-      <tr key={rowIndex}>
-        {selection && (
-          <Td>
-            <EzCheckbox
-              label="Select row"
-              checked={selection.isRowSelected(item)}
-              onChange={event => selection.onRowSelectClick(event, {item})}
-            />
-          </Td>
-        )}
-        {columns.map(({accessor, numeric}, cellIndex) => (
-          <Td key={cellIndex} numeric={numeric}>
-            {typeof accessor === 'function' ? createElement(accessor, {item}) : item[accessor]}
-          </Td>
-        ))}
-      </tr>
-    ))}
-  </tbody>
-);
+const SelectionStateBanner = () => {
+  const {t} = useTranslation(en);
+  const {columns, items, selection, pagination} = useContext(TableContext);
+
+  if (!selection || !pagination) return null;
+  if (selection.selected.length !== items.length && !selection.allSelected) return null;
+
+  return (
+    <tr>
+      <td colSpan={columns.length + 1}>
+        <EzLayout layout="basic">
+          {selection.allSelected || items.length === pagination.totalRows ? (
+            <span>
+              {t('All {{totalRowCount}} rows are selected.', {
+                totalRowCount: pagination.totalRows,
+              })}
+            </span>
+          ) : (
+            <>
+              <span>
+                {t('All {{selectedCount}} rows on this page are selected.', {
+                  selectedCount: selection.selected.length,
+                })}
+              </span>
+              <EzButton
+                use="tertiary"
+                onClick={wrapEvent(selection.onSelectAllClick, () =>
+                  selection.setAllSelected(true)
+                )}
+              >
+                {t('Select all {{totalRowCount}} rows', {
+                  totalRowCount: pagination.totalRows,
+                })}
+              </EzButton>
+            </>
+          )}
+          <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
+            {t('Clear selection')}
+          </EzButton>
+        </EzLayout>
+      </td>
+    </tr>
+  );
+};
+
+const Tbody = () => {
+  const {columns, items, selection} = useContext(TableContext);
+  return (
+    <tbody>
+      {items.map((item, rowIndex) => (
+        <tr key={rowIndex}>
+          {selection && (
+            <Td>
+              <EzCheckbox
+                label="Select row"
+                checked={selection.selected.includes(item)}
+                onChange={event => selection.onRowSelectClick(event, {item})}
+              />
+            </Td>
+          )}
+          {columns.map(({accessor, numeric}, cellIndex) => (
+            <Td key={cellIndex} numeric={numeric}>
+              {typeof accessor === 'function' ? createElement(accessor, {item}) : item[accessor]}
+            </Td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  );
+};
 
 const TablePagination = ({pagination}) => {
   const {t} = useTranslation(en);
@@ -153,11 +206,33 @@ const EzTable: React.FC<TableProps> = ({
   onSortClick,
   pagination,
 }) => {
+  const [allSelected, setAllSelected] = useState(false);
+  const selected = selection && items.filter(selection.isRowSelected);
+  const numSelectedOnPage = selected && selected.length;
+  const {currentPage, rowsPerPage} = pagination || ({} as any);
+
+  useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
+
   const table = (
-    <Table selectable={!!selection}>
-      <Thead columns={columns} items={items} onSortClick={onSortClick} selection={selection} />
-      <Tbody columns={columns} items={items} selection={selection} />
-    </Table>
+    <TableContext.Provider
+      value={{
+        items,
+        selection: selection && {
+          ...selection,
+          selected,
+          allSelected,
+          setAllSelected,
+        },
+        columns,
+        pagination,
+        sorting: {onSortClick},
+      }}
+    >
+      <Table selectable={!!selection}>
+        <Thead />
+        <Tbody />
+      </Table>
+    </TableContext.Provider>
   );
 
   if (!title) return table;

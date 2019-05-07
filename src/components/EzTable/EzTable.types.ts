@@ -40,7 +40,13 @@ type BulkSelectionEnabled = {
   isRowSelected: (item: any) => boolean;
 };
 
-type BulkSelection = {selection?: BulkSelectionEnabled | BulkSelectionDisabled};
+type SelectAllOrNoneEnabled = {
+  onSelectAllClick: React.MouseEventHandler;
+  onSelectNoneClick: React.MouseEventHandler;
+};
+
+type Selection = {selection?: BulkSelectionEnabled | BulkSelectionDisabled};
+type SelectionAndPagination = {selection: BulkSelectionEnabled & SelectAllOrNoneEnabled};
 
 type ActionsProps = {
   actions: React.ReactNode;
@@ -72,7 +78,7 @@ type TableBase = {
   pagination?: PaginationProps;
 };
 
-export type TableProps = TableBase & BulkSelection & TableActions;
+export type TableProps = TableBase & (Selection | SelectionAndPagination) & TableActions;
 
 export type Sortable = {
   direction: Direction;
