@@ -58,7 +58,7 @@ type PaginationProps = {
   currentPage: number;
   totalRows: number;
   rowsPerPage: number;
-  rowsPerPageOptions: [number];
+  rowsPerPageOptions: number[];
   onPrevPageClick: React.MouseEventHandler;
   onNextPageClick: React.MouseEventHandler;
   onRowsPerPageChange: onRowsPerPageChange;
