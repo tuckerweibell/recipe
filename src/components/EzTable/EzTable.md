@@ -307,7 +307,68 @@ Pagination is enabled by adding the `pagination` attribute to `EzTable` with the
 
 #### Local Data
 
-This example uses a local data set. The reducer is used to change the `currentPage` and `rowsPerPage`.
+```jsxwide
+() => {
+  const allItems = [
+    {first: 'Tiffany', last: 'Morin'},
+    {first: 'Mitchell', last: 'Hoffman'},
+    {first: 'Léo', last: 'Gonzalez'},
+    {first: 'Alberto', last: 'Arias'},
+    {first: 'Olivier', last: 'Campos'},
+    {first: 'Ömür', last: 'Ekici'},
+    {first: 'Énio', last: 'Barros'},
+    {first: 'Ava', last: 'Ma'},
+    {first: 'Norberta', last: 'Novaes'},
+    {first: 'Deni', last: 'Lubbers'},
+  ];
+
+  const Table = () => {
+    const [state, setState] = React.useState({
+      currentPage: 1,
+      totalRows: 10,
+      rowsPerPage: 5,
+    });
+
+    const {currentPage, totalRows, rowsPerPage} = state;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+
+    const updateState = changes => setState({...state, ...changes});
+    const onPrevPageClick = () => updateState({currentPage: currentPage - 1});
+    const onNextPageClick = () => updateState({currentPage: currentPage + 1});
+    const onRowsPerPageChange = e =>
+      updateState({
+        rowsPerPage: e.target.value,
+        currentPage: 1,
+      });
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          columns={[
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
+          pagination={{
+            currentPage,
+            totalRows,
+            rowsPerPage,
+            rowsPerPageOptions: [5, 10, 20, 30],
+            onPrevPageClick,
+            onNextPageClick,
+            onRowsPerPageChange,
+          }}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
+};
+```
+
+#### Local Data with Sorting
 
 ```jsxwide
 () => {
@@ -324,160 +385,53 @@ This example uses a local data set. The reducer is used to change the `currentPa
     {first: 'Deni', last: 'Lubbers'},
   ];
 
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'incrementCurrentPage':
-        return {
-          ...state,
-          currentPage: state.currentPage + 1,
-        };
-      case 'decrementCurrentPage':
-        return {...state, currentPage: state.currentPage - 1};
-      case 'updateRowsPerPage':
-        return {
-          ...state,
-          rowsPerPage: action.value,
-          currentPage: 1,
-        };
-      default:
-        throw new Error();
-    }
-  }
-
   const Table = () => {
-    const [state, dispatch] = React.useReducer(reducer, {
+    const [state, setState] = React.useState({
       currentPage: 1,
       totalRows: 10,
       rowsPerPage: 5,
+      items: allItems,
     });
 
-    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
+    const {currentPage, totalRows, rowsPerPage, items} = state;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+
+    const updateState = changes => setState({...state, ...changes});
+    const onPrevPageClick = () => updateState({currentPage: currentPage - 1});
+    const onNextPageClick = () => updateState({currentPage: currentPage + 1});
+    const onRowsPerPageChange = e =>
+      updateState({
+        rowsPerPage: e.target.value,
+        currentPage: 1,
+      });
+
+    const onSortClick = (_event, {column, direction}) => {
+      const sorted = [...allItems].sort((a, b) => {
+        const val1 = a[column.accessor];
+        const val2 = b[column.accessor];
+        return (direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
+      });
+      updateState({items: sorted});
+    };
 
     return (
       <EzPage>
         <EzTable
           title="Store Owners"
-          columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
-          ]}
-          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
-          pagination={{
-            currentPage: state.currentPage,
-            totalRows: state.totalRows,
-            rowsPerPage: state.rowsPerPage,
-            rowsPerPageOptions: [5, 10, 20, 30],
-            onPrevPageClick: e => {
-              e.preventDefault();
-              dispatch({type: 'decrementCurrentPage'});
-            },
-            onNextPageClick: e => {
-              e.preventDefault();
-              dispatch({type: 'incrementCurrentPage'});
-            },
-            onRowsPerPageChange: e => {
-              e.preventDefault();
-              dispatch({type: 'updateRowsPerPage', value: e.target.value});
-            },
-          }}
-        />
-      </EzPage>
-    );
-  };
-
-  return <Table />;
-};
-```
-
-#### Local Data with Sorting
-
-This example uses a local data set and enables sorting on that data set. The reducer is used to change the `currentPage`, `rowsPerPage`, and sorts the `items` based on the column and sort direction supplied by the column headers.
-
-```jsxwide
-() => {
-  const initialItems = [
-    {first: 'Tiffany', last: 'Morin'},
-    {first: 'Mitchell', last: 'Hoffman'},
-    {first: 'Léo', last: 'Gonzalez'},
-    {first: 'Alberto', last: 'Arias'},
-    {first: 'Olivier', last: 'Campos'},
-    {first: 'Ömür', last: 'Ekici'},
-    {first: 'Énio', last: 'Barros'},
-    {first: 'Ava', last: 'Ma'},
-    {first: 'Norberta', last: 'Novaes'},
-    {first: 'Deni', last: 'Lubbers'},
-  ];
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'incrementCurrentPage':
-        return {
-          ...state,
-          currentPage: state.currentPage + 1,
-        };
-      case 'decrementCurrentPage':
-        return {...state, currentPage: state.currentPage - 1};
-      case 'updateRowsPerPage':
-        return {
-          ...state,
-          rowsPerPage: action.value,
-          currentPage: 1,
-        };
-      case 'updateSort':
-        return {
-          ...state,
-          currentPage: 1,
-          items: [...initialItems].sort((a, b) => {
-            const val1 = a[action.value.column.accessor];
-            const val2 = b[action.value.column.accessor];
-
-            return (action.value.direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
-          }),
-        };
-      default:
-        throw new Error();
-    }
-  }
-
-  const Table = () => {
-    const [state, dispatch] = React.useReducer(reducer, {
-      currentPage: 1,
-      totalRows: 10,
-      rowsPerPage: 5,
-      items: initialItems,
-    });
-
-    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
-
-    return (
-      <EzPage>
-        <EzTable
-          title="Store Owners"
-          onSortClick={(_event, value) => {
-            dispatch({type: 'updateSort', value});
-          }}
           columns={[
             {heading: 'First Name', accessor: 'first', sortable: true},
             {heading: 'Last Name', accessor: 'last', sortable: true},
           ]}
-          items={state.items.slice(startIndex, startIndex + state.rowsPerPage)}
+          items={items.slice(startIndex, startIndex + rowsPerPage)}
+          onSortClick={onSortClick}
           pagination={{
-            currentPage: state.currentPage,
-            totalRows: state.totalRows,
-            rowsPerPage: state.rowsPerPage,
+            currentPage,
+            totalRows,
+            rowsPerPage,
             rowsPerPageOptions: [5, 10, 20, 30],
-            onPrevPageClick: e => {
-              e.preventDefault();
-              dispatch({type: 'decrementCurrentPage'});
-            },
-            onNextPageClick: e => {
-              e.preventDefault();
-              dispatch({type: 'incrementCurrentPage'});
-            },
-            onRowsPerPageChange: e => {
-              e.preventDefault();
-              dispatch({type: 'updateRowsPerPage', value: e.target.value});
-            },
+            onPrevPageClick,
+            onNextPageClick,
+            onRowsPerPageChange,
           }}
         />
       </EzPage>
