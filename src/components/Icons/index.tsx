@@ -16,6 +16,12 @@ const SvgIcon = ({children, title}) => (
   </svg>
 );
 
+export const DotIcon = () => (
+  <SvgIcon title="dot-icon">
+    <circle cx="50%" cy="50%" r="30%" fillRule="evenodd" fill="currentColor" />
+  </SvgIcon>
+);
+
 export const ErrorIcon = () => (
   <SvgIcon title="error-icon">
     <path

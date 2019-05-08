@@ -9,6 +9,8 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new EzStatus component.
+
 #### Enhancements
 
 #### Design updates

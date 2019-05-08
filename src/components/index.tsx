@@ -13,6 +13,7 @@ export {EzPage, EzPageSection} from './EzPage';
 export {default as EzPageHeader} from './EzPageHeader';
 export {EzPageContent, EzContentGroup} from './EzPageContent';
 export {default as EzSegmentedControl} from './EzSegmentedControl';
+export {default as EzStatus} from './EzStatus';
 export {default as EzTable} from './EzTable';
 export {default as EzTextStyle} from './EzTextStyle';
 export {default as EzLayout} from './EzLayout';
