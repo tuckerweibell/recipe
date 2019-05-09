@@ -14,6 +14,7 @@ title: 'Unreleased changes'
 - Added new EzStatus component.
 - Added new EzFlashMessage component.
 - Added new EzCheckbox component.
+- Added new EzToggle component.
 
 #### Enhancements
 
