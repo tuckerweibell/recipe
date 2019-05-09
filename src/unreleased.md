@@ -26,6 +26,7 @@ title: 'Unreleased changes'
 
 - Reduced the width of the checkbox/selection column for [EzTable](./components/ez-table#bulk-row-selection) to improve the layout and more clearly emphasize the relationship between the selection and the row data.
 - Updated EzField type="checkbox" to use new EzCheckbox component.
+- Update EzField type="radio" to use custom styles
 
 #### Bug fixes
 

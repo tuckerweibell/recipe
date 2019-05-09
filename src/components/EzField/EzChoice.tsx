@@ -1,6 +1,7 @@
 import React from 'react';
 import EzCheckbox from '../EzCheckbox';
 import styled from '../../themes/styled';
+import EzRadioButton from '../EzRadioButton';
 
 const Label = styled.label`
   display: block;
@@ -56,7 +57,7 @@ export default props => {
           type,
           value,
         };
-        const input = React.createElement(multiple ? EzCheckbox : 'input', inputProps);
+        const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
         return (
           <Label key={i}>
