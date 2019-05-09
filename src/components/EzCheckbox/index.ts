@@ -1,3 +1,3 @@
 import EzCheckbox from './EzCheckbox';
 
-export {EzCheckbox};
+export default EzCheckbox;

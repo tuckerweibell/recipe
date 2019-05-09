@@ -2,18 +2,16 @@ import React from 'react';
 import SvgCheckbox from './EzCheckbox.styles';
 import {useUniqueId} from '../../utils/hooks';
 
-type Props = {
+type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  onChange: React.ChangeEventHandler;
-  checked: boolean;
 };
 
-const EzCheckbox: React.FC<Props> = ({label, checked, onChange}) => {
-  const id = useUniqueId();
+const EzCheckbox: React.FC<Props> = ({id, label, checked, ...rest}) => {
+  const uniqueId = useUniqueId();
   return (
-    <SvgCheckbox htmlFor={id}>
+    <SvgCheckbox htmlFor={id || uniqueId}>
       <span>{label}</span>
-      <input checked={checked} onChange={onChange} type="checkbox" id={id} />
+      <input checked={checked} type="checkbox" id={id || uniqueId} {...rest} />
       {checked && (
         <svg
           xmlns="http://www.w3.org/2000/svg"

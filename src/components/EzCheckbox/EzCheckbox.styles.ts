@@ -11,11 +11,12 @@ export default styled.label`
 
   color: ${({theme}) => theme.colors.blues[600]};
   cursor: pointer;
-  display: block;
+  display: inline-block;
   height: ${sizePx};
   width: ${sizePx};
   position: relative;
   padding: 2px;
+  top: 2px;
 
   &:before {
     content: '';
@@ -36,5 +37,10 @@ export default styled.label`
   svg {
     display: block;
     stroke: currentColor;
+  }
+
+  input:disabled + svg {
+    stroke: ${({theme}) => theme.colors.grays[500]};
+    background: ${({theme}) => theme.colors.grays[100]};
   }
 `;

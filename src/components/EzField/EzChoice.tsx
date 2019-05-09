@@ -1,11 +1,12 @@
 import React from 'react';
+import EzCheckbox from '../EzCheckbox';
 import styled from '../../themes/styled';
 
 const Label = styled.label`
   display: block;
   margin-top: ${({theme}) => theme.spacing.sm};
 
-  input {
+  > *:first-child {
     margin-right: ${({theme}) => theme.spacing.xs};
   }
 `;
@@ -39,7 +40,7 @@ export default props => {
     <>
       {options.map((choice, i) => {
         const {label, disabled, value} = choice;
-        const input = React.createElement('input', {
+        const inputProps = {
           checked:
             'value' in props
               ? multiple
@@ -54,7 +55,8 @@ export default props => {
           onBlur,
           type,
           value,
-        });
+        };
+        const input = React.createElement(multiple ? EzCheckbox : 'input', inputProps);
 
         return (
           <Label key={i}>

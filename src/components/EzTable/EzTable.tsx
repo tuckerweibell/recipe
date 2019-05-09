@@ -1,6 +1,6 @@
 import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
 import {EzCard, EzCardFooter} from '../EzCard';
-import {EzCheckbox} from '../EzCheckbox';
+import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
 import {TableProps} from './EzTable.types';
