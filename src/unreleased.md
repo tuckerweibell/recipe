@@ -12,6 +12,7 @@ title: 'Unreleased changes'
 #### New components
 
 - Added new EzStatus component.
+- Added new EzFlashMessage component.
 
 #### Enhancements
 

@@ -16,6 +16,16 @@ const SvgIcon = ({children, title}) => (
   </svg>
 );
 
+export const CloseIcon = () => (
+  <SvgIcon title="close-button">
+    <path
+      d="M6.96 5.192L11.38.773l1.767 1.768-4.42 4.42 4.42 4.419-1.767 1.767-4.42-4.42-4.42 4.42L.774 11.38l4.42-4.42-4.42-4.42L2.541.774z"
+      id="close x"
+      fill="currentColor"
+    />
+  </SvgIcon>
+);
+
 export const DotIcon = () => (
   <SvgIcon title="dot-icon">
     <circle cx="50%" cy="50%" r="30%" fillRule="evenodd" fill="currentColor" />
