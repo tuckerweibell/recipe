@@ -35,6 +35,11 @@ title: 'Unreleased changes'
 - Removed export-to-sketch feature from doc-site due to some unexpected side-effects with how the feature rendered components "off screen":
   - EzSegmented control documentation examples were broken due to duplicated radio-buttons with the same id
   - Documentation pages were presenting excessive scroll bars due to hidden content out of the screen dimensions
+- updated checkbox styles to be consistent with radiobutton
+  - simpler implementation
+  - added `:active` checkbox styles
+  - fixed focus style to tightly hug the checkbox (was previously a few pixels out)
+  - replace focus style to avoid using `:focus-within` (for compatibility)
 
 #### Documentation
 

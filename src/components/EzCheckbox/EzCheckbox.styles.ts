@@ -1,16 +1,9 @@
+import {css} from 'react-emotion';
 import styled from '../../themes/styled';
-import {hideVisually} from '../../styles';
 
 const sizePx = `16px`;
 
-export default styled.label`
-  span,
-  input {
-    ${hideVisually()};
-  }
-
-  color: ${({theme}) => theme.colors.blues[600]};
-  cursor: pointer;
+const base = ({theme}) => css`
   display: inline-block;
   height: ${sizePx};
   width: ${sizePx};
@@ -18,32 +11,37 @@ export default styled.label`
   padding: 2px;
   top: 2px;
 
-  &:before {
-    content: '';
+  input {
+    opacity: 0;
     position: absolute;
-    border: 1px solid ${({theme}) => theme.colors.grays[400]};
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-    border-radius: ${({theme}) => theme.borderRadius[1]};
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-    background-clip: padding-box;
   }
 
-  &:focus-within:before {
-    outline: auto;
-  }
-
-  svg {
+  input + svg {
     display: block;
-    stroke: currentColor;
-    position: relative;
+    stroke: ${theme.colors.blues[600]};
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12), 0 0 0 1px ${theme.colors.grays[400]};
+    border-radius: 2px;
+  }
+
+  input:not(:checked) + svg {
+    stroke: transparent;
   }
 
   input:disabled + svg {
-    stroke: ${({theme}) => theme.colors.grays[500]};
-    background: ${({theme}) => theme.colors.grays[100]};
+    stroke: ${theme.colors.grays[500]};
+    background: ${theme.colors.grays[100]};
+  }
+
+  input:focus + svg,
+  input:active + svg {
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12), 0 0 0 1px ${theme.colors.grays[400]},
+      0px 0px 2px 3px ${theme.colors.blues[600]};
+    border-radius: 2px;
+  }
+
+  input:active + svg {
+    background-color: ${theme.colors.grays[200]};
   }
 `;
+
+export default styled.span<any>(base);
