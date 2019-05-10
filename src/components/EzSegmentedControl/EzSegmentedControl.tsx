@@ -41,7 +41,9 @@ const EzSegmentedControl: React.FC<Props> = ({
           id={getId(name, option)}
           type="radio"
           name={name}
-          defaultChecked={option.value === active}
+          {...(onChange
+            ? {checked: option.value === active}
+            : {defaultChecked: option.value === active})}
           onChange={() => onChange && onChange(option.value)}
           disabled={option.disabled}
         />

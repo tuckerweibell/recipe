@@ -29,16 +29,22 @@ Follow the [content guidelines](/components/ez-button) outlined in the button co
 Used to present mutually exclusive options as buttons.
 
 ```jsx
-<EzSegmentedControl
-  name="view-map-options"
-  label="Map View"
-  options={[
-    {label: 'Map', value: 'map'},
-    {label: 'Transit', value: 'transit'},
-    {label: 'Satellite', value: 'satellite'},
-  ]}
-  active="map"
-/>
+() => {
+  const [active, setActive] = React.useState('map');
+  return (
+    <EzSegmentedControl
+      name="view-map-options"
+      label="Map View"
+      options={[
+        {label: 'Map', value: 'map'},
+        {label: 'Transit', value: 'transit'},
+        {label: 'Satellite', value: 'satellite'},
+      ]}
+      active={active}
+      onChange={value => setActive(value)}
+    />
+  );
+};
 ```
 
 ### Label Positioning
