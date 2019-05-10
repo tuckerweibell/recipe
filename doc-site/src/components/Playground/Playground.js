@@ -7,13 +7,12 @@ import {
   StyledError,
   Actions,
 } from './style';
-import {CopyCode, ExportSketch} from './components';
+import {CopyCode} from './components';
 
 const Playground = ({code, scope, wide}) => (
   <StyledProvider code={code} scope={scope}>
     <Actions>
       <CopyCode />
-      <ExportSketch file="export-to-sketch.json" mime="application/json" />
     </Actions>
     <LiveWrapper wide={wide}>
       <StyledEditor />
