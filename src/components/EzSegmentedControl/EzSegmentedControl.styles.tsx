@@ -16,6 +16,7 @@ const label = ({theme}: Themed) => css`
   line-height: 1em;
   font-size: 0.85em;
   flex-basis: auto;
+  user-select: none;
 
   &:first-of-type {
     margin-left: 0;
