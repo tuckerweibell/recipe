@@ -27,6 +27,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fixed type definition of EzTable `rowsPerPageOptions` to use `number[]` instead of `[number]`.
+- Added background color on `EzCheckbox` component.
 
 #### Documentation
 

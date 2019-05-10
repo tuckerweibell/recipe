@@ -28,6 +28,8 @@ export default styled.label`
     right: 0;
     bottom: 0;
     left: 0;
+    background-color: #fff;
+    background-clip: padding-box;
   }
 
   &:focus-within:before {
@@ -37,6 +39,7 @@ export default styled.label`
   svg {
     display: block;
     stroke: currentColor;
+    position: relative;
   }
 
   input:disabled + svg {
