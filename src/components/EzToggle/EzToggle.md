@@ -14,7 +14,7 @@ Ez toggle should:
 
 - Be clearly labelled, or provide an accessible name for assistive technologies
 - Be labelled positively; for example, "Enable notifications"
-- Be used for interactions where the effect of the interaction is immediate
+- Be used for interactions where the effect of the interaction is immediate. For deferred interactions, such as saving changes when a form is submitted, use the [checkbox component](/components/ez-checkbox) instead;
 
 ---
 
@@ -33,7 +33,7 @@ Toggle inputs are used to offer binary choices. Use a toggle input only when the
 
 ### Disabled toggle
 
-Toggle inputs are used to offer binary choices. Use a toggle input only when the effect of the interaction is immediate.
+Use the `disabled` prop to prevent users from being able to interact with the toggle input and to convey the inactive state to assistive technologies.
 
 ```jsx
 () => {
