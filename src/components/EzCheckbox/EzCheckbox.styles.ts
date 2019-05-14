@@ -8,39 +8,45 @@ const base = ({theme}) => css`
   height: ${sizePx};
   width: ${sizePx};
   position: relative;
-  padding: 2px;
-  top: 2px;
+  top: 3px;
 
   input {
     opacity: 0;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  input + svg {
-    display: block;
-    stroke: ${theme.colors.blues[600]};
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12), 0 0 0 1px ${theme.colors.grays[400]};
-    border-radius: 2px;
+  /* Checked */
+  input:checked + svg path:nth-of-type(2) {
+    fill: ${theme.colors.blues[600]};
   }
 
-  input:not(:checked) + svg {
-    stroke: transparent;
+  /* Not Checked */
+  input:not(:checked) + svg path:nth-of-type(2) {
+    fill: transparent;
   }
 
-  input:disabled + svg {
-    stroke: ${theme.colors.grays[500]};
-    background: ${theme.colors.grays[100]};
+  /* Focused */
+  input:focus + svg {
+    box-shadow: 0px 0px 2px 2px ${theme.colors.blues[600]};
+    border-radius: 3px;
   }
 
-  input:focus + svg,
-  input:active + svg {
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12), 0 0 0 1px ${theme.colors.grays[400]},
-      0px 0px 2px 3px ${theme.colors.blues[600]};
-    border-radius: 2px;
+  /* Active */
+  input:active + svg path:nth-of-type(1) {
+    fill: ${theme.colors.grays[200]};
   }
 
-  input:active + svg {
-    background-color: ${theme.colors.grays[200]};
+  /* Disabled */
+  input:disabled + svg path:nth-of-type(1) {
+    fill: ${theme.colors.grays[200]};
+  }
+
+  input:checked:disabled + svg path:nth-of-type(2) {
+    fill: ${theme.colors.grays[400]};
   }
 `;
 

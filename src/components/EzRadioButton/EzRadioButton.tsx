@@ -23,8 +23,8 @@ const EzRadioButton: React.FC<Props> = ({label, checked, disabled, onChange, ...
     />
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
-        <path d="M8 .5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" stroke="#CED4D9" />
-        <path d="M8 4a4 4 0 1 1 0 8 4 4 0 1 1 0-8z" />
+        <path d="M8 .5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" stroke="#CED4D9" fill="#FFF" />
+        <path d="M8 4a4 4 0 1 1 0 8 4 4 0 1 1 0-8z" fill="#3E90D6" />
       </g>
     </svg>
   </Container>
