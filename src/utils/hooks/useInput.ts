@@ -7,7 +7,7 @@ type InputBindings<TValue> = {
 
 const useInput = <TValue>(initialValue: TValue): InputBindings<TValue> => {
   const [value, setValue] = useState(initialValue);
-  const onChange = useCallback(e => setValue(e.target.value), []);
+  const onChange = useCallback(e => setValue(e.target ? e.target.value : e), []);
 
   return {
     value,

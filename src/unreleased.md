@@ -15,6 +15,7 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added new `date` type to `EzField` component.
 - Added `label` attribute to `EzToggle`.
 - Added semantic names for Recipe colors to more clearly define a consistent set of rules around color usage and to better support for theming in the future.
 - Changed `EzModal`, `EzFlashMessage` and `EzBanner` to use a consistent button for dismissing.

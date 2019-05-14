@@ -24,32 +24,26 @@ type HtmlInputProps = {
   value?: string | number;
 };
 
+type DateInputProps = {
+  type: 'date';
+  value: string | number | object;
+};
+
 type CustomFieldProps = {
   type: React.FC<any> | React.ComponentClass<any>;
   value?: any;
 };
 
-type FieldTypeProps = SingleChoiceProps | MultipleChoiceProps | HtmlInputProps | CustomFieldProps;
+type FieldTypeProps =
+  | SingleChoiceProps
+  | MultipleChoiceProps
+  | HtmlInputProps
+  | DateInputProps
+  | CustomFieldProps;
 
 type ErrorOrMessage = string | boolean;
 
-type BaseProps = {
-  /**
-   * Fires when the input loses focus
-   */
-  onBlur?: React.FocusEventHandler;
-  /**
-   * Fires when the value is changed
-   * */
-  onChange?: React.ChangeEventHandler;
-  /**
-   * Fires when the input is focused
-   * */
-  onFocus?: React.FocusEventHandler;
-  /**
-   * Disable the input
-   */
-  disabled?: boolean;
+type BaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /**
    * Display that the input has an error
    */
@@ -70,14 +64,6 @@ type BaseProps = {
    * Restricts the input to the specified length
    */
   maxLength?: number;
-  /**
-   * The name of the inputs
-   */
-  name?: string;
-  /**
-   * Text hint to display inside the input
-   */
-  placeholder?: string;
   /**
    * Text to display before the input
    */

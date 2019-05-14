@@ -174,7 +174,7 @@ export const spacing = {
   xl5: rem(84),
 };
 
-export const borderRadius = ['1px', '4px', '6px'];
+export const borderRadius = ['1px', '4px', '6px', '8px'];
 export const borderWidth = ['1px', '2px', '4px'];
 
 export const lineHeights = {

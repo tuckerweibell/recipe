@@ -5,10 +5,12 @@ import {ErrorIcon} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
 import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
+import EzDateInput from './EzDateInput';
 import {Props} from './EzField.types';
 
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
+const dateElements = ['date'];
 const htmlElements = [...inputElements, 'textarea'];
 
 const Error = ({showError, error, active}: any) =>
@@ -23,6 +25,7 @@ const Error = ({showError, error, active}: any) =>
 
 const resolveInputFromType = type => {
   if (choiceElements.includes(type)) return EzChoice;
+  if (dateElements.includes(type)) return EzDateInput;
   if (inputElements.includes(type)) return 'input';
   return type;
 };

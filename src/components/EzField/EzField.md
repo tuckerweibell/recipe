@@ -116,6 +116,25 @@ Allows the user to choose between a fixed set of options by offering a list of g
 
 Note: e.target.selected has been deprecated in favor of e.target.value
 
+### Date input field
+
+Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Optionally, the `autoFocus` prop can be supplied to automatically show the calendar and focus the date input.
+
+```jsx
+() => {
+  const [date, setDate] = React.useState('01/01/2020');
+  return (
+    <EzField
+      type="date"
+      value={date}
+      label="Select delivery date"
+      helperText="This is the date your food will be delivered."
+      onChange={value => setDate(value)}
+    />
+  );
+};
+```
+
 ### Custom input field
 
 Allows the usage of application-specific input components while still providing standard field behaviors, such as validation. The custom component will have props forwarded from EzField.

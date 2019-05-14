@@ -46,8 +46,8 @@ const inputError = ({theme, error, touched}) =>
 const inputDisabled = ({theme, disabled}) =>
   disabled &&
   css`
-    background: ${theme.colors.grays[100]};
-    border: 1px solid ${theme.colors.border.subtle};
+    background-color: ${theme.colors.grays[100]};
+    border-color: ${theme.colors.border.subtle};
   `;
 
 const inputStyles = props => css(inputBase(props), inputError(props), inputDisabled(props));
