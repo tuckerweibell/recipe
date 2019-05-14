@@ -1,25 +1,12 @@
 import React from 'react';
-import {
-  StyledProvider,
-  LiveWrapper,
-  StyledEditor,
-  StyledPreview,
-  StyledError,
-  Actions,
-} from './style';
-import {CopyCode} from './components';
+import Theme, {components} from 'docz-theme-default';
 
-const Playground = ({code, scope, wide}) => (
-  <StyledProvider code={code} scope={scope}>
-    <Actions>
-      <CopyCode />
-    </Actions>
-    <LiveWrapper wide={wide}>
-      <StyledEditor />
-      <StyledPreview wide={wide && 'wide'} />
-    </LiveWrapper>
-    <StyledError />
-  </StyledProvider>
+const {playground: DoczPlayground} = components;
+
+const Playground = ({code, scope}) => (
+  <Theme>
+    <DoczPlayground code={code} scope={scope} />
+  </Theme>
 );
 
 export default Playground;

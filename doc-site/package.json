@@ -6,6 +6,7 @@
     "@brainly/html-sketchapp": "^3.2.0",
     "@ezcater/recipe": "^5.0.0",
     "copy-to-clipboard": "^3.0.8",
+    "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",
     "emotion-server": "^9.2.12",
     "emotion-theming": "^9.2.4",
@@ -24,7 +25,6 @@
     "react-dom": "^16.8.2",
     "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0",
-    "react-live": "^1.12.0",
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {

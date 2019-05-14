@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Switch doc-site to using the [playground component from docz](https://github.com/pedronauck/docz/tree/master/core/docz-theme-default) instead of React-live as a direct dependency.
+
 #### Dependency upgrades
 
 #### Development workflow
