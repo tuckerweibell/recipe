@@ -71,11 +71,7 @@ Used whenever the tabular data is directly related to the preceding or subsequen
 ```jsx
 <EzPage>
   <EzCard>
-    <EzHeading
-      size="3"
-    >
-      Card Title
-    </EzHeading>
+    <EzHeading size="3">Card Title</EzHeading>
     <EzAlert
       headline="Info message"
       tagline="An example of content that is a sibling of the table."
@@ -85,12 +81,13 @@ Used whenever the tabular data is directly related to the preceding or subsequen
       columns={[
         {heading: 'From', accessor: 'from'},
         {heading: 'Through', accessor: 'to'},
-        {heading: 'Total time closed', accessor: 'total'}
+        {heading: 'Total time closed', accessor: 'total'},
       ]}
       items={[
         {from: '9/3/18', to: '9/5/18', total: '3 days'},
-        {from: '10/8/18', to: '10/8/18', total: '1 days'}
-      ]} />
+        {from: '10/8/18', to: '10/8/18', total: '1 days'},
+      ]}
+    />
     <p>Tables may share a card with other related content.</p>
   </EzCard>
 </EzPage>
@@ -108,12 +105,13 @@ Used whenever the tabular data alone represents a cohesive set of content. Shoul
     columns={[
       {heading: 'Store name', accessor: 'store'},
       {heading: 'Total sales', accessor: 'total', numeric: true},
-      {heading: 'Average order value', accessor: 'average', numeric: true}
+      {heading: 'Average order value', accessor: 'average', numeric: true},
     ]}
     items={[
       {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
       {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
-    ]} />
+    ]}
+  />
 </EzPage>
 ```
 
@@ -167,15 +165,16 @@ Use when more fine-grained control over the table content is desired (in favor o
         columns={[
           {heading: 'Store name', accessor: StoreName},
           {heading: 'Total sales', accessor: 'total', numeric: true},
-          {heading: 'Average order value', accessor: 'average', numeric: true}
+          {heading: 'Average order value', accessor: 'average', numeric: true},
         ]}
         items={[
           {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
           {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
-        ]} />
+        ]}
+      />
     </EzPage>
   );
-}
+};
 ```
 
 ### Bulk row selection
