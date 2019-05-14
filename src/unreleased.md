@@ -21,4 +21,6 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+update devDependency on sosia-markdown
+
 #### Development workflow
