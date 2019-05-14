@@ -30,10 +30,6 @@ const HtmlAst = ({htmlAst, scope}) => {
       return <Playground code={props.children[0]} scope={scope} />;
     }
 
-    if (className && className.includes('language-jsxwide')) {
-      return <Playground code={props.children[0]} scope={scope} wide />;
-    }
-
     if (!className) return <code {...props} />;
 
     return (

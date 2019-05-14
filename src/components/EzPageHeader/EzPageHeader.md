@@ -48,7 +48,7 @@ Page headers should:
 
 Used for summary or detail pages with no further action to take.
 
-```jsxwide
+```jsx
 <EzPageHeader title="Reviews" />
 ```
 
@@ -58,7 +58,7 @@ Used when a page belongs to a parent page or collection. The `breadcrumb` prop m
 
 Optionally, an `accessibilityLabel` to render a visibly hidden label for providing additional context to improve accessibility.
 
-```jsxwide
+```jsx
 <EzPageHeader
   title="Order # XYZ-123"
   breadcrumb={{
@@ -77,7 +77,7 @@ The breadcrumb can be used to render a link by proving an `href` property.
 
 Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can instead provide a Link component, such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link) to render via the optional `as` property. When using the `as` property, you must use the `to` prop in place of `href` to provide the destination url for the link.
 
-```jsxwide
+```jsx
 <EzPageHeader
   title="Order # XYZ-123"
   breadcrumb={{
@@ -91,7 +91,7 @@ Normally links render an [anchor element](https://developer.mozilla.org/en-US/do
 
 Used to communicate brief, important and non-interactive status information about the page. The status appears immediately after the page title. The `status` prop accepts any `ReactNode`.
 
-```jsxwide
+```jsx
 <EzPageHeader title="Order # XYZ-123" status={<EzAlert headline="Verified" use="marketing" />} />
 ```
 
@@ -101,7 +101,7 @@ While call to actions are typically found at the bottom of cards within the page
 
 Consider wrapping actions in an EzLayout to manage how they stack at smaller breakpoints.
 
-```jsxwide
+```jsx
 <EzPageHeader
   title="Order # XYZ-123"
   actions={
@@ -115,9 +115,7 @@ Consider wrapping actions in an EzLayout to manage how they stack at smaller bre
       <EzButton use="secondary" destructive>
         Reject Order
       </EzButton>
-      <EzButton use="secondary">
-        Request Third Party Delivery
-      </EzButton>
+      <EzButton use="secondary">Request Third Party Delivery</EzButton>
       <EzButton use="primary">Accept Order</EzButton>
     </EzLayout>
   }
@@ -140,7 +138,7 @@ Each entry in the `tabs` array must provide a `label` for the related page and c
 
 The following example demonstrates how subnavigation can use `onChange` events to switch which view to display. Page navigation can also be triggered using links as shown in the [Page header with subnavigation links example](#page-header-with-subnavigation-links).
 
-```jsxwide
+```jsx
 () => {
   const [tabs] = React.useState([
     {label: 'All', accessibilityLabel: 'All orders'},
@@ -150,10 +148,7 @@ The following example demonstrates how subnavigation can use `onChange` events t
   const [selected, onChange] = React.useState(tabs[0]);
   return (
     <>
-      <EzPageHeader
-        title="Order # XYZ-123"
-        subnav={{tabs, selected, onChange}}
-      />
+      <EzPageHeader title="Order # XYZ-123" subnav={{tabs, selected, onChange}} />
       <EzPage>
         <EzCard>
           <div>{selected && selected.accessibilityLabel}</div>
@@ -174,7 +169,7 @@ Each entry in the `tabs` array can be used to render a link by proving an `href`
 
 Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can instead provide a Link component, such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link) to render via the optional `as` property. When using the `as` property, you must use the `to` prop in place of `href` to provide the destination url for the link.
 
-```jsxwide
+```jsx
 () => {
   const {Link, BrowserRouter: Router, Route} = require('react-router-dom');
   const tabs = [
@@ -208,7 +203,7 @@ Normally links render an [anchor element](https://developer.mozilla.org/en-US/do
 
 Use for detail pages, which should have return links and may also often have related pages and page actions.
 
-```jsxwide
+```jsx
 () => {
   const [tabs] = React.useState([
     {label: 'All', accessibilityLabel: 'All orders'},

@@ -48,7 +48,7 @@ Order summaries should not:
 
 An order summary should be used to present an at-a-glance breakdown of billable items that make up an order.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzOrderSummary
     title="Required heading"

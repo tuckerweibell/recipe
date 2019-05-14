@@ -56,37 +56,37 @@ Page will provide appropriate margin on Headings.
 
 You can use `EzPageSection` to create layouts that have a left or right sidebar. Passing `use="aside"` creates a sidebar and `use="main"` creates the associated "two thirds ish" section.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzCard title="Card">
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-      in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
     </p>
   </EzCard>
   <EzPageSection use="aside">
     <EzCard title="Card (in aside)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
   </EzPageSection>
   <EzPageSection use="main">
     <EzCard title="Card (in main)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
     <EzCard title="Card (in main)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
   </EzPageSection>
@@ -97,37 +97,37 @@ You can use `EzPageSection` to create layouts that have a left or right sidebar.
 
 Just change the order of the aside and main sections if you want a right sidebar layout.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzCard title="Card">
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-      in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
     </p>
   </EzCard>
   <EzPageSection use="main">
     <EzCard title="Card (in main)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
   </EzPageSection>
   <EzPageSection use="aside">
     <EzCard title="Card (in aside)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
     <EzCard title="Card (in aside)">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
-        in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
       </p>
     </EzCard>
   </EzPageSection>
@@ -136,7 +136,7 @@ Just change the order of the aside and main sections if you want a right sidebar
 
 ### Centered Header and Page Content
 
-```jsxwide
+```jsx
 <EzAppLayout layout="centered">
   <EzPageHeader
     title="Reviews"

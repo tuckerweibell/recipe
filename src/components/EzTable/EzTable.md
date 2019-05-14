@@ -68,7 +68,7 @@ Tables can also:
 
 Used whenever the tabular data is directly related to the preceding or subsequent content. Simple tables should be used as a direct child of a [Card](/components/ez-card) component.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzCard>
     <EzHeading
@@ -100,7 +100,7 @@ Used whenever the tabular data is directly related to the preceding or subsequen
 
 Used whenever the tabular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional actions.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzTable
     title="All Stores"
@@ -123,7 +123,7 @@ Tables that fill a card can also offer actions that operate on the table data, o
 
 Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how actions stack at smaller breakpoints.
 
-```jsxwide
+```jsx
 <EzPage>
   <EzTable
     title="All Orders"
@@ -145,7 +145,7 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
 
 Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content). To provide custom content, the `accessor` property of each column can be provided any [React element](https://reactjs.org/docs/rendering-elements.html) or custom React component. Custom components will be provided an `item` prop with the record to be rendered.
 
-```jsxwide
+```jsx
 () => {
   // declare any component to define your custom column template
   const StoreName = ({item: {store, id}}) => (
@@ -191,7 +191,7 @@ The following properties are required when using selection:
   - `onBulkSelectClick` (required): an event that is fired when the user toggles to select or deselect all currently visible rows.
   - `isRowSelected` (required): a function used to determine whether a row is currently marked as selected or not. The function accepts the row's `item` object as an argument, and should return `true` if the item is selected, or `false` otherwise.
 
-```jsxwide
+```jsx
 () => {
   const items = [
     {store: '123 Example Store', total: 23267, average: 327.79},
@@ -249,7 +249,7 @@ The client code must also provide an `onSortClick` function as a prop to `EzTabl
 
 When providing pre-sorted data to EzTable, the relevant column should have a `defaultSort` value set to either `asc` or `desc` to indicate the sort order applied to the data.
 
-```jsxwide
+```jsx
 () => {
   const initialItems = [
     {name: 'Joan Jett', storeCount: 12},
@@ -309,7 +309,7 @@ To see selection and pagination features used together, see the [bulk row select
 
 #### Local Data
 
-```jsxwide
+```jsx
 () => {
   const allItems = [
     {first: 'Tiffany', last: 'Morin'},
@@ -372,7 +372,7 @@ To see selection and pagination features used together, see the [bulk row select
 
 #### Local Data with Sorting
 
-```jsxwide
+```jsx
 () => {
   const allItems = [
     {first: 'Tiffany', last: 'Morin'},
@@ -454,7 +454,7 @@ The following additional properties are required when using selection and pagina
   - `onSelectAllClick` (required): an event that is fired when the "Select all" message is clicked.
   - `onSelectNoneClick` (required): an event that is fired when the "Clear selection" message is clicked.
 
-```jsxwide
+```jsx
 () => {
   const allItems = [
     {first: 'Tiffany', last: 'Morin'},
