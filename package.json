@@ -51,7 +51,7 @@
     "react-router-dom": "^5.0.0",
     "react-test-renderer": "^16.8.2",
     "react-testing-library": "^5.9.0",
-    "sosia": "^1.1.0",
+    "sosia": "^1.2.3",
     "sosia-markdown": "^1.1.1",
     "sosia-remote-puppeteer": "^1.1.0",
     "sosia-types": "^1.0.2",
