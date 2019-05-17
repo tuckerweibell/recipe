@@ -93,8 +93,11 @@ export const TableCardSection = styled(EzCardSection)<TableCardSectionProps>(
   borders
 );
 
-export const TablePaginationNavItem = styled.span`
-  padding-right: ${props => props.theme.spacing.lg};
+export const TablePaginationNavItems = styled.div`
+  > * {
+    margin-right: ${props => props.theme.spacing.lg};
+    white-space: nowrap;
+  }
 `;
 
 // `direction: rtl` on the select is used to align the text in the select box to the right, changing direction in the option tag prevents the text contents from displaying RTL.
@@ -132,6 +135,7 @@ const selectionColumn = ({theme, selectable}) =>
     th:first-child,
     td:first-child {
       width: ${cellFitContent};
+      white-space: normal;
     }
 
     && thead tr + tr {
@@ -160,6 +164,8 @@ const base = ({theme}) => css`
   th,
   td {
     border: none;
+    background-color: white;
+    white-space: nowrap;
   }
 
   tr:hover {
@@ -170,3 +176,34 @@ const base = ({theme}) => css`
 `;
 
 export const Table = styled.table<Selectable>(base, selectionColumn);
+
+const pinnedFirstColumn = ({cols}) =>
+  cols > 2 &&
+  css`
+    th,
+    td {
+      :nth-of-type(1) {
+        position: sticky;
+        left: 0;
+      }
+    }
+  `;
+
+const pinnedSecondColumn = ({selectable, cols}) =>
+  selectable &&
+  cols > 2 &&
+  css`
+    th,
+    td {
+      :nth-of-type(2) {
+        position: sticky;
+        left: 44px;
+      }
+    }
+  `;
+
+const responsive = () => css`
+  overflow-x: auto;
+`;
+
+export const Container = styled.div<any>(responsive, pinnedFirstColumn, pinnedSecondColumn);

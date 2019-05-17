@@ -5,12 +5,13 @@ import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
 import {TableProps} from './EzTable.types';
 import {
+  Container,
   Table,
   Th,
   Td,
   ClickableTr,
   TableCardSection,
-  TablePaginationNavItem,
+  TablePaginationNavItems,
   TablePaginationRowCountDropdown,
 } from './EzTable.styles';
 import useSorting from './useSorting';
@@ -161,44 +162,38 @@ const TablePagination = ({pagination}) => {
 
   return (
     <EzCardFooter>
-      <EzLayout layout="split" className="split">
-        <div>
-          <TablePaginationNavItem>
-            <EzButton
-              use="tertiary"
-              onClick={pagination.onPrevPageClick}
-              disabled={pagination.currentPage === 1}
-            >
-              {'‹ '}
-              {t('Previous Page')}
-            </EzButton>
-          </TablePaginationNavItem>
-          <TablePaginationNavItem>
-            {t('Page {{currentPage}} of {{pages}}', {currentPage: pagination.currentPage, pages})}
-          </TablePaginationNavItem>
-          <TablePaginationNavItem>
-            <EzButton
-              use="tertiary"
-              onClick={pagination.onNextPageClick}
-              disabled={pagination.currentPage === pages}
-            >
-              {t('Next Page')}
-              {' ›'}
-            </EzButton>
-          </TablePaginationNavItem>
-        </div>
-        <div>
-          <TablePaginationRowCountDropdown
-            defaultValue={pagination.rowsPerPage}
-            onChange={pagination.onRowsPerPageChange}
+      <EzLayout layout="split">
+        <TablePaginationNavItems>
+          <EzButton
+            use="tertiary"
+            onClick={pagination.onPrevPageClick}
+            disabled={pagination.currentPage === 1}
           >
-            {pagination.rowsPerPageOptions.map(value => (
-              <option key={value} value={value}>
-                {t('{{num}} rows per page', {num: value})}
-              </option>
-            ))}
-          </TablePaginationRowCountDropdown>
-        </div>
+            {'‹ '}
+            {t('Previous Page')}
+          </EzButton>
+          <span>
+            {t('Page {{currentPage}} of {{pages}}', {currentPage: pagination.currentPage, pages})}
+          </span>
+          <EzButton
+            use="tertiary"
+            onClick={pagination.onNextPageClick}
+            disabled={pagination.currentPage === pages}
+          >
+            {t('Next Page')}
+            {' ›'}
+          </EzButton>
+        </TablePaginationNavItems>
+        <TablePaginationRowCountDropdown
+          defaultValue={pagination.rowsPerPage}
+          onChange={pagination.onRowsPerPageChange}
+        >
+          {pagination.rowsPerPageOptions.map(value => (
+            <option key={value} value={value}>
+              {t('{{num}} rows per page', {num: value})}
+            </option>
+          ))}
+        </TablePaginationRowCountDropdown>
       </EzLayout>
     </EzCardFooter>
   );
@@ -241,10 +236,12 @@ const EzTable: React.FC<TableProps> = ({
         sorting: {onSortClick},
       }}
     >
-      <Table selectable={!!selection}>
-        <Thead />
-        <Tbody />
-      </Table>
+      <Container cols={columns.length} selectable={!!selection}>
+        <Table selectable={!!selection}>
+          <Thead />
+          <Tbody />
+        </Table>
+      </Container>
     </TableContext.Provider>
   );
 
