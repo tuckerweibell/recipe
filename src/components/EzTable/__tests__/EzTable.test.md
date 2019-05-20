@@ -229,3 +229,92 @@
   return <Table />;
 };
 ```
+
+### With horizontal scroll
+
+```jsx
+() => {
+  const items = [
+    {store: '123 Example Store', total: 23267, average: 327.79},
+    {store: '45 Meadowview Lane', total: 22788, average: 367.55},
+  ];
+
+  const Table = () => {
+    const ref = React.useRef(null);
+
+    React.useEffect(() => {
+      const mountNode = ref.current;
+      const tableEl = mountNode.querySelector('table');
+      const scrollEl = tableEl.parentNode;
+      scrollEl.scrollLeft = 10;
+      scrollEl.dispatchEvent(new Event('scroll'));
+    }, [ref]);
+
+    return (
+      <div style={{width: '400px'}} ref={ref}>
+        <EzPage>
+          <EzTable
+            title="All Stores"
+            subtitle="Compared to the same period last year"
+            columns={[
+              {heading: 'Store name', accessor: 'store'},
+              {heading: 'Total sales', accessor: 'total', numeric: true},
+              {heading: 'Average order value', accessor: 'average', numeric: true},
+            ]}
+            items={items}
+          />
+        </EzPage>
+      </div>
+    );
+  };
+
+  return <Table />;
+};
+```
+
+### With horizontal scroll and selection
+
+```jsx
+() => {
+  const items = [
+    {store: '123 Example Store', total: 23267, average: 327.79},
+    {store: '45 Meadowview Lane', total: 22788, average: 367.55},
+  ];
+
+  const Table = () => {
+    const ref = React.useRef(null);
+
+    React.useEffect(() => {
+      const mountNode = ref.current;
+      const tableEl = mountNode.querySelector('table');
+      const scrollEl = tableEl.parentNode;
+      scrollEl.scrollLeft = 10;
+      scrollEl.dispatchEvent(new Event('scroll'));
+    }, [ref]);
+
+    return (
+      <div style={{width: '400px'}} ref={ref}>
+        <EzPage>
+          <EzTable
+            title="All Stores"
+            subtitle="Compared to the same period last year"
+            selection={{
+              onRowSelectClick: () => {},
+              onBulkSelectClick: () => {},
+              isRowSelected: () => true,
+            }}
+            columns={[
+              {heading: 'Store name', accessor: 'store'},
+              {heading: 'Total sales', accessor: 'total', numeric: true},
+              {heading: 'Average order value', accessor: 'average', numeric: true},
+            ]}
+            items={items}
+          />
+        </EzPage>
+      </div>
+    );
+  };
+
+  return <Table />;
+};
+```

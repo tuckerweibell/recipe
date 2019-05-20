@@ -177,7 +177,21 @@ const base = ({theme}) => css`
 
 export const Table = styled.table<Selectable>(base, selectionColumn);
 
-const pinnedFirstColumn = ({cols}) =>
+const scrollShadow = () => css`
+  ::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    box-shadow: inset 6px 0 10px -10px #333;
+    left: 100%;
+  }
+`;
+
+const pinnedFirstColumn = ({selectable, cols, isScrolling}) =>
+  isScrolling &&
   cols > 2 &&
   css`
     th,
@@ -185,11 +199,13 @@ const pinnedFirstColumn = ({cols}) =>
       :nth-of-type(1) {
         position: sticky;
         left: 0;
+        ${!selectable && scrollShadow()};
       }
     }
   `;
 
-const pinnedSecondColumn = ({selectable, cols}) =>
+const pinnedSecondColumn = ({selectable, cols, isScrolling}) =>
+  isScrolling &&
   selectable &&
   cols > 2 &&
   css`
@@ -198,12 +214,14 @@ const pinnedSecondColumn = ({selectable, cols}) =>
       :nth-of-type(2) {
         position: sticky;
         left: 44px;
+        ${scrollShadow()};
       }
     }
   `;
 
 const responsive = () => css`
   overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 export const Container = styled.div<any>(responsive, pinnedFirstColumn, pinnedSecondColumn);
