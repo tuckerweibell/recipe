@@ -13,6 +13,7 @@ title: 'Unreleased changes'
 
 - Added Clickable rows API to [EzTable](/components/ez-table/#clickable-rows), which allows the table to target specific links to trigger when the table row is clicked.
 - Added hover color to table rows to improve scannability of tables
+- Better support for EzTable on small screens. When screens are constrained in width, the responsive table now pins the first column (including selection where present) and allows for the remaining columns in the row to overflow with support for scrolling.
 
 #### Design updates
 
@@ -27,6 +28,7 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
-update devDependency on sosia-markdown
+- update devDependency on sosia to reduce test execution time (by half!)
+- update devDependency on sosia-markdown to improve support for larger visual regression tests
 
 #### Development workflow
