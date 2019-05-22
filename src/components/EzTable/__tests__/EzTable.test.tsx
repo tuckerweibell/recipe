@@ -9,12 +9,25 @@ import EzTable from '../EzTable';
 import {EzButton, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
+let mockOverflow = false;
+jest.mock('../../../utils/hooks/useOverflowDetection', () => () => [mockOverflow, () => {}]);
+
+const SetOverflow = ({children}) => {
+  // jsdom doesn't simulate layout, so we can't detect overflow in tests
+  mockOverflow = true;
+  return children;
+};
+
 const scope = {EzButton, EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Component};
 
 describe('EzTable', () => {
   visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
+  visualSnapshots({markdown: regressionTests, scope: {...scope, SetOverflow}});
   afterEach(cleanup);
+
+  beforeEach(() => {
+    mockOverflow = false;
+  });
 
   const columns = [
     {heading: 'Store name', accessor: ({item}) => item.store},

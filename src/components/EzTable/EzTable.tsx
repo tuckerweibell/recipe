@@ -17,7 +17,7 @@ import {
 import useSorting from './useSorting';
 import en from './en';
 import {wrapEvent} from '../../utils';
-import {useTranslation, useScrollPosition} from '../../utils/hooks';
+import {useTranslation, useScrollPosition, useOverflowDetection} from '../../utils/hooks';
 import useExpandedClickTarget from './useExpandedClickTarget';
 
 const TableContext = createContext(null);
@@ -220,6 +220,7 @@ const EzTable: React.FC<TableProps> = ({
   const {currentPage, rowsPerPage} = pagination || ({} as any);
   const [{x}, scrollEvents] = useScrollPosition();
   const isScrolling = x > 0;
+  const [isOverflowing, overflowDetection] = useOverflowDetection();
 
   useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
 
@@ -241,8 +242,10 @@ const EzTable: React.FC<TableProps> = ({
       <Container
         cols={columns.length}
         selectable={!!selection}
+        overflowing={isOverflowing}
         isScrolling={isScrolling}
         {...scrollEvents}
+        innerRef={overflowDetection.ref}
       >
         <Table selectable={!!selection}>
           <Thead />

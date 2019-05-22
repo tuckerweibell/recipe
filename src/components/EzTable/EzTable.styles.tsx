@@ -219,9 +219,19 @@ const pinnedSecondColumn = ({selectable, cols, isScrolling}) =>
     }
   `;
 
-const responsive = () => css`
+const responsive = ({overflowing, theme}) => css`
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  ${overflowing &&
+    css`
+      margin-top: ${theme.spacing.lg};
+
+      thead tr th {
+        border-top: 1px solid ${theme.colors.grays[300]};
+      }
+    `}
 `;
 
 export const Container = styled.div<any>(responsive, pinnedFirstColumn, pinnedSecondColumn);
