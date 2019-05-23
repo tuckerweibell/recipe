@@ -67,8 +67,21 @@ type CellProps = {
   sorted?: boolean;
 };
 
+const rowHover = ({clickable, theme}) =>
+  clickable &&
+  css`
+    &&:hover {
+      td {
+        background-color: ${theme.colors.blues[100]};
+        user-select: none;
+        cursor: pointer;
+      }
+    }
+  `;
+
 export const Th = styled.th<CellProps & {sortable?: boolean}>(cell, heading, sortable);
 export const Td = styled.td<CellProps>(cell);
+export const ClickableTr = styled.tr<{clickable: boolean}>(rowHover);
 
 type TableCardSectionProps = {
   theme?: Theme;
@@ -105,8 +118,8 @@ export const TablePaginationRowCountDropdown = styled.select`
 `;
 
 /*
-  With table-layout: auto, widths of table cells only shrink to the size of their content, 
-  so setting the width to a size smaller than the content size causes the cell to always fit 
+  With table-layout: auto, widths of table cells only shrink to the size of their content,
+  so setting the width to a size smaller than the content size causes the cell to always fit
   the content and not stretch to fill the available space.
 */
 const cellFitContent = '1%';
@@ -138,7 +151,7 @@ const selectionColumn = ({theme, selectable}) =>
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 
-const base = css`
+const base = ({theme}) => css`
   margin: 0;
   line-height: 1.5rem;
   border-collapse: collapse;
@@ -147,6 +160,12 @@ const base = css`
   th,
   td {
     border: none;
+  }
+
+  tr:hover {
+    td {
+      background-color: ${theme.colors.grays[100]};
+    }
   }
 `;
 

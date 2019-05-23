@@ -11,6 +11,9 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added Clickable rows API to [EzTable](/components/ez-table/#clickable-rows), which allows the table to target specific links to trigger when the table row is clicked.
+- Added hover color to table rows to improve scannability of tables
+
 #### Design updates
 
 #### Bug fixes

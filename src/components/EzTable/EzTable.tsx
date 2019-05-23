@@ -8,6 +8,7 @@ import {
   Table,
   Th,
   Td,
+  ClickableTr,
   TableCardSection,
   TablePaginationNavItem,
   TablePaginationRowCountDropdown,
@@ -16,6 +17,7 @@ import useSorting from './useSorting';
 import en from './en';
 import {wrapEvent} from '../../utils';
 import {useTranslation} from '../../utils/hooks';
+import useExpandedClickTarget from './useExpandedClickTarget';
 
 const TableContext = createContext(null);
 
@@ -116,27 +118,38 @@ const SelectionStateBanner = () => {
   );
 };
 
+const TRow = ({item}) => {
+  const {columns, selection} = useContext(TableContext);
+  const [targetRef, {ref, clickable, onClick, onMouseEnter}] = useExpandedClickTarget();
+
+  return (
+    <ClickableTr {...{innerRef: ref, clickable, onClick, onMouseEnter}}>
+      {selection && (
+        <Td>
+          <EzCheckbox
+            label="Select row"
+            checked={selection.selected.includes(item)}
+            onChange={event => selection.onRowSelectClick(event, {item})}
+          />
+        </Td>
+      )}
+      {columns.map(({accessor, numeric}, cellIndex) => (
+        <Td key={cellIndex} numeric={numeric}>
+          {typeof accessor === 'function'
+            ? createElement(accessor, {item, linkRef: targetRef})
+            : item[accessor]}
+        </Td>
+      ))}
+    </ClickableTr>
+  );
+};
+
 const Tbody = () => {
-  const {columns, items, selection} = useContext(TableContext);
+  const {items} = useContext(TableContext);
   return (
     <tbody>
       {items.map((item, rowIndex) => (
-        <tr key={rowIndex}>
-          {selection && (
-            <Td>
-              <EzCheckbox
-                label="Select row"
-                checked={selection.selected.includes(item)}
-                onChange={event => selection.onRowSelectClick(event, {item})}
-              />
-            </Td>
-          )}
-          {columns.map(({accessor, numeric}, cellIndex) => (
-            <Td key={cellIndex} numeric={numeric}>
-              {typeof accessor === 'function' ? createElement(accessor, {item}) : item[accessor]}
-            </Td>
-          ))}
-        </tr>
+        <TRow key={rowIndex} item={item} />
       ))}
     </tbody>
   );

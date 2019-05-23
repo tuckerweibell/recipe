@@ -23,7 +23,6 @@ Features still in consideration include:
 - Column pinning to support horizontal scrolling
 - Header-less table
 - Filtering
-- Row hover styles (interactive)
 - Zebra Striping
 - Column width options (fixed, grow, auto, ellipsis, tooltip)
 - Header-less columns (content between columns, e.g. formula operators)
@@ -39,6 +38,7 @@ Tables should:
 - Help users visualize values from a data set.
 - Only display values supporting the data's purpose.
 - Include a heading to help identify the contents of the table at-a-glance.
+- Provide links to view additional or related content within the first column of a table.
 
 ## Alignment
 
@@ -143,6 +143,8 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
 
 Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content). To provide custom content, the `accessor` property of each column can be provided any [React element](https://reactjs.org/docs/rendering-elements.html) or custom React component. Custom components will be provided an `item` prop with the record to be rendered.
 
+To use a custom cell to render links to additional content, see the [Row highlighting and selection example](#row-highlighting-and-selection);
+
 ```jsx
 () => {
   // declare any component to define your custom column template
@@ -174,6 +176,76 @@ Use when more fine-grained control over the table content is desired (in favor o
       />
     </EzPage>
   );
+};
+```
+
+### Clickable rows
+
+Use when offering links to see more information or related content to ensure the click surface of the link spans the entire table row.
+
+When using [custom cell rendering](#custom-cell-rendering) the `accessor` property of a column is also provided a `linkRef` which allows the table to target specific links to trigger when the table row is clicked.
+
+Note: Typically, [only the first column](#best-practices) should provide links to view additional or related content. The `linkRef` prop should only be applied to a single column's accessor, as clicking the row should trigger navigation on a single link.
+
+```jsx
+() => {
+  // declare any component to define your custom column template
+  const StoreName = ({item: {store, id}, linkRef}) => (
+    <div>
+      <div>
+        <a href={`javascript:alert('${store}');`} ref={linkRef}>
+          {store}
+        </a>
+      </div>
+      <div>
+        <EzTextStyle use="subdued">{id}</EzTextStyle>
+      </div>
+    </div>
+  );
+
+  const items = [
+    {store: '123 Example Store', total: 23267, average: 327.79},
+    {store: '45 Meadowview Lane', total: 22788, average: 367.55},
+  ];
+
+  const Table = () => {
+    const [selection, setSelection] = React.useState([]);
+
+    const selectRow = item => setSelection(selection.concat(item));
+    const deselectRow = item => setSelection(selection.filter(x => x !== item));
+    const isRowSelected = item => selection.includes(item);
+
+    const onBulkSelectClick = () => {
+      const newSelection = selection.length === items.length ? [] : items;
+      setSelection(newSelection);
+    };
+
+    const onRowSelectClick = (_event, {item}) => {
+      isRowSelected(item) ? deselectRow(item) : selectRow(item);
+    };
+
+    return (
+      <EzPage>
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          selection={{
+            onRowSelectClick,
+            onBulkSelectClick,
+            isRowSelected,
+          }}
+          columns={[
+            {heading: 'Store name', accessor: StoreName},
+            {heading: 'Total sales', accessor: 'total', numeric: true},
+            {heading: 'Average order value', accessor: 'average', numeric: true},
+          ]}
+          items={items}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
 };
 ```
 

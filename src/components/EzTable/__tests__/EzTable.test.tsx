@@ -293,6 +293,74 @@ describe('EzTable', () => {
     });
   });
 
+  describe('clickable rows', () => {
+    const data = [{first: 'Tiffany', last: 'Morin'}, {first: 'Mitchell', last: 'Hoffman'}];
+
+    const link = onclick => ({item: {first, last}, linkRef}) => (
+      <div>
+        <div>
+          <a href="/" ref={linkRef} onClick={onclick}>
+            {first} {last}
+          </a>
+        </div>
+      </div>
+    );
+
+    it('calls the onClick of the link target when clicking inside a table row', () => {
+      const spy = jest.fn();
+
+      const {getByText} = fullRender(
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          columns={[
+            {heading: 'Link', accessor: link(spy)},
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={data}
+        />
+      );
+
+      const cell = getByText('Tiffany');
+
+      fireEvent.mouseOver(cell);
+      fireEvent.click(cell);
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('does NOT call the onClick of the link target if clicking interactive elements in the row', () => {
+      const spy = jest.fn();
+
+      const {queryAllByLabelText} = fullRender(
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          selection={{
+            onRowSelectClick: () => {},
+            onBulkSelectClick: () => {},
+            isRowSelected: () => true,
+            onSelectAllClick: () => {},
+            onSelectNoneClick: () => {},
+          }}
+          columns={[
+            {heading: 'Link', accessor: link(spy)},
+            {heading: 'First Name', accessor: 'first'},
+            {heading: 'Last Name', accessor: 'last'},
+          ]}
+          items={data}
+        />
+      );
+
+      const checkbox = queryAllByLabelText('Select row')[0];
+
+      fireEvent.click(checkbox);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzTable columns={columns} items={items} />);
     const actual = await axe(wrapper);

@@ -2,7 +2,7 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {Link, StaticRouter, Route} from 'react-router-dom';
-import {fireEvent, cleanup, act} from 'react-testing-library';
+import {fireEvent, cleanup} from 'react-testing-library';
 import markdown from '../EzPageHeader.md';
 import EzPageHeader from '../EzPageHeader';
 import {EzAlert, EzButton, EzCard, EzLayout, EzPage} from '../../index';
