@@ -52,13 +52,13 @@ const IFramePlayground = props => {
     setContainer(contentDocument.body);
 
     const calculateHeight = () => {
-      const children = Array.from(contentDocument.body.children);
-      const height = children.reduce((prevVal, child) => prevVal + child.offsetHeight, 2);
-      setHeight(height);
+      setHeight(0);
+      setHeight(contentDocument.body.scrollHeight);
     };
 
     calculateHeight();
     iframe.contentWindow.onresize = calculateHeight;
+    iframe.contentWindow.onclick = calculateHeight;
 
     const scopedEmotion = createEmotion(iframe, {
       container: contentDocument.head,
