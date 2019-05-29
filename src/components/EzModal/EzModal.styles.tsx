@@ -17,6 +17,9 @@ export const CloseButton = styled.button`
   :hover {
     background-color: ${props => props.theme.colors.interactive.hover.background};
   }
+  :active {
+    background-color: ${props => props.theme.colors.interactive.active.background};
+  }
 `;
 
 export const Overlay = styled(DialogOverlay)`

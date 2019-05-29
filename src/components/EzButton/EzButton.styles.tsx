@@ -31,6 +31,11 @@ const outlineStyles = ({theme}) => css`
   border-width: ${theme.borderWidth[0]};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   padding: ${theme.spacing.xs} ${theme.spacing.md};
+
+  :focus {
+    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline},
+      0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  }
 `;
 
 const outline = variant('use', {

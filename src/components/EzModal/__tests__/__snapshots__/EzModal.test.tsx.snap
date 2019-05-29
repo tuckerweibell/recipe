@@ -102,7 +102,11 @@ exports[`EzModal should render with default styles 1`] = `
 }
 
 .recipe-3:hover {
-  background-color: #f4f7f8;
+  background-color: #fafafb;
+}
+
+.recipe-3:active {
+  background-color: #e6e9eb;
 }
 
 .recipe-7 {
@@ -246,6 +250,10 @@ exports[`EzModal should render with default styles 1`] = `
   background-color: #2e6ca0;
 }
 
+.recipe-9:focus {
+  box-shadow: 0px 0px 2px 2px #3e90d6,0 1px 1px 0 rgba(0,0,0,0.12);
+}
+
 .recipe-11 {
   cursor: pointer;
   display: inline-block;
@@ -291,6 +299,18 @@ exports[`EzModal should render with default styles 1`] = `
 
 .recipe-11:active:enabled {
   color: #2e6ca0;
+}
+
+.recipe-11:hover:enabled {
+  background-color: #fafafb;
+}
+
+.recipe-11:active:enabled {
+  background-color: #e6e9eb;
+}
+
+.recipe-11:focus {
+  box-shadow: 0px 0px 2px 2px #3e90d6,0 1px 1px 0 rgba(0,0,0,0.12);
 }
 
 <body>

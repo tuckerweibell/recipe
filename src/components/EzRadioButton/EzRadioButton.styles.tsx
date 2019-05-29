@@ -35,6 +35,12 @@ const base = ({theme: {colors}}) => css`
     border-radius: 50%;
   }
 
+  /* Hover */
+  input:hover + svg path:nth-of-type(1) {
+    fill: ${colors.interactive.hover.background};
+    stroke: ${colors.interactive.hover.border};
+  }
+
   /* Active */
   input:active + svg path:nth-of-type(1) {
     fill: ${colors.interactive.active.background};
