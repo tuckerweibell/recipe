@@ -43,22 +43,12 @@ const forwardStyles = (source, target, iframe) => {
 
 const IFramePlayground = props => {
   const iframeEl = useRef(null);
-  const [height, setHeight] = useState(0);
   const [container, setContainer] = useState(null);
 
   useEffect(() => {
     const iframe = iframeEl.current;
     const contentDocument = iframe.contentDocument;
     setContainer(contentDocument.body);
-
-    const calculateHeight = () => {
-      setHeight(0);
-      setHeight(contentDocument.body.scrollHeight);
-    };
-
-    calculateHeight();
-    iframe.contentWindow.onresize = calculateHeight;
-    iframe.contentWindow.onclick = calculateHeight;
 
     const scopedEmotion = createEmotion(iframe, {
       container: contentDocument.head,
@@ -69,12 +59,27 @@ const IFramePlayground = props => {
     return forwardStyles(sheet, scopedEmotion.sheet, iframe);
   }, []);
 
+  useEffect(() => {
+    const iframe = iframeEl.current;
+    const contentDocument = iframe.contentDocument;
+
+    const resizeBasedOnContent = () => {
+      iframe.style.height = 0;
+      iframe.style.height = `${contentDocument.body.scrollHeight}px`;
+    };
+
+    const resizeObserver = new ResizeObserver(resizeBasedOnContent);
+    resizeObserver.observe(contentDocument.querySelector('body'));
+
+    iframe.contentWindow.onclick = resizeBasedOnContent;
+  });
+
   return (
     <iframe
       frameBorder="0"
       allowFullScreen={true}
       ref={iframeEl}
-      style={{border: 'none', margin: 0, width: '100%', height}}
+      style={{border: 'none', margin: 0, width: '100%'}}
     >
       {container && createPortal(props.children, container)}
     </iframe>
