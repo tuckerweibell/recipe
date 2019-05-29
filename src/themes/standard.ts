@@ -70,12 +70,76 @@ const purples = {
 };
 
 export const colors = {
-  primary: {
-    main: blues[600],
-    contrastText: white,
+  border: {
+    base: grays[400],
+    subtle: grays[300],
+  },
+  content: {
+    background: white,
   },
   destructive: {
-    main: reds.base,
+    main: reds.base, // deprecated
+    contrastText: white, // deprecated
+    background: reds.lighter,
+    border: reds.light,
+    foreground: reds.base,
+    text: reds.dark,
+  },
+  info: {
+    background: blues[200],
+    border: blues[300],
+    foreground: blues[600],
+    text: blues[700],
+  },
+  interactive: {
+    checked: {
+      background: blues[200],
+      border: blues[500],
+      foreground: blues[700],
+    },
+    disabled: {
+      background: grays[200],
+      foreground: grays[400],
+    },
+    hover: {
+      background: grays[100],
+      highlight: blues[100],
+      border: grays[500],
+    },
+    active: {
+      background: grays[300],
+    },
+    base: blues[600],
+    focus: {
+      outline: blues[600],
+    },
+  },
+  navigation: {
+    background: grays[800],
+    active: grays[900],
+  },
+  page: {
+    background: grays[200],
+  },
+  success: {
+    background: greens.lighter,
+    border: greens.light,
+    foreground: greens.base,
+    text: greens.dark,
+  },
+  text: {
+    base: grays[700],
+    deemphasis: grays[600],
+  },
+  warning: {
+    background: yellows.lighter,
+    border: yellows.light,
+    foreground: yellows.base,
+    text: yellows.dark,
+  },
+  // deprecated
+  primary: {
+    main: blues[600],
     contrastText: white,
   },
   white,

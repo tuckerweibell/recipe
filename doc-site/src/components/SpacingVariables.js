@@ -10,6 +10,7 @@ function remToPx(rem) {
 
 const SpacingContainer = styled.div`
   display: flex;
+  margin-bottom: 1em;
 
   > *:not(:first-child) {
     margin-left: ${standard.spacing.xl};
@@ -23,7 +24,7 @@ const Block = styled.div`
   width: ${standard.spacing.xl2};
 `;
 
-export default props => {
+export default () => {
   return (
     <SpacingContainer>
       {Object.keys(standard.spacing).map(key => {
