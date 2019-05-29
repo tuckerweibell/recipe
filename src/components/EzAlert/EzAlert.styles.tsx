@@ -39,19 +39,19 @@ const coloredStyles = (lightColor, darkColor) => css`
 `;
 
 const successStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.greens.lighter, colors.greens.dark)};
+  ${coloredStyles(colors.success.background, colors.success.text)};
 `;
 
 const errorStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.reds.lighter, colors.reds.dark)};
+  ${coloredStyles(colors.destructive.background, colors.destructive.text)};
 `;
 
 const warningStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.yellows.lighter, colors.yellows.dark)};
+  ${coloredStyles(colors.warning.background, colors.warning.text)};
 `;
 
 const infoStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.blues[200], colors.blues[700])};
+  ${coloredStyles(colors.info.background, colors.info.text)};
 `;
 
 const marketingStyles = ({theme: {colors}}) => css`

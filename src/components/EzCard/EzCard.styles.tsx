@@ -4,7 +4,7 @@ import styled from '../../themes/styled';
 const accentStyles = ({accent, theme}) =>
   accent &&
   css`
-    border-left: 5px solid ${theme.colors.blues[600]};
+    border-left: 5px solid ${theme.colors.info.foreground};
   `;
 
 type CardContainerProps = {
@@ -14,7 +14,7 @@ type CardContainerProps = {
 
 export const CardContainer = styled.div<CardContainerProps>`
   background: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.grays[400]};
+  border: 1px solid ${props => props.theme.colors.border.base};
   border-radius: ${props => props.theme.borderRadius[2]};
   overflow: hidden;
   ${accentStyles};
@@ -40,7 +40,7 @@ const vertical = ({horizontal, theme}) =>
   !horizontal &&
   css`
     > *:not(:first-child) {
-      border-top: 1px solid ${theme.colors.grays[400]};
+      border-top: 1px solid ${theme.colors.border.base};
     }
   `;
 

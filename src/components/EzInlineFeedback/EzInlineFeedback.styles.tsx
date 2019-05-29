@@ -14,19 +14,19 @@ const base = ({theme}) => css`
 
 const useStyles = variant('use', {
   error: ({theme}) => css`
-    color: ${theme.colors.reds.base};
+    color: ${theme.colors.destructive.main};
     svg path {
-      fill: ${theme.colors.reds.base};
+      fill: ${theme.colors.destructive.main};
     }
   `,
   progress: ({theme}) => css`
     svg path {
-      fill: ${theme.colors.grays[600]};
+      fill: ${theme.colors.text.deemphasis};
     }
   `,
   success: ({theme}) => css`
     svg path {
-      fill: ${theme.colors.greens.dark};
+      fill: ${theme.colors.success.text};
     }
   `,
 });

@@ -12,12 +12,12 @@ const coloredStyles = getColors => ({theme: {colors}}) => {
 };
 
 const use = variant('use', {
-  neutral: coloredStyles(colors => [colors.grays[200], colors.grays[700]]),
-  success: coloredStyles(colors => [colors.greens.lighter, colors.greens.dark]),
-  informational: coloredStyles(colors => [colors.blues[200], colors.blues[700]]),
-  attention: coloredStyles(colors => [colors.blues[200], colors.blues[700]]),
-  warning: coloredStyles(colors => [colors.yellows.lighter, colors.yellows.dark]),
-  error: coloredStyles(colors => [colors.reds.lighter, colors.reds.dark]),
+  neutral: coloredStyles(colors => [colors.page.background, colors.text.base]),
+  success: coloredStyles(colors => [colors.success.background, colors.success.text]),
+  informational: coloredStyles(colors => [colors.info.background, colors.info.text]),
+  attention: coloredStyles(colors => [colors.info.background, colors.info.text]),
+  warning: coloredStyles(colors => [colors.warning.background, colors.warning.text]),
+  error: coloredStyles(colors => [colors.destructive.background, colors.destructive.text]),
 });
 
 const base = ({theme, size}) => css`

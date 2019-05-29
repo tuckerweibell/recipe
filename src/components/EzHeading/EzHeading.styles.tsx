@@ -3,7 +3,7 @@ import {css} from 'react-emotion';
 import styled from '../../themes/styled';
 
 export const Subheading = styled.div`
-  color: ${props => props.theme.colors.grays[600]};
+  color: ${props => props.theme.colors.text.deemphasis};
   font-size: ${props => props.theme.fontSizes[300]};
   font-weight: ${props => props.theme.fontWeights.normal};
   line-height: ${props => props.theme.lineHeights.heading};
@@ -11,7 +11,7 @@ export const Subheading = styled.div`
 `;
 
 const heading = (size, weight) => ({theme}) => css`
-  color: ${theme.colors.grays[700]};
+  color: ${theme.colors.text.base};
   font-size: ${theme.fontSizes[size]};
   font-weight: ${theme.fontWeights[weight]};
   line-height: ${theme.lineHeights.heading};

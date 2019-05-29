@@ -5,9 +5,9 @@ import {hideVisually} from '../../styles';
 const label = ({theme}: Themed) => css`
   cursor: pointer;
   background-color: white;
-  border: 1px solid ${theme.colors.grays[400]};
+  border: 1px solid ${theme.colors.border.base};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  color: ${theme.colors.grays[700]};
+  color: ${theme.colors.text.base};
   display: block;
   flex: 1;
   padding: ${theme.spacing.xs} ${theme.spacing.md};
@@ -30,20 +30,23 @@ const label = ({theme}: Themed) => css`
   }
 
   &:hover {
-    background-color: ${theme.colors.grays[100]};
-    border-color: ${theme.colors.grays[500]};
+    background-color: ${theme.colors.interactive.hover.background};
+    border-color: ${theme.colors.interactive.hover.border};
   }
 
   input:checked + & {
-    color: ${theme.colors.blues[500]};
-    background: ${theme.colors.blues[200]};
-    border: 1px solid ${theme.colors.blues[500]};
+    color: ${theme.colors.interactive.checked.foreground};
+    background: ${theme.colors.interactive.checked.background};
+    border: 1px solid ${theme.colors.interactive.checked.border};
     position: relative;
   }
 
+  input:active + & {
+    background: ${theme.colors.interactive.active.background};
+  }
+
   input:focus + & {
-    border-color: ${theme.colors.blues[600]};
-    color: ${theme.colors.blues[600]};
+    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline};
   }
 
   input:disabled + & {

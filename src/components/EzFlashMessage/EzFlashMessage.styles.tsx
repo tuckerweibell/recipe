@@ -3,31 +3,22 @@ import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
 
 const coloredStyles = getColors => ({theme: {colors}}) => {
-  const [backgroundColor, color, borderColor] = getColors(colors);
+  const {background, foreground, border} = getColors(colors);
   return css`
-    background-color: ${backgroundColor};
-    border-left: 5px solid ${color};
-    box-shadow: inset -1px 0 0 ${borderColor}, inset 0 1px 0 ${borderColor},
-      inset 0 -1px 0 ${borderColor};
+    background-color: ${background};
+    border-left: 5px solid ${foreground};
+    box-shadow: inset -1px 0 0 ${border}, inset 0 1px 0 ${border}, inset 0 -1px 0 ${border};
     svg path {
-      fill: ${color};
+      fill: ${foreground};
     }
   `;
 };
 
 const useStyles = variant('use', {
-  error: coloredStyles(colors => [colors.reds.lighter, colors.reds.base, colors.reds.light]),
-  info: coloredStyles(colors => [colors.blues[200], colors.blues[700], colors.blues[700]]),
-  success: coloredStyles(colors => [
-    colors.greens.lighter,
-    colors.greens.base,
-    colors.greens.light,
-  ]),
-  warning: coloredStyles(colors => [
-    colors.yellows.lighter,
-    colors.yellows.base,
-    colors.yellows.light,
-  ]),
+  error: coloredStyles(colors => colors.destructive),
+  info: coloredStyles(colors => colors.info),
+  success: coloredStyles(colors => colors.success),
+  warning: coloredStyles(colors => colors.warning),
 });
 
 export type FlashMessageContainerProps = {

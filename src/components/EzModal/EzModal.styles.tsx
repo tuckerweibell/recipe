@@ -15,7 +15,7 @@ export const CloseButton = styled.button`
   padding: ${clickTargetPadding};
 
   :hover {
-    background-color: ${props => props.theme.colors.grays[200]};
+    background-color: ${props => props.theme.colors.interactive.hover.background};
   }
 `;
 
@@ -62,7 +62,7 @@ const containerPadding = ({theme: {spacing, breakpoints}}) => css`
 export const HeaderContainer = styled.div`
   ${props => containerPadding({theme: props.theme})}
   align-items: baseline;
-  border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
+  border-bottom: 1px solid ${props => props.theme.colors.border.subtle};
   display: flex;
   flex: none;
   justify-content: space-between;
@@ -84,7 +84,7 @@ export const ContentContainer = styled.div`
 
 export const ButtonFooter = styled.div`
   ${props => containerPadding({theme: props.theme})}
-  background: ${props => props.theme.colors.grays[200]};
-  border-top: 1px solid ${props => props.theme.colors.grays[300]};
+  background: ${props => props.theme.colors.page.background};
+  border-top: 1px solid ${props => props.theme.colors.border.subtle};
   flex: none;
 `;

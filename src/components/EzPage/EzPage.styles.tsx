@@ -1,7 +1,7 @@
 import {css} from 'react-emotion';
 
 export const base = ({theme}) => css`
-  background: ${theme.colors.grays[200]};
+  background: ${theme.colors.page.background};
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {

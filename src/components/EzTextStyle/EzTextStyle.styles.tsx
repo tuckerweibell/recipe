@@ -5,5 +5,5 @@ export const strong = ({theme}) => css`
 `;
 
 export const subdued = ({theme}) => css`
-  color: ${theme.colors.grays[600]};
+  color: ${theme.colors.text.deemphasis};
 `;

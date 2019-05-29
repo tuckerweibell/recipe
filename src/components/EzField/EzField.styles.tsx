@@ -19,7 +19,7 @@ const inputBase = ({theme}) => css`
   display: block;
   width: 100%;
   background: ${theme.colors.white};
-  border: 1px solid ${theme.colors.grays[400]};
+  border: 1px solid ${theme.colors.border.base};
   border-radius: ${inputBorderRadius};
   padding: ${theme.spacing.xs} ${theme.spacing.sm};
   margin-top: ${theme.spacing.xs};
@@ -29,7 +29,7 @@ const inputError = ({theme, error, touched}) =>
   error &&
   touched &&
   css`
-    border-color: ${theme.colors.reds.base};
+    border-color: ${theme.colors.destructive.foreground};
     padding-right: ${iconOffset};
     ${borderRadius('bottom', 0)};
 
@@ -42,7 +42,7 @@ const inputDisabled = ({theme, disabled}) =>
   disabled &&
   css`
     background: ${theme.colors.grays[100]};
-    border: 1px solid ${theme.colors.grays[300]};
+    border: 1px solid ${theme.colors.border.subtle};
   `;
 
 const StyledField = styled.div`
@@ -58,7 +58,7 @@ const StyledField = styled.div`
 
 export const Helper = styled.div`
   font-size: ${({theme}) => theme.fontSizes[200]};
-  color: ${({theme}) => theme.colors.grays[600]};
+  color: ${({theme}) => theme.colors.text.deemphasis};
   margin-top: ${({theme}) => theme.spacing.xs};
 `;
 
@@ -68,7 +68,7 @@ const detached = css`
 `;
 
 const callout = ({theme, active}: any) => css`
-  background-color: ${theme.colors.reds.base};
+  background-color: ${theme.colors.destructive.foreground};
   color: ${theme.colors.white};
   font-size: ${theme.fontSizes[200]};
   min-width: min-content;
@@ -89,7 +89,7 @@ const callout = ({theme, active}: any) => css`
     height: 0px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid ${theme.colors.reds.base};
+    border-bottom: 5px solid ${theme.colors.destructive.foreground};
     position: absolute;
     top: -5px;
     right: 12px;
@@ -116,7 +116,7 @@ export const CharacterLimit = styled.div`
 export const InputIconContainer = styled.div`
   position: absolute;
   right: ${iconOffset};
-  color: ${({theme}) => theme.colors.reds.base};
+  color: ${({theme}) => theme.colors.destructive.foreground};
 
   svg {
     top: -1.75em; /* approx line height (1.1em) + input padding (0.57em) + border width */

@@ -5,7 +5,7 @@ import {pseudoClasses} from '../../styles';
 const base = ({theme}) => css`
   font-weight: bold;
   text-decoration: none;
-  ${pseudoClasses('color', {color: theme.colors.primary.main})};
+  ${pseudoClasses('color', {color: theme.colors.interactive.base})};
 
   &:hover {
     text-decoration: underline;

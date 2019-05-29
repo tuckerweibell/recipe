@@ -3,7 +3,7 @@ import styled from '../../themes/styled';
 
 const sizePx = `16px`;
 
-const base = ({theme}) => css`
+const base = ({theme: {colors}}) => css`
   display: inline-block;
   height: ${sizePx};
   width: ${sizePx};
@@ -21,7 +21,7 @@ const base = ({theme}) => css`
 
   /* Checked */
   input:checked + svg path:nth-of-type(2) {
-    fill: ${theme.colors.blues[600]};
+    fill: ${colors.interactive.base};
   }
 
   /* Not Checked */
@@ -31,22 +31,23 @@ const base = ({theme}) => css`
 
   /* Focused */
   input:focus + svg {
-    box-shadow: 0px 0px 2px 2px ${theme.colors.blues[600]};
+    box-shadow: 0px 0px 2px 2px ${colors.interactive.focus.outline};
     border-radius: 3px;
   }
 
   /* Active */
   input:active + svg path:nth-of-type(1) {
-    fill: ${theme.colors.grays[200]};
+    fill: ${colors.interactive.active.background};
   }
 
   /* Disabled */
   input:disabled + svg path:nth-of-type(1) {
-    fill: ${theme.colors.grays[200]};
+    fill: ${colors.interactive.disabled.background};
+    stroke: ${colors.border.base};
   }
 
   input:checked:disabled + svg path:nth-of-type(2) {
-    fill: ${theme.colors.grays[400]};
+    fill: ${colors.interactive.disabled.foreground};
   }
 `;
 

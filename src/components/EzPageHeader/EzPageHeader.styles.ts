@@ -14,7 +14,7 @@ const spacing = ({theme, subnav}) => css`
 
 export const base = ({theme, subnav}) => css`
   background-color: white;
-  box-shadow: inset 0 -1px 0 0 ${theme.colors.grays[400]};
+  box-shadow: inset 0 -1px 0 0 ${theme.colors.border.base};
 
   ${spacing({theme, subnav})}
 

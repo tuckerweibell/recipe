@@ -9,13 +9,13 @@ const base = ({theme}: Themed) => css`
 `;
 
 const typography = ({shade, size}) => ({theme}: Themed) => css`
-  color: ${theme.colors.grays[shade]};
+  color: ${theme.colors.text[shade]};
   font-size: ${theme.fontSizes[size]};
 `;
 
 const size = variant('size', {
-  small: typography({shade: 600, size: 200}),
-  normal: typography({shade: 700, size: 300}),
+  small: typography({shade: 'deemphasis', size: 200}),
+  normal: typography({shade: 'base', size: 300}),
 });
 
 const top = ({theme}: Themed) => ({'margin-bottom': theme.spacing.xs2});
@@ -34,7 +34,7 @@ const right = ({theme}: Themed) => css`
 const error = ({error: hasError, theme}) =>
   hasError &&
   css`
-    color: ${theme.colors.reds.base};
+    color: ${theme.colors.destructive.foreground};
   `;
 
 const position = variant('position', {

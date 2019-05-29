@@ -29,16 +29,16 @@ const cell = ({theme, numeric}) => css`
 `;
 
 const heading = ({theme}) => css`
-  color: ${theme.colors.grays[600]};
+  color: ${theme.colors.text.deemphasis};
 `;
 
 const borders = ({theme}) => css`
   tbody tr:first-child td {
-    border-top: 1px solid ${theme.colors.grays[300]};
+    border-top: 1px solid ${theme.colors.border.subtle};
   }
 
   && td {
-    border-bottom: 1px solid ${theme.colors.grays[300]};
+    border-bottom: 1px solid ${theme.colors.border.subtle};
   }
 
   tr:last-child td {
@@ -56,7 +56,7 @@ const sortable = ({theme, sorted, sortable: isSortable}) =>
       align-items: center;
     }
     svg {
-      fill: ${theme.colors.grays[600]};
+      fill: ${theme.colors.text.deemphasis};
       margin-left: ${theme.spacing.xs};
       opacity: ${sorted ? '1' : '0'};
     }
@@ -72,7 +72,7 @@ const rowHover = ({clickable, theme}) =>
   css`
     &&:hover {
       td {
-        background-color: ${theme.colors.blues[100]};
+        background-color: ${theme.colors.interactive.hover.highlight};
         user-select: none;
         cursor: pointer;
       }
@@ -106,7 +106,7 @@ export const TablePaginationRowCountDropdown = styled.select`
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: ${prop => prop.theme.fontSizes[300]};
   font-weight: bold;
-  color: ${props => props.theme.colors.primary.main};
+  color: ${props => props.theme.colors.interactive.base};
   border: 0;
   background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48cGF0aCBkPSJNMTIyLjI0MiAxMC40MTVsMy40MzYgMy40MzZjLjAwMy4wMDQuMDA0LjAwOS4wMDguMDEzYS44MjcuODI3IDAgMCAwIC41ODkuMjQxYy4yMTMgMCAuNDI3LS4wOC41ODktLjI0MS4wMDQtLjAwNC4wMDUtLjAxLjAwOC0uMDEzbDMuNDM2LTMuNDM2YS44MzIuODMyIDAgMCAwIDAtMS4xNzMuODMyLjgzMiAwIDAgMC0xLjE3MyAwbC0yLjg2IDIuODYtMi44Ni0yLjg2YS44MzIuODMyIDAgMCAwLTEuMTczIDAgLjgzMi44MzIgMCAwIDAgMCAxLjE3M3oiIGlkPSJhIi8+PC9kZWZzPjx1c2UgZmlsbD0iIzNFOTBENiIgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyMiAtOSkiLz48L3N2Zz4=');
   background-repeat: no-repeat;
@@ -140,9 +140,9 @@ const selectionColumn = ({theme, selectable}) =>
 
     && thead tr + tr {
       td {
-        background-color: ${theme.colors.blues[200]};
-        border-bottom: solid 1px ${theme.colors.blues[400]};
-        border-top: solid 1px ${theme.colors.blues[400]};
+        background-color: ${theme.colors.info.background};
+        border-bottom: solid 1px ${theme.colors.info.border};
+        border-top: solid 1px ${theme.colors.info.border};
         padding: ${theme.spacing.xs};
 
         > * {
@@ -170,7 +170,7 @@ const base = ({theme}) => css`
 
   tr:hover {
     td {
-      background-color: ${theme.colors.grays[100]};
+      background-color: ${theme.colors.interactive.hover.background};
     }
   }
 `;
@@ -229,7 +229,7 @@ const responsive = ({overflowing, theme}) => css`
       margin-top: ${theme.spacing.lg};
 
       thead tr th {
-        border-top: 1px solid ${theme.colors.grays[300]};
+        border-top: 1px solid ${theme.colors.border.subtle};
       }
     `}
 `;

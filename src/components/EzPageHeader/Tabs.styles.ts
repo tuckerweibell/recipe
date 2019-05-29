@@ -16,13 +16,13 @@ const listBase = ({theme}) => css`
 const activeTab = ({theme, active}) =>
   active &&
   css`
-    box-shadow: inset 0 -2px 0 0 ${theme.colors.brandColors.ezBlue};
+    box-shadow: inset 0 -2px 0 0 ${theme.colors.interactive.focus.outline};
 
     > * {
-      color: ${theme.colors.grays[700]};
+      color: ${theme.colors.text.base};
 
       :focus {
-        outline-color: ${theme.colors.brandColors.ezBlue};
+        outline-color: ${theme.colors.interactive.focus.outline};
       }
     }
   `;
@@ -38,12 +38,12 @@ const tabBase = ({theme, active}) => css`
     text-decoration: none;
 
     &:hover {
-      box-shadow: ${!active && `inset 0 -2px 0 0 ${darken(theme.colors.grays[400], 0.15)}`};
+      box-shadow: ${!active && `inset 0 -2px 0 0 ${darken(theme.colors.border.base, 0.15)}`};
     }
 
     &:focus {
       outline: auto;
-      outline-color: ${theme.colors.brandColors.ezBlue};
+      outline-color: ${theme.colors.interactive.focus.outline};
     }
   }
 `;

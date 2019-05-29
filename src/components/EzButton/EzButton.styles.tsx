@@ -39,32 +39,40 @@ const outline = variant('use', {
 });
 
 const primary = ({theme: {colors}, destructive}) => {
-  const {main} = destructive ? colors.destructive : colors.primary;
+  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
   return css`
-    color: ${colors.primary.contrastText};
-    border-color: ${main};
-    ${pseudoClasses('border-color', {color: main, focusColor: darken(main, 0.25)})};
-    ${pseudoClasses('background-color', {color: main})};
+    color: ${colors.white};
+    border-color: ${color};
+    ${pseudoClasses('border-color', {color, focusColor: darken(color, 0.25)})};
+    ${pseudoClasses('background-color', {color})};
   `;
 };
 
 const secondary = ({theme: {colors}, destructive}) => {
-  const {main} = destructive ? colors.destructive : colors.primary;
+  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
+  const borderColor = colors.border.base;
+  const focusColor = colors.interactive.focus.outline;
   return css`
     background-color: white;
     border: solid 1px;
-    ${pseudoClasses('border-color', {color: colors.grays[400], focusColor: colors.blues[600]})};
-    ${pseudoClasses('color', {color: main})};
+    ${pseudoClasses('border-color', {color: borderColor, focusColor})};
+    ${pseudoClasses('color', {color})};
+    &:hover:enabled {
+      background-color: ${colors.interactive.hover.background};
+    }
+    &:active:enabled {
+      background-color: ${colors.interactive.active.background};
+    }
   `;
 };
 
 const tertiary = ({theme: {colors}, destructive}) => {
-  const {main} = destructive ? colors.destructive : colors.primary;
+  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
   return css`
     background: none;
     border: none;
     padding: 0;
-    ${pseudoClasses('color', {color: main})};
+    ${pseudoClasses('color', {color})};
 
     &:focus {
       outline: auto;

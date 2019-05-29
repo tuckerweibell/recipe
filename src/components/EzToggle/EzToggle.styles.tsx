@@ -32,7 +32,7 @@ const track = ({theme}) => css`
   height: 22px;
   border: 1px solid ${theme.colors.grays[500]};
   border-radius: 16px;
-  background-color: ${theme.colors.grays[200]};
+  background-color: ${theme.colors.page.background};
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   transition-property: background-color, border-color;
   transition-duration: 0.2s;
@@ -40,7 +40,7 @@ const track = ({theme}) => css`
   input:focus + &,
   input:active + & {
     ::after {
-      box-shadow: 0px 0px 2px 3px ${theme.colors.blues[600]};
+      box-shadow: 0px 0px 2px 3px ${theme.colors.interactive.focus.outline};
     }
   }
   ::after {
@@ -69,11 +69,11 @@ const track = ({theme}) => css`
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00IDIuNTk4TDYuNDUuMTQ4YS41LjUgMCAwIDEgLjcwNyAwbC42OTUuNjk1YS41LjUgMCAwIDEgMCAuNzA3TDUuNDAyIDRsMi40NSAyLjQ1YS41LjUgMCAwIDEgMCAuNzA3bC0uNjk1LjY5NWEuNS41IDAgMCAxLS43MDcgMEw0IDUuNDAybC0yLjQ1IDIuNDVhLjUuNSAwIDAgMS0uNzA3IDBsLS42OTUtLjY5NWEuNS41IDAgMCAxIDAtLjcwN0wyLjU5OCA0IC4xNDggMS41NWEuNS41IDAgMCAxIDAtLjcwN0wuODQzLjE0OGEuNS41IDAgMCAxIC43MDcgMEw0IDIuNTk4eiIgZmlsbD0iIzhCOTlBNiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+);
   }
   input:checked + & {
-    border-color: ${theme.colors.blues[500]};
-    background-color: ${theme.colors.blues[200]};
+    border-color: ${theme.colors.interactive.checked.border};
+    background-color: ${theme.colors.interactive.checked.background};
 
     ::after {
-      border-color: ${theme.colors.blues[500]};
+      border-color: ${theme.colors.interactive.checked.border};
       left: 50%;
     }
 
