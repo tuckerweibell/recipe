@@ -9,6 +9,12 @@ const Container = styled.div`
   div[class^='Playground__Preview'] {
     overflow: scroll;
   }
+
+  div[class^='Playground__StyledPreview'] {
+    padding: 0;
+    margin-bottom: -3px;
+    overflow: hidden;
+  }
 `;
 
 const Playground = ({code, scope}) => (

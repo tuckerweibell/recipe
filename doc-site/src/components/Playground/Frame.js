@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import createEmotion from 'create-emotion';
 import {sheet} from 'emotion';
+import {css} from 'emotion';
 
 /*
   We need emotion to insert styles into an iframe, but by default, it'll insert into the page head
@@ -44,6 +45,8 @@ const forwardStyles = (source, target, iframe) => {
 const IFramePlayground = props => {
   const iframeEl = useRef(null);
   const [container, setContainer] = useState(null);
+  const playgroundRef = useRef(null);
+  const [margin, setMargin] = useState('20px');
 
   useEffect(() => {
     const iframe = iframeEl.current;
@@ -66,6 +69,7 @@ const IFramePlayground = props => {
     const resizeBasedOnContent = () => {
       iframe.style.height = 0;
       iframe.style.height = `${contentDocument.body.scrollHeight}px`;
+      setMargin(getComputedStyle(playgroundRef.current).marginLeft);
     };
 
     const resizeObserver = new ResizeObserver(resizeBasedOnContent);
@@ -81,7 +85,20 @@ const IFramePlayground = props => {
       ref={iframeEl}
       style={{border: 'none', margin: 0, width: '100%'}}
     >
-      {container && createPortal(props.children, container)}
+      {container &&
+        createPortal(
+          <div
+            ref={playgroundRef}
+            className={css`
+              margin: ${margin} auto;
+              width: calc(100% - 40px);
+              min-width: fit-content;
+            `}
+          >
+            {props.children}
+          </div>,
+          container
+        )}
     </iframe>
   );
 };
