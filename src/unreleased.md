@@ -18,6 +18,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fixed type definition of EzSegmentedControl `onChange` to use `(value: string) => void` instead of `((event: FormEvent<any>) => void) & ((value: string) => void)`.
+
 #### Documentation
 
 - Switch doc-site to using the [playground component from docz](https://github.com/pedronauck/docz/tree/master/core/docz-theme-default) instead of React-live as a direct dependency.

@@ -4,13 +4,15 @@ import Label from '../EzLabel';
 
 const getId = (name, {value}) => `${name}-${value}`;
 
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 type Button = {
   value: string;
   label: string;
   disabled?: boolean;
 };
 
-type Props = React.FieldsetHTMLAttributes<any> & {
+type Props = Omit<React.FieldsetHTMLAttributes<any>, 'onChange'> & {
   active?: any;
   label: React.ReactNode;
   labelPosition: 'left' | 'hidden';

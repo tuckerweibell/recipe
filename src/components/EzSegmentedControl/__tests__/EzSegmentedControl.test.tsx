@@ -11,8 +11,8 @@ describe('EzSegmentedControl', () => {
   visualSnapshots({markdown, scope});
 
   describe('onChange', () => {
-    it('is triggers onChange when segment is clicked', () => {
-      const spy = jest.fn();
+    it('triggers onChange when segment is clicked', () => {
+      const onChangeSpy: (value: string) => void = jest.fn();
 
       const component = mount(
         <EzSegmentedControl
@@ -21,7 +21,7 @@ describe('EzSegmentedControl', () => {
           active="firstValue"
           className="test"
           labelPosition="left"
-          onChange={spy}
+          onChange={onChangeSpy}
           options={[
             {label: 'first', value: 'firstValue'},
             {label: 'second', value: 'secondValue'},
@@ -35,12 +35,12 @@ describe('EzSegmentedControl', () => {
         .last()
         .simulate('change', {target: {checked: true}});
 
-      expect(spy).toHaveBeenCalledWith('thirdValue');
+      expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
     });
   });
 
   it('should meet accessibility guidelines', async () => {
-    const spy = jest.fn();
+    const onChangeSpy: (value: string) => void = jest.fn();
 
     const wrapper = renderToHtml(
       <EzSegmentedControl
@@ -49,7 +49,7 @@ describe('EzSegmentedControl', () => {
         active="firstValue"
         className="test"
         labelPosition="left"
-        onChange={spy}
+        onChange={onChangeSpy}
         options={[
           {label: 'first', value: 'firstValue'},
           {label: 'second', value: 'secondValue'},
