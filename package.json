@@ -53,7 +53,7 @@
     "react-testing-library": "^5.9.0",
     "sosia": "^1.2.3",
     "sosia-markdown": "^1.1.1",
-    "sosia-remote-puppeteer": "^1.1.0",
+    "sosia-remote-puppeteer": "^1.1.1",
     "sosia-types": "^1.0.2",
     "ts-jest": "^24.0.0",
     "tslint": "^5.12.1",
