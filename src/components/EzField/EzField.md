@@ -65,7 +65,7 @@ Allows user to provide text input that may span more than one line. Optionally, 
   type="textarea"
   label="Shipping address"
   maxLength={120}
-  value={`123 Sesame St, 
+  value={`123 Sesame St,
 New York`}
   onChange={() => null}
 />
