@@ -12,13 +12,18 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - Added `label` attribute to `EzToggle`.
+- Added semantic names for Recipe colors to more clearly define a consistent set of rules around color usage and to better support for theming in the future.
 
 #### Design updates
+
+- Consistency changes to EzSegmentedControl, EzTable and EzFlashMessage to reflect [the new guidance](styles/style/#colors) around semantic variable names.
 
 #### Bug fixes
 
 #### Documentation
 
 #### Dependency upgrades
+
+- update devDependency on sosia-remote-puppeteer to improve support for larger visual regression tests
 
 #### Development workflow
