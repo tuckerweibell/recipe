@@ -17,10 +17,12 @@ const Container = styled.div`
   }
 `;
 
+const Wrapper = window.ResizeObserver ? DocFrame : undefined;
+
 const Playground = ({code, scope}) => (
   <Container>
     <Theme>
-      <DoczPlayground code={code} scope={{...scope}} wrapper={DocFrame} />
+      <DoczPlayground code={code} scope={{...scope}} wrapper={Wrapper} />
     </Theme>
   </Container>
 );
