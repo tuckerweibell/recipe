@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@brainly/html-sketchapp": "^3.2.0",
-    "@ezcater/recipe": "^5.0.0",
+    "@ezcater/recipe": "^5.1.0",
     "copy-to-clipboard": "^3.0.8",
     "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",
