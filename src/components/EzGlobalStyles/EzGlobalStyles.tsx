@@ -1,13 +1,8 @@
 import React from 'react';
+import {Global, css} from '@emotion/core';
 import {standard as theme} from '../../themes';
-import {Global} from '../../styles';
 
 export {default as EzBanner} from '../EzBanner';
-
-// cheat for syntax highlighting and minimized css by leaning on babel-plugin-emotion
-function css(...args) {
-  return args.join('').replace(/label:\s*([^\s;\n{]+)\s*;/g, '');
-}
 
 const EzGlobalStyles = () => (
   <Global

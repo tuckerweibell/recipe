@@ -1,4 +1,12 @@
 import React from 'react';
-import {Global} from '../../styles';
+import {Global, css} from '@emotion/core';
 
-export default () => <Global styles={`:root { --recipe-base-font-size: 14; }`} />;
+export default () => (
+  <Global
+    styles={css`
+      :root {
+        --recipe-base-font-size: 14;
+      }
+    `}
+  />
+);
