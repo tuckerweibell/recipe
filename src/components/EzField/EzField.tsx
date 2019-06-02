@@ -71,7 +71,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       disabled={disabled}
       as={fieldType}
       {...mouseEvents}
-      innerRef={ref}
+      ref={ref}
     >
       <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}

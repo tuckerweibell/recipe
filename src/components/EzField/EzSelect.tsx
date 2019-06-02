@@ -167,7 +167,7 @@ const EzSelect = props => {
   useJumpToOption(comboboxInput.ref, {options, move});
 
   return (
-    <Container innerRef={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
+    <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
         <input {...comboboxInput} />
         {/* see: https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/635 */}
@@ -181,7 +181,7 @@ const EzSelect = props => {
           aria-labelledby={ariaLabelledBy}
           role="listbox"
           {...comboboxFlyout}
-          innerRef={scrollableRef}
+          ref={scrollableRef}
           onClick={() => comboboxInput.ref.current.focus()}
         >
           {hasGroupedOptions(options) ? (

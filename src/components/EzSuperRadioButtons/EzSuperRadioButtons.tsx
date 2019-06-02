@@ -17,11 +17,7 @@ const EzSuperRadioButtons = forwardRef<HTMLElement, EzSuperRadioButtonsProps>(
   ({options, label, value, onChange}, ref) => {
     const id = useUniqueId();
     return (
-      <EzSuperRadioButtonsGroup
-        innerRef={ref}
-        role="radiogroup"
-        aria-labelledby={`radiogroup-${id}`}
-      >
+      <EzSuperRadioButtonsGroup ref={ref} role="radiogroup" aria-labelledby={`radiogroup-${id}`}>
         <EzSuperRadioButtonsLabel id={`radiogroup-${id}`}>{label}</EzSuperRadioButtonsLabel>
         {options.map(option => (
           <Fragment key={option.value}>

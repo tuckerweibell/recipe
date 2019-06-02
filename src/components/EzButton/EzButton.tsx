@@ -24,8 +24,8 @@ type TertiaryProps = {
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
-  const buttonElement = createElement(StyledButton, buildProps({...props, innerRef: ref}));
+const EzButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const buttonElement = createElement(StyledButton, buildProps({...props, ref}));
 
   if (props.disabled && props.disabledMessage) {
     return (
@@ -38,7 +38,7 @@ const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
   return buttonElement;
 });
 
-const buildProps = (props: ButtonProps & {innerRef: React.Ref<HTMLElement>}) => {
+const buildProps = (props: ButtonProps & {ref: React.Ref<HTMLButtonElement>}) => {
   if (props.use === 'tertiary') return props;
 
   const {loading, ...rest} = props;

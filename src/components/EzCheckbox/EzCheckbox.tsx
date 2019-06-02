@@ -6,7 +6,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const EzCheckbox = forwardRef<HTMLElement, Props>(({label, checked, ...rest}, ref) => (
-  <Container innerRef={ref}>
+  <Container ref={ref}>
     <input checked={checked} type="checkbox" aria-label={label} {...rest} />
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">

@@ -154,7 +154,7 @@ const InlineBlockWrapper = styled.div`
 `;
 
 export const DisabledButtonWrapper = forwardRef<any, any>((props, ref) => (
-  <InlineBlockWrapper innerRef={ref} {...props}>
+  <InlineBlockWrapper ref={ref} {...props}>
     {props.children}
   </InlineBlockWrapper>
 ));

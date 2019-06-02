@@ -133,7 +133,7 @@ const EzTooltip: React.FC<Props> = props => {
             tooltipRef={tooltipRef}
             style={{visibility: showTooltip ? 'visible' : 'hidden'}}
           >
-            <Tooltip role="tooltip" id={id} position={position} tabIndex="-1" innerRef={tooltipRef}>
+            <Tooltip role="tooltip" id={id} position={position} tabIndex="-1" ref={tooltipRef}>
               <TooltipArrow position={position} />
               {props.message && <Message>{props.message}</Message>}
             </Tooltip>

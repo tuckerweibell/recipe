@@ -85,7 +85,7 @@ const UserMenu = forwardRef<HTMLButtonElement, MenuProps>((props, ref) => {
           </StyledMenuItem>
         ))}
       </StyledMenu>
-      <Trigger innerRef={ref} {...dialog}>
+      <Trigger ref={ref} {...dialog}>
         <ProfileIcon />
         {props.name}
       </Trigger>

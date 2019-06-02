@@ -126,7 +126,7 @@ const TRow = ({item}) => {
   const [targetRef, {ref, clickable, onClick, onMouseEnter}] = useExpandedClickTarget();
 
   return (
-    <ClickableTr {...{innerRef: ref, clickable, onClick, onMouseEnter}}>
+    <ClickableTr {...{ref, clickable, onClick, onMouseEnter}}>
       {selection && (
         <Td>
           <EzCheckbox
@@ -247,7 +247,7 @@ const EzTable: React.FC<TableProps> = ({
         overflowing={isOverflowing}
         isScrolling={isScrolling}
         {...scrollEvents}
-        innerRef={overflowDetection.ref}
+        ref={overflowDetection.ref}
       >
         <Table selectable={!!selection} use={!title ? 'simple' : 'full'}>
           <Thead />

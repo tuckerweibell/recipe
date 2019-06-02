@@ -34,7 +34,7 @@ const EzToggle = forwardRef<HTMLElement, Props>(({id, label, status, ...props}, 
   };
 
   return (
-    <Container disabled={props.disabled} checked={checked} onClick={handleClick} innerRef={ref}>
+    <Container disabled={props.disabled} checked={checked} onClick={handleClick} ref={ref}>
       <input {...props} id={idOrDefault} ref={inputRef} type="checkbox" />
       <Track />
       {label && (

@@ -10,7 +10,7 @@ function isLink(props: Clickable | Link): props is Link {
 export default forwardRef<HTMLElement, LabelledLink>(
   ({label, accessibilityLabel, ...propsIn}, ref) => {
     const buttonProps = {use: 'tertiary' as 'tertiary', type: 'button' as 'button'};
-    const commonProps = {ref, 'aria-label': accessibilityLabel, children: label};
+    const commonProps = {ref: ref as any, 'aria-label': accessibilityLabel, children: label};
 
     return isLink(propsIn) ? (
       <EzLink {...commonProps} {...propsIn} />

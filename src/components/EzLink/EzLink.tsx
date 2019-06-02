@@ -9,14 +9,14 @@ function isAnchor(props: AnchorProps | LinkProps): props is AnchorProps {
 }
 
 const EzLink = forwardRef<HTMLElement, Props>((props, ref) => {
-  if (isAnchor(props)) return <StyledAnchor {...props} innerRef={ref} />;
+  if (isAnchor(props)) return <StyledAnchor {...props} ref={ref as any} />;
 
   const {as: Component, ...rest} = props;
   const Link = Component as any;
 
   return (
     <StyledLink>
-      <Link innerRef={ref} {...rest} />
+      <Link ref={ref} {...rest} />
     </StyledLink>
   );
 });
@@ -32,7 +32,7 @@ export const Link = forwardRef<HTMLElement, Props>((props, ref) => {
   const {as: Component, ...rest} = props;
   const LinkComponent = Component as any;
 
-  return <LinkComponent innerRef={ref} {...rest} />;
+  return <LinkComponent ref={ref} {...rest} />;
 });
 
 export default EzLink;

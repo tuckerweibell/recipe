@@ -16,9 +16,9 @@ type BlankStateProps = {
   action?: React.ReactNode;
 };
 
-const EzBlankState = forwardRef<HTMLElement, BlankStateProps>(
+const EzBlankState = forwardRef<HTMLDivElement, BlankStateProps>(
   ({imageSrc, title, message, action}, ref) => (
-    <BlankStateWrapper innerRef={ref}>
+    <BlankStateWrapper ref={ref}>
       {imageSrc && (
         <BlankStateImageWrapper>
           <BlankStateImage src={imageSrc} alt="" />

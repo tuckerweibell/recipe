@@ -33,7 +33,7 @@ export default () => {
                   <EzTextStyle use="strong">{key}</EzTextStyle>
                 </div>
                 <div>{measured}</div>
-                <Block innerRef={ref} height={standard.spacing[key]} />
+                <Block ref={ref} height={standard.spacing[key]} />
               </div>
             )}
           </Measure>

@@ -5,7 +5,7 @@ import {DotIcon} from '../Icons';
 
 const EzStatus = forwardRef<HTMLElement, EzStatusProps>((props, ref) => {
   return (
-    <EzStatusContainer {...props} innerRef={ref}>
+    <EzStatusContainer {...props} ref={ref}>
       {['attention', 'warning', 'error'].includes(props.use) && <DotIcon />} {props.text}
     </EzStatusContainer>
   );

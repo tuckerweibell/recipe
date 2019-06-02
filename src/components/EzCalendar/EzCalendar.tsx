@@ -92,7 +92,7 @@ const EzCalendar = ({value, onChange}) => {
 
   return (
     <div>
-      <CalendarTable innerRef={calendarRef}>
+      <CalendarTable ref={calendarRef}>
         <Row>
           <MonthNavigation>
             <button
