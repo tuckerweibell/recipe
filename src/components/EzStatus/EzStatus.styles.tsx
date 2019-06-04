@@ -1,7 +1,7 @@
 import {css} from 'emotion';
 import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
-import {EzStatusSizes, EzStatusProps} from './EzStatus.types';
+import {EzStatusProps} from './EzStatus.types';
 
 const coloredStyles = getColors => ({theme: {colors}}) => {
   const [lightColor, darkColor] = getColors(colors);
@@ -23,7 +23,7 @@ const use = variant('use', {
 const base = ({theme, size}) => css`
   padding: ${theme.spacing.xs2} ${theme.spacing.sm};
   line-height: 1;
-  font-size: ${size === EzStatusSizes.small ? theme.fontSizes[200] : theme.fontSizes[400]};
+  font-size: ${size === 'small' ? theme.fontSizes[200] : theme.fontSizes[400]};
   font-weight: bold;
   border-radius: 1em;
 `;

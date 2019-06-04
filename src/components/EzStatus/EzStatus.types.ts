@@ -1,22 +1,13 @@
-export enum EzStatusSizes {
-  normal = 'normal',
-  small = 'small',
-}
+export type EzStatusSizes = 'normal' | 'small';
 
-export enum EzStatusInformationalUses {
-  neutral = 'neutral',
-  success = 'success',
-  informational = 'informational',
-}
+export type EzStatusInformationalUses = 'neutral' | 'success' | 'informational';
 
-export enum EzStatusActionUses {
-  attention = 'attention',
-  warning = 'warning',
-  error = 'error',
-}
+export type EzStatusActionUses = 'attention' | 'warning' | 'error';
+
+export type EzStatusUses = EzStatusInformationalUses | EzStatusActionUses;
 
 export type EzStatusProps = {
   text: string;
   size: EzStatusSizes;
-  use: EzStatusInformationalUses | EzStatusActionUses;
+  use: EzStatusUses;
 };

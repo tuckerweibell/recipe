@@ -1,18 +1,18 @@
 import React from 'react';
 import {EzStatusContainer} from './EzStatus.styles';
-import {EzStatusSizes, EzStatusActionUses, EzStatusProps} from './EzStatus.types';
+import {EzStatusProps} from './EzStatus.types';
 import {DotIcon} from '../Icons';
 
 const EzStatus: React.FC<EzStatusProps> = props => {
   return (
     <EzStatusContainer {...props}>
-      {EzStatusActionUses[props.use] && <DotIcon />} {props.text}
+      {['attention', 'warning', 'error'].includes(props.use) && <DotIcon />} {props.text}
     </EzStatusContainer>
   );
 };
 
 EzStatus.defaultProps = {
-  size: EzStatusSizes.normal,
+  size: 'normal',
 };
 
 EzStatus.displayName = 'EzStatus';
