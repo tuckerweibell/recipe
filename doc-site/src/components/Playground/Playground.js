@@ -14,6 +14,11 @@ const Container = styled.div`
     padding: 0;
     margin-bottom: -3px;
     overflow: hidden;
+    height: 100%;
+  }
+
+  iframe {
+    min-height: 100%;
   }
 `;
 
