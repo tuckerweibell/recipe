@@ -9,7 +9,7 @@ type Props = React.LabelHTMLAttributes<any> & {
   /**
    * changes the position of the label
    */
-  position?: 'hidden' | 'top' | 'bottom' | 'left';
+  position?: 'hidden' | 'top' | 'bottom' | 'left' | 'right';
   /**
    * changes the styles of the label for the selected size
    */
@@ -37,7 +37,7 @@ const EzLabel: React.FC<Props> = ({as, ...props}) => {
 /**
  * defaultProps
  * @property {'label' | 'legend' | 'div'} as - label renders as a div element by default
- * @property {'hidden' | 'top' | 'bottom' | 'left'} position - label renders on top by default
+ * @property {'hidden' | 'top' | 'bottom' | 'left' | 'right'} position - label renders on top by default
  * @property {'normal' | 'small'} position - label renders with normal size by default
  */
 EzLabel.defaultProps = {

@@ -31,6 +31,23 @@ Toggle inputs are used to offer binary choices. Use a toggle input only when the
 };
 ```
 
+### Basic toggle with label
+
+Add a descriptive label to the right of the toggle input that when interacted with will toggle the state of the input.
+
+```jsx
+() => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <EzToggle
+      onChange={() => setChecked(!checked)}
+      checked={checked}
+      label="Receive marketing emails"
+    />
+  );
+};
+```
+
 ### Disabled toggle
 
 Use the `disabled` prop to prevent users from being able to interact with the toggle input and to convey the inactive state to assistive technologies.
@@ -39,6 +56,24 @@ Use the `disabled` prop to prevent users from being able to interact with the to
 () => {
   const [checked, setChecked] = React.useState(true);
   return <EzToggle disabled onChange={() => setChecked(!checked)} checked={checked} />;
+};
+```
+
+### Disabled toggle with label
+
+Add a descriptive label to the right of the toggle input that when interacted with will toggle the state of the input.
+
+```jsx
+() => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <EzToggle
+      disabled
+      onChange={() => setChecked(!checked)}
+      checked={checked}
+      label="Receive marketing emails"
+    />
+  );
 };
 ```
 

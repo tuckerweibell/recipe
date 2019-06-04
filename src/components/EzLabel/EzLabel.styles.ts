@@ -22,8 +22,13 @@ const top = ({theme}: Themed) => ({'margin-bottom': theme.spacing.xs2});
 const bottom = ({theme}: Themed) => ({'margin-top': theme.spacing.xs2});
 
 const left = ({theme}: Themed) => css`
-  display: inline;
+  display: inline-block;
   margin-right: ${theme.spacing.sm};
+`;
+
+const right = ({theme}: Themed) => css`
+  display: inline-block;
+  margin-left: ${theme.spacing.sm};
 `;
 
 const error = ({error: hasError, theme}) =>
@@ -36,6 +41,7 @@ const position = variant('position', {
   top,
   bottom,
   left,
+  right,
   hidden: hideVisually(),
 });
 

@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added `label` attribute to `EzToggle`.
+
 #### Design updates
 
 #### Bug fixes

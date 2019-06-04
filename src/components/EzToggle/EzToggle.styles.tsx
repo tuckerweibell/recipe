@@ -3,7 +3,8 @@ import styled from '../../themes/styled';
 import {hideVisually} from '../../styles';
 
 const base = () => css`
-  display: inline-block;
+  display: flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
   background-color: transparent;
