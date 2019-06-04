@@ -9,6 +9,8 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new `EzSearchInput` component to allow users to search for specific content by providing search terms or simple keywords.
+
 #### Enhancements
 
 - Added `label` attribute to `EzToggle`.
@@ -17,6 +19,9 @@ title: 'Unreleased changes'
 #### Design updates
 
 - Consistency changes to EzSegmentedControl, EzTable and EzFlashMessage to reflect [the new guidance](styles/style/#colors) around semantic variable names.
+- Design updates for input fields:
+  - Add box-shadow to form input fields
+  - Added default font color to form input fields
 
 #### Bug fixes
 
