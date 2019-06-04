@@ -50,14 +50,16 @@ const inputDisabled = ({theme, disabled}) =>
     border: 1px solid ${theme.colors.border.subtle};
   `;
 
+const inputStyles = props => css(inputBase(props), inputError(props), inputDisabled(props));
+
+export const StyledInput = styled.input(inputStyles);
+
 const StyledField = styled.div`
   position: relative;
 
   > input,
   > textarea {
-    ${inputBase};
-    ${inputError};
-    ${inputDisabled};
+    ${inputStyles};
   }
 `;
 
