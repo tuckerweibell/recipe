@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 
 export const base = ({theme}) => css`
   padding: ${theme.spacing.lg};

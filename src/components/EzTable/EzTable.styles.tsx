@@ -1,4 +1,4 @@
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import {EzCardSection} from '../EzCard';
 import styled, {Theme} from '../../themes/styled';
 

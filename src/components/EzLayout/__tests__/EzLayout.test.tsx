@@ -1,7 +1,7 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection} from '../../index';

@@ -1,4 +1,4 @@
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
 import {EzStatusProps} from './EzStatus.types';

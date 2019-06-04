@@ -1,4 +1,4 @@
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 export const MonthNavigation = styled.span`

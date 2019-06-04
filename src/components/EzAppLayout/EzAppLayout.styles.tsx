@@ -1,4 +1,4 @@
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 const centeredStyles = ({theme, width}: {theme: any; width?: string}) =>

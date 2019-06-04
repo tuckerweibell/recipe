@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 
 export const strong = ({theme}) => css`
   font-weight: ${theme.fontWeights.bold};

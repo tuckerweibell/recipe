@@ -1,5 +1,5 @@
 import React from 'react';
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 import EzLink from '../EzLink';
 import {wrapEvent} from '../../utils';

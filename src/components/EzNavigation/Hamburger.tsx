@@ -1,5 +1,5 @@
 import React, {SFC} from 'react';
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 type OpenProps = {

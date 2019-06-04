@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import EzHeading from '../EzHeading';
 
 export const childStyles = ({theme}) => css`

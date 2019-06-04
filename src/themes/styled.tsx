@@ -1,4 +1,4 @@
-import styled, {CreateStyled, StyledOptions} from 'react-emotion';
+import styled, {CreateStyled, StyledOptions} from '@emotion/styled';
 import * as standard from './standard';
 
 export type Theme = typeof standard;

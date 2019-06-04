@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 
 const spacing = ({theme, subnav}) => css`
   padding: ${theme.spacing.sm} ${theme.spacing.xs};

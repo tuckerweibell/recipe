@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 export {Combobox, Container} from './EzCombobox.styles';

@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
 
 const getValue = (props, val) => (typeof val === 'function' ? val(props) : val);

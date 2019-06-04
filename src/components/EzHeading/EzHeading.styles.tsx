@@ -1,5 +1,5 @@
 import variant from 'styled-component-variant';
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 export const Subheading = styled.div`

@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import {DialogContent, DialogOverlay} from '@ezcater/reach-ui-dialog';
 import styled from '../../themes/styled';
 

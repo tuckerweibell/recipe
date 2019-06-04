@@ -1,5 +1,5 @@
 import React, {forwardRef} from 'react';
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import {Button} from 'reakit/Button';
 import {useDialogState, Dialog, DialogDisclosure} from 'reakit/Dialog';
 import {menuStyles} from './Menu';

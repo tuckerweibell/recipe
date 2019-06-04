@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import {standard} from '../../themes';
 
 export const base = ({theme}) => css`

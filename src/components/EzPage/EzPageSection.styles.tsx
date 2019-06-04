@@ -1,4 +1,4 @@
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
 import {childStyles} from './styles';
 import styled from '../../themes/styled';

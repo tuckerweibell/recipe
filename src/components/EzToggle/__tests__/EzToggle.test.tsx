@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import {axe} from 'jest-axe';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
 import {fireEvent, cleanup} from '@testing-library/react';
 import regressionTests from './EzToggle.test.md';
