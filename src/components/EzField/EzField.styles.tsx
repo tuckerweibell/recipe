@@ -17,12 +17,17 @@ function borderRadius(side: 'top' | 'bottom', radius: string | number) {
 
 const inputBase = ({theme}) => css`
   display: block;
+  color: ${theme.colors.text.base};
   width: 100%;
   background: ${theme.colors.white};
   border: 1px solid ${theme.colors.border.base};
   border-radius: ${inputBorderRadius};
   padding: ${theme.spacing.xs} ${theme.spacing.sm};
   margin-top: ${theme.spacing.xs};
+
+  :enabled {
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+  }
 `;
 
 const inputError = ({theme, error, touched}) =>
