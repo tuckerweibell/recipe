@@ -1,5 +1,17 @@
 #!/bin/bash
 
+for dir in {~/.npm,/usr/local/bin,/usr/local/lib/node_modules}; do
+
+    if [ ! -w "$dir" ]; then
+
+        echo "Fixing file permissions on $dir"
+
+        sudo chown -R "$(whoami)" "$dir"
+
+    fi
+
+done
+
 DOC_SITE_DIR=$(cd "$(dirname "$0")" && cd ../ && pwd)
 
 (
