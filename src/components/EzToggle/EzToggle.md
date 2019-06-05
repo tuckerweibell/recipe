@@ -48,6 +48,22 @@ Add a descriptive label to the right of the toggle input that when interacted wi
 };
 ```
 
+### Basic toggle with status
+
+```jsx
+() => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <EzToggle
+      onChange={() => setChecked(!checked)}
+      checked={checked}
+      label="Receive marketing emails"
+      status="progress"
+    />
+  );
+};
+```
+
 ### Disabled toggle
 
 Use the `disabled` prop to prevent users from being able to interact with the toggle input and to convey the inactive state to assistive technologies.

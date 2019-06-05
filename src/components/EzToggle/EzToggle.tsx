@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {Container, Track} from './EzToggle.styles';
 import EzLabel from '../EzLabel';
+import EzInlineFeedback from '../EzInlineFeedback';
 import {useUniqueId} from '../../utils/hooks';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -9,9 +10,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   disabled?: boolean;
   id?: string;
   label?: string;
+  status?: 'error' | 'progress' | 'success';
 };
 
-const EzToggle: React.FC<Props> = ({id, label, ...props}) => {
+const EzToggle: React.FC<Props> = ({id, label, status, ...props}) => {
   const [checked, setChecked] = useState(props.checked);
 
   const uniqueId = useUniqueId();
@@ -40,6 +42,7 @@ const EzToggle: React.FC<Props> = ({id, label, ...props}) => {
           {label}
         </EzLabel>
       )}
+      {status && <EzInlineFeedback use={status} />}
     </Container>
   );
 };
