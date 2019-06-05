@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import {Direction, SortingState, Sortable} from './EzTable.types';
+import {SortingState, Sortable} from './EzTable.types';
 
-const {Ascending, Descending} = Direction;
-
-const useSorting = (
-  initialState: SortingState = {direction: Ascending, column: null}
-): Sortable => {
+const useSorting = (initialState: SortingState = {direction: 'asc', column: null}): Sortable => {
   const [state, setState] = useState<SortingState>(initialState);
 
   const isSorted = React.useCallback(
@@ -17,7 +13,7 @@ const useSorting = (
     (event, column, callback) => {
       if (!column.sortable) return;
 
-      const direction = isSorted(column) && state.direction === Ascending ? Descending : Ascending;
+      const direction = isSorted(column) && state.direction === 'asc' ? 'desc' : 'asc';
 
       callback(event, {column, direction});
 

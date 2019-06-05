@@ -14,10 +14,7 @@ type SortDisabledColumn = {
   accessor: React.ReactNode | React.ComponentType;
 };
 
-export enum Direction {
-  Ascending = 'asc',
-  Descending = 'desc',
-}
+type Direction = 'asc' | 'desc';
 
 type OnSortClickOptions = {
   column: Column;
