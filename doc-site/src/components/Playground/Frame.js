@@ -93,6 +93,7 @@ const IFramePlayground = props => {
       allowFullScreen={true}
       ref={iframeEl}
       style={{border: 'none', margin: 0, width: '100%'}}
+      scrolling="no"
     >
       {container &&
         createPortal(

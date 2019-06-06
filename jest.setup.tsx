@@ -73,7 +73,6 @@ injectGlobal`
   /* disable animations in visual snapshots */
   *, ::before, ::after {
     transition-property: none !important;
-    transform: none !important;
     animation: none !important;
   }
 `;

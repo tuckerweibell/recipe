@@ -7,5 +7,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/destructuring-assignment': 'off',
     '@typescript-eslint/prefer-interface': 'off',
+    'react/no-multi-comp': 'off',
   },
 };

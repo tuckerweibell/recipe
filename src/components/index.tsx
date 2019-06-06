@@ -11,6 +11,7 @@ export {default as EzHeading} from './EzHeading';
 export {default as EzLabelledItem} from './EzLabelledItem';
 export {default as EzLink} from './EzLink';
 export {default as EzModal} from './EzModal';
+export {default as EzNavigation} from './EzNavigation';
 export {default as EzOrderSummary} from './EzOrderSummary';
 export {EzPage, EzPageSection} from './EzPage';
 export {default as EzPageHeader} from './EzPageHeader';

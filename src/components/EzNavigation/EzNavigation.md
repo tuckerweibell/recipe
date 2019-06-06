@@ -24,17 +24,75 @@ The Navigation component should:
 
 Use the Navigation component to offer a menu containing navigation links, either as a top-bar on smaller screens or as a left side-bar on larger screens.
 
-Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can instead provide a Link component, such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link) to render via the optional `as` property. When using the `as` property, you must use the `to` prop in place of `href` to provide the destination url for the link.
+```jsx
+() => {
+  const [active, setActive] = React.useState('Customers');
+  const onClick = e => {
+    e.preventDefault();
+    setActive(e.target.text);
+  };
+  return (
+    <EzAppLayout>
+      <EzNavigation
+        home={{href: '#', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        links={[
+          {href: '#', label: 'Orders', active: active === 'Orders', onClick},
+          {href: '#', label: 'Customers', active: active === 'Customers', onClick},
+          {href: '#', label: 'Reports', active: active === 'Reports', onClick},
+        ]}
+      >
+        <EzPage>
+          <EzCard>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+          </EzCard>
+        </EzPage>
+      </EzNavigation>
+    </EzAppLayout>
+  );
+};
+```
+
+### Navigation using Link components
+
+Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can provide a Link component, such as [react-router's link component](https://reacttraining.com/react-router/web/api/Link), to render via the optional `as` property. EzLink will forward its props to the provided component.
+
+When using the `as` prop, you must use the `to` prop in place of `href` to provide the destination url for the link.
 
 ```jsx
-<EzNavigation
-  home={{href: '#', label: 'Homepage'}}
-  links={[
-    {href: '#', label: 'Orders'},
-    {href: '#', label: 'Customers'},
-    {href: '#', label: 'Reports'},
-  ]}
-/>
+() => {
+  const {Link, NavLink, BrowserRouter: Router, Route} = require('react-router-dom');
+  return (
+    <Router>
+      <EzAppLayout>
+        <EzNavigation
+          home={{
+            to: '/components/ez-navigation/',
+            label: 'Homepage',
+            logo: {src: ezCaterLogoPath, width: 100},
+            as: Link,
+          }}
+          links={[
+            {to: '/components/ez-navigation/', label: 'Orders', as: NavLink},
+            {to: '/customers', label: 'Customers', as: NavLink},
+            {to: '/reports', label: 'Reports', as: NavLink},
+          ]}
+        >
+          <EzPage>
+            <EzCard>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+                purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+              </p>
+            </EzCard>
+          </EzPage>
+        </EzNavigation>
+      </EzAppLayout>
+    </Router>
+  );
+};
 ```
 
 ### Utility Navigation
@@ -44,15 +102,41 @@ Use utility links to offer navigation paths to sections of the application that 
 Utility links can only be used in conjunction with the main navigation links. On larger screens, the main navigation will expand to fill the available vertical space, such that the utility links are presented at the bottom of the screen.
 
 ```jsx
-<EzNavigation
-  home={{href: '#', label: 'Homepage'}}
-  links={[
-    {href: '#', label: 'Orders'},
-    {href: '#', label: 'Customers'},
-    {href: '#', label: 'Reports'},
-  ]}
-  utilityLinks={[{href: '#', label: 'Chat'}, {href: '#', label: '24/7 Support'}]}
-/>
+() => {
+  const {Link, NavLink, BrowserRouter: Router, Route} = require('react-router-dom');
+  return (
+    <Router>
+      <EzAppLayout>
+        <EzNavigation
+          home={{
+            to: '/components/ez-navigation/',
+            label: 'Homepage',
+            logo: {src: ezCaterLogoPath, width: 100},
+            as: Link,
+          }}
+          links={[
+            {to: '/components/ez-navigation/', label: 'Orders', as: NavLink},
+            {to: '/customers', label: 'Customers', as: NavLink},
+            {to: '/reports', label: 'Reports', as: NavLink},
+          ]}
+          utilityLinks={[
+            {to: '/chat', label: 'Chat', as: NavLink},
+            {to: '/support', label: '24/7 Support', as: NavLink},
+          ]}
+        >
+          <EzPage>
+            <EzCard>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+                purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+              </p>
+            </EzCard>
+          </EzPage>
+        </EzNavigation>
+      </EzAppLayout>
+    </Router>
+  );
+};
 ```
 
 ### Navigation links with notifications
@@ -61,15 +145,33 @@ Notifications can be used to present supporting context next to the navigation i
 
 On larger screens, notifications can be viewed to provide at-a-glance context that a particular navigation link has available content to interact with. When presented on smaller screens, the total number of notifications is summed and displayed on the navigation top-bar allowing the user to be notified of important content even when the navigation menu is collapsed.
 
+Note: a special notification value `★` can be used to highlight the link for ezOrdering marketing.
+
 ```jsx
-<EzNavigation
-  home={{href: '#', label: 'Homepage'}}
-  links={[
-    {href: '#', label: 'Orders', notifications: 15},
-    {href: '#', label: 'Customers', notifications: 5},
-    {href: '#', label: 'Reports'},
-  ]}
-/>
+<EzAppLayout>
+  <EzNavigation
+    home={{
+      href: 'javascript:void(0);',
+      label: 'Homepage',
+      logo: {src: ezCaterLogoPath, width: 100},
+    }}
+    links={[
+      {href: 'javascript:void(0);', label: 'Orders', active: true, notifications: 15},
+      {href: 'javascript:void(0);', label: 'Get More Orders', notifications: '★'},
+      {href: 'javascript:void(0);', label: 'Customers', notifications: 5},
+      {href: 'javascript:void(0);', label: 'Reports'},
+    ]}
+  >
+    <EzPage>
+      <EzCard>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+    </EzPage>
+  </EzNavigation>
+</EzAppLayout>
 ```
 
 ### Navigation user menu
@@ -80,18 +182,33 @@ The user menu displays the user's name and actions that are related to the curre
 () => {
   const menuOpen = React.useState(false);
   return (
-    <EzNavigation
-      home={{href: '#', label: 'Homepage'}}
-      links={[
-        {href: '#', label: 'Orders'},
-        {href: '#', label: 'Customers'},
-        {href: '#', label: 'Reports'},
-      ]}
-      userMenu={{
-        links: [{href: '#', label: 'Settings'}, {href: '#', label: 'Sign out'}],
-        name: 'Ben Kenobi',
-      }}
-    />
+    <EzAppLayout>
+      <EzNavigation
+        home={{
+          href: '#',
+          label: 'Homepage',
+          logo: {src: ezCaterLogoPath, width: 100},
+        }}
+        links={[
+          {href: '#', label: 'Orders'},
+          {href: '#', label: 'Customers'},
+          {href: '#', label: 'Reports'},
+        ]}
+        userMenu={{
+          links: [{href: '#', label: 'Settings'}, {href: '#', label: 'Sign out'}],
+          name: 'Stefania Mallett',
+        }}
+      >
+        <EzPage>
+          <EzCard>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+          </EzCard>
+        </EzPage>
+      </EzNavigation>
+    </EzAppLayout>
   );
 };
 ```

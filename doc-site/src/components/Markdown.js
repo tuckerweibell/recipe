@@ -12,8 +12,9 @@ import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
+import logo from '../ezcater-logo.svg';
 import Docz from './Docz';
-import {Link, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -77,12 +78,16 @@ const HtmlAst = ({htmlAst, scope}) => {
 
 const require = () => ({
   Link,
+  NavLink,
   BrowserRouter:
     typeof window === 'undefined'
       ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
       : BrowserRouter,
   Route,
 });
+
+const ezCaterLogoPath = logo;
+const scope = {...Components, styled, css, Component, require, ezCaterLogoPath};
 
 export default ({data: {markdownRemark: page}}) => {
   return (
@@ -91,10 +96,7 @@ export default ({data: {markdownRemark: page}}) => {
         <Helmet title={`recipe - ${page.frontmatter.title}`} />
         <div>
           <h1>{page.frontmatter.title}</h1>
-          <HtmlAst
-            htmlAst={page.htmlAst}
-            scope={{...Components, styled, css, Component, require}}
-          />
+          <HtmlAst htmlAst={page.htmlAst} scope={scope} />
         </div>
       </Layout>
     </Docz>
