@@ -1,10 +1,14 @@
 import React, {createContext, useContext} from 'react';
-import {WidthWrapper} from './EzAppLayout.styles';
+import {Frame, WidthWrapper} from './EzAppLayout.styles';
 
 export const EzAppLayoutContext = createContext('full');
 
 const EzAppLayout = ({children, layout}) => {
-  return <EzAppLayoutContext.Provider value={layout}>{children}</EzAppLayoutContext.Provider>;
+  return (
+    <Frame>
+      <EzAppLayoutContext.Provider value={layout}>{children}</EzAppLayoutContext.Provider>
+    </Frame>
+  );
 };
 
 EzAppLayout.displayName = 'EzAppLayout';
