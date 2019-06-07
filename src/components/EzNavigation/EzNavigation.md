@@ -14,7 +14,7 @@ The Navigation component should:
 
 - Be paired as sibling of the [Page](/components/ez-page) and [Page header](/components/ez-page-header) components
 - Contain primary navigation links that either immediately navigate to a URL, or expand with additional navigation menu content.
-- Group secondary/utility navigation links
+- Group utility navigation links
 
 ---
 
@@ -37,11 +37,11 @@ Normally links render an [anchor element](https://developer.mozilla.org/en-US/do
 />
 ```
 
-### Primary and secondary Navigation
+### Utility Navigation
 
-Use secondary navigation links to offer navigation paths to sections of the application that offer content to support the primary purpose of the application, e.g. managing user account settings.
+Use utility links to offer navigation paths to sections of the application that offer content to support the primary purpose of the application, e.g. managing user account settings.
 
-Secondary navigation links can only be used in conjunction with primary navigation links. On larger screens, the primary navigation will expand to fill the available vertical space, such that the secondary links are presented at the bottom of the screen.
+Utility links can only be used in conjunction with the main navigation links. On larger screens, the main navigation will expand to fill the available vertical space, such that the utility links are presented at the bottom of the screen.
 
 ```jsx
 <EzNavigation
@@ -51,22 +51,22 @@ Secondary navigation links can only be used in conjunction with primary navigati
     {href: '#', label: 'Customers'},
     {href: '#', label: 'Reports'},
   ]}
-  secondaryLinks={[{href: '#', label: 'Chat'}, {href: '#', label: '24/7 Support'}]}
+  utilityLinks={[{href: '#', label: 'Chat'}, {href: '#', label: '24/7 Support'}]}
 />
 ```
 
-### Navigation links with badges
+### Navigation links with notifications
 
-Badges can be used to present supporting context next to the navigation items, and typically represent a notification that new content is available.
+Notifications can be used to present supporting context next to the navigation items, and typically represent a indication that new content is available.
 
-On larger screens, badges can be viewed to provide at-a-glance context that a particular navigation link has available content to interact with. When presented on smaller screens, the total number of badges is displayed on the navigation top-bar, and allowing the user to be notified of important content even when the navigation menu is collapsed.
+On larger screens, notifications can be viewed to provide at-a-glance context that a particular navigation link has available content to interact with. When presented on smaller screens, the total number of notifications is summed and displayed on the navigation top-bar allowing the user to be notified of important content even when the navigation menu is collapsed.
 
 ```jsx
 <EzNavigation
   home={{href: '#', label: 'Homepage'}}
   links={[
-    {href: '#', label: 'Orders', badge: 15},
-    {href: '#', label: 'Customers', badge: 5},
+    {href: '#', label: 'Orders', notifications: 15},
+    {href: '#', label: 'Customers', notifications: 5},
     {href: '#', label: 'Reports'},
   ]}
 />
@@ -90,8 +90,6 @@ The user menu displays the user's name and actions that are related to the curre
       userMenu={{
         links: [{href: '#', label: 'Settings'}, {href: '#', label: 'Sign out'}],
         name: 'Ben Kenobi',
-        open: true,
-        onToggle: menuOpen,
       }}
     />
   );
