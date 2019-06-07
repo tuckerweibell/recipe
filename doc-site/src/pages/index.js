@@ -13,6 +13,7 @@ import {
   EzHeading,
   EzFlashMessage,
 } from '@ezcater/recipe';
+import {GithubLink} from '../components/GithubLink';
 import styled, {css} from 'react-emotion';
 
 const themeAsObjectNotModule = Object.assign({}, themes.standard);
@@ -97,6 +98,7 @@ const IndexPage = () => (
     >
       <html lang="en" />
     </Helmet>
+    <GithubLink repository="https://github.com/ezcater/recipe" />
 
     <ThemeProvider theme={themeAsObjectNotModule}>
       <>
