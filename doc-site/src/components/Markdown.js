@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import styled, {css} from 'react-emotion';
 import {graphql} from 'gatsby';
 import Component from 'react-component-component';
@@ -90,16 +89,24 @@ const require = () => ({
 const ezCaterLogoPath = logo;
 const scope = {...Components, styled, css, Component, require, ezCaterLogoPath};
 
+const splitOnTagName = (list, tagName) => {
+  const i = list.findIndex(el => el.tagName === tagName);
+
+  if (i === -1) return [list];
+
+  return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
+};
+
 export default ({data: {markdownRemark: page}}) => {
   return (
     <Docz>
-      <Layout>
-        <Helmet title={`recipe - ${page.frontmatter.title}`} />
-        <div className={page.frontmatter.name}>
-          <h1>{page.frontmatter.title}</h1>
-          <HtmlAst htmlAst={page.htmlAst} scope={scope} />
-        </div>
-      </Layout>
+      <Layout
+        title={page.frontmatter.title}
+        name={page.frontmatter.name}
+        sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+          <HtmlAst htmlAst={{children: section}} scope={scope} />
+        ))}
+      />
     </Docz>
   );
 };

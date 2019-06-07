@@ -1,57 +1,76 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
+import Link from 'gatsby-link';
 import {ThemeProvider} from 'emotion-theming';
-import {themes} from '@ezcater/recipe';
-import Header from './header';
+import {
+  themes,
+  EzAppLayout,
+  EzPage,
+  EzNavigation,
+  EzPageHeader,
+  EzCard,
+  EzCardSection,
+} from '@ezcater/recipe';
 import './layout.css';
 
 const themeAsObjectNotModule = Object.assign({}, themes.standard);
 
-const Layout = ({children}) => (
+const Layout = ({name, title, children, sections}) => (
   <StaticQuery
     query={graphql`
       query {
-        site {
-          siteMetadata {
-            title
+        allMarkdownRemark(
+          sort: {order: ASC, fields: [frontmatter___path]}
+          filter: {fileAbsolutePath: {regex: "/components/.*/.*.md$/"}}
+        ) {
+          edges {
+            node {
+              id
+              fileAbsolutePath
+              frontmatter {
+                title
+                path
+              }
+            }
           }
         }
       }
     `}
-    render={data => (
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            {name: 'description', content: 'Recipe Design System'},
-            {name: 'keywords', content: 'Recipe Design System EzCater'},
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
+    render={data => {
+      const {edges: pages} = data.allMarkdownRemark || {edges: []};
 
-        <ThemeProvider theme={themeAsObjectNotModule}>
-          <div
-            style={{
-              margin: '0 auto',
-              maxWidth: 960,
-              padding: '0px 1.0875rem 1.45rem',
-              paddingTop: 0,
-            }}
-          >
-            {children}
-          </div>
-        </ThemeProvider>
-      </>
-    )}
+      return (
+        <>
+          <Helmet title={`Recipe - ${title}`} />
+          <ThemeProvider theme={themeAsObjectNotModule}>
+            <div className={name}>
+              <EzAppLayout>
+                <EzNavigation
+                  home={{href: '/', label: 'Recipe'}}
+                  links={pages.map(({node: component}) => ({
+                    to: component.frontmatter.path,
+                    label: component.frontmatter.title,
+                    as: Link,
+                  }))}
+                >
+                  <EzPageHeader title={title} />
+                  <EzPage>
+                    <EzCard>
+                      {children ||
+                        sections.map((section, i) => (
+                          <EzCardSection key={i}>{section}</EzCardSection>
+                        ))}
+                    </EzCard>
+                  </EzPage>
+                </EzNavigation>
+              </EzAppLayout>
+            </div>
+          </ThemeProvider>
+        </>
+      );
+    }}
   />
 );
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Layout;
