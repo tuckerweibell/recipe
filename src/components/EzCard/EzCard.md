@@ -29,13 +29,6 @@ Card Sections should not:
 
 - Be used outside of a Card
 
-<br/>
-<br/>
-
-Features still in consideration include:
-
-- Stepped expand/reveal
-
 ---
 
 ## Examples
