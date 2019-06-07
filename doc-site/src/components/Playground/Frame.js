@@ -18,6 +18,13 @@ const forwardStyles = (source, target, iframe) => {
     }
   });
 
+  // copy gatsby pre-rendered styles
+  const styles = Array.from(document.getElementsByTagName('style'));
+
+  styles.forEach(style => {
+    iframe.contentDocument.head.appendChild(style.cloneNode(true));
+  });
+
   // copy the existing style tags emotion has placed on the page
   source.tags.forEach(tag => {
     Array.from(tag.sheet.cssRules).forEach(rule => {
