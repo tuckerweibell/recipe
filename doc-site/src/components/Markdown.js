@@ -12,6 +12,7 @@ import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
+import Docz from './Docz';
 import {Link, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 
 const cleanProps = p =>
@@ -85,13 +86,18 @@ const require = () => ({
 
 export default ({data: {markdownRemark: page}}) => {
   return (
-    <Layout>
-      <Helmet title={`recipe - ${page.frontmatter.title}`} />
-      <div>
-        <h1>{page.frontmatter.title}</h1>
-        <HtmlAst htmlAst={page.htmlAst} scope={{...Components, styled, css, Component, require}} />
-      </div>
-    </Layout>
+    <Docz>
+      <Layout>
+        <Helmet title={`recipe - ${page.frontmatter.title}`} />
+        <div>
+          <h1>{page.frontmatter.title}</h1>
+          <HtmlAst
+            htmlAst={page.htmlAst}
+            scope={{...Components, styled, css, Component, require}}
+          />
+        </div>
+      </Layout>
+    </Docz>
   );
 };
 

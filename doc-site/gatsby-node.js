@@ -34,12 +34,17 @@ exports.createPages = ({actions, graphql}) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({actions}) => {
+exports.onCreateWebpackConfig = ({actions, plugins}) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
         react: path.resolve(path.join(__dirname, './node_modules/react')),
       },
     },
+    plugins: [
+      plugins.define({
+        SC_DISABLE_SPEEDY: true,
+      }),
+    ],
   });
 };
