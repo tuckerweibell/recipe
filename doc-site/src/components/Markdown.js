@@ -43,6 +43,7 @@ const HtmlAst = ({htmlAst, scope}) => {
 
   const componentMap = {
     code: Code,
+    a: props => React.createElement(props.className ? 'a' : Components.EzLink, props),
     p: props => {
       const {children} = props;
       const type = children[0].type;
