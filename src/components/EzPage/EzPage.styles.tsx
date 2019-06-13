@@ -3,6 +3,7 @@ import {css} from 'react-emotion';
 export const base = ({theme}) => css`
   background: ${theme.colors.page.background};
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
+  flex-grow: 1;
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
     padding: ${theme.spacing.xl2};
