@@ -8,14 +8,16 @@ import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import styled from '../../themes/styled';
 import {wrapEvent} from '../../utils';
 
-type Changeable<T> = {onChange: (tab: T) => void};
+type TabType = Labelled | (Labelled & Link);
 
-type SubNavProps<T> = (T extends Link ? Partial<Changeable<T>> : Changeable<T>) & {
+type Changeable = {onChange: (tab: TabType) => void};
+
+type SubNavProps<T> = (T extends Link ? Partial<Changeable> : Changeable) & {
   tabs: T[];
   selected?: T;
 };
 
-type SubNav = SubNavProps<Labelled> | SubNavProps<Labelled & Link>;
+type SubNav = SubNavProps<TabType>;
 
 type HeaderProps = {
   actions?: React.ReactNode;
@@ -61,7 +63,7 @@ const handleKeyDown = (refs: React.RefObject<HTMLElement>[], {tabs, selected}: S
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.
  */
 const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title, subnav}) => {
-  const refs = useRef(subnav && (subnav.tabs as any[]).map(() => createRef<HTMLElement>())).current;
+  const refs = useRef(subnav && subnav.tabs.map(() => createRef<HTMLElement>())).current;
   const selected = subnav && subnav.selected;
   return (
     <StyledHeading subnav={subnav}>
@@ -90,17 +92,14 @@ const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title
       {subnav && (
         <MaxWidth>
           <TabList onKeyDown={handleKeyDown(refs, subnav)}>
-            {(subnav.tabs as Labelled[]).map((tab, i) => (
+            {subnav.tabs.map((tab, i) => (
               <Tab
                 ref={refs[i]}
                 key={tab.label}
                 tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
                 active={selected === tab}
                 {...tab}
-                onClick={wrapEvent(
-                  tab.onClick,
-                  () => subnav.onChange && subnav.onChange(tab as any)
-                )}
+                onClick={wrapEvent(tab.onClick, () => subnav.onChange && subnav.onChange(tab))}
               />
             ))}
           </TabList>
