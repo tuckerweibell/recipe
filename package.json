@@ -42,6 +42,7 @@
     "jest-emotion": "^9.2.11",
     "jest-enzyme": "^7.0.1",
     "jest-raw-loader": "^1.0.1",
+    "jsdom": "^15.1.1",
     "plop": "^2.2.1",
     "prettier": "^1.16.4",
     "react": "^16.8.2",
