@@ -29,6 +29,13 @@ const Container = styled.div`
   iframe {
     min-height: 100%;
   }
+
+  /* when the playground is popped up, we don't want the playground to have a min-height */
+  [class^='Playground__Overlay'] > :first-child {
+    .EzNavigation & iframe {
+      min-height: 350px;
+    }
+  }
 `;
 
 injectGlobal`

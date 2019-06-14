@@ -94,7 +94,7 @@ export default ({data: {markdownRemark: page}}) => {
     <Docz>
       <Layout>
         <Helmet title={`recipe - ${page.frontmatter.title}`} />
-        <div>
+        <div className={page.frontmatter.name}>
           <h1>{page.frontmatter.title}</h1>
           <HtmlAst htmlAst={page.htmlAst} scope={scope} />
         </div>
@@ -111,6 +111,7 @@ export const pageQuery = graphql`
       frontmatter {
         path
         title
+        name
       }
     }
   }
