@@ -16,4 +16,4 @@ export type Labelled = Partial<Clickable> & {
 
 export type Link = AnchorProps | LinkProps;
 
-export type LinkButton = Labelled & (Clickable | Link);
+export type LabelledLink = Labelled & (Clickable | Link);

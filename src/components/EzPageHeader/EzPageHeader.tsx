@@ -1,6 +1,6 @@
 import React, {createRef, useRef} from 'react';
 import LinkButton from './LinkButton';
-import {Link, LinkButton as LinkButtonType, Labelled} from '../EzLink/EzLink.types';
+import {Link, LabelledLink, Labelled} from '../EzLink/EzLink.types';
 import {EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
 import {base, actions as actionStyles} from './EzPageHeader.styles';
@@ -19,7 +19,7 @@ type SubNav = SubNavProps<Labelled> | SubNavProps<Labelled & Link>;
 
 type HeaderProps = {
   actions?: React.ReactNode;
-  breadcrumb?: LinkButtonType;
+  breadcrumb?: LabelledLink;
   status?: React.ReactNode;
   title: string;
   subnav?: SubNav;
