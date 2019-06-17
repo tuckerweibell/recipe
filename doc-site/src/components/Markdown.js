@@ -4,7 +4,7 @@ import {graphql} from 'gatsby';
 import Component from 'react-component-component';
 import Playground from './Playground';
 import * as Components from '@ezcater/recipe';
-import ColorVariables from './ColorVariables';
+import {ColorDefinition, Example} from './ColorVariables';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
 import FontSizes from './FontSizes';
@@ -50,7 +50,10 @@ const HtmlAst = ({htmlAst, scope}) => {
       return hasNestedComponent ? children : React.createElement('p', props, children);
     },
     pre: ({children}) => children,
-    colorvariables: ColorVariables,
+    colordefinition: ColorDefinition,
+    baseexample: Example.Base,
+    checkedexample: Example.Checked,
+    hoverexample: Example.Hover,
     spacingvariables: SpacingVariables,
     fontcombinations: FontCombinations,
     fontsizes: FontSizes,
