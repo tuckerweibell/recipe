@@ -1,6 +1,6 @@
 ---
-path: "/guides/principles"
-title: "Principles"
+path: '/guides/principles'
+title: 'Principles'
 category: 'Overview'
 ---
 
@@ -19,6 +19,8 @@ An interface with confusing or inconsistent elements or one that looks generic o
 ### Brand Recognition
 
 People should be able to immediately recognize that an interface belongs to the ezcater brand or a specific product in ezcater's product suite.
+
+---
 
 ## Component Principles
 

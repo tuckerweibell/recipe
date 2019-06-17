@@ -152,7 +152,7 @@ const IndexPage = () => (
               </p>
             </EzCardSection>
             <EzCardSection>
-              <EzHeading size="3">Concepts</EzHeading>
+              <EzHeading size="3">Principles</EzHeading>
               <p>Explore our approach for building the design system.</p>
               <p>
                 <EzLink to="/guides/principles/" as={Link}>
