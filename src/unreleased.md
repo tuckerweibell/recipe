@@ -30,6 +30,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- update timeline/roadmap with recent releases
+
 #### Dependency upgrades
 
 - update devDependency on sosia-remote-puppeteer to improve support for larger visual regression tests
