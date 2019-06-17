@@ -25,6 +25,9 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Suppressed global styles from the doc-site playground impacting how Recipe components render
+- Fixed an issue with server-rendering/static rendering playground component (ResizeObserver undefined)
+
 #### Documentation
 
 #### Dependency upgrades
