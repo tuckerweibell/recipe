@@ -26,6 +26,8 @@ Flash messages should not:
 
 Flash messages should contain relevant information related to the current state of the page. This should only be conveyed via text; no images should be added within the container of the flash message.
 
+---
+
 ## Examples
 
 ### Success Flash Message

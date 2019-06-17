@@ -62,6 +62,8 @@ Tables can also:
 - Support items that perform an action when clicked. For example, navigating to the item's details page or provide more detail about the item.
 - Provide bulk actions for tasks that are applicable to many items at once.
 
+---
+
 ## Examples
 
 ### Simple table

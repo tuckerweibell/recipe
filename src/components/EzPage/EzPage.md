@@ -23,6 +23,8 @@ Page Section should not:
 - Be used anywhere except as an immediate descendant of `EzPage`.
 - Be used to put more than one sidebar section on the same page. This is unsupported and will render incorrectly if you put two sidebars one after the other.
 
+---
+
 ## Examples
 
 ### Basic Page Content

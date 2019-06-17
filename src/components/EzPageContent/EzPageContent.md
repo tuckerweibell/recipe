@@ -31,6 +31,8 @@ Content Group should not:
 
 - Be used anywhere except as an immediate descendant of `EzPageContent`.
 
+---
+
 ## Examples
 
 ### Basic Page Content

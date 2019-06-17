@@ -26,6 +26,8 @@ Headings should not:
 
 Use sentence case for content in headings (only capitalize the first word).
 
+---
+
 ## Examples
 
 ### Heading sizes

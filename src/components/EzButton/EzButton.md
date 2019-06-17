@@ -27,6 +27,8 @@ Buttons should not:
 
 Buttons should clearly communicate the action that will occur when the user interacts with them. Try leading with actionable verbs when labeling Buttons. Follow the Verb+Noun format on buttons except in the case of common actions like Save, Edit, Close, or Cancel.
 
+---
+
 ## Examples
 
 ### Primary Button

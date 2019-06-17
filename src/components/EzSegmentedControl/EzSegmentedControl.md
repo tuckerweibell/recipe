@@ -22,6 +22,8 @@ Segmented controls should:
 
 Follow the [content guidelines](/components/ez-button) outlined in the button component.
 
+---
+
 ## Examples
 
 ### Segmented control

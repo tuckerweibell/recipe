@@ -42,6 +42,8 @@ Page headers should:
 - Consider wrapping page header actions in a [Layout](/components/ez-layout) to manage how they stack at smaller breakpoints.
 - Avoid using interactive components for displaying status information
 
+---
+
 ## Examples
 
 ### Basic Page header

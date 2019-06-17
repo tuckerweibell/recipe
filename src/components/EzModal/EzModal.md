@@ -19,6 +19,8 @@ Modals should not:
 
 - Create a “wizard” flow with two or more steps.
 
+---
+
 ## Examples
 
 ### Informational modal

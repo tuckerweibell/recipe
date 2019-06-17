@@ -6,6 +6,8 @@ path: '/components/ez-status'
 
 Use a status when you need to call attention to an individual item in a set. Sometimes (like with a list of orders) you need to show a status for each item. In those cases, use a neutral status for as many items as possible so the items that need more attention stand out.
 
+---
+
 ## Examples
 
 ### Basic Status

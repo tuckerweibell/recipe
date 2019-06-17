@@ -26,6 +26,8 @@ Alerts should not:
 
 Alerts should communicate a clear message to highlight to customers. Emphasize the action within the headline, and save the tagline for further explanation or additional information.
 
+---
+
 ## Examples
 
 ### Success Alert

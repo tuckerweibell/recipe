@@ -42,6 +42,8 @@ Order summaries should not:
 - Be used to present the Order without prices/totals (i.e for order prep)
 - Be nested within a [Card](/components/ez-card). An order summary represents a cohesive set of content and should not be grouped with other card content.
 
+---
+
 ## Examples
 
 ### Order summary
