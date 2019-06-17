@@ -36,11 +36,9 @@ injectGlobal`
   .with-overlay{overflow:hidden;} html,body,#root{height:100%;min-height:100%;}
 `;
 
-const Wrapper = window.ResizeObserver ? DocFrame : undefined;
-
 const Playground = ({code, scope}) => (
   <Container>
-    <DoczPlayground code={code} scope={{...scope}} wrapper={Wrapper} />
+    <DoczPlayground code={code} scope={{...scope}} wrapper={DocFrame} />
   </Container>
 );
 

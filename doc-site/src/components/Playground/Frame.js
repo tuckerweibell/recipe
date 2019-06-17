@@ -79,10 +79,12 @@ const IFramePlayground = props => {
       setMargin(getComputedStyle(playgroundRef.current).marginLeft);
     };
 
-    const resizeObserver = new ResizeObserver(resizeBasedOnContent);
-    resizeObserver.observe(contentDocument.querySelector('body'));
-
     iframe.contentWindow.onclick = resizeBasedOnContent;
+
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(resizeBasedOnContent);
+      resizeObserver.observe(contentDocument.querySelector('body'));
+    }
   });
 
   return (
