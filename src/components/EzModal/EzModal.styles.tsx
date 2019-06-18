@@ -2,26 +2,6 @@ import {css} from 'react-emotion';
 import {DialogContent, DialogOverlay} from '@reach/dialog';
 import styled from '../../themes/styled';
 
-const closeIconBorderRadius = '50%';
-const clickTargetPadding = '12px';
-
-export const CloseButton = styled.button`
-  background-color: transparent;
-  border: 0;
-  border-radius: ${closeIconBorderRadius};
-  cursor: pointer;
-  outline: none;
-  margin: -${clickTargetPadding}; /* negate the impact of the extra padding on the elements containers height */
-  padding: ${clickTargetPadding};
-
-  :hover {
-    background-color: ${props => props.theme.colors.interactive.hover.background};
-  }
-  :active {
-    background-color: ${props => props.theme.colors.interactive.active.background};
-  }
-`;
-
 export const Overlay = styled(DialogOverlay)`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
@@ -64,7 +44,6 @@ const containerPadding = ({theme: {spacing, breakpoints}}) => css`
 
 export const HeaderContainer = styled.div`
   ${props => containerPadding({theme: props.theme})}
-  align-items: baseline;
   border-bottom: 1px solid ${props => props.theme.colors.border.subtle};
   display: flex;
   flex: none;
@@ -72,6 +51,9 @@ export const HeaderContainer = styled.div`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     border-bottom: none;
+  }
+  button svg path {
+    fill: #3a81be;
   }
 `;
 

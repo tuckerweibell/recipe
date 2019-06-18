@@ -4,36 +4,13 @@ import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
 import ScrollLock from './ScrollLock';
 import {
-  CloseButton,
   ButtonFooter,
   HeaderContainer,
   ContentContainer,
   ModalContainer,
   Overlay,
 } from './EzModal.styles';
-
-const CloseIcon = ({onClick, dismissLabel}) => (
-  <CloseButton role="button" onClick={onClick}>
-    <svg
-      aria-label={dismissLabel}
-      display="block"
-      width="16px"
-      height="16px"
-      viewBox="0 0 16 16"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g id="Artboard" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <path
-          d="M6.5,6.5 L6.5,-1 L9.5,-1 L9.5,6.5 L17,6.5 L17,9.5 L9.5,9.5 L9.5,17 L6.5,17 L6.5,9.5 L-1,9.5 L-1,6.5 L6.5,6.5 Z"
-          id="Close-Button"
-          fill="#3A81BE"
-          transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) "
-        />
-      </g>
-    </svg>
-  </CloseButton>
-);
+import CloseButton from '../CloseButton';
 
 type Props = {
   children: React.ReactNode;
@@ -64,7 +41,7 @@ const EzModal: React.FC<Props> = ({
       <ScrollLock />
       <HeaderContainer>
         <EzHeading size="2">{headerText}</EzHeading>
-        <CloseIcon dismissLabel={dismissLabel} onClick={onDismiss} />
+        <CloseButton label={dismissLabel} onClick={onDismiss} />
       </HeaderContainer>
 
       <ContentContainer>{children}</ContentContainer>
