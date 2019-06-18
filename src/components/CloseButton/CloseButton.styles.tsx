@@ -11,10 +11,10 @@ export const base = ({theme}) => css`
   margin: -${theme.spacing.lg};
 
   :hover {
-    background-color: ${theme.colors.interactive.hover.background};
+    background-color: hsla(240, 11%, 95%, 0.4);
   }
   :active {
-    background-color: ${theme.colors.interactive.active.background};
+    background-color: hsla(204, 11%, 79%, 0.4);
   }
 
   > span:not(:focus):not(:active) {
