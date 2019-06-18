@@ -134,3 +134,4 @@ Adding an `onDismiss` event handler will display an icon button in the top right
 ## Related components
 
 - [Alert](/components/ez-alert)
+- [Banner](/components/ez-banner)

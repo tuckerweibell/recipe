@@ -108,3 +108,10 @@ Alerts can be tied to other content via a directional speech bubble arrow either
   <EzAlert arrow="top" headline="Great job!" tagline="We got below more content." use="success" />
 </EzCard>
 ```
+
+---
+
+## Related components
+
+- [Banner](/components/ez-banner)
+- [Flash messsage](/components/ez-flash-message/)
