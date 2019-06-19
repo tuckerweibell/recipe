@@ -96,7 +96,7 @@ Allows the user to choose between a fixed set of options by offering a list of g
           {label: 'Choice C', value: 'c'},
         ]}
         value={state.selectedChoice}
-        onChange={e => setState({selectedChoice: e.target.selected})}
+        onChange={e => setState({selectedChoice: e.target.value})}
       />
       <EzField
         type="checkbox"
@@ -107,12 +107,14 @@ Allows the user to choose between a fixed set of options by offering a list of g
           {label: 'Choice C', value: 'c'},
         ]}
         value={state.selectedChoices}
-        onChange={e => setState({selectedChoices: e.target.selected})}
+        onChange={e => setState({selectedChoices: e.target.value})}
       />
     </EzFormLayout>
   )}
 </Component>
 ```
+
+Note: e.target.selected has been deprecated in favor of e.target.value
 
 ### Custom input field
 
