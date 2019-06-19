@@ -3,10 +3,10 @@ import {
   FlashMessageContainer,
   FlashMessageContents,
   FlashMessageHeadline,
-  CloseButton,
   FlashMessageProps,
 } from './EzFlashMessage.styles';
-import {InfoIcon, CloseIcon, ErrorIcon, SuccessIcon} from '../Icons';
+import CloseButton from '../CloseButton';
+import {InfoIcon, ErrorIcon, SuccessIcon} from '../Icons';
 
 const icons = {
   error: <ErrorIcon />,
@@ -26,11 +26,7 @@ const EzFlashMessage: React.FC<FlashMessageProps> = props => {
         {props.headline && <FlashMessageHeadline>{props.headline}</FlashMessageHeadline>}
         {props.children}
       </FlashMessageContents>
-      {props.onDismiss && (
-        <CloseButton onClick={props.onDismiss}>
-          <CloseIcon />
-        </CloseButton>
-      )}
+      {props.onDismiss && <CloseButton label="Close" color="red" onClick={props.onDismiss} />}
     </FlashMessageContainer>
   );
 };
