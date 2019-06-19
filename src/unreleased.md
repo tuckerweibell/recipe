@@ -10,11 +10,13 @@ title: 'Unreleased changes'
 #### New components
 
 - Added new `EzSearchInput` component to allow users to search for specific content by providing search terms or simple keywords.
+- Added new `EzBanner` component to display a prominent, succinct message with a related link or action.
 
 #### Enhancements
 
 - Added `label` attribute to `EzToggle`.
 - Added semantic names for Recipe colors to more clearly define a consistent set of rules around color usage and to better support for theming in the future.
+- Changed `EzModal`, `EzFlashMessage` and `EzBanner` to use a consistent button for dismissing.
 
 #### Design updates
 
@@ -22,6 +24,7 @@ title: 'Unreleased changes'
 - Design updates for input fields:
   - Add box-shadow to form input fields
   - Added default font color to form input fields
+- Changed `EzModal` and `EzFlashMessage` to have a transparent color for `:active` and `:hover` click-surface styles.
 
 #### Bug fixes
 
