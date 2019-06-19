@@ -89,7 +89,7 @@ describe('EzField', () => {
       expect(getByLabelText(container, 'Choice C')).toHaveProperty('checked', false);
     });
 
-    it('should publish change event with the newly value options', () => {
+    it('should publish change event with the newly selected options', () => {
       let value;
       const onChange = e => {
         value = e.target.value;
