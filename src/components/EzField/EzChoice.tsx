@@ -33,6 +33,7 @@ export default props => {
         ...props,
         checked,
         selected: newSelection,
+        value: newSelection,
       },
     });
   }

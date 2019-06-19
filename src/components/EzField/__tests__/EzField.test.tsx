@@ -48,9 +48,9 @@ describe('EzField', () => {
     });
 
     it('should publish change event with the selected option', () => {
-      let selected;
+      let value;
       const onChange = e => {
-        selected = e.target.selected;
+        value = e.target.value;
       };
       const {container} = render(<EzField {...radiobuttonProps} onChange={onChange} value="c" />);
 
@@ -58,7 +58,7 @@ describe('EzField', () => {
 
       fireEvent.click(input);
 
-      expect(selected).toEqual('b');
+      expect(value).toEqual('b');
     });
   });
 
@@ -90,9 +90,9 @@ describe('EzField', () => {
     });
 
     it('should publish change event with the newly selected options', () => {
-      let selected;
+      let value;
       const onChange = e => {
-        selected = e.target.selected;
+        value = e.target.value;
       };
       const {container} = render(
         <EzField {...checkboxProps} value={['a', 'c']} onChange={onChange} />
@@ -100,13 +100,13 @@ describe('EzField', () => {
 
       fireEvent.click(getByLabelText(container, 'Choice B'));
 
-      expect(selected.sort()).toEqual(['a', 'b', 'c']);
+      expect(value.sort()).toEqual(['a', 'b', 'c']);
     });
 
     it('should publish change event that does NOT include the unchecked option', () => {
-      let selected;
+      let value;
       const onChange = e => {
-        selected = e.target.selected;
+        value = e.target.value;
       };
       const {container} = render(
         <EzField {...checkboxProps} value={['a', 'c']} onChange={onChange} />
@@ -114,7 +114,7 @@ describe('EzField', () => {
 
       fireEvent.click(getByLabelText(container, 'Choice C'));
 
-      expect(selected).toEqual(['a']);
+      expect(value).toEqual(['a']);
     });
   });
 
