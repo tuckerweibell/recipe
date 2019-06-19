@@ -27,6 +27,7 @@ title: 'Unreleased changes'
 
 - Suppressed global styles from the doc-site playground impacting how Recipe components render
 - Fixed an issue with server-rendering/static rendering playground component (ResizeObserver undefined)
+- Deprecated target.selected in favor of target.value in the onChange callback parameters on checkboxes and radio buttons.
 
 #### Documentation
 
