@@ -7,6 +7,6 @@
     "lib",
     "templates",
     "plopfile.js",
-    "__tests__/"
+    "**/__tests__/"
   ]
 }
