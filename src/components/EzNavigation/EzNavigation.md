@@ -215,6 +215,12 @@ The user menu displays the user's name and actions that are related to the curre
 
 ---
 
+## Browser support
+
+The Navigation component internally uses [`Element.prototype.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest) and may require a polyfill to provide [browser support](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility) depending on the specific requirements for your application. We recommend using [Polyfill.io](https://polyfill.io/v3/) in your application to apply necessary polyfills only when they are needed for the requesting browser.
+
+---
+
 ## Related components
 
 - [Page](/components/ez-page)
