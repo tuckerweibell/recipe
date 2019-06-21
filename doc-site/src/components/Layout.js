@@ -139,15 +139,24 @@ const Layout = ({name, title, children, sections, location}) => (
         .filter(p => Boolean(p.frontmatter.order))
         .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
 
-      const components = pages
-        .filter(
-          p => p.frontmatter && p.frontmatter.path && p.frontmatter.path.includes('/components/')
-        )
-        .map(page => ({
-          to: page.frontmatter.path,
-          label: page.frontmatter.title,
-          links: page.frontmatter.title === 'Components' ? components : [],
-        }));
+      const links = topLevel.map(page => ({
+        to: page.frontmatter.path,
+        label: page.frontmatter.title,
+        links: pages
+          .filter(
+            p =>
+              p.frontmatter &&
+              p.frontmatter.path &&
+              p.frontmatter.path.includes(page.frontmatter.path) &&
+              p.frontmatter.path !== page.frontmatter.path
+          )
+          .map(page => ({
+            to: page.frontmatter.path,
+            label: page.frontmatter.title,
+          })),
+        location,
+        as: Menu,
+      }));
 
       return (
         <>
@@ -157,13 +166,7 @@ const Layout = ({name, title, children, sections, location}) => (
               <EzAppLayout>
                 <EzNavigation
                   home={{href: '/', label: 'Recipe', logo: {src: ezCaterLogoPath, width: 100}}}
-                  links={topLevel.map(page => ({
-                    to: page.frontmatter.path,
-                    label: page.frontmatter.title,
-                    links: page.frontmatter.title === 'Components' ? components : [],
-                    location,
-                    as: Menu,
-                  }))}
+                  links={links}
                 >
                   <EzPageHeader title={title} />
                   <EzPage>
