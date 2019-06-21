@@ -100,11 +100,12 @@ const splitOnTagName = (list, tagName) => {
   return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
 };
 
-export default ({data: {markdownRemark: page}}) => {
+export default ({data: {markdownRemark: page}, location}) => {
   return (
     <Docz>
       <Layout
         title={page.frontmatter.title}
+        location={location}
         name={page.frontmatter.name}
         sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
           <HtmlAst htmlAst={{children: section}} scope={scope} />
