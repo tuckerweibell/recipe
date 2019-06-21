@@ -1,6 +1,7 @@
 ---
 path: '/components'
-title: 'Using components'
+title: 'Components'
+order: 30
 ---
 
 Our components are a collection of reusable interface elements and are designed to facilitate the creation of consistent experiences across our applications.

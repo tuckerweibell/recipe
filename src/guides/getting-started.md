@@ -1,9 +1,10 @@
 ---
-path: "/guides/getting-started"
-title: "Getting Started"
+path: '/guides/getting-started'
+title: 'Getting Started'
+order: 10
 ---
 
-### Installation
+## Installation
 
 ```term
 npm install @ezcater/recipe
@@ -17,7 +18,7 @@ Aside from React and React DOM, Recipe requires the following `peerDependencies`
 npm install emotion react-emotion emotion-theming polished
 ```
 
-## Importing components in downstream projects
+### Importing components in downstream projects
 
 Import the Recipe package, just as you would any other package dependency:
 
@@ -33,6 +34,8 @@ export const MyComponent = () => (
 );
 ```
 
-### Contributing
+---
+
+## Contributing
 
 If you're interested in contributing, check out our [contributing guidelines](/guides/contributing) to get started.

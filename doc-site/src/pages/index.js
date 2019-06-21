@@ -146,7 +146,7 @@ const IndexPage = () => (
               <EzHeading size="3">Style</EzHeading>
               <p>Guidance on how to approach the visual elements of our applications.</p>
               <p>
-                <EzLink to="/styles/style/" as={Link}>
+                <EzLink to="/styles" as={Link}>
                   View styles
                 </EzLink>
               </p>

@@ -1,27 +1,28 @@
 ---
-path: "/guides/contributing"
-title: "Contributing"
+path: '/guides/contributing'
+title: 'Contributing'
+order: 50
 ---
 
 Welcome and thank you for contributing! The Recipe team is committed to maintaining consistent, quality components and guidelines. We welcome all feedback, designs, or ideas to produce the best possible experience for our users. Below are the contribution guidelines for contributing.
 
-* [Process](#process)
-  * [Proposing new components](#proposing-new-components-to-the-design-system)
-  * [Component choices](#choosing-the-right-component)
-* [Development](#development)
-  * [Files and Folders](#files-and-folders)
-  * [Creating Components](#creating-components)
-  * [Documentation and live examples](#how-do-i-add-a-new-demo-to-the-documentation-site)
-  * [Start Contributing](#start-contributing)
+- [Process](#process)
+  - [Proposing new components](#proposing-new-components-to-the-design-system)
+  - [Component choices](#choosing-the-right-component)
+- [Development](#development)
+  - [Files and Folders](#files-and-folders)
+  - [Creating Components](#creating-components)
+  - [Documentation and live examples](#how-do-i-add-a-new-demo-to-the-documentation-site)
+  - [Start Contributing](#start-contributing)
 
 ## Process
 
 ### Proposing new components to the design system
 
-* Consult with Recipe team - review mocks, audit existing usage, identify emergent patterns, consider [component choices](#choosing-the-right-component)
-* Component Implementation
-* Submit PR for review to the Recipe team
-* Apply feedback and land changes in Recipe OR refine component usage inside product
+- Consult with Recipe team - review mocks, audit existing usage, identify emergent patterns, consider [component choices](#choosing-the-right-component)
+- Component Implementation
+- Submit PR for review to the Recipe team
+- Apply feedback and land changes in Recipe OR refine component usage inside product
 
 ### Choosing the right component
 
@@ -71,9 +72,9 @@ In order to create a consistent directory structure, Recipe provides [tooling to
 
 Recipe uses [plop](https://www.npmjs.com/package/plop) to generate new React components. The functionality is exposed as the `create-component` npm script from package.json. This will:
 
-* copy the component template files from `templates/component` to `src/components/YOUR_COMPONENT_NAME`,
-* rename all files to match your component's name
-* replace all occurrences of `Component` inside the component's files with your component's name.
+- copy the component template files from `templates/component` to `src/components/YOUR_COMPONENT_NAME`,
+- rename all files to match your component's name
+- replace all occurrences of `Component` inside the component's files with your component's name.
 
 The `create-component` command will allow you to quickly get up-and-running with a component that follows our [folder structure and naming scheme](#files-and-folders).
 
@@ -90,11 +91,11 @@ export {default as EzButton} from './components/EzButton';
 
 New components must:
 
-* be [proposed](#proposing-new-components-to-the-design-system) to the Recipe team for consideration and guidance
-* have comprehensive tests
-* have comprehensive documentation
-* follow our code conventions
-* be reviewed and approved by the recipe team
+- be [proposed](#proposing-new-components-to-the-design-system) to the Recipe team for consideration and guidance
+- have comprehensive tests
+- have comprehensive documentation
+- follow our code conventions
+- be reviewed and approved by the recipe team
 
 ### How do I add a new demo to the documentation site?
 
@@ -194,14 +195,14 @@ npm run test:watch
 
 After contributing updates to recipe, you'll need to publish the recipe package for changes to take effect in downstream projects. To publish, you need to:
 
-* make sure your source is up-to-date and have run `npm install` from `packages/recipe`
-* bump the package version number in `packages/recipe/package.json` (and lock file) by running `npm version major`, `npm version minor` or `npm version patch` (see our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) if you're unsure which to use).
-* Update `changelog.md`
-* run `npm run build` to locally build with the latest version that you wish to publish.
-* run `npm publish` to publish the new version of recipe to npm
-  * If you are not currently logged into npm, you'll need to run `npm login` using your npm username and password
-  * If your npm user is not currently associated with the @ezcater scope, contact a Recipe team member to get you started
-* run `npm install @ezcater/recipe --save` from `/doc-site` to update the version of recipe used by the documentation site
-* run `npm run deploy` from `/doc-site` to update the documentation site with your changes
-* run `npm install @ezcater/recipe --save` from the downstream project
-* create a PR for the downsteam project
+- make sure your source is up-to-date and have run `npm install` from `packages/recipe`
+- bump the package version number in `packages/recipe/package.json` (and lock file) by running `npm version major`, `npm version minor` or `npm version patch` (see our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) if you're unsure which to use).
+- Update `changelog.md`
+- run `npm run build` to locally build with the latest version that you wish to publish.
+- run `npm publish` to publish the new version of recipe to npm
+  - If you are not currently logged into npm, you'll need to run `npm login` using your npm username and password
+  - If your npm user is not currently associated with the @ezcater scope, contact a Recipe team member to get you started
+- run `npm install @ezcater/recipe --save` from `/doc-site` to update the version of recipe used by the documentation site
+- run `npm run deploy` from `/doc-site` to update the documentation site with your changes
+- run `npm install @ezcater/recipe --save` from the downstream project
+- create a PR for the downsteam project

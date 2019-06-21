@@ -1,6 +1,7 @@
 ---
 path: '/changelog'
 title: "What's new?"
+order: 70
 ---
 
 The latest news, updates, and changes to the Recipe design system.

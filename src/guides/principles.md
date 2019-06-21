@@ -2,6 +2,7 @@
 path: '/guides/principles'
 title: 'Principles'
 category: 'Overview'
+order: 20
 ---
 
 ## Core Philosophy

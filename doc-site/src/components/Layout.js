@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 import Link from 'gatsby-link';
@@ -12,18 +12,109 @@ import {
   EzCard,
   EzCardSection,
 } from '@ezcater/recipe';
+import styled, {css} from 'react-emotion';
 import './layout.css';
 
 const themeAsObjectNotModule = Object.assign({}, themes.standard);
+
+const List = styled.dl`
+  flex: 1;
+  overflow-y: auto;
+  display: ${p => (p.opened ? 'block' : 'none')};
+  margin-bottom: 0;
+  && {
+    text-decoration: none;
+  }
+`;
+
+const iconRotate = p => (p.opened ? '-180deg' : '0deg');
+
+const Icon = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%) rotate(${iconRotate});
+  transform-origin: 50% 50%;
+  transition: transform 0.3s;
+  & svg {
+    stroke: '#b8bdc2';
+  }
+`;
+
+const menuStyles = ({theme}) => css`
+  color: #b8bdc2;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  padding: ${theme.spacing.xs} ${theme.spacing.xl4} ${theme.spacing.xs} ${theme.spacing.xl3};
+  width: 100%;
+  position: relative;
+  text-decoration: none;
+
+  :hover:enabled {
+    color: white;
+    text-decoration: none;
+  }
+
+  :active:enabled,
+  :not([aria-disabled='true'])[aria-expanded='true'] {
+    box-shadow: inset 0px 0px 10px #000000;
+  }
+`;
+
+const MenuLink = styled(Link)(menuStyles);
+
+const Menu = ({children, links, ...props}) => {
+  const [opened, setOpened] = useState(false);
+  const toggle = () => setOpened(s => !s);
+  const hasChildren = Boolean(links.length);
+
+  const handleToggle = ev => {
+    ev.preventDefault();
+    toggle();
+  };
+  return (
+    <>
+      <Link {...props} partiallyActive={!hasChildren} {...hasChildren && {onClick: handleToggle}}>
+        {children}
+        {hasChildren && (
+          <Icon opened={opened}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </Icon>
+        )}
+      </Link>
+      {hasChildren && (
+        <List opened={opened}>
+          {links.map(({label, to}) => (
+            <dt key={label}>
+              <MenuLink to={to} activeStyle={{backgroundColor: '#1b2023'}} partiallyActive={true}>
+                {label}
+              </MenuLink>
+            </dt>
+          ))}
+        </List>
+      )}
+    </>
+  );
+};
 
 const Layout = ({name, title, children, sections}) => (
   <StaticQuery
     query={graphql`
       query {
-        allMarkdownRemark(
-          sort: {order: ASC, fields: [frontmatter___path]}
-          filter: {fileAbsolutePath: {regex: "/components/.*/.*.md$/"}}
-        ) {
+        allMarkdownRemark(sort: {order: ASC, fields: [frontmatter___path]}) {
           edges {
             node {
               id
@@ -31,6 +122,7 @@ const Layout = ({name, title, children, sections}) => (
               frontmatter {
                 title
                 path
+                order
               }
             }
           }
@@ -38,7 +130,22 @@ const Layout = ({name, title, children, sections}) => (
       }
     `}
     render={data => {
-      const {edges: pages} = data.allMarkdownRemark || {edges: []};
+      const {edges: files} = data.allMarkdownRemark || {edges: []};
+      const pages = files.map(({node}) => node);
+
+      const topLevel = pages
+        .filter(p => Boolean(p.frontmatter.order))
+        .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
+
+      const components = pages
+        .filter(
+          p => p.frontmatter && p.frontmatter.path && p.frontmatter.path.includes('/components/')
+        )
+        .map(page => ({
+          to: page.frontmatter.path,
+          label: page.frontmatter.title,
+          links: page.frontmatter.title === 'Components' ? components : [],
+        }));
 
       return (
         <>
@@ -48,10 +155,11 @@ const Layout = ({name, title, children, sections}) => (
               <EzAppLayout>
                 <EzNavigation
                   home={{href: '/', label: 'Recipe'}}
-                  links={pages.map(({node: component}) => ({
-                    to: component.frontmatter.path,
-                    label: component.frontmatter.title,
-                    as: Link,
+                  links={topLevel.map(page => ({
+                    to: page.frontmatter.path,
+                    label: page.frontmatter.title,
+                    links: page.frontmatter.title === 'Components' ? components : [],
+                    as: Menu,
                   }))}
                 >
                   <EzPageHeader title={title} />
