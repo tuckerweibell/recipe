@@ -158,6 +158,10 @@ const Layout = ({name, title, children, sections, location}) => (
         as: Menu,
       }));
 
+      const activeLink = links.find(link => location.pathname.includes(link.to));
+      const relatedPages = activeLink && activeLink.links.map(l => ({...l, as: Link}));
+      const tabs = relatedPages && relatedPages.length < 5 ? relatedPages : undefined;
+
       return (
         <>
           <Helmet title={`Recipe - ${title}`} />
@@ -168,7 +172,12 @@ const Layout = ({name, title, children, sections, location}) => (
                   home={{href: '/', label: 'Recipe', logo: {src: ezCaterLogoPath, width: 100}}}
                   links={links}
                 >
-                  <EzPageHeader title={title} />
+                  <EzPageHeader
+                    title={title}
+                    subnav={
+                      tabs && {tabs, selected: tabs.find(tab => tab.to === location.pathname)}
+                    }
+                  />
                   <EzPage>
                     <EzCard>
                       {children ||

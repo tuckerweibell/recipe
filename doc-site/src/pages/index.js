@@ -137,7 +137,7 @@ const IndexPage = () => (
                 guidelines.
               </p>
               <EzLayout layout="basic">
-                <EzLink to="/components/" as={Link}>
+                <EzLink to="/components" as={Link}>
                   View components
                 </EzLink>
               </EzLayout>
@@ -146,7 +146,7 @@ const IndexPage = () => (
               <EzHeading size="3">Style</EzHeading>
               <p>Guidance on how to approach the visual elements of our applications.</p>
               <p>
-                <EzLink to="/styles" as={Link}>
+                <EzLink to="/styles/colors" as={Link}>
                   View styles
                 </EzLink>
               </p>
