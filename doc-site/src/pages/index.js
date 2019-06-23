@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
+import packageJson from '../../../package.json';
 import {EzLayout} from '@ezcater/recipe';
 import {ThemeProvider} from 'emotion-theming';
 import {
@@ -169,10 +170,11 @@ const IndexPage = () => (
             </EzLink>
           </Timeline>
 
-          <EzCard title="What’s new?" subtitle="Recipe v5.1.0" accent="info">
+          <EzCard title="What’s new?" subtitle={`Recipe v${packageJson.version}`} accent="info">
             <p>
-              A new and improved version of the Recipe React component library. Upgrade to v5.1.0
-              today to take advantage of our new features in your apps and projects.
+              A new and improved version of the Recipe React component library. Upgrade to v
+              {packageJson.version} today to take advantage of our new features in your apps and
+              projects.
             </p>
             <p>
               <EzLink to="/changelog/" as={Link}>
