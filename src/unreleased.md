@@ -35,6 +35,7 @@ title: 'Unreleased changes'
 - Fixed an issue with server-rendering/static rendering playground component (ResizeObserver undefined)
 - Deprecated target.selected in favor of target.value in the onChange callback parameters on checkboxes and radio buttons.
 - Add workaround for doc-site playground to ensure the navigation component docs render at a minimum height when the content of the playground determines it's height from the container (e.g. height: 100%).
+- Restore overflow:visible in EzCard to allow for "flyout" content to overflow the card container. Closes [#144](https://github.com/ezcater/recipe/issues/144).
 
 #### Documentation
 
