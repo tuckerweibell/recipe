@@ -96,3 +96,15 @@
   </EzPageSection>
 </EzPage>
 ```
+
+### Card doesn't clip overflow of absolutely positioned content
+
+```jsx
+<EzPage>
+  <EzPageSection use="aside">
+    <EzCard>
+      <EzField type="date" value="01/01/2020" autoFocus />
+    </EzCard>
+  </EzPageSection>
+</EzPage>
+```

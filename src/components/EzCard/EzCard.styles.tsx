@@ -16,7 +16,6 @@ export const CardContainer = styled.div<CardContainerProps>`
   background: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.border.base};
   border-radius: ${props => props.theme.borderRadius[2]};
-  overflow: hidden;
   ${accentStyles};
 `;
 

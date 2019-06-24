@@ -44,6 +44,9 @@ const borders = ({theme}) => css`
   tr:last-child td {
     border-bottom: none;
   }
+
+  overflow: hidden;
+  border-radius: ${theme.borderRadius[2]};
 `;
 
 const sortable = ({theme, sorted, sortable: isSortable}) =>
