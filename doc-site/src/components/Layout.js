@@ -169,7 +169,12 @@ const Layout = ({name, title, children, sections, location}) => (
             <div className={name}>
               <EzAppLayout>
                 <EzNavigation
-                  home={{href: '/', label: 'Recipe', logo: {src: ezCaterLogoPath, width: 100}}}
+                  home={{
+                    to: '/',
+                    as: Link,
+                    label: 'Recipe',
+                    logo: {src: ezCaterLogoPath, width: 100},
+                  }}
                   links={links}
                 >
                   <EzPageHeader
