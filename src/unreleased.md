@@ -37,6 +37,7 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Complete reskin of the doc-site, using Recipe components as the building blocks
 - update timeline/roadmap with recent releases
 
 #### Dependency upgrades
