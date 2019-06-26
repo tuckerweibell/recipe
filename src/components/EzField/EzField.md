@@ -118,16 +118,17 @@ Note: e.target.selected has been deprecated in favor of e.target.value
 
 ### Select list
 
-Allows the user to choose between a larger set of options than would be appropriate for radio buttons or check boxes. Use `type="select"` to enable the user to pick from a dropdown list of available options.
+Allows the user to choose between a larger set of options than would be appropriate for radio buttons. Use `type="select"` to enable the user to pick from a dropdown list of available options.
 
 ```jsx
 () => {
-  const [choice, setChoice] = React.useState('upcoming');
+  const [choice, setChoice] = React.useState(null);
   return (
     <EzFormLayout>
       <EzField
         type="select"
         label="Select dropdown"
+        placeholder="Choose..."
         options={[
           {label: 'All Upcoming', value: 'upcoming'},
           {label: 'Today', value: 'today'},
@@ -136,73 +137,6 @@ Allows the user to choose between a larger set of options than would be appropri
           {label: 'Yesterday', value: 'yesterday'},
           {label: 'Last 7 Days', value: 'week'},
           {label: 'This Month', value: 'month'},
-        ]}
-        value={choice}
-        onChange={e => setChoice(e.target.value)}
-      />
-    </EzFormLayout>
-  );
-};
-```
-
-### Select list with filtering
-
-Allows the user to choose from a list of options that may be longer than would be appropriate to display in a single scrollable list. Use the `options` prop to provide an async function that load a limited, filtered list of options. The `options` function will be provided a single `searchText` argument, representing any text the user has provided.
-
-```jsx
-() => {
-  const [choice, setChoice] = React.useState('upcoming');
-  return (
-    <EzFormLayout>
-      <EzField
-        type="select"
-        label="Select dropdown"
-        options={searchText =>
-          new Promise(resolve => {
-            // simulate async loading/filtering of options
-            setTimeout(
-              resolve,
-              100,
-              [
-                {label: 'All Upcoming', value: 'upcoming'},
-                {label: 'Today', value: 'today'},
-                {label: 'Tomorrow', value: 'tomorrow'},
-                {label: 'All Time', value: 'all'},
-                {label: 'Yesterday', value: 'yesterday'},
-                {label: 'Last 7 Days', value: 'week'},
-                {label: 'This Month', value: 'month'},
-              ].filter(o => o.label.includes(searchText))
-            );
-          })
-        }
-        value={choice}
-        onChange={e => setChoice(e.target.value)}
-      />
-    </EzFormLayout>
-  );
-};
-```
-
-### Select list with grouping
-
-Allows the user to choose from smaller lists of logically related options. Use a select list grouping to make the list of options easier to navigate to assist the user find the option they are looking for. The `group` prop should be applied to each option that belongs to a group, and represents the label that wil be used to group the items. Any options provided that do not have a group will be presented at the top of the options list.
-
-```jsx
-() => {
-  const [choice, setChoice] = React.useState('upcoming');
-  return (
-    <EzFormLayout>
-      <EzField
-        type="select"
-        label="Select dropdown with <optgroup>"
-        options={[
-          {label: 'All Upcoming', value: 'upcoming', group: 'Upcoming'},
-          {label: 'Today', value: 'today', group: 'Upcoming'},
-          {label: 'Tomorrow', value: 'tomorrow', group: 'Upcoming'},
-          {label: 'All Time', value: 'all', group: 'Past'},
-          {label: 'Yesterday', value: 'yesterday', group: 'Past'},
-          {label: 'Last 7 Days', value: 'week', group: 'Past'},
-          {label: 'This Month', value: 'month', group: 'Past'},
         ]}
         value={choice}
         onChange={e => setChoice(e.target.value)}

@@ -7,11 +7,12 @@ import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import {Props} from './EzField.types';
+import EzSelect from './EzSelect';
 
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
 const dateElements = ['date'];
-const htmlElements = [...inputElements, 'textarea'];
+const htmlElements = [...inputElements, 'textarea', 'select'];
 
 const Error = ({showError, error, active}: any) =>
   showError ? (
@@ -26,6 +27,7 @@ const Error = ({showError, error, active}: any) =>
 const resolveInputFromType = type => {
   if (choiceElements.includes(type)) return EzChoice;
   if (dateElements.includes(type)) return EzDateInput;
+  if (type === 'select') return EzSelect;
   if (inputElements.includes(type)) return 'input';
   return type;
 };
@@ -44,6 +46,7 @@ const Input = props => {
  */
 const EzField = (props: Props) => {
   const id = useUniqueId();
+  const labelId = useUniqueId();
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
   const isHtmlElement = htmlElements.includes(type as string);
   const isChoiceElement = choiceElements.includes(type as string);
@@ -58,12 +61,17 @@ const EzField = (props: Props) => {
 
   return (
     <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
-      <Label htmlFor={id} as={labelType} error={showError} position={labelPosition}>
+      <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}
       </Label>
       {!isHtmlElement && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
-      <Input id={id} {...props} {...wrapEvents(props, {onBlur, onFocus, onChange})} />
+      <Input
+        id={id}
+        aria-labelledby={labelId}
+        {...props}
+        {...wrapEvents(props, {onBlur, onFocus, onChange})}
+      />
       {isHtmlElement && <Error showError={showError} error={error} active={active} />}
       {'maxLength' in props && typeof value === 'string' && (
         <CharacterLimit>

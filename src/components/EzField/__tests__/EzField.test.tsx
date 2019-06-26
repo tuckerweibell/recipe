@@ -5,9 +5,11 @@ import {axe} from 'jest-axe';
 import 'jest-dom/extend-expect';
 import {act} from 'react-test-renderer';
 import {getByLabelText, getByText, fireEvent} from 'react-testing-library';
+import ReactTestUtils from 'react-dom/test-utils';
 import Component from 'react-component-component';
 import ezDateInputTests from './EzDateInput.test.md';
 import regressionTests from './EzField.test.md';
+import ezSelectTests from './EzSelect.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
@@ -19,6 +21,7 @@ describe('EzField', () => {
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
   visualSnapshots({markdown: ezDateInputTests, scope});
+  visualSnapshots({markdown: ezSelectTests, scope: {...scope, fireEvent}});
 
   it('should render with disabled input', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
@@ -353,6 +356,225 @@ describe('EzField', () => {
           resolve();
         }, 100);
       });
+    });
+  });
+
+  describe('select list', () => {
+    const inputLabel = 'Select dropdown';
+    const options = [
+      {label: 'All Upcoming', value: 'upcoming'},
+      {label: 'Today', value: 'today'},
+      {label: 'Tomorrow', value: 'tomorrow'},
+      {label: 'All Time', value: 'all'},
+      {label: 'Yesterday', value: 'yesterday'},
+      {label: 'Last 7 Days', value: 'week'},
+      {label: 'This Month', value: 'month'},
+    ];
+
+    it('should suppress default browser behavior to select input text when tab focused', () => {
+      const {container} = render(
+        <EzField type="select" label={inputLabel} options={options} value="upcoming" />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      // NOTE: We can't actually simulate the tab key causing the focus/select behavior
+      // as firing events does not change focus
+      // see: https://github.com/jsdom/jsdom/issues/2102#issuecomment-355340966
+      input.select();
+      act(() => ReactTestUtils.Simulate.select(input));
+
+      expect(input.selectionEnd - input.selectionStart).toEqual(0);
+    });
+
+    it('should move virtual focus with arrow keys', () => {
+      const {container} = render(
+        <EzField type="select" label={inputLabel} options={options} value="upcoming" />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      keyDown('ArrowDown');
+
+      const option1 = getByText(container, 'All Upcoming');
+      const option2 = getByText(container, 'Today');
+      const lastOption = getByText(container, 'This Month');
+
+      expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(option2).toHaveAttribute('aria-selected', 'false');
+
+      keyDown('ArrowDown');
+
+      expect(option1).toHaveAttribute('aria-selected', 'false');
+      expect(option2).toHaveAttribute('aria-selected', 'true');
+
+      keyDown('ArrowUp');
+
+      expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(option2).toHaveAttribute('aria-selected', 'false');
+
+      keyDown('ArrowUp');
+
+      expect(lastOption).toHaveAttribute('aria-selected', 'true');
+      expect(option1).toHaveAttribute('aria-selected', 'false');
+
+      keyDown('ArrowDown');
+
+      expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(lastOption).toHaveAttribute('aria-selected', 'false');
+    });
+
+    it('should move virtual focus by matching typed characters to an option', () => {
+      const {container} = render(
+        <EzField type="select" label={inputLabel} options={options} value="today" />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown('ArrowDown');
+
+      const optionAllUpcoming = getByText(container, 'All Upcoming');
+      const optionAllTime = getByText(container, 'All Time');
+
+      expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
+      expect(optionAllTime).toHaveAttribute('aria-selected', 'false');
+
+      keyDown('a');
+
+      expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'true');
+      expect(optionAllTime).toHaveAttribute('aria-selected', 'false');
+
+      keyDown('l');
+      keyDown('l');
+      keyDown(' ');
+      keyDown('t');
+
+      expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
+      expect(optionAllTime).toHaveAttribute('aria-selected', 'true');
+
+      // ignore subsequent "misses"
+      keyDown('z');
+
+      expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
+      expect(optionAllTime).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('should close the dropdown when escape is pressed', () => {
+      const {container, queryByText} = render(
+        <EzField type="select" label={inputLabel} options={options} value="upcoming" />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      fireEvent.mouseDown(input);
+
+      expect(queryByText('Today')).not.toBeNull();
+
+      keyDown('Escape');
+
+      expect(queryByText('Today')).toBeNull();
+    });
+
+    it('should trigger onChange for the current item when enter is pressed', () => {
+      const onChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown('ArrowDown');
+
+      // select the second next option (value is "today")
+      keyDown('ArrowDown');
+
+      keyDown('Enter');
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual('today');
+    });
+
+    it('should trigger onChange for the current item when space is pressed', () => {
+      const onChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown('ArrowDown');
+
+      // select the second next option (value is "today")
+      keyDown('ArrowDown');
+
+      keyDown(' ');
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual('today');
+    });
+
+    it('should trigger onChange for the current item when clicked', () => {
+      const onChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      // open the menu
+      fireEvent.mouseDown(input);
+
+      const option2 = getByText(container, 'Today');
+
+      fireEvent.mouseOver(option2);
+
+      fireEvent.click(option2);
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual('today');
     });
   });
 

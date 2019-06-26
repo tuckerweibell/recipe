@@ -5,7 +5,11 @@ type Choice = {
   value: ChoiceValue;
 };
 
-type ChoiceProps = {};
+type ListboxProps = {
+  type: 'select';
+  value?: ChoiceValue;
+  options: Choice[];
+};
 
 type SingleChoiceProps = {
   type: 'radio';
@@ -13,7 +17,7 @@ type SingleChoiceProps = {
   options: Choice[];
 };
 
-type MultipleChoiceProps = ChoiceProps & {
+type MultipleChoiceProps = {
   type: 'checkbox';
   value?: ChoiceValue[];
   options: Choice[];
@@ -37,6 +41,7 @@ type CustomFieldProps = {
 type FieldTypeProps =
   | SingleChoiceProps
   | MultipleChoiceProps
+  | ListboxProps
   | HtmlInputProps
   | DateInputProps
   | CustomFieldProps;
