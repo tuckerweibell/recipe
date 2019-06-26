@@ -79,7 +79,10 @@ const IFramePlayground = props => {
       setMargin(getComputedStyle(playgroundRef.current).marginLeft);
     };
 
+    iframe.contentWindow.onmousedown = resizeBasedOnContent;
     iframe.contentWindow.onclick = resizeBasedOnContent;
+    iframe.contentWindow.onfocus = resizeBasedOnContent;
+    iframe.contentWindow.onkeydown = resizeBasedOnContent;
 
     if ('ResizeObserver' in window) {
       const resizeObserver = new ResizeObserver(resizeBasedOnContent);
