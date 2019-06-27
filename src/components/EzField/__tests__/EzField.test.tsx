@@ -138,69 +138,70 @@ describe('EzField', () => {
 
   describe('date picker', () => {
     const inputLabel = 'Select delievery date';
-    it('should show calendar on focus', () => {
+    afterEach(jest.useRealTimers);
+    it('should show calendar on click', () => {
       const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
-      fireEvent.focus(getByLabelText(container, inputLabel));
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent('January 2019');
     });
     it('should show calendar on current date if value is empty', () => {
       const {container} = render(<EzField type="date" value="" label={inputLabel} />);
 
-      fireEvent.focus(getByLabelText(container, inputLabel));
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent(dayjs().format('MMMM YYYY'));
     });
     it('should decrement month on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.click(getByText(container, /Prev/));
 
       expect(container).toHaveTextContent('December 2018');
     });
     it('should increment month on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.click(getByText(container, /Next/));
 
       expect(container).toHaveTextContent('February 2019');
     });
     it('should change dates by pressing the left arrow on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowLeft'});
 
       expect(container).toHaveTextContent('December 2018');
     });
     it('should change dates by pressing the right arrow on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowRight'});
 
       expect(getByText(container, '2').getAttribute('tabindex')).toBe('0');
     });
     it('should change dates by pressing the down arrow on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowDown'});
 
       expect(getByText(container, '8').getAttribute('tabindex')).toBe('0');
     });
     it('should change dates by pressing the up arrow on calendar', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowUp'});
 
@@ -208,9 +209,10 @@ describe('EzField', () => {
       expect(container).toHaveTextContent('December 2018');
     });
     it('should select change dates by pressing the enter key on calendar', async () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      jest.useFakeTimers();
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(getByText(container, '2'), {key: 'ArrowRight'}); // Day
@@ -218,13 +220,15 @@ describe('EzField', () => {
       fireEvent.keyDown(getByText(container, '4'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(getByText(container, '5'), {key: 'Enter'});
 
-      fireEvent.focus(getByLabelText(container, inputLabel));
+      act(jest.runAllTimers);
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
       expect(getByText(container, '5').getAttribute('tabindex')).toBe('0');
     });
     it('should select change dates by pressing the space key on calendar', async () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+      jest.useFakeTimers();
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       fireEvent.keyDown(getByText(container, '1'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(getByText(container, '2'), {key: 'ArrowRight'}); // Day
@@ -232,20 +236,17 @@ describe('EzField', () => {
       fireEvent.keyDown(getByText(container, '4'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(getByText(container, '5'), {key: 'Space'});
 
-      fireEvent.focus(getByLabelText(container, inputLabel));
+      act(jest.runAllTimers);
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
       expect(getByText(container, '5').getAttribute('tabindex')).toBe('0');
     });
     it('should fire onchange when day is typed', () => {
       const handleChange = jest.fn();
       const {container} = render(
-        <EzField
-          type="date"
-          value="01/01/2019"
-          label={inputLabel}
-          autoFocus
-          onChange={handleChange}
-        />
+        <EzField type="date" value="01/01/2019" label={inputLabel} onChange={handleChange} />
       );
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       const input = container.querySelector('input');
 
@@ -258,14 +259,10 @@ describe('EzField', () => {
     it('should fire onchange when day is clicked', async () => {
       const handleChange = jest.fn();
       const {container} = render(
-        <EzField
-          type="date"
-          value="01/01/2019"
-          label={inputLabel}
-          autoFocus
-          onChange={handleChange}
-        />
+        <EzField type="date" value="01/01/2019" label={inputLabel} onChange={handleChange} />
       );
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       act(() => {
         fireEvent.click(getByText(container, '5'));
@@ -273,10 +270,12 @@ describe('EzField', () => {
 
       expect(handleChange).toHaveBeenCalled();
     });
-    it('should hide calendar when day is clicked', async () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" label={inputLabel} autoFocus />
-      );
+    it('should hide calendar when day is clicked', () => {
+      jest.useFakeTimers();
+
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent('January 2019');
 
@@ -287,18 +286,15 @@ describe('EzField', () => {
       // Calendar is still visible for 100 milliseconds to make clicking feel more solid
       expect(container).toHaveTextContent('January 2019');
 
-      await new Promise(resolve => {
-        setTimeout(() => {
-          // Calendar has closed after 100 milliseconds
-          expect(container).not.toHaveTextContent('January 2019');
-          resolve();
-        }, 200);
-      });
+      // Fast-forward until all timers have been executed
+      act(jest.runAllTimers);
+
+      expect(container).not.toHaveTextContent('January 2019');
     });
     it('should hide calendar on escape', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" autoFocus label={inputLabel} />
-      );
+      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent('January 2019');
 
@@ -306,7 +302,7 @@ describe('EzField', () => {
 
       expect(container).not.toHaveTextContent('January 2019');
 
-      fireEvent.focus(getByLabelText(container, inputLabel));
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent('January 2019');
 
@@ -315,56 +311,21 @@ describe('EzField', () => {
 
       expect(container).not.toHaveTextContent('January 2019');
     });
-    it('should hide calendar on escape and then open after click inside input', () => {
-      const {container} = render(
-        <EzField type="date" value="01/01/2019" autoFocus label={inputLabel} />
-      );
-
-      expect(container).toHaveTextContent('January 2019');
-
-      fireEvent.keyDown(getByLabelText(container, inputLabel), {key: 'Escape'});
-
-      expect(container).not.toHaveTextContent('January 2019');
-
-      fireEvent.click(getByLabelText(container, inputLabel));
-
-      expect(container).toHaveTextContent('January 2019');
-    });
-    it('should toggle calendar on enter', () => {
-      const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
-
-      expect(container).not.toHaveTextContent('January 2019');
-
-      fireEvent.keyDown(getByLabelText(container, inputLabel), {key: 'Enter'});
-
-      expect(container).toHaveTextContent('January 2019');
-
-      fireEvent.keyDown(getByLabelText(container, inputLabel), {key: 'Enter'});
-
-      expect(container).not.toHaveTextContent('January 2019');
-
-      fireEvent.keyDown(getByLabelText(container, inputLabel), {key: 'Enter'});
-
-      expect(container).toHaveTextContent('January 2019');
-    });
     it('should hide calendar on click outside', async () => {
       const {container} = render(
         <>
           <button type="button">Outside Button</button>
-          <EzField type="date" value="01/01/2019" autoFocus label={inputLabel} />
+          <EzField type="date" value="01/01/2019" label={inputLabel} />
         </>
       );
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
 
       expect(container).toHaveTextContent('January 2019');
 
       fireEvent.mouseDown(getByText(container, /Outside Button/));
 
-      await new Promise(resolve => {
-        setTimeout(() => {
-          expect(container).not.toHaveTextContent('January 2019');
-          resolve();
-        }, 100);
-      });
+      expect(container).not.toHaveTextContent('January 2019');
     });
   });
 

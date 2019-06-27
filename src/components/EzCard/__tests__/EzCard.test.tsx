@@ -3,10 +3,19 @@ import {EzCard, EzCardSection, EzCardExpandable} from '..';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {renderToStaticMarkup} from 'react-dom/server';
+import {fireEvent} from 'react-testing-library';
 import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzPageSection, EzLayout, EzButton, EzField} from '../../index';
+
+const Open = ({children, containerRef}) => {
+  React.useEffect(() => {
+    const input = containerRef.current.querySelector('input');
+    fireEvent.mouseDown(input);
+  }, [containerRef]);
+  return children;
+};
 
 const scope = {
   EzButton,
@@ -17,6 +26,7 @@ const scope = {
   EzPage,
   EzPageSection,
   EzField,
+  Open,
 };
 
 describe('EzCard', () => {

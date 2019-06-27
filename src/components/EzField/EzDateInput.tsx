@@ -1,92 +1,80 @@
 import React, {useState, useEffect, useRef} from 'react';
 import dayjs from 'dayjs';
-
-import {useOnClickOutside} from '../../utils/hooks';
-import {wrapEvents} from '../../utils';
-import {StyledInput, CalendarWrapper} from './EzDateInput.styles';
-
+import {CalendarWrapper, Container, Combobox} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
+import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
+import {useUpdateEffect} from '../../utils/hooks';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
 
-export default props => {
-  const {name, disabled, placeholder = 'Select date', onBlur, onChange} = props;
+const EzDateInput = ({id, name, disabled, onChange, ...props}) => {
+  const {placeholder = 'Select date'} = props;
+  const ariaLabelledBy = props['aria-labelledby'];
 
-  const inputRef = useRef();
-  const calendarWrapperRef = useRef();
-
-  const [previousValidDate, setPreviousValidDate] = useState(props.value);
   const [value, setValue] = useState(props.value);
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [validDate, setValidDate] = useState(null);
 
-  const didMountRef = useRef(false);
-  const restoreFocus = useRef(false);
+  const comboboxState = useComboboxState();
+  const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
+    ...props,
+    'aria-haspopup': true,
+    disabled,
+    opened: comboboxState.visible,
+  });
+
+  const {hide, visible} = comboboxState;
+
   const timeout = useRef(null);
 
-  const show = () => setShowCalendar(true);
-  const hide = () => {
-    restoreFocus.current = true;
-    (inputRef.current as any).focus();
-    setShowCalendar(false);
-  };
-  const toggle = () => setShowCalendar(s => !s);
+  useEffect(() => () => clearTimeout(timeout.current), []);
 
   useEffect(() => {
-    if (didMountRef.current) {
-      if (value) onChange(value);
-      if (dayjs(value).isValid()) setPreviousValidDate(value);
-    } else didMountRef.current = true;
-  }, [value, onChange]);
+    if (dayjs(value).isValid()) setValidDate(value);
+  }, [value]);
 
-  useEffect(() => {
-    return () => clearTimeout(timeout.current);
-  }, []);
+  useUpdateEffect(() => {
+    onChange(validDate);
+  }, [validDate, onChange]);
 
-  useEffect(() => {
-    if (!showCalendar) onBlur();
-  }, [showCalendar, onBlur]);
+  const comboboxInput = useComboboxInput(comboboxState, {
+    id,
+    name,
+    value,
+    'aria-labelledby': ariaLabelledBy,
+    onChange: e => {
+      setValue(e.target.value);
+      onChange(e.target.value);
+    },
+    disabled,
+    placeholder,
+  });
 
-  useOnClickOutside(hide, [inputRef, calendarWrapperRef]);
+  const comboboxFlyout = useComboboxFlyout(comboboxState);
 
   return (
-    <>
-      <StyledInput
-        innerRef={inputRef}
-        id={props.id}
-        name={name}
-        value={value || ''}
-        onChange={e => setValue(e.target.value)}
-        {...wrapEvents(props, {
-          onFocus: () => {
-            if (!restoreFocus.current) show();
-            restoreFocus.current = false;
-          },
-          onClick: show,
-          onKeyDown: event => {
-            if (event.key === 'Escape') hide();
-            if (event.key === 'Enter') toggle();
-          },
-        })}
-        placeholder={placeholder}
-        disabled={disabled}
-        autoFocus={props.autoFocus}
-      />
-      {showCalendar && (
+    <Container innerRef={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
+      <Combobox {...combobox}>
+        <input {...comboboxInput} />
+      </Combobox>
+      {visible && (
         <CalendarWrapper
-          innerRef={calendarWrapperRef}
+          {...comboboxFlyout}
           onKeyDown={event => {
             if (event.key === 'Escape') hide();
           }}
         >
           <EzCalendar
-            value={previousValidDate}
+            value={validDate}
             onChange={date => {
               setValue(date);
+              comboboxInput.ref.current.focus();
               timeout.current = setTimeout(hide, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
             }}
           />
         </CalendarWrapper>
       )}
-    </>
+    </Container>
   );
 };
+
+export default EzDateInput;

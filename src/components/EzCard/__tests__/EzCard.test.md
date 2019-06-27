@@ -100,11 +100,21 @@
 ### Card doesn't clip overflow of absolutely positioned content
 
 ```jsx
-<EzPage>
-  <EzPageSection use="aside">
-    <EzCard>
-      <EzField type="date" value="01/01/2020" autoFocus />
-    </EzCard>
-  </EzPageSection>
-</EzPage>
+() => {
+  const containerRef = React.createRef();
+
+  return (
+    <div ref={containerRef}>
+      <EzPage>
+        <EzPageSection use="aside">
+          <EzCard>
+            <Open containerRef={containerRef}>
+              <EzField type="date" value="01/01/2020" />
+            </Open>
+          </EzCard>
+        </EzPageSection>
+      </EzPage>
+    </div>
+  );
+};
 ```
