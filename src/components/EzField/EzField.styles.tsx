@@ -107,6 +107,7 @@ const callout = ({theme, active}: any) => css`
     margin-top: -${theme.spacing.xs2};
     position: absolute;
     user-select: none;
+    z-index: 1;
     ${!active && hideVisually()}
   }
 `;

@@ -6,17 +6,19 @@ import 'jest-dom/extend-expect';
 import {act} from 'react-test-renderer';
 import {getByLabelText, getByText, fireEvent} from 'react-testing-library';
 import Component from 'react-component-component';
-import regressionTests from './EzDateInput.test.md';
+import ezDateInputTests from './EzDateInput.test.md';
+import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
-import {EzFormLayout} from '../../index';
+import {EzFormLayout, EzLayout} from '../../index';
 
-const scope = {EzField, EzFormLayout, Component};
+const scope = {EzField, EzLayout, EzFormLayout, Component};
 
 describe('EzField', () => {
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
+  visualSnapshots({markdown: ezDateInputTests, scope});
 
   it('should render with disabled input', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
