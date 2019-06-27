@@ -62,7 +62,7 @@ const EzCalendar = ({value, onChange}) => {
     if (dayjs(value).isValid()) setFocusedDate(dayjs(value));
   }, [value]);
 
-  const handleKeyInput = e => {
+  const handleKeyInput = selectFocusedDate => e => {
     switch (e.key) {
       case 'ArrowLeft':
         e.preventDefault();
@@ -83,7 +83,7 @@ const EzCalendar = ({value, onChange}) => {
       case 'Space':
       case 'Enter':
         e.preventDefault();
-        onChange(e.target.value);
+        selectFocusedDate();
         break;
       default:
         break;
@@ -124,16 +124,15 @@ const EzCalendar = ({value, onChange}) => {
             <Row key={weekIndex}>
               {week.map((day, dayIndex) => {
                 const currentDay = focusedDate.set('date', day);
+                const selectDate = () => onChange(currentDay.format(t('DATE_FORMAT')));
                 return (
                   <Day key={dayIndex} isSelected={currentDay.isSame(selectedDate)}>
                     {day && (
                       <button
                         ref={refs[day - 1]}
                         type="button"
-                        onClick={() => {
-                          onChange(currentDay.format(t('DATE_FORMAT')));
-                        }}
-                        onKeyDown={handleKeyInput}
+                        onClick={selectDate}
+                        onKeyDown={handleKeyInput(selectDate)}
                         aria-label={currentDay.format('dddd, MMMM D, YYYY').toString()}
                         tabIndex={day === focusedDate.date() ? 0 : -1}
                       >
