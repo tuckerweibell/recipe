@@ -15,7 +15,7 @@ function borderRadius(side: 'top' | 'bottom', radius: string | number) {
   `;
 }
 
-const inputBase = ({theme}) => css`
+const inputBase = ({theme, error}) => css`
   display: block;
   color: ${theme.colors.text.base};
   width: 100%;
@@ -27,6 +27,10 @@ const inputBase = ({theme}) => css`
 
   :enabled {
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+
+    :hover {
+      border-color: ${!error && theme.colors.interactive.hover.border};
+    }
   }
 `;
 
