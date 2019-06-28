@@ -18,7 +18,7 @@ const activeTab = ({theme, active}) =>
   css`
     box-shadow: inset 0 -2px 0 0 ${theme.colors.interactive.focus.outline};
 
-    > * {
+    && > * {
       color: ${theme.colors.text.base};
 
       :focus {

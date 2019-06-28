@@ -63,6 +63,6 @@ export const Fieldset = styled.div`
   align-items: center;
 
   & input {
-    ${hideVisually()};
+    ${hideVisually};
   }
 `;

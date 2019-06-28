@@ -2,7 +2,7 @@ import {css} from 'emotion';
 import {EzCardSection} from '../EzCard';
 import styled, {Theme} from '../../themes/styled';
 
-const fullBleed = css`
+const fullBleed = () => css`
   padding: 0;
 `;
 
@@ -18,7 +18,7 @@ const spacing = ({theme}) => css`
   }
 `;
 
-const interactiveStyles = css`
+const interactiveStyles = () => css`
   cursor: pointer;
   user-select: none;
 `;
@@ -52,7 +52,7 @@ const borders = ({theme}) => css`
 const sortable = ({theme, sorted, sortable: isSortable}) =>
   isSortable &&
   css`
-    ${interactiveStyles};
+    ${interactiveStyles()};
 
     span {
       display: inline-flex;

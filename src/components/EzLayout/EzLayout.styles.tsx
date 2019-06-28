@@ -1,11 +1,11 @@
 import {css} from 'react-emotion';
 import {responsive} from '../../styles';
 
-export const base = css`
+export const base = () => css`
   display: flex;
 `;
 
-const reset = css`
+const reset = () => css`
   align-items: normal;
   flex-direction: row;
   justify-content: normal;
@@ -21,7 +21,7 @@ export const basic = () => css`
   justify-content: flex-start;
 `;
 
-export const right = css`
+export const right = () => css`
   align-items: center;
   justify-content: flex-end;
 `;
@@ -41,7 +41,7 @@ export const split = () => css`
   justify-content: space-between;
 `;
 
-export const stack = css`
+export const stack = () => css`
   flex-direction: column;
 `;
 
@@ -68,5 +68,5 @@ export const spacing = responsive('layout', {
   right: leftSpacing,
   equal: leftSpacing,
   stack: topSpacing,
-  reset: setSpacing(0, 0),
+  reset: () => setSpacing(0, 0),
 });

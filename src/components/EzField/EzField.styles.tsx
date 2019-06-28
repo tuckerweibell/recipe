@@ -69,7 +69,7 @@ export const Helper = styled.div`
   margin-top: ${({theme}) => theme.spacing.xs};
 `;
 
-const detached = css`
+const detached = () => css`
   box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
   ${borderRadius('top', calloutBorderRadius)};
 `;
@@ -86,7 +86,7 @@ const callout = ({theme, active}: any) => css`
 
   fieldset & {
     margin-top: 0.5em;
-    ${detached};
+    ${detached()};
   }
 
   &::before {
@@ -103,7 +103,7 @@ const callout = ({theme, active}: any) => css`
   }
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
-    ${detached};
+    ${detached()};
     margin-top: -${theme.spacing.xs2};
     position: absolute;
     user-select: none;
@@ -135,7 +135,7 @@ export const InputIconContainer = styled.div`
   }
 `;
 
-const fieldsetResets = css`
+const fieldsetResets = () => css`
   border: none;
   margin: 0;
   padding: 0;

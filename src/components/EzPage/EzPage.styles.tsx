@@ -11,7 +11,7 @@ export const base = ({theme}) => css`
 `;
 
 // This allows us to gradually roll out style resets. Eventually they will move to a more typically global location.
-export const resets = css`
+export const resets = () => css`
   p {
     margin: 0;
   }

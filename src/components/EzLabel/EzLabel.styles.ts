@@ -42,7 +42,7 @@ const position = variant('position', {
   bottom,
   left,
   right,
-  hidden: hideVisually(),
+  hidden: hideVisually,
 });
 
 export default styled.div<any>(base, position, size, error);

@@ -36,7 +36,7 @@ export default (prop, values) => props => {
       createMediaQuery(
         breakpoints[breakpointName],
         getValue(props, values[variantName]),
-        values.reset
+        getValue(props, values.reset)
       ),
     ];
   }, []);
