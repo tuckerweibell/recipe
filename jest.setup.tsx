@@ -7,8 +7,8 @@ import {toHaveNoViolations} from 'jest-axe';
 import * as emotion from 'emotion';
 import {configure as configureSosia} from 'sosia';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
-import {MarkdownSource} from 'sosia-markdown';
 import {injectGlobal} from 'emotion';
+import markdownSource from './emotionComponentSource';
 
 configure({adapter: new Adapter()});
 
@@ -85,9 +85,7 @@ configureSosia({
       height: 768,
     }),
   },
-  sources: {
-    documentation: new MarkdownSource(),
-  },
+  sources: {documentation: markdownSource},
 });
 
 // extend jest timeout for snapshots running on CI
