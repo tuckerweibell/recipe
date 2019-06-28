@@ -99,7 +99,7 @@ export const colors = {
     },
     disabled: {
       background: grays[200],
-      foreground: grays[400],
+      foreground: grays[600],
     },
     hover: {
       background: grays[100],
