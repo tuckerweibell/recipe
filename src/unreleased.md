@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added `fonts` object to standard theme with grouped styles.
+
 #### Design updates
 
 #### Bug fixes

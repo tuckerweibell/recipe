@@ -8,27 +8,32 @@ function remToPx(rem) {
   return rem.replace('rem', '') * standard.baseFontSize.replace('px', '') + 'px';
 }
 
-const Combination = props => {
+const nicifyName = name => {
+  return name.replace(/([A-Z])/g, ' $1').replace(/(^[a-z])/, match => match.toUpperCase());
+};
+
+const Combination = ({font}) => {
   return (
-    <tr
-      className={css`
-        line-height: 1;
-      `}
-    >
-      <td
-        className={css`
-          font-size: ${standard.fontSizes[props.size]};
-          font-weight: ${standard.fontWeights[props.weight]};
-        `}
-      >
-        {props.usage}
-      </td>
-      <td>{remToPx(standard.fontSizes[props.size])}</td>
-      <td>{props.weight}</td>
+    <tr key={font}>
       <td>
-        <code>
-          theme.fontSizes[{props.size}], theme.fontWeights.{props.weight}
-        </code>
+        <span
+          className={css`
+            ${standard.fonts[font]};
+          `}
+        >
+          {nicifyName(font)}
+        </span>
+      </td>
+      <td>{remToPx(standard.fonts[font].fontSize)}</td>
+      <td>
+        {
+          Object.keys(standard.fontWeights).filter(
+            weight => standard.fontWeights[weight] === standard.fonts[font].fontWeight
+          )[0]
+        }
+      </td>
+      <td>
+        <code>{`theme.fonts.${font}`}</code>
       </td>
     </tr>
   );
@@ -46,14 +51,9 @@ export default props => {
         </tr>
       </thead>
       <tbody>
-        <Combination usage="Page titles" size="700" weight="normal" />
-        <Combination usage="On-page headings" size="600" weight="normal" />
-        <Combination usage="Container headings" size="500" weight="bold" />
-        <Combination usage="Navigation / tabs" size="400" weight="normal" />
-        <Combination usage="Labels" size="300" weight="bold" />
-        <Combination usage="Body text" size="300" weight="normal" />
-        <Combination usage="Small stuff" size="200" weight="normal" />
-        <Combination usage="STATUSES" size="100" weight="normal" />
+        {Object.keys(standard.fonts).map(font => (
+          <Combination font={font} />
+        ))}
       </tbody>
     </table>
   );

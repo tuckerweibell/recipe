@@ -11,6 +11,12 @@ We strongly recommend sticking to the combinations outlined in this section. How
 
 <FontCombinations></FontCombinations>
 
+### Line Height
+
+Demo of all font combinations with variable string lengths to preview line height.
+
+<FontLineHeights></FontLineHeights>
+
 ### Font Sizes
 
 Full list of font size variables. Example usage:

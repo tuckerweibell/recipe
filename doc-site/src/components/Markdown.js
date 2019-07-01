@@ -7,6 +7,7 @@ import * as Components from '@ezcater/recipe';
 import {ColorDefinition, Example} from './ColorVariables';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
+import FontLineHeights from './FontLineHeights';
 import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
@@ -56,6 +57,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     hoverexample: Example.Hover,
     spacingvariables: SpacingVariables,
     fontcombinations: FontCombinations,
+    fontlineheights: FontLineHeights,
     fontsizes: FontSizes,
     fontweights: FontWeights,
     ezalert: Components.EzAlert,
