@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useHiddenState, useHidden} from 'reakit/Hidden';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useOnClickOutside} from '../../utils/hooks';
+import {useOnClickOutside, useScrollIntoView} from '../../utils/hooks';
 
 const useListbox = () => {
   // eslint-disable-next-line @typescript-eslint/camelcase
@@ -16,6 +16,8 @@ export default ({id, options, value, onChange, ...rest}) => {
   const selectedOption = options[selectedIndex];
   const ariaLabelledBy = rest['aria-labelledby'];
   const clickOutsideRef = useRef();
+  const scrollableRef = useRef<HTMLElement>();
+  const activeOptionRef = useRef<HTMLLIElement>();
   const inputRef = useRef<HTMLInputElement>();
 
   const [activeIndex, setActiveIndex] = useState(selectedIndex);
@@ -105,6 +107,11 @@ export default ({id, options, value, onChange, ...rest}) => {
     if (!visible) selectItem(activeIndex)({target: {}});
   }, [activeIndex, visible, selectItem]);
 
+  useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
+    activeIndex,
+    visible,
+  ]);
+
   return (
     <Container innerRef={clickOutsideRef} hasError={rest.touched && rest.error} opened={visible}>
       <Combobox
@@ -139,7 +146,12 @@ export default ({id, options, value, onChange, ...rest}) => {
         /* eslint-disable jsx-a11y/click-events-have-key-events */
         /* eslint-disable jsx-a11y/mouse-events-have-key-events */
         /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
-        <Listbox aria-labelledby={ariaLabelledBy} role="listbox" id={listboxId}>
+        <Listbox
+          aria-labelledby={ariaLabelledBy}
+          role="listbox"
+          id={listboxId}
+          innerRef={scrollableRef}
+        >
           {options.map((result, i) => (
             <li
               role="option"
@@ -150,6 +162,7 @@ export default ({id, options, value, onChange, ...rest}) => {
                 selectItem(i)(e);
                 inputRef.current.focus();
               }}
+              ref={activeIndex === i ? activeOptionRef : undefined}
               onMouseOver={() => setActiveIndex(i)}
               id={`${id}-result-item-${i}`}
             >

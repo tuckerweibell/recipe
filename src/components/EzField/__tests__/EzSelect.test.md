@@ -189,3 +189,36 @@
   );
 };
 ```
+
+### Long select list
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+
+  const Open = ({children}) => {
+    React.useEffect(() => {
+      const input = containerRef.current.querySelector('input');
+      fireEvent.mouseDown(input);
+    }, []);
+    return children;
+  };
+
+  return (
+    <div ref={containerRef}>
+      <Open>
+        <EzFormLayout>
+          <EzField
+            type="select"
+            label="Select dropdown"
+            options={'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+              .split('')
+              .map(letter => ({label: letter, value: letter}))}
+            value="D"
+          />
+        </EzFormLayout>
+      </Open>
+    </div>
+  );
+};
+```

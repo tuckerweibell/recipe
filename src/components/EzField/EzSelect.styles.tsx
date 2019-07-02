@@ -15,6 +15,7 @@ const listbox = ({theme}) => css`
   z-index: 1;
   overflow: scroll;
   margin-top: ${theme.spacing.xs2};
+  max-height: 20rem;
 
   li {
     cursor: default;
