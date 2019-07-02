@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useHiddenState, useHidden} from 'reakit/Hidden';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useOnClickOutside, useScrollIntoView} from '../../utils/hooks';
+import {useOnClickOutside, useScrollIntoView, useJumpToOption} from '../../utils/hooks';
 
 const useListbox = () => {
   // eslint-disable-next-line @typescript-eslint/camelcase
@@ -23,7 +23,6 @@ export default ({id, options, value, onChange, ...rest}) => {
   const [activeIndex, setActiveIndex] = useState(selectedIndex);
 
   const {id: listboxId, visible, hide, show, toggle} = useListbox();
-  const [keys, setKeys] = useState([]);
 
   useOnClickOutside(hide, [clickOutsideRef]);
 
@@ -43,65 +42,40 @@ export default ({id, options, value, onChange, ...rest}) => {
     [hide, onChange, options]
   );
 
+  const move = useCallback(option => setActiveIndex(options.indexOf(option)), [
+    options,
+    setActiveIndex,
+  ]);
+
   const handleKeyDown = e => {
     const key = e.key;
 
     if (['ArrowUp', 'ArrowDown'].includes(key)) e.preventDefault();
 
-    if (!visible && !keys.length && ['ArrowUp', 'ArrowDown', ' '].includes(key)) {
+    if (!visible && ['ArrowUp', 'ArrowDown', ' '].includes(key)) {
       show();
       return;
     }
 
-    switch (key) {
-      case 'Escape':
+    const select = () => selectItem(activeIndex)(e);
+
+    const keyMap = {
+      Escape: () => {
+        setActiveIndex(-1);
         hide();
-        return;
-      case 'ArrowUp':
-        setActiveIndex(activeIndex <= 0 ? options.length - 1 : activeIndex - 1);
-        break;
-      case 'ArrowDown':
+      },
+      ArrowUp: () => setActiveIndex(activeIndex <= 0 ? options.length - 1 : activeIndex - 1),
+      ArrowDown: () =>
         setActiveIndex(
           activeIndex === -1 || activeIndex >= options.length - 1 ? 0 : activeIndex + 1
-        );
-        break;
-      case ' ':
-        if (keys.length) {
-          setKeys(current => current.concat(key));
-          return;
-        }
-        selectItem(activeIndex)(e);
-        return;
-      case 'Enter':
-        selectItem(activeIndex)(e);
-        return;
-      default:
-        setKeys(current => current.concat(key));
-        break;
-    }
+        ),
+      ' ': select,
+      Enter: select,
+    };
+
+    const action = keyMap[key];
+    if (action) action(e);
   };
-
-  useEffect(() => {
-    if (!keys.length) return function noop() {};
-
-    // clear out the current key presses after a short delay
-    const timeout = setTimeout(setKeys, 600, []);
-
-    const reset = () => clearTimeout(timeout);
-
-    const searchText = keys.join('').toLowerCase();
-
-    // first try a full match on what the user typed
-    const matches = options.filter(option => option.label.toLowerCase().startsWith(searchText));
-
-    if (!matches.length) return reset;
-
-    const newIndex = options.indexOf(matches[0]);
-
-    setActiveIndex(newIndex);
-
-    return reset;
-  }, [keys, selectItem, options]);
 
   useEffect(() => {
     if (!visible) selectItem(activeIndex)({target: {}});
@@ -111,6 +85,8 @@ export default ({id, options, value, onChange, ...rest}) => {
     activeIndex,
     visible,
   ]);
+
+  useJumpToOption(inputRef, {options, move});
 
   return (
     <Container innerRef={clickOutsideRef} hasError={rest.touched && rest.error} opened={visible}>

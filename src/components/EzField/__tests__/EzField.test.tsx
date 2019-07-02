@@ -462,6 +462,12 @@ describe('EzField', () => {
 
       expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
       expect(optionAllTime).toHaveAttribute('aria-selected', 'true');
+
+      // ignore non-alphanumeric characters
+      keyDown('*');
+
+      expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
+      expect(optionAllTime).toHaveAttribute('aria-selected', 'true');
     });
 
     it('should close the dropdown when escape is pressed', () => {
