@@ -1,7 +1,12 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useHiddenState, useHidden} from 'reakit/Hidden';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useOnClickOutside, useScrollIntoView, useJumpToOption} from '../../utils/hooks';
+import {
+  useOnClickOutside,
+  useScrollIntoView,
+  useJumpToOption,
+  useEventListenerOutside,
+} from '../../utils/hooks';
 
 const useListbox = () => {
   // eslint-disable-next-line @typescript-eslint/camelcase
@@ -25,6 +30,7 @@ export default ({id, options, value, onChange, ...rest}) => {
   const {id: listboxId, visible, hide, show, toggle} = useListbox();
 
   useOnClickOutside(hide, [clickOutsideRef]);
+  useEventListenerOutside(hide, 'focusin', [clickOutsideRef]);
 
   const selectItem = useCallback(
     i => e => {
