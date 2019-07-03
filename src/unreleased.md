@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix z-index issue with validation message flyout appearing underneath subsequent content
+
 #### Documentation
 
 #### Dependency upgrades
