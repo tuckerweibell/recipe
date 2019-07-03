@@ -22,3 +22,5 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+
+- Fixed an issue with emotion css-in-js leaking state across visual regression test runs
