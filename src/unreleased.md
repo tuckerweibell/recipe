@@ -11,6 +11,7 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Support for `EzField[type="Select"]` to allow users to pick from a dropdown list of options.
 - Added `fonts` object to standard theme with grouped styles.
 
 #### Design updates
