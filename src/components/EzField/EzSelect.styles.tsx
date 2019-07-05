@@ -89,5 +89,6 @@ export const Combobox = styled(Field)`
     transform: translateY(-50%) rotate(${iconRotate});
     transform-origin: 50% 50%;
     transition: transform 0.3s;
+    pointer-events: none;
   }
 `;
