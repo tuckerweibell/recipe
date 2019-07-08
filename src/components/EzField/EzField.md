@@ -148,22 +148,55 @@ Allows the user to choose between a larger set of options than would be appropri
 
 ### Date input field
 
-Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Optionally, the `autoFocus` prop can be supplied to automatically show the calendar and focus the date input.
+Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar.
 
 ```jsx
 () => {
   const [date, setDate] = React.useState('01/01/2020');
   return (
-    <EzField
-      type="date"
-      value={date}
-      label="Select delivery date"
-      helperText="This is the date your food will be delivered."
-      onChange={value => setDate(value)}
-    />
+    <EzFormLayout>
+      <EzField
+        type="date"
+        value={date}
+        label="Select delivery date"
+        helperText="This is the date your food will be delivered."
+        onChange={value => setDate(value)}
+      />
+    </EzFormLayout>
   );
 };
 ```
+
+Times in this component are displayed with the format h:mma, for example, `9:45am`.
+
+### Time input field
+
+Allows the user to pick a time from a select dropdown. Use `type="time"` to enable the user to pick a time from a select dropdown. An optional range can be used to limit the number of options in the select dropdown. Use `start="9:00am"` to specify the start of the range, and `end="5:00pm"` to specify the end of the range. An optional step can change the interval in which the times are generated. By default the step is `60` minutes. You can change it by adding `step={15}`.
+
+The steps that are supported are: `5`, `10`, `15`, `20`, `30`, `60`
+
+```jsx
+() => {
+  const [time, setTime] = React.useState('12:00 pm');
+  return (
+    <EzFormLayout>
+      <EzField
+        type="time"
+        value={time}
+        start="9:00 am"
+        end="5:00 pm"
+        step={30}
+        label="Select delivery time"
+        placeholder="Choose..."
+        helperText="This is the time your food will be delivered."
+        onChange={e => setTime(e.target.value)}
+      />
+    </EzFormLayout>
+  );
+};
+```
+
+Dates in this component are displayed with the format `MM/DD/YYYY`.
 
 ### Custom input field
 

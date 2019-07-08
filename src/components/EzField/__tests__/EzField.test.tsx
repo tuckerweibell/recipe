@@ -12,6 +12,7 @@ import regressionTests from './EzField.test.md';
 import ezSelectTests from './EzSelect.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
+import {useTimeRangeOptions} from '../EzTimeInput';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
 import {EzFormLayout, EzLayout} from '../../index';
 
@@ -582,6 +583,18 @@ describe('EzField', () => {
 
       expect(lastCall[0].target.value).toEqual('today');
     });
+  });
+
+  it('should generate the correct time range options', () => {
+    const timeRange = useTimeRangeOptions({start: '9:00 am', end: '5:00 pm', step: 60});
+
+    expect(timeRange.length).toBe(9);
+  });
+
+  it('should generate the correct time range options (without space between time and meridiem)', () => {
+    const timeRange = useTimeRangeOptions({start: '9:00am', end: '5:00pm', step: 60});
+
+    expect(timeRange.length).toBe(9);
   });
 
   it('should update character count as the user enters text', () => {
