@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {EzStatusContainer} from './EzStatus.styles';
 import {EzStatusProps} from './EzStatus.types';
 import {DotIcon} from '../Icons';
 
-const EzStatus: React.FC<EzStatusProps> = props => {
+const EzStatus = forwardRef<HTMLElement, EzStatusProps>((props, ref) => {
   return (
-    <EzStatusContainer {...props}>
+    <EzStatusContainer {...props} innerRef={ref}>
       {['attention', 'warning', 'error'].includes(props.use) && <DotIcon />} {props.text}
     </EzStatusContainer>
   );
-};
+});
 
 EzStatus.defaultProps = {
   size: 'normal',

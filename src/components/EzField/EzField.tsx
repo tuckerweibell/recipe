@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
@@ -47,7 +47,7 @@ const Input = props => {
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
  */
-const EzField = (props: Props) => {
+const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const id = useUniqueId();
   const labelId = useUniqueId();
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
@@ -63,7 +63,14 @@ const EzField = (props: Props) => {
   const labelPosition = labelHidden ? 'hidden' : undefined;
 
   return (
-    <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
+    <Field
+      touched={touched}
+      error={error}
+      disabled={disabled}
+      as={fieldType}
+      {...mouseEvents}
+      innerRef={ref}
+    >
       <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}
       </Label>
@@ -83,7 +90,7 @@ const EzField = (props: Props) => {
       )}
     </Field>
   );
-};
+});
 
 /**
  * defaultProps

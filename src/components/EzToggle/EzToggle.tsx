@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {forwardRef, useRef, useState} from 'react';
 import {Container, Track} from './EzToggle.styles';
 import EzLabel from '../EzLabel';
 import EzInlineFeedback from '../EzInlineFeedback';
@@ -13,7 +13,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   status?: 'error' | 'progress' | 'success';
 };
 
-const EzToggle: React.FC<Props> = ({id, label, status, ...props}) => {
+const EzToggle = forwardRef<HTMLElement, Props>(({id, label, status, ...props}, ref) => {
   const [checked, setChecked] = useState(props.checked);
 
   const uniqueId = useUniqueId();
@@ -34,7 +34,7 @@ const EzToggle: React.FC<Props> = ({id, label, status, ...props}) => {
   };
 
   return (
-    <Container disabled={props.disabled} checked={checked} onClick={handleClick}>
+    <Container disabled={props.disabled} checked={checked} onClick={handleClick} innerRef={ref}>
       <input {...props} id={idOrDefault} ref={inputRef} type="checkbox" />
       <Track />
       {label && (
@@ -45,6 +45,6 @@ const EzToggle: React.FC<Props> = ({id, label, status, ...props}) => {
       {status && <EzInlineFeedback use={status} />}
     </Container>
   );
-};
+});
 
 export default EzToggle;

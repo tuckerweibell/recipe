@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import Container from './EzCheckbox.styles';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
 };
 
-const EzCheckbox: React.FC<Props> = ({label, checked, ...rest}) => (
-  <Container>
+const EzCheckbox = forwardRef<HTMLElement, Props>(({label, checked, ...rest}, ref) => (
+  <Container innerRef={ref}>
     <input checked={checked} type="checkbox" aria-label={label} {...rest} />
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
@@ -22,6 +22,6 @@ const EzCheckbox: React.FC<Props> = ({label, checked, ...rest}) => (
       </g>
     </svg>
   </Container>
-);
+));
 
 export default EzCheckbox;
