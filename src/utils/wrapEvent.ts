@@ -2,7 +2,7 @@ export const wrapEvent = (handler: React.ReactEventHandler, callback: React.Reac
   if (!handler) return callback;
   return (event: React.SyntheticEvent) => {
     handler(event);
-    if (!event.defaultPrevented) callback(event);
+    if (!event || !event.defaultPrevented) callback(event);
   };
 };
 
