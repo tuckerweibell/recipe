@@ -7,13 +7,14 @@ import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import EzTimeInput from './EzTimeInput';
+import EzTextArea from './EzTextArea';
 import {Props} from './EzField.types';
 import EzSelect from './EzSelect';
 
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
 const dateElements = ['date'];
-const htmlElements = [...inputElements, 'textarea', 'select'];
+const htmlElements = [...inputElements, 'select'];
 const timeElements = ['time'];
 
 const Error = ({showError, error, active}: any) =>
@@ -31,6 +32,7 @@ const resolveInputFromType = type => {
   if (dateElements.includes(type)) return EzDateInput;
   if (type === 'select') return EzSelect;
   if (timeElements.includes(type)) return EzTimeInput;
+  if (type === 'textarea') return EzTextArea;
   if (inputElements.includes(type)) return 'input';
   return type;
 };

@@ -33,6 +33,11 @@ type DateInputProps = {
   value: string | number | object;
 };
 
+type TextAreaInputProps = {
+  type: 'textarea';
+  size?: 'small' | 'medium' | 'large';
+};
+
 type CustomFieldProps = {
   type: React.FC<any> | React.ComponentClass<any>;
   value?: any;
@@ -44,6 +49,7 @@ type FieldTypeProps =
   | ListboxProps
   | HtmlInputProps
   | DateInputProps
+  | TextAreaInputProps
   | CustomFieldProps;
 
 type ErrorOrMessage = string | boolean;

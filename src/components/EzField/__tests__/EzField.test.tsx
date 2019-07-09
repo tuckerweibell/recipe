@@ -9,6 +9,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import Component from 'react-component-component';
 import ezDateInputTests from './EzDateInput.test.md';
 import regressionTests from './EzField.test.md';
+import ezTextAreaTests from './EzTextArea.test.md';
 import ezSelectTests from './EzSelect.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
@@ -30,6 +31,7 @@ describe('EzField', () => {
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
   visualSnapshots({markdown: ezDateInputTests, scope});
+  visualSnapshots({markdown: ezTextAreaTests, scope});
   visualSnapshots({markdown: ezSelectTests, scope: {...scope, fireEvent}});
 
   it('should render with disabled input', () => {

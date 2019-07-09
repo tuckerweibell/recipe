@@ -16,6 +16,7 @@ title: 'Unreleased changes'
 - Support for `EzField[type="Select"]` to allow users to pick from a dropdown list of options.
 - Support for `EzField[type="time"]` to allow users to pick from a list of times.
 - Added `fonts` object to standard theme with grouped styles.
+- Added `size` property to EzField with type textarea for changing the default size of the textarea.
 
 #### Design updates
 

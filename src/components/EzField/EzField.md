@@ -58,12 +58,13 @@ Allows users to provide short text input. Optionally, additional context can be 
 
 ### Long text field
 
-Allows user to provide text input that may span more than one line. Optionally, a character count can be used to indicate the restrictions on the maximum length of an input.
+Allows user to provide text input that may span more than one line. Optionally, a character count can be used to indicate the restrictions on the maximum length of an input. Use `size` to specify how tall the field should be with the options: `small`, `medium`, `large`.
 
 ```jsx
 <EzField
   type="textarea"
   label="Shipping address"
+  size="medium"
   maxLength={120}
   value={`123 Sesame St,
 New York`}
