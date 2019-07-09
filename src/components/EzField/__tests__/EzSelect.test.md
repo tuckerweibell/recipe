@@ -30,18 +30,9 @@
 ```jsx
 () => {
   const containerRef = React.createRef();
-
-  const Open = ({children}) => {
-    React.useEffect(() => {
-      const input = containerRef.current.querySelector('input');
-      fireEvent.mouseDown(input);
-    }, []);
-    return children;
-  };
-
   return (
     <div ref={containerRef}>
-      <Open>
+      <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
             type="select"
@@ -155,17 +146,9 @@
 () => {
   const containerRef = React.createRef();
 
-  const Open = ({children}) => {
-    React.useEffect(() => {
-      const input = containerRef.current.querySelector('input');
-      fireEvent.mouseDown(input);
-    }, []);
-    return children;
-  };
-
   return (
     <div ref={containerRef}>
-      <Open>
+      <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
             type="select"
@@ -196,17 +179,9 @@
 () => {
   const containerRef = React.createRef();
 
-  const Open = ({children}) => {
-    React.useEffect(() => {
-      const input = containerRef.current.querySelector('input');
-      fireEvent.mouseDown(input);
-    }, []);
-    return children;
-  };
-
   return (
     <div ref={containerRef}>
-      <Open>
+      <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
             type="select"

@@ -16,7 +16,15 @@ import {useTimeRangeOptions} from '../EzTimeInput';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
 import {EzFormLayout, EzLayout} from '../../index';
 
-const scope = {EzField, EzLayout, EzFormLayout, Component};
+const Open = ({children, containerRef}) => {
+  React.useEffect(() => {
+    const input = containerRef.current.querySelector('input');
+    fireEvent.mouseDown(input);
+  }, [containerRef]);
+  return children;
+};
+
+const scope = {EzField, EzLayout, EzFormLayout, Component, Open};
 
 describe('EzField', () => {
   visualSnapshots({markdown, scope});
