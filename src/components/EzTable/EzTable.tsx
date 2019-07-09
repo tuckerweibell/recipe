@@ -247,7 +247,7 @@ const EzTable: React.FC<TableProps> = ({
         {...scrollEvents}
         innerRef={overflowDetection.ref}
       >
-        <Table selectable={!!selection}>
+        <Table selectable={!!selection} use={!title ? 'simple' : 'full'}>
           <Thead />
           <Tbody />
         </Table>

@@ -1,9 +1,13 @@
 import {css} from 'emotion';
 import {EzCardSection} from '../EzCard';
 import styled, {Theme} from '../../themes/styled';
+import {TableProps} from './EzTable.types';
 
 const fullBleed = () => css`
   padding: 0;
+  table {
+    width: 100%;
+  }
 `;
 
 const spacing = ({theme}) => css`
@@ -23,13 +27,23 @@ const interactiveStyles = () => css`
   user-select: none;
 `;
 
+const hoverRows = ({theme}) =>
+  css`
+    && tr:hover {
+      td {
+        background-color: ${theme.colors.interactive.hover.background};
+      }
+    }
+  `;
+
 const cell = ({theme, numeric}) => css`
   text-align: ${numeric ? 'right' : 'left'};
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
 `;
 
 const heading = ({theme}) => css`
-  color: ${theme.colors.text.deemphasis};
+  ${theme.fonts.small}
+  font-weight: bold;
 `;
 
 const borders = ({theme}) => css`
@@ -93,7 +107,8 @@ type TableCardSectionProps = {
 export const TableCardSection = styled(EzCardSection)<TableCardSectionProps>(
   fullBleed,
   spacing,
-  borders
+  borders,
+  hoverRows
 );
 
 export const TablePaginationNavItems = styled.div`
@@ -158,11 +173,11 @@ const selectionColumn = ({theme, selectable}) =>
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 
-const base = ({theme}) => css`
+const base = () => css`
   margin: 0;
   line-height: 1.5rem;
   border-collapse: collapse;
-  width: 100%;
+  width: auto;
 
   th,
   td {
@@ -170,15 +185,43 @@ const base = ({theme}) => css`
     background-color: white;
     white-space: nowrap;
   }
-
-  tr:hover {
-    td {
-      background-color: ${theme.colors.interactive.hover.background};
-    }
-  }
 `;
 
-export const Table = styled.table<Selectable>(base, selectionColumn);
+const stripedRows = ({theme}) =>
+  css`
+    tr:nth-of-type(odd) {
+      td {
+        background-color: ${theme.colors.interactive.hover.background};
+      }
+    }
+  `;
+
+const simple = ({theme, use}) =>
+  use === 'simple' &&
+  css`
+    tr th:first-of-type,
+    tr td:first-of-type {
+      padding-left: ${theme.spacing.sm};
+    }
+    tr th:last-of-type,
+    tr td:last-of-type {
+      padding-right: ${theme.spacing.sm};
+    }
+    tr th {
+      padding-top: 0;
+      padding-bottom: 6px;
+    }
+    tr td {
+      padding-top: ${theme.spacing.xs2};
+      padding-bottom: ${theme.spacing.xs2};
+    }
+    tr td:not(:last-of-type) {
+      padding-right: ${theme.spacing.xl2};
+    }
+    ${stripedRows({theme})}
+  `;
+
+export const Table = styled.table<any>(base, selectionColumn, simple);
 
 const scrollShadow = () => css`
   ::before {
