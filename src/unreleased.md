@@ -7,6 +7,8 @@ title: 'Unreleased changes'
 
 #### Breaking changes
 
+- Added [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) support to `EzField`, `EzCheckbox`, `EzToggle` and `EzStatus` to allow access to the underlying native DOM elements for providing support for tooltips. While we do not anticipate this being a breaking change for most consumers of Recipe, there maybe some observable changes, in particular, around exported type definitions. For more information, see: https://reactjs.org/docs/forwarding-refs.html#note-for-component-library-maintainers.
+
 #### New components
 
 #### Enhancements
@@ -19,6 +21,9 @@ title: 'Unreleased changes'
 
 - Updated EzField to use consistent presentation for "drop down" styles across `type="date"`, `type="time"` and `type="select"`.
 - Revised interaction behavior EzField[type="date"] to no longer auto-open on focus to behave consistently with `type="time"` and `type="select"`.
+- Updated Table headings to match small label style (Closes [#133](https://github.com/ezcater/recipe/issues/133)).
+- Updated simple table to no longer grow to fill the available space (Closes [#147](https://github.com/ezcater/recipe/issues/147))
+- Added zebra striping to simple tables in place of row hover style.
 
 #### Bug fixes
 
