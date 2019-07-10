@@ -1,7 +1,40 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption} from '../../utils/hooks';
+import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
+
+const flatten = options => {
+  const ungrouped = [];
+  const grouped = new Map();
+
+  options.forEach((item, i) => {
+    const {group} = item;
+
+    const values = group ? grouped.get(group) || [] : ungrouped;
+
+    values.push([item, i]);
+
+    if (group) grouped.set(group, values);
+  });
+
+  return [[undefined, ungrouped], ...grouped];
+};
+
+const OptGroup = ({children, group}) => {
+  const id = useUniqueId();
+  return group ? (
+    <li>
+      <ul role="group" aria-describedby={id}>
+        <li id={id} role="presentation">
+          {group}
+        </li>
+        {children}
+      </ul>
+    </li>
+  ) : (
+    <>{children}</>
+  );
+};
 
 export default ({id, options, value, onChange, ...rest}) => {
   const selectedIndex = options.findIndex(o => o.value === value);
@@ -107,22 +140,26 @@ export default ({id, options, value, onChange, ...rest}) => {
           {...comboboxFlyout}
           innerRef={scrollableRef}
         >
-          {options.map((result, i) => (
-            <li
-              role="option"
-              aria-current={result === selectedOption || undefined}
-              aria-selected={activeIndex === i}
-              key={i}
-              onClick={e => {
-                selectItem(i)(e);
-                comboboxInput.ref.current.focus();
-              }}
-              ref={activeIndex === i ? activeOptionRef : undefined}
-              onMouseOver={() => setActiveIndex(i)}
-              id={`${id}-result-item-${i}`}
-            >
-              {result.label}
-            </li>
+          {flatten(options).map(([group, values]) => (
+            <OptGroup group={group} key={group || 0}>
+              {values.map(([result, i]) => (
+                <li
+                  role="option"
+                  aria-current={result === selectedOption || undefined}
+                  aria-selected={activeIndex === i}
+                  key={i}
+                  onClick={e => {
+                    selectItem(i)(e);
+                    comboboxInput.ref.current.focus();
+                  }}
+                  ref={activeIndex === i ? activeOptionRef : undefined}
+                  onMouseOver={() => setActiveIndex(i)}
+                  id={`${id}-result-item-${i}`}
+                >
+                  {result.label}
+                </li>
+              ))}
+            </OptGroup>
           ))}
         </Listbox>
       )}

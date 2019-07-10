@@ -147,6 +147,35 @@ Allows the user to choose between a larger set of options than would be appropri
 };
 ```
 
+### Select list with grouping
+
+Allows the user to choose from smaller lists of logically related options. Use a select list grouping to make the list of options easier to navigate to assist the user find the option they are looking for. The `group` prop should be applied to each option that belongs to a group, and represents the label that wil be used to group the items. Any options provided that do not have a group will be presented at the top of the options list.
+
+```jsx
+() => {
+  const [choice, setChoice] = React.useState('upcoming');
+  return (
+    <EzFormLayout>
+      <EzField
+        type="select"
+        label="Select dropdown with <optgroup>"
+        options={[
+          {label: 'All Upcoming', value: 'upcoming', group: 'Upcoming'},
+          {label: 'Today', value: 'today', group: 'Upcoming'},
+          {label: 'Tomorrow', value: 'tomorrow', group: 'Upcoming'},
+          {label: 'All Time', value: 'all', group: 'Past'},
+          {label: 'Yesterday', value: 'yesterday', group: 'Past'},
+          {label: 'Last 7 Days', value: 'week', group: 'Past'},
+          {label: 'This Month', value: 'month', group: 'Past'},
+        ]}
+        value={choice}
+        onChange={e => setChoice(e.target.value)}
+      />
+    </EzFormLayout>
+  );
+};
+```
+
 ### Date input field
 
 Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar.

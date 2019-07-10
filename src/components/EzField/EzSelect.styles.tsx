@@ -18,7 +18,22 @@ const listbox = ({theme}) => css`
   margin-top: ${theme.spacing.xs2};
   max-height: 20rem;
 
-  li {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  [role='group'] {
+    > :first-child {
+      ${theme.fonts.small};
+      margin: 0;
+      padding: ${theme.spacing.xs} ${theme.spacing.sm};
+      font-weight: bold;
+    }
+  }
+
+  [role='option'] {
     cursor: default;
     margin: 0;
     padding: ${theme.spacing.xs} ${theme.spacing.sm};
