@@ -22,4 +22,5 @@ export {default as EzStatus} from './EzStatus';
 export {default as EzTable} from './EzTable';
 export {default as EzTextStyle} from './EzTextStyle';
 export {default as EzToggle} from './EzToggle';
+export {default as EzTooltip} from './EzTooltip';
 export {default as EzLayout} from './EzLayout';

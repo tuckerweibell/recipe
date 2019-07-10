@@ -4,6 +4,10 @@ module.exports = {
     'no-nested-ternary': 'off',
     'prefer-destructuring': 'off',
     'import/no-namespace': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {devDependencies: true, optionalDependencies: true, peerDependencies: true},
+    ],
     'import/prefer-default-export': 'off',
     'react/destructuring-assignment': 'off',
     '@typescript-eslint/prefer-interface': 'off',

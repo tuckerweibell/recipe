@@ -76,7 +76,7 @@ const IFramePlayground = props => {
     const resizeBasedOnContent = () => {
       iframe.style.height = 0;
       iframe.style.height = `${contentDocument.body.scrollHeight}px`;
-      setMargin(getComputedStyle(playgroundRef.current).marginLeft);
+      if (playgroundRef.current) setMargin(getComputedStyle(playgroundRef.current).marginLeft);
     };
 
     iframe.contentWindow.onmousedown = resizeBasedOnContent;
