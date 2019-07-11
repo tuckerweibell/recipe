@@ -152,7 +152,7 @@ export default ({id, options, value, onChange, ...rest}) => {
                     selectItem(i)(e);
                     comboboxInput.ref.current.focus();
                   }}
-                  ref={activeIndex === i ? activeOptionRef : undefined}
+                  ref={activeIndex && activeIndex === i ? activeOptionRef : undefined}
                   onMouseOver={() => setActiveIndex(i)}
                   id={`${id}-result-item-${i}`}
                 >
