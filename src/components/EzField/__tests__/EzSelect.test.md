@@ -228,3 +228,35 @@
   );
 };
 ```
+
+### Select list ordering
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+
+  return (
+    <div ref={containerRef}>
+      <Open containerRef={containerRef}>
+        <EzFormLayout>
+          <EzField
+            type="select"
+            label="Select dropdown with <optgroup>"
+            options={[
+              {label: 'All Upcoming', value: 'upcoming', group: 'Upcoming'},
+              {label: 'All Time', value: 'all', group: 'Past'},
+              {label: 'Today', value: 'today', group: 'Upcoming'},
+              {label: 'Tomorrow', value: 'tomorrow', group: 'Upcoming'},
+              {label: 'Yesterday', value: 'yesterday', group: 'Past'},
+              {label: 'Last 7 Days', value: 'week', group: 'Past'},
+              {label: 'This Month', value: 'month', group: 'Past'},
+              {label: 'All', value: 'all'},
+            ]}
+            value="tomorrow"
+          />
+        </EzFormLayout>
+      </Open>
+    </div>
+  );
+};
+```
