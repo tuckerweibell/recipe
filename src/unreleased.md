@@ -11,6 +11,9 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added EzTooltip component.
+- Added EzBlankState component.
+
 #### Enhancements
 
 - Support for `EzField[type="Select"]` to allow users to pick from a dropdown list of options.
