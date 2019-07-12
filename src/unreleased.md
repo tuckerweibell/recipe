@@ -13,6 +13,7 @@ title: 'Unreleased changes'
 
 - Added EzTooltip component.
 - Added EzBlankState component.
+- Added EzSuperRadioButtons component.
 
 #### Enhancements
 
