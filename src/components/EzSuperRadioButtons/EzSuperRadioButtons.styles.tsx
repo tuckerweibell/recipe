@@ -100,13 +100,12 @@ export const RadioButton = styled(RadioButtonIcon)`
   right: ${props => props.theme.spacing.sm};
 
   /* Checked */
-  input:checked:not(:disabled) + label & path:nth-of-type(2) {
-    fill: ${props => props.theme.colors.interactive.base};
+  input:checked:not(:disabled) + label & path:nth-of-type(1) {
+    stroke: ${props => props.theme.colors.brandColors.ezBlue};
   }
 
-  /* Not Checked */
-  input:not(:checked) + label & path:nth-of-type(2) {
-    fill: transparent;
+  input:checked:not(:disabled) + label & path:nth-of-type(2) {
+    fill: ${props => props.theme.colors.interactive.base};
   }
 
   /* Focused */
@@ -121,17 +120,12 @@ export const RadioButton = styled(RadioButtonIcon)`
     stroke: ${props => props.theme.colors.interactive.hover.border};
   }
 
-  /* Active */
-  input:active + label & path:nth-of-type(1) {
-    fill: ${props => props.theme.colors.interactive.active.background};
-  }
-
   /* Disabled */
   input:disabled + label & path:nth-of-type(1) {
     fill: ${props => props.theme.colors.interactive.disabled.background};
   }
 
-  input:checked:disabled + label & path:nth-of-type(2) {
+  input:disabled:checked + label & path:nth-of-type(2) {
     fill: ${props => props.theme.colors.interactive.disabled.foreground};
   }
 `;
