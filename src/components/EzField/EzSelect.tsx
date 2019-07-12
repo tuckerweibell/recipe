@@ -4,82 +4,110 @@ import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 
 const flatten = options => {
-  const ungrouped = [];
   const grouped = new Map();
 
-  options.forEach((item, i) => {
+  options.forEach(item => {
     const {group} = item;
-
-    const values = group ? grouped.get(group) || [] : ungrouped;
-
-    values.push([item, i]);
-
-    if (group) grouped.set(group, values);
+    const values = grouped.get(group) || [];
+    values.push(item);
+    grouped.set(group, values);
   });
 
-  return [[undefined, ungrouped], ...grouped];
+  return [...grouped];
 };
 
-const OptGroup = ({children, group}) => {
+const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, onClick}) => {
+  /* eslint-disable jsx-a11y/click-events-have-key-events */
+  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+  /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
   const id = useUniqueId();
-  return group ? (
-    <li>
-      <ul role="group" aria-describedby={id}>
-        <li id={id} role="presentation">
-          {group}
-        </li>
-        {children}
-      </ul>
+  const activeValue = activeOption && activeOption.value;
+  return (
+    <li
+      role="option"
+      aria-current={(selected && option.value === selected.value) || undefined}
+      aria-selected={activeValue === option.value}
+      ref={activeValue === option.value ? activeOptionRef : undefined}
+      onMouseOver={() => setActiveOption(option)}
+      onClick={onClick}
+      id={id}
+    >
+      {option.label}
     </li>
-  ) : (
-    <>{children}</>
   );
 };
 
+const OptGroup = props => {
+  const id = useUniqueId();
+  const [name, options] = props.group;
+
+  return (
+    <li>
+      <ul role="group" aria-describedby={id}>
+        <li id={id} role="presentation">
+          {name}
+        </li>
+        {options.map(o => (
+          <Option {...props} option={o} key={o.label} />
+        ))}
+      </ul>
+    </li>
+  );
+};
+
+const hasGroupedOptions = options => options.some(o => o.group);
+
+const useListboxState = ({options, selected}) => {
+  const [activeOption, setActiveOption] = useState(selected);
+  const activeOptionRef = useRef(null);
+  const setActiveIndex = useCallback(i => setActiveOption(options[i]), [options]);
+
+  return {
+    selected,
+    activeOption,
+    activeOptionRef,
+    setActiveOption,
+    setActiveIndex,
+  };
+};
+
 export default ({id, options, value, onChange, ...rest}) => {
-  const selectedIndex = options.findIndex(o => o.value === value);
-  const selectedOption = options[selectedIndex];
+  const selected = options.find(o => o.value === value);
   const ariaLabelledBy = rest['aria-labelledby'];
-
   const scrollableRef = useRef<HTMLElement>();
-  const activeOptionRef = useRef<HTMLLIElement>();
 
-  const [activeIndex, setActiveIndex] = useState(selectedIndex);
+  const listbox = useListboxState({options, selected});
+  const {activeOption, setActiveOption, activeOptionRef} = listbox;
 
   const comboboxState = useComboboxState();
+  const {hide, visible} = comboboxState;
+
   const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
     ...rest,
     'aria-haspopup': 'listbox',
     opened: comboboxState.visible,
   });
 
-  const {hide, visible} = comboboxState;
-
   const selectItem = useCallback(
-    i => e => {
-      const activeItem = options[i];
-
-      if (activeItem) {
+    e => {
+      if (activeOption) {
         onChange({
           ...e,
-          target: {...e.target, value: activeItem.value},
+          target: {...e.target, value: activeOption.value},
         });
       }
 
       hide();
     },
-    [hide, onChange, options]
+    [activeOption, hide, onChange]
   );
-
-  const move = useCallback(option => setActiveIndex(options.indexOf(option)), [
-    options,
-    setActiveIndex,
-  ]);
 
   const handleKeyDown = e => {
     const key = e.key;
+    const activeIndex = options.indexOf(activeOption);
+    const {setActiveIndex} = listbox;
 
-    const select = () => selectItem(activeIndex)(e);
+    const select = () => selectItem(e);
 
     const prev = activeIndex <= 0 ? options.length - 1 : activeIndex - 1;
     const next = activeIndex === -1 || activeIndex >= options.length - 1 ? 0 : activeIndex + 1;
@@ -100,11 +128,11 @@ export default ({id, options, value, onChange, ...rest}) => {
   };
 
   useEffect(() => {
-    if (!visible) selectItem(activeIndex)({target: {}});
-  }, [activeIndex, visible, selectItem]);
+    if (!visible) selectItem(new Event('change'));
+  }, [activeOption, visible, selectItem]);
 
   useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
-    activeIndex,
+    activeOption,
     visible,
   ]);
 
@@ -112,8 +140,8 @@ export default ({id, options, value, onChange, ...rest}) => {
     id,
     'aria-autocomplete': 'list',
     'aria-labelledby': ariaLabelledBy,
-    value: selectedOption ? selectedOption.label : '',
-    'aria-activedescendant': activeIndex === -1 ? '' : `${id}-result-item-${activeIndex}`,
+    value: selected ? selected.label : '',
+    'aria-activedescendant': !activeOptionRef.current ? '' : activeOptionRef.current.id,
     onKeyDown: handleKeyDown,
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
     disabled: rest.disabled,
@@ -123,7 +151,7 @@ export default ({id, options, value, onChange, ...rest}) => {
 
   const comboboxFlyout = useComboboxFlyout(comboboxState);
 
-  useJumpToOption(comboboxInput.ref, {options, move});
+  useJumpToOption(comboboxInput.ref, {options, move: setActiveOption});
 
   return (
     <Container innerRef={clickOutsideRef} hasError={rest.touched && rest.error} opened={visible}>
@@ -131,36 +159,22 @@ export default ({id, options, value, onChange, ...rest}) => {
         <input {...comboboxInput} />
       </Combobox>
       {visible && (
-        /* eslint-disable jsx-a11y/click-events-have-key-events */
-        /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-        /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
         <Listbox
           aria-labelledby={ariaLabelledBy}
           role="listbox"
           {...comboboxFlyout}
           innerRef={scrollableRef}
+          onClick={() => comboboxInput.ref.current.focus()}
         >
-          {flatten(options).map(([group, values]) => (
-            <OptGroup group={group} key={group || 0}>
-              {values.map(([result, i]) => (
-                <li
-                  role="option"
-                  aria-current={result === selectedOption || undefined}
-                  aria-selected={activeIndex === i}
-                  key={i}
-                  onClick={e => {
-                    selectItem(i)(e);
-                    comboboxInput.ref.current.focus();
-                  }}
-                  ref={activeIndex && activeIndex === i ? activeOptionRef : undefined}
-                  onMouseOver={() => setActiveIndex(i)}
-                  id={`${id}-result-item-${i}`}
-                >
-                  {result.label}
-                </li>
+          {hasGroupedOptions(options) ? (
+            <>
+              {flatten(options).map(group => (
+                <OptGroup {...listbox} group={group} key={group[0]} onClick={selectItem} />
               ))}
-            </OptGroup>
-          ))}
+            </>
+          ) : (
+            options.map(o => <Option {...listbox} option={o} key={o.label} onClick={selectItem} />)
+          )}
         </Listbox>
       )}
     </Container>
