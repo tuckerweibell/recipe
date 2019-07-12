@@ -20,6 +20,7 @@ export {EzPageContent, EzContentGroup} from './EzPageContent';
 export {default as EzSegmentedControl} from './EzSegmentedControl';
 export {default as EzSearchInput} from './EzSearchInput';
 export {default as EzStatus} from './EzStatus';
+export {default as EzSuperRadioButtons} from './EzSuperRadioButtons';
 export {default as EzTable} from './EzTable';
 export {default as EzTextStyle} from './EzTextStyle';
 export {default as EzToggle} from './EzToggle';
