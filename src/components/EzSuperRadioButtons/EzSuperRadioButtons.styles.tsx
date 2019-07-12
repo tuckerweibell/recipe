@@ -41,7 +41,7 @@ const item = ({theme}) => css`
     border-color: ${theme.colors.interactive.hover.border};
   }
 
-  input:checked + & {
+  input:checked:not(:disabled) + & {
     color: ${theme.colors.interactive.checked.foreground};
     background: ${theme.colors.interactive.checked.background};
     border: 1px solid ${theme.colors.interactive.checked.border};
@@ -98,4 +98,40 @@ export const RadioButton = styled(RadioButtonIcon)`
   position: absolute;
   top: ${props => props.theme.spacing.sm};
   right: ${props => props.theme.spacing.sm};
+
+  /* Checked */
+  input:checked:not(:disabled) + label & path:nth-of-type(2) {
+    fill: ${props => props.theme.colors.interactive.base};
+  }
+
+  /* Not Checked */
+  input:not(:checked) + label & path:nth-of-type(2) {
+    fill: transparent;
+  }
+
+  /* Focused */
+  input:focus + label & {
+    box-shadow: 0px 0px 2px 2px ${props => props.theme.colors.interactive.focus.outline};
+    border-radius: 50%;
+  }
+
+  /* Hover */
+  input:hover:not(:disabled) + label & path:nth-of-type(1) {
+    fill: ${props => props.theme.colors.interactive.hover.background};
+    stroke: ${props => props.theme.colors.interactive.hover.border};
+  }
+
+  /* Active */
+  input:active + label & path:nth-of-type(1) {
+    fill: ${props => props.theme.colors.interactive.active.background};
+  }
+
+  /* Disabled */
+  input:disabled + label & path:nth-of-type(1) {
+    fill: ${props => props.theme.colors.interactive.disabled.background};
+  }
+
+  input:checked:disabled + label & path:nth-of-type(2) {
+    fill: ${props => props.theme.colors.interactive.disabled.foreground};
+  }
 `;

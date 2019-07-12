@@ -47,6 +47,6 @@
       imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
     },
   ]}
-  value="cant-deliver"
+  value="not-enough-notice"
 />
 ```
