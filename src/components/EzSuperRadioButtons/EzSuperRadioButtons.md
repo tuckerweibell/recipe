@@ -67,8 +67,6 @@ Make sure the images you use for each choice are visually similar in style. Imag
 
 Used when a choice isn't available at the moment. Because the choices this pattern will highlight are important, it's best to avoid disabling items unless absolutely necessary.
 
-If you do disable an item, make sure you provide a tooltip on hover over the disabled item to let the user know why this particular choice is not available and what (if anything) they can do to make it available again.
-
 ```jsx
 () => {
   const [selected, setSelected] = React.useState('cant-deliver');
