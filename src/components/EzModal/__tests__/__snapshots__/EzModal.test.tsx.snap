@@ -47,7 +47,7 @@ exports[`EzModal should render with default styles 1`] = `
     height: auto;
     overflow: hidden;
     max-height: calc(100vh - 4.285714285714286rem);
-    width: 500px;
+    width: 550px;
   }
 }
 

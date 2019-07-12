@@ -29,6 +29,7 @@ title: 'Unreleased changes'
 - Updated Table headings to match small label style (Closes [#133](https://github.com/ezcater/recipe/issues/133)).
 - Updated simple table to no longer grow to fill the available space (Closes [#147](https://github.com/ezcater/recipe/issues/147))
 - Added zebra striping to simple tables in place of row hover style.
+- Changed width of modal to 550px.
 
 #### Bug fixes
 
