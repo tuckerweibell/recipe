@@ -24,6 +24,7 @@ Cards should:
 Cards should not:
 
 - Be nested inside each other.
+- Be customized to make the entire card a clickable trigger for an action. Use a button or link or form element inside a card to trigger the action instead.
 
 Card Sections should not:
 
