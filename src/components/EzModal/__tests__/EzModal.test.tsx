@@ -14,6 +14,10 @@ describe('EzModal', () => {
     jest.spyOn(CSSStyleDeclaration.prototype, 'getPropertyValue').mockReturnValue('1');
   });
 
+  afterEach(() => {
+    (CSSStyleDeclaration.prototype.getPropertyValue as any).mockRestore();
+  });
+
   it('should render with default styles', () => {
     const {baseElement} = fullRender(
       <EzModal isOpen submitLabel="Submit" dismissLabel="Dismiss" headerText="Header">
