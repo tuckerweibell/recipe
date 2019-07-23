@@ -15,7 +15,7 @@ After installing recipe in your new application you may need to install some add
 Aside from React and React DOM, Recipe requires the following `peerDependencies` to be provided by your project:
 
 ```term
-npm install emotion react-emotion emotion-theming polished
+npm install emotion@9.x react-emotion@9.x emotion-theming@9.x
 ```
 
 ### Importing components in downstream projects
@@ -33,6 +33,16 @@ export const MyComponent = () => (
   </div>
 );
 ```
+
+### Using Recipe theme with emotion
+
+Recipe components are pre-styled out-of-the-box with our standard theme, however, if you wish to create your own components that build upon Recipe's standard theme, you can do so by setting up [theming](https://emotion.sh/docs/theming).
+
+```term
+npm install -S emotion-theming
+```
+
+Add ThemeProvider component to the top level of your app and access the theme with `props.theme` in a styled component. For more information on theming, see the [emotion-theming docs](https://emotion.sh/docs/emotion-theming).
 
 ---
 
