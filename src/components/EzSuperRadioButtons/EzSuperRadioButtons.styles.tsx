@@ -30,6 +30,8 @@ const item = ({theme}) => css`
   flex-direction: column;
   flex-basis: 150px;
   min-height: 150px;
+  font-weight: bold;
+  color: ${theme.colors.interactive.base};
 
   border: 1px solid ${theme.colors.border.base};
   border-radius: ${theme.borderRadius[1]};
@@ -39,10 +41,10 @@ const item = ({theme}) => css`
   input:not(:disabled):not(:checked) + &:hover {
     background-color: ${theme.colors.interactive.hover.background};
     border-color: ${theme.colors.interactive.hover.border};
+    color: ${theme.colors.interactive.checked.foreground};
   }
 
   input:checked:not(:disabled) + & {
-    color: ${theme.colors.interactive.checked.foreground};
     background: ${theme.colors.interactive.checked.background};
     border: 1px solid ${theme.colors.interactive.checked.border};
     position: relative;
@@ -60,6 +62,10 @@ const item = ({theme}) => css`
     cursor: default;
     color: ${theme.colors.interactive.disabled.foreground};
     background-color: ${theme.colors.interactive.disabled.background};
+
+    img {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -115,7 +121,7 @@ export const RadioButton = styled(RadioButtonIcon)`
   }
 
   /* Hover */
-  input:hover:not(:disabled) + label & path:nth-of-type(1) {
+  input:hover:not(:disabled):not(:checked) + label & path:nth-of-type(1) {
     fill: ${props => props.theme.colors.interactive.hover.background};
     stroke: ${props => props.theme.colors.interactive.hover.border};
   }

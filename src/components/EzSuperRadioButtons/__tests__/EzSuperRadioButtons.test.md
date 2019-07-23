@@ -7,17 +7,17 @@
     {
       label: "Can't deliver",
       value: 'cant-deliver',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: deliveryImg,
     },
     {
       label: 'Not enough notice',
       value: 'not-enough-notice',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: clockImg,
     },
     {
       label: "Can't prepare food",
       value: 'cant-prepare-food',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: potImg,
     },
   ]}
   value="cant-deliver"
@@ -33,18 +33,20 @@
     {
       label: "Can't deliver",
       value: 'cant-deliver',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: deliveryImg,
+      disabled: true,
     },
     {
       label: 'Not enough notice',
       value: 'not-enough-notice',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: clockImg,
       disabled: true,
     },
     {
       label: "Can't prepare food",
       value: 'cant-prepare-food',
-      imageSrc: 'https://image.flaticon.com/icons/svg/865/865149.svg',
+      imageSrc: potImg,
+      disabled: true,
     },
   ]}
   value="not-enough-notice"

@@ -81,7 +81,7 @@ Used when a choice isn't available at the moment. Because the choices this patte
           imageSrc: '../../images/delivery.svg',
         },
         {
-          label: 'A longer, two-line option that wraps',
+          label: 'Not enough notice',
           value: 'not-enough-notice',
           imageSrc: '../../images/clock.svg',
           disabled: true,
