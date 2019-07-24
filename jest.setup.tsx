@@ -1,3 +1,4 @@
+import React from 'react';
 import 'jest-enzyme';
 import {configure} from 'enzyme';
 // @ts-ignore
@@ -7,8 +8,11 @@ import {toHaveNoViolations} from 'jest-axe';
 import * as emotion from 'emotion';
 import {configure as configureSosia} from 'sosia';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
-import {injectGlobal} from 'emotion';
 import markdownSource from './emotionComponentSource';
+import {ThemeProvider} from 'emotion-theming';
+import * as themes from './src/themes';
+import EzGlobalStyles from './src/components/EzGlobalStyles';
+import {Global} from './src/styles';
 
 configure({adapter: new Adapter()});
 
@@ -27,55 +31,46 @@ expect.addSnapshotSerializer(
 
 expect.extend(createMatchers(emotion));
 
-injectGlobal`
-  @font-face {
-    font-family: 'Lato';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v14/S6u8w4BMUTPHjxsAXC-s.woff) format('woff');
-  }
+// cheat for syntax highlighting
+const css = (...args): string => args[0];
 
-  @font-face {
-    font-family: 'Lato';
-    font-style: italic;
-    font-weight: 700;
-    src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v14/S6u_w4BMUTPHjxsI5wq_Gwfr.woff) format('woff');
-  }
+const GlobalStylesWrapper = ({children}) => (
+  <ThemeProvider theme={themes.standard}>
+    <>
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+        rel="stylesheet"
+      />
+      <EzGlobalStyles />
+      <Global
+        styles={css`
+          /* disable animations in visual snapshots */
+          *,
+          ::before,
+          ::after {
+            transition-property: none !important;
+            animation: none !important;
+          }
+          body {
+            /* restore user agent based margin for backward compatibility with existing snapshots */
+            margin: 8px;
+          }
+        `}
+      />
+      {children}
+    </>
+  </ThemeProvider>
+);
 
-  @font-face {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWA.woff) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh6UVSwiPHw.woff) format('woff');
-  }
-
-  html {
-    box-sizing: border-box;
-    font-size: 14px;
-    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  }
-
-  body {
-    color: #565a5c;
-  }
-
-  * {
-    box-sizing: inherit;
-  }
-
-  /* disable animations in visual snapshots */
-  *, ::before, ::after {
-    transition-property: none !important;
-    animation: none !important;
-  }
-`;
+const markdownSourceWithThemeWrapper = {
+  execute: options => {
+    const examples = markdownSource.execute(options);
+    return examples.map(({name, component}) => ({
+      name,
+      component: () => <GlobalStylesWrapper>{component()}</GlobalStylesWrapper>,
+    }));
+  },
+};
 
 configureSosia({
   targets: {
@@ -85,7 +80,7 @@ configureSosia({
       height: 768,
     }),
   },
-  sources: {documentation: markdownSource},
+  sources: {documentation: markdownSourceWithThemeWrapper},
 });
 
 // extend jest timeout for snapshots running on CI
