@@ -164,7 +164,19 @@ const Layout = ({name, title, children, sections, location}) => (
 
       return (
         <>
-          <Helmet title={`Recipe - ${title}`} />
+          <Helmet
+            title={`Recipe - ${title}`}
+            meta={[
+              {name: 'description', content: 'Recipe Design System'},
+              {name: 'keywords', content: 'Recipe Design System EzCater'},
+            ]}
+          >
+            <html lang="en" />
+            <link
+              href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+              rel="stylesheet"
+            />
+          </Helmet>
           <ThemeProvider theme={themeAsObjectNotModule}>
             <div className={name}>
               <EzAppLayout>

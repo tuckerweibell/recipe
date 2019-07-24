@@ -174,6 +174,10 @@ const IndexPage = () => (
       ]}
     >
       <html lang="en" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+        rel="stylesheet"
+      />
     </Helmet>
     <GithubLink repository="https://github.com/ezcater/recipe" />
 
