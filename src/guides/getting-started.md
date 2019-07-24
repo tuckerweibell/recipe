@@ -34,6 +34,17 @@ export const MyComponent = () => (
 );
 ```
 
+### Including Recipe's default font
+
+To ensure Recipe's default font is available in a webpage, copy this code into the <head> of your HTML document.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+  rel="stylesheet"
+/>
+```
+
 ### Using Recipe theme with emotion
 
 Recipe components are pre-styled out-of-the-box with our standard theme, however, if you wish to create your own components that build upon Recipe's standard theme, you can do so by setting up [theming](https://emotion.sh/docs/theming).
