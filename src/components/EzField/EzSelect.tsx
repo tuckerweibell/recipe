@@ -71,7 +71,7 @@ const useListboxState = ({options, selected}) => {
   };
 };
 
-export default ({id, options, value, onChange, ...rest}) => {
+const EzSelect = ({id, options, value, onChange, ...rest}) => {
   const selected = options.find(o => o.value === value);
   const ariaLabelledBy = rest['aria-labelledby'];
   const scrollableRef = useRef<HTMLElement>();
@@ -180,3 +180,5 @@ export default ({id, options, value, onChange, ...rest}) => {
     </Container>
   );
 };
+
+export default EzSelect;
