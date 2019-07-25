@@ -8,12 +8,14 @@ title: 'Unreleased changes'
 #### Breaking changes
 
 - Added [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) support to `EzField`, `EzCheckbox`, `EzToggle` and `EzStatus` to allow access to the underlying native DOM elements for providing support for tooltips. While we do not anticipate this being a breaking change for most consumers of Recipe, there maybe some observable changes, in particular, around exported type definitions. For more information, see: https://reactjs.org/docs/forwarding-refs.html#note-for-component-library-maintainers.
+- Added Global Styles to the `EzAppLayout` component to ensure applications use the correct font size/style/color/smoothing rules. While we do not anticipate this being a breaking change for most consumers of Recipe, any applications that use the `EzAppLayout` component that do not already apply the necessary base font settings may experience observable changes in font appearance.
 
 #### New components
 
 - Added EzTooltip component.
 - Added EzBlankState component.
 - Added EzSuperRadioButtons component.
+- Add new `EzGlobalStyles` component that enables the sharing of global styles rules for Recipe, so that these rules are applied consistently throughout your application. Note: Global Styles is automatically included by the EzAppLayout component, and direct usage of this component is typically unnecessary except to support backwards-compatibility.
 
 #### Enhancements
 
@@ -43,9 +45,13 @@ title: 'Unreleased changes'
 #### Documentation
 
 - Adds documentation for [application layout](/components/ez-app-layout). Closes #146.
+- Update 'Getting started' documentation to include more complete instructions around setting up Recipe to work with emotion and theming
+- Added instructions for setting up applications to import Recipe's base font
+- Update doc-site to include Recipe's font link (as per the new getting started docs) and to include the `EzGlobalStyles` within the Component playground
 
 #### Dependency upgrades
 
 #### Development workflow
 
 - Fixed an issue with emotion css-in-js leaking state across visual regression test runs
+- Replace manual style reset from `jest.config` in favor of using `EzGlobalStyles` component.
