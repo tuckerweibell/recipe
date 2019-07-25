@@ -8,6 +8,7 @@ export {EzCard, EzCardSection, EzCardExpandable} from './EzCard';
 export {default as EzField} from './EzField';
 export {default as EzFlashMessage} from './EzFlashMessage';
 export {default as EzFormLayout} from './EzFormLayout';
+export {default as EzGlobalStyles} from './EzGlobalStyles';
 export {default as EzHeading} from './EzHeading';
 export {default as EzLabelledItem} from './EzLabelledItem';
 export {default as EzLink} from './EzLink';
