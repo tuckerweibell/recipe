@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300');
 
-html {
-  font-family: sans-serif;
-  font-size: 14px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: normal;
-}
 article,
 aside,
 details,
@@ -190,21 +177,9 @@ textarea {
   font: inherit;
 }
 html {
-  box-sizing: border-box;
   overflow-y: scroll;
 }
-* {
-  box-sizing: inherit;
-}
-*:before {
-  box-sizing: inherit;
-}
-*:after {
-  box-sizing: inherit;
-}
 body {
-  color: #565a5c;
-  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
