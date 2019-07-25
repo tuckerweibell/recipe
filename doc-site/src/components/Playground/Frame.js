@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom';
 import createEmotion from 'create-emotion';
 import {sheet} from 'emotion';
 import {css} from 'emotion';
+import {EzGlobalStyles} from '@ezcater/recipe';
 
 /*
   We need emotion to insert styles into an iframe, but by default, it'll insert into the page head
@@ -108,6 +109,11 @@ const IFramePlayground = props => {
               min-width: fit-content;
             `}
           >
+            <link
+              href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+              rel="stylesheet"
+            />
+            <EzGlobalStyles />
             {props.children}
           </div>,
           container
