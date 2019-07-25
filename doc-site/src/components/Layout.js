@@ -21,7 +21,7 @@ const List = styled.dl`
   flex: 1;
   overflow-y: auto;
   display: ${p => (p.opened ? 'block' : 'none')};
-  margin-bottom: 0;
+  margin: 0;
   && {
     text-decoration: none;
   }
