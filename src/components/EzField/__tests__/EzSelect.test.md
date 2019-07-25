@@ -250,7 +250,6 @@
               {label: 'Yesterday', value: 'yesterday', group: 'Past'},
               {label: 'Last 7 Days', value: 'week', group: 'Past'},
               {label: 'This Month', value: 'month', group: 'Past'},
-              {label: 'All', value: 'all'},
             ]}
             value="tomorrow"
           />
