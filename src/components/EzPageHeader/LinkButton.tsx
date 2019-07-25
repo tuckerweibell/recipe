@@ -1,5 +1,6 @@
 import React, {forwardRef} from 'react';
-import {EzButton, EzLink} from '..';
+import EzLink from '../EzLink';
+import EzButton from '../EzButton';
 import {Link, LabelledLink, Clickable} from '../EzLink/EzLink.types';
 
 function isLink(props: Clickable | Link): props is Link {
