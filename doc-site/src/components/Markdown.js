@@ -41,6 +41,9 @@ const HtmlAst = ({htmlAst, scope}) => {
     );
   };
 
+  const heading = (size, as) => props =>
+    React.createElement(Components.EzHeading, {size, as}, props.children);
+
   const componentMap = {
     code: Code,
     a: props => React.createElement(props.className ? 'a' : Components.EzLink, props),
@@ -62,6 +65,10 @@ const HtmlAst = ({htmlAst, scope}) => {
     fontweights: FontWeights,
     ezalert: Components.EzAlert,
     timelinestatus: TimelineStatus,
+    h1: heading(1),
+    h2: heading(3, 'h2'),
+    h3: heading(5, 'h3'),
+    h4: heading(5, 'h4'),
   };
 
   const renderTag = (node, i) => {
