@@ -22,8 +22,8 @@ The application layout:
 
 - Controls the horizontal margins of the content area
 - Offers two variations
-  - Full width. This is the default and should be used for wide content like tables and lists.
-  - Centered. Use this narrower variant to focus user attention on the page content, or constrain the max-width to improve readability.
+  - Full width. This is the default and should be used for pages where the user benefits from the content taking up the available screen width, like on a page with a Table.
+  - Centered. Use this narrower variant to focus user attention on the page content, or constrain the max-width to improve readability. Pages with text-heavy cards or forms typically benefit from being constrained to a max-width.
 
 |                 Full width layout, narrow screen                  |                Full width layout, wide screen                 |
 | :---------------------------------------------------------------: | :-----------------------------------------------------------: |
@@ -38,7 +38,7 @@ The application layout:
 Application layouts should:
 
 - Only appear once per screen
-- Host a the page content.
+- Host the page content.
 - Optionally wrap the page content with a navigation component, where multiple top-level pages are needed.
 
 ---
