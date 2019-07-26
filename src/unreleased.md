@@ -42,6 +42,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Adds documentation for [application layout](/components/ez-app-layout). Closes #146.
+
 #### Dependency upgrades
 
 #### Development workflow
