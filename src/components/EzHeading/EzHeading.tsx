@@ -6,6 +6,7 @@ type HeadingProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   children: React.ReactNode;
   size: '1' | '2' | '3' | '4' | '5' | '6';
+  id?: string;
   className?: string;
   subheading?: string;
 };
@@ -15,6 +16,7 @@ type HeadingProps = {
  */
 const EzHeading: React.FC<HeadingProps> = ({
   as,
+  id,
   children: title,
   className,
   size: headingSize,
@@ -24,7 +26,7 @@ const EzHeading: React.FC<HeadingProps> = ({
   const Heading = headings[headingElement];
 
   const heading = (
-    <Heading className={className} size={headingSize}>
+    <Heading className={className} size={headingSize} id={id}>
       {title}
     </Heading>
   );

@@ -42,7 +42,7 @@ const HtmlAst = ({htmlAst, scope}) => {
   };
 
   const heading = (size, as) => props =>
-    React.createElement(Components.EzHeading, {size, as}, props.children);
+    React.createElement(Components.EzHeading, {size, as, ...props});
 
   const componentMap = {
     code: Code,
