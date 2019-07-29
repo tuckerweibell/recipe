@@ -58,6 +58,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - Update doc-site to include Recipe's font link (as per the new getting started docs) and to include the `EzGlobalStyles` within the Component playground
 - Trimmed down excess global styles impacting Recipe components
 
+#### Dependency upgrades
+
+- npm audit fixes
+
 #### Development workflow
 
 - Fixed an issue with emotion css-in-js leaking state across visual regression test runs
