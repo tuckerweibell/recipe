@@ -77,3 +77,6 @@ pre code {
   background: none;
   line-height: 1.42;
 }
+.EzAppLayout table img {
+  width: 100%;
+}
