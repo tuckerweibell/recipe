@@ -32,6 +32,7 @@
     "babel-jest": "^24.1.0",
     "babel-plugin-emotion": "^9.2.4",
     "concurrently": "^4.1.0",
+    "create-emotion": "^9.2.12",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.3",
     "enzyme": "^3.9.0",

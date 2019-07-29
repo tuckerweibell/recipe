@@ -16,6 +16,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - fix font-size typo causing (inputs/text area in) EzField to render at incorrect font-size)
+- Fix flash-of-unstyled-content during server render, due to global styles.
 
 #### Documentation
 
