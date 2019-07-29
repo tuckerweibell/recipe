@@ -23,7 +23,6 @@ Features still in consideration include:
 - Column pinning to support horizontal scrolling
 - Header-less table
 - Filtering
-- Zebra Striping
 - Column width options (fixed, grow, auto, ellipsis, tooltip)
 - Header-less columns (content between columns, e.g. formula operators)
 - Sticky headers
@@ -521,11 +520,18 @@ To see selection and pagination features used together, see the [bulk row select
 
 When interacting with large data sets that span multiple pages, managing the selection of records in order to perform an action in bulk can be a challenge. To simplify this experience, users are presented with a summary of their selection with options to select all records across all pages of the data set, or clear their current selection.
 
-The following additional properties are required when using selection and pagination features together:
+To enable this feature, the following additional properties are available when using selection and pagination features together:
 
 - `selection`
   - `onSelectAllClick` (required): an event that is fired when the "Select all" message is clicked.
   - `onSelectNoneClick` (required): an event that is fired when the "Clear selection" message is clicked.
+
+When offering pagination and selection, users should be offered either or both of the following options:
+
+- Selecting individual records on a single page of results
+- Selecting all records for the entire data-set
+
+Picking-and-choosing records across multiple pages of results is not supported. Instead, consider offering users the ability to find the subset of results they are interested in by using search or filters.
 
 ```jsx
 () => {

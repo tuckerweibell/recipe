@@ -57,6 +57,8 @@
           onRowSelectClick: () => {},
           onBulkSelectClick: () => {},
           isRowSelected: () => true,
+          onSelectAllClick: () => {},
+          onSelectNoneClick: () => {},
         }}
         columns={[
           {heading: 'First Name', accessor: 'first'},
@@ -101,6 +103,8 @@
           onRowSelectClick: () => {},
           onBulkSelectClick: () => {},
           isRowSelected: () => true,
+          onSelectAllClick: () => {},
+          onSelectNoneClick: () => {},
         }}
         columns={[
           {heading: 'First Name', accessor: 'first'},
@@ -110,6 +114,55 @@
         pagination={{
           currentPage: 1,
           totalRows: 5,
+          rowsPerPage: 5,
+          rowsPerPageOptions: [5, 10, 20, 30],
+          onPrevPageClick: () => {},
+          onNextPageClick: () => {},
+          onRowsPerPageChange: () => {},
+        }}
+      />
+    </EzPage>
+  );
+
+  return <Table />;
+};
+```
+
+### Table select banner hidden when not enabled
+
+```jsx
+() => {
+  const items = [
+    {first: 'Tiffany', last: 'Morin'},
+    {first: 'Mitchell', last: 'Hoffman'},
+    {first: 'Léo', last: 'Gonzalez'},
+    {first: 'Alberto', last: 'Arias'},
+    {first: 'Olivier', last: 'Campos'},
+    {first: 'Ömür', last: 'Ekici'},
+    {first: 'Énio', last: 'Barros'},
+    {first: 'Ava', last: 'Ma'},
+    {first: 'Norberta', last: 'Novaes'},
+    {first: 'Deni', last: 'Lubbers'},
+  ];
+
+  const Table = () => (
+    <EzPage>
+      <EzTable
+        title="All Stores"
+        subtitle="Compared to the same period last year"
+        selection={{
+          onRowSelectClick: () => {},
+          onBulkSelectClick: () => {},
+          isRowSelected: () => true,
+        }}
+        columns={[
+          {heading: 'First Name', accessor: 'first'},
+          {heading: 'Last Name', accessor: 'last'},
+        ]}
+        items={items.slice(0, 5)}
+        pagination={{
+          currentPage: 1,
+          totalRows: 10,
           rowsPerPage: 5,
           rowsPerPageOptions: [5, 10, 20, 30],
           onPrevPageClick: () => {},

@@ -25,13 +25,7 @@ type onSortClick = (event: React.MouseEvent<HTMLElement>, options: OnSortClickOp
 
 type onRowsPerPageChange = (event: any) => void;
 
-type BulkSelectionDisabled = {
-  onBulkSelectClick?: never;
-  onRowSelectClick?: never;
-  isRowSelected?: never;
-};
-
-type BulkSelectionEnabled = {
+type BulkSelection = {
   onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
   onBulkSelectClick: React.MouseEventHandler;
   isRowSelected: (item: any) => boolean;
@@ -42,8 +36,10 @@ type SelectAllOrNoneEnabled = {
   onSelectNoneClick: React.MouseEventHandler;
 };
 
-type Selection = {selection?: BulkSelectionEnabled | BulkSelectionDisabled};
-type SelectionAndPagination = {selection: BulkSelectionEnabled & SelectAllOrNoneEnabled};
+type SelectAllOrNoneDisabled = {
+  onSelectAllClick?: never;
+  onSelectNoneClick?: never;
+};
 
 type ActionsProps = {
   actions: React.ReactNode;
@@ -57,7 +53,7 @@ type OptionalTitle = {
 
 type TableActions = ActionsProps | OptionalTitle;
 
-type PaginationProps = {
+type Pagination = {
   currentPage: number;
   totalRows: number;
   rowsPerPage: number;
@@ -67,15 +63,42 @@ type PaginationProps = {
   onRowsPerPageChange: onRowsPerPageChange;
 };
 
+type Selection = BulkSelection & (SelectAllOrNoneEnabled | SelectAllOrNoneDisabled);
+
+type SelectionWithoutPagination = {
+  pagination?: never;
+  selection: BulkSelection & SelectAllOrNoneDisabled;
+};
+
+type PaginationWithoutSelection = {
+  pagination: Pagination;
+  selection?: never;
+};
+
+type PaginationAndSelection = {
+  pagination: Pagination;
+  selection: Selection;
+};
+
+type PaginationAndSelectionDisabled = {
+  pagination?: never;
+  selection?: never;
+};
+
+type PaginationSelectionCombination =
+  | SelectionWithoutPagination
+  | PaginationWithoutSelection
+  | PaginationAndSelection
+  | PaginationAndSelectionDisabled;
+
 type TableBase = {
   subtitle?: string;
   columns: Column[];
   items: any[];
   onSortClick?: onSortClick;
-  pagination?: PaginationProps;
 };
 
-export type TableProps = TableBase & (Selection | SelectionAndPagination) & TableActions;
+export type TableProps = TableBase & TableActions & PaginationSelectionCombination;
 
 export type Sortable = {
   direction: Direction;

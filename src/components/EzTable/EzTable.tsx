@@ -79,6 +79,7 @@ const SelectionStateBanner = () => {
   const {columns, items, selection, pagination} = useContext(TableContext);
 
   if (!selection || !pagination) return null;
+  if (!selection.onSelectAllClick) return null;
   if (selection.selected.length !== items.length && !selection.allSelected) return null;
 
   return (

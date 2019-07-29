@@ -35,6 +35,7 @@ title: 'Unreleased changes'
 - Changed width of modal to 550px.
 - Set base font-size and type on EzTable, EzField and EzButton.
 - Tweaked input placeholder styles to more closely match mocks
+- Removed the constraint that select all must be implemented if both selection and pagination are implemented together. This change is intended to facilitate an easier migration path for pages that offer pagination and selection, but are not in a position to implement "select all", either due to data-size constraints, or due to the added complexity of handling both a "select many" vs "select all" action. Closes [#160](https://github.com/ezcater/recipe/issues/160) and [#165](https://github.com/ezcater/recipe/issues/160).
 
 #### Bug fixes
 

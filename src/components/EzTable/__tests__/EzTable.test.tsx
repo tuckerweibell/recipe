@@ -354,8 +354,6 @@ describe('EzTable', () => {
             onRowSelectClick: () => {},
             onBulkSelectClick: () => {},
             isRowSelected: () => true,
-            onSelectAllClick: () => {},
-            onSelectNoneClick: () => {},
           }}
           columns={[
             {heading: 'Link', accessor: link(spy)},
