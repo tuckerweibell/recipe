@@ -19,6 +19,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Update timeline with components from 5.2.0-6.0.0 releases.
+
 #### Dependency upgrades
 
 #### Development workflow
