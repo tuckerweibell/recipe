@@ -34,6 +34,10 @@ const inputBase = ({theme, error}) => css`
       border-color: ${!error && theme.colors.interactive.hover.border};
     }
   }
+
+  ::placeholder {
+    color: ${theme.colors.grays[500]};
+  }
 `;
 
 const inputError = ({theme, error, touched}) =>

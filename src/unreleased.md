@@ -34,6 +34,7 @@ title: 'Unreleased changes'
 - Added zebra striping to simple tables in place of row hover style.
 - Changed width of modal to 550px.
 - Set base font-size and type on EzTable, EzField and EzButton.
+- Tweaked input placeholder styles to more closely match mocks
 
 #### Bug fixes
 
