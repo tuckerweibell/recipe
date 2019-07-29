@@ -173,7 +173,7 @@ const Layout = ({name, title, children, sections, location}) => (
           >
             <html lang="en" />
             <link
-              href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+              href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i&display=swap"
               rel="stylesheet"
             />
           </Helmet>

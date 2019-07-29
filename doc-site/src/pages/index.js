@@ -18,10 +18,6 @@ import {GithubLink} from '../components/GithubLink';
 import styled, {css, injectGlobal} from 'react-emotion';
 
 injectGlobal`
-  h1 {
-    margin: 0 0 1.45rem;
-    line-height: 1.1;
-  }
   p {
     margin: 0 0 1.45rem;
   }
@@ -43,6 +39,8 @@ const Header = styled.div`
   > h1 {
     font-size: 100px;
     font-weight: 300;
+    margin: 0.67em 0;
+    line-height: 1.1;
   }
   > p {
     font-size: 20px;
@@ -109,7 +107,7 @@ const IndexPage = () => (
     >
       <html lang="en" />
       <link
-        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i&display=swap"
         rel="stylesheet"
       />
     </Helmet>
