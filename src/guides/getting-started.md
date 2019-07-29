@@ -39,10 +39,7 @@ export const MyComponent = () => (
 To ensure Recipe's default font is available in a webpage, copy this code into the <head> of your HTML document.
 
 ```html
-<link
-  href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet" />
 ```
 
 ### Using Recipe theme with emotion
