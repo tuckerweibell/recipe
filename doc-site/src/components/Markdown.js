@@ -4,6 +4,7 @@ import {graphql} from 'gatsby';
 import Component from 'react-component-component';
 import Playground from './Playground';
 import * as Components from '@ezcater/recipe';
+import {withPrefix} from 'gatsby-link';
 import {ColorDefinition, Example} from './ColorVariables';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
@@ -99,7 +100,7 @@ const require = () => ({
 });
 
 const ezCaterLogoPath = logo;
-const scope = {...Components, styled, css, Component, require, ezCaterLogoPath};
+const scope = {...Components, styled, css, Component, require, ezCaterLogoPath, withPrefix};
 
 const splitOnTagName = (list, tagName) => {
   const i = list.findIndex(el => el.tagName === tagName);

@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Fix image paths in application layout and super radio button docs
+
 #### Dependency upgrades
 
 #### Development workflow

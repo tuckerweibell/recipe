@@ -25,13 +25,13 @@ The application layout:
   - Full width. This is the default and should be used for pages where the user benefits from the content taking up the available screen width, like on a page with a Table.
   - Centered. Use this narrower variant to focus user attention on the page content, or constrain the max-width to improve readability. Pages with text-heavy cards or forms typically benefit from being constrained to a max-width.
 
-|                 Full width layout, narrow screen                  |                Full width layout, wide screen                 |
-| :---------------------------------------------------------------: | :-----------------------------------------------------------: |
-| ![full width layout, narrow screen](../../images/full-narrow.png) | ![full width layout, wide screen](../../images/full-wide.png) |
-
-|                   Centered layout, narrow screen                    |                  Centered layout, wide screen                   |
+|                  Full width layout, narrow screen                   |                 Full width layout, wide screen                  |
 | :-----------------------------------------------------------------: | :-------------------------------------------------------------: |
-| ![centered layout, narrow screen](../../images/centered-narrow.png) | ![centered layout, wide screen](../../images/centered-wide.png) |
+| ![full width layout, narrow screen](/recipe/images/full-narrow.png) | ![full width layout, wide screen](/recipe/images/full-wide.png) |
+
+|                    Centered layout, narrow screen                     |                   Centered layout, wide screen                    |
+| :-------------------------------------------------------------------: | :---------------------------------------------------------------: |
+| ![centered layout, narrow screen](/recipe/images/centered-narrow.png) | ![centered layout, wide screen](/recipe/images/centered-wide.png) |
 
 ## Best Practices
 

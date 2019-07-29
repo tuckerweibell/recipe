@@ -43,17 +43,17 @@ Make sure the images you use for each choice are visually similar in style. Imag
         {
           label: "Can't deliver",
           value: 'cant-deliver',
-          imageSrc: '../../images/delivery.svg',
+          imageSrc: withPrefix('/images/delivery.svg'),
         },
         {
           label: 'Not enough notice',
           value: 'not-enough-notice',
-          imageSrc: '../../images/clock.svg',
+          imageSrc: withPrefix('/images/clock.svg'),
         },
         {
           label: "Can't prepare food",
           value: 'cant-prepare-food',
-          imageSrc: '../../images/pot.svg',
+          imageSrc: withPrefix('/images/pot.svg'),
         },
       ]}
       value={selected}
@@ -78,18 +78,18 @@ Used when a choice isn't available at the moment. Because the choices this patte
         {
           label: "Can't deliver",
           value: 'cant-deliver',
-          imageSrc: '../../images/delivery.svg',
+          imageSrc: withPrefix('/images/delivery.svg'),
         },
         {
           label: 'Not enough notice',
           value: 'not-enough-notice',
-          imageSrc: '../../images/clock.svg',
+          imageSrc: withPrefix('/images/clock.svg'),
           disabled: true,
         },
         {
           label: "Can't prepare food",
           value: 'cant-prepare-food',
-          imageSrc: '../../images/pot.svg',
+          imageSrc: withPrefix('/images/pot.svg'),
         },
       ]}
       value={selected}
