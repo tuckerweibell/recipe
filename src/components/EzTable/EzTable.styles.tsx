@@ -173,11 +173,12 @@ const selectionColumn = ({theme, selectable}) =>
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 
-const base = () => css`
+const base = ({theme}) => css`
   margin: 0;
   line-height: 1.5rem;
   border-collapse: collapse;
   width: auto;
+  ${theme.fonts.body};
 
   th,
   td {

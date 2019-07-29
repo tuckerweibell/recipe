@@ -7,7 +7,8 @@ const base = ({theme}) => css`
   cursor: pointer;
   display: inline-block;
   outline: 0;
-  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: ${theme.baseFontSize};
+  font-family: ${theme.baseFontFamily};
   font-weight: ${theme.fontWeights.bold};
   line-height: 1em;
   min-height: 1em;

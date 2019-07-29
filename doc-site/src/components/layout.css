@@ -8,14 +8,6 @@ pre {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-button,
-input,
-optgroup,
-select,
-textarea {
-  font: inherit;
-  margin: 0;
-}
 ul {
   margin-left: 1.45rem;
   margin-right: 0;
@@ -66,9 +58,6 @@ pre {
   overflow: auto;
   word-wrap: normal;
   padding: 1.45rem;
-}
-table {
-  font-size: 1rem;
 }
 li {
   margin-bottom: calc(1.45rem / 2);

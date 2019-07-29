@@ -33,6 +33,7 @@ title: 'Unreleased changes'
 - Updated simple table to no longer grow to fill the available space (Closes [#147](https://github.com/ezcater/recipe/issues/147))
 - Added zebra striping to simple tables in place of row hover style.
 - Changed width of modal to 550px.
+- Set base font-size and type on EzTable, EzField and EzButton.
 
 #### Bug fixes
 
@@ -48,6 +49,7 @@ title: 'Unreleased changes'
 - Update 'Getting started' documentation to include more complete instructions around setting up Recipe to work with emotion and theming
 - Added instructions for setting up applications to import Recipe's base font
 - Update doc-site to include Recipe's font link (as per the new getting started docs) and to include the `EzGlobalStyles` within the Component playground
+- Trimmed down excess global styles impacting Recipe components
 
 #### Dependency upgrades
 

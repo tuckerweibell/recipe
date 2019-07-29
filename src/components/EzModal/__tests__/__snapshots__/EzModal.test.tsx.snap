@@ -222,7 +222,8 @@ exports[`EzModal should render with default styles 1`] = `
   cursor: pointer;
   display: inline-block;
   outline: 0;
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-size: 14px;
+  font-family: Lato,"Helvetica Neue",Arial,Helvetica,sans-serif;
   font-weight: 700;
   line-height: 1em;
   min-height: 1em;
@@ -273,7 +274,8 @@ exports[`EzModal should render with default styles 1`] = `
   cursor: pointer;
   display: inline-block;
   outline: 0;
-  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-size: 14px;
+  font-family: Lato,"Helvetica Neue",Arial,Helvetica,sans-serif;
   font-weight: 700;
   line-height: 1em;
   min-height: 1em;
