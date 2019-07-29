@@ -15,6 +15,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- fix font-size typo causing (inputs/text area in) EzField to render at incorrect font-size)
+
 #### Documentation
 
 #### Dependency upgrades

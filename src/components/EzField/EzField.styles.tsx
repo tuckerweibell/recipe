@@ -17,7 +17,7 @@ function borderRadius(side: 'top' | 'bottom', radius: string | number) {
 
 const inputBase = ({theme, error}) => css`
   font-family: ${theme.baseFontFamily};
-  font-size: ${theme.baseFontsize};
+  font-size: ${theme.baseFontSize};
   display: block;
   color: ${theme.colors.text.base};
   width: 100%;
