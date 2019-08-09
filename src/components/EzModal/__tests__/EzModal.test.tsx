@@ -2,30 +2,25 @@ import React from 'react';
 import {fireEvent, cleanup} from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import {axe} from 'jest-axe';
+import {visualSnapshots} from 'sosia';
+import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
 import {standard} from '../../../themes';
 import {fullRender} from '../../../jest-globals';
 
 afterEach(cleanup);
 
-describe('EzModal', () => {
-  beforeEach(() => {
-    // suppress import style warning from Reach Modal
-    jest.spyOn(CSSStyleDeclaration.prototype, 'getPropertyValue').mockReturnValue('1');
-  });
+const scope = {EzModal};
 
-  afterEach(() => {
+describe('EzModal', () => {
+  // suppress import style warning from Reach Modal
+  jest.spyOn(CSSStyleDeclaration.prototype, 'getPropertyValue').mockReturnValue('1');
+
+  afterAll(() => {
     (CSSStyleDeclaration.prototype.getPropertyValue as any).mockRestore();
   });
 
-  it('should render with default styles', () => {
-    const {baseElement} = fullRender(
-      <EzModal isOpen submitLabel="Submit" dismissLabel="Dismiss" headerText="Header">
-        children
-      </EzModal>
-    );
-    expect(baseElement).toMatchSnapshot();
-  });
+  visualSnapshots({markdown: regressionTests, scope});
 
   it('does not render the children if not open', () => {
     const {queryByText} = fullRender(

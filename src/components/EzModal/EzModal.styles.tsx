@@ -62,6 +62,10 @@ export const ContentContainer = styled.div`
   flex: auto;
   overflow-y: auto;
 
+  > *:not(:first-child) {
+    margin-top: ${props => props.theme.spacing.lg};
+  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     padding-top: 0;
   }

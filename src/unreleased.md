@@ -15,6 +15,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Changed EzModal to vertically space content, such that it behaves the same as EzCard content.
+
 #### Documentation
 
 - Fix image paths in application layout and super radio button docs

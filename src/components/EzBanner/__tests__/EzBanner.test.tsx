@@ -21,7 +21,7 @@ describe('EzBanner', () => {
           href: '#',
         }}
         use="marketing"
-        onDismiss={() => alert('Clicked dismiss')}
+        onDismiss={() => {}}
       />
     );
     const actual = await axe(wrapper);

@@ -1,7 +1,6 @@
 import {css} from 'emotion';
 import {EzCardSection} from '../EzCard';
 import styled, {Theme} from '../../themes/styled';
-import {TableProps} from './EzTable.types';
 
 const fullBleed = () => css`
   padding: 0;
