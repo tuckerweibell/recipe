@@ -22,6 +22,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 #### Documentation
 
 - Fix image paths in application layout and super radio button docs
+- updated contribution instructions and provided detailed guidelines for approaching development of new components
+  - Working towards a more open governance model
+  - Iterating on the process for getting new developers up-to-speed with contributing to Recipe
+- added new [meet-the-team](/meet-the-team) page.
 
 #### Dependency upgrades
 
