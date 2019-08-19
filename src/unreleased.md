@@ -26,4 +26,6 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- Dependency bump for security vulnerability warning from npm audit.
+
 #### Development workflow
