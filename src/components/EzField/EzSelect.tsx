@@ -127,9 +127,11 @@ const EzSelect = ({id, options, value, onChange, ...rest}) => {
     }
   };
 
+  const valueHasChanged = value !== (activeOption && activeOption.value);
+
   useEffect(() => {
-    if (!visible) selectItem(new Event('change'));
-  }, [activeOption, visible, selectItem]);
+    if (!visible && valueHasChanged) selectItem(new Event('change'));
+  }, [valueHasChanged, visible, selectItem]);
 
   useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
     activeOption,

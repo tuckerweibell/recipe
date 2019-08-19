@@ -554,6 +554,48 @@ describe('EzField', () => {
 
       expect(lastCall[0].target.value).toEqual('today');
     });
+
+    it('should not trigger onChange on the initial render', () => {
+      const onChange = jest.fn();
+
+      render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('should trigger onChange after matching typed characters to an option, even with the list is closed', () => {
+      const onChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="today"
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      keyDown('y');
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual('yesterday');
+    });
   });
 
   it('should generate the correct time range options', () => {

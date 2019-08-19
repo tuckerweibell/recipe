@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Changed EzModal to vertically space content, such that it behaves the same as EzCard content.
+- Changed EzField to only trigger `onChange` if the selection causes a change to the initially provided value.
 
 #### Documentation
 
