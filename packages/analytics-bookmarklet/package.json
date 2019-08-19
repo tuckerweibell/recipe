@@ -1,0 +1,12 @@
+{
+  "name": "analytics-bookmarklet",
+  "version": "1.0.0",
+  "description": "bookmarklet to analyze Recipe usage",
+  "main": "dist/bookmarklet.js",
+  "scripts": {
+    "build": "bookmarklet src/bookmarklet.js dist/bookmarklet.js"
+  },
+  "devDependencies": {
+    "bookmarklet": "^1.0.2"
+  }
+}

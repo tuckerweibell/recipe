@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Exposed Recipe version on each component for generating analytics. Added a new bookmarklet package for highlighting Recipe usage in downstream applications.
+
 #### Design updates
 
 #### Bug fixes

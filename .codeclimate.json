@@ -1,5 +1,6 @@
 {
   "exclude_patterns": [
+    "packages",
     "coverage",
     "node_modules",
     "dist",

@@ -18,7 +18,10 @@ const createStyled = (tag: any, options?: StyledOptions) => {
   return function styledWithStandardTheme() {
     // eslint-disable-next-line prefer-rest-params
     const argsWithStandardTheme = [...arguments].map(wrapWithStandardTheme);
-    return createStyledComponent(...argsWithStandardTheme);
+    const Component = createStyledComponent(...argsWithStandardTheme);
+    // Tag component for analytics
+    Object.assign(Component.prototype, {__recipe: process.env.npm_package_version});
+    return Component;
   };
 };
 
