@@ -8,6 +8,25 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 6.1.1 - 2019-08-19
+
+#### Enhancements
+
+- Exposed Recipe version on each component for generating analytics. Added a new [bookmarklet package](https://github.com/ezcater/recipe/tree/master/packages/analytics-bookmarklet) for highlighting Recipe usage in downstream applications.
+
+#### Bug fixes
+
+- Changed EzModal to vertically space content, such that it behaves the same as EzCard content.
+- Changed EzField to only trigger `onChange` if the selection causes a change to the initially provided value.
+
+#### Documentation
+
+- Fix image paths in application layout and super radio button docs
+
+#### Dependency upgrades
+
+- Dependency bump (jest-axe) for security vulnerability warning from npm audit.
+
 ## 6.1.0 - 2019-07-29
 
 #### Bug fixes
