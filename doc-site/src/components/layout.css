@@ -80,3 +80,6 @@ pre code {
 .EzAppLayout table img {
   width: 100%;
 }
+img.avatar {
+  border-radius: 100%;
+}

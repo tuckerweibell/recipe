@@ -117,14 +117,14 @@ const IndexPage = () => (
       <>
         <Header>
           <h1>Recipe</h1>
-          <p>Now we're Cookin'!</p>
+          <p>"Now that I’ve worked with Recipe, I don’t want to go back to working without Recipe."</p>
+          <p>-Jesse Belanger</p>
         </Header>
 
         <EzPage>
           <EzFlashMessage use="info" headline="Want to contribute to Recipe?">
             <p>
-              We’re currently considering making this project fully open source. In the meantime, if
-              you’re an ezcater employee and are interested in contributing, check out our{' '}
+              Your contributions will help all the squads that use Recipe. Check out our{' '}
               <EzLink to="/guides/contributing/" as={Link}>
                 contributing guidelines
               </EzLink>{' '}
