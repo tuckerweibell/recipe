@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Improve tooltip notes to explicitly call out the need for the target element to support refs, mouse events and focus events.
+
 #### Dependency upgrades
 
 #### Development workflow

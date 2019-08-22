@@ -4,7 +4,7 @@ title: Tooltip
 path: '/components/ez-tooltip'
 ---
 
-A tooltip is a floating label for displaying helpful contextual messages.
+A tooltip is a floating label for displaying helpful contextual messages. When the user's mouse or focus rests on an element, a non-interactive popup is displayed near it.
 
 ---
 
@@ -17,8 +17,9 @@ Tooltips should:
 
 Tooltips should not:
 
-- Contain important information. Use a [`EzFlashMessage`](../ez-flash-message) for important contextual information.
-- Be used sparingly.
+- Contain important information, or information vital to task completion. Use a [`EzFlashMessage`](/components/ez-flash-message) for important contextual information.
+- Be used sparingly, and should contain minimal content.
+- For interactive content, use [`EzModal`](/components/ez-modal) instead.
 
 ---
 
@@ -26,7 +27,11 @@ Tooltips should not:
 
 #### Basic tooltip
 
-Allows a single component to be wrapped with a tooltip to provide additional information for the user.
+Allows a single component to become a trigger for a tooltip to provide additional information for the user.
+
+When adding a tooltip to a user interface element other than [another Recipe component](#tooltip-wrapping-another-recipe-component), the target element must accept [`refs`](https://reactjs.org/docs/forwarding-refs.html), as well as both [mouse events](https://reactjs.org/docs/events.html#mouse-events) and [focus events](https://reactjs.org/docs/events.html#focus-events). This allows Recipe to position the tooltip relative to the target element, and react to the user's mouse or focus resting on the target element.
+
+When adding a tooltip to a custom react component, you may need to implement [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) inside your component. This will allow you to target a specific html element (or Recipe component) to act as the trigger for your tooltip.
 
 ```jsx
 <EzTooltip message="Single-line informational tooltip">
@@ -34,7 +39,9 @@ Allows a single component to be wrapped with a tooltip to provide additional inf
 </EzTooltip>
 ```
 
-#### Tooltip wrapping another recipe component
+#### Tooltip wrapping another Recipe component
+
+Allows a single Recipe component to become a trigger for a tooltip to provide additional information for the user.
 
 ```jsx
 <EzFormLayout>
