@@ -1,4 +1,5 @@
 import React, {SFC, useState} from 'react';
+import en from './en';
 import Logo, {LogoType} from './Logo';
 import Menu from './Menu';
 import Hamburger from './Hamburger';
@@ -6,6 +7,7 @@ import UserMenu from './UserMenu';
 import {NotificationCounter} from './Notifications';
 import {Wrapper, NavWrapper, Menus, MenuContent, ContentContainer} from './EzNavigation.styles';
 import {LabelledLink} from '../EzLink/EzLink.types';
+import {useTranslation} from '../../utils/hooks';
 
 const countNotifications = links =>
   links.reduce((sum, link) => {
@@ -41,6 +43,7 @@ const EzNavigation: SFC<Props> = ({
   userMenu,
   home: {logo, ...homeLink},
 }: any) => {
+  const {t} = useTranslation(en);
   const [hidden, setHidden] = useState(true);
 
   const handleSidebarToggle = () => setHidden(s => !s);
@@ -58,26 +61,28 @@ const EzNavigation: SFC<Props> = ({
         )}
         <Logo link={homeLink} logo={logo} />
         <MenuContent opened={!hidden}>
-          <Menus primary>
+          <Menus primary aria-label={t('Primary navigation')}>
             {links.map((link, i) => (
               <Menu key={i} link={link} sidebarToggle={handleSidebarToggle} />
             ))}
           </Menus>
-          <Menus>
-            {utilityLinks &&
-              utilityLinks.map((link, i) => (
-                <Menu key={i} link={link} sidebarToggle={handleSidebarToggle} />
-              ))}
-          </Menus>
-          <Menus>
-            {userMenu && (
+          {utilityLinks && (
+            <Menus aria-label={t('Utility navigation')}>
+              {utilityLinks &&
+                utilityLinks.map((link, i) => (
+                  <Menu key={i} link={link} sidebarToggle={handleSidebarToggle} />
+                ))}
+            </Menus>
+          )}
+          {userMenu && (
+            <Menus aria-label={t('User menu')}>
               <UserMenu
                 name={userMenu.name}
                 links={userMenu.links}
                 sidebarToggle={handleSidebarToggle}
               />
-            )}
-          </Menus>
+            </Menus>
+          )}
         </MenuContent>
       </NavWrapper>
       <ContentContainer opened={hidden}>{children}</ContentContainer>

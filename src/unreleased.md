@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- add unique landmarks to EzNavigation improve a11y
+
 #### Design updates
 
 #### Bug fixes
