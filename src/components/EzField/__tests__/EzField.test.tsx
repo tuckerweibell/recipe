@@ -596,6 +596,42 @@ describe('EzField', () => {
 
       expect(lastCall[0].target.value).toEqual('yesterday');
     });
+
+    it('should not trigger onChange when re-rendered with new props', () => {
+      const onChange = jest.fn();
+
+      const {rerender} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+      // change to a new value
+      rerender(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="tomorrow"
+          onChange={onChange}
+        />
+      );
+      // "reset" back to original value
+      rerender(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
   });
 
   it('should generate the correct time range options', () => {

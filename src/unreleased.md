@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- fix EzField[type="select"] bug preventing the ability to "reset" the value of a select list via props
+
 #### Documentation
 
 #### Dependency upgrades

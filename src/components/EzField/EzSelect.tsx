@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
+import {useScrollIntoView, useJumpToOption, useUniqueId, useUpdateEffect} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 
 const flatten = options => {
@@ -127,11 +127,9 @@ const EzSelect = ({id, options, value, onChange, ...rest}) => {
     }
   };
 
-  const valueHasChanged = value !== (activeOption && activeOption.value);
-
-  useEffect(() => {
-    if (!visible && valueHasChanged) selectItem(new Event('change'));
-  }, [valueHasChanged, visible, selectItem]);
+  useUpdateEffect(() => {
+    if (!visible) selectItem(new Event('change'));
+  }, [activeOption]);
 
   useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
     activeOption,
