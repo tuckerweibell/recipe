@@ -8,6 +8,16 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 6.1.2 - 2019-08-22
+
+#### Enhancements
+
+- add unique landmarks to EzNavigation improve a11y
+
+#### Bug fixes
+
+- fix EzField[type="select"] bug preventing the ability to "reset" the value of a select list via props
+
 ## 6.1.1 - 2019-08-19
 
 #### Enhancements
