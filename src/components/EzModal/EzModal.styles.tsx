@@ -30,7 +30,7 @@ export const ModalContainer = styled(DialogContent)`
     height: auto;
     overflow: hidden; /* so the border-radius is applies to child content  */
     max-height: calc(100vh - ${props => props.theme.spacing.xl4});
-    width: 550px;
+    width: 575px;
   }
 `;
 
