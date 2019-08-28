@@ -8,6 +8,16 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 6.1.3 - 2019-08-28
+
+#### Bug fixes
+
+- Bump width of content of EzModal to accomodate a 3 wide super radio button with scroll bar. Fixes [#209](https://github.com/ezcater/recipe/issues/209)
+
+#### Documentation
+
+- Improve tooltip notes to explicitly call out the need for the target element to support refs, mouse events and focus events.
+
 ## 6.1.2 - 2019-08-22
 
 #### Enhancements
