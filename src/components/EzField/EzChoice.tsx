@@ -32,7 +32,6 @@ export default props => {
       target: {
         ...props,
         checked,
-        selected: newSelection,
         value: newSelection,
       },
     });

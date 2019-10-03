@@ -7,6 +7,8 @@ title: 'Unreleased changes'
 
 #### Breaking changes
 
+- Removed previously deprecated `e.target.selected` property from the `onChange` callback of both EzField[type="radio"] and EzField[type="checkbox"] in favor `e.target.value` for consistency with the `onChange` event handlers for other EzField types.
+
 #### New components
 
 #### Enhancements
