@@ -19,4 +19,7 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- updated ez-scripts (linting) version
+- Dependency bumps for security vulnerability warning from npm audit.
+
 #### Development workflow

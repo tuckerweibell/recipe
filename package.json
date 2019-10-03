@@ -19,7 +19,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-1": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@ezcater/ez-scripts": "0.0.3",
+    "@ezcater/ez-scripts": "^1.0.2",
     "@types/cheerio": "^0.22.10",
     "@types/enzyme": "^3.1.18",
     "@types/enzyme-adapter-react-16": "^1.0.4",
