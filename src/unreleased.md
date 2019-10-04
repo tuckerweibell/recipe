@@ -21,6 +21,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Fix image paths in EzBlankState docs
+
 #### Dependency upgrades
 
 - updated ez-scripts (linting) version

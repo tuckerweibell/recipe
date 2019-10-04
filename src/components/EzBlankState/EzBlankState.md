@@ -43,7 +43,7 @@ When it's likely that the user has never had data in a container (never had an o
 ```jsx
 <EzCard>
   <EzBlankState
-    imageSrc="../../images/review-star.svg"
+    imageSrc={withPrefix('/images/review-star.svg')}
     title="Wishing on a review?"
     message="If your heart is in your dream no request is too extreme… but maybe try again tomorrow."
     action={<EzButton use="primary">Request a Review</EzButton>}
