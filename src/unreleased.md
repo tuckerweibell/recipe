@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Change EzBlankState message to use a `div` instead of a `p` to prevent the style from being overriden by EzPage
+
 #### Documentation
 
 #### Dependency upgrades

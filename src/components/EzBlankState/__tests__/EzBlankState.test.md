@@ -23,3 +23,17 @@
   />
 </EzCard>
 ```
+
+### Blank state inside EzPage uses correct spacing
+
+```jsx
+<EzPage>
+  <EzCard>
+    <EzBlankState
+      title="You don’t have any reviews yet"
+      message="It can take customers a few days after they receive their order to write a review. As you get reviews, they'll appear here."
+      action={<EzButton use="primary">Request a Review</EzButton>}
+    />
+  </EzCard>
+</EzPage>
+```

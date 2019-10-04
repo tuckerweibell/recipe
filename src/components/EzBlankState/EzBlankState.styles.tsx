@@ -23,6 +23,6 @@ export const BlankStateImage = styled.img`
   max-height: 100%;
 `;
 
-export const BlankStateMessage = styled.p`
+export const BlankStateMessage = styled.div`
   margin: ${({theme}) => theme.spacing.lg} 0;
 `;
