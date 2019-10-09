@@ -22,6 +22,8 @@ title: 'Unreleased changes'
 #### Documentation
 
 - Fix image paths in EzBlankState docs
+- Added github issue templates for bug reports and new component proposals
+- Updated PR template to include checklist for including tests/release notes.
 
 #### Dependency upgrades
 
