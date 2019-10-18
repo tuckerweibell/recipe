@@ -5,7 +5,7 @@ import styled from '../../themes/styled';
 const base = ({theme}) => css`
   display: inline-block;
   margin-left: ${theme.spacing.sm};
-  padding: ${theme.spacing.xs};
+  line-height: ${theme.lineHeights.heading};
   vertical-align: top;
   svg {
     margin-right: ${theme.spacing.xs};

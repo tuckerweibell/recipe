@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Change EzBlankState message to use a `div` instead of a `p` to prevent the style from being overriden by EzPage
+- Set line-height and remove padding for `EzInlineFeedback` to prevent shifting in `EzToggle`.  This fixes [#223](https://github.com/ezcater/recipe/issues/223)
 
 #### Documentation
 

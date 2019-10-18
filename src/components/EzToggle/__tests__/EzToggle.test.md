@@ -27,3 +27,16 @@
 ```jsx
 <EzToggle defaultChecked={false} label="Receive marketing emails" status="error" />
 ```
+
+### Toggle control renders in a consistent position regardless of status
+
+```jsx
+<div className={css(`
+    > * {
+      position: absolute !important;
+    }
+`)}>
+  <EzToggle defaultChecked={false} label="Receive marketing emails" status="progress"  />
+  <EzToggle defaultChecked={false} label="Receive marketing emails"  />
+</div>
+```
