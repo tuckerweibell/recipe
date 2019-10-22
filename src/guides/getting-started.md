@@ -68,12 +68,12 @@ The matching Sketch symbol library for Recipe is available through a tool called
 npm install @ezcater/recipe
 ```
 
-After installing recipe in your new application you may need to install some additional peer dependencies, check the warnings in your terminal for what those are as well as the `package.json` file. There is a section specifically for `peerDependencies` which need to be installed by the parent application.
+After installing recipe in your new application you may need to install some additional peer dependencies. When installing recipe, you may see warnings in your terminal prompting you to install these dependencies. There is a `peerDependencies` section in Recipe's `package.json` file which lists the dependencies that need to be installed by the parent application.
 
 Aside from React and React DOM, Recipe requires the following `peerDependencies` to be provided by your project:
 
 ```term
-npm install emotion@9.x react-emotion@9.x emotion-theming@9.x
+npm install @emotion/core @emotion/styled
 ```
 
 ### Importing components in downstream projects
