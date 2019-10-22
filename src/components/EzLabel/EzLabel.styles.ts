@@ -18,8 +18,8 @@ const size = variant('size', {
   normal: typography({shade: 'base', size: 300}),
 });
 
-const top = ({theme}: Themed) => ({'margin-bottom': theme.spacing.xs2});
-const bottom = ({theme}: Themed) => ({'margin-top': theme.spacing.xs2});
+const top = ({theme}: Themed) => ({marginBottom: theme.spacing.xs2});
+const bottom = ({theme}: Themed) => ({marginTop: theme.spacing.xs2});
 
 const left = ({theme}: Themed) => css`
   display: inline-block;
