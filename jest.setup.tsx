@@ -1,13 +1,14 @@
 import React from 'react';
+import {Global, css, CacheProvider} from '@emotion/core';
+import createCache from '@emotion/cache';
 import {createSerializer, matchers} from 'jest-emotion';
 import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
+import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
-import markdownSource from './emotionComponentSource';
 import {ThemeProvider} from 'emotion-theming';
 import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
-import {Global} from './src/styles';
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);
@@ -24,37 +25,46 @@ expect.addSnapshotSerializer(
 
 expect.extend(matchers);
 
-// cheat for syntax highlighting
-const css = (...args): string => args[0];
+const EmotionCacheProvider = ({children}) => {
+  const cache = React.useRef(createCache());
+
+  // Remove any injected stylesheets from the page when the component is unmounted
+  React.useEffect(() => () => cache.current.sheet.flush());
+
+  return <CacheProvider value={cache.current}>{children}</CacheProvider>;
+};
 
 const GlobalStylesWrapper = ({children}) => (
-  <ThemeProvider theme={themes.standard}>
-    <>
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-        rel="stylesheet"
-      />
-      <EzGlobalStyles />
-      <Global
-        styles={css`
-          /* disable animations in visual snapshots */
-          *,
-          ::before,
-          ::after {
-            transition-property: none !important;
-            animation: none !important;
-          }
-          body {
-            /* restore user agent based margin for backward compatibility with existing snapshots */
-            margin: 8px;
-          }
-        `}
-      />
-      {children}
-    </>
-  </ThemeProvider>
+  <EmotionCacheProvider>
+    <ThemeProvider theme={themes.standard}>
+      <>
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+          rel="stylesheet"
+        />
+        <EzGlobalStyles />
+        <Global
+          styles={css`
+            /* disable animations in visual snapshots */
+            *,
+            ::before,
+            ::after {
+              transition-property: none !important;
+              animation: none !important;
+            }
+            body {
+              /* restore user agent based margin for backward compatibility with existing snapshots */
+              margin: 8px;
+            }
+          `}
+        />
+        {children}
+      </>
+    </ThemeProvider>
+  </EmotionCacheProvider>
 );
 
+const markdownSource = new MarkdownSource();
 const markdownSourceWithThemeWrapper = {
   execute: options => {
     const examples = markdownSource.execute(options);
