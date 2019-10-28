@@ -1,9 +1,10 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {fireEvent} from '@testing-library/react';
 import markdown from '../EzSegmentedControl.md';
 import EzSegmentedControl from '../EzSegmentedControl';
-import {mount, renderToHtml} from '../../../jest-globals';
+import {fullRender, renderToHtml} from '../../../jest-globals';
 
 const scope = {EzSegmentedControl};
 
@@ -14,7 +15,7 @@ describe('EzSegmentedControl', () => {
     it('triggers onChange when segment is clicked', () => {
       const onChangeSpy: (value: string) => void = jest.fn();
 
-      const component = mount(
+      const {getByText} = fullRender(
         <EzSegmentedControl
           name="test-segment"
           label="test segment"
@@ -30,10 +31,7 @@ describe('EzSegmentedControl', () => {
         />
       );
 
-      component
-        .find('input')
-        .last()
-        .simulate('change', {target: {checked: true}});
+      fireEvent.click(getByText('third'));
 
       expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
     });
