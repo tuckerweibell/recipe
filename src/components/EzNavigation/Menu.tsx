@@ -5,16 +5,6 @@ import EzLink from '../EzLink';
 import {wrapEvent} from '../../utils';
 import {Counter, Marketing} from './Notifications';
 
-// TODO: figure out how we can get this from theme, without coupling to emotion-theming
-const activeStyles = ({active}) =>
-  active &&
-  css`
-    && {
-      color: white;
-      background-color: #1b2023;
-    }
-  `;
-
 export const menuStyles = ({theme}) => css`
   color: #b8bdc2;
   font-weight: normal;
@@ -40,7 +30,10 @@ const MenuLink = styled(EzLink)`
     ${p => menuStyles(p)};
   }
 
-  ${activeStyles as any}
+  &.active {
+    color: white;
+    background-color: ${({theme}) => theme.colors.grays[900]};
+  }
 `;
 
 const Notification = ({value}) => {
@@ -52,7 +45,8 @@ const Menu = ({link, sidebarToggle}) => (
     <MenuLink
       {...link}
       onClick={wrapEvent(link.onClick, sidebarToggle)}
-      {...(link.to ? {activeClassName: activeStyles({active: true})} : {})}
+      className={link.active ? 'active' : undefined}
+      {...(link.to ? {activeClassName: 'active'} : {})}
     >
       {link.label}
       {Boolean(link.notifications) && <Notification value={link.notifications} />}
