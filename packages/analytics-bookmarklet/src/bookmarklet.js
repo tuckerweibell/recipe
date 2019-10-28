@@ -22,8 +22,12 @@ function findClosestStyledComponent(el) {
   while (fiberNode && fiberNode.return) {
     fiberNode = fiberNode.return;
 
-    if (typeof fiberNode.elementType === 'function' && 'withComponent' in fiberNode.elementType)
-      return fiberNode.stateNode;
+    if (
+      typeof fiberNode.elementType === 'object' &&
+      fiberNode.elementType &&
+      'withComponent' in fiberNode.elementType
+    )
+      return fiberNode.type;
 
     if (typeof fiberNode.elementType === 'string') return null;
   }
@@ -47,12 +51,9 @@ walkTheDOM(document.body, node => {
 
   const Component = findClosestStyledComponent(node);
 
-  const ownedByRecipe = !Component
-    ? node.parentElement.ownedByRecipe
-    : Boolean(Component.__proto__.__recipe);
+  const ownedByRecipe = !Component ? node.parentElement.ownedByRecipe : Boolean(Component.__recipe);
 
-  if (!version && Component && Component.__proto__.__recipe)
-    version = `v${Component.__proto__.__recipe}`;
+  if (!version && Component && Component.__recipe) version = `v${Component.__recipe}`;
 
   node.ownedByRecipe = ownedByRecipe;
 
