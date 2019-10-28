@@ -4,7 +4,7 @@ import {visualSnapshots} from 'sosia';
 import markdown from '../EzHeading.md';
 import EzHeading from '../EzHeading';
 import {EzCard} from '../../index';
-import {create, render, renderToHtml} from '../../../jest-globals';
+import {create, fullRender, renderToHtml} from '../../../jest-globals';
 
 const scope = {EzHeading, EzCard, React};
 
@@ -20,16 +20,16 @@ describe('EzHeading', () => {
     expect(actual.toJSON().type).toEqual('h1');
   });
 
-  ['1', '2', '3', '4', '5', '6'].forEach(n => {
+  test.each(['1', '2', '3', '4', '5', '6'])('Shows/Hides subheading for size %i', n => {
     const size = n as '1' | '2' | '3' | '4' | '5' | '6';
 
-    const actual = render(
+    const {container} = fullRender(
       <EzHeading size={size} subheading="Subheading">
         Heading
       </EzHeading>
     );
     const shown = n === '3' || n === '5' ? 1 : 0;
-    expect(actual.find('div')).toHaveLength(shown);
+    expect(container.querySelectorAll('div')).toHaveLength(shown);
   });
 
   it('should meet accessibility guidelines', async () => {

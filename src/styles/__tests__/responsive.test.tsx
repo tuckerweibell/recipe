@@ -1,7 +1,7 @@
 import React from 'react';
 import {responsive} from '..';
 import styled from '../../themes/styled';
-import {render} from '../../jest-globals';
+import {fullRender} from '../../jest-globals';
 
 describe('responsive()', () => {
   let fn;
@@ -31,8 +31,8 @@ describe('responsive()', () => {
   it('should render base styles plus media queries for each breakpoint provided', () => {
     const subjectUnderTest = fn({use: {base: 'light', desktop: 'dark'}, colors, theme});
     const Component = styled.div(subjectUnderTest);
-    const actual = render(<Component />);
-    expect(actual).toMatchSnapshot();
+    const {container} = fullRender(<Component />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should raise an error if called without a base variant', () => {
