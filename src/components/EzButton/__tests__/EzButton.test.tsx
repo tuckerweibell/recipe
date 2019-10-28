@@ -1,6 +1,7 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {fireEvent} from 'react-testing-library';
 import EzButton from '../EzButton';
 import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
@@ -25,6 +26,25 @@ describe('EzButton', () => {
       );
 
       expect(getByText('Click Me')).toHaveAttribute('disabled');
+    });
+  });
+
+  describe('disabledMessage', () => {
+    it('wraps the button in a tooltip if a value is provided', () => {
+      const tooltipText = 'Invalid form';
+
+      const {container, getByText, getByRole} = fullRender(
+        <EzButton use="primary" disabledMessage={tooltipText}>
+          Submit
+        </EzButton>
+      );
+
+      fireEvent.focus(container.querySelector('button'));
+
+      const tooltip = getByRole('tooltip');
+
+      expect(tooltip).toBeVisible();
+      expect(getByText(tooltipText)).toBeDefined();
     });
   });
 
