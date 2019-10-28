@@ -133,7 +133,7 @@ const spinner = ({margin, size, radius, thickness, color}) => css`
   }
 `;
 
-const loading = ({loading: isLoading, use, theme: {colors}}) => {
+const loading = ({isLoading, use, theme: {colors}}) => {
   const color = variant('use', {
     primary: colors.white,
     secondary: colors.grays[700],
