@@ -24,7 +24,13 @@ const rotateAnimationStyles = () => css`
 `;
 
 const SvgIcon = ({children, title, className}: any) => (
-  <svg version="1.1" viewBox="0 0 14 14" className={cx(className, alignBaseline())}>
+  <svg
+    version="1.1"
+    viewBox="0 0 14 14"
+    height="1em"
+    width="1em"
+    className={cx(className, alignBaseline())}
+  >
     <title>{title}</title>
     <g id={title} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       {children}
