@@ -181,7 +181,7 @@ const EzSelect = props => {
           aria-labelledby={ariaLabelledBy}
           role="listbox"
           {...comboboxFlyout}
-          ref={scrollableRef}
+          ref={scrollableRef as any}
           onClick={() => comboboxInput.ref.current.focus()}
         >
           {hasGroupedOptions(options) ? (

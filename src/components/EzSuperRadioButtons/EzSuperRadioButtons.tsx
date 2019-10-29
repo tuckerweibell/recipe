@@ -13,7 +13,7 @@ import {EzSuperRadioButtonsProps} from './EzSuperRadioButtons.types';
 
 const getId = (name, {value}) => `${name}-${value}`;
 
-const EzSuperRadioButtons = forwardRef<HTMLElement, EzSuperRadioButtonsProps>(
+const EzSuperRadioButtons = forwardRef<HTMLDivElement, EzSuperRadioButtonsProps>(
   ({options, label, value, onChange}, ref) => {
     const id = useUniqueId();
     return (

@@ -126,7 +126,7 @@ const TRow = ({item}) => {
   const [targetRef, {ref, clickable, onClick, onMouseEnter}] = useExpandedClickTarget();
 
   return (
-    <ClickableTr {...{ref, clickable, onClick, onMouseEnter}}>
+    <ClickableTr {...{ref: ref as any, clickable, onClick, onMouseEnter}}>
       {selection && (
         <Td>
           <EzCheckbox
