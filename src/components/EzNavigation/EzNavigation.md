@@ -34,7 +34,7 @@ Use the Navigation component to offer a menu containing navigation links, either
   return (
     <EzAppLayout>
       <EzNavigation
-        home={{href: '#', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
         links={[
           {href: '#', label: 'Orders', active: active === 'Orders', onClick},
           {href: '#', label: 'Customers', active: active === 'Customers', onClick},
@@ -69,7 +69,7 @@ When using the `as` prop, you must use the `to` prop in place of `href` to provi
       <EzAppLayout>
         <EzNavigation
           home={{
-            to: '/components/ez-navigation/',
+            to: '/components',
             label: 'Homepage',
             logo: {src: ezCaterLogoPath, width: 100},
             as: Link,
@@ -108,20 +108,15 @@ Utility links can only be used in conjunction with the main navigation links. On
     <Router>
       <EzAppLayout>
         <EzNavigation
-          home={{
-            to: '/components/ez-navigation/',
-            label: 'Homepage',
-            logo: {src: ezCaterLogoPath, width: 100},
-            as: Link,
-          }}
+          home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
           links={[
-            {to: '/components/ez-navigation/', label: 'Orders', as: NavLink},
-            {to: '/customers', label: 'Customers', as: NavLink},
-            {to: '/reports', label: 'Reports', as: NavLink},
+            {href: '/orders', onClick: e => e.preventDefault(), label: 'Orders'},
+            {href: '/customers', onClick: e => e.preventDefault(), label: 'Customers'},
+            {href: '/reports', onClick: e => e.preventDefault(), label: 'Reports'},
           ]}
           utilityLinks={[
-            {to: '/chat', label: 'Chat', as: NavLink},
-            {to: '/support', label: '24/7 Support', as: NavLink},
+            {href: '/chat', onClick: e => e.preventDefault(), label: 'Chat'},
+            {href: '/support', onClick: e => e.preventDefault(), label: '24/7 Support'},
           ]}
         >
           <EzPage>
@@ -150,16 +145,23 @@ Note: a special notification value `★` can be used to highlight the link for e
 ```jsx
 <EzAppLayout>
   <EzNavigation
-    home={{
-      href: 'javascript:void(0);',
-      label: 'Homepage',
-      logo: {src: ezCaterLogoPath, width: 100},
-    }}
+    home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
     links={[
-      {href: 'javascript:void(0);', label: 'Orders', active: true, notifications: 15},
-      {href: 'javascript:void(0);', label: 'Get More Orders', notifications: '★'},
-      {href: 'javascript:void(0);', label: 'Customers', notifications: 5},
-      {href: 'javascript:void(0);', label: 'Reports'},
+      {
+        href: '/orders',
+        onClick: e => e.preventDefault(),
+        label: 'Orders',
+        active: true,
+        notifications: 15,
+      },
+      {
+        href: '/ezo',
+        onClick: e => e.preventDefault(),
+        label: 'Get More Orders',
+        notifications: '★',
+      },
+      {href: '/customers', onClick: e => e.preventDefault(), label: 'Customers', notifications: 5},
+      {href: '/reports', onClick: e => e.preventDefault(), label: 'Reports'},
     ]}
   >
     <EzPage>
@@ -184,18 +186,17 @@ The user menu displays the user's name and actions that are related to the curre
   return (
     <EzAppLayout>
       <EzNavigation
-        home={{
-          href: '#',
-          label: 'Homepage',
-          logo: {src: ezCaterLogoPath, width: 100},
-        }}
+        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
         links={[
-          {href: '#', label: 'Orders'},
-          {href: '#', label: 'Customers'},
-          {href: '#', label: 'Reports'},
+          {href: '#', onClick: e => e.preventDefault(), label: 'Orders'},
+          {href: '#', onClick: e => e.preventDefault(), label: 'Customers'},
+          {href: '#', onClick: e => e.preventDefault(), label: 'Reports'},
         ]}
         userMenu={{
-          links: [{href: '#', label: 'Settings'}, {href: '#', label: 'Sign out'}],
+          links: [
+            {href: '#', onClick: e => e.preventDefault(), label: 'Settings'},
+            {href: '#', onClick: e => e.preventDefault(), label: 'Sign out'},
+          ],
           name: 'Stefania Mallett',
         }}
       >

@@ -152,7 +152,9 @@ To use a custom cell to render links to additional content, see the [Row highlig
   const StoreName = ({item: {store, id}}) => (
     <div>
       <div>
-        <a href="javascript:void(0);">{store}</a>
+        <a href="#" onClick={e => e.preventDefault()}>
+          {store}
+        </a>
       </div>
       <div>
         <EzTextStyle use="subdued">{id}</EzTextStyle>
@@ -194,7 +196,7 @@ Note: Typically, [only the first column](#best-practices) should provide links t
   const StoreName = ({item: {store, id}, linkRef}) => (
     <div>
       <div>
-        <a href={`javascript:alert('${store}');`} ref={linkRef}>
+        <a href="#" ref={linkRef} onClick={() => alert(store)}>
           {store}
         </a>
       </div>

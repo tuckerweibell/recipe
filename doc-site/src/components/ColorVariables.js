@@ -108,7 +108,9 @@ const Base = () => (
       Use for foreground color in secondary buttons, links, check-marks and radio buttons
       <Examples>
         <EzButton use="secondary">Click me</EzButton>
-        <EzLink href="javascript:void(0);">View Orders</EzLink>
+        <EzLink href="#" onClick={e => e.preventDefault()}>
+          View Orders
+        </EzLink>
         <EzCheckbox label="Basic checkbox" checked onChange={() => {}} />
         <EzField
           type="radio"
