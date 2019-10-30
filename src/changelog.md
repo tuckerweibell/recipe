@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.0.1 - 2019-10-30
+
+#### Bug fixes
+
+- Fix layout of EzFlashMessage in IE11. Setting the height / width of the icon ensures the flex layout is respected. Fixes [#231](https://github.com/ezcater/recipe/issues/231)
+
 ## 7.0.0 - 2019-10-23
 
 #### Breaking changes
