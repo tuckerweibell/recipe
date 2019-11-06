@@ -10,7 +10,7 @@ import {EzButton, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../i
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
 let mockOverflow = false;
-jest.mock('../../../utils/hooks/useOverflowDetection', () => () => [mockOverflow, () => {}]);
+jest.mock('../useOverflowDetection', () => () => [mockOverflow, () => {}]);
 
 const SetOverflow = ({children}) => {
   // jsdom doesn't simulate layout, so we can't detect overflow in tests

@@ -17,7 +17,8 @@ import {
 import useSorting from './useSorting';
 import en from './en';
 import {wrapEvent} from '../../utils';
-import {useTranslation, useScrollPosition, useOverflowDetection} from '../../utils/hooks';
+import {useTranslation, useScrollPosition} from '../../utils/hooks';
+import useOverflowDetection from './useOverflowDetection';
 import useExpandedClickTarget from './useExpandedClickTarget';
 
 const TableContext = createContext(null);
