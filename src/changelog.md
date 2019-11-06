@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.0.2 - 2019-11-6
+
+#### Bug fixes
+
+- Fix modal closing when the cursor is clicked on the modal and released on the overlay  [#243](https://github.com/ezcater/recipe/issues/243)
+
 ## 7.0.1 - 2019-10-30
 
 #### Bug fixes

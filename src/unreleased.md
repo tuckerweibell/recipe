@@ -14,7 +14,6 @@ title: 'Unreleased changes'
 #### Design updates
 
 #### Bug fixes
-- Fix modal closing when the cursor is clicked on the modal and released on the overlay  [#243](https://github.com/ezcater/recipe/issues/243)
 
 #### Documentation
 
