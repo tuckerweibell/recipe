@@ -8,6 +8,13 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.0.3 - 2019-11-6
+
+#### Bug fixes
+
+- Reverts changes made in in 7.0.2. Dependency react-remove-scroll breaks the doc site.
+
+
 ## 7.0.2 - 2019-11-6
 
 #### Bug fixes
