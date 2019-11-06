@@ -34,7 +34,7 @@ describe('EzButton', () => {
       const tooltipText = 'Invalid form';
 
       const {container, getByText, getByRole} = fullRender(
-        <EzButton use="primary" disabledMessage={tooltipText}>
+        <EzButton use="primary" disabled disabledMessage={tooltipText}>
           Submit
         </EzButton>
       );

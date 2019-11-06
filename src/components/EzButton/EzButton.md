@@ -93,7 +93,7 @@ Used to provide a helpful message to the user as to why the button/action is cur
 
 ```jsx
 <div>
-  <EzButton use="primary" disabled disabledMessage={''}>
+  <EzButton use="primary" disabled disabledMessage={'Disabled message'}>
     Submit
   </EzButton>
 </div>
