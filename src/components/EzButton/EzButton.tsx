@@ -27,7 +27,7 @@ type TertiaryProps = {
 const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
   const buttonElement = createElement(StyledButton, buildProps({...props, innerRef: ref}));
 
-  if (props.disabledMessage) {
+  if (props.disabled && props.disabledMessage) {
     return (
       <EzTooltip message={props.disabledMessage}>
         <span>{buttonElement}</span>

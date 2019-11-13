@@ -30,9 +30,9 @@ describe('EzButton', () => {
   });
 
   describe('disabledMessage', () => {
-    it('wraps the button in a tooltip if a value is provided', () => {
-      const tooltipText = 'Invalid form';
+    const tooltipText = 'Invalid form';
 
+    it('wraps the button in a tooltip if a value is provided and the button is disabled', () => {
       const {container, getByText, getByRole} = fullRender(
         <EzButton use="primary" disabled disabledMessage={tooltipText}>
           Submit
@@ -45,6 +45,19 @@ describe('EzButton', () => {
 
       expect(tooltip).toBeVisible();
       expect(getByText(tooltipText)).toBeDefined();
+    });
+
+    it('does not wrap the button in a tooltip if a value is provided and the button is not disabled', () => {
+      const {container, queryByRole} = fullRender(
+        <EzButton use="primary" disabledMessage={tooltipText}>
+          Submit
+        </EzButton>
+      );
+
+      fireEvent.focus(container.querySelector('button'));
+
+      const tooltip = queryByRole('tooltip');
+      expect(tooltip).toBeNull();
     });
   });
 

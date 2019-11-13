@@ -89,11 +89,11 @@ Used to indicate to the user that an action is not currently available. The surr
 
 ### Disabled State with Tooltip
 
-Used to provide a helpful message to the user as to why the button/action is currently unavailable on mouse over.
+Used to provide a helpful message to the user as to why the button/action is currently unavailable on mouse over. This prop will need to be paired with the `disabled` prop to function properly.
 
 ```jsx
 <div>
-  <EzButton use="primary" disabled disabledMessage={'Disabled message'}>
+  <EzButton use="primary" disabled disabledMessage="Disabled message">
     Submit
   </EzButton>
 </div>
