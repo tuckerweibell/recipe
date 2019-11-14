@@ -1,5 +1,5 @@
 import React, {createElement, forwardRef} from 'react';
-import StyledButton from './EzButton.styles';
+import StyledButton, {DisabledButtonWrapper} from './EzButton.styles';
 import EzTooltip from '../EzTooltip';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & (RegularProps | TertiaryProps);
@@ -30,7 +30,7 @@ const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
   if (props.disabled && props.disabledMessage) {
     return (
       <EzTooltip message={props.disabledMessage}>
-        <span>{buttonElement}</span>
+        <DisabledButtonWrapper>{buttonElement}</DisabledButtonWrapper>
       </EzTooltip>
     );
   }
