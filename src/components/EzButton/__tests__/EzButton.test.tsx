@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {fireEvent} from 'react-testing-library';
+import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
-import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
-const scope = {EzButton, EzLayout};
+const StubBoundingClientRect = ({children, type, rect}) => {
+  const spy = jest.spyOn(type.prototype, 'getBoundingClientRect').mockImplementation(() => rect);
+  useEffect(() => spy.mockRestore);
+  return children || null;
+};
+
+const scope = {EzButton, StubBoundingClientRect};
 
 describe('EzButton', () => {
-  visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
 
   it('renders a button element by default', () => {
     const {getByText} = fullRender(<EzButton use="primary">Click Me</EzButton>);
