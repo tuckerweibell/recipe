@@ -1,11 +1,13 @@
 import React, {createElement, forwardRef} from 'react';
-import StyledButton from './EzButton.styles';
+import StyledButton, {DisabledButtonWrapper} from './EzButton.styles';
+import EzTooltip from '../EzTooltip';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & (RegularProps | TertiaryProps);
 
 type SharedButtonProps = {
   destructive?: boolean;
   disabled?: boolean;
+  disabledMessage?: string;
   onClick?: React.MouseEventHandler;
 };
 
@@ -22,9 +24,19 @@ type TertiaryProps = {
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) =>
-  createElement(StyledButton, buildProps({...props, innerRef: ref}))
-);
+const EzButton = forwardRef<HTMLElement, ButtonProps>((props, ref) => {
+  const buttonElement = createElement(StyledButton, buildProps({...props, innerRef: ref}));
+
+  if (props.disabled && props.disabledMessage) {
+    return (
+      <EzTooltip message={props.disabledMessage}>
+        <DisabledButtonWrapper>{buttonElement}</DisabledButtonWrapper>
+      </EzTooltip>
+    );
+  }
+
+  return buttonElement;
+});
 
 const buildProps = (props: ButtonProps & {innerRef: React.Ref<HTMLElement>}) => {
   if (props.use === 'tertiary') return props;

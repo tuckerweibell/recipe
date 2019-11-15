@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {fireEvent} from 'react-testing-library';
+import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
-import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
-const scope = {EzButton, EzLayout};
+const StubBoundingClientRect = ({children, type, rect}) => {
+  const spy = jest.spyOn(type.prototype, 'getBoundingClientRect').mockImplementation(() => rect);
+  useEffect(() => spy.mockRestore);
+  return children || null;
+};
+
+const scope = {EzButton, StubBoundingClientRect};
 
 describe('EzButton', () => {
-  visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
 
   it('renders a button element by default', () => {
     const {getByText} = fullRender(<EzButton use="primary">Click Me</EzButton>);
@@ -25,6 +32,38 @@ describe('EzButton', () => {
       );
 
       expect(getByText('Click Me')).toHaveAttribute('disabled');
+    });
+  });
+
+  describe('disabledMessage', () => {
+    const tooltipText = 'Invalid form';
+
+    it('wraps the button in a tooltip if a value is provided and the button is disabled', () => {
+      const {container, getByText, getByRole} = fullRender(
+        <EzButton use="primary" disabled disabledMessage={tooltipText}>
+          Submit
+        </EzButton>
+      );
+
+      fireEvent.focus(container.querySelector('button'));
+
+      const tooltip = getByRole('tooltip');
+
+      expect(tooltip).toBeVisible();
+      expect(getByText(tooltipText)).toBeDefined();
+    });
+
+    it('does not wrap the button in a tooltip if a value is provided and the button is not disabled', () => {
+      const {container, queryByRole} = fullRender(
+        <EzButton use="primary" disabledMessage={tooltipText}>
+          Submit
+        </EzButton>
+      );
+
+      fireEvent.focus(container.querySelector('button'));
+
+      const tooltip = queryByRole('tooltip');
+      expect(tooltip).toBeNull();
     });
   });
 

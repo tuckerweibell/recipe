@@ -87,6 +87,18 @@ Used to indicate to the user that an action is not currently available. The surr
 </div>
 ```
 
+### Disabled State with Tooltip
+
+Used to provide a helpful message to the user as to why the button/action is currently unavailable on mouse over. This prop will need to be paired with the `disabled` prop to function properly.
+
+```jsx
+<div>
+  <EzButton use="primary" disabled disabledMessage="Disabled message">
+    Submit
+  </EzButton>
+</div>
+```
+
 ### Loading State
 
 Used to indicate to the user that an action is currently being processed. The button remains disabled and no further actions will be triggered until loading has completed.

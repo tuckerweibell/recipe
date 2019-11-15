@@ -1,3 +1,4 @@
+import React, {forwardRef} from 'react';
 import {css} from 'react-emotion';
 import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
@@ -147,5 +148,15 @@ const use = variant('use', {
 });
 
 const baseStyles = [base, use, disabled, loading, outline];
+
+const InlineBlockWrapper = styled.div`
+  display: inline-block;
+`;
+
+export const DisabledButtonWrapper = forwardRef<any, any>((props, ref) => (
+  <InlineBlockWrapper innerRef={ref} {...props}>
+    {props.children}
+  </InlineBlockWrapper>
+));
 
 export default styled('button')(...baseStyles);
