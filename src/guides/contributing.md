@@ -245,5 +245,4 @@ After contributing updates to recipe, you'll need to publish the recipe package 
 - run `npm publish` to publish the new version of recipe to npm
   - If you are not currently logged into npm, you'll need to run `npm login` using your npm username and password
   - If your npm user is not currently associated with the @ezcater scope, contact a Recipe team member to get you started
-- run `npm install @ezcater/recipe --save` from `/doc-site` to update the version of recipe used by the documentation site
 - run `npm run deploy` from `/doc-site` to update the documentation site with your changes

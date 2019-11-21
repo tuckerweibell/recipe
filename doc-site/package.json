@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@brainly/html-sketchapp": "^3.2.0",
-    "@ezcater/recipe": "^7.1.1",
+    "@ezcater/recipe": "file:..",
     "copy-to-clipboard": "^3.0.8",
     "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",
@@ -34,7 +34,7 @@
   "scripts": {
     "build": "gatsby build",
     "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
-    "develop": "./bin/create-link.sh && gatsby develop --open",
+    "develop": "gatsby develop --open",
     "clean": "rm -rf .cache && rm -rf public"
   },
   "engines": {
