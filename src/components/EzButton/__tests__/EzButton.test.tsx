@@ -4,6 +4,7 @@ import {visualSnapshots} from 'sosia';
 import {fireEvent} from 'react-testing-library';
 import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
+import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
@@ -13,9 +14,10 @@ const StubBoundingClientRect = ({children, type, rect}) => {
   return children || null;
 };
 
-const scope = {EzButton, StubBoundingClientRect};
+const scope = {EzButton, EzLayout, StubBoundingClientRect};
 
 describe('EzButton', () => {
+  visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
 
   it('renders a button element by default', () => {
