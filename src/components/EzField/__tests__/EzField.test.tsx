@@ -555,6 +555,34 @@ describe('EzField', () => {
       expect(lastCall[0].target.value).toEqual('today');
     });
 
+    it('prevents the default event propogation on mouseDown on an option', () => {
+      const onChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      // open the menu
+      fireEvent.mouseDown(input);
+
+      const option2 = getByText(container, 'Today');
+      fireEvent.mouseOver(option2);
+      const mockEvent = new MouseEvent('mousedown', {bubbles: true});
+      Object.assign(mockEvent, {preventDefault: jest.fn()});
+
+      fireEvent(option2, mockEvent);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+    });
+
     it('should not trigger onChange on the initial render', () => {
       const onChange = jest.fn();
 

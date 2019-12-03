@@ -30,6 +30,7 @@ const Option = ({activeOption, activeOptionRef, setActiveOption, option, selecte
       ref={activeValue === option.value ? activeOptionRef : undefined}
       onMouseOver={() => setActiveOption(option)}
       onClick={onClick}
+      onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
       id={id}
     >
       {option.label}
