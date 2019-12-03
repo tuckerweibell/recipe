@@ -8,7 +8,13 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
-## 7.1.0 - 2019-11-6
+## 7.1.1 - 2019-12-3
+
+#### Bug fixes
+
+- Fixes EzSelect focus issue that caused problems with IE11 #252
+
+## 7.1.0 - 2019-12-3
 
 #### Enhancements
 
