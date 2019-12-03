@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.1.0 - 2019-11-6
+
+#### Enhancements
+
+- Added `disabledMessage` property to EzButton to make using buttons wrapped with an EzTooltip easier.
+
 ## 7.0.3 - 2019-11-6
 
 #### Bug fixes
