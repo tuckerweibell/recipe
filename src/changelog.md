@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.1.2 - 2019-12-9
+
+#### Bug fixes
+
+- Fix max-width and max-height of EzSuperRadioButton image such that it is constrained within its wrapper in IE11. Fixes [#256](https://github.com/ezcater/recipe/issues/256).
+
 ## 7.1.1 - 2019-12-3
 
 #### Bug fixes
