@@ -4,6 +4,8 @@ import {hideVisually} from '../../styles';
 
 import RadioButtonIcon from '../EzRadioButton/RadioButtonIcon';
 
+const imageWidthAndHeight = 60;
+
 const container = () =>
   css`
     display: flex;
@@ -82,8 +84,8 @@ export const EzSuperRadioButtonsItem = styled.label<any>(item, itemSquareStyles)
 
 export const EzSuperRadioButtonsImageWrapper = styled.div`
   margin-bottom: ${props => props.theme.spacing.lg};
-  width: 60px;
-  height: 60px;
+  width: ${imageWidthAndHeight}px;
+  height: ${imageWidthAndHeight}px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,8 +93,8 @@ export const EzSuperRadioButtonsImageWrapper = styled.div`
 
 export const EzSuperRadioButtonsImage = styled.img`
   margin: 0;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: ${imageWidthAndHeight}px;
+  max-height: ${imageWidthAndHeight}px;
 `;
 
 export const EzSuperRadioButtonsItemLabel = styled.p`
