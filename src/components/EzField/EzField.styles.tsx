@@ -115,7 +115,7 @@ const callout = ({theme, active}: any) => css`
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
     ${detached()};
-    margin-top: -${theme.spacing.xs2};
+    margin-top: calc(${theme.spacing.xs2} * -1);
     position: absolute;
     user-select: none;
     z-index: 1;

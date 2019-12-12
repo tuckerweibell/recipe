@@ -54,8 +54,8 @@ const totals = ({theme}) => css`
 
   table {
     width: auto;
-    margin-left: -${theme.spacing.xs};
-    margin-right: -${theme.spacing.xs};
+    margin-left: calc(${theme.spacing.xs} * -1);
+    margin-right: calc(${theme.spacing.xs} * -1);
   }
 
   th,

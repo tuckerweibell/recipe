@@ -23,16 +23,20 @@ export const CardHeadingContainer = styled.div`
   margin: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg} 0;
 `;
 
+const gutter = ({theme}: any) => css`
+  margin: calc(${theme.spacing.sm} * -1) 0 0 calc(${theme.spacing.sm} * -1);
+
+  > * {
+    margin: ${theme.spacing.sm} 0 0 ${theme.spacing.sm};
+  }
+`;
+
 export const CardLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  margin: -${({theme}) => theme.spacing.sm} 0 0 -${({theme}) => theme.spacing.sm};
   justify-content: space-between;
-
-  > * {
-    margin: ${({theme}) => theme.spacing.sm} 0 0 ${({theme}) => theme.spacing.sm};
-  }
+  ${gutter};
 `;
 
 const vertical = ({horizontal, theme}) =>

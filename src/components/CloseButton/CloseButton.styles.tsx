@@ -8,7 +8,7 @@ export const base = ({theme}) => css`
   cursor: pointer;
   outline: none;
   padding: ${theme.spacing.lg};
-  margin: -${theme.spacing.lg};
+  margin: calc(${theme.spacing.lg} * -1);
 
   :hover {
     background-color: hsla(240, 11%, 95%, 0.4);
