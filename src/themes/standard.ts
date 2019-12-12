@@ -155,10 +155,12 @@ export const colors = {
   purples,
 };
 
-export const baseFontSize = '16px';
+const baseFontSizeOrDefault = 'var(--recipe-base-font-size, 16)';
+
+export const baseFontSize = `calc(${baseFontSizeOrDefault} * 1px)`;
 export const baseFontFamily = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
-const rem = pixels => `calc(${pixels}rem / ${baseFontSize.replace('px', '')})`;
+const rem = pixels => `calc(${pixels}rem / ${baseFontSizeOrDefault})`;
 
 const em = pixels => `${pixels / 16}em`;
 
