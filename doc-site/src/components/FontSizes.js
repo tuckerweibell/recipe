@@ -1,14 +1,11 @@
 import React from 'react';
 import {css} from 'react-emotion';
 import {themes} from '@ezcater/recipe';
+import Measure from './Measure';
 
 const {standard} = themes;
 
-function remToPx(rem) {
-  return rem.replace('rem', '') * standard.baseFontSize.replace('px', '') + 'px';
-}
-
-export default props => {
+export default () => {
   return (
     <table>
       <thead>
@@ -21,22 +18,27 @@ export default props => {
       <tbody>
         {Object.keys(standard.fontSizes).map(key => {
           return (
-            <tr
-              className={css`
-                line-height: 1;
-              `}
-              key={key}
-            >
-              <td>{key}</td>
-              <td>{remToPx(standard.fontSizes[key])}</td>
-              <td
-                className={css`
-                  font-size: ${standard.fontSizes[key]};
-                `}
-              >
-                Order catering now
-              </td>
-            </tr>
+            <Measure cssProperty="font-size" key={key}>
+              {([ref, measured]) => (
+                <tr
+                  className={css`
+                    line-height: 1;
+                  `}
+                  key={key}
+                >
+                  <td>{key}</td>
+                  <td>{measured}</td>
+                  <td
+                    ref={ref}
+                    className={css`
+                      font-size: ${standard.fontSizes[key]};
+                    `}
+                  >
+                    Order catering now
+                  </td>
+                </tr>
+              )}
+            </Measure>
           );
         })}
       </tbody>

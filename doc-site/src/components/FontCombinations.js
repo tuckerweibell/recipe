@@ -1,12 +1,9 @@
 import React from 'react';
 import {css} from 'react-emotion';
 import {themes} from '@ezcater/recipe';
+import Measure from './Measure';
 
 const {standard} = themes;
-
-function remToPx(rem) {
-  return rem.replace('rem', '') * standard.baseFontSize.replace('px', '') + 'px';
-}
 
 const nicifyName = name => {
   return name.replace(/([A-Z])/g, ' $1').replace(/(^[a-z])/, match => match.toUpperCase());
@@ -14,32 +11,37 @@ const nicifyName = name => {
 
 const Combination = ({font}) => {
   return (
-    <tr key={font}>
-      <td>
-        <span
-          className={css`
-            ${standard.fonts[font]};
-          `}
-        >
-          {nicifyName(font)}
-        </span>
-      </td>
-      <td>{remToPx(standard.fonts[font].fontSize)}</td>
-      <td>
-        {
-          Object.keys(standard.fontWeights).filter(
-            weight => standard.fontWeights[weight] === standard.fonts[font].fontWeight
-          )[0]
-        }
-      </td>
-      <td>
-        <code>{`theme.fonts.${font}`}</code>
-      </td>
-    </tr>
+    <Measure cssProperty="font-size">
+      {([ref, measured]) => (
+        <tr>
+          <td>
+            <span
+              ref={ref}
+              className={css`
+                ${standard.fonts[font]};
+              `}
+            >
+              {nicifyName(font)}
+            </span>
+          </td>
+          <td>{measured}</td>
+          <td>
+            {
+              Object.keys(standard.fontWeights).filter(
+                weight => standard.fontWeights[weight] === standard.fonts[font].fontWeight
+              )[0]
+            }
+          </td>
+          <td>
+            <code>{`theme.fonts.${font}`}</code>
+          </td>
+        </tr>
+      )}
+    </Measure>
   );
 };
 
-export default props => {
+export default () => {
   return (
     <table>
       <thead>
@@ -52,7 +54,7 @@ export default props => {
       </thead>
       <tbody>
         {Object.keys(standard.fonts).map(font => (
-          <Combination font={font} />
+          <Combination font={font} key={font} />
         ))}
       </tbody>
     </table>

@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'react-emotion';
 import {EzTextStyle, themes} from '@ezcater/recipe';
+import Measure from './Measure';
 
 const {standard} = themes;
-
-function remToPx(rem) {
-  return rem.replace('rem', '') * standard.baseFontSize.replace('px', '') + 'px';
-}
 
 const SpacingContainer = styled.div`
   display: flex;
@@ -29,13 +26,17 @@ export default () => {
     <SpacingContainer>
       {Object.keys(standard.spacing).map(key => {
         return (
-          <div key={key}>
-            <div>
-              <EzTextStyle use="strong">{key}</EzTextStyle>
-            </div>
-            <div>{remToPx(standard.spacing[key])}</div>
-            <Block height={standard.spacing[key]} />
-          </div>
+          <Measure cssProperty="height" key={key}>
+            {([ref, measured]) => (
+              <div>
+                <div>
+                  <EzTextStyle use="strong">{key}</EzTextStyle>
+                </div>
+                <div>{measured}</div>
+                <Block innerRef={ref} height={standard.spacing[key]} />
+              </div>
+            )}
+          </Measure>
         );
       })}
     </SpacingContainer>
