@@ -158,7 +158,7 @@ export const colors = {
 export const baseFontSize = '14px';
 export const baseFontFamily = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
-const rem = pixels => `${pixels / +baseFontSize.replace('px', '')}rem`;
+const rem = pixels => `calc(${pixels}rem / ${baseFontSize.replace('px', '')})`;
 
 const em = pixels => `${pixels / 16}em`;
 
