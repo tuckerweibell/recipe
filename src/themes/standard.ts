@@ -155,7 +155,7 @@ export const colors = {
   purples,
 };
 
-export const baseFontSize = '14px';
+export const baseFontSize = '16px';
 export const baseFontFamily = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
 const rem = pixels => `calc(${pixels}rem / ${baseFontSize.replace('px', '')})`;
