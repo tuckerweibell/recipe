@@ -2,7 +2,6 @@ import React from 'react';
 import styled, {css} from 'react-emotion';
 import {graphql} from 'gatsby';
 import Component from 'react-component-component';
-import Playground from './Playground';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
 import {ColorDefinition, Example} from './ColorVariables';
@@ -30,7 +29,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     const {className} = props;
 
     if (className && className.includes('language-jsx')) {
-      return <Playground code={props.children[0]} scope={scope} />;
+      return <Docz code={props.children[0]} scope={scope} />;
     }
 
     if (!className) return <code {...props} />;
@@ -110,20 +109,16 @@ const splitOnTagName = (list, tagName) => {
   return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
 };
 
-export default ({data: {markdownRemark: page}, location}) => {
-  return (
-    <Docz>
-      <Layout
-        title={page.frontmatter.title}
-        location={location}
-        name={page.frontmatter.name}
-        sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
-          <HtmlAst htmlAst={{children: section}} scope={scope} />
-        ))}
-      />
-    </Docz>
-  );
-};
+export default ({data: {markdownRemark: page}, location}) => (
+  <Layout
+    title={page.frontmatter.title}
+    location={location}
+    name={page.frontmatter.name}
+    sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+      <HtmlAst htmlAst={{children: section}} scope={scope} />
+    ))}
+  />
+);
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String) {
