@@ -34,8 +34,19 @@ exports.createPages = ({actions, graphql}) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({actions, plugins}) => {
+exports.onCreateWebpackConfig = ({actions, plugins, stage, loaders}) => {
   actions.setWebpackConfig({
+    module:
+      stage === 'develop'
+        ? {
+            rules: [
+              {
+                test: /react-hot-loader/,
+                use: [loaders.js()],
+              },
+            ],
+          }
+        : undefined,
     resolve: {
       alias: {
         react: path.resolve(path.join(__dirname, './node_modules/react')),
