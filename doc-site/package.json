@@ -5,6 +5,7 @@
   "dependencies": {
     "@brainly/html-sketchapp": "^3.2.0",
     "@ezcater/recipe": "file:..",
+    "@loadable/component": "^5.11.0",
     "copy-to-clipboard": "^3.0.8",
     "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",
@@ -13,6 +14,7 @@
     "gatsby": "^2.3.4",
     "gatsby-link": "^2.2.0",
     "gatsby-plugin-emotion": "^2.0.7",
+    "gatsby-plugin-loadable-components": "0.0.0-alpha.0",
     "gatsby-plugin-react-helmet": "^3.0.6",
     "gatsby-remark-autolink-headers": "^1.4.19",
     "gatsby-source-filesystem": "^2.0.28",

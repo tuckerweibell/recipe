@@ -4,6 +4,7 @@ import {graphql} from 'gatsby';
 import Component from 'react-component-component';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
+import loadable from '@loadable/component';
 import {ColorDefinition, Example} from './ColorVariables';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
@@ -13,8 +14,9 @@ import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
 import logo from '../ezcater-logo.svg';
-import Docz from './Docz';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+
+const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -28,8 +30,9 @@ const HtmlAst = ({htmlAst, scope}) => {
   const Code = props => {
     const {className} = props;
 
-    if (className && className.includes('language-jsx')) {
-      return <Docz code={props.children[0]} scope={scope} />;
+    if (!isIE11 && className && className.includes('language-jsx')) {
+      const Playground = loadable(() => import(`./Docz`));
+      return <Playground code={props.children[0]} scope={scope} />;
     }
 
     if (!className) return <code {...props} />;
