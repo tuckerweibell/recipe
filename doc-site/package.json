@@ -8,6 +8,7 @@
     "@loadable/component": "^5.11.0",
     "buble": "^0.19.8",
     "copy-to-clipboard": "^3.0.8",
+    "css-vars-ponyfill": "^2.1.2",
     "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",
     "emotion-server": "^9.2.12",
