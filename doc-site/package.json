@@ -6,6 +6,7 @@
     "@brainly/html-sketchapp": "^3.2.0",
     "@ezcater/recipe": "file:..",
     "@loadable/component": "^5.11.0",
+    "buble": "^0.19.8",
     "copy-to-clipboard": "^3.0.8",
     "docz-theme-default": "^1.2.0",
     "emotion": "^9.2.12",

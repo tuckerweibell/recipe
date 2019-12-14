@@ -30,9 +30,12 @@ const HtmlAst = ({htmlAst, scope}) => {
   const Code = props => {
     const {className} = props;
 
-    if (!isIE11 && className && className.includes('language-jsx')) {
+    if (className && className.includes('language-jsx')) {
       const Playground = loadable(() => import(`./Docz`));
-      return <Playground code={props.children[0]} scope={scope} />;
+      const Preview = loadable(() => import(`./Preview`));
+      const Codez = isIE11 ? Preview : Playground;
+
+      return <Codez code={props.children[0]} scope={scope} />;
     }
 
     if (!className) return <code {...props} />;
