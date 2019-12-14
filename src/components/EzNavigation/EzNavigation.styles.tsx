@@ -77,7 +77,7 @@ export const Menus = styled.nav<{primary?: boolean}>`
 export const ContentContainer = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 1 1 100%;
   min-width: 0;
   max-width: 100%;
 
