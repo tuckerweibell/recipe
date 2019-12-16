@@ -4,6 +4,7 @@ import createEmotion from 'create-emotion';
 import {sheet} from 'emotion';
 import {css} from 'emotion';
 import {EzGlobalStyles} from '@ezcater/recipe';
+import ResizeObserver from 'resize-observer-polyfill';
 
 /*
   We need emotion to insert styles into an iframe, but by default, it'll insert into the page head
@@ -91,10 +92,8 @@ const IFramePlayground = props => {
     iframe.contentWindow.onfocus = resizeBasedOnContent;
     iframe.contentWindow.onkeydown = resizeBasedOnContent;
 
-    if ('ResizeObserver' in window) {
-      const resizeObserver = new ResizeObserver(resizeBasedOnContent);
-      resizeObserver.observe(contentDocument.querySelector('body'));
-    }
+    const resizeObserver = new ResizeObserver(resizeBasedOnContent);
+    resizeObserver.observe(contentDocument.querySelector('body'));
   }, [container]);
 
   return (

@@ -28,7 +28,8 @@
     "react-dom": "^16.8.2",
     "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
