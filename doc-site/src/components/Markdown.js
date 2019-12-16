@@ -16,7 +16,8 @@ import TimelineStatus from './TimelineStatus';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 
-const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+const isIE11 =
+  typeof window !== `undefined` && !!window.MSInputMethodContext && !!document.documentMode;
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
