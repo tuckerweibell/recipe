@@ -20,5 +20,11 @@ module.exports = {
         plugins: [`gatsby-remark-autolink-headers`],
       },
     },
+    {
+      resolve: 'gatsby-plugin-polyfill-io',
+      options: {
+        features: ['default', 'NodeList.prototype.forEach'],
+      },
+    },
   ],
 };
