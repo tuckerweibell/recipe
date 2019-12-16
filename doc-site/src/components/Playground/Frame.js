@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import createEmotion from 'create-emotion';
 import {sheet} from 'emotion';
@@ -28,9 +28,11 @@ const forwardStyles = (source, target, iframe) => {
 
   // copy the existing style tags emotion has placed on the page
   source.tags.forEach(tag => {
-    Array.from(tag.sheet.cssRules).forEach(rule => {
-      target.insert(rule.cssText);
-    });
+    try {
+      Array.from(tag.sheet.cssRules).forEach(rule => {
+        target.insert(rule.cssText);
+      });
+    } catch (e) {}
   });
 
   const {inject, insert, flush} = source;
@@ -57,9 +59,9 @@ const IFramePlayground = props => {
   const [margin, setMargin] = useState('20px');
 
   useEffect(() => {
+    if (!container) return;
     const iframe = iframeEl.current;
     const contentDocument = iframe.contentDocument;
-    setContainer(contentDocument.body);
 
     const scopedEmotion = createEmotion(iframe, {
       container: contentDocument.head,
@@ -68,16 +70,20 @@ const IFramePlayground = props => {
     scopedEmotion.sheet.speedy(false);
 
     return forwardStyles(sheet, scopedEmotion.sheet, iframe);
-  }, []);
+  }, [container]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (!container) return;
     const iframe = iframeEl.current;
     const contentDocument = iframe.contentDocument;
 
     const resizeBasedOnContent = () => {
+      const el = playgroundRef.current || container;
+      const margin = el ? getComputedStyle(el).marginLeft : '20px';
+
       iframe.style.height = 0;
-      iframe.style.height = `${contentDocument.body.scrollHeight}px`;
-      if (playgroundRef.current) setMargin(getComputedStyle(playgroundRef.current).marginLeft);
+      iframe.style.height = `calc(${el.scrollHeight}px + ${margin} + ${margin}`;
+      setMargin(getComputedStyle(el).marginLeft);
     };
 
     iframe.contentWindow.onmousedown = resizeBasedOnContent;
@@ -89,7 +95,7 @@ const IFramePlayground = props => {
       const resizeObserver = new ResizeObserver(resizeBasedOnContent);
       resizeObserver.observe(contentDocument.querySelector('body'));
     }
-  });
+  }, [container]);
 
   return (
     <iframe
@@ -98,6 +104,8 @@ const IFramePlayground = props => {
       ref={iframeEl}
       style={{border: 'none', margin: 0, width: '100%'}}
       scrolling="no"
+      srcDoc="<!DOCTYPE html>"
+      onLoad={() => setContainer(iframeEl.current.contentDocument.body)}
     >
       {container &&
         createPortal(
