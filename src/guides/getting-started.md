@@ -12,6 +12,7 @@ order: 10
   - [Importing components in downstream projects](#importing-components-in-downstream-projects)
   - [Including Recipe's default font](#including-recipes-default-font)
   - [Using Recipe theme with emotion](#using-recipe-theme-with-emotion)
+- [Browser support](#browser-support)
 - [Contributing](#contributing)
 
 ---
@@ -46,6 +47,7 @@ Squads should challenge themselves to use the design system as much as possible.
 However, Recipe is still a young design system and has plenty of room to evolve. We welcome ideas for new components and extensions of existing ones. We want to evolve the system in a thoughtful way so that we can main consistency.
 
 Here are some things to consider when proposing a change to Recipe:
+
 - Is this pattern general enough to apply to applications other than the one you are currently working on?
 - Have you identified three or more situations where your proposed component could be used? These don't have to be all new cases, they could include situations where Recipe already has a solution but you think your proposed one is better for the user.
 - Have you thought about the "distance" between this pattern and related patterns that are already in Recipe?
@@ -112,10 +114,22 @@ Add ThemeProvider component to the top level of your app and access the theme wi
 
 To install or update to the [latest version of Recipe](/changelog) in your application, you can run the following npm command:
 
-​​​​```term
+```term
 npm install @ezcater/recipe@latest
-​​​​```
+```
 
+---
+
+## Browser support
+
+We strive for Recipe to have feature parity across all modern browsers as well as IE11.
+
+For applications that wish to run Recipe in IE11, Recipe requires polyfills for the following browser features:
+
+- [`Element.prototype.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)
+- [`CSS custom properties`](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+
+We recommend using [Polyfill.io](https://polyfill.io/) in your application to apply necessary polyfills only when they are needed for the requesting browser. For IE11 support for CSS custom properties, we recommend also using the [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill).
 
 ---
 
