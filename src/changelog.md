@@ -8,6 +8,23 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 7.1.3 - 2019-12-16
+
+#### Enhancements
+
+- Support Component preview in IE11. Note: Component Editor is not yet supported as Docz doesn't support IE11.
+
+#### Bug fixes
+
+- Include polyfills when running doc-site in dev mode for browsing with IE11. See: gatsbyjs/gatsby#14502.
+- Fix logo sizing for IE11.
+- Avoid loading docz component playground when running IE11. Docz doesn't support IE11. See: doczjs/docz#249.
+- Fix sidebar/main content spanning beyond the width of the page in IE11.
+- Fixes for Component Playground for FireFox
+  - Suppress error inserting styles into iframe
+  - Delay rendering iframe portal until iframe `onLoad` has fired
+  - Include iframe `srcDoc` to ensure `onLoad` event is fired
+
 ## 7.1.2 - 2019-12-9
 
 #### Bug fixes
@@ -32,12 +49,11 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 - Reverts changes made in in 7.0.2. Dependency react-remove-scroll breaks the doc site.
 
-
 ## 7.0.2 - 2019-11-6
 
 #### Bug fixes
 
-- Fix modal closing when the cursor is clicked on the modal and released on the overlay  [#243](https://github.com/ezcater/recipe/issues/243)
+- Fix modal closing when the cursor is clicked on the modal and released on the overlay [#243](https://github.com/ezcater/recipe/issues/243)
 
 ## 7.0.1 - 2019-10-30
 
