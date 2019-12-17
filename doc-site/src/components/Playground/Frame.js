@@ -29,11 +29,7 @@ const forwardStyles = (source, target, iframe) => {
 
   // copy the existing style tags emotion has placed on the page
   source.tags.forEach(tag => {
-    try {
-      Array.from(tag.sheet.cssRules).forEach(rule => {
-        target.insert(rule.cssText);
-      });
-    } catch (e) {}
+    iframe.contentDocument.head.appendChild(tag.cloneNode(true));
   });
 
   const {inject, insert, flush} = source;
