@@ -34,6 +34,12 @@ exports.createPages = ({actions, graphql}) => {
   });
 };
 
+exports.onCreateBabelConfig = ({actions}) => {
+  actions.setBabelPlugin({
+    name: require.resolve('@ezcater/recipe/packages/plugin'),
+  });
+};
+
 exports.onCreateWebpackConfig = ({actions, plugins, stage, loaders}) => {
   actions.setWebpackConfig({
     module:
