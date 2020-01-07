@@ -24,3 +24,5 @@ title: 'Unreleased changes'
 - Updated hosted visual regression test runtime to use latest chrome-aws-lambda and puppeteer libraries to be compatible with the AWS runtime support policy updated on Jan 1, 2020.
 
 #### Development workflow
+
+- Created a babel plugin for recipe (`@ezcater/babel-plugin-recipe`) for using static analysis to track Recipe usage in downstream applications.
