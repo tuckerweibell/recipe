@@ -1,5 +1,5 @@
 import {css} from 'react-emotion';
-import {DialogContent, DialogOverlay} from '@reach/dialog';
+import {DialogContent, DialogOverlay} from '@ezcater/reach-ui-dialog';
 import styled from '../../themes/styled';
 
 export const Overlay = styled(DialogOverlay)`

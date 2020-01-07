@@ -16,6 +16,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fixed doc-site rendering issue. See [issue 265](https://github.com/ezcater/recipe/issues/265).
+- Fixed unintentional modal closing issue. See [issue 243](https://github.com/ezcater/recipe/issues/243).
 
 #### Documentation
 
