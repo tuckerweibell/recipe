@@ -75,7 +75,7 @@ const markdownSourceWithThemeWrapper = {
 configureSosia({
   targets: {
     'chrome-desktop': new RemotePuppeteerBrowserTarget({
-      url: new URL('https://remote-screenshot-puppeteer-b110pzwq3.now.sh'),
+      url: new URL('https://remote-screenshot-puppeteer.craigcavalier.now.sh/'),
       width: 1024,
       height: 768,
     }),
