@@ -21,4 +21,6 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- Updated hosted visual regression test runtime to use latest chrome-aws-lambda and puppeteer libraries to be compatible with the AWS runtime support policy updated on Jan 1, 2020.
+
 #### Development workflow
