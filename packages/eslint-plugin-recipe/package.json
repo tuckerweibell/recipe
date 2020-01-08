@@ -1,0 +1,13 @@
+{
+  "name": "@ezcater/eslint-plugin-recipe",
+  "version": "1.0.0",
+  "description": "Static analysis tools for ezCater's Recipe design system ",
+  "main": "rules/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezcater/recipe/tree/master/packages/eslint-plugin-recipe"
+  },
+  "author": "Craig Cavalier",
+  "license": "MIT",
+  "dependencies": {}
+}
