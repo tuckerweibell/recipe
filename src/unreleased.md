@@ -21,3 +21,4 @@ title: 'Unreleased changes'
 
 #### Development workflow
 
+- Created a lint plugin for recipe (`@ezcater/eslint-plugin-recipe`) for using static analysis to track Recipe usage in downstream applications.
