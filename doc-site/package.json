@@ -34,6 +34,10 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
+    "@ezcater/eslint-plugin-recipe": "file:../packages/eslint-plugin-recipe",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^6.8.0",
     "gh-pages": "^2.0.1",
     "prettier": "^1.16.4"
   },
@@ -41,7 +45,8 @@
     "build": "gatsby build",
     "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
     "develop": "gatsby develop --open",
-    "clean": "rm -rf .cache && rm -rf public"
+    "clean": "rm -rf .cache && rm -rf public",
+    "lint": "eslint . --rule '@ezcater/recipe/track-imports: [warn, trace]'"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
