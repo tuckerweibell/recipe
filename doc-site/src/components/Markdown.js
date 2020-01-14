@@ -16,6 +16,7 @@ import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import EmotionCache from './EmotionCache';
 
 const isIE11 =
   typeof window !== `undefined` && !!window.MSInputMethodContext && !!document.documentMode;
@@ -118,14 +119,16 @@ const splitOnTagName = (list, tagName) => {
 };
 
 export default ({data: {markdownRemark: page}, location}) => (
-  <Layout
-    title={page.frontmatter.title}
-    location={location}
-    name={page.frontmatter.name}
-    sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
-      <HtmlAst htmlAst={{children: section}} scope={scope} />
-    ))}
-  />
+  <EmotionCache>
+    <Layout
+      title={page.frontmatter.title}
+      location={location}
+      name={page.frontmatter.name}
+      sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+        <HtmlAst htmlAst={{children: section}} scope={scope} />
+      ))}
+    />
+  </EmotionCache>
 );
 
 export const pageQuery = graphql`
