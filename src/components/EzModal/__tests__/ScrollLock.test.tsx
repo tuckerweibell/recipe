@@ -1,6 +1,5 @@
 import React from 'react';
 import {cleanup} from 'react-testing-library';
-import 'jest-dom/extend-expect';
 import ScrollLock, {preventScroll} from '../ScrollLock';
 
 import {fullRender} from '../../../jest-globals';

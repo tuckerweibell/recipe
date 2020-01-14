@@ -6,7 +6,7 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import {ThemeProvider} from 'emotion-theming';
 import {standard} from './themes';
 
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 
 const renderWithTheme = renderFn => (component, ...rest) =>
   renderFn(<ThemeProvider theme={standard}>{component}</ThemeProvider>, rest);
