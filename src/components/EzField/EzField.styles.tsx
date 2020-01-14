@@ -1,4 +1,3 @@
-import React from 'react';
 import {css} from '@emotion/core';
 import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
@@ -65,8 +64,11 @@ const inputStyles = props => css(inputBase(props), inputError(props), inputDisab
 
 export const StyledInput = styled.input(inputStyles);
 
-const StyledField = styled.div`
+export const Field = styled.div`
   position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
 
   > input,
   > textarea {
@@ -146,16 +148,3 @@ export const InputIconContainer = styled.div`
     top: -1.1em; /* approx line height */
   }
 `;
-
-const fieldsetResets = () => css`
-  border: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const FieldSet = styled(StyledField)(fieldsetResets).withComponent('fieldset');
-
-export const Field = props => {
-  const Component = props.as === 'fieldset' ? FieldSet : StyledField;
-  return React.createElement(Component as any, props);
-};

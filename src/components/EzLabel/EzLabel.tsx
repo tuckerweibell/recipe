@@ -20,19 +20,10 @@ type Props = React.LabelHTMLAttributes<any> & {
   error?: boolean;
 };
 
-const labels = {
-  label: StyledLabel.withComponent('label'),
-  legend: StyledLabel.withComponent('legend'),
-  div: StyledLabel,
-};
-
 /**
  * A component to provide consistent styling for Primary and Secondary labels.
  */
-const EzLabel: React.FC<Props> = ({as, ...props}) => {
-  const Label = labels[as];
-  return <Label {...props} />;
-};
+const EzLabel: React.FC<Props> = StyledLabel;
 
 /**
  * defaultProps
