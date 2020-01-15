@@ -7,9 +7,15 @@ import {useUpdateEffect} from '../../utils/hooks';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
 
-const EzDateInput = ({id, name, disabled, onChange, ...props}) => {
+const EzDateInput = ({
+  id,
+  name,
+  disabled,
+  onChange,
+  'aria-labelledby': ariaLabelledBy,
+  ...props
+}) => {
   const {placeholder = 'Select date'} = props;
-  const ariaLabelledBy = props['aria-labelledby'];
 
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(null);

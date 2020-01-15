@@ -72,9 +72,8 @@ const useListboxState = ({options, selected}) => {
   };
 };
 
-const EzSelect = ({id, options, value, onChange, ...rest}) => {
+const EzSelect = ({id, options, value, onChange, 'aria-labelledby': ariaLabelledBy, ...rest}) => {
   const selected = options.find(o => o.value === value);
-  const ariaLabelledBy = rest['aria-labelledby'];
   const scrollableRef = useRef<HTMLElement>();
 
   const listbox = useListboxState({options, selected});

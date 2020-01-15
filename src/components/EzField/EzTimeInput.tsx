@@ -41,6 +41,7 @@ export default ({start, end, step, value, ...rest}) => {
       }))}
       value={valueTimeString}
       onChange={rest.onChange}
+      aria-labelledby={rest['aria-labelledby']}
     />
   );
 };
