@@ -3,7 +3,7 @@ import {visualSnapshots} from 'sosia';
 import dayjs from 'dayjs';
 import {axe} from 'jest-axe';
 import {act} from 'react-test-renderer';
-import {getByLabelText, getByText, fireEvent} from 'react-testing-library';
+import {getByLabelText, getByText, fireEvent} from '@testing-library/react';
 import ReactTestUtils from 'react-dom/test-utils';
 import Component from 'react-component-component';
 import ezDateInputTests from './EzDateInput.test.md';
@@ -138,7 +138,7 @@ describe('EzField', () => {
   });
 
   describe('date picker', () => {
-    const inputLabel = 'Select delievery date';
+    const inputLabel = 'Select delivery date';
     afterEach(jest.useRealTimers);
     it('should show calendar on click', () => {
       const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);

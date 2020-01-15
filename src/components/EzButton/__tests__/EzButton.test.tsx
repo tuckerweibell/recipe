@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from 'react-testing-library';
+import {fireEvent} from '@testing-library/react';
 import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
 import markdown from '../EzButton.md';

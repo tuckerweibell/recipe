@@ -3,7 +3,7 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {css} from 'emotion';
 import {visualSnapshots} from 'sosia';
-import {fireEvent, cleanup} from 'react-testing-library';
+import {fireEvent, cleanup} from '@testing-library/react';
 import regressionTests from './EzToggle.test.md';
 import markdown from '../EzToggle.md';
 import EzToggle from '../EzToggle';

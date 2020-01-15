@@ -1,7 +1,7 @@
 import {shallow as enzymeShallow, render as enzymeRender, mount as enzymeMount} from 'enzyme';
 import React from 'react';
 import {create as reactCreate} from 'react-test-renderer';
-import {render as rtlRender, cleanup} from 'react-testing-library';
+import {render as rtlRender, cleanup} from '@testing-library/react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {ThemeProvider} from 'emotion-theming';
 import {standard} from './themes';

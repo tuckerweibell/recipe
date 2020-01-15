@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from 'react-testing-library';
+import {fireEvent} from '@testing-library/react';
 import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
 import {fullRender as render} from '../../../jest-globals';
