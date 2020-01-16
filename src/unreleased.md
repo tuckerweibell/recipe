@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 - Fixed clock icon positioning on EzField type="time". See See [issue 271](https://github.com/ezcater/recipe/issues/271)
 - Removed `aria-labelledby` attribute from combobox element. This attribute/value pair was already applied to the combobox input, causing the latest version of `@testing-library/react` to fail to match a unique element.
 - Fixed test code usage of `act()` (using `react-dom/test-utils` instead of `TestRenderer.act()`)
+- Fixed warning raised by accidentally forwarding `loading` flag from EzButton to the underlying DOM element.
 
 #### Documentation
 
