@@ -1,5 +1,4 @@
 import React from 'react';
-import {create as reactCreate} from 'react-test-renderer';
 import {render as rtlRender, cleanup} from '@testing-library/react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {ThemeProvider} from 'emotion-theming';
@@ -13,7 +12,5 @@ const renderWithTheme = renderFn => (component, ...rest) =>
 export const renderToHtml = renderWithTheme(renderToStaticMarkup);
 
 export const fullRender = renderWithTheme(rtlRender);
-
-export const create = renderWithTheme(reactCreate);
 
 afterEach(cleanup);

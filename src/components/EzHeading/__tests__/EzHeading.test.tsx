@@ -4,7 +4,7 @@ import {visualSnapshots} from 'sosia';
 import markdown from '../EzHeading.md';
 import EzHeading from '../EzHeading';
 import {EzCard} from '../../index';
-import {create, fullRender, renderToHtml} from '../../../jest-globals';
+import {fullRender, renderToHtml} from '../../../jest-globals';
 
 const scope = {EzHeading, EzCard, React};
 
@@ -12,12 +12,12 @@ describe('EzHeading', () => {
   visualSnapshots({markdown, scope});
 
   it('should render with the specified tag', () => {
-    const actual = create(
+    const {container} = fullRender(
       <EzHeading as="h1" size="6">
         Heading
       </EzHeading>
     );
-    expect(actual.toJSON().type).toEqual('h1');
+    expect(container.querySelectorAll('h1')).toHaveLength(1);
   });
 
   test.each(['1', '2', '3', '4', '5', '6'])('Shows/Hides subheading for size %i', n => {
