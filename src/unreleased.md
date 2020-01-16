@@ -30,3 +30,4 @@ title: 'Unreleased changes'
 - Created a lint plugin for recipe (`@ezcater/eslint-plugin-recipe`) for using static analysis to track Recipe usage in downstream applications.
 - Updated Recipe's devDependencies used for build/dev tooling. This addressed some npm audit reported known vulnerabilities.
 - Updated doc-site's package dependencies
+- Remove usage of enzyme's shallow/mount methods in tests, in favor of `@testing-library/react`.
