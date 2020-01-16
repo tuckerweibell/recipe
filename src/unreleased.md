@@ -25,6 +25,8 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- Remove unused `babel-core` dev dependency. We're using babel 7 (and @babel/core), so `babel-core` is no longer being used.
+
 #### Development workflow
 
 - Created a lint plugin for recipe (`@ezcater/eslint-plugin-recipe`) for using static analysis to track Recipe usage in downstream applications.
