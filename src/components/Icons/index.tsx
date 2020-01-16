@@ -1,8 +1,10 @@
 import React from 'react';
-import {css, cx} from 'react-emotion';
+import {css} from 'react-emotion';
+import styled from '../../themes/styled';
 
 const alignBaseline = () => css`
   height: 1em;
+  width: 1em;
   position: relative;
   top: 0.125em;
 `;
@@ -23,20 +25,17 @@ const rotateAnimationStyles = () => css`
   }
 `;
 
-const SvgIcon = ({children, title, className}: any) => (
-  <svg
-    version="1.1"
-    viewBox="0 0 14 14"
-    height="1em"
-    width="1em"
-    className={cx(className, alignBaseline())}
-  >
+const Svg = ({children, title, className}: React.SVGProps<SVGSVGElement> & {title: string}) => (
+  <svg version="1.1" viewBox="0 0 14 14" className={className}>
     <title>{title}</title>
     <g id={title} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       {children}
     </g>
   </svg>
 );
+
+const SvgIcon = styled(Svg)(alignBaseline);
+const RotatingSvgIcon = styled(SvgIcon)(rotateAnimationStyles);
 
 export const CloseIcon = () => (
   <SvgIcon title="close-button">
@@ -85,12 +84,12 @@ export const MarketingIcon = () => (
 );
 
 export const ProgressIcon = () => (
-  <SvgIcon title="progress-icon" className={rotateAnimationStyles()}>
+  <RotatingSvgIcon title="progress-icon">
     <path
       d="M8.125 2.125c0 .312-.11.578-.328.797A1.085 1.085 0 0 1 7 3.25c-.313 0-.578-.11-.797-.328a1.085 1.085 0 0 1-.328-.797c0-.313.11-.578.328-.797C6.422 1.11 6.687 1 7 1c.312 0 .578.11.797.328.219.219.328.484.328.797zM7 10.75c.312 0 .578.11.797.328.219.219.328.484.328.797 0 .312-.11.578-.328.797A1.085 1.085 0 0 1 7 13c-.313 0-.578-.11-.797-.328a1.085 1.085 0 0 1-.328-.797c0-.313.11-.578.328-.797.219-.219.484-.328.797-.328zm4.875-4.875c.312 0 .578.11.797.328.219.219.328.484.328.797 0 .312-.11.578-.328.797a1.085 1.085 0 0 1-.797.328c-.313 0-.578-.11-.797-.328A1.085 1.085 0 0 1 10.75 7c0-.313.11-.578.328-.797.219-.219.484-.328.797-.328zM3.25 7c0 .312-.11.578-.328.797a1.085 1.085 0 0 1-.797.328c-.313 0-.578-.11-.797-.328A1.085 1.085 0 0 1 1 7c0-.313.11-.578.328-.797.219-.219.484-.328.797-.328.312 0 .578.11.797.328.219.219.328.484.328.797zm.305 2.32c.312 0 .578.11.797.328.218.22.328.485.328.797 0 .313-.11.578-.328.797a1.085 1.085 0 0 1-.797.328c-.313 0-.578-.11-.797-.328a1.085 1.085 0 0 1-.328-.797c0-.312.11-.578.328-.797.219-.218.484-.328.797-.328zm6.89 0c.313 0 .578.11.797.328.219.22.328.485.328.797 0 .313-.11.578-.328.797a1.085 1.085 0 0 1-.797.328c-.312 0-.578-.11-.797-.328a1.085 1.085 0 0 1-.328-.797c0-.312.11-.578.328-.797.22-.218.485-.328.797-.328zm-6.89-6.89c.312 0 .578.11.797.328.218.219.328.484.328.797 0 .312-.11.578-.328.797a1.085 1.085 0 0 1-.797.328c-.313 0-.578-.11-.797-.328a1.085 1.085 0 0 1-.328-.797c0-.313.11-.578.328-.797.219-.219.484-.328.797-.328z"
       fill="currentColor"
     />
-  </SvgIcon>
+  </RotatingSvgIcon>
 );
 
 export const SuccessIcon = () => (
