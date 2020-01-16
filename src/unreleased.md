@@ -20,6 +20,9 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Remove usage of `javascript:urls` from component examples ([deprecated in React 16.9](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-javascript-urls))
+- Allow links within examples to trigger navigation of the parent window, rather than the iframe
+
 #### Dependency upgrades
 
 #### Development workflow
