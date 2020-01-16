@@ -15,6 +15,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fixed clock icon positioning on EzField type="time". See See [issue 271](https://github.com/ezcater/recipe/issues/271)
+
 #### Documentation
 
 #### Dependency upgrades
