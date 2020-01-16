@@ -17,6 +17,7 @@ title: 'Unreleased changes'
 
 - Fixed clock icon positioning on EzField type="time". See See [issue 271](https://github.com/ezcater/recipe/issues/271)
 - Removed `aria-labelledby` attribute from combobox element. This attribute/value pair was already applied to the combobox input, causing the latest version of `@testing-library/react` to fail to match a unique element.
+- Fixed test code usage of `act()` (using `react-dom/test-utils` instead of `TestRenderer.act()`)
 
 #### Documentation
 
@@ -26,6 +27,7 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 - Remove unused `babel-core` dev dependency. We're using babel 7 (and @babel/core), so `babel-core` is no longer being used.
+- Remove `react-test-renderer` in favor of consistently using `@testing-library/react`.
 
 #### Development workflow
 
@@ -33,3 +35,4 @@ title: 'Unreleased changes'
 - Updated Recipe's devDependencies used for build/dev tooling. This addressed some npm audit reported known vulnerabilities.
 - Updated doc-site's package dependencies
 - Remove usage of enzyme's shallow/mount methods in tests, in favor of `@testing-library/react`.
+- Remove DOM snapshot based testing template. Recipe tests should include visual regression tests instead.
