@@ -1,8 +1,4 @@
 import React from 'react';
-import 'jest-enzyme';
-import {configure} from 'enzyme';
-// @ts-ignore
-import Adapter from 'enzyme-adapter-react-16';
 import {createSerializer, createMatchers} from 'jest-emotion';
 import {toHaveNoViolations} from 'jest-axe';
 import * as emotion from 'emotion';
@@ -13,8 +9,6 @@ import {ThemeProvider} from 'emotion-theming';
 import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
 import {Global} from './src/styles';
-
-configure({adapter: new Adapter()});
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);
