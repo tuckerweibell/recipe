@@ -1,13 +1,13 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {css} from '@emotion/core';
+import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
 
-const scope = {EzLayout, EzCard, EzCardSection, css};
+const scope = {EzLayout, EzCard, EzCardSection, css, Global};
 
 describe('EzLayout', () => {
   visualSnapshots({markdown, scope});

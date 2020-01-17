@@ -31,12 +31,15 @@
 ### Toggle control renders in a consistent position regardless of status
 
 ```jsx
-<div className={css(`
-    > * {
+<div className="test">
+  <Global
+    styles={css(`
+    .test > * {
       position: absolute !important;
     }
-`)}>
-  <EzToggle defaultChecked={false} label="Receive marketing emails" status="progress"  />
-  <EzToggle defaultChecked={false} label="Receive marketing emails"  />
+  `)}
+  />
+  <EzToggle defaultChecked={false} label="Receive marketing emails" status="progress" />
+  <EzToggle defaultChecked={false} label="Receive marketing emails" />
 </div>
 ```

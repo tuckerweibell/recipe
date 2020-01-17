@@ -1,5 +1,5 @@
 import React from 'react';
-import {css} from '@emotion/core';
+import {Global, css} from '@emotion/core';
 import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
 import Component from 'react-component-component';
@@ -107,7 +107,7 @@ const require = () => ({
 });
 
 const ezCaterLogoPath = logo;
-const scope = {...Components, styled, css, Component, require, ezCaterLogoPath, withPrefix};
+const scope = {...Components, styled, css, Global, Component, require, ezCaterLogoPath, withPrefix};
 
 const splitOnTagName = (list, tagName) => {
   const i = list.findIndex(el => el.tagName === tagName);
