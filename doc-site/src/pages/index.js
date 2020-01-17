@@ -15,13 +15,8 @@ import {
   EzFlashMessage,
 } from '@ezcater/recipe';
 import {GithubLink} from '../components/GithubLink';
-import styled, {css, injectGlobal} from 'react-emotion';
-
-injectGlobal`
-  p {
-    margin: 0 0 1.45rem;
-  }
-`;
+import styled from '@emotion/styled';
+import {Global, css} from '@emotion/core';
 
 const themeAsObjectNotModule = Object.assign({}, themes.standard);
 
@@ -112,12 +107,21 @@ const IndexPage = () => (
       />
     </Helmet>
     <GithubLink repository="https://github.com/ezcater/recipe" />
+    <Global
+      styles={css`
+        p {
+          margin: 0 0 1.45rem;
+        }
+      `}
+    />
 
     <ThemeProvider theme={themeAsObjectNotModule}>
       <>
         <Header>
           <h1>Recipe</h1>
-          <p>"Now that I’ve worked with Recipe, I don’t want to go back to working without Recipe."</p>
+          <p>
+            "Now that I’ve worked with Recipe, I don’t want to go back to working without Recipe."
+          </p>
           <p>-Jesse Belanger</p>
         </Header>
 

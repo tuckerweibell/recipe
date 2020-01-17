@@ -1,5 +1,5 @@
-import React from 'react';
-import {css} from 'react-emotion';
+/** @jsx jsx */
+import {jsx, css} from '@emotion/core';
 import {themes} from '@ezcater/recipe';
 
 const {standard} = themes;
@@ -21,7 +21,7 @@ export default props => {
               <td>{key}</td>
               <td>{standard.fontWeights[key]}</td>
               <td
-                className={css`
+                css={css`
                   font-weight: ${standard.fontWeights[key]};
                 `}
               >

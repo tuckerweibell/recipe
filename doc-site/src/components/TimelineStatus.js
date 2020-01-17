@@ -1,6 +1,6 @@
 import React from 'react';
 import {withPrefix} from 'gatsby';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 
 const Icon = styled.img`
   width: 14px;

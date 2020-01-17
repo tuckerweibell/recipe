@@ -1,5 +1,4 @@
-import React from 'react';
-import {css} from 'react-emotion';
+import {css} from '@emotion/core';
 import {themes} from '@ezcater/recipe';
 import Measure from './Measure';
 
@@ -17,7 +16,7 @@ const Combination = ({font}) => {
           <td>
             <span
               ref={ref}
-              className={css`
+              css={css`
                 ${standard.fonts[font]};
               `}
             >

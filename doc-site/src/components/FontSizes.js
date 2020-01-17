@@ -1,5 +1,5 @@
-import React from 'react';
-import {css} from 'react-emotion';
+/** @jsx jsx */
+import {jsx, css} from '@emotion/core';
 import {themes} from '@ezcater/recipe';
 import Measure from './Measure';
 
@@ -21,7 +21,7 @@ export default () => {
             <Measure cssProperty="font-size" key={key}>
               {([ref, measured]) => (
                 <tr
-                  className={css`
+                  css={css`
                     line-height: 1;
                   `}
                   key={key}
@@ -30,7 +30,7 @@ export default () => {
                   <td>{measured}</td>
                   <td
                     ref={ref}
-                    className={css`
+                    css={css`
                       font-size: ${standard.fontSizes[key]};
                     `}
                   >

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {css} from 'react-emotion';
+/** @jsx jsx */
+import {useState} from 'react';
+import {jsx, css} from '@emotion/core';
 import {EzLabelledItem, themes} from '@ezcater/recipe';
 
 const {standard} = themes;
@@ -15,11 +16,7 @@ export default props => {
 
   return (
     <div>
-      <div
-        className={css`
-          margin: 1em 0;
-        `}
-      >
+      <div css={{margin: '1em 0'}}>
         <EzLabelledItem position="left" size="normal" title="Length of demo string:">
           <input
             type="range"
@@ -34,14 +31,10 @@ export default props => {
         </EzLabelledItem>
       </div>
       {Object.keys(standard.fonts).map(font => (
-        <div
-          className={css`
-            margin: ${standard.spacing.md} 0;
-          `}
-        >
+        <div css={{margin: `${standard.spacing.md} 0`}}>
           <code>{`theme.fonts.${font}`}</code>
           <p
-            className={css`
+            css={css`
               ${standard.fonts[font]};
               &:hover {
                 span {

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'react-emotion';
 import {
   EzTextStyle,
   themes,
@@ -10,10 +9,10 @@ import {
   EzSegmentedControl,
   EzToggle,
 } from '@ezcater/recipe';
+import styled from '@emotion/styled';
 
 const {standard} = themes;
 const {colors} = standard;
-const {interactive, info, destructive, warning, success} = colors;
 
 const ColorContainer = styled.span`
   display: inline-flex;

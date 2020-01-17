@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import * as buble from 'buble/dist/buble-browser-deps.umd.js';
 
 const opts = {
