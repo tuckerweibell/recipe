@@ -23,7 +23,7 @@ const ColorContainer = styled.span`
     margin-right: ${standard.spacing.xl2};
   }
 
-  > *:not(:first-child) {
+  && > * + * {
     margin-top: ${standard.spacing.xs};
     max-width: 120px;
   }

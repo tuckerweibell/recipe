@@ -9,7 +9,7 @@ const SpacingContainer = styled.div`
   display: flex;
   margin-bottom: 1em;
 
-  > *:not(:first-child) {
+  && > * + * {
     margin-left: ${standard.spacing.xl};
   }
 `;
