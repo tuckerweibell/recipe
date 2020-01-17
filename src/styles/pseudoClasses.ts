@@ -8,9 +8,14 @@ type Options = {
   focusColor?: Color;
 };
 
-export default (style: CSSPropertyName, {color, focusColor}: Options) => ({
-  [style]: color,
-  '&:hover:enabled': {[style]: darken(color, 0.15)},
-  '&:focus:enabled': focusColor && {[style]: focusColor},
-  '&:active:enabled': {[style]: darken(color, 0.25)},
-});
+const camel = str => str.replace(/(-[a-z])/g, x => x.toUpperCase()).replace(/-/g, '');
+
+export default (cssPropertyName: CSSPropertyName, {color, focusColor}: Options) => {
+  const camelName = camel(cssPropertyName);
+  return {
+    [camelName]: color,
+    '&:hover:enabled': {[camelName]: darken(color, 0.15)},
+    '&:focus:enabled': focusColor && {[camelName]: focusColor},
+    '&:active:enabled': {[camelName]: darken(color, 0.25)},
+  };
+};
