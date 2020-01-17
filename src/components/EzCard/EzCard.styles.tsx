@@ -42,7 +42,7 @@ export const CardLayout = styled.div`
 const vertical = ({horizontal, theme}) =>
   !horizontal &&
   css`
-    > *:not(:first-child) {
+    && > * + * {
       border-top: 1px solid ${theme.colors.border.base};
     }
   `;

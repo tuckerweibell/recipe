@@ -8,7 +8,7 @@ const listBase = ({theme}) => css`
   padding: 0;
   list-style: none;
 
-  > :not(:first-child) {
+  && > * + * {
     margin-left: ${theme.spacing.sm};
   }
 `;

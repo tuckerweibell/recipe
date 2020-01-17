@@ -8,7 +8,7 @@ export const base = ({theme}) => css`
     padding: ${theme.spacing.xl2};
   }
 
-  > *:not(:first-child) {
+  && > * + * {
     margin-top: ${theme.spacing.xl2};
   }
 `;

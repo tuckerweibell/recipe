@@ -55,7 +55,7 @@ export const layout = responsive('layout', {
 });
 
 const setSpacing = (top, left) => css`
-  > *:not(:first-child) {
+  && > * + * {
     margin-top: ${top};
     margin-left: ${left};
   }

@@ -22,22 +22,22 @@ export const ItemsSection = styled(TableCardSection)`
     background-color: ${({theme}) => theme.colors.content.background};
   }
 
-  && table tr th:first-child,
-  && table tr td:first-child {
+  && table tr th:first-of-type,
+  && table tr td:first-of-type {
     padding-left: ${({theme}) => theme.spacing.xs};
   }
 
-  && table tr th:last-child,
-  && table tr td:last-child {
+  && table tr th:last-of-type,
+  && table tr td:last-of-type {
     padding-right: ${({theme}) => theme.spacing.lg};
   }
 
-  th:first-child,
-  td:first-child {
+  th:first-of-type,
+  td:first-of-type {
     width: ${({theme}) => theme.spacing.xl4};
   }
 
-  td:last-child {
+  td:last-of-type {
     width: ${cellFitContent};
   }
 `;
@@ -67,11 +67,11 @@ const totals = ({theme}) => css`
     padding: ${theme.spacing.xs2} ${theme.spacing.xs};
   }
 
-  td:last-child {
+  td:last-of-type {
     text-align: right;
   }
 
-  tr:nth-child(even) {
+  tr:nth-of-type(even) {
     background-color: ${theme.colors.grays[100]};
   }
 `;

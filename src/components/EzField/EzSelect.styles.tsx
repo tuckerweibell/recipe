@@ -25,7 +25,7 @@ const listbox = ({theme}) => css`
   }
 
   [role='group'] {
-    > :first-child {
+    > :first-of-type {
       ${theme.fonts.small};
       margin: 0;
       padding: ${theme.spacing.xs} ${theme.spacing.sm};

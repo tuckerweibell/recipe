@@ -7,7 +7,7 @@ const Label = styled.label`
   display: block;
   margin-top: ${({theme}) => theme.spacing.sm};
 
-  > *:first-child {
+  > * {
     margin-right: ${({theme}) => theme.spacing.xs};
   }
 `;

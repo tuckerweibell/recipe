@@ -62,7 +62,7 @@ export const ContentContainer = styled.div`
   flex: auto;
   overflow-y: auto;
 
-  > *:not(:first-child) {
+  && > * + * {
     margin-top: ${props => props.theme.spacing.lg};
   }
 

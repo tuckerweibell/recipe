@@ -12,10 +12,10 @@ const fullBleed = () => css`
 const spacing = ({theme}) => css`
   th,
   td {
-    &:first-child {
+    &:first-of-type {
       padding-left: ${theme.spacing.lg};
     }
-    &:last-child {
+    &:last-of-type {
       padding-right: ${theme.spacing.lg};
     }
   }
@@ -46,7 +46,7 @@ const heading = ({theme}) => css`
 `;
 
 const borders = ({theme}) => css`
-  tbody tr:first-child td {
+  tbody tr:first-of-type td {
     border-top: 1px solid ${theme.colors.border.subtle};
   }
 
@@ -54,7 +54,7 @@ const borders = ({theme}) => css`
     border-bottom: 1px solid ${theme.colors.border.subtle};
   }
 
-  tr:last-child td {
+  tr:last-of-type td {
     border-bottom: none;
   }
 
@@ -149,8 +149,8 @@ type Selectable = {selectable?: boolean};
 const selectionColumn = ({theme, selectable}) =>
   selectable &&
   css`
-    th:first-child,
-    td:first-child {
+    th:first-of-type,
+    td:first-of-type {
       width: ${cellFitContent};
       white-space: normal;
     }

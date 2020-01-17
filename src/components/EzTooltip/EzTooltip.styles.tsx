@@ -6,12 +6,6 @@ const base = () => css`
   position: relative;
   padding: 0.5rem;
   max-width: 300px;
-  *:first-child {
-    margin-top: 0;
-  }
-  *:last-child {
-    margin-bottom: 0;
-  }
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 `;
 
