@@ -31,7 +31,7 @@ export default props => {
         </EzLabelledItem>
       </div>
       {Object.keys(standard.fonts).map(font => (
-        <div css={{margin: `${standard.spacing.md} 0`}}>
+        <div css={{margin: `${standard.spacing.md} 0`}} key={font}>
           <code>{`theme.fonts.${font}`}</code>
           <p
             css={css`
