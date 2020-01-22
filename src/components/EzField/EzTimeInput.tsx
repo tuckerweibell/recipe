@@ -20,7 +20,7 @@ const useTimeRangeOptions = ({start, end, step}) => {
   return repeat(interval).map((_, i) => startTime.add(step * i, 'minute').format(t('TIME_FORMAT')));
 };
 
-export default ({start, end, step, value, ...rest}) => {
+export default ({start, end, step = 60, value, ...rest}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));

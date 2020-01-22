@@ -42,6 +42,18 @@ describe('EzField', () => {
     expectHourlyOptionsFrom9to5(options);
   });
 
+  it('should use default step of 60 minutes', async () => {
+    const {container} = render(
+      <EzField type="time" label={label} start="9:00 AM" end="5:00 PM" value="1:00 PM" />
+    );
+
+    typeArrowDownToOpenSelectList(container);
+
+    const options = getAllByRole(container, 'option');
+
+    expectHourlyOptionsFrom9to5(options);
+  });
+
   const typeArrowDownToOpenSelectList = container => {
     const input = getByLabelText(container, label) as HTMLInputElement;
 
