@@ -1,15 +1,13 @@
 import React from 'react';
-
 import dayjs from 'dayjs';
-
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
-
 import {TimeInput} from './EzTimeInput.styles';
 
 const repeat = n => new Array(n).fill(null);
 
-const formatTime = time => time.replace(/([0-9]{2})([a-z]{2})$/u, '$1 $2');
+const formatTime = (time: string) =>
+  time.toLocaleLowerCase().replace(/([0-9]{2})([a-z]{2})$/u, '$1 $2');
 
 const useTimeRangeOptions = ({start, end, step}) => {
   const {t} = useTranslation(en);

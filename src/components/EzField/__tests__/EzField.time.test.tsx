@@ -30,6 +30,18 @@ describe('EzField', () => {
     expectHourlyOptionsFrom9to5(options);
   });
 
+  it('start and end time props are case insensitive', () => {
+    const {container} = render(
+      <EzField type="time" label={label} start="9:00AM" end="5:00PM" step={60} />
+    );
+
+    typeArrowDownToOpenSelectList(container);
+
+    const options = getAllByRole(container, 'option');
+
+    expectHourlyOptionsFrom9to5(options);
+  });
+
   const typeArrowDownToOpenSelectList = container => {
     const input = getByLabelText(container, label) as HTMLInputElement;
 
