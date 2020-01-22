@@ -33,6 +33,14 @@ type DateInputProps = {
   value: string | number | object;
 };
 
+type TimeInputProps = {
+  type: 'time';
+  value?: string;
+  start: string;
+  end: string;
+  step?: number;
+};
+
 type TextAreaInputProps = {
   type: 'textarea';
   size?: 'small' | 'medium' | 'large';
@@ -49,6 +57,7 @@ type FieldTypeProps =
   | ListboxProps
   | HtmlInputProps
   | DateInputProps
+  | TimeInputProps
   | TextAreaInputProps
   | CustomFieldProps;
 
