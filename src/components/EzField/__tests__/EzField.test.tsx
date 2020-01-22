@@ -4,7 +4,6 @@ import {axe} from 'jest-axe';
 import {getByLabelText, fireEvent} from '@testing-library/react';
 import Component from 'react-component-component';
 import regressionTests from './EzField.test.md';
-import ezTextAreaTests from './EzTextArea.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
 import {useTimeRangeOptions} from '../EzTimeInput';
@@ -17,7 +16,6 @@ const scope = {EzField, EzLayout, EzFormLayout, Component, Open};
 describe('EzField', () => {
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
-  visualSnapshots({markdown: ezTextAreaTests, scope});
 
   it('should render with disabled input', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
