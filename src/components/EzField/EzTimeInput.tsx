@@ -11,7 +11,7 @@ const repeat = n => new Array(n).fill(null);
 
 const formatTime = time => time.replace(/([0-9]{2})([a-z]{2})$/u, '$1 $2');
 
-export const useTimeRangeOptions = ({start, end, step}) => {
+const useTimeRangeOptions = ({start, end, step}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
