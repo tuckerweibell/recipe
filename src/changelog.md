@@ -8,6 +8,25 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 8.0.3 - 2020-01-23
+
+#### Enhancements
+
+- Added missing type definitions for EzField[type=time]
+
+#### Bug fixes
+
+- Make EzField[type=time] start/end props case insensitive
+- Make EzField[type=time] step prop optional (fixes [issue 257](https://github.com/ezcater/recipe/issues/257))
+- Fix issue causing potential infinite loop when using EzField[type=select|date|time]
+- Fix EzField[type=select|date|time] "current" icon positioning
+- Fix `event.target` element on the `onChange` event of EzField[type=select|date|time] (fixes [issue 257](https://github.com/ezcater/recipe/issues/282))
+
+#### Development workflow
+
+- split up tests for EzField by type (i.e. checkbox, radio, select, date, time etc)
+- updated EzField[type=time] tests to use public API, rather than internal/private methods
+
 ## 8.0.2 - 2020-01-16
 
 #### Breaking changes
@@ -20,7 +39,7 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 #### Bug fixes
 
-- Fixed clock icon positioning on EzField type="time". See See [issue 271](https://github.com/ezcater/recipe/issues/271)
+- Fixed clock icon positioning on EzField type="time". See [issue 271](https://github.com/ezcater/recipe/issues/271)
 - Removed `aria-labelledby` attribute from combobox element. This attribute/value pair was already applied to the combobox input, causing the latest version of `@testing-library/react` to fail to match a unique element.
 - Fixed test code usage of `act()` (using `react-dom/test-utils` instead of `TestRenderer.act()`)
 - Fixed warning raised by accidentally forwarding `loading` flag from EzButton to the underlying DOM element.
