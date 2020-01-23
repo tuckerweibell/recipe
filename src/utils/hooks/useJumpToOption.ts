@@ -1,39 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 const useJumpToOption = (inputRef: React.RefObject<HTMLElement>, {options, move}) => {
-  const [keys, setKeys] = useState('');
+  const keys = useRef('');
+  const timeout = useRef(null);
 
   useEffect(() => {
-    if (!keys) return function noop() {};
+    const el = inputRef.current;
 
-    // clear out the current key presses after a short delay
-    const timeout = setTimeout(setKeys, 600, '');
-
-    const searchText = keys.toLowerCase();
-
-    // first try a full match on what the user typed
-    const option = options.find(o => o.label.toLowerCase().startsWith(searchText));
-
-    if (option) move(option);
-
-    return () => clearTimeout(timeout);
-  }, [keys, options, move]);
-
-  useEffect(() => {
-    const menu = inputRef.current;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === ' ' && !keys) return;
+      clearTimeout(timeout.current);
 
-      if (/^[a-z0-9_-\s]$/i.test(event.key)) {
-        event.stopPropagation();
-        event.preventDefault();
-        setKeys(k => k + event.key);
-      }
+      if (event.key === ' ' && !keys.current) return;
+
+      if (!/^[a-z0-9_-\s]$/i.test(event.key)) return;
+
+      event.stopPropagation();
+      event.preventDefault();
+      keys.current += event.key;
+
+      if (!keys.current) return;
+
+      const searchText = keys.current.toLowerCase();
+
+      // first try a full match on what the user typed
+      const option = options.find(o => o.label.toLowerCase().startsWith(searchText));
+
+      if (option) move(option);
+
+      timeout.current = setTimeout(() => {
+        keys.current = '';
+      }, 600);
     };
 
-    menu.addEventListener('keydown', onKeyDown);
-    return () => menu.removeEventListener('keydown', onKeyDown);
-  }, [inputRef, keys, setKeys]);
+    el.addEventListener('keydown', onKeyDown);
+    return () => el.removeEventListener('keydown', onKeyDown);
+  }, [inputRef, keys, options, move]);
 };
 
 export default useJumpToOption;

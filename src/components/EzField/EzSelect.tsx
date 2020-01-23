@@ -1,6 +1,6 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption, useUniqueId, useUpdateEffect} from '../../utils/hooks';
+import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 
 const flatten = options => {
@@ -58,56 +58,40 @@ const OptGroup = props => {
 
 const hasGroupedOptions = options => options.some(o => o.group);
 
-const useListboxState = ({options, selected}) => {
-  const [activeOption, setActiveOption] = useState(selected);
+const EzSelect = props => {
+  const {options, value, onChange} = props;
+  const ariaLabelledBy = props['aria-labelledby'];
+
+  const timeout = useRef(null);
   const activeOptionRef = useRef(null);
-  const setActiveIndex = useCallback(i => setActiveOption(options[i]), [options]);
-
-  return {
-    selected,
-    activeOption,
-    activeOptionRef,
-    setActiveOption,
-    setActiveIndex,
-  };
-};
-
-const EzSelect = ({id, options, value, onChange, 'aria-labelledby': ariaLabelledBy, ...rest}) => {
-  const selected = options.find(o => o.value === value);
   const scrollableRef = useRef<HTMLElement>();
 
-  const listbox = useListboxState({options, selected});
-  const {activeOption, setActiveOption, activeOptionRef} = listbox;
+  const selected = options.find(o => o.value === value);
+  const [activeOption, setActiveOption] = useState(selected);
+
+  const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
+
+  const listbox = {activeOption, activeOptionRef, setActiveOption, selected};
+
+  useEffect(() => () => clearTimeout(timeout.current), []);
 
   const comboboxState = useComboboxState();
   const {hide, visible} = comboboxState;
 
   const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
-    ...rest,
     'aria-haspopup': 'listbox',
+    className: props.className,
+    disabled: props.disabled,
+    error: props.error,
+    touched: props.touched,
     opened: comboboxState.visible,
   });
-
-  const selectItem = useCallback(
-    e => {
-      if (activeOption) {
-        onChange({
-          ...e,
-          target: {...e.target, value: activeOption.value},
-        });
-      }
-
-      hide();
-    },
-    [activeOption, hide, onChange]
-  );
 
   const handleKeyDown = e => {
     const key = e.key;
     const activeIndex = options.indexOf(activeOption);
-    const {setActiveIndex} = listbox;
 
-    const select = () => selectItem(e);
+    const select = () => selectItem();
 
     const prev = activeIndex <= 0 ? options.length - 1 : activeIndex - 1;
     const next = activeIndex === -1 || activeIndex >= options.length - 1 ? 0 : activeIndex + 1;
@@ -127,36 +111,70 @@ const EzSelect = ({id, options, value, onChange, 'aria-labelledby': ariaLabelled
     }
   };
 
-  useUpdateEffect(() => {
-    if (!visible) selectItem(new Event('change'));
-  }, [activeOption]);
-
   useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
     activeOption,
     visible,
   ]);
 
   const comboboxInput = useComboboxInput(comboboxState, {
-    id,
     'aria-autocomplete': 'list',
     'aria-labelledby': ariaLabelledBy,
     value: selected ? selected.label : '',
     'aria-activedescendant': !activeOptionRef.current ? '' : activeOptionRef.current.id,
     onKeyDown: handleKeyDown,
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
-    disabled: rest.disabled,
-    placeholder: rest.placeholder,
+    id: props.id,
+    name: props.name,
+    disabled: props.disabled,
+    placeholder: props.placeholder,
     readOnly: true,
   });
 
+  const comboboxHiddenSelect = {
+    id: props.id,
+    name: props.name,
+    hidden: true,
+    readOnly: true,
+    ref: useRef(null),
+    style: {display: 'none'},
+    value: activeOption ? activeOption.value : value === null ? undefined : value,
+  };
+
+  const changeEvent = useCallback(() => {
+    const event = new Event('change');
+    comboboxHiddenSelect.ref.current.dispatchEvent(event);
+    return event;
+  }, [comboboxHiddenSelect.ref]);
+
+  function selectItem() {
+    onChange(changeEvent());
+    timeout.current = setTimeout(hide, 100);
+  }
+
   const comboboxFlyout = useComboboxFlyout(comboboxState);
 
-  useJumpToOption(comboboxInput.ref, {options, move: setActiveOption});
+  const move = useCallback(
+    option => {
+      setActiveOption(option);
+
+      if (visible) return;
+
+      onChange(changeEvent());
+    },
+    [visible, onChange, changeEvent]
+  );
+
+  useJumpToOption(comboboxInput.ref, {options, move});
 
   return (
-    <Container innerRef={clickOutsideRef} hasError={rest.touched && rest.error} opened={visible}>
+    <Container innerRef={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
         <input {...comboboxInput} />
+        {/* see: https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/635 */}
+        {/* eslint-disable jsx-a11y/control-has-associated-label */}
+        <select {...comboboxHiddenSelect}>
+          <option value={comboboxHiddenSelect.value} />
+        </select>
       </Combobox>
       {visible && (
         <Listbox

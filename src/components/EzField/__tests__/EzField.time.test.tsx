@@ -1,5 +1,5 @@
 import React from 'react';
-import {getByLabelText, fireEvent, getAllByRole} from '@testing-library/react';
+import {getByLabelText, fireEvent, getAllByRole, act} from '@testing-library/react';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 
@@ -52,6 +52,42 @@ describe('EzField', () => {
     const options = getAllByRole(container, 'option');
 
     expectHourlyOptionsFrom9to5(options);
+  });
+
+  it('should trigger onChange after matching typed characters to an option', () => {
+    const onChange = jest.fn();
+
+    const FieldWithHooks = props => {
+      const [time, setTime] = React.useState('12:00 pm');
+
+      return (
+        <EzField
+          value={time}
+          {...props}
+          onChange={e => {
+            onChange(e);
+            setTime(e.target.value);
+          }}
+        />
+      );
+    };
+
+    const {container, rerender} = render(
+      <FieldWithHooks type="time" start="9:00 AM" end="5:00 PM" step={30} label={label} />
+    );
+
+    const input = getByLabelText(container, label) as HTMLInputElement;
+
+    const keyDown = key => fireEvent.keyDown(input, {key});
+
+    act(() => {
+      keyDown('3');
+      keyDown('Enter');
+    });
+
+    rerender(<FieldWithHooks type="time" start="9:00 AM" end="5:00 PM" step={30} label={label} />);
+
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   const typeArrowDownToOpenSelectList = container => {
