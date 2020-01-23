@@ -45,16 +45,15 @@ const listbox = ({theme}) => css`
       background-color: ${theme.colors.interactive.base};
       color: ${theme.colors.content.background};
 
-      :after {
-        filter: brightness(2);
+      &[aria-current='true'] {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e");
       }
     }
 
-    &[aria-current='true']:after {
-      content: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%238b99a6' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e");
-      position: absolute;
-      right: ${theme.spacing.sm};
-      top: calc(50% - 6px);
+    &[aria-current='true'] {
+      background-repeat: no-repeat;
+      background-position: center right 12px;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%238b99a6' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e");
     }
   }
 `;
