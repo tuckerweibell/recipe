@@ -26,12 +26,14 @@ export default ({start, end, step = 60, value, ...rest}) => {
   const date = dayjs().format(t('DATE_FORMAT'));
   const valueTime = dayjs(`${date} ${value}`);
   const valueTimeString = valueTime.format(t('TIME_FORMAT'));
+  const {error, touched} = rest;
 
   const options = useTimeRangeOptions({start, end, step});
   return (
     <TimeInput
       id={rest.id}
       label={rest.label}
+      {...{error, touched}}
       placeholder={rest.placeholder}
       options={options.map(option => ({
         label: option,
