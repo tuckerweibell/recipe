@@ -1,10 +1,18 @@
 import React from 'react';
+import {visualSnapshots} from 'sosia';
 import {getByLabelText, fireEvent, getAllByRole, act} from '@testing-library/react';
+import ezTimeInputTests from './EzTimeInput.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
+import {EzFormLayout} from '../../index';
+import Open from '../Open';
+
+const scope = {EzField, EzFormLayout, Open};
 
 describe('EzField', () => {
   const label = 'Select time';
+
+  visualSnapshots({markdown: ezTimeInputTests, scope});
 
   it('should generate the correct time range options', () => {
     const {container} = render(
