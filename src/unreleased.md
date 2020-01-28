@@ -11,6 +11,9 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- added visual regression coverage for EzField[type=time] with validation messages
+- added visual regression coverage for EzField[type=fn] with validation messages
+
 #### Design updates
 
 - Update doc-site h3 level headings to use EzHeader[size=3]
@@ -20,6 +23,10 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fix EzNavigation issue where clicking the currently selected page causes the content to disappear on large screens. (fixes [issue 237](https://github.com/ezcater/recipe/issues/237))
+- fix regression bug causing EzField[type=select] to stringify `event.target.value`. This bug impacted any usage of EzField[type=select] where an option value was of type Number or Boolean.
+- fix styling of EzField[type=time] when the field is in an error state
+- fix positioning of error message and validation flyout on EzField[type=fn]
+- fix incorrect EzField[type=date] tests (missing Label which is a required prop)
 
 #### Documentation
 
