@@ -71,15 +71,18 @@ code {
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono',
     Menlo, Courier, monospace;
-  padding: 0.2em 0.4em;
-}
-pre code {
-  background: none;
-  line-height: 1.42;
 }
 .EzAppLayout table img {
   width: 100%;
 }
 img.avatar {
   border-radius: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
 }

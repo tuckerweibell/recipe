@@ -6,6 +6,7 @@ import Component from 'react-component-component';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
 import loadable from '@loadable/component';
+import Highlight, {defaultProps} from 'prism-react-renderer';
 import {ColorDefinition, Example} from './ColorVariables';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
@@ -17,6 +18,7 @@ import TimelineStatus from './TimelineStatus';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import EmotionCache from './EmotionCache';
+import 'prismjs/themes/prism.css';
 
 const isIE11 =
   typeof window !== `undefined` && !!window.MSInputMethodContext && !!document.documentMode;
@@ -26,7 +28,8 @@ const cleanProps = p =>
     const key = current.startsWith('aria')
       ? current.toLowerCase().replace('aria', 'aria-')
       : current;
-    return {...previous, [key]: p[current]};
+    const value = Array.isArray(p[current]) ? p[current].join(' ') : p[current];
+    return {...previous, [key]: value};
   }, {});
 
 const HtmlAst = ({htmlAst, scope}) => {
@@ -44,9 +47,24 @@ const HtmlAst = ({htmlAst, scope}) => {
     if (!className) return <code {...props} />;
 
     return (
-      <pre>
-        <code {...props} />
-      </pre>
+      <Highlight
+        {...defaultProps}
+        code={props.children[0]}
+        language={props.className.replace('language-', '')}
+        theme={undefined}
+      >
+        {({className, style, tokens, getLineProps, getTokenProps}) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({line, key: i})}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({token, key})} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
     );
   };
 

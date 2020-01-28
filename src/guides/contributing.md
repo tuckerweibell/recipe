@@ -87,7 +87,7 @@ In order to keep files focused and file sizes small, functional logic is separat
 
 Example:
 
-```dir
+```
 recipe
   - src
     - components
