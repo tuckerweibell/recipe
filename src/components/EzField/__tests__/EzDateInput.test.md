@@ -1,31 +1,37 @@
 ### EzDateInput Simple
 
 ```jsx
-<EzField type="date" />
+<EzField type="date" label="Order date" />
 ```
 
 ### EzDateInput Simple with Date
 
 ```jsx
-<EzField type="date" value="01/01/2020" />
+<EzField type="date" label="Order date" value="01/01/2020" />
 ```
 
 ### EzDateInput Disabled
 
 ```jsx
-<EzField type="date" disabled={true} />
+<EzField type="date" label="Order date" disabled={true} />
 ```
 
 ### EzDateInput with error
 
 ```jsx
-<EzField type="date" touched error="Please select a past date" value="01/01/2020" />
+<EzField
+  type="date"
+  label="Order date"
+  touched
+  error="Please select a past date"
+  value="01/01/2020"
+/>
 ```
 
 ### EzDateInput Disabled with Date
 
 ```jsx
-<EzField type="date" value="01/01/2020" disabled={true} />
+<EzField type="date" label="Order date" value="01/01/2020" disabled={true} />
 ```
 
 ### EzDateInput overlay
