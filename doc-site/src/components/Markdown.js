@@ -76,7 +76,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     timelinestatus: TimelineStatus,
     h1: heading(1),
     h2: heading(3, 'h2'),
-    h3: heading(5, 'h3'),
+    h3: heading(3, 'h3'),
     h4: heading(5, 'h4'),
   };
 
