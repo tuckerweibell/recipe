@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 import Link from 'gatsby-link';
 import {ThemeProvider} from 'emotion-theming';
+import naturalSort from 'natural-sort';
 import {
   themes,
   EzAppLayout,
@@ -76,7 +77,7 @@ const Menu = ({children, links, location, ...props}) => {
   };
   return (
     <>
-      <Link {...props} partiallyActive={!hasChildren} {...hasChildren && {onClick: handleToggle}}>
+      <Link {...props} partiallyActive={!hasChildren} {...(hasChildren && {onClick: handleToggle})}>
         {children}
         {hasChildren && (
           <Icon opened={opened}>
@@ -154,7 +155,8 @@ const Layout = ({name, title, children, sections, location}) => (
           .map(page => ({
             to: page.frontmatter.path,
             label: page.frontmatter.title,
-          })),
+          }))
+          .sort((a, b) => naturalSort()(a.label, b.label)),
         location,
         as: Menu,
       }));
