@@ -47,6 +47,10 @@ const inputError = ({theme, error, touched}) =>
     padding-right: ${iconOffset};
     ${borderRadius('bottom', 0)};
 
+    ${InlineError} ~ * & {
+      ${borderRadius('bottom', inputBorderRadius)};
+    }
+
     @media screen and (min-width: ${theme.breakpoints.medium}) {
       ${borderRadius('bottom', inputBorderRadius)};
     }
@@ -97,6 +101,7 @@ const callout = ({theme, active}: any) => css`
   right: 0;
   ${borderRadius('bottom', calloutBorderRadius)};
 
+  label + * + &,
   fieldset & {
     margin-top: 0.5em;
     ${detached()};
@@ -144,6 +149,7 @@ export const InputIconContainer = styled.div`
     position: absolute;
   }
 
+  label + & svg,
   fieldset & svg {
     top: -1.1em; /* approx line height */
   }
