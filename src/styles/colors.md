@@ -5,6 +5,8 @@ title: 'Colors'
 
 Recipe uses colors to communicate how things function in the user interface. With consistent usage of color, we help make our products more predictable and easier to understand for our users. Colors should be used to help draw attention to important content, supporting the hierarchy of the page.
 
+---
+
 ## Content Elements
 
 Recipe uses various colors in the application shell to visually divide the page and draw users focus to the primary content.
@@ -20,12 +22,16 @@ Primary navigation uses the `colors.navigation.background` color with the `color
 <ColorDefinition name="navigation .background"></ColorDefinition>
 <ColorDefinition name="navigation.active"></ColorDefinition>
 
+---
+
 ## Text
 
 Recipe uses the `colors.text.base` color for headings and body copy and the `colors.text.deemphasis` color for secondary, de-emphasized text.
 
 <ColorDefinition name="text .base"></ColorDefinition>
 <ColorDefinition name="text .deemphasis"></ColorDefinition>
+
+---
 
 ## Interactive elements
 
@@ -52,6 +58,8 @@ Note: the use of the checked colors should be applied when the use of [`colors.i
 
 <CheckedExample></CheckedExample>
 
+---
+
 ### Hover and active
 
 Recipe uses the `colors.interactive.hover.background` color to indicate when a user interacts with an element with a pointing device. It is generally triggered when the user hovers over an element with the cursor. Once the user has activated the element, typically when the user presses down the primary mouse button, Recipe applies the `colors.interactive.active.background` color as the element background until the interaction is complete, typically when the user releases the mouse button.
@@ -68,6 +76,8 @@ Note: the use of the hover and active colors should only be applied as a backgro
 #### Example usage
 
 <HoverExample></HoverExample>
+
+---
 
 # Color usage
 
