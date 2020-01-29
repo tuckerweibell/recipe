@@ -15,6 +15,7 @@ title: 'Unreleased changes'
 
 - Update doc-site h3 level headings to use EzHeader[size=3]
 - Add syntax highlighting for doc-site code snippets
+- Added thematic breaks to [Colors](/styles/colors) and [Typography](/styles/typography) to break up related content into easier to digest parts.
 
 #### Bug fixes
 
