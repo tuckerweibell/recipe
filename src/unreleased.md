@@ -19,6 +19,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix EzNavigation issue where clicking the currently selected page causes the content to disappear on large screens. (fixes [issue 237](https://github.com/ezcater/recipe/issues/237))
+
 #### Documentation
 
 - add documentation for migration to Recipe 8.x releases
