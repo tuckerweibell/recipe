@@ -87,4 +87,9 @@ export const ContentContainer = styled.div<WrapperProps>`
       height: 0;
       overflow: hidden;
     `}
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
+    height: auto;
+    overflow: visible;
+  }
 `;
