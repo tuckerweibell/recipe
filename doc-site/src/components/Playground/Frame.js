@@ -27,6 +27,8 @@ const IFramePlayground = props => {
       const el = playgroundRef.current || container;
       const margin = el ? getComputedStyle(el).marginLeft : '20px';
 
+      if (margin === '0px') return;
+
       iframe.style.height = 0;
       iframe.style.height = `calc(${el.scrollHeight}px + ${margin} + ${margin}`;
       setMargin(getComputedStyle(el).marginLeft);
