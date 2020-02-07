@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
@@ -49,7 +49,7 @@ const OptGroup = props => {
           {name}
         </li>
         {options.map(o => (
-          <Option {...props} option={o} key={o.label} />
+          <Option {...props} option={o} key={o.label} onClick={() => props.selectItem(o.value)} />
         ))}
       </ul>
     </li>
@@ -78,7 +78,7 @@ const EzSelect = props => {
   const comboboxState = useComboboxState();
   const {hide, visible} = comboboxState;
 
-  const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
+  const {ref: containerRef, ...combobox} = useCombobox(comboboxState, {
     'aria-haspopup': 'listbox',
     className: props.className,
     disabled: props.disabled,
@@ -91,7 +91,7 @@ const EzSelect = props => {
     const key = e.key;
     const activeIndex = options.indexOf(activeOption);
 
-    const select = () => selectItem();
+    const select = () => selectItem(activeOption ? activeOption.value : null);
 
     const prev = activeIndex <= 0 ? options.length - 1 : activeIndex - 1;
     const next = activeIndex === -1 || activeIndex >= options.length - 1 ? 0 : activeIndex + 1;
@@ -130,24 +130,18 @@ const EzSelect = props => {
     readOnly: true,
   });
 
-  const comboboxHiddenSelect = {
-    id: props.id,
-    name: props.name,
-    hidden: true,
-    readOnly: true,
-    ref: useRef(null),
-    style: {display: 'none'},
-    value: activeOption ? activeOption.value : value === null ? undefined : value,
-  };
+  const changeEvent = useCallback(
+    optionValue => {
+      const event = new Event('change');
+      containerRef.current.value = optionValue;
+      containerRef.current.dispatchEvent(event);
+      return event;
+    },
+    [containerRef]
+  );
 
-  const changeEvent = useCallback(() => {
-    const event = new Event('change');
-    comboboxHiddenSelect.ref.current.dispatchEvent(event);
-    return event;
-  }, [comboboxHiddenSelect.ref]);
-
-  function selectItem() {
-    onChange(changeEvent());
+  function selectItem(optionValue) {
+    onChange(changeEvent(optionValue));
     timeout.current = setTimeout(hide, 100);
   }
 
@@ -159,7 +153,7 @@ const EzSelect = props => {
 
       if (visible) return;
 
-      onChange(changeEvent());
+      onChange(changeEvent(option.value));
     },
     [visible, onChange, changeEvent]
   );
@@ -167,14 +161,9 @@ const EzSelect = props => {
   useJumpToOption(comboboxInput.ref, {options, move});
 
   return (
-    <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
+    <Container ref={containerRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
         <input {...comboboxInput} />
-        {/* see: https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/635 */}
-        {/* eslint-disable jsx-a11y/control-has-associated-label */}
-        <select {...comboboxHiddenSelect}>
-          <option value={comboboxHiddenSelect.value} />
-        </select>
       </Combobox>
       {visible && (
         <Listbox
@@ -187,11 +176,13 @@ const EzSelect = props => {
           {hasGroupedOptions(options) ? (
             <>
               {flatten(options).map(group => (
-                <OptGroup {...listbox} group={group} key={group[0]} onClick={selectItem} />
+                <OptGroup {...listbox} group={group} key={group[0]} selectItem={selectItem} />
               ))}
             </>
           ) : (
-            options.map(o => <Option {...listbox} option={o} key={o.label} onClick={selectItem} />)
+            options.map(o => (
+              <Option {...listbox} option={o} key={o.label} onClick={() => selectItem(o.value)} />
+            ))
           )}
         </Listbox>
       )}

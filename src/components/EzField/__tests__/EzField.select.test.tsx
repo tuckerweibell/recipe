@@ -342,5 +342,43 @@ describe('EzField', () => {
 
       expect(onChange).not.toHaveBeenCalled();
     });
+
+    it('should support choices with numeric values', () => {
+      const onChange = jest.fn();
+
+      const optionsWithNumericValues = [
+        {label: 'Short', value: 5},
+        {label: 'Medium', value: 10},
+        {label: 'Long', value: 15},
+      ];
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={optionsWithNumericValues}
+          value={5}
+          onChange={onChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown('ArrowDown');
+
+      // select the second next option (value is "Medium")
+      keyDown('ArrowDown');
+
+      keyDown('Enter');
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual(10);
+    });
   });
 });
