@@ -11,6 +11,7 @@ import {
   Overlay,
 } from './EzModal.styles';
 import CloseButton from '../CloseButton';
+import {useUniqueId} from '../../utils/hooks';
 
 type Props = {
   children: React.ReactNode;
@@ -35,36 +36,41 @@ const EzModal: React.FC<Props> = ({
   onDismiss,
   onSubmit,
   submitLabel,
-}) => (
-  <Overlay isOpen={isOpen} onDismiss={onDismiss}>
-    <ModalContainer>
-      <ScrollLock />
-      <HeaderContainer>
-        <EzHeading size="2">{headerText}</EzHeading>
-        <CloseButton label={dismissLabel} onClick={onDismiss} />
-      </HeaderContainer>
+}) => {
+  const labelId = useUniqueId();
+  return (
+    <Overlay isOpen={isOpen} onDismiss={onDismiss}>
+      <ModalContainer aria-labelledby={labelId}>
+        <ScrollLock />
+        <HeaderContainer>
+          <EzHeading size="2" id={labelId}>
+            {headerText}
+          </EzHeading>
+          <CloseButton label={dismissLabel} onClick={onDismiss} />
+        </HeaderContainer>
 
-      <ContentContainer>{children}</ContentContainer>
+        <ContentContainer>{children}</ContentContainer>
 
-      <ButtonFooter>
-        <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-          {submitLabel && (
-            <EzButton
-              use="primary"
-              destructive={destructive}
-              onClick={onSubmit}
-              loading={isSubmitting}
-            >
-              {submitLabel}
+        <ButtonFooter>
+          <EzLayout layout={{base: 'stack', medium: 'basic'}}>
+            {submitLabel && (
+              <EzButton
+                use="primary"
+                destructive={destructive}
+                onClick={onSubmit}
+                loading={isSubmitting}
+              >
+                {submitLabel}
+              </EzButton>
+            )}
+            <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+              {dismissLabel}
             </EzButton>
-          )}
-          <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-            {dismissLabel}
-          </EzButton>
-        </EzLayout>
-      </ButtonFooter>
-    </ModalContainer>
-  </Overlay>
-);
+          </EzLayout>
+        </ButtonFooter>
+      </ModalContainer>
+    </Overlay>
+  );
+};
 
 export default EzModal;
