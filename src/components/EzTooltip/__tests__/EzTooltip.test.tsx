@@ -30,7 +30,7 @@ describe('EzTooltip', () => {
       expect(tooltip).toBeVisible();
     });
     it('should hide tooltip on blur', () => {
-      const {container, getByRole} = render(
+      const {container, getByRole, queryByRole} = render(
         <EzTooltip message="tooltip visible" position="horizontal">
           <input />
         </EzTooltip>
@@ -44,7 +44,7 @@ describe('EzTooltip', () => {
 
       fireEvent.blur(container.querySelector('input'));
 
-      expect(tooltip).not.toBeVisible();
+      expect(queryByRole('tooltip')).toBeNull();
     });
     it('should show tooltip on hover', () => {
       const {container, getByRole} = render(
@@ -60,7 +60,7 @@ describe('EzTooltip', () => {
       expect(tooltip).toBeVisible();
     });
     it('should hide tooltip on hover exit', () => {
-      const {container, getByRole} = render(
+      const {container, getByRole, queryByRole} = render(
         <EzTooltip message="tooltip visible" position="horizontal">
           <input />
         </EzTooltip>
@@ -74,7 +74,7 @@ describe('EzTooltip', () => {
 
       fireEvent.mouseLeave(container.querySelector('input'));
 
-      expect(tooltip).not.toBeVisible();
+      expect(queryByRole('tooltip')).toBeNull();
     });
   });
 });

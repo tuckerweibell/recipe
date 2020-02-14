@@ -5,6 +5,7 @@ export {default as useHover} from './useHover';
 export {default as useInput} from './useInput';
 export {default as useJumpToOption} from './useJumpToOption';
 export {default as useOnClickOutside} from './useOnClickOutside';
+export {default as useRect} from './useRect';
 export {default as useTranslation} from './useTranslation';
 export {default as useScrollPosition} from './useScrollPosition';
 export {default as useScrollIntoView} from './useScrollIntoView';

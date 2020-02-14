@@ -1,8 +1,6 @@
-import React, {useState, useRef, useLayoutEffect, ReactElement} from 'react';
+import React, {useState, useRef, ReactElement} from 'react';
 import {Message, Tooltip} from './EzTooltip.styles';
-import {useUniqueId} from '../../utils/hooks';
-import {getAvailableRoomForTooltip} from './getAvailableRoomForTooltip';
-import TooltipArrow from './TooltipArrow';
+import {useUniqueId, useRect} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
 
 type Props = {
@@ -11,81 +9,66 @@ type Props = {
   children: ReactElement;
 };
 
-const usePositionBasedOnAvailableRoom = (
-  showTooltip: boolean,
-  wrapperRef,
-  tooltipRef,
-  initialPosition: 'vertical' | 'horizontal'
-) => {
-  const [position, setPosition] = useState<'top' | 'left' | 'bottom' | 'right'>();
-
-  useLayoutEffect(() => {
-    if (tooltipRef.current) {
-      const {
-        roomToTheLeft,
-        roomToTheRight,
-        roomToTheTop,
-        roomToTheBottom,
-      } = getAvailableRoomForTooltip(wrapperRef.current, tooltipRef.current);
-      switch (initialPosition) {
-        case 'horizontal':
-          setPosition(roomToTheLeft && !roomToTheRight ? 'left' : 'right');
-          break;
-        default:
-          setPosition(roomToTheTop && !roomToTheBottom ? 'top' : 'bottom');
-          break;
-      }
-    }
-  }, [showTooltip, wrapperRef, tooltipRef, initialPosition]);
-
-  return {position};
-};
-
-const getStyles = (targetRect, tooltipRect, position) => {
-  if (!targetRect || !tooltipRect) return {visibility: 'hidden'};
-
-  let x = 0;
-  let y = 0;
-
-  switch (position) {
-    case 'right':
-      x = targetRect.left + targetRect.width;
-      y = targetRect.top + (targetRect.height / 2 - tooltipRect.height / 2);
-      break;
-    case 'left':
-      x = targetRect.left - tooltipRect.width;
-      y = targetRect.top + (targetRect.height / 2 - tooltipRect.height / 2);
-      break;
-    case 'top':
-      x = targetRect.left + targetRect.width / 2;
-      y = targetRect.top - tooltipRect.height;
-      break;
-    case 'bottom':
-    default:
-      x = targetRect.left + targetRect.width / 2;
-      y = targetRect.bottom;
-      break;
-  }
-
-  return { transform: `translate3d(${x}px, ${y}px, 0px)`};
+function getCollisions({targetRect, popoverRect, containerRect, offsetLeft = 0, offsetBottom = 0}) {
+  const {top, right, bottom, left} = {
+    top: targetRect.top - popoverRect.height < 0,
+    right: containerRect.width < targetRect.right + popoverRect.width - offsetLeft,
+    bottom: containerRect.height < targetRect.bottom + popoverRect.height - offsetBottom,
+    left: targetRect.left + targetRect.width - popoverRect.width < 0,
+  };
+  return {top, right, bottom, left, flipX: right && !left, flipY: bottom && !top};
 }
 
-const TooltipWrapper = ({children, position, targetRef, tooltipRef, style}) => {
-  const targetRect = targetRef.current?.getBoundingClientRect();
-  const tooltipRect = tooltipRef.current?.getBoundingClientRect();
+const horizontal = ({targetRect, popoverRect, collisions}) => {
+  return {
+    x: collisions.flipX ? targetRect.left - popoverRect.width : targetRect.left + targetRect.width,
+    y: targetRect.top + targetRect.height / 2 - popoverRect.height / 2,
+  };
+};
+
+const vertical = ({targetRect, popoverRect, collisions}) => {
+  return {
+    x: targetRect.left + targetRect.width / 2 - popoverRect.width / 2,
+    y: collisions.flipY ? targetRect.top - popoverRect.height : targetRect.bottom,
+  };
+};
+
+const Popover = props => (
+  <EzPortal>
+    <PopoverImpl {...props} />
+  </EzPortal>
+);
+
+const PopoverImpl = ({targetRef, position, ...rest}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const popoverRect = useRect(ref);
+  const targetRect = useRect(targetRef);
+  const containerRect = targetRef.current?.ownerDocument.body.getBoundingClientRect();
+  const visible = Boolean(targetRef && popoverRect);
+  const visibility = visible ? 'visible' : 'hidden';
+  const coords = position === 'horizontal' ? horizontal : vertical;
+
+  const collisions: any = visible ? getCollisions({targetRect, popoverRect, containerRect}) : {};
+  const {x, y} = visible ? coords({targetRect, popoverRect, collisions}) : {x: 0, y: 0};
+
+  const flipX = collisions.flipX && 'popover-flip-x';
+  const flipY = collisions.flipY && 'popover-flip-y';
 
   return (
     <div
+      ref={ref}
       style={{
         position: 'absolute',
-        top: 0,
         left: 0,
-        ...style,
-        ...getStyles(targetRect, tooltipRect, position),
+        top: 0,
+        right: 'auto',
+        bottom: 'auto',
+        visibility,
+        transform: `translate3d(${x}px, ${y}px, 0px)`,
       }}
-    >
-      {children}
-    </div>
+      className={[rest.className, `popover-${position}`, flipX, flipY].filter(Boolean).join(' ')}
+      {...rest}
+    />
   );
 };
 
@@ -100,16 +83,8 @@ const EzTooltip: React.FC<Props> = props => {
   const onBlurEvent = () => setIsFocused(false);
 
   const targetRef = useRef(null);
-  const tooltipRef = useRef(null);
 
   const showTooltip = isHovered || isFocused;
-
-  const {position} = usePositionBasedOnAvailableRoom(
-    showTooltip,
-    targetRef,
-    tooltipRef,
-    props.position
-  );
 
   const child = React.Children.only(props.children);
 
@@ -126,19 +101,17 @@ const EzTooltip: React.FC<Props> = props => {
     <>
       {React.cloneElement(child, childProps)}
 
-      <EzPortal>
-        <TooltipWrapper
-          position={position}
-          targetRef={targetRef}
-          tooltipRef={tooltipRef}
-          style={{visibility: showTooltip ? 'visible' : 'hidden'}}
-        >
-          <Tooltip role="tooltip" id={id} position={position} tabIndex="-1" ref={tooltipRef}>
-            <TooltipArrow position={position} />
+      {showTooltip && (
+        <Popover position={props.position} targetRef={targetRef}>
+          <Tooltip role="tooltip" id={id} tabIndex="-1">
+            <svg width="10" height="5">
+              <path d="M0 5l5-5 5 5z" />
+              <path d="M1.5 5L5 1.5 8.5 5z" />
+            </svg>
             {props.message && <Message>{props.message}</Message>}
           </Tooltip>
-        </TooltipWrapper>
-      </EzPortal>
+        </Popover>
+      )}
     </>
   );
 };

@@ -18,7 +18,7 @@
         rect={{
           bottom: 40,
           top: 57,
-          left: -15,
+          left: 9,
           height: 33,
           width: 125,
         }}
