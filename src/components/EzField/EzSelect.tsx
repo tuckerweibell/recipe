@@ -66,7 +66,6 @@ const EzSelect = props => {
 
   const timeout = useRef(null);
   const activeOptionRef = useRef(null);
-  const scrollableRef = useRef<HTMLElement>();
 
   const selected = options.find(o => o.value === value);
   const [activeOption, setActiveOption] = useState(selected);
@@ -80,7 +79,7 @@ const EzSelect = props => {
   const comboboxState = useComboboxState();
   const {hide, visible} = comboboxState;
 
-  const {ref: containerRef, ...combobox} = useCombobox(comboboxState, {
+  const {ref: containerRef, optionsRef, ...combobox} = useCombobox(comboboxState, {
     'aria-haspopup': 'listbox',
     className: props.className,
     disabled: props.disabled,
@@ -113,7 +112,7 @@ const EzSelect = props => {
     }
   };
 
-  useScrollIntoView({containerRef: scrollableRef, targetRef: activeOptionRef}, [
+  useScrollIntoView({containerRef: optionsRef, targetRef: activeOptionRef}, [
     activeOption,
     visible,
   ]);
@@ -177,7 +176,7 @@ const EzSelect = props => {
           aria-labelledby={ariaLabelledBy}
           role="listbox"
           {...comboboxFlyout}
-          ref={scrollableRef as any}
+          ref={optionsRef as any}
           onClick={() => comboboxInput.ref.current.focus()}
         >
           {hasGroupedOptions(options) ? (
