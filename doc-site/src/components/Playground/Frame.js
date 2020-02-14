@@ -30,7 +30,7 @@ const IFramePlayground = props => {
       if (margin === '0px') return;
 
       iframe.style.height = 0;
-      iframe.style.height = `calc(${el.scrollHeight}px + ${margin} + ${margin}`;
+      iframe.style.height = `calc(${contentDocument.documentElement.scrollHeight}px + ${margin} + ${margin}`;
       setMargin(getComputedStyle(el).marginLeft);
     };
 
