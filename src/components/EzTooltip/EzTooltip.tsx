@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, ReactElement} from 'react';
+import React, {useState, useRef, useLayoutEffect, ReactElement} from 'react';
 import {Message, Tooltip} from './EzTooltip.styles';
 import {useUniqueId} from '../../utils/hooks';
 import {getAvailableRoomForTooltip} from './getAvailableRoomForTooltip';
@@ -19,7 +19,7 @@ const usePositionBasedOnAvailableRoom = (
 ) => {
   const [position, setPosition] = useState<'top' | 'left' | 'bottom' | 'right'>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (tooltipRef.current) {
       const {
         roomToTheLeft,
