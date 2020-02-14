@@ -1,9 +1,9 @@
 import React, {useState, useRef, useEffect, ReactElement} from 'react';
-import ReactDOM from 'react-dom';
 import {Message, Tooltip} from './EzTooltip.styles';
 import {useUniqueId} from '../../utils/hooks';
 import {getAvailableRoomForTooltip} from './getAvailableRoomForTooltip';
 import TooltipArrow from './TooltipArrow';
+import EzPortal from '../EzPortal';
 
 type Props = {
   position?: 'vertical' | 'horizontal';
@@ -41,14 +41,8 @@ const usePositionBasedOnAvailableRoom = (
   return {position};
 };
 
-const Portal: React.FC<any> = ({children, parentElem}) =>
-  ReactDOM.createPortal(children, parentElem);
-
-const TooltipWrapper = ({children, position, targetRef, tooltipRef, style}) => {
-  if (!targetRef.current || !tooltipRef.current) return children;
-
-  const targetRect = targetRef.current.getBoundingClientRect();
-  const tooltipRect = tooltipRef.current.getBoundingClientRect();
+const getStyles = (targetRect, tooltipRect, position) => {
+  if (!targetRect || !tooltipRect) return {visibility: 'hidden'};
 
   let x = 0;
   let y = 0;
@@ -73,14 +67,21 @@ const TooltipWrapper = ({children, position, targetRef, tooltipRef, style}) => {
       break;
   }
 
+  return { transform: `translate3d(${x}px, ${y}px, 0px)`};
+}
+
+const TooltipWrapper = ({children, position, targetRef, tooltipRef, style}) => {
+  const targetRect = targetRef.current?.getBoundingClientRect();
+  const tooltipRect = tooltipRef.current?.getBoundingClientRect();
+
   return (
     <div
       style={{
         position: 'absolute',
         top: 0,
         left: 0,
-        transform: `translate3d(${x}px, ${y}px, 0px)`,
         ...style,
+        ...getStyles(targetRect, tooltipRect, position),
       }}
     >
       {children}
@@ -125,21 +126,19 @@ const EzTooltip: React.FC<Props> = props => {
     <>
       {React.cloneElement(child, childProps)}
 
-      {targetRef.current && (
-        <Portal parentElem={targetRef.current.ownerDocument.body}>
-          <TooltipWrapper
-            position={position}
-            targetRef={targetRef}
-            tooltipRef={tooltipRef}
-            style={{visibility: showTooltip ? 'visible' : 'hidden'}}
-          >
-            <Tooltip role="tooltip" id={id} position={position} tabIndex="-1" ref={tooltipRef}>
-              <TooltipArrow position={position} />
-              {props.message && <Message>{props.message}</Message>}
-            </Tooltip>
-          </TooltipWrapper>
-        </Portal>
-      )}
+      <EzPortal>
+        <TooltipWrapper
+          position={position}
+          targetRef={targetRef}
+          tooltipRef={tooltipRef}
+          style={{visibility: showTooltip ? 'visible' : 'hidden'}}
+        >
+          <Tooltip role="tooltip" id={id} position={position} tabIndex="-1" ref={tooltipRef}>
+            <TooltipArrow position={position} />
+            {props.message && <Message>{props.message}</Message>}
+          </Tooltip>
+        </TooltipWrapper>
+      </EzPortal>
     </>
   );
 };
