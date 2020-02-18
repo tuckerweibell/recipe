@@ -307,7 +307,10 @@ describe('EzTable', () => {
   });
 
   describe('clickable rows', () => {
-    const data = [{first: 'Tiffany', last: 'Morin'}, {first: 'Mitchell', last: 'Hoffman'}];
+    const data = [
+      {first: 'Tiffany', last: 'Morin'},
+      {first: 'Mitchell', last: 'Hoffman'},
+    ];
 
     const link = onclick => ({item: {first, last}, linkRef}) => (
       <div>

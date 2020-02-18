@@ -30,7 +30,10 @@ describe('EzNavigation', () => {
           {href: '#', label: 'Reports'},
         ]}
         userMenu={{
-          links: [{href: '#', label: 'Settings'}, {href: '#', label: 'Sign out'}],
+          links: [
+            {href: '#', label: 'Settings'},
+            {href: '#', label: 'Sign out'},
+          ],
           name: 'Stefania Mallett',
         }}
       />
