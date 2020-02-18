@@ -25,5 +25,6 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 - update reach/dialog to 0.8.2.
+- update prettier devDependency to 1.19.1 to support optional chaining syntax.
 
 #### Development workflow
