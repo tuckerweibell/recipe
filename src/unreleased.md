@@ -21,6 +21,7 @@ title: 'Unreleased changes'
 - Fix EzModal issue on doc-site causing modal to appear unstyled at the bottom of the screen (fixes [issue 288](https://github.com/ezcater/recipe/issues/288)). The modal will now appear inside the component playground/iframe consistent with other components.
 - Fix height resizing of EzTooltip documentation playground examples to no longer clip the tooltip flyout.
 - Fix EzTooltip flashing up temporarily in the wrong position on screen.
+- Fix EzModal issue on IE where content gets hidden if height exceeds container.
 
 #### Documentation
 
