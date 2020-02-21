@@ -3,9 +3,15 @@ import EzCheckbox from '../EzCheckbox';
 import styled from '../../themes/styled';
 import EzRadioButton from '../EzRadioButton';
 
+const Options = styled.div`
+  > label + label {
+    margin-top: ${({theme}) => theme.spacing.xs};
+  }
+`;
+
 const Label = styled.label`
   display: block;
-  margin-top: ${({theme}) => theme.spacing.sm};
+  margin-top: ${({theme}) => theme.spacing.xs};
 
   > * {
     margin-right: ${({theme}) => theme.spacing.xs};
@@ -38,7 +44,7 @@ export default props => {
   }
 
   return (
-    <>
+    <Options>
       {options.map((choice, i) => {
         const {label, disabled, value} = choice;
         const inputProps = {
@@ -66,6 +72,6 @@ export default props => {
           </Label>
         );
       })}
-    </>
+    </Options>
   );
 };
