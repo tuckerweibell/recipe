@@ -24,6 +24,9 @@ export const Container = styled.div<any>`
 
   input {
     cursor: default;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   ${errorIconPosition};
@@ -39,7 +42,7 @@ const iconColor = p =>
 
 export const Combobox = styled(Field)`
   :after {
-  content: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='${iconColor}'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+    content: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='${iconColor}'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
     position: absolute;
     right: ${({theme}) => theme.spacing.sm};
     top: 50%;
@@ -47,5 +50,9 @@ export const Combobox = styled(Field)`
     transform-origin: 50% 50%;
     transition: transform 0.3s;
     pointer-events: none;
+  }
+
+  && input {
+    padding-right: 2em;
   }
 `;

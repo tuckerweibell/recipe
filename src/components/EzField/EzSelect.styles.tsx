@@ -40,6 +40,7 @@ const listbox = ({theme}) => css`
     color: ${theme.colors.interactive.base};
     font-weight: bold;
     position: relative;
+    padding-right: 2em;
 
     &[aria-selected='true'] {
       background-color: ${theme.colors.interactive.base};

@@ -277,3 +277,58 @@
   />
 </Media>
 ```
+
+### Select list with long content
+
+```jsx
+<EzLayout>
+  <EzField
+    type="select"
+    label="Select dropdown"
+    placeholder="Choose..."
+    options={[{label: 'Short value', value: 1}]}
+    value={1}
+    onChange={() => {}}
+  />
+  <EzField
+    type="select"
+    label="Select dropdown"
+    placeholder="Choose..."
+    options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
+    value={1}
+    onChange={() => {}}
+  />
+</EzLayout>
+```
+
+### Open select list with long content
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+  return (
+    <EzLayout>
+      <EzField
+        type="select"
+        label="Select dropdown"
+        placeholder="Choose..."
+        options={[{label: 'Short value', value: 1}]}
+        value={1}
+        onChange={() => {}}
+      />
+      <div ref={containerRef}>
+        <Open containerRef={containerRef}>
+          <EzField
+            type="select"
+            label="Select dropdown"
+            placeholder="Choose..."
+            options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
+            value={1}
+            onChange={() => {}}
+          />
+        </Open>
+      </div>
+    </EzLayout>
+  );
+};
+```
