@@ -27,3 +27,17 @@
   error="A valid send to email address is required"
 />
 ```
+
+### EzField custom input with error on small screen size
+
+```jsx
+<Media size="small">
+  <EzField
+    type={({value, onChange}) => <input value={value} onChange={onChange} />}
+    label="Character Name"
+    helperText="Provide the name of your favorite Sesame Street character."
+    touched
+    error="A valid send to email address is required"
+  />
+</Media>
+```
