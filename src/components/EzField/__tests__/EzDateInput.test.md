@@ -63,3 +63,18 @@
   );
 };
 ```
+
+### EzField date input with error on small screen size
+
+```jsx
+<Media size="small">
+  <EzField
+    type="date"
+    label="Order date"
+    helperText="This is a hint about how this field works"
+    touched
+    error="Please select a past date"
+    value="01/01/2020"
+  />
+</Media>
+```
