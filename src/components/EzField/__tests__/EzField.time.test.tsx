@@ -6,8 +6,9 @@ import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout} from '../../index';
 import Open from '../Open';
+import Media from '../Media';
 
-const scope = {EzField, EzFormLayout, Open};
+const scope = {EzField, EzFormLayout, Open, Media};
 
 describe('EzField', () => {
   const label = 'Select time';
