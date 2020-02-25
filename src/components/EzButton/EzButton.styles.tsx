@@ -11,8 +11,8 @@ const base = ({theme}) => css`
   font-size: ${theme.baseFontSize};
   font-family: ${theme.baseFontFamily};
   font-weight: ${theme.fontWeights.bold};
-  line-height: 1em;
-  min-height: 1em;
+  line-height: 1.25rem;
+  min-height: 1rem;
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
@@ -32,7 +32,11 @@ const outlineStyles = ({theme}) => css`
   border-style: solid;
   border-width: ${theme.borderWidth[0]};
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  padding: ${theme.spacing.xs} ${theme.spacing.md};
+  /* 
+    inputs and buttons should be equivalent in size, but since inputs can't be a line-height lower than 1.25em
+    we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
+  */
+  padding: calc(${theme.spacing.xs} - 0.125rem) ${theme.spacing.md};
 
   :focus {
     box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline},
@@ -78,6 +82,7 @@ const tertiary = ({theme: {colors}, destructive}) => {
   return css`
     background: none;
     border: none;
+    line-height: 1rem;
     padding: 0;
     ${pseudoClasses('color', {color})};
 
