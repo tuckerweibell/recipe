@@ -5,10 +5,11 @@ import ReactTestUtils from 'react-dom/test-utils';
 import ezSelectTests from './EzSelect.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
-import {EzFormLayout, EzLayout} from '../../index';
+import {EzFormLayout, EzButton, EzLayout} from '../../index';
 import Open from '../Open';
+import Media from '../Media';
 
-const scope = {EzField, EzLayout, EzFormLayout, Open};
+const scope = {EzField, EzButton, EzLayout, EzFormLayout, Open, Media};
 
 describe('EzField', () => {
   visualSnapshots({markdown: ezSelectTests, scope: {...scope, fireEvent}});
