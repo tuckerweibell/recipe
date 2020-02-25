@@ -23,8 +23,13 @@ const inputBase = ({theme, error}) => css`
   background: ${theme.colors.white};
   border: 1px solid ${theme.colors.border.base};
   border-radius: ${inputBorderRadius};
-  padding: ${theme.spacing.xs} ${theme.spacing.sm};
   margin-top: ${theme.spacing.xs};
+  /* 
+    inputs and buttons should be equivalent in size, but since inputs can't be a line-height lower than 1.25em
+    we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
+  */
+  line-height: 1.25rem;
+  padding: calc(${theme.spacing.xs} - 0.125rem) ${theme.spacing.sm};
 
   :enabled {
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
@@ -36,6 +41,10 @@ const inputBase = ({theme, error}) => css`
 
   ::placeholder {
     color: ${theme.colors.grays[500]};
+  }
+
+  textarea {
+    padding: ${theme.spacing.xs} ${theme.spacing.sm};
   }
 `;
 
