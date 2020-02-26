@@ -6,6 +6,7 @@ import styled, {Themed} from '../../themes/styled';
 const base = ({theme}: Themed) => css`
   line-height: ${theme.lineHeights.heading};
   font-weight: ${theme.fontWeights.bold};
+  padding: 0; /* remove user agent styles (in particular when element is fieldset legend) */
 `;
 
 const typography = ({shade, size}) => ({theme}: Themed) => css`
