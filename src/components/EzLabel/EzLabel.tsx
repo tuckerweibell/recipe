@@ -33,7 +33,7 @@ const EzLabel: React.FC<Props> = StyledLabel;
  */
 EzLabel.defaultProps = {
   as: 'div',
-  position: 'top',
+  position: null,
   size: 'normal',
 };
 
