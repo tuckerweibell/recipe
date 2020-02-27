@@ -14,7 +14,7 @@ import EzSelect from './EzSelect';
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
 const dateElements = ['date'];
-const htmlElements = [...inputElements, 'select'];
+const inlineElements = [...inputElements, 'select'];
 const timeElements = ['time'];
 
 const Error = ({showError, error, active}: any) =>
@@ -53,7 +53,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const id = useUniqueId();
   const labelId = useUniqueId();
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
-  const isHtmlElement = htmlElements.includes(type as string);
+  const showInlineError = inlineElements.includes(type as string);
   const isChoiceElement = choiceElements.includes(type as string);
   const [focused, {onBlur, onFocus}] = useFocus();
   const [hovered, mouseEvents] = useHover();
@@ -69,7 +69,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}
       </Label>
-      {!isHtmlElement && <Error showError={showError} error={error} active={active} />}
+      {!showInlineError && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
       <Input
         id={id}
@@ -78,7 +78,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
         ref={ref}
         {...wrapEvents(props, {onBlur, onFocus, onChange})}
       />
-      {isHtmlElement && <Error showError={showError} error={error} active={active} />}
+      {showInlineError && <Error showError={showError} error={error} active={active} />}
       {'maxLength' in props && typeof value === 'string' && (
         <CharacterLimit>
           {value.length}/{maxLength}
