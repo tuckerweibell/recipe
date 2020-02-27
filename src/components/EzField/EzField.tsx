@@ -13,9 +13,7 @@ import EzSelect from './EzSelect';
 
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
-const dateElements = ['date'];
-const inlineElements = [...inputElements, 'select'];
-const timeElements = ['time'];
+const inlineElements = [...inputElements];
 
 const Error = ({showError, error, active}: any) =>
   showError ? (
@@ -29,9 +27,9 @@ const Error = ({showError, error, active}: any) =>
 
 const resolveInputFromType = type => {
   if (choiceElements.includes(type)) return EzChoice;
-  if (dateElements.includes(type)) return EzDateInput;
+  if (type === 'date') return EzDateInput;
   if (type === 'select') return EzSelect;
-  if (timeElements.includes(type)) return EzTimeInput;
+  if (type === 'time') return EzTimeInput;
   if (type === 'textarea') return EzTextArea;
   if (inputElements.includes(type)) return 'input';
   return type;
