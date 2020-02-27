@@ -37,14 +37,14 @@ const resolveInputFromType = type => {
   return type;
 };
 
-const Input = props => {
+const Input = forwardRef<HTMLElement, Props>((props, ref) => {
   const Component = resolveInputFromType(props.type);
   const inputProps = {
     name: props.name || props.id,
     ...(typeof Component === 'function' ? props : filterValidProps(props)),
   };
-  return <Component {...inputProps} />;
-};
+  return <Component ref={ref} {...inputProps} />;
+});
 
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
@@ -65,14 +65,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const labelPosition = labelHidden ? 'hidden' : undefined;
 
   return (
-    <Field
-      touched={touched}
-      error={error}
-      disabled={disabled}
-      as={fieldType}
-      {...mouseEvents}
-      ref={ref}
-    >
+    <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
       <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
         {label}
       </Label>
@@ -82,6 +75,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
         id={id}
         aria-labelledby={labelId}
         {...props}
+        ref={ref}
         {...wrapEvents(props, {onBlur, onFocus, onChange})}
       />
       {isHtmlElement && <Error showError={showError} error={error} active={active} />}

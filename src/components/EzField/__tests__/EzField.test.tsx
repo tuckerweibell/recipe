@@ -59,6 +59,17 @@ describe('EzField', () => {
     expect(container).toHaveTextContent('0/120');
   });
 
+  it('should apply ref to the underlying input element', () => {
+    const spy = jest.fn(el => {
+      if (!el) return;
+      expect(el.type).toEqual('text');
+    });
+
+    render(<EzField label="Character Name" ref={spy} />);
+
+    expect.assertions(1);
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(<EzField label="Basic text" />);
     const actual = await axe(wrapper);
