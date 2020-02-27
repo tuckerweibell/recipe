@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- EzField ref now correctly targets the underlying input element, rather than the container (fixes [issue 298](https://github.com/ezcater/recipe/issues/298)).
 - Remove unwanted user-agent padding on fieldset legend (i.e. EzField[type=radio] and EzField[type=checkbox])
 - Remove unwanted margin-bottom on fieldset legend
 
