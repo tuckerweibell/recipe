@@ -42,10 +42,6 @@ const inputBase = ({theme, error}) => css`
   ::placeholder {
     color: ${theme.colors.grays[500]};
   }
-
-  textarea {
-    padding: ${theme.spacing.xs} ${theme.spacing.sm};
-  }
 `;
 
 const inputError = ({theme, error, touched}) =>

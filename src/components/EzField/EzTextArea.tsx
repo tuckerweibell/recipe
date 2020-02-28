@@ -15,7 +15,11 @@ const rows = size => {
 
 export const TextArea = styled.textarea`
   resize: vertical;
-  line-height: 1.5;
+
+  && {
+    line-height: 1.5rem;
+    padding: ${({theme}) => theme.spacing.xs} ${({theme}) => theme.spacing.sm};
+  }
 `;
 
 export default ({size, ...rest}) => <TextArea {...rest} rows={rows(size)} />;
