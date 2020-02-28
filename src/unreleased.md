@@ -19,12 +19,14 @@ title: 'Unreleased changes'
 - Reduced spacing between radio/checkbox items to keep item spacing equal with label spacing.
 - Switched EzField[type=select] to display error icon and messaging against the field label, rather than inline on the input for consistency with EzField[type=date] and EzField[type=time] (fixes [issue 300](https://github.com/ezcater/recipe/issues/300)).
 - Updated EzField and EzButton to match in height when rendered side-by-side (fixes [issue 221](https://github.com/ezcater/recipe/issues/221)).
+- Updated EzField[type=select] to apply an ellipsis when a select option has a value too long for the available space for the input (fixes [issue 213](https://github.com/ezcater/recipe/issues/213)).
 
 #### Bug fixes
 
 - EzField ref now correctly targets the underlying input element, rather than the container (fixes [issue 298](https://github.com/ezcater/recipe/issues/298)).
 - Remove unwanted user-agent padding on fieldset legend (i.e. EzField[type=radio] and EzField[type=checkbox])
 - Remove unwanted margin-bottom on fieldset legend
+- Fixed issue with EzField[type=select] causing the selected text to overlap with the input chevron or the selected option checkmark.
 
 #### Documentation
 
