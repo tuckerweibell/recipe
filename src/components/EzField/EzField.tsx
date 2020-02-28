@@ -1,5 +1,12 @@
 import React, {forwardRef} from 'react';
-import {Field, Helper, InlineError, CharacterLimit, InputIconContainer} from './EzField.styles';
+import {
+  Field,
+  Helper,
+  InlineError,
+  CharacterLimit,
+  InputIconContainer,
+  CustomInputWrapper,
+} from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
@@ -27,7 +34,9 @@ const Error = ({showError, error, active}: any) =>
   ) : null;
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
-  <Input ref={ref} {...filterValidProps(props)} />
+  <CustomInputWrapper {...props}>
+    <Input ref={ref} {...filterValidProps(props)} />
+  </CustomInputWrapper>
 ));
 
 const resolveInputFromType = type => {

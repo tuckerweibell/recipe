@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container, Listbox} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
+import EzTextInput from './EzTextInput';
 
 const flatten = options => {
   const grouped = new Map();
@@ -127,6 +128,8 @@ const EzSelect = props => {
     name: props.name,
     disabled: props.disabled,
     placeholder: props.placeholder,
+    error: props.error,
+    touched: props.touched,
     readOnly: true,
   });
 
@@ -163,7 +166,7 @@ const EzSelect = props => {
   return (
     <Container ref={containerRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
-        <input {...comboboxInput} />
+        <EzTextInput {...comboboxInput} />
       </Combobox>
       {visible && (
         <Listbox

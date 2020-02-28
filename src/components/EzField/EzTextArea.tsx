@@ -1,4 +1,6 @@
 import React from 'react';
+import {css} from '@emotion/core';
+import styles from './EzTextInput.styles';
 import styled from '../../themes/styled';
 
 const rows = size => {
@@ -13,13 +15,15 @@ const rows = size => {
   }
 };
 
-export const TextArea = styled.textarea`
+const overrides = ({theme}) => css`
   resize: vertical;
 
   && {
     line-height: 1.5rem;
-    padding: ${({theme}) => theme.spacing.xs} ${({theme}) => theme.spacing.sm};
+    padding: ${theme.spacing.xs} ${theme.spacing.sm};
   }
 `;
+
+export const TextArea = styled.textarea(styles, overrides);
 
 export default ({size, ...rest}) => <TextArea {...rest} rows={rows(size)} />;

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import dayjs from 'dayjs';
+import EzTextInput from './EzTextInput';
 import {CalendarWrapper, Container, Combobox} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
@@ -53,6 +54,8 @@ const EzDateInput = ({
     },
     disabled,
     placeholder,
+    error: props.error,
+    touched: props.touched,
   });
 
   const comboboxFlyout = useComboboxFlyout(comboboxState);
@@ -60,7 +63,7 @@ const EzDateInput = ({
   return (
     <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
-        <input {...comboboxInput} />
+        <EzTextInput {...comboboxInput} />
       </Combobox>
       {visible && (
         <CalendarWrapper
