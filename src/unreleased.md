@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 - Reduced label spacing for EzField[type=radio] and EzField[type=checkbox] to match other types of input.
 - Reduced spacing between radio/checkbox items to keep item spacing equal with label spacing.
 - Switched EzField[type=select] to display error icon and messaging against the field label, rather than inline on the input for consistency with EzField[type=date] and EzField[type=time] (fixes [issue 300](https://github.com/ezcater/recipe/issues/300)).
+- Updated EzField and EzButton to match in height when rendered side-by-side (fixes [issue 221](https://github.com/ezcater/recipe/issues/221)).
 
 #### Bug fixes
 
