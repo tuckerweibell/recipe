@@ -99,3 +99,4 @@ type BaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export type Props = FieldTypeProps & BaseProps;
+export type CustomInputProps = Omit<Props, 'type'> & {type: React.ComponentType<any>};

@@ -8,7 +8,7 @@ import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import EzTimeInput from './EzTimeInput';
 import EzTextArea from './EzTextArea';
-import {Props} from './EzField.types';
+import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
 
 const inputElements = ['text', 'number'];
@@ -25,24 +25,23 @@ const Error = ({showError, error, active}: any) =>
     </>
   ) : null;
 
+const EzTextInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
+  <input ref={ref} {...filterValidProps(props)} />
+));
+
+const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
+  <Input ref={ref} {...filterValidProps(props)} />
+));
+
 const resolveInputFromType = type => {
   if (choiceElements.includes(type)) return EzChoice;
   if (type === 'date') return EzDateInput;
   if (type === 'select') return EzSelect;
   if (type === 'time') return EzTimeInput;
   if (type === 'textarea') return EzTextArea;
-  if (inputElements.includes(type)) return 'input';
-  return type;
+  if (inputElements.includes(type)) return EzTextInput;
+  return EzCustomInput;
 };
-
-const Input = forwardRef<HTMLElement, Props>((props, ref) => {
-  const Component = resolveInputFromType(props.type);
-  const inputProps = {
-    name: props.name || props.id,
-    ...(typeof Component === 'function' ? props : filterValidProps(props)),
-  };
-  return <Component ref={ref} {...inputProps} />;
-});
 
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
@@ -50,6 +49,7 @@ const Input = forwardRef<HTMLElement, Props>((props, ref) => {
 const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const id = useUniqueId();
   const labelId = useUniqueId();
+  const Input = resolveInputFromType(props.type);
   const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
   const showInlineError = inlineElements.includes(type as string);
   const isChoiceElement = choiceElements.includes(type as string);
@@ -70,11 +70,12 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       {!showInlineError && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
       <Input
-        id={id}
-        aria-labelledby={labelId}
         {...props}
-        ref={ref}
         {...wrapEvents(props, {onBlur, onFocus, onChange})}
+        id={id}
+        name={props.name || id}
+        aria-labelledby={labelId}
+        ref={ref}
       />
       {showInlineError && <Error showError={showError} error={error} active={active} />}
       {'maxLength' in props && typeof value === 'string' && (
