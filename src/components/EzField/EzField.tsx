@@ -10,6 +10,7 @@ import EzTimeInput from './EzTimeInput';
 import EzTextArea from './EzTextArea';
 import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
+import EzTextInput from './EzTextInput';
 
 const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
@@ -24,10 +25,6 @@ const Error = ({showError, error, active}: any) =>
       <InlineError active={active}>{error}</InlineError>
     </>
   ) : null;
-
-const EzTextInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <input ref={ref} {...filterValidProps(props)} />
-));
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
   <Input ref={ref} {...filterValidProps(props)} />
