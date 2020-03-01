@@ -6,6 +6,7 @@ import {
   CharacterLimit,
   InputIconContainer,
   CustomInputWrapper,
+  ScreenReaderOnly,
 } from './EzField.styles';
 import Label from '../EzLabel';
 import {ErrorIcon} from '../Icons';
@@ -70,9 +71,11 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
 
   return (
     <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
-      <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
-        {label}
-      </Label>
+      {!labelHidden && (
+        <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
+          {label}
+        </Label>
+      )}
       {!showInlineError && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
       <Input
@@ -89,6 +92,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
           {value.length}/{maxLength}
         </CharacterLimit>
       )}
+      {labelHidden && <ScreenReaderOnly id={labelId}>{label}</ScreenReaderOnly>}
     </Field>
   );
 });

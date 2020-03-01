@@ -123,3 +123,5 @@ export const InputIconContainer = styled.div`
     top: -1.1em; /* approx line height */
   }
 `;
+
+export const ScreenReaderOnly = styled.div(hideVisually());
