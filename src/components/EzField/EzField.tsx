@@ -65,7 +65,11 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const showError = Boolean(touched && error);
   const fieldType = isChoiceElement ? 'fieldset' : undefined;
   const labelType = isChoiceElement ? 'legend' : 'label';
-  const errorMessage = <InlineError active={active}>{error}</InlineError>;
+  const errorMessage = (
+    <InlineError active={active} showInlineError={showInlineError}>
+      <span>{error}</span>
+    </InlineError>
+  );
 
   return (
     <Field as={fieldType} {...(mouseEvents as any)}>

@@ -16,6 +16,9 @@ function borderRadius(side: 'top' | 'bottom', radius: string | number) {
   `;
 }
 
+const roundedBottom = borderRadius('bottom', calloutBorderRadius);
+const roundedFull = {borderRadius: calloutBorderRadius};
+
 export const borderCollapse = (theme = standard) => css`
   ${borderRadius('bottom', 0)};
 
@@ -48,28 +51,26 @@ export const Helper = styled.div`
   margin-top: ${({theme}) => theme.spacing.xs};
 `;
 
-const detached = () => css`
+const detached = css`
   box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
-  ${borderRadius('top', calloutBorderRadius)};
+  ${roundedFull};
 `;
 
-const callout = ({theme, active}: any) => css`
+const inlineMessageOffset = {transform: 'translate3d(0, -2px, 0)'};
+
+const callout = ({theme, active, showInlineError}: any) => css`
   background-color: ${theme.colors.destructive.foreground};
   color: ${theme.colors.white};
   font-size: ${theme.fontSizes[200]};
-  min-width: min-content;
   padding: ${theme.spacing.xs} ${theme.spacing.sm};
   position: relative;
+  flex-grow: 1;
   right: 0;
-  ${borderRadius('bottom', calloutBorderRadius)};
 
-  label + * + &,
-  fieldset & {
-    margin-top: 0.5em;
-    ${detached()};
-  }
+  ${showInlineError ? roundedBottom : detached};
 
-  &::before {
+  /* Arrow pointer */
+  ::before {
     content: '';
     display: block;
     width: 0px;
@@ -79,21 +80,32 @@ const callout = ({theme, active}: any) => css`
     border-bottom: 5px solid ${theme.colors.destructive.foreground};
     position: absolute;
     top: -5px;
-    right: 12px;
+    right: 10px;
   }
 
+  ${!showInlineError && {
+    marginBottom: '0.5rem',
+    transform: 'translate3d(0, 6px, 0)',
+  }}
+
   @media screen and (min-width: ${theme.breakpoints.medium}) {
-    ${detached()};
-    margin-top: calc(${theme.spacing.xs2} * -1);
     position: absolute;
+    ${detached};
     user-select: none;
     z-index: 1;
-    ${!active && hideVisually()}
+    ${!active && hideVisually()};
+    ${showInlineError && inlineMessageOffset};
   }
 `;
 
 export const InlineError = styled.div`
-  ${callout};
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+
+  > * {
+    ${callout};
+  }
 `;
 
 export const CharacterLimit = styled.div`
