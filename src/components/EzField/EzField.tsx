@@ -1,8 +1,10 @@
 import React, {forwardRef} from 'react';
+import {jsx} from '@emotion/core';
 import {
   Field,
   Helper,
   InlineError,
+  borderCollapse,
   CharacterLimit,
   InputIconContainer,
   CustomInputWrapper,
@@ -78,15 +80,18 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       )}
       {!showInlineError && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
-      <Input
-        {...props}
-        {...wrapEvents(props, {onBlur, onFocus, onChange})}
-        id={id}
-        name={props.name || id}
-        aria-labelledby={labelId}
-        ref={ref}
-      />
-      {showInlineError && <Error showError={showError} error={error} active={active} />}
+      <div>
+        {jsx(Input, {
+          ...props,
+          ...wrapEvents(props, {onBlur, onFocus, onChange}),
+          id,
+          name: props.name || id,
+          'aria-labelledby': labelId,
+          ref,
+          css: showInlineError && showError ? borderCollapse : undefined,
+        })}
+        {showInlineError && <Error showError={showError} error={error} active={active} />}
+      </div>
       {'maxLength' in props && typeof value === 'string' && (
         <CharacterLimit>
           {value.length}/{maxLength}

@@ -2,6 +2,7 @@ import {css} from '@emotion/core';
 import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
 import inputStyles from './EzTextInput.styles';
+import {standard} from '../../themes';
 
 // pre-calculate where to put the error icon (icon width + right padding of input)
 const iconOffset = '24px';
@@ -15,20 +16,13 @@ function borderRadius(side: 'top' | 'bottom', radius: string | number) {
   `;
 }
 
-const inputError = ({theme, error, touched}) =>
-  error &&
-  touched &&
-  css`
-    ${borderRadius('bottom', 0)};
+export const borderCollapse = (theme = standard) => css`
+  ${borderRadius('bottom', 0)};
 
-    ${InlineError} ~ * & {
-      ${borderRadius('bottom', inputBorderRadius)};
-    }
-
-    @media screen and (min-width: ${theme.breakpoints.medium}) {
-      ${borderRadius('bottom', inputBorderRadius)};
-    }
-  `;
+  @media screen and (min-width: ${theme.breakpoints.medium}) {
+    ${borderRadius('bottom', inputBorderRadius)};
+  }
+`;
 
 export const CustomInputWrapper = styled.div`
   > input,
@@ -42,11 +36,6 @@ export const Field = styled.div`
   border: none;
   margin: 0;
   padding: 0;
-
-  > input,
-  > textarea {
-    ${inputError};
-  }
 `;
 
 export const Helper = styled.div`
