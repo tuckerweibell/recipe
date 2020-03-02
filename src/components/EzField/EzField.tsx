@@ -11,7 +11,7 @@ import {
   ScreenReaderOnly,
 } from './EzField.styles';
 import Label from '../EzLabel';
-import {ErrorIcon} from '../Icons';
+import {ErrorIcon as ErrorTriangle} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
 import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
@@ -26,15 +26,11 @@ const inputElements = ['text', 'number'];
 const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
-const Error = ({showError, error, active}: any) =>
-  showError ? (
-    <>
-      <InputIconContainer>
-        <ErrorIcon />
-      </InputIconContainer>
-      <InlineError active={active}>{error}</InlineError>
-    </>
-  ) : null;
+const ErrorIcon = () => (
+  <InputIconContainer>
+    <ErrorTriangle />
+  </InputIconContainer>
+);
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
   <CustomInputWrapper {...props}>
@@ -69,6 +65,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const showError = Boolean(touched && error);
   const fieldType = isChoiceElement ? 'fieldset' : undefined;
   const labelType = isChoiceElement ? 'legend' : 'label';
+  const errorMessage = <InlineError active={active}>{error}</InlineError>;
 
   return (
     <Field as={fieldType} {...(mouseEvents as any)}>
@@ -77,7 +74,8 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
           <Label id={labelId} htmlFor={id} as={labelType} error={showError}>
             {label}
           </Label>
-          {!showInlineError && <Error showError={showError} error={error} active={active} />}
+          {!showInlineError && showError && <ErrorIcon />}
+          {!showInlineError && showError && errorMessage}
         </div>
       )}
       {helperText && <Helper>{helperText}</Helper>}
@@ -91,7 +89,8 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
           ref,
           css: showInlineError && showError ? borderCollapse : undefined,
         })}
-        {showInlineError && <Error showError={showError} error={error} active={active} />}
+        {showInlineError && showError && <ErrorIcon />}
+        {showInlineError && showError && errorMessage}
       </div>
       {'maxLength' in props && typeof value === 'string' && (
         <CharacterLimit>
