@@ -3,6 +3,7 @@ import {Combobox, Container, Listbox} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 import EzTextInput from './EzTextInput';
+import {ChevronIcon, InsetIcon} from '../Icons';
 
 const flatten = options => {
   const grouped = new Map();
@@ -167,6 +168,9 @@ const EzSelect = props => {
     <Container ref={containerRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
         <EzTextInput {...comboboxInput} />
+        <InsetIcon insetY0 right0 pr2>
+          <ChevronIcon flip={visible} />
+        </InsetIcon>
       </Combobox>
       {visible && (
         <Listbox
