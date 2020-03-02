@@ -332,3 +332,20 @@
   );
 };
 ```
+
+### Select list with hidden label should match height of button
+
+```jsx
+<EzLayout>
+  <EzButton>Click Me</EzButton>
+  <EzField
+    type="select"
+    label="Select dropdown"
+    labelHidden
+    placeholder="Choose..."
+    options={[{label: 'All Upcoming', value: 'upcoming'}]}
+    value="upcoming"
+    onChange={() => {}}
+  />
+</EzLayout>
+```

@@ -36,6 +36,10 @@ export const Field = styled.div`
   border: none;
   margin: 0;
   padding: 0;
+
+  > * + * {
+    margin-top: ${({theme}) => theme.spacing.xs};
+  }
 `;
 
 export const Helper = styled.div`

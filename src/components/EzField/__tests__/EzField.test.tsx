@@ -7,11 +7,11 @@ import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
-import {EzFormLayout, EzLayout} from '../../index';
+import {EzButton, EzFormLayout, EzLayout} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
 
-const scope = {EzField, EzLayout, EzFormLayout, Component, Open, Media};
+const scope = {EzButton, EzField, EzLayout, EzFormLayout, Component, Open, Media};
 
 describe('EzField', () => {
   visualSnapshots({markdown, scope});

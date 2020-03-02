@@ -41,3 +41,12 @@
   />
 </Media>
 ```
+
+### Input with hidden label should match height of button
+
+```jsx
+<EzLayout>
+  <EzButton>Click Me</EzButton>
+  <EzField type="text" label="Character Name" value="Big Bird" labelHidden />
+</EzLayout>
+```

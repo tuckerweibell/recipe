@@ -59,7 +59,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const id = useUniqueId();
   const labelId = useUniqueId();
   const Input = resolveInputFromType(props.type);
-  const {helperText, label, touched, error, type, maxLength, disabled, labelHidden} = props;
+  const {helperText, label, touched, error, type, maxLength, labelHidden} = props;
   const showInlineError = inlineElements.includes(type as string);
   const isChoiceElement = choiceElements.includes(type as string);
   const [focused, {onBlur, onFocus}] = useFocus();
@@ -69,16 +69,17 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const showError = Boolean(touched && error);
   const fieldType = isChoiceElement ? 'fieldset' : undefined;
   const labelType = isChoiceElement ? 'legend' : 'label';
-  const labelPosition = labelHidden ? 'hidden' : undefined;
 
   return (
-    <Field touched={touched} error={error} disabled={disabled} as={fieldType} {...mouseEvents}>
+    <Field as={fieldType} {...(mouseEvents as any)}>
       {!labelHidden && (
-        <Label id={labelId} htmlFor={id} as={labelType} error={showError} position={labelPosition}>
-          {label}
-        </Label>
+        <div>
+          <Label id={labelId} htmlFor={id} as={labelType} error={showError}>
+            {label}
+          </Label>
+          {!showInlineError && <Error showError={showError} error={error} active={active} />}
+        </div>
       )}
-      {!showInlineError && <Error showError={showError} error={error} active={active} />}
       {helperText && <Helper>{helperText}</Helper>}
       <div>
         {jsx(Input, {
