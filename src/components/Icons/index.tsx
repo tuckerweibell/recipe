@@ -51,14 +51,16 @@ export const DotIcon = () => (
   </SvgIcon>
 );
 
-export const ErrorIcon = () => (
-  <SvgIcon title="error-icon">
+export const ErrorTriangle = (p: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 14 14" height="1rem" width="1rem" {...p}>
     <path
       fill="currentColor"
       d="M13.37 10.94c.12.24.16.49.11.74a1.08 1.08 0 01-1.06.89H1.58a1.08 1.08 0 01-1.06-.9c-.05-.24 0-.49.11-.73l5.42-9.4c.14-.23.33-.4.58-.48.25-.08.5-.08.74 0 .25.08.44.25.58.49l5.42 9.4zM7 9a1 1 0 00-.73.3 1 1 0 00-.3.74c0 .29.1.53.3.73.2.2.44.3.73.3a1 1 0 00.73-.3 1 1 0 00.3-.73 1 1 0 00-.3-.73A1 1 0 007 9zM6 5.27l.19 3.08c0 .06.02.11.08.16.05.06.11.08.19.08h1.08c.08 0 .14-.02.2-.08.05-.05.07-.1.07-.16L8 5.27a.29.29 0 00-.08-.21.26.26 0 00-.19-.08H6.28a.26.26 0 00-.2.08.29.29 0 00-.07.21z"
     />
-  </SvgIcon>
+  </svg>
 );
+
+export const ErrorIcon = styled(ErrorTriangle)(alignBaseline);
 
 export const InfoIcon = () => (
   <SvgIcon title="info-icon">

@@ -3,6 +3,7 @@ import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
 import inputStyles from './EzTextInput.styles';
 import {standard} from '../../themes';
+import {ErrorTriangle as ErrorIcon} from '../Icons';
 
 // pre-calculate where to put the error icon (icon width + right padding of input)
 const iconOffset = '24px';
@@ -113,20 +114,8 @@ export const CharacterLimit = styled.div`
   margin-top: ${({theme}) => theme.spacing.xs};
 `;
 
-export const InputIconContainer = styled.div`
-  position: absolute;
-  right: ${iconOffset};
+export const ErrorTriangle = styled(ErrorIcon)`
   color: ${({theme}) => theme.colors.destructive.foreground};
-
-  svg {
-    top: -1.75em; /* approx line height (1.1em) + input padding (0.57em) + border width */
-    position: absolute;
-  }
-
-  label + & svg,
-  fieldset & svg {
-    top: -1.1em; /* approx line height */
-  }
 `;
 
 export const ScreenReaderOnly = styled.div(hideVisually());

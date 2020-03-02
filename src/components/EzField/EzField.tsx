@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, CSSProperties} from 'react';
 import {jsx} from '@emotion/core';
 import {
   Field,
@@ -6,12 +6,12 @@ import {
   InlineError,
   borderCollapse,
   CharacterLimit,
-  InputIconContainer,
+  ErrorTriangle,
   CustomInputWrapper,
   ScreenReaderOnly,
 } from './EzField.styles';
 import Label from '../EzLabel';
-import {ErrorIcon as ErrorTriangle} from '../Icons';
+import {InsetIcon} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
 import {filterValidProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
@@ -27,9 +27,9 @@ const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
 const ErrorIcon = () => (
-  <InputIconContainer>
+  <InsetIcon insetY0 right0 pr2>
     <ErrorTriangle />
-  </InputIconContainer>
+  </InsetIcon>
 );
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
@@ -70,30 +70,35 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       <span>{error}</span>
     </InlineError>
   );
+  const relative: CSSProperties = {position: 'relative'};
 
   return (
     <Field as={fieldType} {...(mouseEvents as any)}>
       {!labelHidden && (
         <div>
-          <Label id={labelId} htmlFor={id} as={labelType} error={showError}>
-            {label}
-          </Label>
-          {!showInlineError && showError && <ErrorIcon />}
+          <div style={relative}>
+            <Label id={labelId} htmlFor={id} as={labelType} error={showError}>
+              {label}
+            </Label>
+            {!showInlineError && showError && <ErrorIcon />}
+          </div>
           {!showInlineError && showError && errorMessage}
         </div>
       )}
       {helperText && <Helper>{helperText}</Helper>}
       <div>
-        {jsx(Input, {
-          ...props,
-          ...wrapEvents(props, {onBlur, onFocus, onChange}),
-          id,
-          name: props.name || id,
-          'aria-labelledby': labelId,
-          ref,
-          css: showInlineError && showError ? borderCollapse : undefined,
-        })}
-        {showInlineError && showError && <ErrorIcon />}
+        <div style={relative}>
+          {jsx(Input, {
+            ...props,
+            ...wrapEvents(props, {onBlur, onFocus, onChange}),
+            id,
+            name: props.name || id,
+            'aria-labelledby': labelId,
+            ref,
+            css: showInlineError && showError ? borderCollapse : undefined,
+          })}
+          {showInlineError && showError && <ErrorIcon />}
+        </div>
         {showInlineError && showError && errorMessage}
       </div>
       {'maxLength' in props && typeof value === 'string' && (
