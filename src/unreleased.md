@@ -27,6 +27,8 @@ title: 'Unreleased changes'
 - Remove unwanted user-agent padding on fieldset legend (i.e. EzField[type=radio] and EzField[type=checkbox])
 - Remove unwanted margin-bottom on fieldset legend
 - Fixed issue with EzField[type=select] causing the selected text to overlap with the input chevron or the selected option checkmark.
+- Fixed issue with EzField[type=custom] missing rounded corners (fixes [issue 302](https://github.com/ezcater/recipe/issues/302)).
+- Fixed issue where EzField[labelHidden] has unwanted top margin causing alignment issues with similar height components (fixes [issue 194](https://github.com/ezcater/recipe/issues/194)).
 
 #### Documentation
 
