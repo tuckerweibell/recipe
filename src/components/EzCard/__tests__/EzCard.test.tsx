@@ -42,6 +42,19 @@ describe('EzCard', () => {
     expect(actual).toContain('Lorem ipsum dolor');
   });
 
+  // Blowing up when empty breaks the live-reload dev experience
+  it('should NOT throw if empty', () => {
+    expect(() => {
+      renderToHtml(React.createElement(EzCard, {} as any));
+    }).not.toThrow();
+  });
+
+  it('should NOT throw for simple text content', () => {
+    expect(() => {
+      renderToHtml(<EzCard>hello</EzCard>);
+    }).not.toThrow();
+  });
+
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(
       <EzCard title="Card Heading">

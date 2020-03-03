@@ -7,11 +7,11 @@ import {filterValidProps} from '../../utils';
 import EzHeading from '../EzHeading';
 
 function isEzCardSection(element) {
-  return element.type && element.type.displayName === 'EzCardSection';
+  return element?.type?.displayName === 'EzCardSection';
 }
 
 function wrappedChildren(children) {
-  if (isEzCardSection(children[0] || children)) return children;
+  if (isEzCardSection(children?.[0] || children)) return children;
 
   return <EzCardSection>{children}</EzCardSection>;
 }
