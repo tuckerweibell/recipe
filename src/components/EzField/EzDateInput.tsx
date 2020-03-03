@@ -5,7 +5,7 @@ import {CalendarWrapper, Container, Combobox} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 import {useUpdateEffect} from '../../utils/hooks';
-import {ChevronIcon, InsetIcon} from '../Icons';
+import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
 
@@ -64,6 +64,9 @@ const EzDateInput = ({
   return (
     <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
+        <InsetIcon insetY0 left0 pl3>
+          <CalendarIcon />
+        </InsetIcon>
         <EzTextInput {...comboboxInput} />
         <InsetIcon insetY0 right0 pr2>
           <ChevronIcon flip={visible} />
