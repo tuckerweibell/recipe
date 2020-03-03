@@ -1,5 +1,4 @@
 import {css} from '@emotion/core';
-import {Field} from './EzField.styles';
 import styled from '../../themes/styled';
 
 const errorIconPosition = ({hasError}) =>

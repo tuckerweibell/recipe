@@ -6,7 +6,6 @@ import {standard} from '../../themes';
 import {ErrorTriangle as ErrorIcon} from '../Icons';
 
 // pre-calculate where to put the error icon (icon width + right padding of input)
-const iconOffset = '24px';
 const inputBorderRadius = '4px';
 const calloutBorderRadius = '3px';
 
