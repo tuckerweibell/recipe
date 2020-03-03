@@ -31,6 +31,7 @@ title: 'Unreleased changes'
 - Fixed issue with EzField[type=custom] missing rounded corners (fixes [issue 302](https://github.com/ezcater/recipe/issues/302)).
 - Fixed issue where EzField[labelHidden] has unwanted top margin causing alignment issues with similar height components (fixes [issue 194](https://github.com/ezcater/recipe/issues/194)).
 - Fixed issue with component playground in the doc-site causing full-width components to have unwanted top margin.
+- Fixed issue with EzCard throwing an error when empty (fixes [issue 294](https://github.com/ezcater/recipe/issues/294)).
 
 #### Documentation
 
