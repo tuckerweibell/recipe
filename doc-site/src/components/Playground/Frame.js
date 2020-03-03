@@ -25,13 +25,19 @@ const IFramePlayground = props => {
 
     const resizeBasedOnContent = () => {
       const el = playgroundRef.current || container;
-      const margin = el ? getComputedStyle(el).marginLeft : '20px';
 
-      if (margin === '0px') return;
+      // this is kind of gross, but we want the latest margin value in the resize handler
+      // without taking an effect dependency on changes to the margin
+      setMargin(m => {
+        const newMargin = (el.parentElement.offsetWidth - el.offsetWidth) / 2;
 
-      iframe.style.height = 0;
-      iframe.style.height = `calc(${contentDocument.documentElement.scrollHeight}px + ${margin} + ${margin}`;
-      setMargin(getComputedStyle(el).marginLeft);
+        if (m === '0px' && newMargin === 0) return m;
+
+        iframe.style.height = 0;
+        iframe.style.height = `${contentDocument.documentElement.scrollHeight + newMargin}px`;
+
+        return `${newMargin}px`;
+      });
     };
 
     iframe.contentWindow.onmousedown = resizeBasedOnContent;
