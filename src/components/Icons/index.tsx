@@ -118,3 +118,30 @@ export const WarningIcon = () => (
     />
   </SvgIcon>
 );
+
+const insetY0 = {top: 0, bottom: 0};
+const pr2 = {paddingRight: '0.5rem'};
+const pl3 = {paddingLeft: '0.75rem'};
+
+type Props = {
+  insetY0?: boolean;
+  right0?: boolean;
+  pr2?: boolean;
+  left0?: boolean;
+  pl3?: boolean;
+  z1?: boolean;
+};
+
+export const InsetIcon = styled.div<Props>`
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  position: absolute;
+
+  ${p => p.insetY0 && insetY0};
+  ${p => p.right0 && {right: 0}};
+  ${p => p.left0 && {left: 0}};
+  ${p => p.pr2 && pr2};
+  ${p => p.pl3 && pl3};
+  ${p => p.z1 && {zIndex: 1}};
+`;
