@@ -17,7 +17,6 @@ import {
 import {GithubLink} from '../components/GithubLink';
 import styled from '@emotion/styled';
 import {Global, css} from '@emotion/core';
-import EmotionCache from '../components/EmotionCache';
 
 const themeAsObjectNotModule = Object.assign({}, themes.standard);
 
@@ -92,7 +91,7 @@ const StyledCard = styled(EzCard)`
   }
 `;
 
-const IndexPage = () => (
+export default () => (
   <EzAppLayout layout="centered">
     <Helmet
       title="Recipe"
@@ -203,10 +202,4 @@ const IndexPage = () => (
       </>
     </ThemeProvider>
   </EzAppLayout>
-);
-
-export default () => (
-  <EmotionCache>
-    <IndexPage />
-  </EmotionCache>
 );

@@ -17,7 +17,6 @@ import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
-import EmotionCache from './EmotionCache';
 import 'prismjs/themes/prism.css';
 
 const isIE11 =
@@ -137,16 +136,14 @@ const splitOnTagName = (list, tagName) => {
 };
 
 export default ({data: {markdownRemark: page}, location}) => (
-  <EmotionCache>
-    <Layout
-      title={page.frontmatter.title}
-      location={location}
-      name={page.frontmatter.name}
-      sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
-        <HtmlAst htmlAst={{children: section}} scope={scope} />
-      ))}
-    />
-  </EmotionCache>
+  <Layout
+    title={page.frontmatter.title}
+    location={location}
+    name={page.frontmatter.name}
+    sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+      <HtmlAst htmlAst={{children: section}} scope={scope} />
+    ))}
+  />
 );
 
 export const pageQuery = graphql`
