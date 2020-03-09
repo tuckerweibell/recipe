@@ -5,7 +5,7 @@ import {Link, StaticRouter, Route} from 'react-router-dom';
 import {fireEvent, cleanup} from '@testing-library/react';
 import markdown from '../EzPageHeader.md';
 import EzPageHeader from '../EzPageHeader';
-import {EzAlert, EzButton, EzCard, EzLayout, EzPage} from '../../index';
+import {EzStatus, EzButton, EzCard, EzLayout, EzPage} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
 afterEach(cleanup);
@@ -20,7 +20,7 @@ const mockRequire = () => ({
   Route,
 });
 
-const scope = {EzPageHeader, EzAlert, EzButton, EzCard, EzLayout, EzPage, require: mockRequire};
+const scope = {EzPageHeader, EzStatus, EzButton, EzCard, EzLayout, EzPage, require: mockRequire};
 
 describe('EzPageHeader', () => {
   visualSnapshots({markdown, scope});
@@ -109,7 +109,7 @@ describe('EzPageHeader', () => {
           label: 'Back to Orders',
           onClick: () => {},
         }}
-        status={<EzAlert headline="Verified" use="marketing" />}
+        status={<EzStatus text="Verified" use="success" />}
         subnav={{tabs, selected: tabs[0], onChange: () => {}}}
         actions={<EzButton use="primary">Accept Order</EzButton>}
       />

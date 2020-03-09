@@ -94,7 +94,7 @@ Normally links render an [anchor element](https://developer.mozilla.org/en-US/do
 Used to communicate brief, important and non-interactive status information about the page. The status appears immediately after the page title. The `status` prop accepts any `ReactNode`.
 
 ```jsx
-<EzPageHeader title="Order # XYZ-123" status={<EzAlert headline="Verified" use="marketing" />} />
+<EzPageHeader title="Order # XYZ-123" status={<EzStatus text="Verified" use="success" />} />
 ```
 
 ### Page header with actions
@@ -221,7 +221,7 @@ Use for detail pages, which should have return links and may also often have rel
           label: 'Back to Orders',
           onClick: () => {},
         }}
-        status={<EzAlert headline="Verified" use="marketing" />}
+        status={<EzStatus text="Verified" use="success" />}
         subnav={{tabs, selected, onChange}}
         actions={
           <EzLayout
