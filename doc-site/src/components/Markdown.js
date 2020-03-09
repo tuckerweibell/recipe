@@ -138,6 +138,7 @@ const splitOnTagName = (list, tagName) => {
 export default ({data: {markdownRemark: page}, location}) => (
   <Layout
     title={page.frontmatter.title}
+    layout={page.frontmatter.tags?.includes('wide') ? 'wide' : 'centered'}
     location={location}
     name={page.frontmatter.name}
     sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
@@ -155,6 +156,7 @@ export const pageQuery = graphql`
         path
         title
         name
+        tags
       }
     }
   }

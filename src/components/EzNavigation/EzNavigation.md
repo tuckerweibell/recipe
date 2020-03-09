@@ -2,6 +2,7 @@
 name: EzNavigation
 title: Navigation
 path: '/components/ez-navigation'
+tags: ['wide']
 ---
 
 The navigation component provides the primary means for users to move between sections of the application. On small screens, the Navigation menu is presented as a top-bar, while on larger screens the Navigation menu is presented as a left side-bar.

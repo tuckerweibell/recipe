@@ -2,6 +2,7 @@
 name: EzAppLayout
 title: Application Layout
 path: '/components/ez-app-layout'
+tags: ['wide']
 ---
 
 The application layout component, while not visible in the user interface, is used to provide common ways to arrange the content of a screen. The application layout wraps the main page content and houses the primary navigation for the application.
