@@ -8,6 +8,6 @@ export type EzStatusUses = EzStatusInformationalUses | EzStatusActionUses;
 
 export type EzStatusProps = {
   text: string;
-  size: EzStatusSizes;
+  size?: EzStatusSizes;
   use: EzStatusUses;
 };

@@ -1,7 +1,6 @@
 import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
 import styled from '../../themes/styled';
-import {EzStatusProps} from './EzStatus.types';
 
 const coloredStyles = getColors => ({theme: {colors}}) => {
   const [lightColor, darkColor] = getColors(colors);
@@ -20,7 +19,7 @@ const use = variant('use', {
   error: coloredStyles(colors => [colors.destructive.background, colors.destructive.text]),
 });
 
-const base = ({theme, size}) => css`
+const base: any = ({theme, size}) => css`
   padding: ${theme.spacing.xs2} ${theme.spacing.sm};
   line-height: 1;
   font-size: ${size === 'small' ? theme.fontSizes[200] : theme.fontSizes[400]};
@@ -28,4 +27,4 @@ const base = ({theme, size}) => css`
   border-radius: 1em;
 `;
 
-export const EzStatusContainer = styled.span<EzStatusProps>(base, use);
+export const EzStatusContainer = styled.span(base, use);
