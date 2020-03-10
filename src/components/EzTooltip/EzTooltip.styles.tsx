@@ -6,6 +6,7 @@ const base = () => css`
   padding: 0.5rem;
   max-width: 300px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  white-space: pre-line;
 
   > svg {
     position: absolute;

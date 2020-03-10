@@ -13,6 +13,8 @@ title: 'Unreleased changes'
 
 #### Design updates
 
+- update the EzTooltip styles to use 'white-space: pre-line', adding support for newlines within a tooltip.
+
 #### Bug fixes
 
 - relax type definition for EzStatus to make `size` optional (already has a default value of `normal`)
