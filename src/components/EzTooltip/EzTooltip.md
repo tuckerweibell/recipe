@@ -39,6 +39,16 @@ When adding a tooltip to a custom react component, you may need to implement [`f
 </EzTooltip>
 ```
 
+#### Basic tooltip with newlines
+
+If the tooltip message contains newlines, they will cause a line break.
+
+```jsx
+<EzTooltip message="Multi-line\ninformational\ntooltip">
+  <input />
+</EzTooltip>
+```
+
 #### Tooltip wrapping another Recipe component
 
 Allows a single Recipe component to become a trigger for a tooltip to provide additional information for the user.
