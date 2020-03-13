@@ -14,6 +14,7 @@ title: 'Unreleased changes'
 #### Design updates
 
 - update the EzTooltip styles to use 'white-space: pre-line', adding support for newlines within a tooltip.
+- updated doc-site to more closely align with the updated ezcater branding (icon/colors/typography).
 
 #### Bug fixes
 
