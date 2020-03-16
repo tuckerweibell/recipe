@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.3",
+    "@popperjs/core": "^2.1.1",
     "@reach/dialog": "^0.8.2",
     "dayjs": "^1.8.14",
     "reakit": "^1.0.0-beta.2",
