@@ -14,22 +14,19 @@
 
   return (
     <div ref={containerRef}>
-      <StubBoundingClientRect
-        rect={{
-          bottom: 40,
-          top: 57,
-          left: 9,
-          height: 33,
-          width: 125,
-        }}
-        type={HTMLDivElement}
-      />
-      <StubBoundingClientRect
-        rect={{
-          height: 768,
-          width: 1024,
-        }}
-        type={HTMLBodyElement}
+      <Global
+        styles={css(`
+          [data-popper-placement="true"] {
+            right: auto;
+            bottom: auto;
+            transform: translate3d(9px, 45px, 0px);
+          }
+          [data-popper-arrow="true"] {
+            left: 0px;
+            top: -4px;
+            transform: translate3d(35px, 0px, 0px);
+          }
+      `)}
       />
       <FocusButton>
         <EzButton use="primary" disabled disabledMessage="Disabled">

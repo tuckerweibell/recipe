@@ -1,5 +1,5 @@
 import React, {useState, useRef, ReactElement} from 'react';
-import {Message, Tooltip} from './EzTooltip.styles';
+import {Message, Tooltip, TooltipArrow} from './EzTooltip.styles';
 import {useUniqueId} from '../../utils/hooks';
 import EzPopover from '../EzPopover';
 
@@ -9,8 +9,9 @@ type Props = {
   children: ReactElement;
 };
 
-const EzTooltip: React.FC<Props> = props => {
+const EzTooltip: React.FC<Props> = ({children, message, position}) => {
   const id = useUniqueId();
+  const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -19,11 +20,8 @@ const EzTooltip: React.FC<Props> = props => {
   const onFocusEvent = () => setIsFocused(true);
   const onBlurEvent = () => setIsFocused(false);
 
-  const targetRef = useRef(null);
-
   const showTooltip = isHovered || isFocused;
-
-  const child = React.Children.only(props.children);
+  const child = React.Children.only(children);
 
   const childProps = {
     'aria-describedby': id,
@@ -39,13 +37,15 @@ const EzTooltip: React.FC<Props> = props => {
       {React.cloneElement(child, childProps)}
 
       {showTooltip && (
-        <EzPopover position={props.position} targetRef={targetRef}>
-          <Tooltip role="tooltip" id={id} tabIndex="-1">
-            <svg width="10" height="5">
+        <EzPopover targetRef={targetRef} position={position}>
+          <TooltipArrow data-popper-arrow>
+            <svg width="10" height="10">
               <path d="M0 5l5-5 5 5z" />
               <path d="M1.5 5L5 1.5 8.5 5z" />
             </svg>
-            {props.message && <Message>{props.message}</Message>}
+          </TooltipArrow>
+          <Tooltip role="tooltip" id={id} tabIndex="-1">
+            {message && <Message>{message}</Message>}
           </Tooltip>
         </EzPopover>
       )}

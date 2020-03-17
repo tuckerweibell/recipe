@@ -1,17 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
 import {fireEvent} from '@testing-library/react';
 import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
 import {fullRender as render} from '../../../jest-globals';
 
-const StubBoundingClientRect = ({children, type, rect}) => {
-  const spy = jest.spyOn(type.prototype, 'getBoundingClientRect').mockImplementation(() => rect);
-  useEffect(() => spy.mockRestore);
-  return children || null;
-};
-
-const scope = {EzTooltip, StubBoundingClientRect};
+const scope = {EzTooltip, Global, css};
 
 describe('EzTooltip', () => {
   visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});

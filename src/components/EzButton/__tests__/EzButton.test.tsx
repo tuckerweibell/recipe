@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {Global, css} from '@emotion/core';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {fireEvent} from '@testing-library/react';
@@ -8,13 +9,7 @@ import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
-const StubBoundingClientRect = ({children, type, rect}) => {
-  const spy = jest.spyOn(type.prototype, 'getBoundingClientRect').mockImplementation(() => rect);
-  useEffect(() => spy.mockRestore);
-  return children || null;
-};
-
-const scope = {EzButton, EzLayout, StubBoundingClientRect};
+const scope = {EzButton, EzLayout, Global, css};
 
 describe('EzButton', () => {
   visualSnapshots({markdown, scope});
