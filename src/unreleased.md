@@ -10,6 +10,7 @@ title: 'Unreleased changes'
 #### New components
 
 #### Enhancements
+
 - deprecated usage of `accessor` prop on EzTable in favor of separate `key` and `component` properties.
 
 #### Design updates
@@ -20,6 +21,8 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - relax type definition for EzStatus to make `size` optional (already has a default value of `normal`)
+- Prevent EzTooltip flyout from overflowing its clipping container (fixes [issue 240](https://github.com/ezcater/recipe/issues/240))
+- Fix EzTooltip placement relative to page scroll position (fixes [issue 313](https://github.com/ezcater/recipe/issues/313))
 
 #### Documentation
 
