@@ -10,7 +10,7 @@ Tables are used to display information from a data set in a way that's easy to s
 
 <EzAlert
   headline="This component is under development"
-  tagline="There will likely be breaking changes to the API. Proceeed with caution."
+  tagline="There will likely be breaking changes to the API. Proceed with caution."
   use="warning"
 />
 
@@ -80,9 +80,9 @@ Used whenever the tabular data is directly related to the preceding or subsequen
     />
     <EzTable
       columns={[
-        {heading: 'From', accessor: 'from'},
-        {heading: 'Through', accessor: 'to'},
-        {heading: 'Total time closed', accessor: 'total'},
+        {heading: 'From', key: 'from'},
+        {heading: 'Through', key: 'to'},
+        {heading: 'Total time closed', key: 'total'},
       ]}
       items={[
         {from: '9/3/18', to: '9/5/18', total: '3 days'},
@@ -104,9 +104,9 @@ Used whenever the tabular data alone represents a cohesive set of content. Shoul
     title="All Stores"
     subtitle="Compared to the same period last year"
     columns={[
-      {heading: 'Store name', accessor: 'store'},
-      {heading: 'Total sales', accessor: 'total', numeric: true},
-      {heading: 'Average order value', accessor: 'average', numeric: true},
+      {heading: 'Store name', key: 'store'},
+      {heading: 'Total sales', key: 'total', numeric: true},
+      {heading: 'Average order value', key: 'average', numeric: true},
     ]}
     items={[
       {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
@@ -128,9 +128,9 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
     title="All Orders"
     actions={<EzButton>View related orders</EzButton>}
     columns={[
-      {heading: 'Order number', accessor: 'id'},
-      {heading: 'Event date', accessor: 'date'},
-      {heading: 'Total', accessor: 'total', numeric: true},
+      {heading: 'Order number', key: 'id'},
+      {heading: 'Event date', key: 'date'},
+      {heading: 'Total', key: 'total', numeric: true},
     ]}
     items={[
       {id: '#004', date: '02/28/18', total: '$3267'},
@@ -142,7 +142,7 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
 
 ### Custom cell rendering
 
-Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content). To provide custom content, the `accessor` property of each column can be provided any [React element](https://reactjs.org/docs/rendering-elements.html) or custom React component. Custom components will be provided an `item` prop with the record to be rendered.
+Use when more fine-grained control over the table content is desired (in favor of simple Textual/Numerical content). To provide custom content, the `component` property of each column can be provided any [React element](https://reactjs.org/docs/rendering-elements.html) or custom React component. Custom components will be provided an `item` prop with the record to be rendered.
 
 To use a custom cell to render links to additional content, see the [Row highlighting and selection example](#row-highlighting-and-selection);
 
@@ -168,9 +168,9 @@ To use a custom cell to render links to additional content, see the [Row highlig
         title="All Stores"
         subtitle="Compared to the same period last year"
         columns={[
-          {heading: 'Store name', accessor: StoreName},
-          {heading: 'Total sales', accessor: 'total', numeric: true},
-          {heading: 'Average order value', accessor: 'average', numeric: true},
+          {heading: 'Store name', key: 'name', component: StoreName},
+          {heading: 'Total sales', key: 'total', numeric: true},
+          {heading: 'Average order value', key: 'average', numeric: true},
         ]}
         items={[
           {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
@@ -186,9 +186,9 @@ To use a custom cell to render links to additional content, see the [Row highlig
 
 Use when offering links to see more information or related content to ensure the click surface of the link spans the entire table row.
 
-When using [custom cell rendering](#custom-cell-rendering) the `accessor` property of a column is also provided a `linkRef` which allows the table to target specific links to trigger when the table row is clicked.
+When using [custom cell rendering](#custom-cell-rendering) the `component` property of a column is also provided a `linkRef` which allows the table to target specific links to trigger when the table row is clicked.
 
-Note: Typically, [only the first column](#best-practices) should provide links to view additional or related content. The `linkRef` prop should only be applied to a single column's accessor, as clicking the row should trigger navigation on a single link.
+Note: Typically, [only the first column](#best-practices) should provide links to view additional or related content. The `linkRef` prop should only be applied to a single column's component, as clicking the row should trigger navigation on a single link.
 
 ```jsx
 () => {
@@ -238,9 +238,9 @@ Note: Typically, [only the first column](#best-practices) should provide links t
             isRowSelected,
           }}
           columns={[
-            {heading: 'Store name', accessor: StoreName},
-            {heading: 'Total sales', accessor: 'total', numeric: true},
-            {heading: 'Average order value', accessor: 'average', numeric: true},
+            {heading: 'Store name', key: 'name', component: StoreName},
+            {heading: 'Total sales', key: 'total', numeric: true},
+            {heading: 'Average order value', key: 'average', numeric: true},
           ]}
           items={items}
         />
@@ -299,9 +299,9 @@ The following properties are required when using selection:
             isRowSelected,
           }}
           columns={[
-            {heading: 'Store name', accessor: 'store'},
-            {heading: 'Total sales', accessor: 'total', numeric: true},
-            {heading: 'Average order value', accessor: 'average', numeric: true},
+            {heading: 'Store name', key: 'store'},
+            {heading: 'Total sales', key: 'total', numeric: true},
+            {heading: 'Average order value', key: 'average', numeric: true},
           ]}
           items={items}
         />
@@ -337,8 +337,8 @@ When providing pre-sorted data to EzTable, the relevant column should have a `de
 
     const onSortClick = (_event, {column, direction}) => {
       const newItems = [...initialItems].sort((a, b) => {
-        const val1 = a[column.accessor];
-        const val2 = b[column.accessor];
+        const val1 = a[column.key];
+        const val2 = b[column.key];
 
         return (direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
       });
@@ -352,8 +352,8 @@ When providing pre-sorted data to EzTable, the relevant column should have a `de
           title="Store Owners"
           onSortClick={onSortClick}
           columns={[
-            {heading: 'Name', accessor: 'name', sortable: true},
-            {heading: 'Store Count', accessor: 'storeCount', sortable: true, defaultSort: 'desc'},
+            {heading: 'Name', key: 'name', sortable: true},
+            {heading: 'Store Count', key: 'storeCount', sortable: true, defaultSort: 'desc'},
           ]}
           items={items}
         />
@@ -422,8 +422,8 @@ To see selection and pagination features used together, see the [bulk row select
         <EzTable
           title="Store Owners"
           columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
           pagination={{
@@ -483,8 +483,8 @@ To see selection and pagination features used together, see the [bulk row select
 
     const onSortClick = (_event, {column, direction}) => {
       const sorted = [...allItems].sort((a, b) => {
-        const val1 = a[column.accessor];
-        const val2 = b[column.accessor];
+        const val1 = a[column.key];
+        const val2 = b[column.key];
         return (direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
       });
       updateState({items: sorted});
@@ -495,8 +495,8 @@ To see selection and pagination features used together, see the [bulk row select
         <EzTable
           title="Store Owners"
           columns={[
-            {heading: 'First Name', accessor: 'first', sortable: true},
-            {heading: 'Last Name', accessor: 'last', sortable: true},
+            {heading: 'First Name', key: 'first', sortable: true},
+            {heading: 'Last Name', key: 'last', sortable: true},
           ]}
           items={items.slice(startIndex, startIndex + rowsPerPage)}
           onSortClick={onSortClick}
@@ -602,8 +602,8 @@ Picking-and-choosing records across multiple pages of results is not supported. 
         <EzTable
           title="Store Owners"
           columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
           selection={{

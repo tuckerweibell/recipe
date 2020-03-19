@@ -1,17 +1,14 @@
-type Column = (SortEnabledColumn | SortDisabledColumn) & {
+type Column = {
   heading: string;
   numeric?: boolean;
   defaultSort?: Direction;
-};
-
-type SortEnabledColumn = {
-  sortable: boolean;
-  accessor: string;
-};
-
-type SortDisabledColumn = {
-  sortable?: never;
-  accessor: React.ReactNode | React.ComponentType;
+  key?: string;
+  component?: React.ReactNode | React.ComponentType;
+  sortable?: boolean;
+  /**
+   * @deprecated Use `key` to provide column identifier and `component` to provide a custom cell renderer.
+   */
+  accessor?: React.ReactNode | React.ComponentType | string;
 };
 
 type Direction = 'asc' | 'desc';

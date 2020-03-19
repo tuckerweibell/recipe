@@ -10,6 +10,7 @@ title: 'Unreleased changes'
 #### New components
 
 #### Enhancements
+- deprecated usage of `accessor` prop on EzTable in favor of separate `key` and `component` properties.
 
 #### Design updates
 

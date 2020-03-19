@@ -18,9 +18,9 @@
           isRowSelected: () => true,
         }}
         columns={[
-          {heading: 'Store name', accessor: 'store'},
-          {heading: 'Total sales', accessor: 'total', numeric: true},
-          {heading: 'Average order value', accessor: 'average', numeric: true},
+          {heading: 'Store name', key: 'store'},
+          {heading: 'Total sales', key: 'total', numeric: true},
+          {heading: 'Average order value', key: 'average', numeric: true},
         ]}
         items={items}
       />
@@ -61,8 +61,8 @@
           onSelectNoneClick: () => {},
         }}
         columns={[
-          {heading: 'First Name', accessor: 'first'},
-          {heading: 'Last Name', accessor: 'last'},
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
         ]}
         items={items.slice(0, 5)}
         pagination={{
@@ -107,8 +107,8 @@
           onSelectNoneClick: () => {},
         }}
         columns={[
-          {heading: 'First Name', accessor: 'first'},
-          {heading: 'Last Name', accessor: 'last'},
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
         ]}
         items={items.slice(0, 5)}
         pagination={{
@@ -156,8 +156,8 @@
           isRowSelected: () => true,
         }}
         columns={[
-          {heading: 'First Name', accessor: 'first'},
-          {heading: 'Last Name', accessor: 'last'},
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
         ]}
         items={items.slice(0, 5)}
         pagination={{
@@ -208,8 +208,8 @@
         <EzTable
           title="Store Owners"
           columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
           pagination={{
@@ -261,8 +261,8 @@
         <EzTable
           title="Store Owners"
           columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
           pagination={{
@@ -311,9 +311,9 @@
               title="All Stores"
               subtitle="Compared to the same period last year"
               columns={[
-                {heading: 'Store name', accessor: 'store'},
-                {heading: 'Total sales', accessor: 'total', numeric: true},
-                {heading: 'Average order value', accessor: 'average', numeric: true},
+                {heading: 'Store name', key: 'store'},
+                {heading: 'Total sales', key: 'total', numeric: true},
+                {heading: 'Average order value', key: 'average', numeric: true},
               ]}
               items={items}
             />
@@ -360,9 +360,9 @@
                 isRowSelected: () => true,
               }}
               columns={[
-                {heading: 'Store name', accessor: 'store'},
-                {heading: 'Total sales', accessor: 'total', numeric: true},
-                {heading: 'Average order value', accessor: 'average', numeric: true},
+                {heading: 'Store name', key: 'store'},
+                {heading: 'Total sales', key: 'total', numeric: true},
+                {heading: 'Average order value', key: 'average', numeric: true},
               ]}
               items={items}
             />

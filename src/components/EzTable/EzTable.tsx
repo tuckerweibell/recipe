@@ -57,7 +57,7 @@ const Thead = () => {
           const {sortable, heading, numeric} = column;
           return (
             <Th
-              key={cellIndex}
+              key={column.key || cellIndex}
               numeric={numeric}
               sortable={sortable}
               sorted={isSorted(column)}
@@ -136,11 +136,9 @@ const TRow = ({item}) => {
           />
         </Td>
       )}
-      {columns.map(({accessor, numeric}, cellIndex) => (
+      {columns.map(({component, numeric}, cellIndex) => (
         <Td key={cellIndex} numeric={numeric}>
-          {typeof accessor === 'function'
-            ? createElement(accessor, {item, linkRef: targetRef})
-            : item[accessor]}
+          {createElement(component, {item, linkRef: targetRef})}
         </Td>
       ))}
     </ClickableTr>
@@ -226,6 +224,23 @@ const EzTable: React.FC<TableProps> = ({
 
   useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
 
+  const mappedColumns = columns.map(
+    ({
+      heading,
+      accessor,
+      key = typeof accessor === 'string' ? accessor : undefined,
+      component = typeof accessor === 'function' ? accessor : ({item}: any) => <>{item[key]}</>,
+      sortable,
+      ...rest
+    }) => ({
+      heading,
+      key,
+      component,
+      sortable,
+      ...rest,
+    })
+  );
+
   const table = (
     <TableContext.Provider
       value={{
@@ -236,7 +251,7 @@ const EzTable: React.FC<TableProps> = ({
           allSelected,
           setAllSelected,
         },
-        columns,
+        columns: mappedColumns,
         pagination,
         sorting: {onSortClick},
       }}

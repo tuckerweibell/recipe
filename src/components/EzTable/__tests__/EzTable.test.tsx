@@ -30,9 +30,9 @@ describe('EzTable', () => {
   });
 
   const columns = [
-    {heading: 'Store name', accessor: ({item}) => item.store},
-    {heading: 'Total sales', accessor: 'total', numeric: true},
-    {heading: 'Average order value', accessor: 'average', numeric: true},
+    {heading: 'Store name', component: ({item}) => item.store, key: 'store'},
+    {heading: 'Total sales', numeric: true, key: 'total'},
+    {heading: 'Average order value', numeric: true, key: 'average'},
   ];
   const items = [
     {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
@@ -43,8 +43,8 @@ describe('EzTable', () => {
     describe('when the user requests a column to be sorted', () => {
       const onSortClick = jest.fn();
       const sortableColumns = [
-        {heading: 'Store name', accessor: 'name', sortable: true},
-        {heading: 'Total sales', accessor: 'total', sortable: true},
+        {heading: 'Store name', key: 'store', sortable: true},
+        {heading: 'Total sales', key: 'total', sortable: true},
       ];
       const props = {columns: sortableColumns, items, onSortClick};
       const mockEvent = expect.any(Object);
@@ -62,7 +62,7 @@ describe('EzTable', () => {
         expect(onSortClick).toHaveBeenCalledWith(
           mockEvent,
           expect.objectContaining({
-            column: sortableColumns[0],
+            column: expect.objectContaining(sortableColumns[0]),
             direction: 'asc',
           })
         );
@@ -92,7 +92,7 @@ describe('EzTable', () => {
         expect(onSortClick).toHaveBeenCalledWith(
           mockEvent,
           expect.objectContaining({
-            column: sortableColumns[1],
+            column: expect.objectContaining(sortableColumns[1]),
             direction: 'asc',
           })
         );
@@ -102,7 +102,7 @@ describe('EzTable', () => {
         expect(onSortClick).toHaveBeenCalledWith(
           mockEvent,
           expect.objectContaining({
-            column: sortableColumns[1],
+            column: expect.objectContaining(sortableColumns[1]),
             direction: 'desc',
           })
         );
@@ -118,7 +118,7 @@ describe('EzTable', () => {
         expect(onSortClick).toHaveBeenCalledWith(
           mockEvent,
           expect.objectContaining({
-            column: sortableColumns[1],
+            column: expect.objectContaining(sortableColumns[1]),
             direction: 'asc',
           })
         );
@@ -128,7 +128,7 @@ describe('EzTable', () => {
         expect(onSortClick).toHaveBeenCalledWith(
           mockEvent,
           expect.objectContaining({
-            column: sortableColumns[1],
+            column: expect.objectContaining(sortableColumns[1]),
             direction: 'asc',
           })
         );
@@ -282,8 +282,8 @@ describe('EzTable', () => {
             onSelectNoneClick: () => {},
           }}
           columns={[
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={data.slice(0, 5)}
           pagination={{
@@ -330,9 +330,9 @@ describe('EzTable', () => {
           title="All Stores"
           subtitle="Compared to the same period last year"
           columns={[
-            {heading: 'Link', accessor: link(spy)},
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'Link', component: link(spy), key: 'link'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={data}
         />
@@ -359,9 +359,9 @@ describe('EzTable', () => {
             isRowSelected: () => true,
           }}
           columns={[
-            {heading: 'Link', accessor: link(spy)},
-            {heading: 'First Name', accessor: 'first'},
-            {heading: 'Last Name', accessor: 'last'},
+            {heading: 'Link', component: link(spy), key: 'link'},
+            {heading: 'First Name', key: 'first'},
+            {heading: 'Last Name', key: 'last'},
           ]}
           items={data}
         />
@@ -372,6 +372,42 @@ describe('EzTable', () => {
       fireEvent.click(checkbox);
 
       expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('accessor prop compatibility', () => {
+    let component;
+
+    const mappableColumns = [
+      {heading: 'Name', accessor: ({item}) => item.store},
+      {heading: 'Sales', accessor: 'total', numeric: true},
+    ];
+
+    beforeEach(() => {
+      component = fullRender(
+        <EzTable
+          title="All Stores"
+          subtitle="Compared to the same period last year"
+          columns={mappableColumns}
+          items={items}
+        />
+      );
+    });
+
+    describe('when the accessor prop is a function', () => {
+      it('renders the table properly', () => {
+        const {getByText} = component;
+
+        expect(getByText('Name')).toBeDefined();
+      });
+    });
+
+    describe('when the accessor prop is a string', () => {
+      it('renders the table properly', () => {
+        const {getByText} = component;
+
+        expect(getByText('Sales')).toBeDefined();
+      });
     });
   });
 
