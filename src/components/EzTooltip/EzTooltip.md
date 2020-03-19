@@ -73,7 +73,7 @@ A tooltip can be positioned either vertically or horizontally around an element 
 #### Positioned Vertically
 
 ```jsx
-<EzTooltip message="Vertically aligned tooltip" position="vertical">
+<EzTooltip message="Vertically positioned tooltip" position="vertical">
   <input />
 </EzTooltip>
 ```
@@ -81,7 +81,7 @@ A tooltip can be positioned either vertically or horizontally around an element 
 #### Positioned Horizontally
 
 ```jsx
-<EzTooltip message="Horizontally aligned tooltip" position="horizontal">
+<EzTooltip message="Horizontally positioned tooltip" position="horizontal">
   <input />
 </EzTooltip>
 ```
