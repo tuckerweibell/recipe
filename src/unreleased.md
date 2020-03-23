@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Updated github issue templates for bug reports to include codesandbox template to assist with reproducing issues.
+
 #### Dependency upgrades
 
 #### Development workflow
