@@ -1,6 +1,7 @@
 ---
 name: EzLabelledItem
-title: Labelled Item
+title: Labelling
+category: Inputs
 path: '/components/ez-labelled-item'
 ---
 

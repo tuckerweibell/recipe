@@ -1,6 +1,7 @@
 ---
 name: EzToggle
 title: Toggle
+category: Inputs
 path: '/components/ez-toggle'
 ---
 

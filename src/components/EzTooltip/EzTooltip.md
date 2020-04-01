@@ -1,6 +1,7 @@
 ---
 name: EzTooltip
 title: Tooltip
+category: Overlays
 path: '/components/ez-tooltip'
 ---
 

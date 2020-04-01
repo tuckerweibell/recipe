@@ -1,6 +1,7 @@
 ---
 name: EzCheckbox
 title: Checkbox
+category: Inputs
 path: '/components/ez-checkbox'
 ---
 

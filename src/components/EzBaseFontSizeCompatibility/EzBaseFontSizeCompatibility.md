@@ -1,6 +1,7 @@
 ---
-name: EzBaseFontSize
-title: Base Font Size (Compatibility)
+name: EzBaseFontSizeCompatibility
+title: Base Font Size
+category: Typography
 path: '/components/ez-base-font-size-Compatibility'
 ---
 

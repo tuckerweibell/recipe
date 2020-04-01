@@ -1,11 +1,11 @@
 ---
 name: EzField
-title: Form fields
-category: forms
+title: Input Fields
+category: Inputs
 path: '/components/ez-field'
 ---
 
-Form fields provide inputs for form data, such as text, dates, emails and other data types. Fields have a range of options to support several value formats. Further customization of Fields can be achieved by providing a custom input component, such as an application-specific control.
+Form input fields provide a structured format for capturing form data, such as text, dates, emails and other data types. Further customization of input fields can be achieved by providing a custom input component, such as an application-specific control.
 
 <EzAlert
   headline="This component is under development"

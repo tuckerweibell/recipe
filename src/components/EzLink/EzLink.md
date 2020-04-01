@@ -1,6 +1,7 @@
 ---
 name: EzLink
 title: Links
+category: Navigation
 path: '/components/ez-link'
 ---
 

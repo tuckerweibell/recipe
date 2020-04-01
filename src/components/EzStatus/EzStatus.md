@@ -1,6 +1,7 @@
 ---
 name: EzStatus
 title: Status
+category: Feedback
 path: '/components/ez-status'
 ---
 

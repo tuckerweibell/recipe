@@ -1,6 +1,7 @@
 ---
 name: EzAlert
 title: Alert
+category: Feedback
 path: '/components/ez-alert'
 ---
 

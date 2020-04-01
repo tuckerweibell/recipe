@@ -1,7 +1,8 @@
 ---
 name: EzTextStyle
 title: Text Style
-path: "/components/ez-text-style"
+category: Typography
+path: '/components/ez-text-style'
 ---
 
 Enhances text with styles to visually communicate meaning, such as emphasis.
@@ -12,13 +13,13 @@ Enhances text with styles to visually communicate meaning, such as emphasis.
 
 Text style should:
 
-* Be used to guide users to understand which data is important
-* Use `Strong` to highlight important data, such as Totals in a pricing table
-* Use `Subdued` to de-emphasize less important text, such as the second line of an address.
+- Be used to guide users to understand which data is important
+- Use `Strong` to highlight important data, such as Totals in a pricing table
+- Use `Subdued` to de-emphasize less important text, such as the second line of an address.
 
 Text style should NOT:
 
-* Be used in the place of headings. Headings break up content into sections and can be used by screen reader users to identify sections of a page the user can quickly navigate to.
+- Be used in the place of headings. Headings break up content into sections and can be used by screen reader users to identify sections of a page the user can quickly navigate to.
 
 ---
 

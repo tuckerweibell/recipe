@@ -1,6 +1,7 @@
 ---
 name: EzAppLayout
 title: Application Layout
+category: Layout
 path: '/components/ez-app-layout'
 tags: ['wide']
 ---

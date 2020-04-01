@@ -1,6 +1,7 @@
 ---
 name: EzBanner
 title: Banner
+category: Marketing
 path: '/components/ez-banner'
 ---
 

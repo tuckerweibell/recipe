@@ -1,6 +1,7 @@
 ---
 name: EzPageHeader
 title: Page Header
+category: Layout
 path: '/components/ez-page-header'
 ---
 

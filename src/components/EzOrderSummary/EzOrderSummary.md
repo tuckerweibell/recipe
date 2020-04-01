@@ -1,6 +1,7 @@
 ---
 name: EzOrderSummary
 title: Order summary
+category: Data
 path: '/components/ez-order-summary'
 ---
 

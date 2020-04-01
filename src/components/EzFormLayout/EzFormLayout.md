@@ -1,7 +1,6 @@
 ---
 name: EzFormLayout
 title: Form layout
-category: forms
 path: '/components/ez-form-layout'
 ---
 

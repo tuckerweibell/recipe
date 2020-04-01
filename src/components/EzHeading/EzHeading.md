@@ -1,6 +1,7 @@
 ---
 name: EzHeading
 title: Heading
+category: Typography
 path: '/components/ez-heading'
 ---
 

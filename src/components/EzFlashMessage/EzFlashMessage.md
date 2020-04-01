@@ -1,6 +1,7 @@
 ---
 name: EzFlashMessage
 title: Flash Message
+category: Feedback
 path: '/components/ez-flash-message'
 ---
 

@@ -1,6 +1,7 @@
 ---
-name: Table
+name: EzTable
 title: Table
+category: Data
 path: '/components/ez-table'
 ---
 

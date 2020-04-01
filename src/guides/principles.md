@@ -1,7 +1,6 @@
 ---
 path: '/guides/principles'
 title: 'Principles'
-category: 'Overview'
 order: 20
 ---
 

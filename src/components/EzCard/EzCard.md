@@ -1,7 +1,7 @@
 ---
 name: EzCard
 title: Card
-category: layout
+category: Layout
 path: '/components/ez-card'
 ---
 

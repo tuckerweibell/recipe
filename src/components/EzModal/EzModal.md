@@ -1,6 +1,7 @@
 ---
 name: Modal
 title: Modal
+category: Overlays
 path: '/components/ez-modal'
 ---
 

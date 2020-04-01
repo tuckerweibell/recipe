@@ -1,6 +1,7 @@
 ---
 name: EzSegmentedControl
 title: Segmented Control
+category: Inputs
 path: '/components/ez-segmented-control'
 ---
 

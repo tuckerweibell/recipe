@@ -1,6 +1,7 @@
 ---
 name: EzNavigation
-title: Navigation
+title: Navigation Menu
+category: Navigation
 path: '/components/ez-navigation'
 tags: ['wide']
 ---

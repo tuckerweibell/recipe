@@ -1,7 +1,7 @@
 ---
 name: EzPage
 title: Page
-category: layout
+category: Layout
 path: '/components/ez-page'
 ---
 

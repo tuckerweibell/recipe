@@ -1,6 +1,7 @@
 ---
 name: EzButton
 title: Button
+category: Inputs
 path: '/components/ez-button'
 ---
 

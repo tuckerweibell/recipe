@@ -1,6 +1,7 @@
 ---
 name: EzSuperRadioButtons
 title: Super radio buttons
+category: Inputs
 path: '/components/ez-super-radio-buttons'
 ---
 

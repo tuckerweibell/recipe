@@ -1,6 +1,7 @@
 ---
 name: EzLayout
-title: Layout
+title: Small-scale Layout
+category: Layout
 path: '/components/ez-layout'
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: EzPageContent
 title: Page Content
-category: layout
+category: Layout
 path: '/components/ez-page-content'
 ---
 

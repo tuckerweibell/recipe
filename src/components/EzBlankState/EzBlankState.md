@@ -1,6 +1,7 @@
 ---
 name: EzBlankState
-title: Blank state
+title: Blank State
+category: Marketing
 path: '/components/ez-blank-state'
 ---
 

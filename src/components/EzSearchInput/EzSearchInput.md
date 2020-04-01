@@ -1,6 +1,7 @@
 ---
 name: EzSearchInput
 title: Search input
+category: Inputs
 path: '/components/ez-search-input'
 ---
 
