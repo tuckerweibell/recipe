@@ -65,9 +65,9 @@ export default () => {
     ['Navigation', []],
     ['Data', []],
     ['Inputs', []],
+    ['Overlays', []],
     ['Feedback', []],
     ['Marketing', []],
-    ['Overlays', []],
     ['Typography', []],
   ]);
 
