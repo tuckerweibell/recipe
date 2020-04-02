@@ -3,13 +3,12 @@ const puppeteer = require('puppeteer');
 const {render, unmountComponentAtNode} = require('react-dom');
 const {act} = require('react-dom/test-utils');
 const {JSDOM} = require('jsdom');
-const {prettyDOM} = require('@testing-library/dom');
 
 const capture = async (browser, viewport, html) => {
   const page = await browser.newPage();
 
   await page.setViewport(viewport);
-  await page.setContent(html, {waitUntil: 'load'});
+  await page.setContent(html, {waitUntil: 'networkidle0'});
 
   return await page.screenshot({
     type: 'png',
@@ -66,7 +65,12 @@ const getHtmlData = Component => {
     <!DOCTYPE html>
     <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
     <style>
+      html {
+        box-sizing: border-box;
+        font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      }
       body {margin: 0;}
       ${css}
     </style>
