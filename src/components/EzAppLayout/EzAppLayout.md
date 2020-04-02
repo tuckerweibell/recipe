@@ -166,3 +166,4 @@ Note: The centered layout will only take effect on wide screen sizes.
 - [Navigation](/components/ez-navigation)
 - [Page header](/components/ez-page-header)
 - [Page](/components/ez-page)
+- [Global style resets](/components/ez-global-styles)
