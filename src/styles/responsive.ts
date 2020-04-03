@@ -29,7 +29,7 @@ export default (prop, values) => props => {
   const responsive = Object.keys(breakpoints).reduce((styles, breakpointName) => {
     const variantName = propValue[breakpointName];
 
-    if (!(variantName in values)) return styles;
+    if (!variantName) return styles;
 
     return [
       ...styles,

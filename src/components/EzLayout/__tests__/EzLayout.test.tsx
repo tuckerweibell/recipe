@@ -3,6 +3,7 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
+import regressionTests from './EzLayout.test.md';
 import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
@@ -11,6 +12,7 @@ const scope = {EzLayout, EzCard, EzCardSection, css, Global};
 
 describe('EzLayout', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(
