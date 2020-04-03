@@ -1,16 +1,21 @@
 ---
 path: '/components'
 title: 'Components'
+tags: ['wide']
 order: 30
 ---
 
 Our components are a collection of reusable interface elements and are designed to facilitate the creation of consistent experiences across our applications.
 
-### Getting started
+### Overview
 
 Each component in this collection includes documentation to help guide your implementation, including explanations of the intended usage of the component, live examples that you can modify and experiment with and best practices for applying the component correctly in your application.
 
-For installation instructions, please see our [quick start and installation guide](/guides/getting-started/).
+---
+
+# Application UI
+
+<ComponentGrid></ComponentGrid>
 
 ---
 

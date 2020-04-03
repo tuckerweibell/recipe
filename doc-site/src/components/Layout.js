@@ -113,7 +113,7 @@ const Menu = ({children, links, location, ...props}) => {
   );
 };
 
-const Layout = ({name, title, children, sections, location, layout}) => (
+const Layout = ({name, title, path, children, sections, location, layout}) => (
   <StaticQuery
     query={graphql`
       query {
@@ -149,7 +149,8 @@ const Layout = ({name, title, children, sections, location, layout}) => (
               p.frontmatter &&
               p.frontmatter.path &&
               p.frontmatter.path.includes(page.frontmatter.path) &&
-              p.frontmatter.path !== page.frontmatter.path
+              p.frontmatter.path !== page.frontmatter.path &&
+              !p.frontmatter.path.includes('components')
           )
           .map(page => ({
             to: page.frontmatter.path,
@@ -193,6 +194,15 @@ const Layout = ({name, title, children, sections, location, layout}) => (
                 >
                   <EzPageHeader
                     title={title}
+                    breadcrumb={
+                      path.includes('/components/')
+                        ? {
+                            as: Link,
+                            to: '/components',
+                            label: 'Back to Components',
+                          }
+                        : undefined
+                    }
                     subnav={
                       tabs && {tabs, selected: tabs.find(tab => tab.to === location.pathname)}
                     }

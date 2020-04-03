@@ -8,6 +8,7 @@ import {withPrefix} from 'gatsby-link';
 import loadable from '@loadable/component';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 import {ColorDefinition, Example} from './ColorVariables';
+import ComponentGrid from './ComponentGrid';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
 import FontLineHeights from './FontLineHeights';
@@ -84,6 +85,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     baseexample: Example.Base,
     checkedexample: Example.Checked,
     hoverexample: Example.Hover,
+    componentgrid: ComponentGrid,
     spacingvariables: SpacingVariables,
     fontcombinations: FontCombinations,
     fontlineheights: FontLineHeights,
@@ -135,17 +137,19 @@ const splitOnTagName = (list, tagName) => {
   return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
 };
 
-export default ({data: {markdownRemark: page}, location}) => (
-  <Layout
-    title={page.frontmatter.title}
-    layout={page.frontmatter.tags?.includes('wide') ? 'wide' : 'centered'}
-    location={location}
-    name={page.frontmatter.name}
-    sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
-      <HtmlAst htmlAst={{children: section}} scope={scope} />
-    ))}
-  />
-);
+export default ({data: {markdownRemark: page}, location}) =>
+  page && (
+    <Layout
+      path={page.frontmatter.path}
+      title={page.frontmatter.title}
+      layout={page.frontmatter.tags?.includes('wide') ? 'wide' : 'centered'}
+      location={location}
+      name={page.frontmatter.name}
+      sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+        <HtmlAst htmlAst={{children: section}} scope={scope} />
+      ))}
+    />
+  );
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String) {
