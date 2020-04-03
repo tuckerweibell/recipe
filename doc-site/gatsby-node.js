@@ -1,4 +1,6 @@
 const path = require('path');
+const createPreviewImage = require('./utils/snapshot');
+const generateImages = false;
 
 exports.createPages = ({actions, graphql}) => {
   const {createPage} = actions;
@@ -8,7 +10,9 @@ exports.createPages = ({actions, graphql}) => {
         edges {
           node {
             html
+            htmlAst
             id
+            fileAbsolutePath
             frontmatter {
               category
               path
@@ -22,15 +26,23 @@ exports.createPages = ({actions, graphql}) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-    result.data.allMarkdownRemark.edges.forEach(
-      ({node}) =>
-        node.frontmatter.path &&
-        createPage({
-          path: node.frontmatter.path,
-          component: path.resolve('src/components/Markdown.js'),
-          context: {},
-        })
+
+    const files = result.data.allMarkdownRemark.edges.map(e => e.node);
+    const components = files.filter(f => f.frontmatter.path);
+
+    components.forEach(({frontmatter}) =>
+      createPage({
+        path: frontmatter.path,
+        component: path.resolve('src/components/Markdown.js'),
+        context: {},
+      })
     );
+
+    if (!generateImages) return;
+
+    const previews = files.filter(f => f.fileAbsolutePath.endsWith('.preview.md'));
+
+    return Promise.all(previews.map(createPreviewImage));
   });
 };
 
