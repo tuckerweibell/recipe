@@ -2,7 +2,6 @@ import React from 'react';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
-import ScrollLock from './ScrollLock';
 import {
   ButtonFooter,
   HeaderContainer,
@@ -41,7 +40,6 @@ const EzModal: React.FC<Props> = ({
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <ModalContainer aria-labelledby={labelId}>
-        <ScrollLock />
         <HeaderContainer>
           <EzHeading size="2" id={labelId}>
             {headerText}
