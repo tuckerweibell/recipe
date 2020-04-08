@@ -1,10 +1,10 @@
 import {useRef} from 'react';
-import {useHiddenState, useHidden} from 'reakit/Hidden';
+import {useDisclosureState, useDisclosureContent} from 'reakit/Disclosure';
 import {useAllCallbacks, useOnClickOutside, useEventListenerOutside} from '../../utils/hooks';
 
 export const useComboboxState = () => {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  const hidden = useHiddenState({unstable_isMounted: true});
+  const hidden = useDisclosureState({unstable_isMounted: true});
   return {
     ...hidden,
   };
@@ -53,7 +53,7 @@ export const useComboboxInput = (options, htmlProps) => {
 };
 
 export const useComboboxFlyout = (options, htmlProps = {}) => {
-  useHidden(options, htmlProps);
+  useDisclosureContent(options, htmlProps);
   return {
     id: options.unstable_hiddenId,
   };
