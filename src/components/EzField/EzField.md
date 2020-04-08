@@ -85,8 +85,10 @@ Allows the user to provide numeric input values.
 Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to enable the user to select multiple choices, or `type="radio"` to enable the user to select only one choice.
 
 ```jsx
-<Component initialState={{selectedChoice: null, selectedChoices: []}}>
-  {({state, setState}) => (
+() => {
+  const [selectedChoice, setSelectedChoice] = React.useState(null);
+  const [selectedChoices, setSelectedChoices] = React.useState([]);
+  return (
     <EzFormLayout>
       <EzField
         type="radio"
@@ -96,8 +98,8 @@ Allows the user to choose between a fixed set of options by offering a list of g
           {label: 'Choice B', value: 'b'},
           {label: 'Choice C', value: 'c'},
         ]}
-        value={state.selectedChoice}
-        onChange={e => setState({selectedChoice: e.target.value})}
+        value={selectedChoice}
+        onChange={e => setSelectedChoice(e.target.value)}
       />
       <EzField
         type="checkbox"
@@ -107,12 +109,12 @@ Allows the user to choose between a fixed set of options by offering a list of g
           {label: 'Choice B', value: 'b'},
           {label: 'Choice C', value: 'c'},
         ]}
-        value={state.selectedChoices}
-        onChange={e => setState({selectedChoices: e.target.value})}
+        value={selectedChoices}
+        onChange={e => setSelectedChoices(e.target.value)}
       />
     </EzFormLayout>
-  )}
-</Component>
+  );
+};
 ```
 
 Note: e.target.selected has been deprecated in favor of e.target.value

@@ -2,7 +2,6 @@ import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
 import {getByLabelText, fireEvent} from '@testing-library/react';
-import Component from 'react-component-component';
 import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
@@ -11,7 +10,7 @@ import {EzButton, EzFormLayout, EzLayout} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
 
-const scope = {EzButton, EzField, EzLayout, EzFormLayout, Component, Open, Media};
+const scope = {EzButton, EzField, EzLayout, EzFormLayout, Open, Media};
 
 describe('EzField', () => {
   visualSnapshots({markdown, scope});

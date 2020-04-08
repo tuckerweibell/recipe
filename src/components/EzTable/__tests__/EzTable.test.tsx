@@ -1,7 +1,6 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import Component from 'react-component-component';
 import {fireEvent, cleanup} from '@testing-library/react';
 import regressionTests from './EzTable.test.md';
 import markdown from '../EzTable.md';
@@ -18,7 +17,7 @@ const SetOverflow = ({children}) => {
   return children;
 };
 
-const scope = {EzButton, EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle, Component};
+const scope = {EzButton, EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle};
 
 describe('EzTable', () => {
   visualSnapshots({markdown, scope});

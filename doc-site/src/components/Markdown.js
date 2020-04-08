@@ -2,7 +2,6 @@ import React from 'react';
 import {Global, css} from '@emotion/core';
 import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
-import Component from 'react-component-component';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
 import loadable from '@loadable/component';
@@ -127,7 +126,7 @@ const require = () => ({
 });
 
 const ezCaterLogoPath = logo;
-const scope = {...Components, styled, css, Global, Component, require, ezCaterLogoPath, withPrefix};
+const scope = {...Components, styled, css, Global, require, ezCaterLogoPath, withPrefix};
 
 const splitOnTagName = (list, tagName) => {
   const i = list.findIndex(el => el.tagName === tagName);
