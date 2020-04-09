@@ -67,10 +67,10 @@ const StyledMenu = styled(Dialog)(nestedStyles) as any;
 const StyledMenuItem = styled(Button)(nestedMenuItem, buttonReset) as any;
 
 const UserMenu = forwardRef<HTMLButtonElement, MenuProps>((props, ref) => {
-  const dialog = useDialogState();
+  const dialog = useDialogState({modal: false});
   return (
     <>
-      <StyledMenu {...dialog} aria-label="User options" modal={false}>
+      <StyledMenu {...dialog} aria-label="User options">
         {props.links.map((link, i) => (
           <StyledMenuItem
             key={i}
