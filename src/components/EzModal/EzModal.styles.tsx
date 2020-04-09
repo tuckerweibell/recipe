@@ -1,8 +1,7 @@
 import {css} from '@emotion/core';
-import {DialogContent, DialogOverlay} from '@reach/dialog';
 import styled from '../../themes/styled';
 
-export const Overlay = styled(DialogOverlay)`
+export const StyledOverlay = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
@@ -16,7 +15,7 @@ export const Overlay = styled(DialogOverlay)`
   left: 0;
 `;
 
-export const ModalContainer = styled(DialogContent)`
+export const StyledDialog = styled.div`
   background: ${props => props.theme.colors.white};
   display: flex;
   flex-direction: column;
@@ -31,6 +30,11 @@ export const ModalContainer = styled(DialogContent)`
     height: auto;
     max-height: calc(100vh - ${props => props.theme.spacing.xl4});
     width: 575px;
+  }
+
+  :focus {
+    box-shadow: 0px 0px 2px 2px ${({theme}) => theme.colors.interactive.focus.outline},
+      0 1px 1px 0 rgba(0, 0, 0, 0.12);
   }
 `;
 

@@ -12,13 +12,6 @@ afterEach(cleanup);
 const scope = {EzModal};
 
 describe('EzModal', () => {
-  // suppress import style warning from Reach Modal
-  jest.spyOn(CSSStyleDeclaration.prototype, 'getPropertyValue').mockReturnValue('1');
-
-  afterAll(() => {
-    (CSSStyleDeclaration.prototype.getPropertyValue as any).mockRestore();
-  });
-
   visualSnapshots({markdown: regressionTests, scope});
 
   it('does not render the children if not open', () => {
@@ -66,24 +59,6 @@ describe('EzModal', () => {
 
     fireEvent.click(getByText(dismissLabel));
     expect(clickSpy).toHaveBeenCalled();
-  });
-
-  it('passes through the destructive prop to the submit button ', () => {
-    const submitLabel = 'submit';
-    const {getByText} = fullRender(
-      <EzModal
-        isOpen
-        submitLabel={submitLabel}
-        destructive
-        dismissLabel="dismiss"
-        headerText="header"
-      >
-        test
-      </EzModal>
-    );
-
-    const submitButton = getByText(submitLabel);
-    expect(submitButton).toHaveStyle(`background-color: ${standard.colors.destructive}`);
   });
 
   it('disables the submit button when the form is submitting', () => {

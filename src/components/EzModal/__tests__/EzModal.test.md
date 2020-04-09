@@ -13,3 +13,17 @@
   <p>Modal content goes here!</p>
 </EzModal>
 ```
+
+### Confirmation modals
+
+```jsx
+<EzModal
+  isOpen
+  submitLabel="Submit"
+  destructive
+  dismissLabel="Dismiss"
+  headerText="Header goes here"
+>
+  <p>Modal content goes here!</p>
+</EzModal>
+```
