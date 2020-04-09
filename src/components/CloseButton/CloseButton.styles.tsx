@@ -16,14 +16,9 @@ export const base = ({theme}) => css`
   :active {
     background-color: hsla(204, 11%, 79%, 0.4);
   }
-
-  > span:not(:focus):not(:active) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+  :focus {
+    background-color: hsla(204, 11%, 79%, 0.4);
+    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline},
+      0 1px 1px 0 rgba(0, 0, 0, 0.12);
   }
 `;
