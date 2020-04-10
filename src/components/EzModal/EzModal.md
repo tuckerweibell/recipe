@@ -36,19 +36,25 @@ When the user clicks outside the modal, hits the escape key, or hits close, the 
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  React.useEffect(
+    function openModalUponClosing() {
+      const id = setTimeout(setIsOpen, 1000, true);
+      return () => clearTimeout(id);
+    },
+    [isOpen]
+  );
+
   return (
-    <React.Fragment>
-      <button onClick={() => setIsOpen(true)}>Button</button>
-      <EzModal
-        isOpen={isOpen}
-        onDismiss={() => setIsOpen(false)}
-        dismissLabel="Dismiss"
-        headerText="Header goes here"
-      >
-        Modal content goes here!
-      </EzModal>
-    </React.Fragment>
+    <EzModal
+      isOpen={isOpen}
+      onDismiss={() => setIsOpen(false)}
+      dismissLabel="Dismiss"
+      headerText="Header goes here"
+    >
+      Modal content goes here!
+    </EzModal>
   );
 };
 ```
@@ -61,18 +67,29 @@ The `onSubmit` function will be called when the user clicking the button labelle
 
 ```jsx
 () => {
-  const [state, setState] = React.useState({isOpen: false});
+  const [isOpen, setIsOpen] = React.useState(true);
+  const [submitted, setSubmitted] = React.useState(null);
+
+  React.useEffect(
+    function openModalUponClosing() {
+      const id = setTimeout(setIsOpen, 1000, true);
+      return () => clearTimeout(id);
+    },
+    [isOpen]
+  );
+
   return (
-    <EzCard>
-      <button onClick={() => setState({isOpen: true})}>Button</button>
+    <>
       <EzModal
-        isOpen={state.isOpen}
+        isOpen={isOpen}
         onSubmit={() => {
-          setState({isOpen: false, submitted: true});
+          setSubmitted(true);
+          setIsOpen(false);
         }}
         submitLabel="Submit"
         onDismiss={() => {
-          setState({isOpen: false, submitted: false});
+          setSubmitted(false);
+          setIsOpen(false);
         }}
         dismissLabel="Dismiss"
         headerText="Header goes here"
@@ -80,15 +97,15 @@ The `onSubmit` function will be called when the user clicking the button labelle
         Modal content goes here!
       </EzModal>
       <div>
-        {'submitted' in state ? (
-          state.submitted ? (
+        {submitted !== null ? (
+          submitted ? (
             <EzAlert headline="Submitted" use="success" />
           ) : (
             <EzAlert headline="Dismissed" use="info" />
           )
         ) : null}
       </div>
-    </EzCard>
+    </>
   );
 };
 ```
@@ -105,22 +122,28 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 
 ```jsx
 () => {
-  const [state, setState] = React.useState({isOpen: false});
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  React.useEffect(
+    function openModalUponClosing() {
+      const id = setTimeout(setIsOpen, 1000, true);
+      return () => clearTimeout(id);
+    },
+    [isOpen]
+  );
+
   return (
-    <React.Fragment>
-      <button onClick={() => setState({isOpen: true})}>Button</button>
-      <EzModal
-        destructive
-        isOpen={state.isOpen}
-        onSubmit={() => setState({isOpen: false})}
-        submitLabel="Submit"
-        onDismiss={() => setState({isOpen: false})}
-        dismissLabel="Dismiss"
-        headerText="Header goes here"
-      >
-        Modal content goes here!
-      </EzModal>
-    </React.Fragment>
+    <EzModal
+      destructive
+      isOpen={isOpen}
+      onSubmit={() => setIsOpen(false)}
+      submitLabel="Submit"
+      onDismiss={() => setIsOpen(false)}
+      dismissLabel="Dismiss"
+      headerText="Header goes here"
+    >
+      Modal content goes here!
+    </EzModal>
   );
 };
 ```
@@ -133,25 +156,35 @@ You can set the `isSubmitting` prop to indicate that the modal is processing the
 
 ```jsx
 () => {
-  const [state, setState] = React.useState({isOpen: false});
+  const [isOpen, setIsOpen] = React.useState(true);
+  const [isSubmitting, setIsSubmitting] = React.useState(null);
+
+  React.useEffect(
+    function openModalUponClosing() {
+      const id = setTimeout(setIsOpen, 1000, true);
+      return () => clearTimeout(id);
+    },
+    [isOpen]
+  );
+
   return (
-    <React.Fragment>
-      <button onClick={() => setState({isOpen: true})}>Button</button>
-      <EzModal
-        isSubmitting={state.isSubmitting}
-        isOpen={state.isOpen}
-        onSubmit={() => {
-          setState({isOpen: true, isSubmitting: true});
-          setTimeout(() => setState({isOpen: false, isSubmitting: false}), 2000);
-        }}
-        submitLabel="Submit"
-        onDismiss={() => setState({isOpen: false})}
-        dismissLabel="Dismiss"
-        headerText="Header goes here"
-      >
-        Modal content goes here!
-      </EzModal>
-    </React.Fragment>
+    <EzModal
+      isSubmitting={isSubmitting}
+      isOpen={isOpen}
+      onSubmit={() => {
+        setIsSubmitting(true);
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setIsOpen(false);
+        }, 2000);
+      }}
+      submitLabel="Submit"
+      onDismiss={() => setIsOpen(false)}
+      dismissLabel="Dismiss"
+      headerText="Header goes here"
+    >
+      Modal content goes here!
+    </EzModal>
   );
 };
 ```
