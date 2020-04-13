@@ -26,6 +26,7 @@ title: 'Unreleased changes'
 - Fixed `:focus` styles on close button for EzModal, EzBanner and EzFlashMessage.
 - Fixed positioning issue with EzField[type=select] causing flyout to overflow the bounds of the screen. The flyout will now "flip" above the input if the dropdown list would otherwise overflow the bottom of the screen. (Closes [#289](https://github.com/ezcater/recipe/issues/289)).
 - Fixed positioning issue with EzField[type=select] causing flyout to be clipped by scrolling container elements (such as modal dialogs).
+- Fixed z-index issue with EzField[type=time] icon appearing above other content (Closes [#326](https://github.com/ezcater/recipe/issues/326)).
 
 #### Documentation
 
