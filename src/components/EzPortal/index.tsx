@@ -1,1 +1,1 @@
-export {default} from './EzPortal';
+export {default, PortalContext} from './EzPortal';

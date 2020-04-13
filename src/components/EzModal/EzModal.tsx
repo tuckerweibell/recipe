@@ -1,6 +1,6 @@
-import React, {useRef, useState, useLayoutEffect, useContext, useEffect} from 'react';
+import React, {useRef, useContext, useEffect} from 'react';
 import {useDialog, useDialogState, useDialogBackdrop, DialogStateReturn} from 'reakit/Dialog';
-import {Portal, PortalContext} from 'reakit/Portal';
+import {Portal} from 'reakit/Portal';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
@@ -13,7 +13,7 @@ import {
 } from './EzModal.styles';
 import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
-import EzPortal from '../EzPortal';
+import EzPortal, {PortalContext} from '../EzPortal';
 
 type Props = {
   children: React.ReactNode;
@@ -28,30 +28,14 @@ type Props = {
   appElement?: string;
 };
 
-const {Provider} = PortalContext;
-
-const PortalledContent: React.FC<{}> = ({children}) => {
-  const mountNode = useRef(null);
-  const [hostNode, setHostNode] = useState(null);
-
-  useLayoutEffect(() => {
-    const ownerDocument = mountNode.current.ownerDocument;
-    setHostNode(ownerDocument.body);
-  }, []);
-
-  return hostNode ? <Provider value={hostNode}>{children}</Provider> : <div ref={mountNode} />;
-};
-
 const PortalledOverlay = ({children, ...props}) => (
   <EzPortal>
-    <PortalledContent>
-      <StyledOverlay {...useDialogBackdrop(props)}>{children}</StyledOverlay>
-    </PortalledContent>
+    <StyledOverlay {...useDialogBackdrop(props)}>{children}</StyledOverlay>
   </EzPortal>
 );
 
 const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, children, ...props}) => {
-  const hostNode = useContext(PortalContext);
+  const {current: hostNode} = useContext(PortalContext);
   const initialFocusRef = useRef<HTMLElement>();
 
   useEffect(() => {
