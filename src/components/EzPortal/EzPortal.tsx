@@ -9,7 +9,8 @@ const {Provider} = PortalContext;
 
 const EzPortal: React.FC<PortalProps> = ({children}) => {
   const mountNode = useRef<HTMLDivElement | null>(null);
-  const {current: context} = useContext(PortalContext);
+  const {current: contextValue} = useContext(PortalContext);
+  const contextRef = useRef<HTMLElement | null>(contextValue);
   const [hostNode, setHostNode] = useState(null);
 
   // because it's possible to render portals within iframes, we need to ensure that we can
@@ -25,6 +26,7 @@ const EzPortal: React.FC<PortalProps> = ({children}) => {
     // nest our new content. Otherwise, we have to use the mounted element to determine
     // the current ownerDocument (iframed content) to ensure the portal renders to the
     // correct document.
+    const {current: context} = contextRef;
     const parentElement =
       mountNode.current.ownerDocument === context?.ownerDocument
         ? context
@@ -41,7 +43,7 @@ const EzPortal: React.FC<PortalProps> = ({children}) => {
       if (!parentElement.parentElement || !parentElement.contains(portalNode)) return;
       parentElement.removeChild(portalNode);
     };
-  }, [context]);
+  }, []);
 
   if (!hostNode) return <div ref={mountNode} />;
 
