@@ -33,3 +33,35 @@
   />
 </Media>
 ```
+
+### EzField time flyout overlap with another EzField time control
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+  return (
+    <div ref={containerRef}>
+      <EzFormLayout>
+        <Open containerRef={containerRef}>
+          <EzField
+            type="time"
+            label="Select order time"
+            start="9:00am"
+            end="5:00pm"
+            step={60}
+            value="1:00 PM"
+          />
+        </Open>
+        <EzField
+          type="time"
+          label="Select delivery time"
+          start="9:00am"
+          end="5:00pm"
+          step={60}
+          value="1:00 PM"
+        />
+      </EzFormLayout>
+    </div>
+  );
+};
+```

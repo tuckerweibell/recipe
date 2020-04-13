@@ -19,8 +19,6 @@ const hideErrorMessageWhenOpen = ({hasError, opened}) =>
   `;
 
 export const Container = styled.div<any>`
-  position: relative;
-
   input {
     cursor: default;
     text-overflow: ellipsis;
@@ -36,8 +34,6 @@ const iconColor = p =>
   p.disabled ? p.theme.colors.interactive.disabled.foreground : p.theme.colors.interactive.base;
 
 export const Combobox = styled.div`
-  position: relative;
-
   && input {
     padding-right: 2em;
   }

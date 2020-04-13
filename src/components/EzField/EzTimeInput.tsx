@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
 import {TimeInput} from './EzTimeInput.styles';
+import EzSelect from './EzSelect';
 import {ClockIcon, InsetIcon} from '../Icons';
 
 const repeat = n => new Array(n).fill(null);
@@ -31,11 +32,11 @@ export default ({start, end, step = 60, value, ...rest}) => {
 
   const options = useTimeRangeOptions({start, end, step});
   return (
-    <div style={{position: 'relative'}}>
-      <InsetIcon insetY0 left0 pl3 z1>
+    <TimeInput>
+      <InsetIcon insetY0 left0 pl3>
         <ClockIcon />
       </InsetIcon>
-      <TimeInput
+      <EzSelect
         id={rest.id}
         label={rest.label}
         {...{error, touched}}
@@ -48,6 +49,6 @@ export default ({start, end, step = 60, value, ...rest}) => {
         onChange={rest.onChange}
         aria-labelledby={rest['aria-labelledby']}
       />
-    </div>
+    </TimeInput>
   );
 };

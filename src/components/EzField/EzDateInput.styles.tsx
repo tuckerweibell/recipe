@@ -4,6 +4,7 @@ import {Combobox as BaseCombobox} from './EzCombobox.styles';
 export {Container} from './EzCombobox.styles';
 
 export const Combobox = styled(BaseCombobox)`
+  position: relative;
   width: 200px;
   input {
     padding-left: 2.5em;

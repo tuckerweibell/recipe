@@ -7,7 +7,7 @@ jest.mock('../EzPopover', () => {
   return {
     __esModule: true,
     default: ({children}) => (
-      <div style={{marginTop: 4, position: 'absolute', width: '100%'}}>{children}</div>
+      <div style={{marginTop: 4, position: 'absolute', width: '100%', zIndex: 1}}>{children}</div>
     ),
   };
 });
