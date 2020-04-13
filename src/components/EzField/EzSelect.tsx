@@ -3,6 +3,7 @@ import {Combobox, Container, Listbox} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 import EzTextInput from './EzTextInput';
+import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
 
 const flatten = options => {
@@ -17,6 +18,28 @@ const flatten = options => {
 
   return [...grouped];
 };
+
+const ListboxPopover = React.forwardRef<any, any>(({targetRef, ...props}, ref) => (
+  <EzPopover
+    targetRef={targetRef}
+    placement="bottom-start"
+    modifiers={[
+      {
+        name: 'matchWidth',
+        enabled: true,
+        fn: ({state}) => {
+          // eslint-disable-next-line no-param-reassign
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+        phase: 'beforeWrite',
+        requires: ['computeStyles'],
+      },
+      {name: 'offset', options: {offset: [0, 5]}},
+    ]}
+  >
+    <Listbox role="listbox" ref={ref} {...props} />
+  </EzPopover>
+));
 
 const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, onClick}) => {
   /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -172,9 +195,9 @@ const EzSelect = props => {
         </InsetIcon>
       </Combobox>
       {visible && (
-        <Listbox
+        <ListboxPopover
           aria-labelledby={ariaLabelledBy}
-          role="listbox"
+          targetRef={comboboxInput.ref}
           {...comboboxFlyout}
           ref={optionsRef as any}
           onClick={() => comboboxInput.ref.current.focus()}
@@ -190,7 +213,7 @@ const EzSelect = props => {
               <Option {...listbox} option={o} key={o.label} onClick={() => selectItem(o.value)} />
             ))
           )}
-        </Listbox>
+        </ListboxPopover>
       )}
     </Container>
   );

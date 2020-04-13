@@ -3,6 +3,7 @@ import {visualSnapshots} from 'sosia';
 import {getByLabelText, getByText, fireEvent, act} from '@testing-library/react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ezSelectTests from './EzSelect.test.md';
+import '../mocks';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzButton, EzLayout} from '../../index';
