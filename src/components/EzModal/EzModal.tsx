@@ -37,25 +37,29 @@ const PortalledOverlay = ({children, ...props}) => (
 const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, children, ...props}) => {
   const {current: hostNode} = useContext(PortalContext);
   const initialFocusRef = useRef<HTMLElement>();
+  const ref = useRef<HTMLElement>();
 
   useEffect(() => {
     if (isOpen) initialFocusRef.current = hostNode.ownerDocument.activeElement as HTMLElement;
   }, [hostNode, isOpen]);
 
   const preventBodyScroll = hostNode === document.body;
-  const dialog = useDialog({
-    ...props,
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    unstable_finalFocusRef: initialFocusRef,
-    preventBodyScroll,
-  });
+  const dialog = useDialog(
+    {
+      ...props,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      unstable_finalFocusRef: initialFocusRef,
+      preventBodyScroll,
+    },
+    {ref}
+  );
 
   // eslint-disable-next-line no-underscore-dangle
   Portal.__selector = `#${dialog.id}`;
 
   return (
     <StyledDialog {...dialog} tabIndex={0}>
-      {props.visible && children}
+      <PortalContext.Provider value={ref}>{props.visible && children}</PortalContext.Provider>
     </StyledDialog>
   );
 };
