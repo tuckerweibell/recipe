@@ -37,7 +37,14 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
       {React.cloneElement(child, childProps)}
 
       {showTooltip && (
-        <EzPopover targetRef={targetRef} position={position}>
+        <EzPopover
+          targetRef={targetRef}
+          placement={position === 'horizontal' ? 'right' : 'bottom'}
+          modifiers={[
+            {name: 'arrow', enabled: true, options: {padding: 5}},
+            {name: 'offset', options: {offset: [0, 5]}},
+          ]}
+        >
           <TooltipArrow data-popper-arrow>
             <svg width="10" height="10">
               <path d="M0 5l5-5 5 5z" />

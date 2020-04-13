@@ -1,10 +1,12 @@
 import React from 'react';
+import {Placement, Modifier} from '@popperjs/core';
 import EzPortal from '../EzPortal';
 import {usePopper} from '../../utils/hooks';
 
 type Props = {
   targetRef: React.RefObject<HTMLElement>;
-  position?: 'vertical' | 'horizontal';
+  placement?: Placement;
+  modifiers?: Array<Partial<Modifier<any>>>;
 } & React.HTMLAttributes<any>;
 
 const EzPopover: React.FC<Props> = props => (
@@ -13,10 +15,14 @@ const EzPopover: React.FC<Props> = props => (
   </EzPortal>
 );
 
-const PopoverImpl: React.FC<Props> = ({targetRef, position, children, ...rest}) => {
-  const {popper, reference} = usePopper({
-    placement: position === 'horizontal' ? 'right' : 'bottom',
-  });
+const PopoverImpl: React.FC<Props> = ({
+  targetRef,
+  placement = 'bottom',
+  modifiers = [],
+  children,
+  ...rest
+}) => {
+  const {popper, reference} = usePopper({placement, modifiers});
   reference.current = targetRef.current;
 
   return (
@@ -24,10 +30,6 @@ const PopoverImpl: React.FC<Props> = ({targetRef, position, children, ...rest}) 
       {children}
     </div>
   );
-};
-
-EzPopover.defaultProps = {
-  position: 'vertical',
 };
 
 export default EzPopover;
