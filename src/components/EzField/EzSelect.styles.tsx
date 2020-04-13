@@ -17,6 +17,7 @@ const listbox = ({theme}) => css`
   overflow: scroll;
   margin-top: ${theme.spacing.xs2};
   max-height: 20rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 
   ul {
     list-style: none;
