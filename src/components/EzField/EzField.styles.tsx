@@ -2,29 +2,15 @@ import {css} from '@emotion/core';
 import {hideVisually} from '../../styles';
 import styled from '../../themes/styled';
 import inputStyles from './EzTextInput.styles';
-import {standard} from '../../themes';
 import {ErrorTriangle as ErrorIcon} from '../Icons';
 
 // pre-calculate where to put the error icon (icon width + right padding of input)
-const inputBorderRadius = '4px';
 const calloutBorderRadius = '3px';
 
-function borderRadius(side: 'top' | 'bottom', radius: string | number) {
-  return css`
-    border-${side}-right-radius: ${radius};
-    border-${side}-left-radius: ${radius};
-  `;
-}
-
-const roundedBottom = borderRadius('bottom', calloutBorderRadius);
 const roundedFull = {borderRadius: calloutBorderRadius};
-
-export const borderCollapse = (theme = standard) => css`
-  ${borderRadius('bottom', 0)};
-
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    ${borderRadius('bottom', inputBorderRadius)};
-  }
+const roundedBottom = css`
+  border-bottom-right-radius: ${calloutBorderRadius};
+  border-bottom-left-radius: ${calloutBorderRadius};
 `;
 
 export const CustomInputWrapper = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
-import {getByLabelText, fireEvent} from '@testing-library/react';
+import {getByLabelText, fireEvent, act} from '@testing-library/react';
 import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
@@ -57,6 +57,35 @@ describe('EzField', () => {
     fireEvent.change(input, {target: {value: 'Oscar the grouch'}});
 
     expect(container).toHaveTextContent('0/120');
+  });
+
+  it('should not lose focus when typing causes the validation state to toggle', () => {
+    const Example = () => {
+      const [value, setValue] = React.useState('value');
+      return (
+        <EzField
+          type="text"
+          label="Field label"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          touched
+          error={value.length < 6 && 'Oops!'}
+          helperText="click the checkbox to make input invalid"
+        />
+      );
+    };
+
+    const {container} = render(<Example />);
+
+    const input = getByLabelText(container, 'Field label');
+
+    act(() => input.focus());
+
+    expect(input).toHaveFocus();
+
+    fireEvent.change(input, {target: {value: 'trigger the field error'}});
+
+    expect(input).toHaveFocus();
   });
 
   it('should apply ref to the underlying input element', () => {

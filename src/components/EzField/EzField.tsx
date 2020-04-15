@@ -1,10 +1,8 @@
 import React, {forwardRef, CSSProperties} from 'react';
-import {jsx} from '@emotion/core';
 import {
   Field,
   Helper,
   InlineError,
-  borderCollapse,
   CharacterLimit,
   ErrorTriangle,
   CustomInputWrapper,
@@ -88,15 +86,17 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       {helperText && <Helper>{helperText}</Helper>}
       <div>
         <div style={relative}>
-          {jsx(Input, {
-            ...props,
-            ...wrapEvents(props, {onBlur, onFocus, onChange}),
-            id,
-            name: props.name || id,
-            'aria-labelledby': labelId,
-            ref,
-            css: showInlineError && showError ? borderCollapse : undefined,
-          })}
+          <Input
+            {...{
+              ...props,
+              ...wrapEvents(props, {onBlur, onFocus, onChange}),
+              id,
+              name: props.name || id,
+              'aria-labelledby': labelId,
+              ref,
+              showInlineError: (showInlineError && showError) || undefined,
+            }}
+          />
           {showInlineError && showError && <ErrorIcon />}
         </div>
         {showInlineError && showError && errorMessage}

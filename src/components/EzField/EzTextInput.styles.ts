@@ -48,4 +48,19 @@ const inputDisabled = ({theme, disabled}) =>
     color: ${theme.colors.interactive.disabled.foreground};
   `;
 
-export default props => css(inputBase(props), inputError(props), inputDisabled(props));
+const inputBorderRadius = '4px';
+
+export const borderCollapse = ({theme, showInlineError}) =>
+  showInlineError &&
+  css`
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    @media screen and (min-width: ${theme.breakpoints.medium}) {
+      border-bottom-right-radius: ${inputBorderRadius};
+      border-bottom-left-radius: ${inputBorderRadius};
+    }
+  `;
+
+export default props =>
+  css(inputBase(props), inputError(props), inputDisabled(props), borderCollapse(props));
