@@ -31,8 +31,8 @@ Forms should:
 
 ```jsx
 <EzFormLayout>
-  <EzField type="input" label="First name" />
-  <EzField type="input" label="Last name" />
+  <EzField type="text" label="First name" />
+  <EzField type="text" label="Last name" />
   <EzField type="number" label="Favorite Number" value={7} />
 </EzFormLayout>
 ```
@@ -46,8 +46,8 @@ Typically used to group familiar layouts such as state and zip code, or start/en
 ```jsx
 <EzFormLayout>
   <EzLayout layout="basic">
-    <EzField type="input" label="First name" />
-    <EzField type="input" label="Last name" />
+    <EzField type="text" label="First name" />
+    <EzField type="text" label="Last name" />
   </EzLayout>
 </EzFormLayout>
 ```

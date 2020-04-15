@@ -57,10 +57,10 @@ Allows a single Recipe component to become a trigger for a tooltip to provide ad
 ```jsx
 <EzFormLayout>
   <EzTooltip message="The users first name">
-    <EzField type="input" label="First name" />
+    <EzField type="text" label="First name" />
   </EzTooltip>
   <EzTooltip message="The users last name">
-    <EzField type="input" label="Last name" />
+    <EzField type="text" label="Last name" />
   </EzTooltip>
 </EzFormLayout>
 ```
