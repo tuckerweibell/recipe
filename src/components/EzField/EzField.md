@@ -203,18 +203,30 @@ Allows the user to pick a date from a popup calendar or enter their own date dir
 
 ### Date input within range
 
-Allows the user to pick a restricted range of available dates from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Use the optional `minDate={dateValue}` prop to disallow the selection of dates prior to `dateValue`. Use the optional `maxDate={dateValue}` prop to disallow the selection of dates after `dateValue`.
+Allows the user to pick a restricted range of available dates from a popup calendar or enter their own date directly into the input field.
+
+While the `minDate` and `maxDate` options will prevent the selection of unavailable dates from the calendar, additional validation is required to prevent invalid values from being entered directly into the input.
+
+- Use `type="date"` to enable the user to pick a date from a popup calendar.
+- Use the optional `minDate={dateValue}` prop to disallow the selection of dates prior to `dateValue`.
+- Use the optional `maxDate={dateValue}` prop to disallow the selection of dates after `dateValue`.
 
 ```jsx
 () => {
   const [date, setDate] = React.useState('01/20/2020');
+  const minDate = '01/20/2020';
+  const maxDate = '01/24/2020';
+  const invalidDate = new Date(date) < new Date(minDate) || new Date(date) > new Date(maxDate);
+
   return (
     <EzFormLayout>
       <EzField
         type="date"
         value={date}
-        minDate={'01/20/2020'}
-        maxDate={'01/24/2020'}
+        minDate={minDate}
+        maxDate={maxDate}
+        touched
+        error={invalidDate && 'This date is unavailable'}
         label="Select delivery date"
         helperText="This is the date your food will be delivered."
         onChange={value => setDate(value)}
@@ -226,7 +238,12 @@ Allows the user to pick a restricted range of available dates from a popup calen
 
 ### Date input with filtered range
 
-Allows the user to pick from an arbitrary selection available dates from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Use the optional `filterDate={fn}` prop to restrict the range of dates presented to only the set that are returned by the filter.
+Allows the user to pick from an arbitrary selection available dates from a popup calendar or enter their own date directly into the input field.
+
+While the `filterDate` option will prevent the selection of unavailable dates from the calendar, additional validation is required to prevent invalid values from being entered directly into the input.
+
+- Use `type="date"` to enable the user to pick a date from a popup calendar.
+- Use the optional `filterDate={fn}` prop to restrict the range of dates presented to only the set that are returned by the filter.
 
 The below example demonstrates using the `filterDate` prop to restrict the calendar selection to only allow weekdays.
 
@@ -239,12 +256,16 @@ The below example demonstrates using the `filterDate` prop to restrict the calen
     return day !== 0 && day !== 6;
   };
 
+  const invalidDate = !isWeekday(date);
+
   return (
     <EzFormLayout>
       <EzField
         type="date"
         value={date}
         filterDate={isWeekday}
+        touched
+        error={invalidDate && 'This date is unavailable'}
         label="Select delivery date"
         helperText="This is the date your food will be delivered."
         onChange={value => setDate(value)}
