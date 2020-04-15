@@ -26,4 +26,6 @@ const overrides = ({theme}) => css`
 
 export const TextArea = styled.textarea(styles, overrides);
 
-export default ({size, ...rest}) => <TextArea {...rest} rows={rows(size)} />;
+export default React.forwardRef<HTMLTextAreaElement, {size}>(({size, ...rest}, ref) => (
+  <TextArea ref={ref} {...rest} rows={rows(size)} />
+));
