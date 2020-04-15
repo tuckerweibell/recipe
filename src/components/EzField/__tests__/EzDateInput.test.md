@@ -78,3 +78,53 @@
   />
 </Media>
 ```
+
+### EzField date input with min/max range
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+
+  return (
+    <div ref={containerRef}>
+      <Open containerRef={containerRef}>
+        <EzField
+          label="Order date"
+          type="date"
+          value="01/20/2020"
+          minDate={'01/20/2020'}
+          maxDate={'01/24/2020'}
+          autoFocus
+        />
+      </Open>
+    </div>
+  );
+};
+```
+
+### EzField date input with available date filter
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+
+  const isWeekday = date => {
+    const day = new Date(date).getDay();
+    return day !== 0 && day !== 6;
+  };
+
+  return (
+    <div ref={containerRef}>
+      <Open containerRef={containerRef}>
+        <EzField
+          label="Order date"
+          filterDate={isWeekday}
+          type="date"
+          value="01/20/2020"
+          autoFocus
+        />
+      </Open>
+    </div>
+  );
+};
+```

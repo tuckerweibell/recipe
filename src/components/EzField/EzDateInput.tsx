@@ -61,6 +61,8 @@ const EzDateInput = ({
 
   const comboboxFlyout = useComboboxFlyout(comboboxState);
 
+  const {minDate, maxDate, filterDate} = props;
+
   return (
     <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
@@ -80,6 +82,7 @@ const EzDateInput = ({
           }}
         >
           <EzCalendar
+            {...{minDate, maxDate, filterDate}}
             value={validDate}
             onChange={date => {
               setValue(date);

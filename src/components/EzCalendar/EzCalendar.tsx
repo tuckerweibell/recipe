@@ -39,7 +39,7 @@ const populateMonth = (date: any) => {
   );
 };
 
-const EzCalendar = ({value, onChange}) => {
+const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}) => {
   const {t} = useTranslation(en);
   const calendarRef = useRef(null);
   const refs = useRef(repeat(maxDaysInMonth).map(() => createRef<HTMLButtonElement>())).current;
@@ -62,7 +62,7 @@ const EzCalendar = ({value, onChange}) => {
     if (dayjs(value).isValid()) setFocusedDate(dayjs(value));
   }, [value]);
 
-  const handleKeyInput = selectFocusedDate => e => {
+  const handleKeyInput = (selectFocusedDate, disabled) => e => {
     switch (e.key) {
       case 'ArrowLeft':
         e.preventDefault();
@@ -83,11 +83,22 @@ const EzCalendar = ({value, onChange}) => {
       case 'Space':
       case 'Enter':
         e.preventDefault();
-        selectFocusedDate();
+        if (!disabled) selectFocusedDate();
         break;
       default:
         break;
     }
+  };
+
+  const isEnabled = (day: dayjs.Dayjs) => {
+    const isSameOrAfterMinDate =
+      minDate !== undefined ? day.isSame(minDate) || day.isAfter(minDate) : true;
+    const isSameOrBeforeMaxDate =
+      maxDate !== undefined ? day.isSame(maxDate) || day.isBefore(maxDate) : true;
+    const isFilterMatch =
+      filterDate !== undefined ? filterDate(day.format(t('DATE_FORMAT'))) : true;
+
+    return isSameOrAfterMinDate && isSameOrBeforeMaxDate && isFilterMatch;
   };
 
   return (
@@ -125,14 +136,19 @@ const EzCalendar = ({value, onChange}) => {
               {week.map((day, dayIndex) => {
                 const currentDay = focusedDate.set('date', day);
                 const selectDate = () => onChange(currentDay.format(t('DATE_FORMAT')));
+                const disabled = !isEnabled(currentDay);
+                const ifEnabled = fn => e => {
+                  if (!disabled) fn(e);
+                };
                 return (
                   <Day key={dayIndex} isSelected={currentDay.isSame(selectedDate)}>
                     {day && (
                       <button
                         ref={refs[day - 1]}
                         type="button"
-                        onClick={selectDate}
-                        onKeyDown={handleKeyInput(selectDate)}
+                        onClick={ifEnabled(selectDate)}
+                        aria-disabled={disabled}
+                        onKeyDown={handleKeyInput(selectDate, disabled)}
                         aria-label={currentDay.format('dddd, MMMM D, YYYY').toString()}
                         tabIndex={day === focusedDate.date() ? 0 : -1}
                       >

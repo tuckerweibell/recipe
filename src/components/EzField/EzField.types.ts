@@ -31,6 +31,9 @@ type HtmlInputProps = {
 type DateInputProps = {
   type: 'date';
   value: string | number | object;
+  minDate?: string | number | object;
+  maxDate?: string | number | object;
+  filterDate?: (value: string) => boolean;
 };
 
 type TimeInputProps = {

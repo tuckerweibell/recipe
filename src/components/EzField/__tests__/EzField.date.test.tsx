@@ -169,6 +169,47 @@ describe('EzField', () => {
 
       expect(container).not.toHaveTextContent('January 2019');
     });
+    it('should ignore clicks and enter key on disabled dates', () => {
+      jest.useFakeTimers();
+
+      const {container} = render(
+        <EzField
+          type="date"
+          value="01/20/2020"
+          minDate={'01/20/2020'}
+          maxDate={'01/24/2020'}
+          label={inputLabel}
+        />
+      );
+
+      // open the calendar picker
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
+
+      expect(container).toHaveTextContent('January 2020');
+
+      // click on a date that is before the minDate
+      act(() => {
+        fireEvent.click(getByText(container, '15'));
+      });
+
+      // Fast-forward until all timers have been executed
+      act(jest.runAllTimers);
+
+      // assert calendar is still open
+      expect(container).toHaveTextContent('January 2020');
+
+      // now try selecting the disabled date with the keyboard
+      act(() => {
+        fireEvent.keyDown(getByText(container, '20'), {key: 'ArrowLeft'});
+        fireEvent.keyDown(getByText(container, '19'), {key: 'Enter'});
+      });
+
+      // Fast-forward until all timers have been executed
+      act(jest.runAllTimers);
+
+      // assert calendar is still open
+      expect(container).toHaveTextContent('January 2020');
+    });
     it('should hide calendar on escape', () => {
       const {container} = render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 

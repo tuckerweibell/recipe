@@ -28,6 +28,13 @@ const day = ({theme}) => css`
   button {
     border: ${theme.borderWidth[0]} solid transparent;
     border-radius: ${theme.borderRadius[1]};
+
+    &[aria-disabled='true'] {
+      opacity: 0.6;
+      cursor: default;
+      color: ${theme.colors.interactive.disabled.foreground};
+      pointer-events: none;
+    }
   }
 `;
 

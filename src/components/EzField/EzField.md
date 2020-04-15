@@ -201,6 +201,59 @@ Allows the user to pick a date from a popup calendar or enter their own date dir
 };
 ```
 
+### Date input within range
+
+Allows the user to pick a restricted range of available dates from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Use the optional `minDate={dateValue}` prop to disallow the selection of dates prior to `dateValue`. Use the optional `maxDate={dateValue}` prop to disallow the selection of dates after `dateValue`.
+
+```jsx
+() => {
+  const [date, setDate] = React.useState('01/20/2020');
+  return (
+    <EzFormLayout>
+      <EzField
+        type="date"
+        value={date}
+        minDate={'01/20/2020'}
+        maxDate={'01/24/2020'}
+        label="Select delivery date"
+        helperText="This is the date your food will be delivered."
+        onChange={value => setDate(value)}
+      />
+    </EzFormLayout>
+  );
+};
+```
+
+### Date input with filtered range
+
+Allows the user to pick from an arbitrary selection available dates from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar. Use the optional `filterDate={fn}` prop to restrict the range of dates presented to only the set that are returned by the filter.
+
+The below example demonstrates using the `filterDate` prop to restrict the calendar selection to only allow weekdays.
+
+```jsx
+() => {
+  const [date, setDate] = React.useState('01/20/2020');
+
+  const isWeekday = date => {
+    const day = new Date(date).getDay();
+    return day !== 0 && day !== 6;
+  };
+
+  return (
+    <EzFormLayout>
+      <EzField
+        type="date"
+        value={date}
+        filterDate={isWeekday}
+        label="Select delivery date"
+        helperText="This is the date your food will be delivered."
+        onChange={value => setDate(value)}
+      />
+    </EzFormLayout>
+  );
+};
+```
+
 Times in this component are displayed with the format h:mma, for example, `9:45am`.
 
 ### Time input field
