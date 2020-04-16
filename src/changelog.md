@@ -8,6 +8,21 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.1.0 - 2020-04-16
+
+#### Enhancements
+
+- support date range restrictions in EzField[type=date] via either `minDate` or `maxDate` restrictions or using a `filterDate` function, allowing for more control over excluding restricted dates, such as weekends or holidays. (Closes [#325](https://github.com/ezcater/recipe/issues/325)).
+
+#### Bug fixes
+
+- Implemented React.forwardRef on EzField[type=textarea]. This was previously preventing text areas from using features such as EzTooltip.
+- Fixed regression bug introduced by 10.0.3 that caused inputs to lose focus after their error state changed.
+
+#### Documentation
+
+- Update documentation usages of EzField that incorrectly used EzField[type=input] instead of EzField[type=text].
+
 ## 10.0.5 - 2020-04-14
 
 #### Design updates
