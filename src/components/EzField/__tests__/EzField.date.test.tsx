@@ -246,5 +246,21 @@ describe('EzField', () => {
 
       expect(container).not.toHaveTextContent('January 2019');
     });
+    it('should fire onchange AFTER day is clicked', async () => {
+      const handleChange = jest.fn();
+      const {container} = render(
+        <EzField type="date" value="01/01/2019" label={inputLabel} onChange={handleChange} />
+      );
+
+      expect(handleChange).not.toHaveBeenCalled();
+
+      fireEvent.mouseDown(getByLabelText(container, inputLabel));
+
+      act(() => {
+        fireEvent.click(getByText(container, '5'));
+      });
+
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
   });
 });

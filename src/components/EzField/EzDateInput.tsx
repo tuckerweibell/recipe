@@ -20,7 +20,7 @@ const EzDateInput = ({
   const {placeholder = 'Select date'} = props;
 
   const [value, setValue] = useState(props.value);
-  const [validDate, setValidDate] = useState(null);
+  const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
 
   const comboboxState = useComboboxState();
   const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
@@ -36,23 +36,23 @@ const EzDateInput = ({
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (dayjs(value).isValid()) setValidDate(value);
   }, [value]);
 
+  const onChangeRef = React.useRef(onChange);
+  onChangeRef.current = onChange;
+
   useUpdateEffect(() => {
-    onChange(validDate);
-  }, [validDate, onChange]);
+    onChangeRef.current(validDate);
+  }, [validDate]);
 
   const comboboxInput = useComboboxInput(comboboxState, {
     id,
     name,
     value,
     'aria-labelledby': ariaLabelledBy,
-    onChange: e => {
-      setValue(e.target.value);
-      onChange(e.target.value);
-    },
+    onChange: e => setValue(e.target.value),
     disabled,
     placeholder,
     error: props.error,
