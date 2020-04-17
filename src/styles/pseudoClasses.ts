@@ -12,10 +12,16 @@ const camel = str => str.replace(/(-[a-z])/g, x => x.toUpperCase()).replace(/-/g
 
 export default (cssPropertyName: CSSPropertyName, {color, focusColor}: Options) => {
   const camelName = camel(cssPropertyName);
+
+  const pseudoStates = {
+    ':hover': {[camelName]: darken(color, 0.15)},
+    ':focus': focusColor && {[camelName]: focusColor},
+    ':active': {[camelName]: darken(color, 0.25)},
+  };
+
   return {
     [camelName]: color,
-    '&:hover:enabled': {[camelName]: darken(color, 0.15)},
-    '&:focus:enabled': focusColor && {[camelName]: focusColor},
-    '&:active:enabled': {[camelName]: darken(color, 0.25)},
+    ':enabled': pseudoStates,
+    'a&': pseudoStates,
   };
 };

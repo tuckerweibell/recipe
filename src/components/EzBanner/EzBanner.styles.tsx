@@ -68,7 +68,6 @@ const button = ({theme}) => css`
   &:active,
   &:hover {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
-    color: ${theme.colors.interactive.hover.highlight};
     text-decoration: none;
   }
 `;
