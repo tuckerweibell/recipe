@@ -26,7 +26,21 @@ expect.addSnapshotSerializer(
 expect.extend(matchers);
 
 const EmotionCacheProvider = ({children}) => {
-  const cache = React.useRef(createCache());
+  const cache = React.useRef(
+    createCache({
+      stylisPlugins: [
+        // can't trigger :hover and :active pseudo classes with JS, so replace the pseudo classes with custom class,
+        // e.g. :hover => .__hover
+        // for plugin overview, see: https://github.com/thysultan/stylis.js#plugins
+        (context, content) => {
+          switch (context) {
+            case -2:
+              return content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
+          }
+        },
+      ],
+    })
+  );
 
   // Remove any injected stylesheets from the page when the component is unmounted
   React.useEffect(() => () => cache.current.sheet.flush());
