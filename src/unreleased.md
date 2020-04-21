@@ -27,6 +27,7 @@ title: 'Unreleased changes'
 #### Documentation
 
 - Improved guidance on label variations (when to use small labels).
+- Added Details page pattern example, showing how a full Order details page might be made from Recipe components.
 
 #### Dependency upgrades
 
