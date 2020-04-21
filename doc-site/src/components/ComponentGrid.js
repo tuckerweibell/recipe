@@ -15,7 +15,6 @@ const ComponentLink = ({title, path, html, name}) => (
             borderRadius: '.25rem',
           }}
           src={withPrefix(`/images/preview/${name}.png`)}
-          // src="https://tailwindui.com/img/category-thumbnails/sections-heroes.svg"
           alt=""
         />
       </div>
