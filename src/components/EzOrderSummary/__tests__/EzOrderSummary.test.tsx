@@ -2,6 +2,7 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import markdown from '../EzOrderSummary.md';
+import regressionTests from './EzOrderSummary.test.md';
 import EzOrderSummary from '../EzOrderSummary';
 import {EzButton, EzPage} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
@@ -10,6 +11,7 @@ const scope = {EzButton, EzPage, EzOrderSummary};
 
 describe('EzOrderSummary', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {
     const wrapper = renderToHtml(

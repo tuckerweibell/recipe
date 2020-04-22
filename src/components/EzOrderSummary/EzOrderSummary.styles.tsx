@@ -14,6 +14,7 @@ export const ItemsSection = styled(TableCardSection)`
   && table td {
     border: none;
     vertical-align: top;
+    white-space: normal;
   }
 
   && table tr th,
