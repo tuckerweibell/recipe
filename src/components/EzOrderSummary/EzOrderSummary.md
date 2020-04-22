@@ -36,6 +36,7 @@ Order summaries should:
 - Minimize clutter by only including values relevant to the data's purpose.
 - Include a totals section to surface a summary of the values that factor into the total for the order. This should include any added costs or discounts applied to the order, such as taxes, delivery charges, coupons and/or gift cards.
 - Be used within an [Page](/components/ez-page)
+- Clearly identify the Order by providing a title when using optional actions, such that the target of the action is clear.
 
 Order summaries should not:
 
@@ -54,7 +55,7 @@ An order summary should be used to present an at-a-glance breakdown of billable 
 ```jsx
 <EzPage>
   <EzOrderSummary
-    title="Required heading"
+    title="Order XYZ-123"
     subtitle="Optional subtitle"
     actions={<EzButton use="secondary">Available card actions</EzButton>}
     items={[

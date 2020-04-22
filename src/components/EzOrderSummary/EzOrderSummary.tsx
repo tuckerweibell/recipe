@@ -26,11 +26,19 @@ type Summary = {
   perHead?: Price;
 };
 
-type Props = {
-  actions?: React.ReactNode;
+type ActionsProps = {
+  actions: React.ReactNode;
+  title: string;
+};
+
+type OptionalTitle = {
+  actions?: never;
+  title?: string;
+};
+
+type Props = (ActionsProps | OptionalTitle) & {
   items: Item[];
   tableware: Tableware;
-  title: string;
   subtitle?: string;
   summary: Summary;
 };
