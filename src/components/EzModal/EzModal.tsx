@@ -54,11 +54,9 @@ const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, childr
     {ref}
   );
 
-  // eslint-disable-next-line no-underscore-dangle
-  Portal.__selector = `#${dialog.id}`;
-
   return (
-    <StyledDialog {...dialog} tabIndex={0}>
+    // eslint-disable-next-line no-underscore-dangle
+    <StyledDialog {...dialog} tabIndex={0} className={Portal.__className}>
       <PortalContext.Provider value={ref}>{props.visible && children}</PortalContext.Provider>
     </StyledDialog>
   );
