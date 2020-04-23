@@ -1,4 +1,5 @@
 import {css} from '@emotion/core';
+import styled from '../../themes/styled';
 
 const spacing = ({theme, subnav}) => css`
   padding: ${theme.spacing.sm} ${theme.spacing.xs};
@@ -28,3 +29,15 @@ export const actions = () => css`
     justify-content: flex-end;
   }
 `;
+
+const subheaderSpacing = ({theme}) => css`
+  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+
+  @media screen and (min-width: ${theme.breakpoints.medium}) {
+    padding: ${theme.spacing.lg} ${theme.spacing.xl2};
+  }
+`;
+
+export const StyledHeading = styled.div<{subnav?: any}>(base as any);
+export const StyledActions = styled.div(actions as any);
+export const StyledSubheading = styled(StyledHeading)(subheaderSpacing as any);

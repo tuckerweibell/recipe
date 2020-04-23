@@ -3,9 +3,8 @@ import LinkButton from './LinkButton';
 import {Link, LabelledLink, Labelled} from '../EzLink/EzLink.types';
 import {EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
-import {base, actions as actionStyles} from './EzPageHeader.styles';
+import {StyledHeading, StyledActions, StyledSubheading} from './EzPageHeader.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
-import styled from '../../themes/styled';
 import {wrapEvent} from '../../utils';
 
 type TabType = Labelled | (Labelled & Link);
@@ -25,10 +24,8 @@ type HeaderProps = {
   status?: React.ReactNode;
   title: string;
   subnav?: SubNav;
+  subheader?: React.ReactNode;
 };
-
-const StyledHeading = styled.div<{subnav?: SubNav}>(base as any);
-const StyledActions = styled.div(actionStyles as any);
 
 const handleKeyDown = (refs: React.RefObject<HTMLElement>[], {tabs, selected}: SubNav) => event => {
   const selectedIndex = selected ? tabs.findIndex(link => link === selected) : 0;
@@ -62,50 +59,64 @@ const handleKeyDown = (refs: React.RefObject<HTMLElement>[], {tabs, selected}: S
 /**
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.
  */
-const EzPageHeader: React.FC<HeaderProps> = ({actions, breadcrumb, status, title, subnav}) => {
+const EzPageHeader: React.FC<HeaderProps> = ({
+  actions,
+  breadcrumb,
+  status,
+  title,
+  subnav,
+  subheader,
+}) => {
   const refs = useRef(subnav && subnav.tabs.map(() => createRef<HTMLElement>())).current;
   const selected = subnav && subnav.selected;
   return (
-    <StyledHeading subnav={subnav}>
-      <MaxWidth>
-        <EzLayout
-          layout={{
-            base: 'stack',
-            medium: 'equal',
-          }}
-        >
-          <div>
-            {breadcrumb && <LinkButton {...breadcrumb} label={`← ${breadcrumb.label}`} />}
-            <EzLayout
-              layout={{
-                base: 'stack',
-                medium: 'basic',
-              }}
-            >
-              <EzHeading size="1">{title}</EzHeading>
-              <div>{status}</div>
-            </EzLayout>
-          </div>
-          {actions && <StyledActions>{actions}</StyledActions>}
-        </EzLayout>
-      </MaxWidth>
-      {subnav && (
+    <div>
+      <StyledHeading subnav={subnav}>
         <MaxWidth>
-          <TabList onKeyDown={handleKeyDown(refs, subnav)}>
-            {subnav.tabs.map((tab, i) => (
-              <Tab
-                ref={refs[i]}
-                key={tab.label}
-                tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
-                active={selected === tab}
-                {...tab}
-                onClick={wrapEvent(tab.onClick, () => subnav.onChange && subnav.onChange(tab))}
-              />
-            ))}
-          </TabList>
+          <EzLayout
+            layout={{
+              base: 'stack',
+              medium: 'equal',
+            }}
+          >
+            <div>
+              {breadcrumb && <LinkButton {...breadcrumb} label={`← ${breadcrumb.label}`} />}
+              <EzLayout
+                layout={{
+                  base: 'stack',
+                  medium: 'basic',
+                }}
+              >
+                <EzHeading size="1">{title}</EzHeading>
+                <div>{status}</div>
+              </EzLayout>
+            </div>
+            {actions && <StyledActions>{actions}</StyledActions>}
+          </EzLayout>
         </MaxWidth>
+        {subnav && (
+          <MaxWidth>
+            <TabList onKeyDown={handleKeyDown(refs, subnav)}>
+              {subnav.tabs.map((tab, i) => (
+                <Tab
+                  ref={refs[i]}
+                  key={tab.label}
+                  tabIndex={(!selected && i === 0) || selected === tab ? 0 : -1}
+                  active={selected === tab}
+                  {...tab}
+                  onClick={wrapEvent(tab.onClick, () => subnav.onChange && subnav.onChange(tab))}
+                />
+              ))}
+            </TabList>
+          </MaxWidth>
+        )}
+      </StyledHeading>
+      {subheader && (
+        <StyledSubheading>
+          <MaxWidth>{subheader}</MaxWidth>
+        </StyledSubheading>
       )}
-    </StyledHeading>
+    </div>
   );
 };
 
