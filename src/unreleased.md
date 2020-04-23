@@ -14,6 +14,7 @@ title: 'Unreleased changes'
 - Support "small" label style in EzField.
 - New ["tile" variation of EzLayout](/components/ez-layout/#tile-layout) for arranging content a grid with equal spacing between rows and columns. Tile layouts are a good choice when the number of items in the layout may vary, or when the exact number of items is unknown, since the layout will automatically wrap items into rows.
 - New ["icon" prop for tertiary buttons](/components/ez-button/#tertiary-button-with-icon), to enhance the user experience of the application where logos may be more easily recognizable than plain text.
+- Implemented new subheader feature for EzPageHeader, supporting both filters, related links and page-wide actions (Closes [#205](https://github.com/ezcater/recipe/issues/205)).
 
 #### Design updates
 
