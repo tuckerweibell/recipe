@@ -8,6 +8,23 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.1.1 - 2020-04-23
+
+#### Enhancements
+
+- Relaxed the restriction that an EzOrderSummary must have a title, to more closely match EzCard (a title is only necessary when there are corresponding actions, such that the target of the action is clear).
+
+#### Bug fixes
+
+- Fix: EzField[type=date] fires `onChange` multiple times on change as well as calling `onChange` erroneously on render.
+- Fix: hover style on EzBanner link button renders differently for anchor vs button (Closes [#248](https://github.com/ezcater/recipe/issues/248)).
+- Fix: Applied text wrapping in EzOrderSummary columns to avoid overflowing the bounds of the parent container (Closes [#338](https://github.com/ezcater/recipe/issues/338)).
+- Fix: Reakit "Can't trap focus within modal dialog" warning when multiple `EzModal` dialogs are present in a page.
+
+#### Development workflow
+
+- Added support for visual regression testing CSS pseudo class states (i.e. `:hover` and `:active`)
+
 ## 10.1.0 - 2020-04-16
 
 #### Enhancements
