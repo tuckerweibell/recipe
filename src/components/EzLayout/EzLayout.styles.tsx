@@ -9,10 +9,12 @@ const reset = () => css`
   align-items: normal;
   flex-direction: row;
   justify-content: normal;
+  flex-wrap: nowrap;
 
   > * {
     flex-basis: auto;
     flex-grow: 0;
+    width: auto;
   }
 `;
 
@@ -45,12 +47,42 @@ export const stack = () => css`
   flex-direction: column;
 `;
 
+const columnWidth = ({columns, theme}) => {
+  const width = n => ({width: `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`});
+
+  if (typeof columns !== 'object') return width(columns);
+
+  return responsive(
+    'columns',
+    Object.keys(columns).reduce((res, key) => {
+      res[columns[key]] = width(columns[key]);
+      return res;
+    }, {})
+  )({columns, theme});
+};
+
+const tile = ({columns, theme}) => css`
+  flex-wrap: wrap;
+
+  /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
+  margin: calc(${theme.spacing.sm} / 2 * -1);
+
+  > * {
+    flex-basis: auto;
+    flex-grow: 0;
+    ${columnWidth({columns, theme})};
+    /* ↓ half the value, to avoid doubling up the space between columns */
+    margin: calc(${theme.spacing.sm} / 2);
+  }
+`;
+
 export const layout = responsive('layout', {
   basic,
   right,
   equal,
   split,
   stack,
+  tile,
   reset,
 });
 
@@ -68,5 +100,10 @@ export const spacing = responsive('layout', {
   right: leftSpacing,
   equal: leftSpacing,
   stack: topSpacing,
-  reset: () => setSpacing(0, 0),
+  reset: () => ({'&& > * + *': {marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0}}),
 });
+
+export const wrapper = () => css`
+  /* ↓ Suppress horizontal scrolling caused by the negative margin in some circumstances */
+  overflow: hidden;
+`;

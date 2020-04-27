@@ -1,4 +1,6 @@
-import {base, layout, spacing} from './EzLayout.styles';
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
+import {base, layout, spacing, wrapper} from './EzLayout.styles';
 import styled from '../../themes/styled';
 import {breakpoints} from '../../themes/standard';
 
@@ -12,7 +14,7 @@ type Properties<T> = {[K in keyof T]: Pick<T, K>}[keyof T];
  */
 type RequireAtLeastOne<T> = Required<Properties<T>>;
 
-type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack';
+type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile';
 type Sizes = keyof typeof breakpoints;
 type Breakpoints = {[P in Sizes]?: LayoutTypes};
 type Responsive = {base: LayoutTypes} & Breakpoints & RequireAtLeastOne<Breakpoints>;
@@ -25,6 +27,7 @@ type LayoutProps = {
  * Layout provide common ways to arrange content in a single horizontal row.
  */
 const EzLayout = styled.div<LayoutProps>(base, layout, spacing);
+const Wrapper = styled.div<any>(wrapper);
 
 /**
  * defaultProps
@@ -35,7 +38,20 @@ EzLayout.defaultProps = {
   layout: 'basic',
 };
 
+const requiresNegativeMargin = layoutProp =>
+  (typeof layoutProp === 'object' && 'tile' in layoutProp) || layoutProp === 'tile';
+
 /**
  * @component
  */
-export default EzLayout;
+export default props => {
+  if (!requiresNegativeMargin(props.layout)) return <EzLayout {...props} />;
+
+  // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
+  // A wrapper element is included here to insulate content from the applied negative margin.
+  return (
+    <Wrapper>
+      <EzLayout {...props} />
+    </Wrapper>
+  );
+};

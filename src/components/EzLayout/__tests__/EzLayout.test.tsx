@@ -5,10 +5,11 @@ import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import regressionTests from './EzLayout.test.md';
 import EzLayout from '../EzLayout';
-import {EzCard, EzCardSection} from '../../index';
+import {EzCard, EzCardSection, EzHeading} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
+import Media from '../../EzField/Media';
 
-const scope = {EzLayout, EzCard, EzCardSection, css, Global};
+const scope = {EzLayout, EzCard, EzCardSection, EzHeading, Media, css, Global};
 
 describe('EzLayout', () => {
   visualSnapshots({markdown, scope});

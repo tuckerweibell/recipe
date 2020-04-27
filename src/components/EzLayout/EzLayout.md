@@ -125,7 +125,7 @@ The `split` layout arranges content into two groups on a single row, one aligned
 
 ### Stack layout
 
-The `stack` layout arranges content into a vertical column. The `stack` layout can be used, for example, when targeting small screen sizes, to organize content into stacked columns. In many cases, a `stack` layout may not be necessary; block level components will naturally stack in a container, and container components such as [`EzCard`](/components/ez-card) and [`EzPageContent`](/components/ez-page-content) will apply consistent spacing between content items.
+The `stack` layout arranges content into a vertical column. The `stack` layout can be used, for example, when targeting small screen sizes, to organize content into stacked columns. In many cases, a `stack` layout may not be necessary; block level components will naturally stack in a container, and container components such as [`EzCard`](/components/ez-card) will apply consistent spacing between content items.
 
 ```jsx
 <EzCard>
@@ -140,6 +140,45 @@ The `stack` layout arranges content into a vertical column. The `stack` layout c
     <div>Stack Layout</div>
     <div>Content</div>
   </EzLayout>
+</EzCard>
+```
+
+### Tile layout
+
+The `tile` layout arranges content a grid with equal spacing between rows and columns. Tile layouts are a good choice when the number of items in the layout may vary, or when the exact number of items is unknown, since the layout will automatically wrap items into rows. The number of columns can be varied by screen size, for example, if you wanted a single column on mobile and three columns otherwise.
+
+- Use a `tile` layout for content that benefits from being laid out in columns of uniform width.
+
+```jsx
+<EzCard>
+  <Global
+    styles={css(`
+    .tile > * {
+      background-color: cadetblue;
+      color: white;
+    }
+  `)}
+  />
+  <EzCardSection>
+    <EzHeading size="3">Fixed number of columns</EzHeading>
+    <EzLayout layout="tile" className="tile" columns={3}>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+    </EzLayout>
+  </EzCardSection>
+  <EzCardSection>
+    <EzHeading size="3">Responsive number of columns</EzHeading>
+    <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+    </EzLayout>
+  </EzCardSection>
 </EzCard>
 ```
 
