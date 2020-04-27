@@ -14,11 +14,12 @@ Provides a label that can appear in one of several positions relative to its ass
 Labelled items should:
 
 - Be used to label a static piece of text
-- Be used to label a control such as a Dropdown
+- Be used with the `htmlFor` attribute to label form controls.
 
 Labelled items should not:
 
 - Be used to label more than one child (unless being used with a single child that is a collection of multiple items, such as a Segmented Control)
+- Be used to label components that already contain labels, such as EzField. Use the label property of the component directly when possible e.g. `EzField[label={label}]`
 
 ---
 
@@ -31,6 +32,7 @@ Labelled items should
 - Use size="normal" with any position value
 - Use size="small" with position="top"
 - Use title case for the label title
+- Use htmlFor={controlId} to associate the label with the form control. This allows the label to increase the hit-surface to focus/activate the input, as well as allowing assistive technology to identify the label when the input is focused.
 
 #### Don’t
 
@@ -39,6 +41,16 @@ Labelled items should
 ---
 
 ## Examples
+
+### With input controls
+
+Use htmlFor={controlId} to associate the label with the form control. This allows the label to increase the hit-surface to focus/activate the input, as well as allowing assistive technology to identify the label when the input is focused.
+
+```jsx
+<EzLabelledItem htmlFor="search-input" position="top" size="small" title="Search">
+  <EzSearchInput id="search-input" placeholder="Search customers" />
+</EzLabelledItem>
+```
 
 ### Top label
 

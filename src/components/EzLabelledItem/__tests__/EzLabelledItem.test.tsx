@@ -3,9 +3,10 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import markdown from '../EzLabelledItem.md';
 import EzLabelledItem from '../EzLabelledItem';
+import {EzSearchInput} from '../..';
 import {renderToHtml} from '../../../jest-globals';
 
-const scope = {EzLabelledItem};
+const scope = {EzLabelledItem, EzSearchInput};
 
 describe('EzLabelledItem', () => {
   visualSnapshots({markdown, scope});
