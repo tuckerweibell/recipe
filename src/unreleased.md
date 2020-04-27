@@ -12,6 +12,7 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - Support "small" label style in EzField.
+- New ["tile" variation of EzLayout](/components/ez-layout/#tile-layout) for arranging content a grid with equal spacing between rows and columns. Tile layouts are a good choice when the number of items in the layout may vary, or when the exact number of items is unknown, since the layout will automatically wrap items into rows.
 
 #### Design updates
 
