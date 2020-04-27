@@ -4,6 +4,7 @@ import {hideVisually} from '../../styles';
 import styled, {Themed} from '../../themes/styled';
 
 const base = ({theme}: Themed) => css`
+  display: block;
   line-height: ${theme.lineHeights.heading};
   font-weight: ${theme.fontWeights.bold};
   padding: 0; /* remove user agent styles (in particular when element is fieldset legend) */
