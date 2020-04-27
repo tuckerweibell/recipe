@@ -75,7 +75,13 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
       {!labelHidden && (
         <div>
           <div style={relative}>
-            <Label id={labelId} htmlFor={id} as={labelType} error={showError}>
+            <Label
+              id={labelId}
+              htmlFor={id}
+              as={labelType}
+              error={showError}
+              size={props.labelSize}
+            >
               {label}
             </Label>
             {!showInlineError && showError && <ErrorIcon />}

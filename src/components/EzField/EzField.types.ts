@@ -1,3 +1,7 @@
+import Label from '../EzLabel';
+
+type LabelProps = React.ComponentProps<typeof Label>;
+
 type ChoiceValue = string | number | boolean;
 
 type Choice = {
@@ -83,6 +87,10 @@ type BaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
    * Visually hide the label
    * */
   labelHidden?: boolean;
+  /**
+   * Visually hide the label
+   * */
+  labelSize?: LabelProps['size'];
   /**
    * Restricts the input to the specified length
    */

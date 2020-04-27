@@ -323,8 +323,22 @@ Allows the usage of application-specific input components while still providing 
 
 Visually hide the fields label when the fields purpose is clear from context.
 
+- Label text should still be provided to provide context for users of assistive technology.
+
 ```jsx
 <EzField type="text" label="Search" labelHidden />
+```
+
+### Text field with small label
+
+This is alternative style of label for fields, reserved for fields where the intent of the field is otherwise clear from the context of the page, such as filter controls inside the page header or subheader.
+
+This label style should be used to provide additional context in an understated way, as not to draw the focus away from the primary actions on the page.
+
+- It is recommended that small labels are NOT used in conjunction with `helperText`.
+
+```jsx
+<EzField type="date" labelSize="small" value="1/15/2020" label="Event date" />
 ```
 
 ### Text field with placeholder text
