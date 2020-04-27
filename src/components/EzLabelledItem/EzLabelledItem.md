@@ -64,7 +64,7 @@ A label that appears above its content.
 
 ### Top label (small)
 
-This is alternative style of top label.
+This is alternative style of top label. Use this label style when labelling controls inside the page header or subheader. This label style should also be used to provide additional context in an understated way, as not to draw the focus away from important data.
 
 ```jsx
 <EzLabelledItem position="top" size="small" title="Small Label">
