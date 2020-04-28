@@ -14,19 +14,55 @@ type Properties<T> = {[K in keyof T]: Pick<T, K>}[keyof T];
  */
 type RequireAtLeastOne<T> = Required<Properties<T>>;
 
+/**
+ * Create a type that disallows values for any of the keys of T
+ */
+type Without<T> = {[P in keyof T]?: never};
+
 type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile';
 type Sizes = keyof typeof breakpoints;
-type Breakpoints = {[P in Sizes]?: LayoutTypes};
-type Responsive = {base: LayoutTypes} & Breakpoints & RequireAtLeastOne<Breakpoints>;
 
-type LayoutProps = {
-  layout?: LayoutTypes | Responsive;
-};
+/**
+ * A type that describes how the layout will adapt to different breakpoints
+  @example
+  ```
+  const options: Responsive<LayoutTypes>  = {
+    base: 'stack';
+    medium: 'split';
+    large: 'tile';
+  };
+  ```
+ */
+type Responsive<T> = Partial<Record<'base' | Sizes, T>> & RequireAtLeastOne<Record<Sizes, T>>;
+
+/**
+ * The layout prop of the EzLayout component. Accepts either a simple key (one of the LayoutTypes),
+ * or a Responsive<LayoutTypes> object describing how the layout will adapt to different
+ * breakpoints.
+  @example
+  ```
+  const options: Responsive<LayoutTypes>  = {
+    base: 'stack';
+    medium: 'split';
+    large: 'tile';
+  };
+  ```
+ */
+type Layout<T, Set = T> = {layout: T | (Responsive<Set> & RequireAtLeastOne<Responsive<T>>)};
+
+/**
+ *  The required props for the LayoutTypes["tile"] layout variation.
+ */
+type TileProps = {columns: number | Responsive<number>};
+
+type Props =
+  | (TileProps & Layout<'tile', LayoutTypes>)
+  | (Partial<Layout<Exclude<LayoutTypes, 'tile'>>> & Without<TileProps>);
 
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
  */
-const EzLayout = styled.div<LayoutProps>(base, layout, spacing);
+const EzLayout = styled.div<Props>(base, layout, spacing);
 const Wrapper = styled.div<any>(wrapper);
 
 /**
@@ -44,7 +80,7 @@ const requiresNegativeMargin = layoutProp =>
 /**
  * @component
  */
-export default props => {
+export default (props => {
   if (!requiresNegativeMargin(props.layout)) return <EzLayout {...props} />;
 
   // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
@@ -54,4 +90,4 @@ export default props => {
       <EzLayout {...props} />
     </Wrapper>
   );
-};
+}) as React.FC<Props>;

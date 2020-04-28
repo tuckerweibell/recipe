@@ -27,4 +27,49 @@ describe('EzLayout', () => {
     const actual = await axe(wrapper);
     expect(actual).toHaveNoViolations();
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        defaultLayout: (
+          <EzLayout>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        basicLayout: (
+          <EzLayout layout="basic">
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        tileLayout: (
+          <EzLayout layout="tile" columns={3}>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        tileLayoutResponsiveColumns: (
+          <EzLayout layout="tile" columns={{base: 1, medium: 3}}>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        basicResponsiveLayout: (
+          <EzLayout layout={{base: 'basic', medium: 'stack'}}>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        tileResponsiveLayout: (
+          <EzLayout layout={{base: 'basic', medium: 'tile'}} columns={3}>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });
