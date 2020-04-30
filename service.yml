@@ -22,7 +22,7 @@ tests:
         command: npm run lint
     - run:
         test: Units Tests
-        command: npm run test
+        command: npm run test:ci
     - run:
         test: Code Climate Test Coverage
         command: ./cc-test-reporter after-build
