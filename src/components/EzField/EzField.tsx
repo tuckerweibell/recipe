@@ -71,7 +71,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const relative: CSSProperties = {position: 'relative'};
 
   return (
-    <Field as={fieldType} {...(mouseEvents as any)}>
+    <Field as={fieldType} {...(mouseEvents as any)} labelSize={props.labelSize}>
       {!labelHidden && (
         <div>
           <div style={relative}>

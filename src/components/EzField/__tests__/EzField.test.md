@@ -50,3 +50,29 @@
   <EzField type="text" label="Character Name" value="Big Bird" labelHidden />
 </EzLayout>
 ```
+
+### LabelledItems and EzField[label] margins should align
+
+```jsx
+<EzLayout
+  layout={{
+    base: 'stack',
+    medium: 'basic',
+  }}
+>
+  <EzField
+    type="select"
+    label="List"
+    labelSize="small"
+    options={[
+      {label: 'Active Customers', value: 'active'},
+      {label: 'All', value: 'all'},
+    ]}
+    value="active"
+    onChange={() => {}}
+  />
+  <EzLabelledItem position="top" size="small" title="Search" htmlFor="customer-search">
+    <EzSearchInput id="customer-search" placeholder="Search customers" />
+  </EzLabelledItem>
+</EzLayout>
+```

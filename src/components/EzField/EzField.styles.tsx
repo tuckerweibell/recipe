@@ -27,7 +27,7 @@ export const Field = styled.div`
   padding: 0;
 
   > * + * {
-    margin-top: ${({theme}) => theme.spacing.xs};
+    margin-top: ${({theme, labelSize}: any) => theme.spacing[labelSize === 'small' ? 'xs2' : 'xs']};
   }
 `;
 

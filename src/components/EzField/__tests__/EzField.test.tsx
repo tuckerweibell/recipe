@@ -6,11 +6,20 @@ import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
 import {fullRender as render, renderToHtml} from '../../../jest-globals';
-import {EzButton, EzFormLayout, EzLayout} from '../../index';
+import {EzButton, EzFormLayout, EzLayout, EzLabelledItem, EzSearchInput} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
 
-const scope = {EzButton, EzField, EzLayout, EzFormLayout, Open, Media};
+const scope = {
+  EzButton,
+  EzField,
+  EzLayout,
+  EzFormLayout,
+  Open,
+  Media,
+  EzLabelledItem,
+  EzSearchInput,
+};
 
 describe('EzField', () => {
   visualSnapshots({markdown, scope});
