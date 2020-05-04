@@ -77,11 +77,16 @@ const secondary = ({theme: {colors}, destructive}) => {
   `;
 };
 
-const tertiary = ({theme: {colors}, destructive}) => {
+const tertiary = ({theme: {colors}, destructive, icon}) => {
   const color = destructive ? colors.destructive.foreground : colors.interactive.base;
   return css`
     background: none;
-    border: none;
+    border-color: transparent;
+    /* 
+      Ideally all buttons would have a consistent height, but changing the height of ALL tertiary buttons now
+      would be a breaking change, so for now, only tertiary buttons with icons will match the height of other buttons/inputs.
+     */
+    border: ${icon ? undefined : 'none'};
     line-height: 1rem;
     padding: 0;
     ${pseudoClasses('color', {color})};
