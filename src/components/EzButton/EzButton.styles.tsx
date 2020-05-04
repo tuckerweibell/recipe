@@ -164,4 +164,22 @@ export const DisabledButtonWrapper = forwardRef<any, any>((props, ref) => (
   </InlineBlockWrapper>
 ));
 
+export const IconContainer = styled.span`
+  display: flex;
+  /* mirror the padding of the outline buttons */
+  padding: ${({theme}) => theme.spacing.xs} ${({theme}) => theme.spacing.md};
+  align-items: center;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    /* visually center svg icon in the space by offsetting by half the margin between the icon and text */
+    margin-left: calc(${({theme}) => theme.spacing.xs2} * -1);
+  }
+
+  > * + * {
+    margin-left: ${({theme}) => theme.spacing.xs};
+  }
+`;
+
 export default styled('button')(...baseStyles);

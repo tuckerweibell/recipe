@@ -1,5 +1,5 @@
 import React, {createElement, forwardRef} from 'react';
-import StyledButton, {DisabledButtonWrapper} from './EzButton.styles';
+import StyledButton, {DisabledButtonWrapper, IconContainer} from './EzButton.styles';
 import EzTooltip from '../EzTooltip';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & (RegularProps | TertiaryProps);
@@ -18,6 +18,7 @@ type RegularProps = {
 
 type TertiaryProps = {
   use: 'tertiary';
+  icon?: React.ReactElement;
 } & SharedButtonProps;
 
 /**
@@ -39,7 +40,20 @@ const EzButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 });
 
 const buildProps = (props: ButtonProps & {ref: React.Ref<HTMLButtonElement>}) => {
-  if (props.use === 'tertiary') return props;
+  if (props.use === 'tertiary') {
+    const children = props.icon ? (
+      <IconContainer>
+        {React.cloneElement(props.icon, {
+          'aria-hidden': true,
+          focusable: false,
+        })}
+        <span>{props.children}</span>
+      </IconContainer>
+    ) : (
+      props.children
+    );
+    return {...props, children};
+  }
 
   const {loading, ...rest} = props;
 
