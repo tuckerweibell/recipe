@@ -174,6 +174,7 @@ export const IconContainer = styled.span`
   /* mirror the padding of the outline buttons */
   padding: ${({theme}) => theme.spacing.xs} ${({theme}) => theme.spacing.md};
   align-items: center;
+  justify-content: center;
 
   svg {
     width: 1em;
