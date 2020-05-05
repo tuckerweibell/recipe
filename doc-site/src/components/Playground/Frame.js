@@ -60,7 +60,6 @@ const IFramePlayground = props => {
       allowFullScreen={true}
       ref={iframeEl}
       style={{border: 'none', margin: 0, width: '100%'}}
-      scrolling="no"
       srcDoc={`<!DOCTYPE html><head><base target="_parent" /></head>`}
       onLoad={() => setContainer(iframeEl.current.contentDocument.body)}
     >
