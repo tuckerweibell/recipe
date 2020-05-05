@@ -8,11 +8,6 @@ const ComponentLink = props => (
   <PreviewCard {...props} subtitle={`${props.html.match(/language-jsx/g).length} examples`} />
 );
 
-const chunk = (arr, size) =>
-  Array.from({length: Math.ceil(arr.length / size)}, (v, i) =>
-    arr.slice(i * size, i * size + size)
-  );
-
 export default () => {
   const {allMarkdownRemark: data} = useStaticQuery(graphql`
     query {
@@ -82,15 +77,15 @@ export default () => {
             {category}
           </EzHeading>
 
-          <div css={{'&&': {flexGrow: 1}}}>
-            {chunk(components, 3).map(([first, second, third]) => (
-              <EzLayout layout="equal" css={{'& + &': {marginTop: 25}}} key={first.path}>
-                <ComponentLink {...first} />
-                {second ? <ComponentLink {...second} /> : <div />}
-                {third ? <ComponentLink {...third} /> : <div />}
-              </EzLayout>
+          <EzLayout
+            layout="tile"
+            columns={{base: 2, medium: 3, large: 4}}
+            css={{'& + &': {marginTop: 25}}}
+          >
+            {components.map(component => (
+              <ComponentLink {...component} key={component.path} />
             ))}
-          </div>
+          </EzLayout>
         </EzLayout>
       ))}
     </div>
