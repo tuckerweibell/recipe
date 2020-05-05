@@ -73,7 +73,7 @@ export default () => {
             },
           }}
         >
-          <EzHeading size="3" css={{flexShrink: 0, flexBasis: '25% !important'}}>
+          <EzHeading size="3" css={{flexShrink: 0, flexBasis: '20% !important'}}>
             {category}
           </EzHeading>
 
