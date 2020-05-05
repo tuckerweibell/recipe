@@ -1,31 +1,11 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import {useStaticQuery, graphql, Link, withPrefix} from 'gatsby';
-import {EzLayout, EzHeading, EzTextStyle} from '@ezcater/recipe';
+import {useStaticQuery, graphql} from 'gatsby';
+import {EzLayout, EzHeading} from '@ezcater/recipe';
+import PreviewCard from './PreviewCard';
 
-const ComponentLink = ({title, path, html, name}) => (
-  <Link to={path} css={{textDecoration: 'none', '& + &': {marginLeft: 25}, alignSelf: 'start'}}>
-    <figure css={{margin: 0}}>
-      <div>
-        <img
-          css={{
-            width: '100%',
-            height: 'auto',
-            border: '1px solid #d2d6dc',
-            borderRadius: '.25rem',
-          }}
-          src={withPrefix(`/images/preview/${name}.png`)}
-          alt=""
-        />
-      </div>
-      <figcaption css={{marginTop: '0.75rem'}}>
-        <EzHeading size="5">{title}</EzHeading>
-        <p>
-          <EzTextStyle use="subdued">{html.match(/language-jsx/g).length} examples</EzTextStyle>
-        </p>
-      </figcaption>
-    </figure>
-  </Link>
+const ComponentLink = props => (
+  <PreviewCard {...props} subtitle={`${props.html.match(/language-jsx/g).length} examples`} />
 );
 
 const chunk = (arr, size) =>
