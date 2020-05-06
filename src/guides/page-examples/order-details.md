@@ -1,6 +1,7 @@
 ---
 name: EzAppLayout
-title: Details Page
+title: Order Details
+category: Detail Screens
 path: '/cookbook/order-details'
 tags: ['wide']
 ---

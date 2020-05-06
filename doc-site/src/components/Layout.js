@@ -148,7 +148,8 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
               p.frontmatter.path &&
               p.frontmatter.path.includes(page.frontmatter.path) &&
               p.frontmatter.path !== page.frontmatter.path &&
-              !p.frontmatter.path.includes('components')
+              !p.frontmatter.path.includes('components') &&
+              !p.frontmatter.path.includes('cookbook')
           )
           .map(page => ({
             to: page.frontmatter.path,

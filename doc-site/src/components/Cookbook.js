@@ -4,9 +4,12 @@ import {useStaticQuery, graphql} from 'gatsby';
 import {EzLayout, EzHeading} from '@ezcater/recipe';
 import PreviewCard from './PreviewCard';
 
-const ComponentLink = props => (
-  <PreviewCard {...props} subtitle={`${props.html.match(/language-jsx/g).length} examples`} />
-);
+const ComponentLink = props => {
+  const numExamples = props.html.match(/language-jsx/g).length;
+  return (
+    <PreviewCard {...props} subtitle={`${numExamples} example${numExamples > 1 ? 's' : ''}`} />
+  );
+};
 
 export default () => {
   const {allMarkdownRemark: data} = useStaticQuery(graphql`
@@ -34,18 +37,9 @@ export default () => {
       ...node.frontmatter,
       html: node.html,
     }))
-    .filter(c => !c.path?.includes('cookbook'));
+    .filter(c => c.path?.includes('cookbook'));
 
-  const categorized = new Map([
-    ['Layout', []],
-    ['Navigation', []],
-    ['Data', []],
-    ['Inputs', []],
-    ['Overlays', []],
-    ['Feedback', []],
-    ['Marketing', []],
-    ['Typography', []],
-  ]);
+  const categorized = new Map([['Detail Screens', []]]);
 
   components.forEach(component => {
     const {category} = component;

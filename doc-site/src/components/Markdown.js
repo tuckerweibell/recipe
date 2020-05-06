@@ -8,6 +8,7 @@ import loadable from '@loadable/component';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 import {ColorDefinition, Example} from './ColorVariables';
 import ComponentGrid from './ComponentGrid';
+import Cookbook from './Cookbook';
 import SpacingVariables from './SpacingVariables';
 import FontCombinations from './FontCombinations';
 import FontLineHeights from './FontLineHeights';
@@ -85,6 +86,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     checkedexample: Example.Checked,
     hoverexample: Example.Hover,
     componentgrid: ComponentGrid,
+    cookbook: Cookbook,
     spacingvariables: SpacingVariables,
     fontcombinations: FontCombinations,
     fontlineheights: FontLineHeights,
