@@ -69,7 +69,7 @@ export default () => {
       {[...categorized].map(([category, components]) => (
         <EzLayout
           key={category}
-          layout={{base: 'stack', large: 'split'}}
+          layout={{base: 'stack', large: 'basic'}}
           css={{
             '& + &': {
               marginTop: 25,
