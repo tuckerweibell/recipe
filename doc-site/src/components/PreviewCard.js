@@ -3,8 +3,17 @@ import {jsx} from '@emotion/core';
 import {Link, withPrefix} from 'gatsby';
 import {EzHeading, EzTextStyle} from '@ezcater/recipe';
 
-const PreviewCard = ({title, path, subtitle, name}) => (
-  <Link to={path} css={{textDecoration: 'none', alignSelf: 'start'}}>
+const LinkOrPlaceholder = ({path, tags = [], children}) =>
+  tags.includes('coming-soon') ? (
+    <div css={{opacity: 0.5}}>{children}</div>
+  ) : (
+    <Link to={path} css={{textDecoration: 'none'}}>
+      {children}
+    </Link>
+  );
+
+const PreviewCard = ({title, path, subtitle, name, tags}) => (
+  <LinkOrPlaceholder {...{path, tags}}>
     <figure css={{margin: 0}}>
       <div>
         <img
@@ -25,7 +34,7 @@ const PreviewCard = ({title, path, subtitle, name}) => (
         </p>
       </figcaption>
     </figure>
-  </Link>
+  </LinkOrPlaceholder>
 );
 
 export default PreviewCard;

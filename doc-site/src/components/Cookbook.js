@@ -5,6 +5,10 @@ import {EzLayout, EzHeading} from '@ezcater/recipe';
 import PreviewCard from './PreviewCard';
 
 const ComponentLink = props => {
+  const comingSoon = props.tags.includes('coming-soon');
+
+  if (comingSoon) return <PreviewCard {...props} subtitle="Coming soon" />;
+
   const numExamples = props.html.match(/language-jsx/g).length;
   return (
     <PreviewCard {...props} subtitle={`${numExamples} example${numExamples > 1 ? 's' : ''}`} />
@@ -25,6 +29,7 @@ export default () => {
               title
               path
               order
+              tags
             }
           }
         }
@@ -39,7 +44,14 @@ export default () => {
     }))
     .filter(c => c.path?.includes('cookbook'));
 
-  const categorized = new Map([['Detail Screens', []]]);
+  const categorized = new Map([
+    ['Detail Screens', []],
+    ['Settings Screens', []],
+    ['Dashboard Screens', []],
+    ['Marketing Screens', []],
+    ['Form/Creation Screens', []],
+    ['Table/List Screens', []],
+  ]);
 
   components.forEach(component => {
     const {category} = component;
