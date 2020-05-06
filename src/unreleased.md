@@ -27,7 +27,9 @@ title: 'Unreleased changes'
 #### Documentation
 
 - Improved guidance on label variations (when to use small labels).
-- Added Details page pattern example, showing how a full Order details page might be made from Recipe components.
+- New Recipe Cookbook feature, to show how combinations of Recipe components can be composed like lego-blocks to build complete pages.
+- Details page pattern example, showing how a full Order details page might be made from Recipe components.
+- Added placeholders for other cookbook recipes/patterns that are on our road map.
 
 #### Dependency upgrades
 
