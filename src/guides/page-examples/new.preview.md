@@ -1,4 +1,4 @@
-### order-details
+### lead-form
 
 ```jsx
 <ThemeProvider theme={{...themes.standard, breakpoints: {medium: '768px', large: '800px'}}}>
@@ -18,44 +18,26 @@
         {href: '#', label: '■■■■■■', active: false},
       ]}
     >
-      <EzPageHeader
-        title="■■■■■■■■■"
-        actions={
-          <EzLayout layout="right">
-            <EzButton use="primary">■■■■■</EzButton>
-          </EzLayout>
-        }
-      />
+      <EzPageHeader title="■■■■■■■■■" />
       <EzPage>
-        <EzFlashMessage use="success" headline="■■■■■■■■■■■■■■■■■■■■■■■■■">
-          <p>■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</p>
-        </EzFlashMessage>
-        <EzPageSection use="main">
-          <EzCard>
-            <p>■■■■■■■■■■■■■■■■■■■■■■■■■■■</p>
-            <p>■■■■■■■■■■■■■</p>
-          </EzCard>
-
-          <EzTable
-            title=" "
-            columns={[
-              {heading: '■■■■■■■■', key: 'first'},
-              {heading: '■■■■■■■■', key: 'last'},
-            ]}
-            items={[
-              {first: '■■■■■■', last: '■■■■■■■'},
-              {first: '■■■', last: '■■■■■'},
-            ]}
-          />
-        </EzPageSection>
-        <EzPageSection use="aside">
-          <EzCard title="■■■■■■■■■■■">
-            <p>■■■■■■■■■■■■■</p>
-            <p>■■■■■■■■■■</p>
-            <p>■■■■■■■■■■■■■</p>
-            <p>■■■■■■■■■■</p>
-          </EzCard>
-        </EzPageSection>
+        <EzCard title="■■■■■ ■■■■">
+          <EzCardSection>
+            <EzFormLayout>
+              <EzLayout layout="equal">
+                <EzField type="text" label="■■■ ■■■" style={{maxWidth: '300px'}} />
+                <EzField type="text" label="■■■ ■■■" style={{maxWidth: '300px'}} />
+              </EzLayout>
+              <EzLayout layout="equal">
+                <EzField type="text" label="■■■" style={{maxWidth: '300px'}} />
+                <EzField type="text" label="■■■ ■■■ ■■" style={{maxWidth: '300px'}} />
+              </EzLayout>
+              <EzField type="text" label="■■■ ■■" style={{maxWidth: '645px'}} />
+            </EzFormLayout>
+          </EzCardSection>
+          <EzCardSection>
+            <EzButton use="primary">■■■</EzButton>
+          </EzCardSection>
+        </EzCard>
       </EzPage>
     </EzNavigation>
   </EzAppLayout>
