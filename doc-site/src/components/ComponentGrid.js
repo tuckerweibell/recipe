@@ -79,7 +79,7 @@ export default () => {
 
           <EzLayout
             layout="tile"
-            columns={{base: 2, medium: 3, large: 4}}
+            columns={{base: 2, medium: 3, xlarge: 4}}
             css={{'& + &': {marginTop: 25}}}
           >
             {components.map(component => (

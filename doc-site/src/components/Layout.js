@@ -18,8 +18,6 @@ import styled from '@emotion/styled';
 import './layout.css';
 import logo from '../recipe-logo.svg';
 
-const themeAsObjectNotModule = Object.assign({}, themes.standard);
-
 const List = styled.dl`
   flex: 1;
   overflow-y: auto;
@@ -180,7 +178,12 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
               rel="stylesheet"
             />
           </Helmet>
-          <ThemeProvider theme={themeAsObjectNotModule}>
+          <ThemeProvider
+            theme={{
+              ...themes.standard,
+              breakpoints: {medium: '768px', large: '1061px', xlarge: '1280px'},
+            }}
+          >
             <div className={name}>
               <EzAppLayout layout={layout}>
                 <EzNavigation
