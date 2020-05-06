@@ -1,5 +1,5 @@
 ---
-name: EzAppLayout
+name: order-details
 title: Order Details
 category: Detail Screens
 path: '/cookbook/order-details'
