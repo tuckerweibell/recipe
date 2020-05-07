@@ -1,9 +1,15 @@
 import React from 'react';
+import {visualSnapshots} from 'sosia';
 import {getByLabelText, fireEvent} from '@testing-library/react';
+import regressionTests from './EzField.checkbox.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 
+const scope = {EzField};
+
 describe('EzField', () => {
+  visualSnapshots({markdown: regressionTests, scope});
+
   describe('check box list', () => {
     const checkboxProps = {
       label: 'Multiple choice list',
