@@ -46,10 +46,10 @@ export default () => {
 
   const categorized = new Map([
     ['Detail Screens', []],
+    ['Form/Creation Screens', []],
     ['Settings Screens', []],
     ['Dashboard Screens', []],
     ['Marketing Screens', []],
-    ['Form/Creation Screens', []],
     ['Table/List Screens', []],
   ]);
 
