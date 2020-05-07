@@ -1,9 +1,15 @@
 import React from 'react';
+import {visualSnapshots} from 'sosia';
 import {getByLabelText, fireEvent} from '@testing-library/react';
+import regressionTests from './EzField.radio.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 
+const scope = {EzField};
+
 describe('EzField', () => {
+  visualSnapshots({markdown: regressionTests, scope});
+
   describe('radio button list', () => {
     const radiobuttonProps = {
       label: 'Single choice list',
