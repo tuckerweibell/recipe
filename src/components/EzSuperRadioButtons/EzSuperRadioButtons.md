@@ -15,7 +15,7 @@ Super radio buttons should:
 
 - Have a label with a concise description of the choice.
 - Include an image relevant to each choice to help the user quickly identify the option they're looking for.
-- Have images roughly the same visual wieght, and labels that are roughly the same length, to avoid giving one item more prominence than the others.
+- Have images roughly the same visual weight, and labels that are roughly the same length, to avoid giving one item more prominence than the others.
 
 Super radio buttons should not:
 
