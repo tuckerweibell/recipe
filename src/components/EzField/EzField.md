@@ -119,6 +119,48 @@ Use the `options` prop to provide an array of options for selection. Each option
 };
 ```
 
+### Bordered multiple choice input
+
+Bordered multiple choice inputs should be used to present side-by-side options, typically used when a form requires the user to choose from a short list of options.
+
+Unlike super-radio buttons, toggles, or segmented controls, bordered multiple choice inputs should typically be used within forms and require a submit action for changes to take effect. One exception to this guideline is that bordered multiple choice inputs may also be used as page-level filters that take effect immediately.
+
+Option labels for bordered multiple choice inputs should be kept short. Unlike the non-bordered options, the label will not wrap onto multiple lines.
+
+```jsx
+() => {
+  const [selectedChoice, setSelectedChoice] = React.useState(null);
+  const [selectedChoices, setSelectedChoices] = React.useState([]);
+  return (
+    <EzFormLayout>
+      <EzField
+        type="radio"
+        bordered
+        label="Single choice list"
+        options={[
+          {label: 'Choice A', value: 'a'},
+          {label: 'Choice B', value: 'b'},
+          {label: 'Choice C', value: 'c'},
+        ]}
+        value={selectedChoice}
+        onChange={e => setSelectedChoice(e.target.value)}
+      />
+      <EzField
+        type="checkbox"
+        label="Multiple choice list"
+        bordered
+        options={[
+          {label: 'Choice A', value: 'a'},
+          {label: 'Choice B', value: 'b'},
+          {label: 'Choice C', value: 'c'},
+        ]}
+        value={selectedChoices}
+        onChange={e => setSelectedChoices(e.target.value)}
+      />
+    </EzFormLayout>
+  );
+};
+```
 
 ### Select list
 

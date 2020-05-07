@@ -1,35 +1,17 @@
 import React from 'react';
-import {css} from '@emotion/core';
+import {StyledOptions, Label} from './EzChoice.styles';
 import EzCheckbox from '../EzCheckbox';
-import styled from '../../themes/styled';
 import EzRadioButton from '../EzRadioButton';
+import EzLayout from '../EzLayout';
 
-const Options = styled.div`
-  > label + label {
-    margin-top: ${({theme}) => theme.spacing.xs};
-  }
-`;
+const Options = ({bordered, children}) => {
+  if (!bordered) return <StyledOptions>{children}</StyledOptions>;
 
-const Label = styled.label<any>`
-  display: flex;
-  margin-top: ${({theme}) => theme.spacing.xs};
-
-  > * {
-    margin-right: ${({theme}) => theme.spacing.xs};
-  }
-
-  ${({isDisabled}) =>
-    isDisabled &&
-    css`
-      cursor: default;
-      opacity: 0.45;
-      pointer-events: none;
-    `}
-`;
+  return <EzLayout layout="basic">{children}</EzLayout>;
+};
 
 export default props => {
   const {type, name: fieldName, value: selected = [], options, onChange, onFocus, onBlur} = props;
-
   const multiple = type === 'checkbox';
   const name = multiple ? `${fieldName}[]` : fieldName;
 
@@ -53,7 +35,7 @@ export default props => {
   }
 
   return (
-    <Options>
+    <Options bordered={props.bordered}>
       {options.map((choice, i) => {
         const {label, disabled, value} = choice;
         const inputProps = {
@@ -75,7 +57,7 @@ export default props => {
         const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
         return (
-          <Label key={i} isDisabled={disabled}>
+          <Label key={i} bordered={props.bordered} isDisabled={disabled}>
             {input}
             {label}
           </Label>

@@ -19,12 +19,14 @@ type SingleChoiceProps = {
   type: 'radio';
   value?: ChoiceValue;
   options: Choice[];
+  bordered?: boolean;
 };
 
 type MultipleChoiceProps = {
   type: 'checkbox';
   value?: ChoiceValue[];
   options: Choice[];
+  bordered?: boolean;
 };
 
 type HtmlInputProps = {

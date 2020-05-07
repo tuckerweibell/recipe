@@ -12,6 +12,21 @@
 />
 ```
 
+### Bordered multiple choice radio with disabled option
+
+```jsx
+<EzField
+  type="radio"
+  bordered
+  label="Single choice list"
+  options={[
+    {label: 'Choice A', value: 'a'},
+    {label: 'Choice B', value: 'b', disabled: true},
+    {label: 'Choice C', value: 'c'},
+  ]}
+/>
+```
+
 ### Multiple choice radio with long labels
 
 ```jsx
