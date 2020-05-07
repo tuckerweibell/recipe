@@ -11,7 +11,7 @@ const Options = styled.div`
 `;
 
 const Label = styled.label<any>`
-  display: block;
+  display: flex;
   margin-top: ${({theme}) => theme.spacing.xs};
 
   > * {

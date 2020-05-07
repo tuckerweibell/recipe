@@ -4,8 +4,9 @@ import {getByLabelText, fireEvent} from '@testing-library/react';
 import regressionTests from './EzField.radio.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
+import Media from '../Media';
 
-const scope = {EzField};
+const scope = {EzField, Media};
 
 describe('EzField', () => {
   visualSnapshots({markdown: regressionTests, scope});
