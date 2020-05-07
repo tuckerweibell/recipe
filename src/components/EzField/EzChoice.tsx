@@ -1,4 +1,5 @@
 import React from 'react';
+import {css} from '@emotion/core';
 import EzCheckbox from '../EzCheckbox';
 import styled from '../../themes/styled';
 import EzRadioButton from '../EzRadioButton';
@@ -9,13 +10,21 @@ const Options = styled.div`
   }
 `;
 
-const Label = styled.label`
+const Label = styled.label<any>`
   display: block;
   margin-top: ${({theme}) => theme.spacing.xs};
 
   > * {
     margin-right: ${({theme}) => theme.spacing.xs};
   }
+
+  ${({isDisabled}) =>
+    isDisabled &&
+    css`
+      cursor: default;
+      opacity: 0.45;
+      pointer-events: none;
+    `}
 `;
 
 export default props => {
@@ -66,7 +75,7 @@ export default props => {
         const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
         return (
-          <Label key={i}>
+          <Label key={i} isDisabled={disabled}>
             {input}
             {label}
           </Label>
