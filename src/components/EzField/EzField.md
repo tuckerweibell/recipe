@@ -82,7 +82,9 @@ Allows the user to provide numeric input values.
 
 ### Multiple choice input field
 
-Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to enable the user to select multiple choices, or `type="radio"` to enable the user to select only one choice.
+Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.
+
+Use the `options` prop to provide an array of options for selection. Each option requires a `label` and a `value`. Options may optionally be `disabled` where necessary.
 
 ```jsx
 () => {
@@ -117,7 +119,6 @@ Allows the user to choose between a fixed set of options by offering a list of g
 };
 ```
 
-Note: e.target.selected has been deprecated in favor of e.target.value
 
 ### Select list
 
