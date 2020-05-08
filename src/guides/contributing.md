@@ -24,7 +24,7 @@ The process for fixing bugs is simpler than for evolving the system, and we real
 
 ### Filing bugs
 
-Please start by [filing a Github issue against the Recipe project](https://github.com/ezcater/recipe/issues). After filing we hope that you'll consider contributing a fix.
+Please start by [filing a GitHub issue against the Recipe project](https://github.com/ezcater/recipe/issues). After filing we hope that you'll consider contributing a fix.
 
 ### Fixing bugs
 

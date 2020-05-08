@@ -238,7 +238,7 @@ export default () => (
                 ]}
               >
                 <GithubLogo css={[h._6, text.white]} />
-                <span css={ml._2}>Github →</span>
+                <span css={ml._2}>GitHub →</span>
               </a>
             </div>
           </EzLayout>

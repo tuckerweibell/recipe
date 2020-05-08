@@ -21,4 +21,4 @@ While we try to ensure our components are flexible enough to meet our diverse ne
 
 Please reach out to us using our [slack channel](https://slack.com/app_redirect?channel=pb-design-system) for usage questions.
 
-Issues and feature requests can be created on our [Github page](https://github.com/ezcater/recipe/issues).
+Issues and feature requests can be created on our [GitHub page](https://github.com/ezcater/recipe/issues).
