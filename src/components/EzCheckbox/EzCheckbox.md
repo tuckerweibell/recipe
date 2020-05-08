@@ -55,6 +55,51 @@ Use the `disabled` prop to prevent users from being able to interact with the ch
 };
 ```
 
+### Acknowledgement checkbox
+
+Actions taken within applications may require explicit acknowledgment before they can proceed. In particular, legal agreements in place, such as a Terms & Conditions agreement, End-User License Agreement (EULA) or a Privacy Policy agreement may require that terms and conditions are presented for users to acknowledge.
+
+An acknowledgement checkbox (indicated by an `acknowledgement` prop) should be used to allow the user to record acceptance of terms.
+
+Optionally, a `terms` prop may be used to present a small amount of text inline below the checkbox. It is recommended that longer terms, such as a legal agreement, should be linked to in a new window, rather than included inline.
+
+```jsx
+() => {
+  const [checked, setChecked] = React.useState(true);
+  return (
+    <EzCheckbox
+      acknowledgement
+      label="I accept the new terms of service"
+      terms={
+        <span>
+          I have read and agree to the{' '}
+          <EzLink
+            href="#"
+            onClick={e => e.preventDefault()}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            terms of service
+          </EzLink>{' '}
+          and{' '}
+          <EzLink
+            href="#"
+            onClick={e => e.preventDefault()}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            privacy policy
+          </EzLink>
+          .
+        </span>
+      }
+      onChange={() => setChecked(!checked)}
+      checked={checked}
+    />
+  );
+};
+```
+
 ---
 
 ## Related components

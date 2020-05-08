@@ -3,9 +3,10 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import markdown from '../EzCheckbox.md';
 import EzCheckbox from '..';
+import EzLink from '../../EzLink';
 import {renderToHtml} from '../../../jest-globals';
 
-const scope = {EzCheckbox};
+const scope = {EzCheckbox, EzLink};
 
 describe('EzCheckbox', () => {
   visualSnapshots({markdown, scope});

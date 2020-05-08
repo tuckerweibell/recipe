@@ -1,12 +1,24 @@
 import React, {forwardRef} from 'react';
-import Container from './EzCheckbox.styles';
+import {CheckboxWrapper, AcknowledgmentContainer} from './EzCheckbox.styles';
+import EzLabel from '../EzLabel';
+import {useUniqueId} from '../../utils/hooks';
+
+type AcknowledgmentProps = {
+  acknowledgement: true;
+  terms?: React.ReactNode;
+};
+
+type CheckboxProps = {
+  acknowledgement?: false;
+  terms?: never;
+};
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-};
+} & (AcknowledgmentProps | CheckboxProps);
 
-const EzCheckbox = forwardRef<HTMLElement, Props>(({label, checked, ...rest}, ref) => (
-  <Container ref={ref}>
+const Checkbox = forwardRef<HTMLDivElement, any>(({label, checked, ...rest}, ref) => (
+  <CheckboxWrapper ref={ref}>
     <input checked={checked} type="checkbox" aria-label={label} {...rest} />
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
@@ -21,7 +33,29 @@ const EzCheckbox = forwardRef<HTMLElement, Props>(({label, checked, ...rest}, re
         />
       </g>
     </svg>
-  </Container>
+  </CheckboxWrapper>
 ));
+
+const EzCheckbox = forwardRef<HTMLDivElement, Props>(
+  ({label, acknowledgement, terms, ...props}, ref) => {
+    const uniqueId = useUniqueId();
+
+    if (!acknowledgement) return <Checkbox label={label} {...props} ref={ref} />;
+
+    const id = props.id || uniqueId;
+
+    return (
+      <AcknowledgmentContainer ref={ref}>
+        <Checkbox {...props} id={id} />
+        <div>
+          <EzLabel htmlFor={id} as="label">
+            {label}
+          </EzLabel>
+          <p>{terms}</p>
+        </div>
+      </AcknowledgmentContainer>
+    );
+  }
+);
 
 export default EzCheckbox;

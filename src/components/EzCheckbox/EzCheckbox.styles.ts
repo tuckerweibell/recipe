@@ -57,4 +57,18 @@ const base = ({theme: {colors}}) => css`
   }
 `;
 
-export default styled.span<any>(base);
+export const AcknowledgmentContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+
+  > * {
+    margin-right: ${({theme}) => theme.spacing.xs};
+  }
+
+  p {
+    margin: 0;
+    ${({theme}) => theme.fonts.body};
+  }
+`;
+
+export const CheckboxWrapper = styled.div<any>(base);
