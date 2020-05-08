@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RadioButtonIcon = ({className, checked, width = 16, height = 16}: any) => (
+const RadioButtonIcon = ({className, width = 16, height = 16}: any) => (
   <svg
     width={width}
     height={height}
@@ -10,7 +10,7 @@ const RadioButtonIcon = ({className, checked, width = 16, height = 16}: any) => 
   >
     <g fill="none" fillRule="evenodd">
       <path d="M8 .5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" stroke="#CED4D9" fill="#FFF" />
-      {checked && <path d="M8 4a4 4 0 1 1 0 8 4 4 0 1 1 0-8z" fill="#3E90D6" />}
+      <path d="M8 4a4 4 0 1 1 0 8 4 4 0 1 1 0-8z" fill="#3E90D6" />
     </g>
   </svg>
 );

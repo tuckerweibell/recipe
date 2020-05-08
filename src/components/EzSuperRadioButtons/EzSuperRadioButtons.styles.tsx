@@ -116,6 +116,11 @@ export const RadioButton = styled(RadioButtonIcon)`
     fill: ${props => props.theme.colors.interactive.base};
   }
 
+  /* Not Checked */
+  input:not(:checked) + label & path:nth-of-type(2) {
+    fill: transparent;
+  }
+
   /* Focused */
   input:focus + label & {
     box-shadow: 0px 0px 2px 2px ${props => props.theme.colors.interactive.focus.outline};
