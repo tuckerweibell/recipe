@@ -8,7 +8,6 @@ export const Combobox = styled(BaseCombobox)`
   width: 200px;
   input {
     padding-left: 2.5em;
-    width: 200px;
   }
 `;
 
