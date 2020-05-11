@@ -1,6 +1,6 @@
 ---
 name: promos-form
-title: Promotions
+title: Create Promotion (Complex Form)
 category: Form/Creation Screens
 path: '/cookbook/promos'
 tags: ['wide']

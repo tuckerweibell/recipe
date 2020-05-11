@@ -1,6 +1,6 @@
 ---
 name: lead-form
-title: Lead Form
+title: Create Lead (Simple Form)
 category: Form/Creation Screens
 path: '/cookbook/lead-form'
 tags: ['wide']
