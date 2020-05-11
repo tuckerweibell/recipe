@@ -10,11 +10,17 @@ const label = ({theme}: Themed) => css`
   color: ${theme.colors.text.base};
   display: block;
   flex: 1;
-  padding: ${theme.spacing.xs} ${theme.spacing.md};
+
+  /* 
+    should be equivalent in size to inputs and buttons, but since inputs can't be a line-height lower than 1.25em
+    we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
+  */
+  line-height: 1.25rem;
+  padding: calc(${theme.spacing.xs} - 0.125rem) ${theme.spacing.sm};
+  font-size: ${theme.fontSizes[300]};
+
   text-align: center;
   margin-left: -1px;
-  line-height: 1em;
-  font-size: 0.85em;
   flex-basis: auto;
   user-select: none;
 
