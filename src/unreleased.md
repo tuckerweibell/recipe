@@ -15,6 +15,7 @@ title: 'Unreleased changes'
 - Added new `bordered` style variation for EzField[type=checkbox] options and EzField[type=radio].
 - added new "acknowledgement" variation for [EzCheckbox](/components/ez-checkbox/#acknowledgement-checkbox) to support disclaimer/terms of service style checkboxes.
 - Support title/subtitle/actions within [EzCardSections](/components/ez-card/#card-with-sections).
+- New ["cluster" variation of EzLayout](/components/ez-layout/#cluster-layout) for arranging content a grid with equal spacing between. Cluster layouts are a good choice when the number of items in the layout may vary and the content varies in shape and length; The layout will automatically wrap items into rows based on the available screen space.
 
 #### Design updates
 
