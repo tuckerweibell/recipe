@@ -181,14 +181,21 @@ Cards can have multiple sections to break up complex content into easier to dige
 
 You don't need to use an `EzCardSection` if you only have one section in your panel (the component automatically wraps the content in a single section if needed).
 
+- Card sections may optionally include a heading.
+- Card sections may optionally include a subheading. A subheading should only be used alongside a card section heading.
+- Card sections may optionally include actions. Actions should only be provided when the card section has a corresponding card title, such that the target of the action is clear.
+
 ```jsx
 <EzPage>
-  <EzCard title="Card Heading">
-    <EzCardSection>
+  <EzCard>
+    <EzCardSection title="Card Heading">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
       maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
     </EzCardSection>
-    <EzCardSection>
+    <EzCardSection
+      title="Card Section Heading"
+      subtitle="Descriptive information about the card section"
+    >
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
         maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
