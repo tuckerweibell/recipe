@@ -24,6 +24,8 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fixed wrapping of long EzField[type=checkbox] options and EzField[type=radio] options.
+- Fixed SSR error when rendering EzModal.
+- Fixed uniqueId generation logic, to avoid using the `$` character (reserved for selector level-4 attribute selectors).
 
 #### Documentation
 
