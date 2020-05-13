@@ -2,7 +2,7 @@ import {useRef} from 'react';
 
 const getUniqueId = (() => {
   let index = 1;
-  return () => `control$${index++}`;
+  return () => `control__${index++}`;
 })();
 
 const useUniqueId = (): string => {
