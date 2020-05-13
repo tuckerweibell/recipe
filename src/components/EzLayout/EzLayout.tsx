@@ -19,7 +19,7 @@ type RequireAtLeastOne<T> = Required<Properties<T>>;
  */
 type Without<T> = {[P in keyof T]?: never};
 
-type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile';
+type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile' | 'cluster';
 type Sizes = keyof typeof breakpoints;
 
 /**

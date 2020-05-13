@@ -145,7 +145,7 @@ The `stack` layout arranges content into a vertical column. The `stack` layout c
 
 ### Tile layout
 
-The `tile` layout arranges content a grid with equal spacing between rows and columns. Tile layouts are a good choice when the number of items in the layout may vary, or when the exact number of items is unknown, since the layout will automatically wrap items into rows. The number of columns can be varied by screen size, for example, if you wanted a single column on mobile and three columns otherwise.
+The `tile` layout arranges content in a grid with equal spacing between rows and columns. Tile layouts are a good choice when the number of items in the layout may vary, or when the exact number of items is unknown, since the layout will automatically wrap items into rows. The number of columns can be varied by screen size, for example, if you wanted a single column on mobile and three columns otherwise.
 
 - Use a `tile` layout for content that benefits from being laid out in columns of uniform width.
 
@@ -179,6 +179,38 @@ The `tile` layout arranges content a grid with equal spacing between rows and co
       <div>Content</div>
     </EzLayout>
   </EzCardSection>
+</EzCard>
+```
+
+### Cluster layout
+
+The `cluster` layout, like the `tile` layout, arranges content across columns and rows. Unlike `tile` layouts however, cluster layouts are perfect for content that may vary in shape and length. Instead of conforming to a grid of a fixed number of columns, content within the `cluster` layout is distributed to fill the available space as best it can. Left-aligned content may have a 'ragged' right edge, because each line can vary in length. Unlike the `left` and `right` layouts, content is allowed to wrap into evenly spaced rows.
+
+```jsx
+<EzCard>
+  <Global
+    styles={css(`
+    .cluster {
+      max-width: 450px;
+    }
+    .cluster > * {
+      background-color: slategray;
+      color: white;
+    }
+  `)}
+  />
+  <EzLayout layout="cluster" className="cluster">
+    <div>Varying length content</div>
+    <div>Content</div>
+    <div>Varying length content</div>
+    <div>Content</div>
+    <div>Varying length content</div>
+    <div>Content</div>
+    <div>Varying length content</div>
+    <div>Content</div>
+    <div>Varying length content</div>
+    <div>Content</div>
+  </EzLayout>
 </EzCard>
 ```
 

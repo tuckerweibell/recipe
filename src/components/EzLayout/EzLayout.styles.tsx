@@ -76,6 +76,20 @@ const tile = ({columns, theme}) => css`
   }
 `;
 
+const cluster = ({theme}) => css`
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
+  margin: calc(${theme.spacing.sm} / 2 * -1);
+
+  > * {
+    /* ↓ half the value, to avoid doubling up the space between columns */
+    margin: calc(${theme.spacing.sm} / 2);
+  }
+`;
+
 export const layout = responsive('layout', {
   basic,
   right,
@@ -83,6 +97,7 @@ export const layout = responsive('layout', {
   split,
   stack,
   tile,
+  cluster,
   reset,
 });
 
