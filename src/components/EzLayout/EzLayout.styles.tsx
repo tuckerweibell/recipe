@@ -48,7 +48,7 @@ export const stack = () => css`
 `;
 
 const columnWidth = ({columns, theme}) => {
-  const width = n => ({width: `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`});
+  const width = n => ({flexBasis: `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`});
 
   if (typeof columns !== 'object') return width(columns);
 
@@ -68,7 +68,6 @@ const tile = ({columns, theme}) => css`
   margin: calc(${theme.spacing.sm} / 2 * -1);
 
   > * {
-    flex-basis: auto;
     flex-grow: 0;
     ${columnWidth({columns, theme})};
     /* ↓ half the value, to avoid doubling up the space between columns */
