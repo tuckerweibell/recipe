@@ -62,6 +62,8 @@ const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, childr
   );
 };
 
+const isSSR = typeof document === 'undefined';
+
 const EzModal: React.FC<Props> = ({
   children,
   headerText,
@@ -75,7 +77,7 @@ const EzModal: React.FC<Props> = ({
 }) => {
   const labelId = useUniqueId();
   // JSDOM doesn't support this API
-  const modalOption = {modal: Boolean(Element.prototype.insertAdjacentElement)};
+  const modalOption = {modal: Boolean(!isSSR && Element.prototype.insertAdjacentElement)};
   const dialog = useDialogState({visible: isOpen, ...modalOption});
   const {current: onDismiss} = useRef(initialOnDismiss);
 
