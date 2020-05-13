@@ -8,6 +8,30 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.3.0 - 2020-05-13
+
+#### Enhancements
+
+- Added regression test coverage for disabled EzField[type=checkbox] options and EzField[type=radio] options.
+- Added new `bordered` style variation for EzField[type=checkbox] options and EzField[type=radio].
+- added new "acknowledgement" variation for [EzCheckbox](/components/ez-checkbox/#acknowledgement-checkbox) to support disclaimer/terms of service style checkboxes.
+- Support title/subtitle/actions within [EzCardSections](/components/ez-card/#card-with-sections).
+- New ["cluster" variation of EzLayout](/components/ez-layout/#cluster-layout) for arranging content a grid with equal spacing between. Cluster layouts are a good choice when the number of items in the layout may vary and the content varies in shape and length; The layout will automatically wrap items into rows based on the available screen space.
+
+#### Design updates
+
+- Adjusted styling of disabled EzField[type=checkbox] options and EzField[type=radio] options to more clearly emphasize the disable state.
+
+#### Bug fixes
+
+- Fixed wrapping of long EzField[type=checkbox] options and EzField[type=radio] options.
+- Fixed SSR error when rendering EzModal.
+- Fixed uniqueId generation logic, to avoid using the `$` character (reserved for selector level-4 attribute selectors).
+
+#### Documentation
+
+- Added prop usage information to EzField[type=checkbox] and EzField[type=radio] to describe the multiple choice `options` prop and how options may be marked as `disabled`.
+
 ## 10.2.0 - 2020-05-07
 
 #### Enhancements
