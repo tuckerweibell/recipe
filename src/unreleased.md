@@ -14,6 +14,7 @@ title: 'Unreleased changes'
 - Added regression test coverage for disabled EzField[type=checkbox] options and EzField[type=radio] options.
 - Added new `bordered` style variation for EzField[type=checkbox] options and EzField[type=radio].
 - added new "acknowledgement" variation for [EzCheckbox](/components/ez-checkbox/#acknowledgement-checkbox) to support disclaimer/terms of service style checkboxes.
+- Support title/subtitle/actions within [EzCardSections](/components/ez-card/#card-with-sections).
 
 #### Design updates
 
