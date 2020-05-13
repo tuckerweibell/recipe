@@ -1,6 +1,6 @@
 {
   "name": "@ezcater/recipe",
-  "version": "10.2.0",
+  "version": "10.3.0",
   "description": "ezCater's React UI Component library",
   "main": "lib/index.js",
   "peerDependencies": {
