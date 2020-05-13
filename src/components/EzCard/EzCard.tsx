@@ -1,10 +1,10 @@
 import React from 'react';
-import {CardContainer, CardHeadingContainer, SectionContainer, CardLayout} from './EzCard.styles';
+import {CardContainer, SectionContainer} from './EzCard.styles';
 import EzLink from '../EzLink';
 import EzCardFooter from './EzCardFooter';
 import EzCardSection from './EzCardSection';
+import EzCardHeading from './EzCardHeading';
 import {filterValidProps} from '../../utils';
-import EzHeading from '../EzHeading';
 
 function isEzCardSection(element) {
   return element?.type?.displayName === 'EzCardSection';
@@ -16,15 +16,7 @@ function wrappedChildren(children) {
   return <EzCardSection>{children}</EzCardSection>;
 }
 
-type ActionsProps = {
-  actions: React.ReactNode;
-  title: string;
-};
-
-type OptionalTitle = {
-  actions?: never;
-  title?: string;
-};
+type HeadingProps = React.ComponentProps<typeof EzCardHeading>;
 
 type ExpandableCardFooter = {
   expandLabel: string;
@@ -33,10 +25,9 @@ type ExpandableCardFooter = {
   isExpanded?: boolean;
 };
 
-type CardProps = (ActionsProps | OptionalTitle) & {
+type CardProps = HeadingProps & {
   children: React.ReactNode;
   horizontal?: boolean;
-  subtitle?: string;
   accent?: 'info';
   expandable?: ExpandableCardFooter;
 };
@@ -48,24 +39,11 @@ const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFo
  * Cards are the primary means of grouping sections on a page.
  */
 const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, expandable, ...props}) => {
-  const heading = title && (
-    <EzHeading size="3" subheading={subtitle}>
-      {title}
-    </EzHeading>
-  );
-
-  const layout = actions && (
-    <CardLayout>
-      <div>{heading}</div>
-      <div>{actions}</div>
-    </CardLayout>
-  );
-
   const {horizontal, children} = props;
 
   return (
     <CardContainer {...filterValidProps(props)} accent={accent}>
-      {title && <CardHeadingContainer>{actions ? layout : heading}</CardHeadingContainer>}
+      {title && <EzCardHeading {...{actions, title, subtitle}} />}
       <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
       {isExpandableCardFooter(expandable) && (
         <EzCardFooter>
