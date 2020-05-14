@@ -46,3 +46,24 @@ When items are misaligned, the content items aren't symmetric.
   </EzCard>
 </Media>
 ```
+
+### Resets margin correctly
+
+```jsx
+<EzCard>
+  <EzCardSection>
+    <EzLayout layout={{base: 'cluster', medium: 'basic'}}>
+      <Placeholder height={48} width={48} />
+      <Placeholder height={48} width={48} />
+      <Placeholder height={48} width={48} />
+    </EzLayout>
+  </EzCardSection>
+  <EzCardSection>
+    <EzLayout layout={{base: 'basic', medium: 'cluster'}}>
+      <Placeholder height={48} width={48} />
+      <Placeholder height={48} width={48} />
+      <Placeholder height={48} width={48} />
+    </EzLayout>
+  </EzCardSection>
+</EzCard>
+```

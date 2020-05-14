@@ -63,29 +63,16 @@ const columnWidth = ({columns, theme}) => {
 const tile = ({columns, theme}) => css`
   flex-wrap: wrap;
 
-  /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
-  margin: calc(${theme.spacing.sm} / 2 * -1);
-
   > * {
     flex-grow: 0;
     ${columnWidth({columns, theme})};
-    /* ↓ half the value, to avoid doubling up the space between columns */
-    margin: calc(${theme.spacing.sm} / 2);
   }
 `;
 
-const cluster = ({theme}) => css`
+const cluster = () => css`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-
-  /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
-  margin: calc(${theme.spacing.sm} / 2 * -1);
-
-  > * {
-    /* ↓ half the value, to avoid doubling up the space between columns */
-    margin: calc(${theme.spacing.sm} / 2);
-  }
 `;
 
 export const layout = responsive('layout', {
@@ -99,21 +86,37 @@ export const layout = responsive('layout', {
   reset,
 });
 
-const setSpacing = (top, left) => css`
-  && > * + * {
-    margin-top: ${top};
-    margin-left: ${left};
-  }
-`;
-const leftSpacing = ({theme}) => setSpacing(null, theme.spacing.sm);
-const topSpacing = ({theme}) => setSpacing(theme.spacing.sm, null);
+const getValue = (props, val) => (typeof val === 'function' ? val(props) : val);
+const cx = (...args) => props => args.reduce((res, v) => css(res, getValue(props, v)), {});
 
-export const spacing = responsive('layout', {
-  basic: leftSpacing,
-  right: leftSpacing,
-  equal: leftSpacing,
-  stack: topSpacing,
-  reset: () => ({'&& > * + *': {marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0}}),
+const ml = v => ({marginLeft: v});
+const mr = v => ({marginRight: v});
+const mt = v => ({marginTop: v});
+const mb = v => ({marginBottom: v});
+const mx = v => cx(ml(v), mr(v), mt(v), mb(v));
+
+export const spacing = props => ({
+  '&': responsive('layout', {
+    /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
+    tile: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
+    cluster: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
+    reset: mx(0),
+  })(props),
+  '> *': responsive('layout', {
+    /* ↓ half the value, to avoid doubling up the space between columns */
+    tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    reset: mx(0),
+  })(props),
+  '> * + *': responsive('layout', {
+    basic: ml(props.theme.spacing.sm),
+    right: ml(props.theme.spacing.sm),
+    equal: ml(props.theme.spacing.sm),
+    stack: mt(props.theme.spacing.sm),
+    tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    reset: mx(0),
+  })(props),
 });
 
 export const wrapper = () => css`
