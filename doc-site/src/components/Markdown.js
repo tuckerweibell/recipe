@@ -16,6 +16,7 @@ import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
 import TimelineStatus from './TimelineStatus';
+import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import 'prismjs/themes/prism.css';
@@ -128,7 +129,16 @@ const require = () => ({
 });
 
 const ezCaterLogoPath = logo;
-const scope = {...Components, styled, css, Global, require, ezCaterLogoPath, withPrefix};
+const scope = {
+  ...Components,
+  styled,
+  css,
+  Global,
+  require,
+  ezCaterLogoPath,
+  withPrefix,
+  Placeholder,
+};
 
 const splitOnTagName = (list, tagName) => {
   const i = list.findIndex(el => el.tagName === tagName);

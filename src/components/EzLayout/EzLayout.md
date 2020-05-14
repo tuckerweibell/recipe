@@ -32,18 +32,11 @@ The `basic` layout arranges content into a single row with even spacing between 
 
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .basic > * {
-      background-color: yellow;
-    }
-  `)}
-  />
-  <EzLayout layout="basic" className="basic">
-    <div>Content</div>
-    <div>Content</div>
-    <div>Content</div>
-    <div>Content</div>
+  <EzLayout layout="basic">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
   </EzLayout>
 </EzCard>
 ```
@@ -54,18 +47,11 @@ The `right` layout arranges content into a single row, aligned to the right edge
 
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .right > * {
-      background-color: coral;
-    }
-  `)}
-  />
-  <EzLayout layout="right" className="right">
-    <div>Content</div>
-    <div>Content</div>
-    <div>Content</div>
-    <div>Content</div>
+  <EzLayout layout="right">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
   </EzLayout>
 </EzCard>
 ```
@@ -75,32 +61,23 @@ The `right` layout arranges content into a single row, aligned to the right edge
 The `equal` layout arranges content into equal widths filling a single row. The `equal` layout can be used, for example, for evenly spacing spending statistics across a single row.
 
 ```jsx
-<>
-  <Global
-    styles={css(`
-    .equal > * {
-      background-color: aqua;
-    }
-  `)}
-  />
-  <EzCard>
-    <EzCardSection>
-      <EzLayout layout="equal" className="equal">
-        <div>Equal Layout</div>
-        <div>Content</div>
-        <div>Content</div>
-      </EzLayout>
-    </EzCardSection>
-    <EzCardSection>
-      <EzLayout layout="equal" className="equal">
-        <div>Equal Layout</div>
-        <div>Content</div>
-        <div>Content</div>
-        <div>Content</div>
-      </EzLayout>
-    </EzCardSection>
-  </EzCard>
-</>
+<EzCard>
+  <EzCardSection>
+    <EzLayout layout="equal">
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+    </EzLayout>
+  </EzCardSection>
+  <EzCardSection>
+    <EzLayout layout="equal">
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+    </EzLayout>
+  </EzCardSection>
+</EzCard>
 ```
 
 ### Split layout
@@ -109,16 +86,9 @@ The `split` layout arranges content into two groups on a single row, one aligned
 
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .split > * {
-      background-color: palegreen;
-    }
-  `)}
-  />
-  <EzLayout layout="split" className="split">
-    <div>Split Layout</div>
-    <div>Content</div>
+  <EzLayout layout="split">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
   </EzLayout>
 </EzCard>
 ```
@@ -129,16 +99,10 @@ The `stack` layout arranges content into a vertical column. The `stack` layout c
 
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .stack > * {
-      background-color: lightgray;
-    }
-  `)}
-  />
-  <EzLayout layout="stack" className="stack">
-    <div>Stack Layout</div>
-    <div>Content</div>
+  <EzLayout layout="stack">
+    <Placeholder height={48} />
+    <Placeholder height={48} />
+    <Placeholder height={48} />
   </EzLayout>
 </EzCard>
 ```
@@ -151,32 +115,24 @@ The `tile` layout arranges content in a grid with equal spacing between rows and
 
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .tile > * {
-      background-color: cadetblue;
-      color: white;
-    }
-  `)}
-  />
   <EzCardSection>
     <EzHeading size="3">Fixed number of columns</EzHeading>
-    <EzLayout layout="tile" className="tile" columns={3}>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
+    <EzLayout layout="tile" columns={3}>
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
     </EzLayout>
   </EzCardSection>
   <EzCardSection>
     <EzHeading size="3">Responsive number of columns</EzHeading>
-    <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
+    <EzLayout layout="tile" columns={{base: 1, medium: 3}}>
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
+      <Placeholder height={48} />
     </EzLayout>
   </EzCardSection>
 </EzCard>
@@ -187,29 +143,18 @@ The `tile` layout arranges content in a grid with equal spacing between rows and
 The `cluster` layout, like the `tile` layout, arranges content across columns and rows. Unlike `tile` layouts however, cluster layouts are perfect for content that may vary in shape and length. Instead of conforming to a grid of a fixed number of columns, content within the `cluster` layout is distributed to fill the available space as best it can. Left-aligned content may have a 'ragged' right edge, because each line can vary in length. Unlike the `left` and `right` layouts, content is allowed to wrap into evenly spaced rows.
 
 ```jsx
-<EzCard>
-  <Global
-    styles={css(`
-    .cluster {
-      max-width: 450px;
-    }
-    .cluster > * {
-      background-color: slategray;
-      color: white;
-    }
-  `)}
-  />
-  <EzLayout layout="cluster" className="cluster">
-    <div>Varying length content</div>
-    <div>Content</div>
-    <div>Varying length content</div>
-    <div>Content</div>
-    <div>Varying length content</div>
-    <div>Content</div>
-    <div>Varying length content</div>
-    <div>Content</div>
-    <div>Varying length content</div>
-    <div>Content</div>
+<EzCard style={{maxWidth: 350}}>
+  <EzLayout layout="cluster">
+    <Placeholder height={48} width={96} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={96} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={96} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={96} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={96} />
+    <Placeholder height={48} width={48} />
   </EzLayout>
 </EzCard>
 ```
@@ -221,40 +166,15 @@ The layout component can be nested in order to provide more complex or unique ar
 ```jsx
 <EzCard>
   <EzCardSection>
-    <Global
-      styles={css(`
-      .basic > * {
-        background-color: yellow;
-      }
-    `)}
-    />
+    <EzHeading size="3">Basic Layouts nested in a Split Layout</EzHeading>
     <EzLayout layout="split">
-      <EzLayout layout="basic" className="basic">
-        <div>Basic Layouts in a Split Layout</div>
-        <div>Content</div>
+      <EzLayout layout="basic">
+        <Placeholder height={48} width={48} />
+        <Placeholder height={48} width={48} />
       </EzLayout>
-      <EzLayout layout="basic" className="basic">
-        <div>Content</div>
-        <div>Content</div>
-      </EzLayout>
-    </EzLayout>
-  </EzCardSection>
-  <EzCardSection>
-    <Global
-      styles={css(`
-      .equal > * {
-        background-color: aqua;
-      }
-    `)}
-    />
-    <EzLayout layout="split">
-      <EzLayout layout="equal" className="equal">
-        <div>Equal Layouts in a Split Layout</div>
-        <div>Content</div>
-      </EzLayout>
-      <EzLayout layout="equal" className="equal">
-        <div>Content</div>
-        <div>Content</div>
+      <EzLayout layout="basic">
+        <Placeholder height={48} width={48} />
+        <Placeholder height={48} width={48} />
       </EzLayout>
     </EzLayout>
   </EzCardSection>
@@ -267,26 +187,13 @@ The layout component can be used to optimize the layout of content to suit vario
 
 If you provide more than one layout, you should think of it as progressive enhancement. The `base` layout will be applied from the smallest devices up, until reaching the other layout. Then that second layout will takeover for larger devices. You can control where the transition happens.
 
-While it is technically possible to pass more than two layouts (e.g. have a different layout each for phone, tablet, desktop) we don't see a need for that at this time. If designers run into a case for this kind of behavior they should bring it up for discussion.
-
 ```jsx
 <EzCard>
-  <Global
-    styles={css(`
-    .responsive > * {
-      background-color: lightgreen;
-    }
-  `)}
-  />
-  <EzLayout
-    layout={{
-      base: 'stack',
-      medium: 'basic',
-    }}
-    className="responsive"
-  >
-    <div>Stack Layout</div>
-    <div>Content</div>
+  <EzHeading size="3">Stack on small screens, equal otherwise</EzHeading>
+  <EzLayout layout={{base: 'stack', medium: 'equal'}}>
+    <Placeholder height={48} />
+    <Placeholder height={48} />
+    <Placeholder height={48} />
   </EzLayout>
 </EzCard>
 ```

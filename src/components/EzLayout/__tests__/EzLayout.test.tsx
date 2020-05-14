@@ -8,8 +8,9 @@ import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection, EzHeading} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
 import Media from '../../EzField/Media';
+import Placeholder from '../../../../doc-site/src/components/Placeholder';
 
-const scope = {EzLayout, EzCard, EzCardSection, EzHeading, Media, css, Global};
+const scope = {EzLayout, EzCard, EzCardSection, EzHeading, Media, css, Global, Placeholder};
 
 describe('EzLayout', () => {
   visualSnapshots({markdown, scope});
