@@ -14,7 +14,6 @@ const reset = () => css`
   > * {
     flex-basis: auto;
     flex-grow: 0;
-    width: auto;
   }
 `;
 
