@@ -4,7 +4,7 @@ import Container from './EzRadioButton.styles';
 import RadioButtonIcon from './RadioButtonIcon';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
   checked?: boolean;
   disabled?: boolean;
   name?: string;

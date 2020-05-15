@@ -46,7 +46,6 @@ export default props => {
                 : value === selected
               : undefined,
           disabled,
-          label,
           name,
           onChange: handleChange,
           onFocus,

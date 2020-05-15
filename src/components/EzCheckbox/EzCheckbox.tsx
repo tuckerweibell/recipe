@@ -14,7 +14,7 @@ type CheckboxProps = {
 };
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
 } & (AcknowledgmentProps | CheckboxProps);
 
 const Checkbox = forwardRef<HTMLDivElement, any>(({label, checked, ...rest}, ref) => (

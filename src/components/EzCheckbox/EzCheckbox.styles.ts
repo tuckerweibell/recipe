@@ -71,4 +71,4 @@ export const AcknowledgmentContainer = styled.div`
   }
 `;
 
-export const CheckboxWrapper = styled.div<any>(base);
+export const CheckboxWrapper = styled.span<any>(base);
