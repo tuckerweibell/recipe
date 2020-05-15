@@ -2,7 +2,7 @@
 // to be easily shared with recipe specs
 const {jsx} = require('@emotion/core');
 
-const Placeholder = ({width = 'auto', height = 120}) =>
+const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight}) =>
   jsx(
     'div',
     {
@@ -16,6 +16,8 @@ const Placeholder = ({width = 'auto', height = 120}) =>
         border: `2px solid hsla(0, 0%, 20%, 0.3)`,
         width,
         height,
+        minWidth,
+        minHeight,
       },
     },
     jsx(
