@@ -23,7 +23,6 @@ export const CustomInputWrapper = styled.div`
 export const Field = styled.div`
   position: relative;
   border: none;
-  margin: 0;
   padding: 0;
 
   > * + * {

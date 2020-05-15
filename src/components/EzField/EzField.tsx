@@ -61,8 +61,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const {value, onChange} = useInput(props.value || '');
   const active = focused || hovered;
   const showError = Boolean(touched && error);
-  const fieldType = isChoiceElement ? 'fieldset' : undefined;
-  const labelType = isChoiceElement ? 'legend' : 'label';
+  const labelType = isChoiceElement ? 'div' : 'label';
   const errorMessage = (
     <InlineError active={active} showInlineError={showInlineError}>
       <span>{error}</span>
@@ -70,14 +69,18 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   );
   const relative: CSSProperties = {position: 'relative'};
 
+  const roleAndLabel = isChoiceElement
+    ? {role: type === 'radio' ? 'radiogroup' : 'group', 'aria-labelledby': labelId}
+    : {};
+
   return (
-    <Field as={fieldType} {...(mouseEvents as any)} labelSize={props.labelSize}>
+    <Field {...(mouseEvents as any)} labelSize={props.labelSize} {...roleAndLabel}>
       {!labelHidden && (
         <div>
           <div style={relative}>
             <Label
               id={labelId}
-              htmlFor={id}
+              htmlFor={isChoiceElement ? undefined : id}
               as={labelType}
               error={showError}
               size={props.labelSize}
