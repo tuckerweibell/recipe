@@ -80,6 +80,45 @@ describe('EzLayout', () => {
             <div>Content</div>
           </EzLayout>
         ),
+        layoutAlignX: (
+          <EzLayout layout="cluster" alignX="left">
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        layoutAlignY: (
+          <EzLayout layout="cluster" alignY="top">
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        responsiveLayoutAlignX: (
+          <EzLayout layout={{base: 'basic', medium: 'cluster'}} alignX="left">
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        responsiveLayoutAlignY: (
+          <EzLayout layout={{base: 'basic', medium: 'cluster'}} alignY="top">
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        responsiveAlignX: (
+          <EzLayout layout="cluster" alignX={{base: 'left', medium: 'center'}}>
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
+        responsiveLayoutResponsiveAlignX: (
+          <EzLayout
+            layout={{base: 'basic', medium: 'cluster'}}
+            alignX={{base: 'left', medium: 'center'}}
+          >
+            <div>Content</div>
+            <div>Content</div>
+          </EzLayout>
+        ),
       },
     ].forEach(() => {});
 

@@ -21,6 +21,8 @@ type Without<T> = {[P in keyof T]?: never};
 
 type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile' | 'cluster';
 type Sizes = keyof typeof breakpoints;
+type AlignX = 'left' | 'right' | 'center';
+type AlignY = 'top' | 'bottom' | 'center' | 'stretch';
 
 /**
  * A type that describes how the layout will adapt to different breakpoints
@@ -48,7 +50,11 @@ type Responsive<T> = Partial<Record<'base' | Sizes, T>> & RequireAtLeastOne<Reco
   };
   ```
  */
-type Layout<T, Set = T> = {layout: T | (Responsive<Set> & RequireAtLeastOne<Responsive<T>>)};
+type Layout<T, Set = T> = {
+  layout: T | (Responsive<Set> & RequireAtLeastOne<Responsive<T>>);
+  alignX?: AlignX | (Responsive<AlignX> & RequireAtLeastOne<Responsive<AlignX>>);
+  alignY?: AlignY | (Responsive<AlignY> & RequireAtLeastOne<Responsive<AlignY>>);
+};
 
 /**
  *  The required props for the LayoutTypes["tile"] layout variation.
