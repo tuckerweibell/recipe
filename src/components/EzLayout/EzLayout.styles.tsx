@@ -1,4 +1,5 @@
 import {css} from '@emotion/core';
+import variant from 'styled-component-variant';
 import {responsive} from '../../styles';
 
 export const base = () => css`
@@ -6,9 +7,7 @@ export const base = () => css`
 `;
 
 const reset = () => css`
-  align-items: normal;
   flex-direction: row;
-  justify-content: normal;
   flex-wrap: nowrap;
 
   > * {
@@ -17,32 +16,14 @@ const reset = () => css`
   }
 `;
 
-export const basic = () => css`
-  align-items: center;
-  justify-content: flex-start;
-`;
-
-export const right = () => css`
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-export const equal = () => css`
-  align-items: center;
-  justify-content: space-between;
-
+const equal = () => css`
   > * {
     flex-basis: 0;
     flex-grow: 1;
   }
 `;
 
-export const split = () => css`
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const stack = () => css`
+const stack = () => css`
   flex-direction: column;
 `;
 
@@ -71,24 +52,17 @@ const tile = ({columns, theme}) => css`
 
 const cluster = () => css`
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
 `;
 
 export const layout = responsive('layout', {
-  basic,
-  right,
   equal,
-  split,
   stack,
   tile,
   cluster,
   reset,
 });
 
-const getValue = (props, val) => (typeof val === 'function' ? val(props) : val);
-const cx = (...args) => props => args.reduce((res, v) => css(res, getValue(props, v)), {});
-
+const cx = (...args) => args.reduce((res, v) => css(res, v), {});
 const ml = v => ({marginLeft: v});
 const mr = v => ({marginRight: v});
 const mt = v => ({marginTop: v});
@@ -123,3 +97,60 @@ export const wrapper = () => css`
   /* ↓ Suppress horizontal scrolling caused by the negative margin in some circumstances */
   overflow: hidden;
 `;
+
+const justifyStart = {justifyContent: 'flex-start'};
+const justifyCenter = {justifyContent: 'center'};
+const justifyEnd = {justifyContent: 'flex-end'};
+const justifyNormal = {justifyContent: 'normal'};
+const justifyBetween = {justifyContent: 'space-between'};
+const itemsStretch = {alignItems: 'stretch'};
+const itemsStart = {alignItems: 'flex-start'};
+const itemsCenter = {alignItems: 'center'};
+const itemsEnd = {alignItems: 'flex-end'};
+const itemsNormal = {alignItems: 'normal'};
+
+const nestedResponsive = (propName, options) => defaultValue => (props, breakpoint) => {
+  if (!(propName in props)) return defaultValue;
+  if (!breakpoint) return responsive(propName, options);
+
+  const config = props[propName];
+
+  // i.e. alignX="left"
+  if (typeof config === 'string') return options[config];
+
+  // otherwise alignX={base: 'left', medium: 'center'}
+  return options[config[breakpoint]];
+};
+
+const horizontal = nestedResponsive('alignX', {
+  left: justifyStart,
+  center: justifyCenter,
+  right: justifyEnd,
+});
+
+const vertical = nestedResponsive('alignY', {
+  top: itemsStart,
+  center: itemsCenter,
+  bottom: itemsEnd,
+  stretch: itemsStretch,
+});
+
+export const alignX = responsive('layout', {
+  basic: justifyStart,
+  right: justifyEnd,
+  equal: justifyNormal,
+  split: justifyBetween,
+  stack: justifyNormal,
+  tile: justifyNormal,
+  cluster: horizontal(justifyStart),
+});
+
+export const alignY = responsive('layout', {
+  basic: vertical(itemsCenter),
+  right: vertical(itemsCenter),
+  equal: vertical(itemsCenter),
+  split: vertical(itemsCenter),
+  stack: itemsNormal,
+  tile: vertical(itemsStretch),
+  cluster: vertical(itemsCenter),
+});

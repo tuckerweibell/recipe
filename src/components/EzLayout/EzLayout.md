@@ -159,6 +159,70 @@ The `cluster` layout, like the `tile` layout, arranges content across columns an
 </EzCard>
 ```
 
+### Aligning content within a layout
+
+Content inside a layout is often variable in size and as such it may be necessary to align content within a container:
+
+- **Horizontal alignment**
+
+Some layouts, such as `equal`, `split`, `stack` and `tile` distribute items across the horizontal space in the container to fill the available space. In the remaining layouts, if the content width does not fill the available space, the layout may need to align the items within the available space. The `basic` and `right` layouts align content to the left and right respectively. The `cluster` layout offers an `alignX` prop to allow the content to be horizontally aligned either `left`, `right` or `center`.
+
+- **Vertical alignment**
+
+In layouts that position content into rows (i.e. all layouts except `stack`), content with varying height may cause there to be extra whitespace around the top and/or bottom of content items. By default layouts will typically center content within the container, but these layouts offer an `alignY` prop to allow the content to be vertically aligned `top`, `bottom`, `center` or `stretch`.
+
+```jsx
+() => {
+  const [alignY, setAlignY] = React.useState('top');
+  const [alignX, setAlignX] = React.useState('right');
+  return (
+    <EzCard>
+      <EzCardSection>
+        <EzHeading size="3">Align vertically ({alignY})</EzHeading>
+        <EzLayout layout="cluster" alignY={alignY}>
+          <Placeholder minHeight={40} height="auto" width={48} />
+          <Placeholder minHeight={100} height="auto" width={48} />
+          <Placeholder minHeight={60} height="auto" width={48} />
+        </EzLayout>
+        <EzField
+          type="radio"
+          bordered
+          label="Choose"
+          options={[
+            {label: 'Top', value: 'top'},
+            {label: 'Center', value: 'center'},
+            {label: 'Bottom', value: 'bottom'},
+            {label: 'Stretch', value: 'stretch'},
+          ]}
+          value={alignY}
+          onChange={e => setAlignY(e.target.value)}
+        />
+      </EzCardSection>
+      <EzCardSection>
+        <EzHeading size="3">Align horizontally ({alignX})</EzHeading>
+        <EzLayout layout="cluster" alignX={alignX}>
+          <Placeholder height={48} width={48} />
+          <Placeholder height={48} width={48} />
+          <Placeholder height={48} width={48} />
+        </EzLayout>
+        <EzField
+          type="radio"
+          bordered
+          label="Choose"
+          options={[
+            {label: 'Left', value: 'left'},
+            {label: 'Center', value: 'center'},
+            {label: 'Right', value: 'right'},
+          ]}
+          value={alignX}
+          onChange={e => setAlignX(e.target.value)}
+        />
+      </EzCardSection>
+    </EzCard>
+  );
+};
+```
+
 ### Combining Layouts
 
 The layout component can be nested in order to provide more complex or unique arrangements of components. For example, a toolbar might use a basic layout inside of an equal layout, to arrange logical groupings of action buttons into visual groups with even spacing between the grouped buttons.

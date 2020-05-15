@@ -1,7 +1,7 @@
 import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
 
-const getValue = (props, val) => (typeof val === 'function' ? val(props) : val);
+const getValue = (props, val, name) => (typeof val === 'function' ? val(props, name) : val);
 const createMediaQuery = (n, styles, reset) => css`
   @media screen and (min-width: ${n}) {
     ${reset};
@@ -35,14 +35,14 @@ export default (prop, values) => props => {
       ...styles,
       createMediaQuery(
         breakpoints[breakpointName],
-        getValue(props, values[variantName]),
-        getValue(props, values.reset)
+        getValue(props, values[variantName], breakpointName),
+        getValue(props, values.reset, breakpointName)
       ),
     ];
   }, []);
 
   return css`
-    ${getValue(props, values[base])};
+    ${getValue(props, values[base], 'base')};
     ${responsive};
   `;
 };

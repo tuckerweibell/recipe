@@ -4,16 +4,28 @@ import {visualSnapshots} from 'sosia';
 import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import regressionTests from './EzLayout.test.md';
+import alignmentTests from './EzLayout.alignment.test.md';
 import EzLayout from '../EzLayout';
-import {EzCard, EzCardSection, EzHeading} from '../../index';
+import {EzCard, EzCardSection, EzHeading, EzField} from '../../index';
 import {renderToHtml} from '../../../jest-globals';
 import Media from '../../EzField/Media';
 import Placeholder from '../../../../doc-site/src/components/Placeholder';
 
-const scope = {EzLayout, EzCard, EzCardSection, EzHeading, Media, css, Global, Placeholder};
+const scope = {
+  EzLayout,
+  EzCard,
+  EzCardSection,
+  EzHeading,
+  Media,
+  css,
+  Global,
+  Placeholder,
+  EzField,
+};
 
 describe('EzLayout', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: alignmentTests, scope});
   visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {

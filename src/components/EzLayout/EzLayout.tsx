@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import {base, layout, spacing, wrapper} from './EzLayout.styles';
+import {base, layout, spacing, wrapper, alignX, alignY} from './EzLayout.styles';
 import styled from '../../themes/styled';
 import {breakpoints} from '../../themes/standard';
 
@@ -62,7 +62,7 @@ type Props =
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
  */
-const EzLayout = styled.div<Props>(base, layout, spacing);
+const EzLayout = styled.div<Props>(base, layout, spacing, alignX, alignY);
 const Wrapper = styled.div<any>(wrapper);
 
 /**
