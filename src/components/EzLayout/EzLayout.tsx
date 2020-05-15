@@ -68,8 +68,23 @@ type Props =
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
  */
-const EzLayout = styled.div<Props>(base, layout, spacing, alignX, alignY);
+const InnerLayout = styled.div<Props>(base, layout, spacing, alignX, alignY);
 const Wrapper = styled.div<any>(wrapper);
+
+const requiresNegativeMargin = layoutProp =>
+  (typeof layoutProp === 'object' && 'tile' in layoutProp) || layoutProp === 'tile';
+
+const EzLayout: React.FC<Props> = props => {
+  if (!requiresNegativeMargin(props.layout)) return <InnerLayout {...props} />;
+
+  // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
+  // A wrapper element is included here to insulate content from the applied negative margin.
+  return (
+    <Wrapper>
+      <InnerLayout {...props} />
+    </Wrapper>
+  );
+};
 
 /**
  * defaultProps
@@ -80,20 +95,4 @@ EzLayout.defaultProps = {
   layout: 'basic',
 };
 
-const requiresNegativeMargin = layoutProp =>
-  (typeof layoutProp === 'object' && 'tile' in layoutProp) || layoutProp === 'tile';
-
-/**
- * @component
- */
-export default (props => {
-  if (!requiresNegativeMargin(props.layout)) return <EzLayout {...props} />;
-
-  // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
-  // A wrapper element is included here to insulate content from the applied negative margin.
-  return (
-    <Wrapper>
-      <EzLayout {...props} />
-    </Wrapper>
-  );
-}) as React.FC<Props>;
+export default EzLayout;
