@@ -1,5 +1,4 @@
 import {css} from '@emotion/core';
-import variant from 'styled-component-variant';
 import {responsive} from '../../styles';
 
 export const base = () => css`
@@ -27,18 +26,23 @@ const stack = () => css`
   flex-direction: column;
 `;
 
-const columnWidth = ({columns, theme}) => {
-  const width = n => ({flexBasis: `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`});
+const supportsCssVars =
+  typeof window !== 'undefined' && window.CSS?.supports?.('color', 'var(--a)');
 
-  if (typeof columns !== 'object') return width(columns);
+const columnWidth = props => {
+  const {columns, theme} = props;
+  const calcFlexBasis = n => `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`;
 
-  return responsive(
-    'columns',
-    Object.keys(columns).reduce((res, key) => {
-      res[columns[key]] = width(columns[key]);
-      return res;
-    }, {})
-  )({columns, theme});
+  if (typeof columns !== 'object') return {flexBasis: calcFlexBasis(columns)};
+
+  if (supportsCssVars) {
+    return cx(
+      {flexBasis: 'var(--recipe-tile-col-count)'},
+      responsive('columns', value => ({'--recipe-tile-col-count': calcFlexBasis(value)}))(props)
+    );
+  }
+
+  return responsive('columns', value => ({flexBasis: calcFlexBasis(value)}))(props);
 };
 
 const tile = ({columns, theme}) => css`
