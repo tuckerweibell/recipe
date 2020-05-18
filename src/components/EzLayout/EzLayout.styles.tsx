@@ -76,13 +76,13 @@ export const spacing = props => ({
     cluster: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
     reset: mx(0),
   })(props),
-  '> *': responsive('layout', {
+  '&& > *': responsive('layout', {
     /* ↓ half the value, to avoid doubling up the space between columns */
     tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
     cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
     reset: mx(0),
   })(props),
-  '> * + *': responsive('layout', {
+  '&& > * + *': responsive('layout', {
     basic: ml(props.theme.spacing.sm),
     right: ml(props.theme.spacing.sm),
     equal: ml(props.theme.spacing.sm),

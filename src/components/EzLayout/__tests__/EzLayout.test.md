@@ -67,3 +67,18 @@ When items are misaligned, the content items aren't symmetric.
   </EzCardSection>
 </EzCard>
 ```
+
+### Applies new margin correctly to elements with margin rest
+
+```jsx
+<EzPage>
+  <EzCard>
+    <EzCardSection>
+      <EzLayout layout="stack">
+        <EzHeading size={3}>Growth from your site & ours</EzHeading>
+        <p>We've spent years solving the complexities of catering orders.</p>
+      </EzLayout>
+    </EzCardSection>
+  </EzCard>
+</EzPage>
+```
