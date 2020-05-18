@@ -9,14 +9,18 @@ const createMediaQuery = (n, styles, reset) => css`
   }
 `;
 
-export default (prop, values) => props => {
+const createConfig = (options, fn) =>
+  Object.keys(options).reduce((res, key) => ({...res, [options[key]]: fn(options[key])}), {});
+
+export default (prop, config) => props => {
   if (!(prop in props)) return undefined;
 
-  const propValue = props[prop];
+  const options = props[prop];
+  const values = typeof config === 'function' ? createConfig(options, config) : config;
 
-  if (typeof propValue === 'string') return variant(prop, values)(props);
+  if (typeof options === 'string') return variant(prop, values)(props);
 
-  const base = propValue && propValue.base;
+  const base = options && options.base;
 
   if (!base)
     throw new Error('Argument Error: A base variant must be provided when using responsive props.');
@@ -27,7 +31,7 @@ export default (prop, values) => props => {
     throw new Error('Argument Error: breakpoints must be provided when variant is an Array.');
 
   const responsive = Object.keys(breakpoints).reduce((styles, breakpointName) => {
-    const variantName = propValue[breakpointName];
+    const variantName = options[breakpointName];
 
     if (!variantName) return styles;
 
