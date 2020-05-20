@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useContext} from 'react';
 import {base, resets} from './EzPage.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {childStyles} from './styles';
@@ -18,14 +18,33 @@ type PageWrapperProps = {
  */
 const EzPageContainer = styled.div<PageWrapperProps>(base, resets);
 const EzPageWrapper = styled.div<PageWrapperProps>(childStyles);
+const SectionContext = React.createContext(null);
+
+export const usePageSection = () => {
+  const sectionsCounter = useContext(SectionContext);
+  const ref = useRef(null);
+
+  function incrementCounterOnInit() {
+    if (ref.current) return;
+    sectionsCounter.current++;
+    ref.current = sectionsCounter.current;
+  }
+
+  incrementCounterOnInit();
+
+  return ref.current;
+};
 
 const EzPage: React.FC<PageProps> = ({children}) => {
+  const sectionsCounter = useRef(0);
   return (
-    <EzPageContainer>
-      <MaxWidth>
-        <EzPageWrapper>{children}</EzPageWrapper>
-      </MaxWidth>
-    </EzPageContainer>
+    <SectionContext.Provider value={sectionsCounter}>
+      <EzPageContainer>
+        <MaxWidth>
+          <EzPageWrapper>{children}</EzPageWrapper>
+        </MaxWidth>
+      </EzPageContainer>
+    </SectionContext.Provider>
   );
 };
 

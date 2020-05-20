@@ -17,26 +17,24 @@ const main = ({theme}) => css`
   }
 `;
 
+const siblingSpacing = ({theme, sibling}) =>
+  sibling &&
+  css`
+    margin-left: ${theme.spacing.xl3};
+  `;
+
 const use = variant('use', {
   aside,
   main,
 });
 
-type PageSectionProps = {
-  children: React.ReactNode;
-  use: 'aside' | 'main';
-};
-
-export const PageSection = styled.div<PageSectionProps>`
+export const PageSection = styled.div<any>`
   ${use};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
     display: inline-block;
     vertical-align: top;
-
-    & + ${() => PageSection} {
-      margin-left: ${props => props.theme.spacing.xl3};
-    }
+    ${siblingSpacing};
   }
 
   ${childStyles};
