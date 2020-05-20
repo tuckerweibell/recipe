@@ -13,7 +13,7 @@ const createConfig = (options, fn) =>
   Object.keys(options).reduce((res, key) => ({...res, [options[key]]: fn(options[key])}), {});
 
 export default (prop, config) => props => {
-  if (!(prop in props)) return undefined;
+  if (!(prop in props) || props[prop] === undefined) return undefined;
 
   const options = props[prop];
   const values = typeof config === 'function' ? createConfig(options, config) : config;

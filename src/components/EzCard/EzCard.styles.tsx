@@ -1,4 +1,5 @@
 import {css} from '@emotion/core';
+import {responsive} from '../../styles';
 import styled from '../../themes/styled';
 
 const accentStyles = ({accent, theme}) =>
@@ -7,16 +8,23 @@ const accentStyles = ({accent, theme}) =>
     border-left: 5px solid ${theme.colors.info.foreground};
   `;
 
-type CardContainerProps = {
-  theme?: object;
-  accent: string;
-};
+const imagePos = responsive('imagePosition', {
+  top: {flexWrap: 'wrap'},
+  right: {flexWrap: 'nowrap'},
+  left: {flexWrap: 'nowrap'},
+  reset: {flexWrap: 'nowrap'},
+});
 
-export const CardContainer = styled.div<CardContainerProps>`
+export const CardContainer = styled.div<any>`
   background: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.border.base};
   border-radius: ${props => props.theme.borderRadius[2]};
   ${accentStyles};
+  display: ${props => (props.imagePosition ? 'flex' : 'block')};
+  ${imagePos};
+  > * {
+    flex-grow: 1;
+  }
 `;
 
 export const CardHeadingContainer = styled.div`

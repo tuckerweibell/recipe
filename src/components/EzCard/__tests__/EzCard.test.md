@@ -118,3 +118,67 @@
   );
 };
 ```
+
+### Card image responsive small screen image-right
+
+```jsx
+<Media size="small">
+  <EzCard
+    title="Card with image on right"
+    imageSrc="https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+    imagePosition={{base: 'right', medium: 'top'}}
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</Media>
+```
+
+### Card image responsive small screen image-top
+
+```jsx
+<Media size="small">
+  <EzCard
+    title="Card with image at top"
+    imageSrc="https://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+    imagePosition={{base: 'top', medium: 'left'}}
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</Media>
+```
+
+### Card image responsive medium screen image-right
+
+```jsx
+<EzCard
+  title="Card with image on right"
+  imageSrc="https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+  imagePosition={{base: 'top', medium: 'right'}}
+>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </p>
+</EzCard>
+```
+
+### Card image responsive medium screen image-top
+
+```jsx
+<EzCard
+  title="Card with image at top"
+  imageSrc="https://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+  imagePosition={{base: 'left', medium: 'top'}}
+>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </p>
+</EzCard>
+```

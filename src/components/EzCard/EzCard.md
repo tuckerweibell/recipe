@@ -245,6 +245,37 @@ Accented info cards can be used when you want to draw attention to a card that d
 </EzPage>
 ```
 
+### Card images
+
+Card images can be used to enhance the content of the card and are ideal for marketing content. Images will render full-bleed inside of a card (i.e. without padding between the image and the card container). By default, images will fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image if to match the aspect ratio of the available space.
+
+- use `imageSrc` to provide an image URL
+- use `imagePosition` to provide an optional image position; `left`, `right`, `top`, or responsive e.g. `{base: 'top', medium: 'left'}`.
+
+```jsx
+<EzPage>
+  <EzCard
+    title="Card with image at top"
+    imageSrc="https://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+  <EzCard
+    title="Card with image on right"
+    imageSrc="https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+    imagePosition="right"
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
+```
+
 ---
 
 ## Limitations

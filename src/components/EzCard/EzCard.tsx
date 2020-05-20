@@ -4,6 +4,7 @@ import EzLink from '../EzLink';
 import EzCardFooter from './EzCardFooter';
 import EzCardSection from './EzCardSection';
 import EzCardHeading from './EzCardHeading';
+import EzCardImage from './EzCardImage';
 import {filterValidProps} from '../../utils';
 
 function isEzCardSection(element) {
@@ -25,7 +26,12 @@ type ExpandableCardFooter = {
   isExpanded?: boolean;
 };
 
-type CardProps = HeadingProps & {
+type Position = 'top' | 'right' | 'left';
+type ImageProps =
+  | {imageSrc: string; imagePosition?: Position}
+  | {imageSrc?: never; imagePosition?: never};
+
+type CardProps = (HeadingProps & ImageProps) & {
   children: React.ReactNode;
   horizontal?: boolean;
   accent?: 'info';
@@ -38,11 +44,25 @@ const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFo
 /**
  * Cards are the primary means of grouping sections on a page.
  */
-const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, expandable, ...props}) => {
-  const {horizontal, children} = props;
-
-  return (
-    <CardContainer {...filterValidProps(props)} accent={accent}>
+const EzCard: React.FC<CardProps> = ({
+  title,
+  subtitle,
+  accent,
+  actions,
+  expandable,
+  horizontal,
+  children,
+  imageSrc,
+  imagePosition = 'top',
+  ...props
+}) => (
+  <CardContainer
+    {...filterValidProps(props)}
+    accent={accent}
+    imagePosition={imageSrc && imagePosition}
+  >
+    {imageSrc && <EzCardImage src={imageSrc} position={imagePosition} />}
+    <div>
       {title && <EzCardHeading {...{actions, title, subtitle}} />}
       <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
       {isExpandableCardFooter(expandable) && (
@@ -54,9 +74,9 @@ const EzCard: React.FC<CardProps> = ({title, subtitle, accent, actions, expandab
           </EzLink>
         </EzCardFooter>
       )}
-    </CardContainer>
-  );
-};
+    </div>
+  </CardContainer>
+);
 
 EzCard.displayName = 'EzCard';
 

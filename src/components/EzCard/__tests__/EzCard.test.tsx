@@ -8,6 +8,7 @@ import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzPageSection, EzLayout, EzButton, EzField} from '../../index';
+import Media from '../../EzField/Media';
 
 const Open = ({children, containerRef}) => {
   React.useEffect(() => {
@@ -27,6 +28,7 @@ const scope = {
   EzPageSection,
   EzField,
   Open,
+  Media,
 };
 
 describe('EzCard', () => {
