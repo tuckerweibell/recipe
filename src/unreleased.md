@@ -14,6 +14,7 @@ title: 'Unreleased changes'
 - New alignment options on EzLayout.
   - The `cluster` layout has a new `alignX` option. This option allows the horizontal alignment to be changed to `left`, `right`, `center` or conditionally based on the current screen size.
   - The following layout have a new `alignY` option: `basic`, `right`, `equal`, `split`, `tile` and `cluster`. This option allows the vertical alignment to be changed to `top`, `bottom`, `center`, `stretch` or conditionally based on the current screen size.
+- New Card image feature for EzCard. Support for `top`, `left` or `right` aligned, full-bleed images (i.e. image fills the card / no padding). By default, images will fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image if to match the aspect ratio of the available space.
 
 #### Design updates
 
@@ -29,6 +30,7 @@ title: 'Unreleased changes'
 - Fix invalid markup in EzField[type=checkbox|radio] (div inside label)
 - Fixed wrapping of long EzField[type=checkbox] options and EzField[type=radio] options.
 - Fixed: support for [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) EzField[type=radio], in addition to the more component controlled component usage. As an uncontrolled component, the DOM handles state changes, instead of React state.
+- Generate less CSS for tile layouts wherever css vars are supported.
 
 #### Documentation
 
@@ -41,3 +43,5 @@ title: 'Unreleased changes'
 #### Development workflow
 
 - Fix issue with visual regression Media component that was causing styles to leak across tests.
+- Support map function is responsive helper (internal tooling)
+- Better handling of invalid prop values for components that have responsive props. When using the live-editor in the doc-site, prop values may be temporarily invalid (while typing). Log these errors to the development console, rather than throwing to avoid losing state in the live-editor.
