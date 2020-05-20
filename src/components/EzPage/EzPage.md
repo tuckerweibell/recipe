@@ -29,7 +29,7 @@ Page Section should not:
 
 ### Basic Page Content
 
-Page provides consistent spacing of its children.
+Pages provide consistent spacing of their children.
 
 ```jsx
 <EzPage>
@@ -43,7 +43,7 @@ Page provides consistent spacing of its children.
 
 ### Using Headings
 
-Page will provide appropriate margin on Headings.
+Pages provide appropriate margin on Headings to indicate that a heading is related to the subsequent page content.
 
 ```jsx
 <EzPage>
@@ -56,7 +56,10 @@ Page will provide appropriate margin on Headings.
 
 ### Page Sections
 
-You can use `EzPageSection` to create layouts that have a left or right sidebar. Passing `use="aside"` creates a sidebar and `use="main"` creates the associated "two thirds ish" section.
+Page sections can be used to create layouts that have a left or right sidebar.
+
+- Use `EzPageSection[use="aside"]` to create a sidebar
+- Use `EzPageSection[use="main"]` to create the associated main content section
 
 ```jsx
 <EzPage>
@@ -97,7 +100,7 @@ You can use `EzPageSection` to create layouts that have a left or right sidebar.
 
 ### Right sidebar
 
-Just change the order of the aside and main sections if you want a right sidebar layout.
+Section content is displayed in the order in which it is provided. To change the order of the layout, flip the order of the aside and main sections. The below example demonstrates a "right sidebar" layout.
 
 ```jsx
 <EzPage>
@@ -137,6 +140,8 @@ Just change the order of the aside and main sections if you want a right sidebar
 ```
 
 ### Centered Header and Page Content
+
+The page may be paired with a page header to provide a consistent page width within an application layout.
 
 ```jsx
 <EzAppLayout layout="centered">
