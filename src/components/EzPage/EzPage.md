@@ -56,7 +56,7 @@ Pages provide appropriate margin on Headings to indicate that a heading is relat
 
 ### Page Sections
 
-Page sections can be used to create layouts that have a left or right sidebar.
+Page sections can be used on larger screens to create layouts that have a left or right sidebar. On small screens, page sections will stack content vertically.
 
 - Use `EzPageSection[use="aside"]` to create a sidebar
 - Use `EzPageSection[use="main"]` to create the associated main content section
@@ -130,6 +130,38 @@ Section content is displayed in the order in which it is provided. To change the
       </p>
     </EzCard>
     <EzCard title="Card (in aside)">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      </p>
+    </EzCard>
+  </EzPageSection>
+</EzPage>
+```
+
+### Horizontal sections
+
+Page section content may be laid out horizontally on larger screens, instead of vertically, to more clearly communicate how content may be related to other content within the section. For example, feature sections may be laid out horizontally so that features can be compared to one another. On small screens, page sections will stack content vertically.
+
+- Use `EzPageSection[use="horizontal"]` to create a page section that is laid out horizontally.
+
+```jsx
+<EzPage>
+  <EzPageSection use="horizontal">
+    <EzCard title="How to boost your conversion rate">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit.
+      </p>
+    </EzCard>
+    <EzCard title="Using features effectively to drive sales">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+        maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+      </p>
+    </EzCard>
+    <EzCard title="Tools to improve your customer experience">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
         maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.

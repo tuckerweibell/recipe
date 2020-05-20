@@ -10,7 +10,7 @@ type Props = UseProps & React.HTMLProps<HTMLDivElement>;
  * Page Sections are used to organize sections of content within EzPage.
  */
 const EzPageSection: React.SFC<Props> = props => {
-  const id = usePageSection();
+  const id = usePageSection(props.use);
 
   return <PageSection {...props} sibling={!(id % 2)} />;
 };

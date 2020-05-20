@@ -20,12 +20,14 @@ const EzPageContainer = styled.div<PageWrapperProps>(base, resets);
 const EzPageWrapper = styled.div<PageWrapperProps>(childStyles);
 const SectionContext = React.createContext(null);
 
-export const usePageSection = () => {
+export const usePageSection = type => {
   const sectionsCounter = useContext(SectionContext);
   const ref = useRef(null);
 
+  if (type === 'horizontal') return 1;
+
   function incrementCounterOnInit() {
-    if (ref.current) return;
+    if (ref.current !== null) return;
     sectionsCounter.current++;
     ref.current = sectionsCounter.current;
   }

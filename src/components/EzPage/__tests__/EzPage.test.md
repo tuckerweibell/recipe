@@ -56,3 +56,33 @@
   </EzPageSection>
 </EzPage>
 ```
+
+### Horizontal section collapses on small screens
+
+```jsx
+<Media size="small">
+  <EzPage>
+    <EzPageSection use="horizontal">
+      <EzCard title="How to boost your conversion rate">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis. Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit.
+        </p>
+      </EzCard>
+      <EzCard title="Using features effectively to drive sales">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+      <EzCard title="Tools to improve your customer experience">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+    </EzPageSection>
+  </EzPage>
+</Media>
+```
