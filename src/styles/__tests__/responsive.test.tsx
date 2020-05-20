@@ -5,6 +5,7 @@ import {fullRender} from '../../jest-globals';
 
 describe('responsive()', () => {
   let fn;
+  let spyOnErrors;
   const theme = {
     breakpoints: {
       tablet: '37.5rem',
@@ -22,7 +23,10 @@ describe('responsive()', () => {
       light: 'color: #fff',
       dark: props => `color: ${props.colors.black}`,
     });
+    spyOnErrors = jest.spyOn(console, 'error');
   });
+
+  afterEach(() => spyOnErrors.mockReset());
 
   it('should return undefined if there is no matching prop', () => {
     expect(fn({})).toBeUndefined();
@@ -36,14 +40,17 @@ describe('responsive()', () => {
   });
 
   it('should raise an error if called without a base variant', () => {
-    expect(() => fn({use: {desktop: 'dark'}, colors, theme})).toThrow();
+    fn({use: {desktop: 'dark'}, colors, theme});
+    expect(spyOnErrors).toHaveBeenCalled();
   });
 
   it('should raise an error if called without a theme', () => {
-    expect(() => fn({use: {base: 'light', desktop: 'dark'}, colors})).toThrow();
+    fn({use: {base: 'light', desktop: 'dark'}, colors});
+    expect(spyOnErrors).toHaveBeenCalled();
   });
 
   it('should raise an error if called without breakpoints', () => {
-    expect(() => fn({use: {base: 'light', desktop: 'dark'}, colors, theme: {}})).toThrow();
+    fn({use: {base: 'light', desktop: 'dark'}, colors, theme: {}});
+    expect(spyOnErrors).toHaveBeenCalled();
   });
 });

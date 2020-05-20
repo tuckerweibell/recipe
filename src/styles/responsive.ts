@@ -22,13 +22,24 @@ export default (prop, config) => props => {
 
   const base = options && options.base;
 
-  if (!base)
-    throw new Error('Argument Error: A base variant must be provided when using responsive props.');
+  if (!base) {
+    // eslint-disable-next-line no-console
+    console.error(
+      `A base variant must be provided when using responsive props. You provided: ${options &&
+        JSON.stringify(options)}`
+    );
+    return undefined;
+  }
 
-  const {theme: {breakpoints} = {breakpoints: undefined}} = props;
+  const breakpoints = props?.theme?.breakpoints;
 
-  if (!breakpoints)
-    throw new Error('Argument Error: breakpoints must be provided when variant is an Array.');
+  if (!breakpoints) {
+    // eslint-disable-next-line no-console
+    console.error(
+      `Breakpoints must be defined when using responsive props on components. No breakpoints where found on your current theme.`
+    );
+    return undefined;
+  }
 
   const responsive = Object.keys(breakpoints).reduce((styles, breakpointName) => {
     const variantName = options[breakpointName];
