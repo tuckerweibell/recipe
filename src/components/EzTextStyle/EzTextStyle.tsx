@@ -7,12 +7,10 @@ const use = variant('use', {
   subdued,
 });
 
-type StringOrNumber = string | number;
-
 type Props = {
   use?: 'strong' | 'subdued';
   align?: 'left' | 'right' | 'center';
-  children: StringOrNumber | StringOrNumber[];
+  children?: React.ReactNode;
 };
 /**
  * Enhances text with styles to communicate emphasis.
