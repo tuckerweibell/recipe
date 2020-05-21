@@ -70,3 +70,15 @@ Normally heading size numbers correspond directly to the same size `h` tag, but 
   Container headings
 </EzHeading>
 ```
+
+### Heading alignment
+
+By default, heading text will be left-aligned within the available space.
+
+- Use `align` to control the text alignment: `left`, `center` or `right`. Alter the alignment for different screen sizes using `{base: 'left', medium: 'center'}`.
+
+```jsx
+<EzHeading size="3" align="center">
+  Online ordering boosts sales through your site. ezOrdering boosts it further.
+</EzHeading>
+```

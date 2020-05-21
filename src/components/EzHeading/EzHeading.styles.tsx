@@ -1,5 +1,6 @@
 import variant from 'styled-component-variant';
 import {css} from '@emotion/core';
+import {align} from '../EzTextStyle/EzTextStyle.styles';
 import styled from '../../themes/styled';
 
 export const Subheading = styled.div`
@@ -29,5 +30,7 @@ const size = variant('size', {
 
 export const headings = ['1', '2', '3', '4', '5', '6'].reduce((res, n) => {
   const tag = `h${n}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  return {[tag]: styled(tag)(size), ...res};
+  return {[tag]: styled(tag)(size, align), ...res};
 }, {});
+
+export const Header = styled.header(align);

@@ -4,6 +4,7 @@ import styled from '../../themes/styled';
 
 type HeadingProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  align?: 'left' | 'right' | 'center';
   children: React.ReactNode;
   size: '1' | '2' | '3' | '4' | '5' | '6';
   id?: string;
@@ -19,6 +20,7 @@ const EzHeading: React.FC<HeadingProps> = ({
   id,
   children: title,
   className,
+  align,
   size: headingSize,
   subheading: subtitle,
 }) => {
@@ -26,7 +28,7 @@ const EzHeading: React.FC<HeadingProps> = ({
   const Heading = headings[headingElement];
 
   const heading = (
-    <Heading className={className} size={headingSize} id={id}>
+    <Heading size={headingSize} id={id}>
       {title}
     </Heading>
   );
@@ -35,17 +37,15 @@ const EzHeading: React.FC<HeadingProps> = ({
     <Subheading>{subtitle}</Subheading>
   );
 
-  if (!subheading) return heading;
-
-  return (
+  const header = (
     <header>
       {heading}
       {subheading}
     </header>
   );
+
+  return React.cloneElement(subheading ? header : heading, {className, align});
 };
 
-/**
- * @component
- */
+// wrap with styled to allow emotion to target as child component
 export default styled(EzHeading)();
