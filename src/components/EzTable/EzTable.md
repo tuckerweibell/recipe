@@ -201,9 +201,6 @@ Note: Typically, [only the first column](#best-practices) should provide links t
           {store}
         </a>
       </div>
-      <div>
-        <EzTextStyle use="subdued">{id}</EzTextStyle>
-      </div>
     </div>
   );
 
