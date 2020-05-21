@@ -1,9 +1,9 @@
 ### cluster - horizontal
 
-NOTE: Only cluster layout supports horizontal alignment.
+NOTE: Only cluster and stack layouts supports horizontal alignment.
 
 `basic`/`right` layouts are always left or right aligned respectively.
-`equal`, `split`, `stack` and `tile` fill the horizontal space.
+`equal`, `split`, and `tile` fill the horizontal space.
 
 ```jsx
 <EzCard>
@@ -27,6 +27,44 @@ NOTE: Only cluster layout supports horizontal alignment.
       <Placeholder height={48} width={48} />
     </EzLayout>
   </EzCardSection>
+</EzCard>
+```
+
+### stack - horizontal
+
+```jsx
+<EzCard>
+  <EzHeading size="3">stack - align left</EzHeading>
+  <EzLayout layout="stack" alignX="stretch">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+  </EzLayout>
+  <EzHeading size="3">stack - align right</EzHeading>
+  <EzLayout layout="stack" alignX="right">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+  </EzLayout>
+  <EzHeading size="3">stack - align center</EzHeading>
+  <EzLayout layout="stack" alignX="center">
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+    <Placeholder height={48} width={48} />
+  </EzLayout>
+</EzCard>
+```
+
+### stack - horizontal - stretch
+
+```jsx
+<EzCard>
+  <EzHeading size="3">stack - stretch</EzHeading>
+  <EzLayout layout="stack" alignX="stretch">
+    <Placeholder height={48} />
+    <Placeholder height={48} />
+    <Placeholder height={48} />
+  </EzLayout>
 </EzCard>
 ```
 

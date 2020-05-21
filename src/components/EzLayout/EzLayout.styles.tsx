@@ -126,10 +126,17 @@ const nestedResponsive = (propName, options) => defaultValue => (props, breakpoi
   return options[config[breakpoint]];
 };
 
-const horizontal = nestedResponsive('alignX', {
+const horizontalJustify = nestedResponsive('alignX', {
   left: justifyStart,
   center: justifyCenter,
   right: justifyEnd,
+});
+
+const horizontalAlign = nestedResponsive('alignX', {
+  left: itemsStart,
+  center: itemsCenter,
+  right: itemsEnd,
+  stretch: itemsStretch,
 });
 
 const vertical = nestedResponsive('alignY', {
@@ -144,9 +151,9 @@ export const alignX = responsive('layout', {
   right: justifyEnd,
   equal: justifyNormal,
   split: justifyBetween,
-  stack: justifyNormal,
+  stack: horizontalAlign(itemsNormal),
   tile: justifyNormal,
-  cluster: horizontal(justifyStart),
+  cluster: horizontalJustify(justifyStart),
 });
 
 export const alignY = responsive('layout', {
@@ -154,7 +161,7 @@ export const alignY = responsive('layout', {
   right: vertical(itemsCenter),
   equal: vertical(itemsCenter),
   split: vertical(itemsCenter),
-  stack: itemsNormal,
+  stack: justifyNormal,
   tile: vertical(itemsStretch),
   cluster: vertical(itemsCenter),
 });

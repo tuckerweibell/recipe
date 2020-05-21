@@ -165,7 +165,7 @@ Content inside a layout is often variable in size and as such it may be necessar
 
 - **Horizontal alignment**
 
-Some layouts, such as `equal`, `split`, `stack` and `tile` distribute items across the horizontal space in the container to fill the available space. In the remaining layouts, if the content width does not fill the available space, the layout may need to align the items within the available space. The `basic` and `right` layouts align content to the left and right respectively. The `cluster` layout offers an `alignX` prop to allow the content to be horizontally aligned either `left`, `right` or `center`.
+Some layouts, such as `equal`, `split` and `tile` distribute items across the horizontal space in the container to fill the available space. In the remaining layouts, if the content width does not fill the available space, the layout may need to align the items within the available space. The `basic` and `right` layouts align content to the left and right respectively. The `cluster` layout offers an `alignX` prop to allow the content to be horizontally aligned either `left`, `right` or `center`. The `stack` layout offers the same `left`, `right` or `center` options as the `cluster` layout, but also offers a `stretch` option, which is the default for `stack` layouts, and allows layout items to grow to fill the container (if unconstrained in width).
 
 - **Vertical alignment**
 
