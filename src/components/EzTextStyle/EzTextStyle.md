@@ -25,6 +25,18 @@ Text style should NOT:
 
 ## Examples
 
+### Text alignment
+
+By default, text will be left-aligned within the available space.
+
+- Use `align` to control the text alignment: `left`, `center` or `right`. Alter the alignment for different screen sizes using `{base: 'left', medium: 'center'}`.
+
+```jsx
+<EzTextStyle align="center">
+  Online ordering boosts sales through your site. ezOrdering boosts it further.
+</EzTextStyle>
+```
+
 ### Strong text style
 
 Use to highlight important data, such as Totals in a pricing table.
