@@ -13,9 +13,12 @@ title: 'Unreleased changes'
 
 - New alignment options on EzLayout.
   - The `cluster` layout has a new `alignX` option. This option allows the horizontal alignment to be changed to `left`, `right`, `center` or conditionally based on the current screen size.
+  - The `stack` layout has a new `alignX` option. This option allows the horizontal alignment to be changed to `left`, `right`, `center`, or `stretch` or conditionally based on the current screen size.
   - The following layout have a new `alignY` option: `basic`, `right`, `equal`, `split`, `tile` and `cluster`. This option allows the vertical alignment to be changed to `top`, `bottom`, `center`, `stretch` or conditionally based on the current screen size.
 - New Card image feature for EzCard. Support for `top`, `left` or `right` aligned, full-bleed images (i.e. image fills the card / no padding). By default, images will fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image if to match the aspect ratio of the available space.
 - New `horizontal` option for [page sections](/components/ez-page#horizontal-sections), ideal for comparing content, such as in feature sections.
+- New alignment options for [EzTextStyle](/components/ez-text-style#text-alignment) and [EzHeading](/components/ez-heading#heading-alignment). Use align to control the text alignment: `left`, `center` or `right`. Alter the alignment for different screen sizes using `{base: 'left', medium: 'center'}`.
+- Relax type definition for `EzTextStyle` to allow any ReactNode content. This allows other text content, such as links, to be included within the component, allowing for control over alignment.
 
 #### Design updates
 
