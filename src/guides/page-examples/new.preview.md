@@ -112,3 +112,105 @@
   </EzAppLayout>
 </ThemeProvider>
 ```
+
+### marketing-form
+
+```jsx
+<ThemeProvider theme={{...themes.standard, breakpoints: {medium: '768px', large: '800px'}}}>
+  <EzAppLayout>
+    <EzNavigation
+      home={{
+        href: '/',
+        label: '■■■■■■■■',
+        logo: {
+          src: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 100 100" height="100px" width="100px"><circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="lightgray"></circle></svg>`,
+          width: 50,
+        },
+      }}
+      links={[
+        {href: '#', label: '■■■■■■', active: false},
+        {href: '#', label: '■■■■■■■■■', active: true},
+        {href: '#', label: '■■■■■■', active: false},
+      ]}
+    >
+      <EzPage>
+        <EzCard
+          imageSrc="https://via.placeholder.com/200+x+75/00b373/FFFFFF?text=+"
+          imagePosition={{base: 'top', medium: 'right'}}
+        >
+          <EzLayout layout="stack">
+            <EzHeading size="1">■■■■■</EzHeading>
+          </EzLayout>
+          <p>■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■</p>
+          <EzButton use="primary">■■■ ■ ■■</EzButton>
+        </EzCard>
+        <EzPageSection use="horizontal">
+          <EzCard>
+            <EzLayout layout="stack" alignX="center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                height="50"
+                width="50"
+              >
+                <circle cx="50" cy="50" r="40" fill="lightgray"></circle>
+              </svg>
+
+              <EzHeading align="center" size={3}>
+                ■■■ ■ ■■ ■■■
+              </EzHeading>
+              <EzTextStyle align="center">■■■ ■ ■■ ■■ ■■ ■ ■■■ ■■ ■■■ ■■■ ■■</EzTextStyle>
+            </EzLayout>
+          </EzCard>
+          <EzCard>
+            <EzLayout layout="stack" alignX="center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                height="50"
+                width="50"
+              >
+                <circle cx="50" cy="50" r="40" fill="lightgray"></circle>
+              </svg>
+
+              <EzHeading align="center" size={3}>
+                ■■■ ■ ■■ ■■■
+              </EzHeading>
+              <EzTextStyle align="center">■■■ ■ ■■ ■■ ■■ ■ ■■■ ■■ ■■■ ■■■ ■■</EzTextStyle>
+            </EzLayout>
+          </EzCard>
+          <EzCard>
+            <EzLayout layout="stack" alignX="center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                height="50"
+                width="50"
+              >
+                <circle cx="50" cy="50" r="40" fill="lightgray"></circle>
+              </svg>
+
+              <EzHeading align="center" size={3}>
+                ■■■ ■ ■■ ■■■
+              </EzHeading>
+              <EzTextStyle align="center">■■■ ■ ■■ ■■ ■■ ■ ■■■ ■■ ■■■ ■■■ ■■</EzTextStyle>
+            </EzLayout>
+          </EzCard>
+        </EzPageSection>
+        <EzCard accent="info">
+          <EzLayout layout="split">
+            <EzHeading size={3}>■■ ■■■ ■■■ ■■</EzHeading>
+            <EzButton use="primary">■■■ ■ ■■</EzButton>
+          </EzLayout>
+        </EzCard>
+      </EzPage>
+    </EzNavigation>
+  </EzAppLayout>
+</ThemeProvider>
+```
