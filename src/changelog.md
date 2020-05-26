@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.4.1 - 2020-05-26
+
+#### Bug fixes
+
+- fix: regression causing EzField[type="radio"] and EzField[type="checkbox"] to ignore `disabled` flag (Closes [#369](https://github.com/ezcater/recipe/issues/369)).
+
 ## 10.4.0 - 2020-05-26
 
 #### Enhancements
