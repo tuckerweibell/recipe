@@ -41,6 +41,7 @@ title: 'Unreleased changes'
 - Update layout docs with placeholder content to more clearly indicate the differences between layouts. This also allows us to avoid using custom CSS in the layout examples, which may be confused for being part of the API.
 - Added prop usage information to EzField[type=checkbox] and EzField[type=radio] to describe the multiple choice `options` prop and how options may be marked as `disabled`.
 - Added complex form pattern example, showing how a create promotion page might be made from Recipe components.
+- Added marketing page pattern example, showing how a Get more orders page might be made from Recipe components.
 
 #### Dependency upgrades
 
