@@ -16,7 +16,7 @@ The breaking changes are detailed in the Recipe [release notes for version 8.0.0
 
 ### Base font size
 
-Applications using Recipe today that are not ready to migrate to a base font size of 16px can continue to use their current base font size by adding the new [EzBaseFontSizeCompatibility](/components/ez-base-font-size-Compatibility) component to the top-level entry point(s) for their application.
+Applications using Recipe today that are not ready to migrate to a base font size of 16px can continue to use their current base font size by adding the new [EzBaseFontSizeCompatibility](/components/ez-base-font-size-compatibility) component to the top-level entry point(s) for their application.
 
 This component should be used as a sibling element to other content as shown below:
 
