@@ -7,6 +7,7 @@ type ChoiceValue = string | number | boolean;
 type Choice = {
   label: string;
   value: ChoiceValue;
+  disabled?: boolean;
 };
 
 type ListboxProps = {

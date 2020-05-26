@@ -1,6 +1,6 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
-import {getByLabelText, fireEvent} from '@testing-library/react';
+import {getByLabelText, fireEvent, screen} from '@testing-library/react';
 import regressionTests from './EzField.checkbox.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
@@ -35,6 +35,32 @@ describe('EzField', () => {
       expect(getByLabelText(container, 'Choice A')).toHaveProperty('checked', true);
       expect(getByLabelText(container, 'Choice B')).toHaveProperty('checked', false);
       expect(getByLabelText(container, 'Choice C')).toHaveProperty('checked', false);
+    });
+
+    it('should render disabled options', () => {
+      const {unmount} = render(<EzField {...checkboxProps} value={['a', 'c']} disabled />);
+      expect(screen.getByLabelText('Choice A')).toBeDisabled();
+      expect(screen.getByLabelText('Choice B')).toBeDisabled();
+      expect(screen.getByLabelText('Choice C')).toBeDisabled();
+
+      unmount();
+
+      // individually disabled options
+      render(
+        <EzField
+          {...checkboxProps}
+          options={[
+            {label: 'Choice A', value: 'a', disabled: true},
+            {label: 'Choice B', value: 'b'},
+            {label: 'Choice C', value: 'c'},
+          ]}
+          value={['a', 'c']}
+        />
+      );
+
+      expect(screen.getByLabelText('Choice A')).toBeDisabled();
+      expect(screen.getByLabelText('Choice B')).not.toBeDisabled();
+      expect(screen.getByLabelText('Choice C')).not.toBeDisabled();
     });
 
     it('should publish change event with the newly selected options', () => {

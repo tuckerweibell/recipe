@@ -37,7 +37,8 @@ export default props => {
   return (
     <Options bordered={props.bordered}>
       {options.map((choice, i) => {
-        const {label, disabled, value} = choice;
+        const {label, value} = choice;
+        const disabled = props.disabled || choice.disabled;
         const inputProps = {
           checked:
             'value' in props
