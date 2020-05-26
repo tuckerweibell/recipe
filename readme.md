@@ -1,10 +1,35 @@
+<br>
+
+<p align="center">
+  <a href="https://ezcater.github.io/recipe/">
+    <img src="https://user-images.githubusercontent.com/109814/82938935-8e390600-9f60-11ea-8526-c5c8471d642e.png" alt="Recipe logo" />
+  </a>
+</p>
+
+
+
+<p align="center">
+  Delicious UI components, from <a href="https://www.ezcater.com/">ezcater</a>.
+  <br>
+  <a href="https://ezcater.github.io/recipe/"><strong>Explore website »</strong></a>
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/npm/v/@ezcater/recipe.svg" /></a>
+  <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@ezcater/recipe.svg"></a>
+  <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/maintainability"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/maintainability" /></a>
+  <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/test_coverage" /></a>
+</p>
+
 # Installation
 
 ```
 npm install @ezcater/recipe --save
 ```
 
-# importing components in downstream projects
+## Importing components in downstream projects
 
 Import the Recipe package, just as you would any other package dependency:
 
@@ -20,7 +45,9 @@ export const MyComponent = () => (
 );
 ```
 
-# Contributing / Creating Components
+
+
+## Contributing / Creating Components
 
 This project uses [plop](https://www.npmjs.com/package/plop) to generate new React components. The functionality is exposed as the `create-component` npm script from package.json. This will:
 
