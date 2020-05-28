@@ -33,8 +33,12 @@ const IFramePlayground = props => {
 
         if (m === '0px' && newMargin === 0) return m;
 
+        const currentScrollPosition = [window.scrollX, window.scrollY];
+
         iframe.style.height = 0;
         iframe.style.height = `${contentDocument.documentElement.scrollHeight + newMargin}px`;
+
+        window.scroll(...currentScrollPosition);
 
         return `${newMargin}px`;
       });
