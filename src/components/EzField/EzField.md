@@ -58,7 +58,14 @@ Allows users to provide short text input. Optionally, additional context can be 
 
 ### Field with validation error
 
-Let the user know that there is a problem with the provided input. Note that errors are not displayed until the input has been interacted with, represented by the `touched` prop.
+Lets the user know that there is a problem with the provided input.
+
+Whenever possible, validate the input after the user has finished their interaction with a field (but not before). If the user does not interact with the field before the form is submitted, the input should be validated on submission of the form. Error messages should be removed as early as possible, ideally as the user is typing, so that the user can see when an error has been addressed.
+
+- use the `error` prop to provide a validation message to display to the user. The presence of a value indicates that the field is currently in an invalid state.
+- use the `touched` prop to indicate that the user has interacted with or has visited the field. This value is used to determine whether or not to show an error and helps to avoid overwhelming users with error messages for fields they have not interacted with.
+
+Note: Recipe doesn't maintain the value of `touched`, and instead expects the `touched` state to be managed within the application, typically via [formik](https://jaredpalmer.com/formik/) or another form validation library.
 
 ```jsx
 <EzFormLayout>
