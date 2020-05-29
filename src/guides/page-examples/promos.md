@@ -6,15 +6,82 @@ path: '/cookbook/promos'
 tags: ['wide']
 ---
 
-### New promotion example
+## New promotion example
 
-The new promotion form demonstrates a more complex layout for form content than the simpler [lead form](/cookbook/lead-form), and also demonstrates a wider variety of form inputs: text inputs, date inputs, segmented controls, radio buttons and lastly an acknowledgement checkbox.
+The new promotion form demonstrates a more complex layout for form content than the simpler [lead form](/cookbook/lead-form), and also demonstrates a wider variety of form inputs: text inputs, date inputs, segmented controls, radio buttons and an acknowledgement checkbox.
 
-An additional detail to note, is the use of nested layouts to organize form content for presenting the "Promotion value" inputs. Logically the page is presenting two controls under the label "Promotion Value". Semantically however, the code is presenting two separate components, and visually hiding the label of one of them. An alternative approach (not explored here) might instead use a [custom input field](/components/ez-field#custom-input-field) to present both the text field and the segmented control under a single field label.
+### Validation
+
+This form uses the [Field validation API](/components/ez-field#field-with-validation-error) to prompt the user to fill out required fields and to ensure that values entered are within the expected range. The validation logic applied in this example has been intentionally kept simple to demonstrate the concepts.
+
+Each field that requires validation accepts a `touched` prop and an `error` prop. These properties are used to determine whether or not to show an error and helps to avoid overwhelming users with error messages for fields they have not interacted with.
+
+- The `error` provides a validation message to display to the user. The presence of a value indicates that the field is currently in an invalid state.
+- The `touched` indicates that the user has interacted with or has visited the field. This let's us know that we're ready to display the validation outcome.
+
+The code sample below demonstrates some example react hooks to maintain `error` and `touched` values for each field. In a real application, these functions would likely live in a separate module/package from the page. For example, both the [Formik](https://jaredpalmer.com/formik/) and [Final Form](https://final-form.org/react) libraries have similar React hooks for helping maintain the form state.
+
+### Composite component layouts
+
+One detail to note is the use of nested layouts to organize the form content presenting the "Promotion value" inputs. Logically the page is presenting two controls under the label "Promotion Value". Semantically, the example code is presenting two separate components and visually hiding the label of one of them. While this does make the form submission simpler by exposing two separate values in the submitted result, there may be accessibility implications since the visible label only relates to one of the two inputs.
+
+An alternative approach (not explored here) might instead use a [custom input field](/components/ez-field#custom-input-field) to present both the text field and the segmented control under a single field label.
 
 ```jsx
 () => {
   const onClick = e => e.preventDefault();
+
+  // NOTE: This code is provided inline to demonstrate what is possible with the EzField validation API.
+  // A React-hook like this would typically live in a separate module/package
+  const useForm = () => {
+    const values = React.useRef({});
+    const [isSubmitting, setSubmitting] = React.useState(false);
+
+    return {
+      values: values.current,
+      setFieldValue: (name, value) => {
+        values.current[name] = value;
+      },
+      isSubmitting,
+      setSubmitting,
+    };
+  };
+
+  const {values, setFieldValue, isSubmitting, setSubmitting} = useForm();
+
+  // NOTE: This code is provided inline to demonstrate what is possible with the EzField validation API.
+  // A React-hook like this would typically live in a separate module/package
+  const useField = nameOrOptions => {
+    const options = typeof nameOrOptions === 'string' ? {name: nameOrOptions} : nameOrOptions;
+    const {name, type} = options;
+    const [value, setValue] = React.useState(options.initialValue);
+    const [touched, setTouched] = React.useState(options.initialTouched || false);
+    const fieldValue = type === 'radio' || type === 'checkbox' ? {checked: value} : {value};
+    const validate = options.validate || (() => false);
+
+    return {
+      onChange: eventOrValue => {
+        const target =
+          eventOrValue && eventOrValue.target ? eventOrValue.target : {value: eventOrValue};
+        setFieldValue(name, target.value);
+        setValue(target.value);
+      },
+      onBlur: () => setTouched(true),
+      name,
+      touched: isSubmitting ? true : touched,
+      error: validate(value),
+    };
+  };
+
+  // these validation rules can be reused across multiple fields
+  const required = value => (value ? undefined : 'Required');
+  const isEmpty = value => value === null || value === undefined || value === '';
+  const greaterThanZero = value =>
+    !isEmpty(value) && value <= 0 ? 'Must be greater than zero' : false;
+  const numeric = value => (!isEmpty(value) && isNaN(value) ? 'Must be a numeric value' : false);
+
+  // helper function to combine validation rules
+  const rules = (...rules) => value => rules.reduce((res, rule) => res || rule(value), false);
 
   return (
     <EzAppLayout layout="centered">
@@ -71,17 +138,27 @@ An additional detail to note, is the use of nested layouts to organize form cont
                     type="text"
                     label="Promo Name"
                     helperText="The name appears in ezManage and on customer receipts"
+                    {...useField({name: 'promo-name', validate: required})}
                   />
                   <EzField
                     type="text"
                     label="Unique Promotion Code"
                     helperText="The your customers will use to redeem the promotion"
                     maxLength={15}
+                    {...useField({name: 'unique-promo-code', validate: required})}
                   />
                 </EzLayout>
                 <EzLayout layout="equal">
                   <EzLayout layout="equal" alignY="bottom">
-                    <EzField type="text" label="Promotion Value" placeholder="0" />
+                    <EzField
+                      type="text"
+                      label="Promotion Value"
+                      placeholder="0"
+                      {...useField({
+                        name: 'promo-value',
+                        validate: rules(required, numeric, greaterThanZero),
+                      })}
+                    />
                     <EzSegmentedControl
                       name="promo-value-unit"
                       label="Promotion value: unit"
@@ -93,7 +170,15 @@ An additional detail to note, is the use of nested layouts to organize form cont
                       active="percentage"
                     />
                   </EzLayout>
-                  <EzField type="text" label="Minimum Order Value (optional)" placeholder="$" />
+                  <EzField
+                    type="text"
+                    label="Minimum Order Value (optional)"
+                    placeholder="$"
+                    {...useField({
+                      name: 'min-order-value',
+                      validate: rules(numeric, greaterThanZero),
+                    })}
+                  />
                 </EzLayout>
               </EzFormLayout>
             </EzCardSection>
@@ -108,6 +193,7 @@ An additional detail to note, is the use of nested layouts to organize form cont
                     label="End Date"
                     placeholder="Choose"
                     style={{width: '100%'}}
+                    {...useField({name: 'end-date', validate: required})}
                   />
                   <EzField
                     type="radio"
@@ -117,6 +203,7 @@ An additional detail to note, is the use of nested layouts to organize form cont
                       {label: 'Weekdays only', value: 'weekdays'},
                       {label: 'All days of the week', value: 'all'},
                     ]}
+                    {...useField({name: 'eligible-days', type: 'radio'})}
                   />
                 </EzLayout>
               </EzFormLayout>
@@ -130,6 +217,7 @@ An additional detail to note, is the use of nested layouts to organize form cont
                   {label: 'One per customer', value: 'once'},
                   {label: 'Unlimited', value: 'unlimited'},
                 ]}
+                {...useField({name: 'redemptions', type: 'radio'})}
               />
             </EzCardSection>
             <EzCardSection title="Store Details">
@@ -141,6 +229,7 @@ An additional detail to note, is the use of nested layouts to organize form cont
                   {label: 'All stores', value: 'all'},
                   {label: 'Specific stores', value: 'specific'},
                 ]}
+                {...useField({name: 'participating-stores', type: 'radio'})}
               />
             </EzCardSection>
             <EzCardSection>
@@ -152,8 +241,18 @@ An additional detail to note, is the use of nested layouts to organize form cont
             </EzCardSection>
             <EzCardSection>
               <EzLayout layout="basic">
-                <EzButton use="primary">Finalize Promotion</EzButton>
-                <EzButton use="secondary">Cancel</EzButton>
+                <EzButton
+                  use="primary"
+                  onClick={() => {
+                    setSubmitting(true);
+                    alert(JSON.stringify(values, null, 2));
+                  }}
+                >
+                  Finalize Promotion
+                </EzButton>
+                <EzButton use="secondary" onClick={() => window.location.reload()}>
+                  Cancel
+                </EzButton>
               </EzLayout>
             </EzCardSection>
           </EzCard>

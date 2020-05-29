@@ -65,7 +65,7 @@ Whenever possible, validate the input after the user has finished their interact
 - use the `error` prop to provide a validation message to display to the user. The presence of a value indicates that the field is currently in an invalid state.
 - use the `touched` prop to indicate that the user has interacted with or has visited the field. This value is used to determine whether or not to show an error and helps to avoid overwhelming users with error messages for fields they have not interacted with.
 
-Note: Recipe doesn't maintain the value of `touched`, and instead expects the `touched` state to be managed within the application, typically via [formik](https://jaredpalmer.com/formik/) or another form validation library.
+Note: Recipe doesn't maintain the value of `touched`, and instead expects the `touched` state to be managed within the application, typically via [formik](https://jaredpalmer.com/formik/) or another form validation library. For a complete example demonstrating these props in use, see the [Cookbook: Complex form](/cookbook/promos/) example.
 
 ```jsx
 <EzFormLayout>
