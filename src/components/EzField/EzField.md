@@ -56,6 +56,34 @@ Allows users to provide short text input. Optionally, additional context can be 
 />
 ```
 
+### Field with validation error
+
+Let the user know that there is a problem with the provided input. Note that errors are not displayed until the input has been interacted with, represented by the `touched` prop.
+
+```jsx
+<EzFormLayout>
+  <EzField
+    label="First name"
+    helperText="This is a hint about how this field works"
+    maxLength={120}
+    placeholder="Examples of what type of stuff to put here"
+    touched
+    error="First name is required"
+  />
+  <EzField
+    type="checkbox"
+    label="Multiple choice list"
+    touched
+    error="Please choose one or more option"
+    options={[
+      {label: 'Choice A', value: 'a'},
+      {label: 'Choice B', value: 'b'},
+      {label: 'Choice C', value: 'c'},
+    ]}
+  />
+</EzFormLayout>
+```
+
 ### Long text field
 
 Allows user to provide text input that may span more than one line. Optionally, a character count can be used to indicate the restrictions on the maximum length of an input. Use `size` to specify how tall the field should be with the options: `small`, `medium`, `large`.
@@ -398,34 +426,6 @@ Show users that a field is not available for interaction. Often used where a for
 
 ```jsx
 <EzField type="text" label="Value" value="Empty" disabled />
-```
-
-### Field with validation error
-
-Let the user know that there is a problem with the provided input. Note that errors are not displayed until the input has been interacted with, represented by the `touched` prop.
-
-```jsx
-<EzFormLayout>
-  <EzField
-    label="First name"
-    helperText="This is a hint about how this field works"
-    maxLength={120}
-    placeholder="Examples of what type of stuff to put here"
-    touched
-    error="First name is required"
-  />
-  <EzField
-    type="checkbox"
-    label="Multiple choice list"
-    touched
-    error="Please choose one or more option"
-    options={[
-      {label: 'Choice A', value: 'a'},
-      {label: 'Choice B', value: 'b'},
-      {label: 'Choice C', value: 'c'},
-    ]}
-  />
-</EzFormLayout>
 ```
 
 ---
