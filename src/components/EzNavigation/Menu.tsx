@@ -1,7 +1,6 @@
 import React from 'react';
 import {css} from '@emotion/core';
 import styled from '../../themes/styled';
-import EzLink from '../EzLink';
 import {wrapEvent} from '../../utils';
 import {Counter, Marketing} from './Notifications';
 
@@ -13,22 +12,23 @@ export const menuStyles = ({theme}) => css`
   padding: ${theme.spacing.md} ${theme.spacing.xl4} ${theme.spacing.md} ${theme.spacing.xl};
   width: 100%;
   position: relative;
+  text-decoration: none;
 
-  :hover:enabled {
+  :hover {
     color: white;
-    text-decoration: none;
   }
 
-  :active:enabled,
-  :not([aria-disabled='true'])[aria-expanded='true'] {
+  :active {
     box-shadow: inset 0px 0px 10px #000000;
   }
 `;
 
-const MenuLink = styled(EzLink)`
-  && {
-    ${p => menuStyles(p)};
-  }
+const Link = React.forwardRef<HTMLElement, any>(({as: component = 'a', ...props}, ref) => {
+  return React.createElement(component, {...props, ref});
+});
+
+const MenuLink = styled(Link)`
+  ${menuStyles};
 
   &.active {
     color: white;
