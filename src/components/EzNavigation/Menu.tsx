@@ -40,16 +40,16 @@ const Notification = ({value}) => {
   return value === '★' ? <Marketing>★</Marketing> : <Counter>{value}</Counter>;
 };
 
-const Menu = ({link, sidebarToggle}) => (
+const Menu = ({link: {active, onClick, label, notifications, ...link}, sidebarToggle}: any) => (
   <div>
     <MenuLink
       {...link}
-      onClick={wrapEvent(link.onClick, sidebarToggle)}
-      className={link.active ? 'active' : undefined}
+      onClick={wrapEvent(onClick, sidebarToggle)}
+      className={active ? 'active' : undefined}
       {...(link.to ? {activeClassName: 'active'} : {})}
     >
-      {link.label}
-      {Boolean(link.notifications) && <Notification value={link.notifications} />}
+      {label}
+      {Boolean(notifications) && <Notification value={notifications} />}
     </MenuLink>
   </div>
 );
