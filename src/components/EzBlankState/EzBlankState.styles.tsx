@@ -18,10 +18,10 @@ export const BlankStateImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-export const BlankStateImage = styled.img`
-  margin: 0;
-  max-width: 100%;
-  max-height: 100%;
+  img {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
