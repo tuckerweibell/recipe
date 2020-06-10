@@ -2,8 +2,11 @@ export type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
 };
 
+export type Path = string;
+/* Accepts any type to avoid coupling to any more router details than absolutely necessary */
+export type Location = any;
 export type LinkProps = {
-  to: string;
+  to: Path | Location;
   as: React.ComponentType<{to: string}>;
 };
 
