@@ -25,4 +25,5 @@ export const BlankStateImage = styled.img`
 
 export const BlankStateMessage = styled.div`
   margin: ${({theme}) => theme.spacing.lg} 0;
+  text-align: center;
 `;
