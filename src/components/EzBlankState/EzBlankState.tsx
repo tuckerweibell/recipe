@@ -1,13 +1,7 @@
 import React, {forwardRef} from 'react';
-
 import EzHeading from '../EzHeading';
-
-import {
-  BlankStateWrapper,
-  BlankStateImageWrapper,
-  BlankStateImage,
-  BlankStateMessage,
-} from './EzBlankState.styles';
+import EzTextStyle from '../EzTextStyle';
+import {BlankStateWrapper, BlankStateImageWrapper, BlankStateImage} from './EzBlankState.styles';
 
 type BlankStateProps = {
   imageSrc?: string;
@@ -25,7 +19,7 @@ const EzBlankState = forwardRef<HTMLDivElement, BlankStateProps>(
         </BlankStateImageWrapper>
       )}
       <EzHeading size="2">{title}</EzHeading>
-      <BlankStateMessage>{message}</BlankStateMessage>
+      <EzTextStyle align="center">{message}</EzTextStyle>
       {action}
     </BlankStateWrapper>
   )

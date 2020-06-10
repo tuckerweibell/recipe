@@ -6,10 +6,13 @@ export const BlankStateWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  && > * + * {
+    margin-top: ${props => props.theme.spacing.lg};
+  }
 `;
 
 export const BlankStateImageWrapper = styled.div`
-  margin-bottom: ${props => props.theme.spacing.lg};
   width: 150px;
   height: 150px;
   display: flex;
@@ -21,9 +24,4 @@ export const BlankStateImage = styled.img`
   margin: 0;
   max-width: 100%;
   max-height: 100%;
-`;
-
-export const BlankStateMessage = styled.div`
-  margin: ${({theme}) => theme.spacing.lg} 0;
-  text-align: center;
 `;
