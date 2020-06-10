@@ -15,6 +15,10 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- fix: EzPageHeader selected link color is now black (consistent with selected link button color). Closes [#348](https://github.com/ezcater/recipe/issues/348).
+- fix: EzNavigation link hover color is now always white (instead of purple/blue for router-based links). Closes [#374](https://github.com/ezcater/recipe/issues/374).
+- fix: EzLink `to` prop now correctly supports . Closes [#345](https://github.com/ezcater/recipe/issues/345).
+
 #### Documentation
 
 - Fix issue in code playground component can sometimes cause the scroll position to "jump" when interacting with playground examples
