@@ -17,7 +17,9 @@ title: 'Unreleased changes'
 
 - fix: EzPageHeader selected link color is now black (consistent with selected link button color). Closes [#348](https://github.com/ezcater/recipe/issues/348).
 - fix: EzNavigation link hover color is now always white (instead of purple/blue for router-based links). Closes [#374](https://github.com/ezcater/recipe/issues/374).
-- fix: EzLink `to` prop now correctly supports . Closes [#345](https://github.com/ezcater/recipe/issues/345).
+- fix: EzLink `to` prop now correctly supports. Closes [#345](https://github.com/ezcater/recipe/issues/345).
+- fix: EzBlankState now correctly horizontally centers messages that wrap multiple lines (instead of left-justified). Closes [#319](https://github.com/ezcater/recipe/issues/319).
+- fix: EzBlankState now correctly vertically centers EzBlankState content (removes uneven space below message text).
 
 #### Documentation
 
