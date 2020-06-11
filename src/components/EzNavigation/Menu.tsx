@@ -48,7 +48,7 @@ const Menu = ({link: {active, onClick, label, notifications, ...link}, sidebarTo
       className={active ? 'active' : undefined}
       {...(link.to ? {activeClassName: 'active'} : {})}
     >
-      {label}
+      <span>{label}</span>
       {Boolean(notifications) && <Notification value={notifications} />}
     </MenuLink>
   </div>
