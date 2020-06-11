@@ -20,6 +20,8 @@ title: 'Unreleased changes'
 - fix: EzLink `to` prop now correctly supports. Closes [#345](https://github.com/ezcater/recipe/issues/345).
 - fix: EzBlankState now correctly horizontally centers messages that wrap multiple lines (instead of left-justified). Closes [#319](https://github.com/ezcater/recipe/issues/319).
 - fix: EzBlankState now correctly vertically centers EzBlankState content (removes uneven space below message text).
+- fix: EzNavigation notification positioning in Safari. Closes [#380](https://github.com/ezcater/recipe/issues/380).
+- fix: EzPageHeader usage in documentation site, causing missing bottom margin in Safari.
 
 #### Documentation
 
