@@ -161,8 +161,8 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
       }));
 
       const activeLink = links.find(link => location.pathname.includes(link.to));
-      const relatedPages = activeLink && activeLink.links.map(l => ({...l, as: Link}));
-      const tabs = relatedPages && relatedPages.length < 5 ? relatedPages : undefined;
+      const relatedPages = activeLink ? activeLink.links.map(l => ({...l, as: Link})) : [];
+      const tabs = relatedPages.length && relatedPages.length < 5 ? relatedPages : undefined;
 
       return (
         <>
