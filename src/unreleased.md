@@ -29,6 +29,7 @@ title: 'Unreleased changes'
 - Re-prioritized EzField documentation to demonstrate validation API before other API examples
 - Added more detailed usage descriptions for validation API: `touched` and `error` props.
 - Added complete validation example demonstrating the process of filling out an empty form, validating form input (required fields/input format/range) and managing the state of the form.
+- Added documentation for the EzToggle inline saving feedback feature. The example now demonstrates handling the asynchronous actions with an optimistic response and compensating actions on failure.
 
 #### Dependency upgrades
 
