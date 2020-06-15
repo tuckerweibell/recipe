@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- EzField now supports `type="password"`, allowing the user to securely enter a password using the [browsers default password input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password). Closes [#332](https://github.com/ezcater/recipe/issues/332).
+
 #### Design updates
 
 #### Bug fixes
