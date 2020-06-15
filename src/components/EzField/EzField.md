@@ -115,6 +115,24 @@ Allows the user to provide numeric input values.
 <EzField type="number" label="Count" />
 ```
 
+### Password input field
+
+Allows the user to securely enter a password, typically as part of a login form.
+
+```jsx
+() => {
+  const [value, setValue] = React.useState('secret password');
+  return (
+    <EzField
+      type="password"
+      label="Password"
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
+  );
+};
+```
+
 ### Multiple choice input field
 
 Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.

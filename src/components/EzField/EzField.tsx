@@ -20,7 +20,7 @@ import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
 import EzTextInput from './EzTextInput';
 
-const inputElements = ['text', 'number'];
+const inputElements = ['text', 'number', 'password'];
 const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
