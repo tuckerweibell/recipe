@@ -4,11 +4,15 @@
     "emotion",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-transform-runtime",
-    [
-      "transform-inline-environment-variables",
-      {
-        "include": ["npm_package_version"]
-      }
-    ]
-  ]
+    ["transform-inline-environment-variables", {"include": ["npm_package_version"]}]
+  ],
+  "env": {
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", {"modules": false}],
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+      ]
+    }
+  }
 }
