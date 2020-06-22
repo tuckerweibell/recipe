@@ -26,3 +26,6 @@ tests:
     - run:
         test: Code Climate Test Coverage
         command: ./cc-test-reporter after-build
+    - run:
+        test: Check bundle size
+        command: npm run bundle-size
