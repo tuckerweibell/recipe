@@ -73,20 +73,31 @@ const mt = v => ({marginTop: v});
 const mb = v => ({marginBottom: v});
 const mx = v => cx(ml(v), mr(v), mt(v), mb(v));
 
-export const spacing = props => ({
-  '&': responsive('layout', {
+// approach for ensuring consistent gap between items
+// for tile and cluster layouts:
+// https://every-layout.dev/layouts/cluster/
+// tl;dr: uses negative margin on container, to absorb
+// extra margin outside of items (to give the effect that
+// there is only margin between items)
+const outerNegativeMargin = props =>
+  responsive('layout', {
     /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
     tile: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
     cluster: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
     reset: mx(0),
-  })(props),
-  '&& > *': responsive('layout', {
+  })(props);
+
+const innerPositiveMargin = props =>
+  responsive('layout', {
     /* ↓ half the value, to avoid doubling up the space between columns */
     tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
     cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
     reset: mx(0),
-  })(props),
-  '&& > * + *': responsive('layout', {
+  })(props);
+
+// spacing for other layouts (between items)
+const spacingBetweenItems = props =>
+  responsive('layout', {
     basic: ml(props.theme.spacing.sm),
     right: ml(props.theme.spacing.sm),
     equal: ml(props.theme.spacing.sm),
@@ -94,8 +105,20 @@ export const spacing = props => ({
     tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
     cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
     reset: mx(0),
-  })(props),
-});
+  })(props);
+
+export const spacing = props =>
+  css`
+    ${outerNegativeMargin(props)};
+
+    && > * {
+      ${innerPositiveMargin(props)};
+    }
+
+    && > * + * {
+      ${spacingBetweenItems(props)};
+    }
+  `;
 
 export const wrapper = () => css`
   /* ↓ Suppress horizontal scrolling caused by the negative margin in some circumstances */
