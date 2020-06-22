@@ -12,6 +12,7 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - EzField now supports `type="password"`, allowing the user to securely enter a password using the [browsers default password input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password). Closes [#332](https://github.com/ezcater/recipe/issues/332).
+- Better support for tree-shaking. If you're using ES6 modules and a bundler that supports tree-shaking (such as [webpack](https://webpack.js.org/guides/tree-shaking/) or [Parcel](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)), you can now safely use named imports and get an optimized bundle size automatically - only including the Recipe components you're actually using in your application. Closes [#371](https://github.com/ezcater/recipe/issues/371).
 
 #### Design updates
 
