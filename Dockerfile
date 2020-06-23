@@ -1,4 +1,4 @@
-FROM node:8.9.4
+FROM node:12.16.3
 
 USER root
 RUN mkdir /home/node/app && chown node:node /home/node/app
