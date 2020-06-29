@@ -11,11 +11,18 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Update [EzFlashMessage](/components/ez-flash-message) with new spacing consistent with EzCard and EzLayout.
+
 #### Design updates
 
 #### Bug fixes
 
+- Fix: [EzFlashMessage](/components/ez-flash-message) dismiss button now appears in the top right, rather than vertically centered.
+
 #### Documentation
+
+- Update [EzFlashMessage](/components/ez-flash-message) with clearer guidelines to help pick the right tone of message for a variety of situations.
+- Update [EzFlashMessage](/components/ez-flash-message) examples to more closely follow the provided guidelines.
 
 #### Dependency upgrades
 
