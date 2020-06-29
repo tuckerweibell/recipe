@@ -25,4 +25,12 @@ const createStyled = (tag: any, options?: StyledOptions) => {
   };
 };
 
+// avoid importing private @emotion/styled/src/tags by copying tags (so we can write styled.span etc)
+const keys = Object.keys(createStyled);
+Object.keys(styled)
+  .filter(n => keys.indexOf(n) === -1)
+  .forEach(tagName => {
+    createStyled[tagName] = createStyled(tagName);
+  });
+
 export default createStyled as CreateStyled<Theme>;

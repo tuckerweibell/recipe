@@ -2,6 +2,8 @@ import React from 'react';
 import {headings, Subheading} from './EzHeading.styles';
 import styled from '../../themes/styled';
 
+const classNames = (...args) => args.filter(Boolean).join(' ');
+
 type HeadingProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   align?: 'left' | 'right' | 'center';
@@ -44,8 +46,17 @@ const EzHeading: React.FC<HeadingProps> = ({
     </header>
   );
 
-  return React.cloneElement(subheading ? header : heading, {className, align});
+  // eslint-disable-next-line dot-notation
+  const classNameWithInternal = classNames(className, EzHeading['__internalComponentSelector']);
+
+  return React.cloneElement(subheading ? header : heading, {
+    className: classNameWithInternal,
+    align,
+  });
 };
 
+// eslint-disable-next-line dot-notation
+EzHeading['__internalComponentSelector'] = 'css-ezh';
+
 // wrap with styled to allow emotion to target as child component
-export default styled(EzHeading)();
+export default EzHeading;
