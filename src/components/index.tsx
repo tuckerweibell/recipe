@@ -25,6 +25,7 @@ export {default as EzStatus} from './EzStatus';
 export {default as EzSuperRadioButtons} from './EzSuperRadioButtons';
 export {default as EzTable} from './EzTable';
 export {default as EzTextStyle} from './EzTextStyle';
+export {EzTimeline, EzTimelineEvent, EzTimelinePeriod} from './EzTimeline';
 export {default as EzToggle} from './EzToggle';
 export {default as EzTooltip} from './EzTooltip';
 export {default as EzLayout} from './EzLayout';
