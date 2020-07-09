@@ -1,6 +1,5 @@
 import EzTimeline from './EzTimeline';
+import EzTimelineEvent from './EzTimelineEvent';
+import EzTimelinePeriod from './EzTimelinePeriod';
 
-export const EzTimelineEvent = () => null;
-export const EzTimelinePeriod = () => null;
-
-export {EzTimeline};
+export {EzTimeline, EzTimelineEvent, EzTimelinePeriod};
