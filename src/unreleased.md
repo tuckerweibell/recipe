@@ -9,6 +9,8 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new [EzTimeline](/components/ez-timeline) component for visualizing chronological sequences of events. Closes [issue #195](https://github.com/ezcater/recipe/issues/195).
+
 #### Enhancements
 
 - Update [EzFlashMessage](/components/ez-flash-message) with new spacing consistent with EzCard and EzLayout.
@@ -18,6 +20,8 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fix: [EzFlashMessage](/components/ez-flash-message) dismiss button now appears in the top right, rather than vertically centered.
+- fix: ensure [Links](/components/ez-link) have correct cursor (pointer)
+- fix: Prevent [status](/components/ez-status) wrapping below Action Required indicator
 
 #### Documentation
 
