@@ -7,6 +7,7 @@ import EzHeading from '../EzHeading';
 import EzTextStyle from '../EzTextStyle';
 import EzTimelineIcon from './EzTimelineIcon';
 import EzLink, {isLink} from '../EzLink';
+import {TimelineEventProps} from './EzTimeline.types';
 
 const arrow: any = {
   '::before': {
@@ -31,7 +32,16 @@ const arrow: any = {
   },
 };
 
-const EzTimelineEvent = ({title, time, status, icon, children, to, as, href}) => (
+const EzTimelineEvent: React.FC<TimelineEventProps> = ({
+  title,
+  time,
+  status,
+  icon,
+  children,
+  to,
+  as,
+  href,
+}) => (
   <EzLayout layout="basic">
     <EzTimelineIcon icon={icon} css={arrow} />
     <EzCard css={{flex: 1}}>

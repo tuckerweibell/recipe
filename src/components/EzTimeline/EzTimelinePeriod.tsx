@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core';
 import React from 'react';
 
-const EzTimelinePeriod = ({label, children}) => (
+const EzTimelinePeriod: React.FC<{label: string}> = ({label, children}) => (
   <section css={{':first-child > h3': {display: 'none'}}}>
     <h3
       css={{

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
 import EzButton from '../EzButton';
+import {TimelineProps} from './EzTimeline.types';
 
 const psuedo: any = {
   content: "''",
@@ -15,7 +16,7 @@ const stem: any = {
     'linear-gradient(90deg, transparent, transparent calc(1rem - 1px), #ced4d757 calc(1rem - 1px), #ced4d757 calc(1rem + 1px), transparent calc(1rem + 1px))',
 };
 
-const EzTimeline = ({children, expandable}: any) => (
+const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => (
   <div
     css={{
       '> section > h3': stem,
