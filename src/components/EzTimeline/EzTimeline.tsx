@@ -2,6 +2,7 @@
 import {jsx} from '@emotion/core';
 import EzButton from '../EzButton';
 import {TimelineProps} from './EzTimeline.types';
+import {useTheme} from '../../themes/styled';
 
 const psuedo: any = {
   content: "''",
@@ -11,71 +12,81 @@ const psuedo: any = {
   pointerEvents: 'none',
 };
 
-const stem: any = {
-  background:
-    'linear-gradient(90deg, transparent, transparent calc(1rem - 1px), #ced4d757 calc(1rem - 1px), #ced4d757 calc(1rem + 1px), transparent calc(1rem + 1px))',
-};
+const minus = v => `calc(-1 * ${v})`;
 
-const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => (
-  <div
-    css={{
-      '> section > h3': stem,
-      '> section > ol > li': {
-        position: 'relative',
-        '::before': {...stem, ...psuedo},
-      },
-      '> section > ol > li + li:before': {
-        marginTop: -12,
-        height: 'calc(100% + 12px)',
-      },
-      '> section:first-child > ol > li:first-child:before': {
-        marginTop: '2rem',
-        height: 'calc(100% - 2rem)',
-      },
-      '> section:last-child > ol > li:last-child::before': {
-        height: '2rem',
-      },
-      '> section:only-child > ol > li:only-child:before': {
-        height: 0,
-      },
-    }}
-  >
-    {children}
-    {Boolean(expandable) && (
-      <section
-        css={{
-          paddingTop: 12,
-          paddingLeft: 44,
-          position: 'relative',
-          '::before': {
-            ...stem,
-            ...psuedo,
-            marginTop: -12,
-            marginLeft: -44,
-            height: 'calc(100% + 32px)',
+const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
+  const theme = useTheme();
+  const gap = theme.spacing.sm;
+  const stemColor = `${theme.colors.border.base}57`; // NOTE: the 57 suffix is to adjust the hex color transparency
+  const stem: any = {
+    background: `linear-gradient(90deg, transparent, transparent calc(1rem - 1px), 
+      ${stemColor} calc(1rem - 1px), ${stemColor} calc(1rem + 1px), transparent calc(1rem + 1px))`,
+  };
+  const iconDiameter = '2rem';
+  const stemWidth = `calc(${iconDiameter} + ${gap})`;
+  return (
+    <div
+      css={{
+        '> section': {
+          '> h3': stem,
+          '> ol > li': {
+            position: 'relative',
+            '::before': {...stem, ...psuedo},
+            // extend the stem of "sibling" events to fill the gap between events
+            '+ li:before': {marginTop: minus(gap), height: `calc(100% + ${gap})`},
           },
-        }}
-      >
-        <EzButton
-          use="secondary"
-          type="button"
-          onClick={expandable.onClick}
+          // offset the stem of the timeline (so that it starts with the first icon/event)
+          ':first-of-type > ol > li:first-of-type:before': {
+            marginTop: iconDiameter,
+            height: `calc(100% - ${iconDiameter})`,
+          },
+          // cap the stem of the timeline (so that it ends with the last icon/event)
+          ':last-child > ol > li:last-child::before': {
+            height: iconDiameter,
+          },
+          // if there is only one event, we don't need a stem
+          ':only-of-type > ol > li:only-of-type:before': {
+            height: 0,
+          },
+        },
+      }}
+    >
+      {children}
+      {Boolean(expandable) && (
+        <section
           css={{
-            width: '100%',
-            borderRadius: 6,
-            backgroundColor: '#fafafb',
-            fontSize: 12,
-            letterSpacing: 1,
-            padding:
-              'calc(12rem / var(--recipe-base-font-size,16)) calc(20rem / var(--recipe-base-font-size,16))',
-            textTransform: 'uppercase',
+            paddingTop: gap,
+            paddingLeft: stemWidth,
+            position: 'relative',
+            '::before': {
+              ...stem,
+              ...psuedo,
+              marginTop: minus(gap),
+              marginLeft: minus(stemWidth),
+              height: `calc(100% + ${iconDiameter})`,
+            },
           }}
         >
-          {expandable.expandLabel}
-        </EzButton>
-      </section>
-    )}
-  </div>
-);
+          <EzButton
+            use="secondary"
+            type="button"
+            onClick={expandable.onClick}
+            css={{
+              width: '100%',
+              borderRadius: theme.borderRadius[2],
+              backgroundColor: theme.colors.grays[100],
+              fontSize: theme.fontSizes[200],
+              letterSpacing: 1,
+              padding: `${theme.spacing.sm} ${theme.spacing.lg}`,
+              textTransform: 'uppercase',
+            }}
+          >
+            {expandable.expandLabel}
+          </EzButton>
+        </section>
+      )}
+    </div>
+  );
+};
 
 export default EzTimeline;
