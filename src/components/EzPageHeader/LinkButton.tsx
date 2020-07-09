@@ -1,11 +1,7 @@
 import React, {forwardRef} from 'react';
-import EzLink from '../EzLink';
+import EzLink, {isLink} from '../EzLink';
 import EzButton from '../EzButton';
-import {Link, LabelledLink, Clickable} from '../EzLink/EzLink.types';
-
-function isLink(props: Clickable | Link): props is Link {
-  return (props as any).href !== undefined || (props as any).to !== undefined;
-}
+import {LabelledLink} from '../EzLink/EzLink.types';
 
 export default forwardRef<HTMLElement, LabelledLink>(
   ({label, accessibilityLabel, ...propsIn}, ref) => {

@@ -1,12 +1,9 @@
 import React, {forwardRef} from 'react';
 import {StyledLink, StyledAnchor} from './EzLink.styles';
 import {AnchorProps, LinkProps} from './EzLink.types';
+import {isAnchor} from './utils';
 
 type Props = AnchorProps | LinkProps;
-
-function isAnchor(props: AnchorProps | LinkProps): props is AnchorProps {
-  return (props as any).href !== undefined;
-}
 
 const EzLink = forwardRef<HTMLElement, Props>((props, ref) => {
   if (isAnchor(props)) return <StyledAnchor {...props} ref={ref as any} />;
