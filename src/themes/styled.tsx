@@ -1,5 +1,11 @@
+import React from 'react';
 import styled, {CreateStyled, StyledOptions} from '@emotion/styled';
+import {ThemeContext} from '@emotion/core';
 import * as standard from './standard';
+
+export function useTheme(): Theme {
+  return (React.useContext(ThemeContext) as Theme) || standard;
+}
 
 export type Theme = typeof standard;
 export type Themed = {theme: Theme};
