@@ -5,7 +5,10 @@ module.exports = {
     description: "Documentation for Recipe, ezCater's design system library",
   },
   plugins: [
-    'gatsby-plugin-emotion',
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {sourceMap: false, autoLabel: false},
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
