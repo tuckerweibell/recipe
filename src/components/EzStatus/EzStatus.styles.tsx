@@ -25,6 +25,7 @@ const base: any = ({theme, size}) => css`
   font-size: ${size === 'small' ? theme.fontSizes[200] : theme.fontSizes[400]};
   font-weight: bold;
   border-radius: 1em;
+  white-space: nowrap;
 `;
 
 export const EzStatusContainer = styled.span(base, use);
