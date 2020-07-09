@@ -65,7 +65,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "build:esm": "cross-env BABEL_ENV=esm babel src --out-dir lib/esm --extensions \".ts,.tsx\" --source-maps inline",
-    "build:watch": "npm run build:esm -- --watch",
+    "build:watch": "npm run build:cjs && npm run build:esm -- --watch",
     "bundle-size": "cd tree-shaking-size/ && npm i && npm run build && node check-size.js",
     "clean": "rm -rf lib",
     "create-component": "plop component",
