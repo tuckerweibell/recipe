@@ -5,6 +5,7 @@ import {pseudoClasses} from '../../styles';
 const base = ({theme}) => css`
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
   ${pseudoClasses('color', {color: theme.colors.interactive.base})};
 
   &:hover {
