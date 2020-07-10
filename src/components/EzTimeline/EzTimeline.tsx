@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx, Interpolation} from '@emotion/core';
 import EzButton from '../EzButton';
 import {TimelineProps} from './EzTimeline.types';
 import {useTheme} from '../../themes/styled';
 
-const psuedo: any = {
+const psuedo: Interpolation = {
   content: "''",
   position: 'absolute',
   height: '100%',
@@ -18,7 +18,7 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
   const theme = useTheme();
   const gap = theme.spacing.sm;
   const stemColor = `${theme.colors.border.base}57`; // NOTE: the 57 suffix is to adjust the hex color transparency
-  const stem: any = {
+  const stem: Interpolation = {
     background: `linear-gradient(90deg, transparent, transparent calc(1rem - 1px), 
       ${stemColor} calc(1rem - 1px), ${stemColor} calc(1rem + 1px), transparent calc(1rem + 1px))`,
   };

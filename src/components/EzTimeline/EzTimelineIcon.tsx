@@ -12,7 +12,10 @@ const PlaceholderIcon = props => {
   );
 };
 
-const EzTimelineIcon = ({icon = <PlaceholderIcon />, className}: any) => {
+const EzTimelineIcon: React.FC<{icon?: React.ReactElement; className?: string}> = ({
+  icon = <PlaceholderIcon />,
+  className,
+}) => {
   const theme = useTheme();
   const iconDiameter = '2rem';
   return (

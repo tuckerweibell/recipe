@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx, Interpolation} from '@emotion/core';
 import React from 'react';
 import {EzCard} from '../EzCard';
 import EzLayout from '../EzLayout';
@@ -21,7 +21,7 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   href,
 }) => {
   const {colors, lineHeights, fontSizes} = useTheme();
-  const arrow: any = {
+  const arrow: Interpolation = {
     '::before': {
       content: "''",
       position: 'absolute',
