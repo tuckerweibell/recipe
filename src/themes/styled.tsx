@@ -4,7 +4,8 @@ import {ThemeContext} from '@emotion/core';
 import * as standard from './standard';
 
 export function useTheme(): Theme {
-  return (React.useContext(ThemeContext) as Theme) || standard;
+  const theme = React.useContext(ThemeContext) as Theme;
+  return Object.keys(theme).length ? theme : standard;
 }
 
 export type Theme = typeof standard;
