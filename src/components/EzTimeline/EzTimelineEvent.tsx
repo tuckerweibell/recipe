@@ -20,7 +20,7 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   as,
   href,
 }) => {
-  const {colors, lineHeights, fontSizes} = useTheme();
+  const {colors, lineHeights, fontSizes, borderRadius} = useTheme();
   const arrow: Interpolation = {
     '::before': {
       content: "''",
@@ -46,7 +46,7 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   return (
     <EzLayout layout="basic">
       <EzTimelineIcon icon={icon} css={arrow} />
-      <EzCard css={{flex: 1}}>
+      <EzCard css={{flex: 1, borderRadius: borderRadius[2]}}>
         <header>
           <EzLayout layout="split" alignY="top">
             <EzLayout layout="cluster" css={{alignItems: 'baseline'}}>

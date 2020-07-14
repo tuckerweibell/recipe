@@ -27,10 +27,18 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
   return (
     <div
       css={{
+        paddingRight: theme.spacing.xs,
+        paddingLeft: theme.spacing.xs,
+        [`@media screen and (min-width: ${theme.breakpoints.medium})`]: {
+          paddingRight: 0,
+          paddingLeft: 0,
+        },
         '> section': {
           '> h3': stem,
           '> ol > li': {
             position: 'relative',
+            marginTop: 0,
+            marginBottom: 0,
             '::before': {...stem, ...psuedo},
             // extend the stem of "sibling" events to fill the gap between events
             '+ li:before': {marginTop: minus(gap), height: `calc(100% + ${gap})`},
@@ -63,7 +71,11 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
               ...psuedo,
               marginTop: minus(gap),
               marginLeft: minus(stemWidth),
-              height: `calc(100% + ${iconDiameter})`,
+              // height varies based on ez-page bottom padding (at different breakpoints)
+              height: `calc(100% + ${theme.spacing.md})`,
+              [`@media screen and (min-width: ${theme.breakpoints.medium})`]: {
+                height: `calc(100% + ${theme.spacing.xl2})`,
+              },
             },
           }}
         >

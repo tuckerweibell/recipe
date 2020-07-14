@@ -15,11 +15,17 @@ const imagePos = responsive('imagePosition', {
   reset: {flexWrap: 'nowrap'},
 });
 
+const rounded = ({theme}) => ({
+  [`@media screen and (min-width: ${theme.breakpoints.medium})`]: {
+    borderRadius: theme.borderRadius[2],
+  },
+});
+
 export const CardContainer = styled.div<any>`
   background: ${props => props.theme.colors.white};
-  border-radius: ${props => props.theme.borderRadius[2]};
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   ${accentStyles};
+  ${rounded};
   display: flex;
   ${imagePos};
   > * {

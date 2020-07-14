@@ -50,7 +50,7 @@ const EzTimelinePeriod: React.FC<{label: string}> = ({label, children}) => {
           listStyleType: 'none',
           padding: 0,
           margin: 0,
-          '> * + *': {marginTop: theme.spacing.sm},
+          '&& > * + *': {marginTop: theme.spacing.sm},
         }}
       >
         {React.Children.map(children, (child, i) => (

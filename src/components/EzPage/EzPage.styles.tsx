@@ -2,7 +2,7 @@ import {css} from '@emotion/core';
 
 export const base = ({theme}) => css`
   background: ${theme.colors.page.background};
-  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+  padding: ${theme.spacing.md} 0;
   flex-grow: 1;
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
