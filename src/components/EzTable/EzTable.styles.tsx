@@ -144,8 +144,6 @@ export const TablePaginationRowCountDropdown = styled.select`
 */
 const cellFitContent = '1%';
 
-type Selectable = {selectable?: boolean};
-
 const selectionColumn = ({theme, selectable}) =>
   selectable &&
   css`
@@ -156,7 +154,8 @@ const selectionColumn = ({theme, selectable}) =>
     }
 
     && thead tr + tr {
-      td {
+      td,
+      td:hover {
         background-color: ${theme.colors.info.background};
         border-bottom: solid 1px ${theme.colors.info.border};
         border-top: solid 1px ${theme.colors.info.border};
