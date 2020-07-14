@@ -6,10 +6,13 @@ import styled from '@emotion/styled';
 import {EzGlobalStyles} from '@ezcater/recipe';
 import ResizeObserver from 'resize-observer-polyfill';
 
+const spacing = ({margin, page}) =>
+  page
+    ? {margin: 0, width: '100%'}
+    : {margin: `${margin} auto`, width: 'calc(100% - 40px)', minWidth: ' fit-content'};
+
 const Wrapper = styled.div`
-  margin: ${props => props.margin} auto;
-  width: calc(100% - 40px);
-  min-width: fit-content;
+  ${spacing};
 `;
 
 const IFramePlayground = props => {
@@ -58,6 +61,8 @@ const IFramePlayground = props => {
     [container]
   );
 
+  const page = props.children._owner.pendingProps.code.includes('<EzPage>');
+
   return (
     <iframe
       frameBorder="0"
@@ -70,7 +75,7 @@ const IFramePlayground = props => {
       {container &&
         createPortal(
           <CacheProvider value={createStylesCache()}>
-            <Wrapper ref={playgroundRef} margin={margin}>
+            <Wrapper ref={playgroundRef} margin={margin} page={page}>
               <link
                 href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
                 rel="stylesheet"
