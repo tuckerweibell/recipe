@@ -17,13 +17,14 @@ const imagePos = responsive('imagePosition', {
 
 export const CardContainer = styled.div<any>`
   background: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.border.base};
   border-radius: ${props => props.theme.borderRadius[2]};
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   ${accentStyles};
-  display: ${props => (props.imagePosition ? 'flex' : 'block')};
+  display: flex;
   ${imagePos};
   > * {
     flex-grow: 1;
+    max-width: 100%;
   }
 `;
 
