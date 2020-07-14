@@ -31,7 +31,7 @@ const base = ({theme: {colors}}) => css`
 
   /* Focused */
   input:focus + svg {
-    box-shadow: 0px 0px 2px 2px ${colors.interactive.focus.outline};
+    box-shadow: 0 0 0 2px ${colors.interactive.focus.outline};
     border-radius: 3px;
   }
 
