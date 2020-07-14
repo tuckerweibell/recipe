@@ -86,3 +86,14 @@
   </EzPage>
 </Media>
 ```
+
+### Header has adequate margin on small screens
+
+```jsx
+<Media size="small">
+  <EzPage>
+    <EzHeading size="2">Heading</EzHeading>
+    <EzCard title="Card">Content</EzCard>
+  </EzPage>
+</Media>
+```

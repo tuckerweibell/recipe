@@ -2,7 +2,7 @@ import {css} from '@emotion/core';
 import styled from '../../themes/styled';
 
 const spacing = ({theme, subnav}) => css`
-  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+  padding: ${theme.spacing.sm} ${theme.spacing.lg};
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
     padding: ${theme.spacing.md} ${theme.spacing.xl2};

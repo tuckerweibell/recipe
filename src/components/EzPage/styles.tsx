@@ -17,5 +17,10 @@ export const childStyles = ({theme}) => css`
 
   > ${ezHeadingSelector} {
     margin-bottom: ${theme.spacing.sm};
+    margin-left: ${theme.spacing.sm};
+
+    @media screen and (min-width: ${theme.breakpoints.medium}) {
+      margin-left: 0;
+    }
   }
 `;

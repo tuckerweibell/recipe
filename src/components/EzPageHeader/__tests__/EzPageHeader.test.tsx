@@ -4,6 +4,7 @@ import {visualSnapshots} from 'sosia';
 import {Link, StaticRouter, Route} from 'react-router-dom';
 import {fireEvent, cleanup} from '@testing-library/react';
 import markdown from '../EzPageHeader.md';
+import regressionTests from './EzPageHeader.test.md';
 import EzPageHeader from '../EzPageHeader';
 import {
   EzStatus,
@@ -16,6 +17,7 @@ import {
   EzSearchInput,
 } from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
+import Media from '../../EzField/Media';
 
 afterEach(cleanup);
 
@@ -40,10 +42,12 @@ const scope = {
   EzField,
   EzSearchInput,
   require: mockRequire,
+  Media,
 };
 
 describe('EzPageHeader', () => {
   visualSnapshots({markdown, scope});
+  visualSnapshots({markdown: regressionTests, scope});
 
   it('should cycle through the tabs', () => {
     const tabs = [{label: 'All'}, {label: 'Accepted'}, {label: 'Draft'}];
