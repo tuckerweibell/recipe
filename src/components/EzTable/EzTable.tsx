@@ -13,6 +13,7 @@ import {wrapEvent} from '../../utils';
 import {useTranslation, useScrollPosition} from '../../utils/hooks';
 import useOverflowDetection from './useOverflowDetection';
 import useExpandedClickTarget from './useExpandedClickTarget';
+import EzTextStyle from '../EzTextStyle';
 
 const {Fragment} = React;
 const TableContext = createContext(null);
@@ -83,22 +84,22 @@ const SelectionStateBanner = () => {
         <EzLayout layout="cluster">
           {selection.allSelected || items.length === pagination.totalRows ? (
             <Fragment>
-              <span>
+              <EzTextStyle align="center">
                 {t('All {{totalRowCount}} rows are selected.', {
                   totalRowCount: pagination.totalRows,
                 })}
-              </span>
+              </EzTextStyle>
               <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
                 {t('Clear selection')}
               </EzButton>
             </Fragment>
           ) : (
             <Fragment>
-              <span>
+              <EzTextStyle align="center">
                 {t('All {{selectedCount}} rows on this page are selected.', {
                   selectedCount: selection.selected.length,
                 })}
-              </span>
+              </EzTextStyle>
               <EzButton
                 use="tertiary"
                 onClick={wrapEvent(selection.onSelectAllClick, () =>
