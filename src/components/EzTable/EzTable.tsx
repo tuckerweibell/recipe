@@ -88,11 +88,16 @@ const SelectionStateBanner = () => {
       <td colSpan={columns.length + 1}>
         <EzLayout layout="basic">
           {selection.allSelected || items.length === pagination.totalRows ? (
-            <span>
-              {t('All {{totalRowCount}} rows are selected.', {
-                totalRowCount: pagination.totalRows,
-              })}
-            </span>
+            <>
+              <span>
+                {t('All {{totalRowCount}} rows are selected.', {
+                  totalRowCount: pagination.totalRows,
+                })}
+              </span>
+              <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
+                {t('Clear selection')}
+              </EzButton>
+            </>
           ) : (
             <>
               <span>
@@ -112,9 +117,6 @@ const SelectionStateBanner = () => {
               </EzButton>
             </>
           )}
-          <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
-            {t('Clear selection')}
-          </EzButton>
         </EzLayout>
       </td>
     </tr>
