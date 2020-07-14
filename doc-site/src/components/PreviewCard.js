@@ -20,7 +20,7 @@ const PreviewCard = ({title, path, subtitle, name, tags}) => (
           css={{
             width: '100%',
             height: 'auto',
-            border: '1px solid #d2d6dc',
+            boxShadow: '0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15)',
             borderRadius: '.25rem',
           }}
           src={withPrefix(`/images/preview/${name}.png`)}

@@ -70,8 +70,9 @@ export default () => {
               borderTop: '1px solid #e5e7eb',
               paddingTop: 25,
             },
-            '& > *': {
+            '&& > *': {
               alignSelf: 'start',
+              overflow: 'visible',
             },
           }}
         >
