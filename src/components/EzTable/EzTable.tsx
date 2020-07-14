@@ -1,19 +1,12 @@
+/** @jsx jsx */
+import {jsx, Interpolation} from '@emotion/core';
 import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
 import {EzCard, EzCardFooter} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
 import {TableProps} from './EzTable.types';
-import {
-  Container,
-  Table,
-  Th,
-  Td,
-  ClickableTr,
-  TableCardSection,
-  TablePaginationNavItems,
-  TablePaginationRowCountDropdown,
-} from './EzTable.styles';
+import {Container, Table, Th, Td, ClickableTr, TableCardSection} from './EzTable.styles';
 import useSorting from './useSorting';
 import en from './en';
 import {wrapEvent} from '../../utils';
@@ -21,6 +14,7 @@ import {useTranslation, useScrollPosition} from '../../utils/hooks';
 import useOverflowDetection from './useOverflowDetection';
 import useExpandedClickTarget from './useExpandedClickTarget';
 
+const {Fragment} = React;
 const TableContext = createContext(null);
 
 const SortDirection = ({direction}) => (
@@ -88,7 +82,7 @@ const SelectionStateBanner = () => {
       <td colSpan={columns.length + 1}>
         <EzLayout layout="basic">
           {selection.allSelected || items.length === pagination.totalRows ? (
-            <>
+            <Fragment>
               <span>
                 {t('All {{totalRowCount}} rows are selected.', {
                   totalRowCount: pagination.totalRows,
@@ -97,9 +91,9 @@ const SelectionStateBanner = () => {
               <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
                 {t('Clear selection')}
               </EzButton>
-            </>
+            </Fragment>
           ) : (
-            <>
+            <Fragment>
               <span>
                 {t('All {{selectedCount}} rows on this page are selected.', {
                   selectedCount: selection.selected.length,
@@ -115,7 +109,7 @@ const SelectionStateBanner = () => {
                   totalRowCount: pagination.totalRows,
                 })}
               </EzButton>
-            </>
+            </Fragment>
           )}
         </EzLayout>
       </td>
@@ -158,44 +152,96 @@ const Tbody = () => {
   );
 };
 
+const iconSize: Interpolation = {
+  height: 24,
+  width: 24,
+};
+
+const iconStates: Interpolation = {
+  fill: '#8B99A6',
+  ':hover': {fill: '#212b36'},
+  ':active': {fill: '#637381'},
+};
+
+const cx = (...args): Interpolation => Object.assign({}, ...args);
+
 const TablePagination = ({pagination}) => {
   const {t} = useTranslation(en);
+  const {rowsPerPage, currentPage: page, totalRows: count} = pagination;
   const pages = Math.ceil(pagination.totalRows / pagination.rowsPerPage);
+  const from = (page - 1) * rowsPerPage + 1;
+  const to = Math.min(count, page * rowsPerPage);
+  const range = count === 1 ? 1 : `${from}-${to}`;
 
   return (
     <EzCardFooter>
-      <EzLayout layout="split">
-        <TablePaginationNavItems>
+      <EzLayout layout="right">
+        <nav
+          aria-label={t('Pagination')}
+          css={{
+            display: 'flex',
+            '> * + *': {marginLeft: 16},
+          }}
+        >
+          <span css={{whiteSpace: 'nowrap'}}>{t('{{range}} of {{count}}', {range, count})}</span>
           <EzButton
             use="tertiary"
+            aria-label={t('Previous Page')}
             onClick={pagination.onPrevPageClick}
             disabled={pagination.currentPage === 1}
-          >
-            {'‹ '}
-            {t('Previous Page')}
-          </EzButton>
-          <span>
-            {t('Page {{currentPage}} of {{pages}}', {currentPage: pagination.currentPage, pages})}
-          </span>
+            icon={
+              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+              </svg>
+            }
+          />
           <EzButton
             use="tertiary"
+            aria-label={t('Next Page')}
             onClick={pagination.onNextPageClick}
             disabled={pagination.currentPage === pages}
+            icon={
+              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+              </svg>
+            }
+          />
+        </nav>
+        <div css={{position: 'relative'}}>
+          <select
+            css={cx(iconSize, {opacity: 0.001})} // opacity 0 is ignored by some screen readers
+            defaultValue={pagination.rowsPerPage}
+            onChange={pagination.onRowsPerPageChange}
+            aria-label={t('Show rows per page options')}
           >
-            {t('Next Page')}
-            {' ›'}
-          </EzButton>
-        </TablePaginationNavItems>
-        <TablePaginationRowCountDropdown
-          defaultValue={pagination.rowsPerPage}
-          onChange={pagination.onRowsPerPageChange}
-        >
-          {pagination.rowsPerPageOptions.map(value => (
-            <option key={value} value={value}>
-              {t('{{num}} rows per page', {num: value})}
-            </option>
-          ))}
-        </TablePaginationRowCountDropdown>
+            {pagination.rowsPerPageOptions.map(value => (
+              <option key={value} value={value}>
+                {t('{{num}} rows per page', {num: value})}
+              </option>
+            ))}
+          </select>
+          <svg
+            focusable={false}
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            css={cx(iconSize, {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              position: 'absolute',
+              pointerEvents: 'none',
+              fill: iconStates.fill,
+              'select:focus + &': {
+                borderRadius: 3,
+                boxShadow: '#3e90d6 0px 0px 0px 2px',
+              },
+              'select:hover + &': iconStates[':hover'],
+              'select:active + &': iconStates[':active'],
+            })}
+          >
+            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+          </svg>
+        </div>
       </EzLayout>
     </EzCardFooter>
   );
@@ -231,7 +277,9 @@ const EzTable: React.FC<TableProps> = ({
       heading,
       accessor,
       key = typeof accessor === 'string' ? accessor : undefined,
-      component = typeof accessor === 'function' ? accessor : ({item}: any) => <>{item[key]}</>,
+      component = typeof accessor === 'function'
+        ? accessor
+        : ({item}: any) => <Fragment>{item[key]}</Fragment>,
       sortable,
       ...rest
     }) => ({
