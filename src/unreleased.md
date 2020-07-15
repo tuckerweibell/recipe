@@ -21,6 +21,9 @@ title: 'Unreleased changes'
 - Collapse horizontal padding on narrow viewports to increase surface available for content.
 - Remove rounded corners on cards on narrow viewports now that the card surface spans the whole screen.
 - Use SVG icon for Page header breadcrumb links.
+- Remove "Clear Selection" option for on-page selections in EzTable.
+- Add title attribute to pagination buttons on EzTable.
+- Design refresh on EzTable pagination for better support for small screen sizes.
 
 #### Bug fixes
 
@@ -28,6 +31,8 @@ title: 'Unreleased changes'
 - Fix: ensure [Links](/components/ez-link) have correct cursor (pointer)
 - Fix: Prevent [status](/components/ez-status) wrapping below Action Required indicator
 - Fix: Align page headings with body content on narrow screens.
+- Fix: Remove unwanted hover color on EzTable selection message banner.
+- Fix: Remove unwanted padding for [tertiary buttons with icons](/components/ez-button/#tertiary-button-with-icon) when button is icon-only.
 
 #### Documentation
 
