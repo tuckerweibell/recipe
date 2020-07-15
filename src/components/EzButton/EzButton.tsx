@@ -47,7 +47,7 @@ const buildProps = (props: ButtonProps & {ref: React.Ref<HTMLButtonElement>}) =>
           'aria-hidden': true,
           focusable: false,
         })}
-        <span>{props.children}</span>
+        {props.children && <span>{props.children}</span>}
       </IconContainer>
     ) : (
       props.children
