@@ -17,11 +17,17 @@ title: 'Unreleased changes'
 
 #### Design updates
 
+- Use shadow instead of border for cards to indicate content layering.
+- Collapse horizontal padding on narrow viewports to increase surface available for content.
+- Remove rounded corners on cards on narrow viewports now that the card surface spans the whole screen.
+- Use SVG icon for Page header breadcrumb links.
+
 #### Bug fixes
 
 - Fix: [EzFlashMessage](/components/ez-flash-message) dismiss button now appears in the top right, rather than vertically centered.
-- fix: ensure [Links](/components/ez-link) have correct cursor (pointer)
-- fix: Prevent [status](/components/ez-status) wrapping below Action Required indicator
+- Fix: ensure [Links](/components/ez-link) have correct cursor (pointer)
+- Fix: Prevent [status](/components/ez-status) wrapping below Action Required indicator
+- Fix: Align page headings with body content on narrow screens.
 
 #### Documentation
 
