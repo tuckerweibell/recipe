@@ -186,6 +186,7 @@ const TablePagination = ({pagination}) => {
           <span css={{whiteSpace: 'nowrap'}}>{t('{{range}} of {{count}}', {range, count})}</span>
           <EzButton
             use="tertiary"
+            title={t('Previous Page')}
             aria-label={t('Previous Page')}
             onClick={pagination.onPrevPageClick}
             disabled={pagination.currentPage === 1}
@@ -197,6 +198,7 @@ const TablePagination = ({pagination}) => {
           />
           <EzButton
             use="tertiary"
+            title={t('Next Page')}
             aria-label={t('Next Page')}
             onClick={pagination.onNextPageClick}
             disabled={pagination.currentPage === pages}
@@ -212,6 +214,7 @@ const TablePagination = ({pagination}) => {
             css={cx(iconSize, {opacity: 0.001})} // opacity 0 is ignored by some screen readers
             defaultValue={pagination.rowsPerPage}
             onChange={pagination.onRowsPerPageChange}
+            title={t('Show rows per page options')}
             aria-label={t('Show rows per page options')}
           >
             {pagination.rowsPerPageOptions.map(value => (
