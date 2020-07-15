@@ -10,7 +10,7 @@ import {Container, Table, Th, Td, ClickableTr, TableCardSection} from './EzTable
 import useSorting from './useSorting';
 import en from './en';
 import {wrapEvent} from '../../utils';
-import {useTranslation, useScrollPosition} from '../../utils/hooks';
+import {useTranslation, useScrollPosition, useVirtualTouchable} from '../../utils/hooks';
 import useOverflowDetection from './useOverflowDetection';
 import useExpandedClickTarget from './useExpandedClickTarget';
 import EzTextStyle from '../EzTextStyle';
@@ -174,6 +174,7 @@ const TablePagination = ({pagination}) => {
   const to = Math.min(count, page * rowsPerPage);
   const range = count === 1 ? 1 : `${from}-${to}`;
 
+  const virutualTouchable = useVirtualTouchable();
   return (
     <EzCardFooter>
       <EzLayout layout="right">
@@ -191,6 +192,7 @@ const TablePagination = ({pagination}) => {
             aria-label={t('Previous Page')}
             onClick={pagination.onPrevPageClick}
             disabled={pagination.currentPage === 1}
+            css={virutualTouchable}
             icon={
               <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
                 <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
@@ -203,6 +205,7 @@ const TablePagination = ({pagination}) => {
             aria-label={t('Next Page')}
             onClick={pagination.onNextPageClick}
             disabled={pagination.currentPage === pages}
+            css={virutualTouchable}
             icon={
               <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
                 <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
@@ -210,9 +213,9 @@ const TablePagination = ({pagination}) => {
             }
           />
         </nav>
-        <div css={{position: 'relative'}}>
+        <div css={cx({position: 'relative'}, iconSize)}>
           <select
-            css={cx(iconSize, {opacity: 0.001})} // opacity 0 is ignored by some screen readers
+            css={cx(virutualTouchable[':after'], {opacity: 0.001})} // opacity 0 is ignored by some screen readers
             defaultValue={pagination.rowsPerPage}
             onChange={pagination.onRowsPerPageChange}
             title={t('Show rows per page options')}
@@ -226,13 +229,9 @@ const TablePagination = ({pagination}) => {
           </select>
           <svg
             focusable={false}
-            viewBox="0 0 24 24"
+            viewBox="-8 -8 40 40"
             aria-hidden="true"
-            css={cx(iconSize, {
-              top: 0,
-              right: 0,
-              bottom: 0,
-              position: 'absolute',
+            css={cx(virutualTouchable[':after'], {
               pointerEvents: 'none',
               fill: iconStates.fill,
               'select:focus + &': {
