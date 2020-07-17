@@ -88,14 +88,18 @@ const EzSelect = props => {
   const ariaLabelledBy = props['aria-labelledby'];
 
   const timeout = useRef(null);
-  const activeOptionRef = useRef(null);
-
+  const [selectedOption, setSelectedOption] = useState(null);
+  const activeOptionRef = useRef(selectedOption);
   const selected = options.find(o => o.value === value);
   const [activeOption, setActiveOption] = useState(selected);
 
   const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
+  const setActiveOptionRef = option => {
+    activeOptionRef.current = option;
+    setSelectedOption(option);
+  };
 
-  const listbox = {activeOption, activeOptionRef, setActiveOption, selected};
+  const listbox = {activeOption, activeOptionRef: setActiveOptionRef, setActiveOption, selected};
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 

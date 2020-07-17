@@ -59,26 +59,31 @@ describe('EzField', () => {
       const lastOption = getByText(container, 'This Month');
 
       expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(input.getAttribute('aria-activedescendant')).toEqual(option1.id);
       expect(option2).toHaveAttribute('aria-selected', 'false');
 
       keyDown('ArrowDown');
 
       expect(option1).toHaveAttribute('aria-selected', 'false');
+      expect(input.getAttribute('aria-activedescendant')).toEqual(option2.id);
       expect(option2).toHaveAttribute('aria-selected', 'true');
 
       keyDown('ArrowUp');
 
       expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(input.getAttribute('aria-activedescendant')).toEqual(option1.id);
       expect(option2).toHaveAttribute('aria-selected', 'false');
 
       keyDown('ArrowUp');
 
       expect(lastOption).toHaveAttribute('aria-selected', 'true');
+      expect(input.getAttribute('aria-activedescendant')).toEqual(lastOption.id);
       expect(option1).toHaveAttribute('aria-selected', 'false');
 
       keyDown('ArrowDown');
 
       expect(option1).toHaveAttribute('aria-selected', 'true');
+      expect(input.getAttribute('aria-activedescendant')).toEqual(option1.id);
       expect(lastOption).toHaveAttribute('aria-selected', 'false');
     });
 
