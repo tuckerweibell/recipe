@@ -27,6 +27,7 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix: [`EzField[type=select]`](/components/ez-field) highlighting incorrect option to assistive devices. Closes [issue #398](https://github.com/ezcater/recipe/issues/398).
 - Fix: [EzFlashMessage](/components/ez-flash-message) dismiss button now appears in the top right, rather than vertically centered.
 - Fix: ensure [Links](/components/ez-link) have correct cursor (pointer)
 - Fix: Prevent [status](/components/ez-status) wrapping below Action Required indicator
