@@ -66,10 +66,14 @@ const DoczGlobals = () => (
   />
 );
 
+function useWrapper(Comp, extraProps) {
+  return React.useCallback(props => <Comp {...props} {...extraProps} />);
+}
+
 const Playground = ({code, scope}) => (
   <Container>
     <DoczGlobals />
-    <DoczPlayground code={code} scope={{...scope}} wrapper={DocFrame} />
+    <DoczPlayground code={code} scope={{...scope}} wrapper={useWrapper(DocFrame, {code})} />
   </Container>
 );
 

@@ -61,7 +61,7 @@ const IFramePlayground = props => {
     [container]
   );
 
-  const page = props.children._owner.pendingProps.code.includes('<EzPage>');
+  const page = props.code.includes('<EzPage>');
 
   return (
     <iframe
