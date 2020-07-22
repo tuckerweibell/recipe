@@ -19,28 +19,6 @@ const flatten = options => {
   return [...grouped];
 };
 
-const ListboxPopover = React.forwardRef<any, any>(({targetRef, ...props}, ref) => (
-  <EzPopover
-    targetRef={targetRef}
-    placement="bottom-start"
-    modifiers={[
-      {
-        name: 'matchWidth',
-        enabled: true,
-        fn: ({state}) => {
-          // eslint-disable-next-line no-param-reassign
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-      },
-      {name: 'offset', options: {offset: [0, 5]}},
-    ]}
-  >
-    <Listbox role="listbox" ref={ref} {...props} />
-  </EzPopover>
-));
-
 const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, onClick}) => {
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
@@ -99,7 +77,12 @@ const EzSelect = props => {
     setSelectedOption(option);
   };
 
-  const listbox = {activeOption, activeOptionRef: setActiveOptionRef, setActiveOption, selected};
+  const listboxProps = {
+    activeOption,
+    activeOptionRef: setActiveOptionRef,
+    setActiveOption,
+    selected,
+  };
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
@@ -190,6 +173,28 @@ const EzSelect = props => {
 
   useJumpToOption(comboboxInput.ref, {options, move});
 
+  const listbox = (
+    <Listbox
+      role="listbox"
+      ref={optionsRef as any}
+      aria-labelledby={ariaLabelledBy}
+      {...comboboxFlyout}
+      onClick={() => comboboxInput.ref.current.focus()}
+    >
+      {hasGroupedOptions(options) ? (
+        <>
+          {flatten(options).map(group => (
+            <OptGroup {...listboxProps} group={group} key={group[0]} selectItem={selectItem} />
+          ))}
+        </>
+      ) : (
+        options.map(o => (
+          <Option {...listboxProps} option={o} key={o.label} onClick={() => selectItem(o.value)} />
+        ))
+      )}
+    </Listbox>
+  );
+
   return (
     <Container ref={containerRef} hasError={props.touched && props.error} opened={visible}>
       <Combobox {...combobox}>
@@ -199,25 +204,25 @@ const EzSelect = props => {
         </InsetIcon>
       </Combobox>
       {visible && (
-        <ListboxPopover
-          aria-labelledby={ariaLabelledBy}
+        <EzPopover
           targetRef={comboboxInput.ref}
-          {...comboboxFlyout}
-          ref={optionsRef as any}
-          onClick={() => comboboxInput.ref.current.focus()}
+          placement="bottom-start"
+          modifiers={[
+            {
+              name: 'matchWidth',
+              enabled: true,
+              fn: ({state}) => {
+                // eslint-disable-next-line no-param-reassign
+                state.styles.popper.width = `${state.rects.reference.width}px`;
+              },
+              phase: 'beforeWrite',
+              requires: ['computeStyles'],
+            },
+            {name: 'offset', options: {offset: [0, 5]}},
+          ]}
         >
-          {hasGroupedOptions(options) ? (
-            <>
-              {flatten(options).map(group => (
-                <OptGroup {...listbox} group={group} key={group[0]} selectItem={selectItem} />
-              ))}
-            </>
-          ) : (
-            options.map(o => (
-              <Option {...listbox} option={o} key={o.label} onClick={() => selectItem(o.value)} />
-            ))
-          )}
-        </ListboxPopover>
+          {listbox}
+        </EzPopover>
       )}
     </Container>
   );
