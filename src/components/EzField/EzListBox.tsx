@@ -5,7 +5,7 @@ import {useUniqueId} from '../../utils/hooks';
 import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
 
-const flatten = options => {
+const collect = options => {
   const grouped = new Map();
 
   options.forEach(item => {
@@ -67,7 +67,7 @@ const EzListBox = (props, ref) => {
     <ul css={styles({theme})} role="listbox" ref={ref} {...domProps}>
       {hasGroupedOptions(items) ? (
         <React.Fragment>
-          {flatten(items).map(group => (
+          {collect(items).map(group => (
             <OptGroup {...focusProps} group={group} key={group[0]} selectItem={onSelectionChange} />
           ))}
         </React.Fragment>
