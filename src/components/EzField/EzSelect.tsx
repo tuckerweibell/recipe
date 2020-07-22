@@ -61,6 +61,23 @@ const OptGroup = props => {
 
 const hasGroupedOptions = options => options.some(o => o.group);
 
+const useOverlayPosition = options => ({
+  ...options,
+  modifiers: [
+    {
+      name: 'matchWidth',
+      enabled: true,
+      fn: ({state}) => {
+        // eslint-disable-next-line no-param-reassign
+        state.styles.popper.width = `${state.rects.reference.width}px`;
+      },
+      phase: 'beforeWrite',
+      requires: ['computeStyles'],
+    },
+    {name: 'offset', options: {offset: [0, 5]}},
+  ],
+});
+
 const EzSelect = props => {
   const {options, value, onChange} = props;
   const ariaLabelledBy = props['aria-labelledby'];
@@ -173,6 +190,11 @@ const EzSelect = props => {
 
   useJumpToOption(comboboxInput.ref, {options, move});
 
+  const overlayPosition = useOverlayPosition({
+    targetRef: comboboxInput.ref,
+    placement: 'bottom-start',
+  });
+
   const listbox = (
     <Listbox
       role="listbox"
@@ -203,27 +225,7 @@ const EzSelect = props => {
           <ChevronIcon flip={visible} />
         </InsetIcon>
       </Combobox>
-      {visible && (
-        <EzPopover
-          targetRef={comboboxInput.ref}
-          placement="bottom-start"
-          modifiers={[
-            {
-              name: 'matchWidth',
-              enabled: true,
-              fn: ({state}) => {
-                // eslint-disable-next-line no-param-reassign
-                state.styles.popper.width = `${state.rects.reference.width}px`;
-              },
-              phase: 'beforeWrite',
-              requires: ['computeStyles'],
-            },
-            {name: 'offset', options: {offset: [0, 5]}},
-          ]}
-        >
-          {listbox}
-        </EzPopover>
-      )}
+      {visible && <EzPopover {...overlayPosition}>{listbox}</EzPopover>}
     </Container>
   );
 };
