@@ -1,65 +1,11 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {Combobox, Container, Listbox} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption, useUniqueId} from '../../utils/hooks';
+import {Combobox, Container} from './EzSelect.styles';
+import {useScrollIntoView, useJumpToOption} from '../../utils/hooks';
 import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
-
-const flatten = options => {
-  const grouped = new Map();
-
-  options.forEach(item => {
-    const {group} = item;
-    const values = grouped.get(group) || [];
-    values.push(item);
-    grouped.set(group, values);
-  });
-
-  return [...grouped];
-};
-
-const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, onClick}) => {
-  /* eslint-disable jsx-a11y/click-events-have-key-events */
-  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-  /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
-  const id = useUniqueId();
-  const activeValue = activeOption && activeOption.value;
-  return (
-    <li
-      role="option"
-      aria-current={(selected && option.value === selected.value) || undefined}
-      aria-selected={activeValue === option.value}
-      ref={activeValue === option.value ? activeOptionRef : undefined}
-      onMouseOver={() => setActiveOption(option)}
-      onClick={onClick}
-      onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
-      id={id}
-    >
-      {option.label}
-    </li>
-  );
-};
-
-const OptGroup = props => {
-  const id = useUniqueId();
-  const [name, options] = props.group;
-
-  return (
-    <li>
-      <ul role="group" aria-describedby={id}>
-        <li id={id} role="presentation">
-          {name}
-        </li>
-        {options.map(o => (
-          <Option {...props} option={o} key={o.label} onClick={() => props.selectItem(o.value)} />
-        ))}
-      </ul>
-    </li>
-  );
-};
-
-const hasGroupedOptions = options => options.some(o => o.group);
+import EzListBox from './EzListBox';
 
 const useOverlayPosition = options => ({
   ...options,
@@ -196,25 +142,15 @@ const EzSelect = props => {
   });
 
   const listbox = (
-    <Listbox
-      role="listbox"
+    <EzListBox
       ref={optionsRef as any}
+      id={comboboxFlyout.id}
       aria-labelledby={ariaLabelledBy}
-      {...comboboxFlyout}
       onClick={() => comboboxInput.ref.current.focus()}
-    >
-      {hasGroupedOptions(options) ? (
-        <>
-          {flatten(options).map(group => (
-            <OptGroup {...listboxProps} group={group} key={group[0]} selectItem={selectItem} />
-          ))}
-        </>
-      ) : (
-        options.map(o => (
-          <Option {...listboxProps} option={o} key={o.label} onClick={() => selectItem(o.value)} />
-        ))
-      )}
-    </Listbox>
+      items={options}
+      onSelectionChange={selectItem}
+      focusProps={listboxProps}
+    />
   );
 
   return (

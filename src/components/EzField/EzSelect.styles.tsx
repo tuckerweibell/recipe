@@ -1,9 +1,8 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
 
 export {Combobox, Container} from './EzCombobox.styles';
 
-const listbox = ({theme}) => css`
+export const listbox = ({theme}) => css`
   min-width: 230px;
   background: white;
   border: 1px solid #ccc;
@@ -56,5 +55,3 @@ const listbox = ({theme}) => css`
     }
   }
 `;
-
-export const Listbox = styled.ul(listbox as any);
