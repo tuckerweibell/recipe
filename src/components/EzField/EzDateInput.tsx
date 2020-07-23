@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import EzTextInput from './EzTextInput';
 import {CalendarWrapper, Container, Combobox} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
-import {useUpdateEffect} from '../../utils/hooks';
+import {useMenuTriggerState, useMenuTrigger} from './EzCombobox';
+import {useUpdateEffect, useOnClickOutside, useEventListenerOutside} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
@@ -22,15 +22,15 @@ const EzDateInput = ({
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
 
-  const comboboxState = useComboboxState();
-  const {ref: clickOutsideRef, ...combobox} = useCombobox(comboboxState, {
+  const clickOutsideRef = useRef();
+  const state = useMenuTriggerState();
+  const combobox = {
     ...props,
-    'aria-haspopup': true,
     disabled,
-    opened: comboboxState.visible,
-  });
+    opened: state.isOpen,
+  };
 
-  const {hide, visible} = comboboxState;
+  const {close, isOpen} = state;
 
   const timeout = useRef(null);
 
@@ -47,38 +47,44 @@ const EzDateInput = ({
     onChangeRef.current(validDate);
   }, [validDate]);
 
-  const comboboxInput = useComboboxInput(comboboxState, {
+  const {menuTriggerProps, menuProps} = useMenuTrigger(state);
+
+  useOnClickOutside(close, [clickOutsideRef]);
+  useEventListenerOutside(close, 'focusin', [clickOutsideRef]);
+
+  const comboboxInput = {
+    ...menuTriggerProps,
+    ref: useRef<HTMLInputElement>(),
     id,
     name,
     value,
+    'aria-haspopup': 'dialog' as 'dialog',
     'aria-labelledby': ariaLabelledBy,
     onChange: e => setValue(e.target.value),
     disabled,
     placeholder,
     error: props.error,
     touched: props.touched,
-  });
-
-  const comboboxFlyout = useComboboxFlyout(comboboxState);
+  };
 
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={visible}>
+    <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={isOpen}>
       <Combobox {...combobox}>
         <InsetIcon insetY0 left0 pl3>
           <CalendarIcon />
         </InsetIcon>
         <EzTextInput {...comboboxInput} />
         <InsetIcon insetY0 right0 pr2>
-          <ChevronIcon flip={visible} />
+          <ChevronIcon flip={isOpen} />
         </InsetIcon>
       </Combobox>
-      {visible && (
+      {isOpen && (
         <CalendarWrapper
-          {...comboboxFlyout}
+          {...menuProps}
           onKeyDown={event => {
-            if (event.key === 'Escape') hide();
+            if (event.key === 'Escape') close();
           }}
         >
           <EzCalendar
@@ -87,7 +93,7 @@ const EzDateInput = ({
             onChange={date => {
               setValue(date);
               comboboxInput.ref.current.focus();
-              timeout.current = setTimeout(hide, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
+              timeout.current = setTimeout(close, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
             }}
           />
         </CalendarWrapper>
