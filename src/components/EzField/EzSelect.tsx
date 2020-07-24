@@ -1,28 +1,11 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useAllCallbacks} from '../../utils/hooks';
-import {useMenuTriggerState, useMenuTrigger} from './EzCombobox';
+import {useMenuTriggerState, useMenuTrigger, useOverlayPosition} from './EzCombobox';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
 import EzListBox from './EzListBox';
-
-const useOverlayPosition = options => ({
-  ...options,
-  modifiers: [
-    {
-      name: 'matchWidth',
-      enabled: true,
-      fn: ({state}) => {
-        // eslint-disable-next-line no-param-reassign
-        state.styles.popper.width = `${state.rects.reference.width}px`;
-      },
-      phase: 'beforeWrite',
-      requires: ['computeStyles'],
-    },
-    {name: 'offset', options: {offset: [0, 5]}},
-  ],
-});
 
 const EzSelect = props => {
   const {options, value, onChange} = props;
