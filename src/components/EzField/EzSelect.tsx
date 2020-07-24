@@ -7,6 +7,21 @@ import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
 import EzListBox from './EzListBox';
 
+const collect = options => {
+  const grouped = new Map();
+
+  if (!options.some(o => o.group)) return options;
+
+  options.forEach(item => {
+    const {group} = item;
+    const values = grouped.get(group) || [];
+    values.push(item);
+    grouped.set(group, values);
+  });
+
+  return [...grouped];
+};
+
 const EzSelect = props => {
   const {options, value, onChange} = props;
   const ariaLabelledBy = props['aria-labelledby'];
@@ -16,6 +31,7 @@ const EzSelect = props => {
   const activeOptionRef = useRef(selectedOption);
   const selected = options.find(o => o.value === value);
   const [activeOption, setActiveOption] = useState(selected);
+  const collection = collect(options);
 
   const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
   const setActiveOptionRef = option => {
@@ -134,7 +150,7 @@ const EzSelect = props => {
       aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
       ref={listboxRef as any}
       onClick={() => inputProps.ref.current.focus()}
-      items={options}
+      items={collection}
       onSelectionChange={selectItem}
       focusProps={listboxProps}
     />

@@ -5,20 +5,7 @@ import {useUniqueId} from '../../utils/hooks';
 import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
 
-const collect = options => {
-  const grouped = new Map();
-
-  options.forEach(item => {
-    const {group} = item;
-    const values = grouped.get(group) || [];
-    values.push(item);
-    grouped.set(group, values);
-  });
-
-  return [...grouped];
-};
-
-const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, onClick}) => {
+const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, ...props}) => {
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
@@ -31,7 +18,7 @@ const Option = ({activeOption, activeOptionRef, setActiveOption, option, selecte
       aria-selected={activeValue === option.value}
       ref={activeValue === option.value ? activeOptionRef : undefined}
       onMouseOver={() => setActiveOption(option)}
-      onClick={onClick}
+      onClick={() => props.onSelectionChange(option.value)}
       onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
       id={id}
     >
@@ -42,45 +29,43 @@ const Option = ({activeOption, activeOptionRef, setActiveOption, option, selecte
 
 const OptGroup = props => {
   const id = useUniqueId();
-  const [name, options] = props.group;
-
   return (
     <li>
       <ul role="group" aria-describedby={id}>
         <li id={id} role="presentation">
-          {name}
+          {props.group}
         </li>
-        {options.map(o => (
-          <Option {...props} option={o} key={o.label} onClick={() => props.selectItem(o.value)} />
-        ))}
+        {props.children}
       </ul>
     </li>
   );
 };
 
-const hasGroupedOptions = options => options.some(o => o.group);
+const hasGroupedOptions = options => Array.isArray(options[0]);
 
 const EzListBox = (props, ref) => {
   const theme = useTheme();
-  const {items, onSelectionChange, focusProps, ...domProps} = props;
+  const {items, onSelectionChange, focusProps, activeOptionRef, ...domProps} = props;
+
+  const renderItem = o => (
+    <Option
+      {...focusProps}
+      option={o}
+      key={o.label}
+      onSelectionChange={onSelectionChange}
+      activeOptionRef={activeOptionRef}
+    />
+  );
+
+  const renderGroup = ([name, options]) => (
+    <OptGroup group={name} key={name}>
+      {options.map(renderItem)}
+    </OptGroup>
+  );
+
   return (
     <ul css={styles({theme})} role="listbox" ref={ref} {...domProps}>
-      {hasGroupedOptions(items) ? (
-        <React.Fragment>
-          {collect(items).map(group => (
-            <OptGroup {...focusProps} group={group} key={group[0]} selectItem={onSelectionChange} />
-          ))}
-        </React.Fragment>
-      ) : (
-        items.map(o => (
-          <Option
-            {...focusProps}
-            option={o}
-            key={o.label}
-            onClick={() => onSelectionChange(o.value)}
-          />
-        ))
-      )}
+      {hasGroupedOptions(items) ? items.map(renderGroup) : items.map(renderItem)}
     </ul>
   );
 };
