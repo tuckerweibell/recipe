@@ -27,8 +27,8 @@ const EzSelect = props => {
   const ariaLabelledBy = props['aria-labelledby'];
 
   const timeout = useRef(null);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const activeOptionRef = useRef(selectedOption);
+  const [, setSelectedOption] = useState(null);
+  const activeOptionRef = useRef<HTMLElement>();
   const selected = options.find(o => o.value === value);
   const [activeOption, setActiveOption] = useState(selected);
   const collection = collect(options);
