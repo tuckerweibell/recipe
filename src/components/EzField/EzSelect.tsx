@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption} from '../../utils/hooks';
-import {useComboboxState, useCombobox, useComboboxInput, useComboboxFlyout} from './EzCombobox';
+import {useScrollIntoView, useJumpToOption, useAllCallbacks} from '../../utils/hooks';
+import {useMenuTriggerState, useMenuTrigger} from './EzCombobox';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -49,17 +49,20 @@ const EzSelect = props => {
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
-  const comboboxState = useComboboxState();
-  const {hide, visible} = comboboxState;
+  const state = useMenuTriggerState();
+  const {close, isOpen} = state;
 
-  const {ref: containerRef, optionsRef, ...combobox} = useCombobox(comboboxState, {
-    'aria-haspopup': 'listbox',
+  const containerRef = useRef<HTMLDivElement>();
+  const listboxRef = useRef<HTMLElement>();
+
+  const combobox = {
+    'aria-haspopup': 'listbox' as 'listbox',
     className: props.className,
     disabled: props.disabled,
     error: props.error,
     touched: props.touched,
-    opened: comboboxState.visible,
-  });
+    opened: isOpen,
+  };
 
   const handleKeyDown = e => {
     const key = e.key;
@@ -74,8 +77,8 @@ const EzSelect = props => {
       Escape: () => setActiveIndex(-1),
       ArrowUp: !e.defaultPrevented && (() => setActiveIndex(prev)),
       ArrowDown: !e.defaultPrevented && (() => setActiveIndex(next)),
-      ' ': visible && select,
-      Enter: visible && select,
+      ' ': isOpen && select,
+      Enter: isOpen && select,
     };
 
     const action = keyMap[key];
@@ -85,17 +88,16 @@ const EzSelect = props => {
     }
   };
 
-  useScrollIntoView({containerRef: optionsRef, targetRef: activeOptionRef}, [
-    activeOption,
-    visible,
-  ]);
+  useScrollIntoView({containerRef: listboxRef, targetRef: activeOptionRef}, [activeOption, isOpen]);
 
-  const comboboxInput = useComboboxInput(comboboxState, {
-    'aria-autocomplete': 'list',
+  const {menuTriggerProps, menuProps} = useMenuTrigger(state);
+
+  const inputProps = {
+    ...menuTriggerProps,
     'aria-labelledby': ariaLabelledBy,
     value: selected ? selected.label : '',
     'aria-activedescendant': !activeOptionRef.current ? '' : activeOptionRef.current.id,
-    onKeyDown: handleKeyDown,
+    onKeyDown: useAllCallbacks(handleKeyDown, menuTriggerProps.onKeyDown),
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
     id: props.id,
     name: props.name,
@@ -104,12 +106,16 @@ const EzSelect = props => {
     error: props.error,
     touched: props.touched,
     readOnly: true,
-  });
+    ref: useRef<HTMLInputElement>(),
+  };
 
   const changeEvent = useCallback(
     optionValue => {
       const event = new Event('change');
-      containerRef.current.value = optionValue;
+      // this is a hack to allow event.target.value to exist for the select onchange event
+      // depsite being published from a div element
+      // TODO: replace onChange with something like onSelectionChange
+      (containerRef.current as any).value = optionValue;
       containerRef.current.dispatchEvent(event);
       return event;
     },
@@ -118,35 +124,33 @@ const EzSelect = props => {
 
   function selectItem(optionValue) {
     onChange(changeEvent(optionValue));
-    timeout.current = setTimeout(hide, 100);
+    timeout.current = setTimeout(close, 100);
   }
-
-  const comboboxFlyout = useComboboxFlyout(comboboxState);
 
   const move = useCallback(
     option => {
       setActiveOption(option);
 
-      if (visible) return;
+      if (isOpen) return;
 
       onChange(changeEvent(option.value));
     },
-    [visible, onChange, changeEvent]
+    [isOpen, onChange, changeEvent]
   );
 
-  useJumpToOption(comboboxInput.ref, {options, move});
+  useJumpToOption(inputProps.ref, {options, move});
 
   const overlayPosition = useOverlayPosition({
-    targetRef: comboboxInput.ref,
+    targetRef: inputProps.ref,
     placement: 'bottom-start',
   });
 
   const listbox = (
     <EzListBox
-      ref={optionsRef as any}
-      id={comboboxFlyout.id}
-      aria-labelledby={ariaLabelledBy}
-      onClick={() => comboboxInput.ref.current.focus()}
+      {...menuProps}
+      aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
+      ref={listboxRef as any}
+      onClick={() => inputProps.ref.current.focus()}
       items={options}
       onSelectionChange={selectItem}
       focusProps={listboxProps}
@@ -154,14 +158,18 @@ const EzSelect = props => {
   );
 
   return (
-    <Container ref={containerRef} hasError={props.touched && props.error} opened={visible}>
+    <Container ref={containerRef} hasError={props.touched && props.error} opened={isOpen}>
       <Combobox {...combobox}>
-        <EzTextInput {...comboboxInput} />
+        <EzTextInput {...inputProps} />
         <InsetIcon insetY0 right0 pr2>
-          <ChevronIcon flip={visible} />
+          <ChevronIcon flip={isOpen} />
         </InsetIcon>
       </Combobox>
-      {visible && <EzPopover {...overlayPosition}>{listbox}</EzPopover>}
+      {isOpen && (
+        <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
+          {listbox}
+        </EzPopover>
+      )}
     </Container>
   );
 };
