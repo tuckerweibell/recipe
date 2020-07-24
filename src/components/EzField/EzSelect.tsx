@@ -34,6 +34,16 @@ const EzSelect = props => {
   const collection = collect(options);
 
   const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
+
+  const activeIndex = options.indexOf(activeOption);
+  const focusedKey = activeIndex === -1 ? null : activeIndex;
+  const clearFocus = () => setActiveIndex(-1);
+  const setFocusedKey = k => setActiveIndex(k);
+  const getKeyAbove = k => (k > 0 ? k - 1 : null);
+  const getKeyBelow = k => (k < options.length - 1 ? k + 1 : null);
+  const getFirstKey = () => 0;
+  const getLastKey = () => options.length - 1;
+
   const setActiveOptionRef = option => {
     activeOptionRef.current = option;
     setSelectedOption(option);
@@ -65,17 +75,17 @@ const EzSelect = props => {
 
   const handleKeyDown = e => {
     const key = e.key;
-    const activeIndex = options.indexOf(activeOption);
 
     const select = () => selectItem(activeOption ? activeOption.value : null);
-
-    const prev = activeIndex <= 0 ? options.length - 1 : activeIndex - 1;
-    const next = activeIndex === -1 || activeIndex >= options.length - 1 ? 0 : activeIndex + 1;
+    const arrowDown = () =>
+      setFocusedKey(focusedKey === null ? getFirstKey() : getKeyBelow(focusedKey) ?? getFirstKey());
+    const arrowUp = () =>
+      setFocusedKey(focusedKey === null ? getLastKey() : getKeyAbove(focusedKey) ?? getLastKey());
 
     const keyMap = {
-      Escape: () => setActiveIndex(-1),
-      ArrowUp: !e.defaultPrevented && (() => setActiveIndex(prev)),
-      ArrowDown: !e.defaultPrevented && (() => setActiveIndex(next)),
+      Escape: clearFocus,
+      ArrowUp: !e.defaultPrevented && arrowUp,
+      ArrowDown: !e.defaultPrevented && arrowDown,
       ' ': isOpen && select,
       Enter: isOpen && select,
     };
