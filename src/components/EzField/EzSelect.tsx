@@ -1,59 +1,25 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Combobox, Container} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useAllCallbacks} from '../../utils/hooks';
-import {useMenuTriggerState, useMenuTrigger, useOverlayPosition} from './EzCombobox';
+import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} from './EzCombobox';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
 import EzListBox from './EzListBox';
 
-const collect = options => {
-  const grouped = new Map();
-
-  if (!options.some(o => o.group)) return options;
-
-  options.forEach(item => {
-    const {group} = item;
-    const values = grouped.get(group) || [];
-    values.push(item);
-    grouped.set(group, values);
-  });
-
-  return [...grouped];
-};
-
 const EzSelect = props => {
-  const {options, value, onChange} = props;
+  const {options, onChange} = props;
   const ariaLabelledBy = props['aria-labelledby'];
+  const listState = useListState(props);
+  const {activeOption, setActiveOption} = listState.selectionManager;
 
   const timeout = useRef(null);
-  const [, setSelectedOption] = useState(null);
+  const [, rerender] = useState(null);
   const activeOptionRef = useRef<HTMLElement>();
-  const selected = options.find(o => o.value === value);
-  const [activeOption, setActiveOption] = useState(selected);
-  const collection = collect(options);
-
-  const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
-
-  const activeIndex = options.indexOf(activeOption);
-  const focusedKey = activeIndex === -1 ? null : activeIndex;
-  const clearFocus = () => setActiveIndex(-1);
-  const setFocusedKey = k => setActiveIndex(k);
-  const getKeyAbove = k => (k > 0 ? k - 1 : null);
-  const getKeyBelow = k => (k < options.length - 1 ? k + 1 : null);
-  const getFirstKey = () => 0;
-  const getLastKey = () => options.length - 1;
 
   const setActiveOptionRef = option => {
     activeOptionRef.current = option;
-    setSelectedOption(option);
-  };
-
-  const listboxProps = {
-    activeOption,
-    activeOptionRef: setActiveOptionRef,
-    setActiveOption,
-    selected,
+    rerender(option);
   };
 
   useEffect(() => () => clearTimeout(timeout.current), []);
@@ -75,6 +41,15 @@ const EzSelect = props => {
 
   const handleKeyDown = e => {
     const key = e.key;
+    const {
+      getKeyAbove,
+      getKeyBelow,
+      getFirstKey,
+      getLastKey,
+      setFocusedKey,
+      focusedKey,
+      clearFocus,
+    } = listState.selectionManager;
 
     const select = () => selectItem(activeOption ? activeOption.value : null);
     const arrowDown = () =>
@@ -100,6 +75,8 @@ const EzSelect = props => {
   useScrollIntoView({containerRef: listboxRef, targetRef: activeOptionRef}, [activeOption, isOpen]);
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
+
+  const {selected} = listState.selectionManager;
 
   const inputProps = {
     ...menuTriggerProps,
@@ -160,9 +137,10 @@ const EzSelect = props => {
       aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
       ref={listboxRef as any}
       onClick={() => inputProps.ref.current.focus()}
-      items={collection}
+      items={listState.collection}
       onSelectionChange={selectItem}
-      focusProps={listboxProps}
+      focusProps={listState.selectionManager}
+      activeOptionRef={setActiveOptionRef}
     />
   );
 

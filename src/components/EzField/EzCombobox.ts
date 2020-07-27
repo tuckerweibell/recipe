@@ -104,3 +104,56 @@ export const useOverlayPosition = options => ({
     {name: 'offset', options: {offset: [0, 5]}},
   ],
 });
+
+const collect = options => {
+  const grouped = new Map();
+
+  if (!options.some(o => o.group)) return options;
+
+  options.forEach(item => {
+    const {group} = item;
+    const values = grouped.get(group) || [];
+    values.push(item);
+    grouped.set(group, values);
+  });
+
+  return [...grouped];
+};
+
+/**
+ * Provides state management for list-like components. Handles building a collection
+ * of items from props, and manages multiple selection state.
+ */
+export function useListState(props) {
+  const {options, value} = props;
+  const selected = options.find(o => o.value === value);
+  const [activeOption, setActiveOption] = useState(selected);
+  const collection = collect(options);
+  const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
+
+  const activeIndex = options.indexOf(activeOption);
+  const focusedKey = activeIndex === -1 ? null : activeIndex;
+  const clearFocus = () => setActiveIndex(-1);
+  const setFocusedKey = k => setActiveIndex(k);
+  const getKeyAbove = k => (k > 0 ? k - 1 : null);
+  const getKeyBelow = k => (k < options.length - 1 ? k + 1 : null);
+  const getFirstKey = () => 0;
+  const getLastKey = () => options.length - 1;
+
+  return {
+    collection,
+    selectionManager: {
+      focusedKey,
+      clearFocus,
+      setFocusedKey,
+      getKeyAbove,
+      getKeyBelow,
+      getFirstKey,
+      getLastKey,
+      // TODO rework these
+      selected,
+      activeOption,
+      setActiveOption,
+    },
+  };
+}
