@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {Combobox, Container} from './EzSelect.styles';
+import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
 import {useScrollIntoView, useJumpToOption, useAllCallbacks} from '../../utils/hooks';
-import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} from './EzCombobox';
+import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} from './Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -145,19 +145,19 @@ const EzSelect = props => {
   );
 
   return (
-    <Container ref={containerRef} hasError={props.touched && props.error} opened={isOpen}>
-      <Combobox {...combobox}>
+    <OverlayFieldWrapper ref={containerRef} hasError={props.touched && props.error} opened={isOpen}>
+      <TextInputWrapper {...combobox}>
         <EzTextInput {...inputProps} />
         <InsetIcon insetY0 right0 pr2>
           <ChevronIcon flip={isOpen} />
         </InsetIcon>
-      </Combobox>
+      </TextInputWrapper>
       {isOpen && (
         <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
           {listbox}
         </EzPopover>
       )}
-    </Container>
+    </OverlayFieldWrapper>
   );
 };
 

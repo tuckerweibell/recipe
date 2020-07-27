@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 
-export {Combobox, Container} from './EzCombobox.styles';
+export {TextInputWrapper, OverlayFieldWrapper} from './Picker.styles';
 
 export const listbox = ({theme}) => css`
   min-width: 230px;

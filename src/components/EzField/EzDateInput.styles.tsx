@@ -1,9 +1,9 @@
 import styled from '../../themes/styled';
-import {Combobox as BaseCombobox} from './EzCombobox.styles';
+import {TextInputWrapper as BaseCombobox} from './Picker.styles';
 
-export {Container} from './EzCombobox.styles';
+export {OverlayFieldWrapper} from './Picker.styles';
 
-export const Combobox = styled(BaseCombobox)`
+export const TextInputWrapper = styled(BaseCombobox)`
   position: relative;
   width: 200px;
   input {

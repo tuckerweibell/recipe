@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import dayjs from 'dayjs';
 import EzTextInput from './EzTextInput';
-import {CalendarWrapper, Container, Combobox} from './EzDateInput.styles';
+import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTriggerState, useMenuTrigger} from './EzCombobox';
+import {useMenuTriggerState, useMenuTrigger} from './Overlays';
 import {useUpdateEffect, useOnClickOutside, useEventListenerOutside} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 
@@ -70,8 +70,12 @@ const EzDateInput = ({
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <Container ref={clickOutsideRef} hasError={props.touched && props.error} opened={isOpen}>
-      <Combobox {...combobox}>
+    <OverlayFieldWrapper
+      ref={clickOutsideRef}
+      hasError={props.touched && props.error}
+      opened={isOpen}
+    >
+      <TextInputWrapper {...combobox}>
         <InsetIcon insetY0 left0 pl3>
           <CalendarIcon />
         </InsetIcon>
@@ -79,7 +83,7 @@ const EzDateInput = ({
         <InsetIcon insetY0 right0 pr2>
           <ChevronIcon flip={isOpen} />
         </InsetIcon>
-      </Combobox>
+      </TextInputWrapper>
       {isOpen && (
         <CalendarWrapper
           {...menuProps}
@@ -98,7 +102,7 @@ const EzDateInput = ({
           />
         </CalendarWrapper>
       )}
-    </Container>
+    </OverlayFieldWrapper>
   );
 };
 

@@ -18,7 +18,7 @@ const hideErrorMessageWhenOpen = ({hasError, opened}) =>
     }
   `;
 
-export const Container = styled.div<any>`
+export const OverlayFieldWrapper = styled.div<any>`
   input {
     cursor: default;
     text-overflow: ellipsis;
@@ -33,7 +33,7 @@ export const Container = styled.div<any>`
 const iconColor = p =>
   p.disabled ? p.theme.colors.interactive.disabled.foreground : p.theme.colors.interactive.base;
 
-export const Combobox = styled.div`
+export const TextInputWrapper = styled.div`
   && input {
     padding-right: 2em;
   }
