@@ -16,6 +16,7 @@ describe('EzField', () => {
   visualSnapshots({markdown: ezSelectTests, scope: {...scope, fireEvent}});
 
   describe('select list', () => {
+    jest.useFakeTimers();
     const inputLabel = 'Select dropdown';
     const options = [
       {label: 'All Upcoming', value: 'upcoming'},
@@ -52,7 +53,7 @@ describe('EzField', () => {
 
       const keyDown = key => fireEvent.keyDown(input, {key});
 
-      keyDown('ArrowDown');
+      keyDown(' ');
 
       const option1 = getByText(container, 'All Upcoming');
       const option2 = getByText(container, 'Today');
@@ -97,7 +98,8 @@ describe('EzField', () => {
       const keyDown = key => fireEvent.keyDown(input, {key});
 
       // open the menu
-      keyDown('ArrowDown');
+      keyDown(' ');
+      jest.runAllTimers();
 
       const optionAllUpcoming = getByText(container, 'All Upcoming');
       const optionAllTime = getByText(container, 'All Time');
@@ -167,7 +169,8 @@ describe('EzField', () => {
       const keyDown = key => fireEvent.keyDown(input, {key});
 
       // open the menu
-      keyDown('ArrowDown');
+      keyDown(' ');
+      jest.runAllTimers();
 
       // select the second next option (value is "today")
       keyDown('ArrowDown');
@@ -199,7 +202,8 @@ describe('EzField', () => {
       const keyDown = key => fireEvent.keyDown(input, {key});
 
       // open the menu
-      keyDown('ArrowDown');
+      keyDown(' ');
+      jest.runAllTimers();
 
       // select the second next option (value is "today")
       keyDown('ArrowDown');
@@ -374,7 +378,8 @@ describe('EzField', () => {
       const keyDown = key => fireEvent.keyDown(input, {key});
 
       // open the menu
-      keyDown('ArrowDown');
+      keyDown(' ');
+      jest.runAllTimers();
 
       // select the second next option (value is "Medium")
       keyDown('ArrowDown');
