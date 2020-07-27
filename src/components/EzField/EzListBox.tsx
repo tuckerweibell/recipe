@@ -5,19 +5,18 @@ import {useUniqueId} from '../../utils/hooks';
 import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
 
-const Option = ({activeOption, activeOptionRef, setActiveOption, option, selected, ...props}) => {
+const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selected, ...props}) => {
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
   const id = useUniqueId();
-  const activeValue = activeOption && activeOption.value;
   return (
     <li
       role="option"
       aria-current={(selected && option.value === selected.value) || undefined}
-      aria-selected={activeValue === option.value}
-      ref={activeValue === option.value ? activeOptionRef : undefined}
-      onMouseOver={() => setActiveOption(option)}
+      aria-selected={focusedKey === option.key}
+      ref={focusedKey === option.key ? activeOptionRef : undefined}
+      onMouseOver={() => setFocusedKey(option.key)}
       onClick={() => props.onSelectionChange(option.value)}
       onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
       id={id}

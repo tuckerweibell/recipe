@@ -10,8 +10,7 @@ import EzListBox from './EzListBox';
 const EzSelect = props => {
   const {options, onChange} = props;
   const ariaLabelledBy = props['aria-labelledby'];
-  const listState = useListState(props);
-  const {activeOption, setActiveOption} = listState.selectionManager;
+  const {collection, selectionManager, keyboardDelegate} = useListState(props);
 
   const timeout = useRef(null);
   const [, rerender] = useState(null);
@@ -41,17 +40,13 @@ const EzSelect = props => {
 
   const handleKeyDown = e => {
     const key = e.key;
-    const {
-      getKeyAbove,
-      getKeyBelow,
-      getFirstKey,
-      getLastKey,
-      setFocusedKey,
-      focusedKey,
-      clearFocus,
-    } = listState.selectionManager;
+    const {getKeyAbove, getKeyBelow, getFirstKey, getLastKey} = keyboardDelegate;
+    const {setFocusedKey, focusedKey, clearFocus} = selectionManager;
 
-    const select = () => selectItem(activeOption ? activeOption.value : null);
+    const select = () => {
+      const currentlyFocusedItem = collection.index.get(focusedKey);
+      selectItem(currentlyFocusedItem ? currentlyFocusedItem.value : null);
+    };
     const arrowDown = () =>
       setFocusedKey(focusedKey === null ? getFirstKey() : getKeyBelow(focusedKey) ?? getFirstKey());
     const arrowUp = () =>
@@ -72,11 +67,14 @@ const EzSelect = props => {
     }
   };
 
-  useScrollIntoView({containerRef: listboxRef, targetRef: activeOptionRef}, [activeOption, isOpen]);
+  useScrollIntoView({containerRef: listboxRef, targetRef: activeOptionRef}, [
+    selectionManager.focusedKey,
+    isOpen,
+  ]);
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
-  const {selected} = listState.selectionManager;
+  const {selected} = selectionManager;
 
   const inputProps = {
     ...menuTriggerProps,
@@ -115,13 +113,10 @@ const EzSelect = props => {
 
   const move = useCallback(
     option => {
-      setActiveOption(option);
-
-      if (isOpen) return;
-
-      onChange(changeEvent(option.value));
+      if (isOpen) selectionManager.setFocusedKey(keyboardDelegate.getKeyForSearch(option.label));
+      else onChange(changeEvent(option.value));
     },
-    [isOpen, onChange, changeEvent]
+    [isOpen, onChange, changeEvent, selectionManager, keyboardDelegate]
   );
 
   useJumpToOption(inputProps.ref, {options, move});
@@ -137,9 +132,9 @@ const EzSelect = props => {
       aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
       ref={listboxRef as any}
       onClick={() => inputProps.ref.current.focus()}
-      items={listState.collection}
+      items={collection.items}
       onSelectionChange={selectItem}
-      focusProps={listState.selectionManager}
+      focusProps={selectionManager}
       activeOptionRef={setActiveOptionRef}
     />
   );

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
@@ -107,17 +107,55 @@ export const useOverlayPosition = options => ({
 
 const collect = options => {
   const grouped = new Map();
+  const keyMap = new Map();
 
-  if (!options.some(o => o.group)) return options;
+  if (!options.some(o => o.group)) {
+    const items = options.map((item, index) => {
+      keyMap.set(index, {...item, key: index});
+      return keyMap.get(index);
+    });
+    return {items, index: keyMap};
+  }
 
+  // sort into groups
   options.forEach(item => {
     const {group} = item;
     const values = grouped.get(group) || [];
-    values.push(item);
+    values.push({...item});
     grouped.set(group, values);
   });
 
-  return [...grouped];
+  let i = 0;
+  // now assign index
+  [...grouped].forEach(([, items]) => {
+    items.forEach(item => {
+      keyMap.set(i, item);
+      Object.assign(item, {key: i});
+      i++;
+    });
+  });
+
+  return {items: [...grouped], index: keyMap};
+};
+
+const keyboardDelegate = collection => {
+  const count = collection.index.size;
+  const getKeyAbove = k => (k > 0 ? k - 1 : null);
+  const getKeyBelow = k => (k < count - 1 ? k + 1 : null);
+  const getFirstKey = () => 0;
+  const getLastKey = () => count - 1;
+  const getKeyForSearch = search => {
+    const i = Array.from<any>(collection.index.values()).findIndex(item => item.label === search);
+    return i < 0 ? null : i;
+  };
+
+  return {
+    getKeyAbove,
+    getKeyBelow,
+    getFirstKey,
+    getLastKey,
+    getKeyForSearch,
+  };
 };
 
 /**
@@ -126,34 +164,30 @@ const collect = options => {
  */
 export function useListState(props) {
   const {options, value} = props;
-  const selected = options.find(o => o.value === value);
-  const [activeOption, setActiveOption] = useState(selected);
   const collection = collect(options);
-  const setActiveIndex = i => setActiveOption(i === -1 ? null : options[i]);
 
-  const activeIndex = options.indexOf(activeOption);
-  const focusedKey = activeIndex === -1 ? null : activeIndex;
-  const clearFocus = () => setActiveIndex(-1);
-  const setFocusedKey = k => setActiveIndex(k);
-  const getKeyAbove = k => (k > 0 ? k - 1 : null);
-  const getKeyBelow = k => (k < options.length - 1 ? k + 1 : null);
-  const getFirstKey = () => 0;
-  const getLastKey = () => options.length - 1;
+  const selectedIndex = Array.from<any>(collection.index.values()).findIndex(
+    item => item.value === value
+  );
+  const selected = collection.index.get(selectedIndex);
+
+  const delegate = useMemo(() => props.keyboardDelegate || keyboardDelegate(collection), [
+    props.keyboardDelegate,
+    collection,
+  ]);
+
+  const [focusedKey, setFocusedKey] = useState(selectedIndex);
+  const clearFocus = () => setFocusedKey(null);
 
   return {
     collection,
+    keyboardDelegate: delegate,
     selectionManager: {
       focusedKey,
       clearFocus,
       setFocusedKey,
-      getKeyAbove,
-      getKeyBelow,
-      getFirstKey,
-      getLastKey,
-      // TODO rework these
+      // TODO rework this
       selected,
-      activeOption,
-      setActiveOption,
     },
   };
 }
