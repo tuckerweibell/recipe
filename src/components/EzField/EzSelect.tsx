@@ -5,7 +5,7 @@ import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} f
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
-import EzListBox from './EzListBox';
+import EzListBox, {getItemId} from './EzListBox';
 
 const EzSelect = props => {
   const {options, onChange} = props;
@@ -13,13 +13,7 @@ const EzSelect = props => {
   const {collection, selectionManager, keyboardDelegate} = useListState(props);
 
   const timeout = useRef(null);
-  const [, rerender] = useState(null);
   const activeOptionRef = useRef<HTMLElement>();
-
-  const setActiveOptionRef = option => {
-    activeOptionRef.current = option;
-    rerender(option);
-  };
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
@@ -75,12 +69,13 @@ const EzSelect = props => {
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
   const {selected} = selectionManager;
+  const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
 
   const inputProps = {
     ...menuTriggerProps,
     'aria-labelledby': ariaLabelledBy,
     value: selected ? selected.label : '',
-    'aria-activedescendant': !activeOptionRef.current ? '' : activeOptionRef.current.id,
+    'aria-activedescendant': focusedKeyId,
     onKeyDown: useAllCallbacks(handleKeyDown, menuTriggerProps.onKeyDown),
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
     id: props.id,
@@ -135,7 +130,7 @@ const EzSelect = props => {
       items={collection.items}
       onSelectionChange={selectItem}
       focusProps={selectionManager}
-      activeOptionRef={setActiveOptionRef}
+      activeOptionRef={activeOptionRef}
     />
   );
 
