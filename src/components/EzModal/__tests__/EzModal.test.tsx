@@ -4,7 +4,6 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
-import {standard} from '../../../themes';
 import {fullRender} from '../../../jest-globals';
 
 afterEach(cleanup);

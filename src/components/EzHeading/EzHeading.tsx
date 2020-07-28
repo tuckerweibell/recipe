@@ -1,6 +1,5 @@
 import React from 'react';
 import {headings, Subheading} from './EzHeading.styles';
-import styled from '../../themes/styled';
 
 const classNames = (...args) => args.filter(Boolean).join(' ');
 
