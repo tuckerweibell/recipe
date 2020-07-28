@@ -42,14 +42,13 @@ const EzSelect = props => {
   const onKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      const currentlyFocusedItem = collection.index.get(selectionManager.focusedKey);
-      selectItem(currentlyFocusedItem ? currentlyFocusedItem.value : null);
+      selectItem(selectionManager.focusedKey);
     }
   };
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
-  const {selected} = selectionManager;
+  const selected = collection.index.get(selectionManager.selectedKey);
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
 
   const inputProps = {
@@ -86,8 +85,9 @@ const EzSelect = props => {
     [containerRef]
   );
 
-  function selectItem(optionValue) {
-    onChange(changeEvent(optionValue));
+  function selectItem(key) {
+    const item = collection.index.get(key);
+    onChange(changeEvent(item ? item.value : null));
     timeout.current = setTimeout(close, 100);
   }
 

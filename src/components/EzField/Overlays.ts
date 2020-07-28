@@ -166,17 +166,16 @@ export function useListState(props) {
   const {options, value} = props;
   const collection = collect(options);
 
-  const selectedIndex = Array.from<any>(collection.index.values()).findIndex(
+  const selectedKey = Array.from<any>(collection.index.values()).findIndex(
     item => item.value === value
   );
-  const selected = collection.index.get(selectedIndex);
 
   const delegate = useMemo(() => props.keyboardDelegate || keyboardDelegate(collection), [
     props.keyboardDelegate,
     collection,
   ]);
 
-  const [focusedKey, setFocusedKey] = useState(selectedIndex);
+  const [focusedKey, setFocusedKey] = useState(selectedKey);
   const clearFocus = () => setFocusedKey(null);
 
   return {
@@ -186,8 +185,7 @@ export function useListState(props) {
       focusedKey,
       clearFocus,
       setFocusedKey,
-      // TODO rework this
-      selected,
+      selectedKey,
     },
   };
 }
