@@ -121,9 +121,9 @@ const EzSelect = props => {
             aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
             ref={listboxRef as any}
             onClick={() => inputProps.ref.current.focus()}
-            items={collection.items}
+            collection={collection}
             onSelectionChange={selectItem}
-            focusProps={selectionManager}
+            selectionManager={selectionManager}
           />
         </EzPopover>
       )}

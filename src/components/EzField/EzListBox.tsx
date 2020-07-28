@@ -46,14 +46,15 @@ const hasGroupedOptions = options => Array.isArray(options[0]);
 const EzListBox = (props, ref) => {
   const theme = useTheme();
   const activeOptionRef = useRef<HTMLElement>();
-  const {items, onSelectionChange, focusProps, ...domProps} = props;
+  const {collection, onSelectionChange, selectionManager, ...domProps} = props;
+  const {items} = collection;
 
   // keep the focused list item visible within the scrollable listbox
-  useScrollIntoView({containerRef: ref, targetRef: activeOptionRef}, [focusProps.focusedKey]);
+  useScrollIntoView({containerRef: ref, targetRef: activeOptionRef}, [selectionManager.focusedKey]);
 
   const renderItem = o => (
     <Option
-      {...focusProps}
+      {...selectionManager}
       id={getItemId(props.id, o.key)}
       option={o}
       key={o.label}
