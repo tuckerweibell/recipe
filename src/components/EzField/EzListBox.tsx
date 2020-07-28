@@ -16,7 +16,7 @@ const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selectedKey
       aria-selected={focusedKey === option.key}
       ref={focusedKey === option.key ? activeOptionRef : undefined}
       onMouseOver={() => setFocusedKey(option.key)}
-      onClick={() => props.onSelectionChange(option.key)}
+      onClick={() => props.replaceSelection(option.key)}
       onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
       id={props.id}
     >
@@ -46,7 +46,7 @@ const hasGroupedOptions = options => Array.isArray(options[0]);
 const EzListBox = (props, ref) => {
   const theme = useTheme();
   const activeOptionRef = useRef<HTMLElement>();
-  const {collection, onSelectionChange, selectionManager, ...domProps} = props;
+  const {collection, selectionManager, ...domProps} = props;
   const {items} = collection;
 
   // keep the focused list item visible within the scrollable listbox
@@ -58,7 +58,6 @@ const EzListBox = (props, ref) => {
       id={getItemId(props.id, o.key)}
       option={o}
       key={o.label}
-      onSelectionChange={onSelectionChange}
       activeOptionRef={activeOptionRef}
     />
   );

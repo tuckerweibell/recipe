@@ -16,16 +16,34 @@ import EzListBox, {getItemId} from './EzListBox';
 const EzSelect = props => {
   const {options, onChange} = props;
   const ariaLabelledBy = props['aria-labelledby'];
-  const {collection, selectionManager, keyboardDelegate} = useListState(props);
+  const containerRef = useRef<HTMLDivElement>();
+  const changeEvent = useCallback(
+    optionValue => {
+      const event = new Event('change');
+      // TODO: replace onChange with something like onSelectionChange. Issue #222.
+      (containerRef.current as any).value = optionValue;
+      containerRef.current.dispatchEvent(event);
+      return event;
+    },
+    [containerRef]
+  );
 
   const timeout = useRef(null);
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
+  const {collection, selectionManager, keyboardDelegate} = useListState({
+    ...props,
+    onSelectionChange: key => {
+      const item = collection.index.get(key);
+      onChange(changeEvent(item ? item.value : null));
+      timeout.current = setTimeout(close, 100);
+    },
+  });
+
   const state = useMenuTriggerState();
   const {close, isOpen} = state;
 
-  const containerRef = useRef<HTMLDivElement>();
   const listboxRef = useRef<HTMLElement>();
 
   const combobox = {
@@ -42,7 +60,7 @@ const EzSelect = props => {
   const onKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      selectItem(selectionManager.focusedKey);
+      selectionManager.replaceSelection(selectionManager.focusedKey);
     }
   };
 
@@ -71,25 +89,6 @@ const EzSelect = props => {
     readOnly: true,
     ref: useRef<HTMLInputElement>(),
   };
-
-  const changeEvent = useCallback(
-    optionValue => {
-      const event = new Event('change');
-      // this is a hack to allow event.target.value to exist for the select onchange event
-      // depsite being published from a div element
-      // TODO: replace onChange with something like onSelectionChange
-      (containerRef.current as any).value = optionValue;
-      containerRef.current.dispatchEvent(event);
-      return event;
-    },
-    [containerRef]
-  );
-
-  function selectItem(key) {
-    const item = collection.index.get(key);
-    onChange(changeEvent(item ? item.value : null));
-    timeout.current = setTimeout(close, 100);
-  }
 
   const move = useCallback(
     option => {
@@ -122,7 +121,6 @@ const EzSelect = props => {
             ref={listboxRef as any}
             onClick={() => inputProps.ref.current.focus()}
             collection={collection}
-            onSelectionChange={selectItem}
             selectionManager={selectionManager}
           />
         </EzPopover>

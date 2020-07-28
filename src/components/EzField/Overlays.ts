@@ -186,6 +186,7 @@ export function useListState(props) {
       clearFocus,
       setFocusedKey,
       selectedKey,
+      replaceSelection: props.onSelectionChange,
     },
   };
 }
