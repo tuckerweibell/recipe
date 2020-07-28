@@ -32,17 +32,17 @@ const EzSelect = props => {
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
-  const {collection, selectionManager, keyboardDelegate} = useListState({
+  const menuState = useMenuTriggerState();
+  const {isOpen, close} = menuState;
+  const listState = useListState({
     ...props,
     onSelectionChange: key => {
-      const item = collection.index.get(key);
+      const item = listState.collection.index.get(key);
       onChange(changeEvent(item ? item.value : null));
       timeout.current = setTimeout(close, 100);
     },
   });
-
-  const state = useMenuTriggerState();
-  const {close, isOpen} = state;
+  const {selectionManager, collection, keyboardDelegate} = listState;
 
   const listboxRef = useRef<HTMLElement>();
 
@@ -55,7 +55,7 @@ const EzSelect = props => {
     opened: isOpen,
   };
 
-  const {collectionProps} = useSelectableCollection({selectionManager, keyboardDelegate});
+  const {collectionProps} = useSelectableCollection(listState);
 
   const onKeyDown = e => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -64,7 +64,7 @@ const EzSelect = props => {
     }
   };
 
-  const {menuTriggerProps, menuProps} = useMenuTrigger(state);
+  const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
 
   const selected = collection.index.get(selectionManager.selectedKey);
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
