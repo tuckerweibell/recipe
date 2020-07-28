@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useEffect, useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useScrollIntoView, useJumpToOption, useAllCallbacks} from '../../utils/hooks';
+import {useJumpToOption, useAllCallbacks} from '../../utils/hooks';
 import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} from './Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
@@ -13,7 +13,6 @@ const EzSelect = props => {
   const {collection, selectionManager, keyboardDelegate} = useListState(props);
 
   const timeout = useRef(null);
-  const activeOptionRef = useRef<HTMLElement>();
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
@@ -60,11 +59,6 @@ const EzSelect = props => {
       action(e);
     }
   };
-
-  useScrollIntoView({containerRef: listboxRef, targetRef: activeOptionRef}, [
-    selectionManager.focusedKey,
-    isOpen,
-  ]);
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
@@ -130,7 +124,6 @@ const EzSelect = props => {
       items={collection.items}
       onSelectionChange={selectItem}
       focusProps={selectionManager}
-      activeOptionRef={activeOptionRef}
     />
   );
 

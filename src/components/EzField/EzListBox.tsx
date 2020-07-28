@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useRef} from 'react';
 import {jsx} from '@emotion/core';
-import {useUniqueId} from '../../utils/hooks';
+import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
 import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
 
@@ -45,7 +45,11 @@ const hasGroupedOptions = options => Array.isArray(options[0]);
 
 const EzListBox = (props, ref) => {
   const theme = useTheme();
-  const {items, onSelectionChange, focusProps, activeOptionRef, ...domProps} = props;
+  const activeOptionRef = useRef<HTMLElement>();
+  const {items, onSelectionChange, focusProps, ...domProps} = props;
+
+  // keep the focused list item visible within the scrollable listbox
+  useScrollIntoView({containerRef: ref, targetRef: activeOptionRef}, [focusProps.focusedKey]);
 
   const renderItem = o => (
     <Option
