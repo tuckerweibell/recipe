@@ -191,3 +191,39 @@ export function useListState(props) {
     },
   };
 }
+
+export function useSelectableCollection(options) {
+  const {selectionManager: manager, keyboardDelegate: delegate} = options;
+
+  const arrowDown = () =>
+    manager.setFocusedKey(
+      manager.focusedKey === null
+        ? delegate.getFirstKey()
+        : delegate.getKeyBelow(manager.focusedKey) ?? delegate.getFirstKey()
+    );
+  const arrowUp = () =>
+    manager.setFocusedKey(
+      manager.focusedKey === null
+        ? delegate.getLastKey()
+        : delegate.getKeyAbove(manager.focusedKey) ?? delegate.getLastKey()
+    );
+
+  const keyMap = {
+    Escape: manager.clearFocus,
+    ArrowUp: arrowUp,
+    ArrowDown: arrowDown,
+  };
+
+  const onKeyDown = e => {
+    const action = keyMap[e.key];
+
+    if (e.defaultPrevented || !action) return;
+
+    e.preventDefault();
+    action();
+  };
+
+  const handlers = {onKeyDown};
+
+  return {collectionProps: handlers};
+}

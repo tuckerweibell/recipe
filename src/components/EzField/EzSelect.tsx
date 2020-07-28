@@ -1,7 +1,13 @@
 import React, {useEffect, useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
 import {useJumpToOption, useAllCallbacks} from '../../utils/hooks';
-import {useMenuTriggerState, useMenuTrigger, useOverlayPosition, useListState} from './Overlays';
+import {
+  useMenuTriggerState,
+  useMenuTrigger,
+  useOverlayPosition,
+  useListState,
+  useSelectableCollection,
+} from './Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -31,32 +37,13 @@ const EzSelect = props => {
     opened: isOpen,
   };
 
-  const handleKeyDown = e => {
-    const key = e.key;
-    const {getKeyAbove, getKeyBelow, getFirstKey, getLastKey} = keyboardDelegate;
-    const {setFocusedKey, focusedKey, clearFocus} = selectionManager;
+  const {collectionProps} = useSelectableCollection({selectionManager, keyboardDelegate});
 
-    const select = () => {
-      const currentlyFocusedItem = collection.index.get(focusedKey);
-      selectItem(currentlyFocusedItem ? currentlyFocusedItem.value : null);
-    };
-    const arrowDown = () =>
-      setFocusedKey(focusedKey === null ? getFirstKey() : getKeyBelow(focusedKey) ?? getFirstKey());
-    const arrowUp = () =>
-      setFocusedKey(focusedKey === null ? getLastKey() : getKeyAbove(focusedKey) ?? getLastKey());
-
-    const keyMap = {
-      Escape: clearFocus,
-      ArrowUp: !e.defaultPrevented && arrowUp,
-      ArrowDown: !e.defaultPrevented && arrowDown,
-      ' ': isOpen && select,
-      Enter: isOpen && select,
-    };
-
-    const action = keyMap[key];
-    if (action) {
+  const onKeyDown = e => {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      action(e);
+      const currentlyFocusedItem = collection.index.get(selectionManager.focusedKey);
+      selectItem(currentlyFocusedItem ? currentlyFocusedItem.value : null);
     }
   };
 
@@ -70,7 +57,11 @@ const EzSelect = props => {
     'aria-labelledby': ariaLabelledBy,
     value: selected ? selected.label : '',
     'aria-activedescendant': focusedKeyId,
-    onKeyDown: useAllCallbacks(handleKeyDown, menuTriggerProps.onKeyDown),
+    onKeyDown: useAllCallbacks(
+      isOpen && collectionProps.onKeyDown,
+      isOpen && onKeyDown,
+      menuTriggerProps.onKeyDown
+    ),
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
     id: props.id,
     name: props.name,
