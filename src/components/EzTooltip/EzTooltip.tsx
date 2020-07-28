@@ -51,7 +51,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
               <path d="M1.5 5L5 1.5 8.5 5z" />
             </svg>
           </TooltipArrow>
-          <Tooltip role="tooltip" id={id} tabIndex="-1" {...rest}>
+          <Tooltip role="tooltip" id={id} tabIndex={-1} {...rest}>
             {message && <Message>{message}</Message>}
           </Tooltip>
         </EzPopover>

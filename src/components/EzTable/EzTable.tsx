@@ -271,7 +271,7 @@ const EzTable: React.FC<TableProps> = ({
   const {currentPage, rowsPerPage} = pagination || ({} as any);
   const [{x}, scrollEvents] = useScrollPosition();
   const isScrolling = x > 0;
-  const [isOverflowing, overflowDetection] = useOverflowDetection();
+  const [isOverflowing, overflowDetection] = useOverflowDetection<HTMLDivElement>();
 
   useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
 

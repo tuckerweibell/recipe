@@ -13,7 +13,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   status?: 'error' | 'progress' | 'success';
 };
 
-const EzToggle = forwardRef<HTMLElement, Props>(({id, label, status, ...props}, ref) => {
+const EzToggle = forwardRef<HTMLDivElement, Props>(({id, label, status, ...props}, ref) => {
   const [checked, setChecked] = useState(props.checked);
 
   const uniqueId = useUniqueId();

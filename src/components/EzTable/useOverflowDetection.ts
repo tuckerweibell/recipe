@@ -1,11 +1,11 @@
 import React, {useRef, useEffect, useState} from 'react';
 
-type OverflowBindings = {
-  ref: React.RefObject<HTMLElement>;
+type OverflowBindings<T extends HTMLElement> = {
+  ref: React.RefObject<T>;
 };
 
-const useOverflowDetection = (): [boolean, OverflowBindings] => {
-  const ref = useRef<HTMLElement>();
+const useOverflowDetection = <T extends HTMLElement>(): [boolean, OverflowBindings<T>] => {
+  const ref = useRef<T>();
   const [hasOverflow, set] = useState(false);
 
   useEffect(() => {
