@@ -115,18 +115,6 @@ const EzSelect = props => {
     placement: 'bottom-start',
   });
 
-  const listbox = (
-    <EzListBox
-      {...menuProps}
-      aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
-      ref={listboxRef as any}
-      onClick={() => inputProps.ref.current.focus()}
-      items={collection.items}
-      onSelectionChange={selectItem}
-      focusProps={selectionManager}
-    />
-  );
-
   return (
     <OverlayFieldWrapper ref={containerRef} hasError={props.touched && props.error} opened={isOpen}>
       <TextInputWrapper {...combobox}>
@@ -137,7 +125,15 @@ const EzSelect = props => {
       </TextInputWrapper>
       {isOpen && (
         <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
-          {listbox}
+          <EzListBox
+            {...menuProps}
+            aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
+            ref={listboxRef as any}
+            onClick={() => inputProps.ref.current.focus()}
+            items={collection.items}
+            onSelectionChange={selectItem}
+            focusProps={selectionManager}
+          />
         </EzPopover>
       )}
     </OverlayFieldWrapper>
