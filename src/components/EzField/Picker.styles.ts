@@ -24,6 +24,10 @@ export const OverlayFieldWrapper = styled.div<any>`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    /* readonly fields have no outline in safari */
+    :focus {
+      outline-style: auto;
+    }
   }
 
   ${errorIconPosition};
