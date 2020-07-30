@@ -125,14 +125,12 @@ export function useListState(props) {
   );
 
   const [focusedKey, setFocusedKey] = useState(selectedKey);
-  const clearFocus = () => setFocusedKey(null);
 
   return {
     collection,
     keyboardDelegate: delegate,
     selectionManager: {
       focusedKey,
-      clearFocus,
       setFocusedKey,
       selectedKey,
       replaceSelection: props.onSelectionChange,
@@ -157,7 +155,6 @@ export function useSelectableCollection(options) {
     );
 
   const keyMap = {
-    Escape: manager.clearFocus,
     ArrowUp: arrowUp,
     ArrowDown: arrowDown,
   };
