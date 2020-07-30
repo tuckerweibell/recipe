@@ -1,20 +1,17 @@
-import React, {useEffect, useRef, useCallback} from 'react';
+import React, {useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useJumpToOption, useAllCallbacks} from '../../utils/hooks';
-import {
-  useMenuTriggerState,
-  useMenuTrigger,
-  useOverlayPosition,
-  useListState,
-  useSelectableCollection,
-} from './Overlays';
+import {useJumpToOption} from '../../utils/hooks';
+import {useOverlayPosition} from './Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
-import EzListBox, {getItemId} from './EzListBox';
+import EzListBox from './EzListBox';
+import {useSelectState, useSelect} from './useSelect';
 
 const EzSelect = props => {
   const {options, onChange} = props;
+  const triggerRef = useRef<HTMLInputElement>();
+  const listboxRef = useRef<unknown>();
   const ariaLabelledBy = props['aria-labelledby'];
   const containerRef = useRef<HTMLDivElement>();
   const changeEvent = useCallback(
@@ -28,67 +25,14 @@ const EzSelect = props => {
     [containerRef]
   );
 
-  const timeout = useRef(null);
-
-  useEffect(() => () => clearTimeout(timeout.current), []);
-
-  const menuState = useMenuTriggerState();
-  const {isOpen, close} = menuState;
-  const listState = useListState({
+  const state = useSelectState({
     ...props,
-    onSelectionChange: key => {
-      const item = listState.collection.index.get(key);
-      onChange(changeEvent(item ? item.value : null));
-      timeout.current = setTimeout(close, 100);
+    onSelectionChange(value) {
+      onChange(changeEvent(value));
     },
   });
-  const {selectionManager, collection, keyboardDelegate} = listState;
-
-  const listboxRef = useRef<HTMLElement>();
-
-  const combobox = {
-    'aria-haspopup': 'listbox' as 'listbox',
-    className: props.className,
-    disabled: props.disabled,
-    error: props.error,
-    touched: props.touched,
-    opened: isOpen,
-  };
-
-  const {collectionProps} = useSelectableCollection(listState);
-
-  const onKeyDown = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      selectionManager.replaceSelection(selectionManager.focusedKey);
-    }
-  };
-
-  const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
-
-  const selected = collection.index.get(selectionManager.selectedKey);
-  const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
-
-  const inputProps = {
-    ...menuTriggerProps,
-    'aria-labelledby': ariaLabelledBy,
-    value: selected ? selected.label : '',
-    'aria-activedescendant': focusedKeyId,
-    onKeyDown: useAllCallbacks(
-      isOpen && collectionProps.onKeyDown,
-      isOpen && onKeyDown,
-      menuTriggerProps.onKeyDown
-    ),
-    onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
-    id: props.id,
-    name: props.name,
-    disabled: props.disabled,
-    placeholder: props.placeholder,
-    error: props.error,
-    touched: props.touched,
-    readOnly: true,
-    ref: useRef<HTMLInputElement>(),
-  };
+  const {inputProps, listBoxProps} = useSelect(props, state);
+  const {isOpen, selectionManager, keyboardDelegate} = state;
 
   const move = useCallback(
     option => {
@@ -98,30 +42,34 @@ const EzSelect = props => {
     [isOpen, onChange, changeEvent, selectionManager, keyboardDelegate]
   );
 
-  useJumpToOption(inputProps.ref, {options, move});
+  useJumpToOption(triggerRef, {options, move});
 
   const overlayPosition = useOverlayPosition({
-    targetRef: inputProps.ref,
+    targetRef: triggerRef,
     placement: 'bottom-start',
   });
 
   return (
-    <OverlayFieldWrapper ref={containerRef} hasError={props.touched && props.error} opened={isOpen}>
-      <TextInputWrapper {...combobox}>
-        <EzTextInput {...inputProps} />
+    <OverlayFieldWrapper
+      ref={containerRef}
+      hasError={props.touched && props.error}
+      opened={state.isOpen}
+    >
+      <TextInputWrapper className={props.className} disabled={props.disabled}>
+        <EzTextInput {...inputProps} ref={triggerRef} error={props.error} touched={props.touched} />
         <InsetIcon insetY0 right0 pr2>
-          <ChevronIcon flip={isOpen} />
+          <ChevronIcon flip={state.isOpen} />
         </InsetIcon>
       </TextInputWrapper>
-      {isOpen && (
-        <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
+      {state.isOpen && (
+        <EzPopover shouldCloseOnBlur onClose={state.close} {...overlayPosition}>
           <EzListBox
-            {...menuProps}
+            {...listBoxProps}
             aria-labelledby={[ariaLabelledBy, props.id].join(' ')}
-            ref={listboxRef as any}
-            onClick={() => inputProps.ref.current.focus()}
-            collection={collection}
-            selectionManager={selectionManager}
+            ref={listboxRef}
+            onClick={() => triggerRef.current.focus()}
+            collection={state.collection}
+            selectionManager={state.selectionManager}
           />
         </EzPopover>
       )}
