@@ -18,6 +18,7 @@ import EzTimeInput from './EzTimeInput';
 import EzTextArea from './EzTextArea';
 import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
+import EzAutosuggest from './EzAutosuggest';
 import EzTextInput from './EzTextInput';
 
 const inputElements = ['text', 'number', 'password'];
@@ -40,6 +41,7 @@ const resolveInputFromType = type => {
   if (choiceElements.includes(type)) return EzChoice;
   if (type === 'date') return EzDateInput;
   if (type === 'select') return EzSelect;
+  if (type === 'autosuggest') return EzAutosuggest;
   if (type === 'time') return EzTimeInput;
   if (type === 'textarea') return EzTextArea;
   if (inputElements.includes(type)) return EzTextInput;

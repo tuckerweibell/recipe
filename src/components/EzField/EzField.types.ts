@@ -57,6 +57,18 @@ type TextAreaInputProps = {
   size?: 'small' | 'medium' | 'large';
 };
 
+type AutosuggestInputProps = {
+  type: 'autosuggest';
+  /** The currently selected value in the collection. */
+  value?: ChoiceValue;
+  /** The filtered list of suggested values to present the user. */
+  options: Choice[];
+  /** Handler that is called when text is typed into the combobox. */
+  onFilter?: (value: string) => void;
+  /** Handler that is called when the selection changes. */
+  onSelectionChange?: (key: Key) => any;
+};
+
 type CustomFieldProps = {
   type: React.FC<any> | React.ComponentClass<any>;
   value?: any;
@@ -70,6 +82,7 @@ type FieldTypeProps =
   | DateInputProps
   | TimeInputProps
   | TextAreaInputProps
+  | AutosuggestInputProps
   | CustomFieldProps;
 
 type ErrorOrMessage = string | boolean;

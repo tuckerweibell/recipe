@@ -276,6 +276,81 @@ Options are presented in the order in which they are grouped, and then by the or
 };
 ```
 
+### Autosuggest list
+
+Allows the user to filter longer lists of options to a set that match the text entered.
+
+If you have fewer than 6 items, consider using [radio buttons](/components/ez-field#multiple-choice-input-field) instead.
+
+- Use `type="autosuggest"` to enable the user to pick from a filtered list of available options.
+- Use `onSelectionChange` to to identify the selected item.
+- Use `onFilter` to react to user text input, in order to filter options to match. When updating the options list, it is strongly recommended that results are first sorted so that options are listed in the order in which the term appears earliest. For example, when searching "al", "**Al**bany, New York" appears before "T**al**lahassee, Florida".
+
+When providing
+
+```jsx
+() => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [choice, setChoice] = React.useState(null);
+  const cities = useCitySearch(searchTerm);
+
+  function sort(a, b) {
+    // if there is a non-empty search term, sort by earliest match
+    if (searchTerm.trim() !== '') {
+      const indexA = a.toLowerCase().indexOf(searchTerm.toLowerCase());
+      const indexB = b.toLowerCase().indexOf(searchTerm.toLowerCase());
+      return indexA - indexB;
+    }
+    // retain provided ordering
+    return 0;
+  }
+
+  function useCitySearch(searchTerm) {
+    // call your server API here to fetch results
+    const data = [
+      'Montgomery, Alabama',
+      'Phoenix, Arizona',
+      'Sacramento, California',
+      'Denver, Colorado',
+      'Hartford, Connecticut',
+      'Dover, Delaware',
+      'Tallahassee, Florida',
+      'Atlanta, Georgia',
+      'Honolulu, Hawaii',
+      'Boise, Idaho',
+      'Augusta, Maine',
+      'Boston, Massachusetts',
+      'Lansing, Michigan',
+      'Concord, New Hampshire',
+      'Trenton, New Jersey',
+      'Santa Fe, New Mexico',
+      'Albany, New York',
+      'Providence, Rhode Island',
+      'Austin, Texas',
+      'Olympia, Washington',
+    ];
+
+    data.sort(sort);
+
+    return data.filter(city => city.toLowerCase().includes(searchTerm.toLowerCase()));
+  }
+
+  return (
+    <EzFormLayout>
+      <EzField
+        type="autosuggest"
+        label="City"
+        placeholder="Select a city..."
+        options={cities.map(value => ({label: value, value}))}
+        value={choice}
+        onSelectionChange={setChoice}
+        onFilter={setSearchTerm}
+      />
+    </EzFormLayout>
+  );
+};
+```
+
 ### Date input field
 
 Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar.
