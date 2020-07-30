@@ -1,6 +1,7 @@
 import {useState, useMemo} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {createCollection} from './Collection';
+import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
   const menuTriggerId = useUniqueId();
@@ -106,26 +107,6 @@ export const useOverlayPosition = options => ({
   ],
 });
 
-const keyboardDelegate = collection => {
-  const count = collection.index.size;
-  const getKeyAbove = k => (k > 0 ? k - 1 : null);
-  const getKeyBelow = k => (k < count - 1 ? k + 1 : null);
-  const getFirstKey = () => 0;
-  const getLastKey = () => count - 1;
-  const getKeyForSearch = search => {
-    const i = Array.from<any>(collection.index.values()).findIndex(item => item.label === search);
-    return i < 0 ? null : i;
-  };
-
-  return {
-    getKeyAbove,
-    getKeyBelow,
-    getFirstKey,
-    getLastKey,
-    getKeyForSearch,
-  };
-};
-
 /**
  * Provides state management for list-like components. Handles building a collection
  * of items from props, and manages multiple selection state.
@@ -138,10 +119,10 @@ export function useListState(props) {
     item => item.value === value
   );
 
-  const delegate = useMemo(() => props.keyboardDelegate || keyboardDelegate(collection), [
-    props.keyboardDelegate,
-    collection,
-  ]);
+  const delegate: KeyboardDelegate = useMemo(
+    () => props.keyboardDelegate || new ListKeyboardDelegate(collection),
+    [props.keyboardDelegate, collection]
+  );
 
   const [focusedKey, setFocusedKey] = useState(selectedKey);
   const clearFocus = () => setFocusedKey(null);
