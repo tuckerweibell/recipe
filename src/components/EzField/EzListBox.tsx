@@ -17,7 +17,6 @@ const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selectedKey
       ref={focusedKey === option.key ? activeOptionRef : undefined}
       onMouseOver={() => setFocusedKey(option.key)}
       onClick={() => props.replaceSelection(option.key)}
-      onMouseDown={e => e.preventDefault()} // used to prevent a focus event from bubbling up to the body in ie11
       id={props.id}
     >
       {option.label}

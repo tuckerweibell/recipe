@@ -4,7 +4,7 @@ import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzCalendar from '../EzCalendar/EzCalendar';
 import {useMenuTriggerState, useMenuTrigger} from './Overlays';
-import {useUpdateEffect, useOnClickOutside, useEventListenerOutside} from '../../utils/hooks';
+import {useUpdateEffect, useOnClickOutside, useOnFocusOutside} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
@@ -50,7 +50,7 @@ const EzDateInput = ({
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
   useOnClickOutside(close, [clickOutsideRef]);
-  useEventListenerOutside(close, 'focusin', [clickOutsideRef]);
+  useOnFocusOutside(close, [clickOutsideRef]);
 
   const comboboxInput = {
     ...menuTriggerProps,

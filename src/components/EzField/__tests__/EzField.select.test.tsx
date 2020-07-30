@@ -1,6 +1,7 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {getByLabelText, getByText, fireEvent, act} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ReactTestUtils from 'react-dom/test-utils';
 import ezSelectTests from './EzSelect.test.md';
 import '../mocks';
@@ -248,17 +249,19 @@ describe('EzField', () => {
       expect(lastCall[0].target.value).toEqual('today');
     });
 
-    it('prevents the default event propagation on mouseDown on an option', () => {
+    it('bubbling focus event does NOT cause the dialog to close before a value is set', () => {
       const onChange = jest.fn();
 
       const {container} = render(
-        <EzField
-          type="select"
-          label={inputLabel}
-          options={options}
-          value="upcoming"
-          onChange={onChange}
-        />
+        <div tabIndex={-1}>
+          <EzField
+            type="select"
+            label={inputLabel}
+            options={options}
+            value="upcoming"
+            onChange={onChange}
+          />
+        </div>
       );
 
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
@@ -267,13 +270,10 @@ describe('EzField', () => {
       fireEvent.mouseDown(input);
 
       const option2 = getByText(container, 'Today');
-      fireEvent.mouseOver(option2);
-      const mockEvent = new MouseEvent('mousedown', {bubbles: true});
-      Object.assign(mockEvent, {preventDefault: jest.fn()});
 
-      fireEvent(option2, mockEvent);
+      userEvent.click(option2);
 
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalled();
     });
 
     it('should not trigger onChange on the initial render', () => {

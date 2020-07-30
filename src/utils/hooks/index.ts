@@ -5,6 +5,7 @@ export {default as useHover} from './useHover';
 export {default as useInput} from './useInput';
 export {default as useJumpToOption} from './useJumpToOption';
 export {default as useOnClickOutside} from './useOnClickOutside';
+export {default as useOnFocusOutside} from './useOnFocusOutside';
 export {default as usePopper} from './usePopper';
 export {default as useRect} from './useRect';
 export {default as useTranslation} from './useTranslation';
