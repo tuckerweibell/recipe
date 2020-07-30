@@ -1,5 +1,6 @@
 import {useState, useMemo} from 'react';
 import {useUniqueId} from '../../utils/hooks';
+import {createCollection} from './Collection';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
   const menuTriggerId = useUniqueId();
@@ -105,39 +106,6 @@ export const useOverlayPosition = options => ({
   ],
 });
 
-const collect = options => {
-  const grouped = new Map();
-  const keyMap = new Map();
-
-  if (!options.some(o => o.group)) {
-    const items = options.map((item, index) => {
-      keyMap.set(index, {...item, key: index});
-      return keyMap.get(index);
-    });
-    return {items, index: keyMap};
-  }
-
-  // sort into groups
-  options.forEach(item => {
-    const {group} = item;
-    const values = grouped.get(group) || [];
-    values.push({...item});
-    grouped.set(group, values);
-  });
-
-  let i = 0;
-  // now assign index
-  [...grouped].forEach(([, items]) => {
-    items.forEach(item => {
-      keyMap.set(i, item);
-      Object.assign(item, {key: i});
-      i++;
-    });
-  });
-
-  return {items: [...grouped], index: keyMap};
-};
-
 const keyboardDelegate = collection => {
   const count = collection.index.size;
   const getKeyAbove = k => (k > 0 ? k - 1 : null);
@@ -164,7 +132,7 @@ const keyboardDelegate = collection => {
  */
 export function useListState(props) {
   const {options, value} = props;
-  const collection = collect(options);
+  const collection = createCollection(options);
 
   const selectedKey = Array.from<any>(collection.index.values()).findIndex(
     item => item.value === value
