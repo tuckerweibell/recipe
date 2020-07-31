@@ -37,7 +37,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
   }
 
   getFirstKey() {
-    return 0;
+    return this.count ? 0 : null;
   }
 
   getLastKey() {

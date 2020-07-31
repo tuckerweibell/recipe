@@ -26,12 +26,13 @@ export function useSelectableCollection(
 ): SelectableCollectionAria {
   const {selectionManager: manager, keyboardDelegate: delegate} = options;
 
+  // focus the selected item if there is one, otherwise focus on the first item
   useEffect(() => {
-    // focus the selected item if there is one, otherwise focus on the first item
+    // skip if we already have focus (and the list is not empty)
+    if (manager.focusedKey !== null && delegate.getFirstKey() !== null) return;
     const focusedKey = manager.selectedKey || delegate.getFirstKey();
     manager.setFocusedKey(focusedKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [manager, delegate]);
 
   const arrowDown = () =>
     manager.setFocusedKey(delegate.getKeyBelow(manager.focusedKey) ?? delegate.getFirstKey());
