@@ -33,6 +33,8 @@ export function useComboBoxState(props) {
 
   return {
     ...triggerState,
+    // prevent opening empty list
+    isOpen: triggerState.isOpen && collection.index.size > 0,
     collection,
     selectionManager,
     inputValue,
