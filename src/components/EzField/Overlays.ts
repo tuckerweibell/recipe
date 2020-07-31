@@ -1,7 +1,5 @@
-import {useState, useMemo, Key, useEffect} from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import {useUniqueId} from '../../utils/hooks';
-import {createCollection} from './Collection';
-import {SelectionState} from './EzField.types';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
   const menuTriggerId = useUniqueId();
@@ -106,33 +104,6 @@ export const useOverlayPosition = options => ({
     {name: 'offset', options: {offset: [0, 5]}},
   ],
 });
-
-/**
- * Provides state management for list-like components. Handles building a collection
- * of items from props, and manages multiple selection state.
- */
-export function useListState(props) {
-  const {options, value} = props;
-  const collection = createCollection(options);
-
-  const selectedIndex: Key = Array.from<any>(collection.index.values()).findIndex(
-    item => item.value === value
-  );
-
-  const [focusedKey, setFocusedKey] = useState<Key>(null);
-
-  const manager: SelectionState = {
-    focusedKey,
-    setFocusedKey,
-    selectedKey: selectedIndex < 0 ? null : selectedIndex,
-    replaceSelection: props.onSelectionChange,
-  };
-
-  return {
-    collection,
-    selectionManager: manager,
-  };
-}
 
 export function useSelectableCollection(options) {
   const {selectionManager: manager, keyboardDelegate: delegate} = options;
