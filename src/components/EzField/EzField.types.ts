@@ -1,3 +1,4 @@
+import {Key} from 'react';
 import Label from '../EzLabel';
 
 type LabelProps = React.ComponentProps<typeof Label>;
@@ -111,6 +112,18 @@ type BaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
    */
   touched?: boolean;
 };
+
+export interface FocusState {
+  /** The current focused key in the collection. */
+  readonly focusedKey: Key;
+  /** Sets the focused key. */
+  setFocusedKey(key: Key): void;
+}
+export interface SelectionState extends FocusState {
+  readonly selectedKey: Key;
+  /** Sets the selected key in the collection. */
+  replaceSelection(key: Key): void;
+}
 
 export type Props = FieldTypeProps & BaseProps;
 export type CustomInputProps = Omit<Props, 'type'> & {type: React.ComponentType<any>};

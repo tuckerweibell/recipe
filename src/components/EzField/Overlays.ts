@@ -1,7 +1,8 @@
-import {useState, useMemo} from 'react';
+import {useState, useMemo, Key} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {createCollection} from './Collection';
 import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
+import {SelectionState} from './EzField.types';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
   const menuTriggerId = useUniqueId();
@@ -115,7 +116,7 @@ export function useListState(props) {
   const {options, value} = props;
   const collection = createCollection(options);
 
-  const selectedKey = Array.from<any>(collection.index.values()).findIndex(
+  const selectedKey: Key = Array.from<any>(collection.index.values()).findIndex(
     item => item.value === value
   );
 
@@ -124,17 +125,19 @@ export function useListState(props) {
     [props.keyboardDelegate, collection]
   );
 
-  const [focusedKey, setFocusedKey] = useState(selectedKey);
+  const [focusedKey, setFocusedKey] = useState<Key>(selectedKey);
+
+  const manager: SelectionState = {
+    focusedKey,
+    setFocusedKey,
+    selectedKey,
+    replaceSelection: props.onSelectionChange,
+  };
 
   return {
     collection,
     keyboardDelegate: delegate,
-    selectionManager: {
-      focusedKey,
-      setFocusedKey,
-      selectedKey,
-      replaceSelection: props.onSelectionChange,
-    },
+    selectionManager: manager,
   };
 }
 
