@@ -1,5 +1,6 @@
 import {useMemo} from 'react';
-import {useMenuTriggerState, useMenuTrigger, useSelectableCollection} from './Overlays';
+import {useMenuTriggerState, useMenuTrigger} from './Overlays';
+import {useSelectableCollection} from './useSelectableCollection';
 import {useListState} from './useListState';
 import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';

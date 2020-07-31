@@ -1,4 +1,4 @@
-import {useState, useMemo, useEffect} from 'react';
+import {useState} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
@@ -104,38 +104,3 @@ export const useOverlayPosition = options => ({
     {name: 'offset', options: {offset: [0, 5]}},
   ],
 });
-
-export function useSelectableCollection(options) {
-  const {selectionManager: manager, keyboardDelegate: delegate} = options;
-
-  useEffect(() => {
-    // focus the selected item if there is one, otherwise focus on the first item
-    const focusedKey = manager.selectedKey || delegate.getFirstKey();
-    manager.setFocusedKey(focusedKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const arrowDown = () =>
-    manager.setFocusedKey(delegate.getKeyBelow(manager.focusedKey) ?? delegate.getFirstKey());
-
-  const arrowUp = () =>
-    manager.setFocusedKey(delegate.getKeyAbove(manager.focusedKey) ?? delegate.getLastKey());
-
-  const keyMap = {
-    ArrowUp: arrowUp,
-    ArrowDown: arrowDown,
-  };
-
-  const onKeyDown = e => {
-    const action = keyMap[e.key];
-
-    if (e.defaultPrevented || !action) return;
-
-    e.preventDefault();
-    action();
-  };
-
-  const handlers = {onKeyDown};
-
-  return {collectionProps: handlers};
-}
