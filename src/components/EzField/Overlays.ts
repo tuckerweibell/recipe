@@ -1,7 +1,6 @@
 import {useState, useMemo, Key} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {createCollection} from './Collection';
-import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {SelectionState} from './EzField.types';
 
 export const useMenuTrigger = (state: OverlayTriggerState) => {
@@ -120,11 +119,6 @@ export function useListState(props) {
     item => item.value === value
   );
 
-  const delegate: KeyboardDelegate = useMemo(
-    () => props.keyboardDelegate || new ListKeyboardDelegate(collection),
-    [props.keyboardDelegate, collection]
-  );
-
   const [focusedKey, setFocusedKey] = useState<Key>(selectedKey);
 
   const manager: SelectionState = {
@@ -136,7 +130,6 @@ export function useListState(props) {
 
   return {
     collection,
-    keyboardDelegate: delegate,
     selectionManager: manager,
   };
 }

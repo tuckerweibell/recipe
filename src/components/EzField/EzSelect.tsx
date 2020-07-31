@@ -31,8 +31,8 @@ const EzSelect = props => {
       onChange(changeEvent(value));
     },
   });
-  const {inputProps, listBoxProps} = useSelect(props, state);
-  const {isOpen, selectionManager, keyboardDelegate} = state;
+  const {inputProps, listBoxProps, keyboardDelegate} = useSelect(props, state);
+  const {isOpen, selectionManager} = state;
 
   const move = useCallback(
     option => {

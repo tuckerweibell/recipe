@@ -1,9 +1,11 @@
+import {useMemo} from 'react';
 import {
   useMenuTriggerState,
   useListState,
   useSelectableCollection,
   useMenuTrigger,
 } from './Overlays';
+import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
 import {mergeProps} from './mergeProps';
 
@@ -28,11 +30,17 @@ export function useSelectState(props) {
 interface SelectAria {
   inputProps: React.HTMLAttributes<HTMLInputElement>;
   listBoxProps: React.HTMLAttributes<HTMLElement>;
+  keyboardDelegate: KeyboardDelegate;
 }
 
 export function useSelect(props, state): SelectAria {
+  const delegate: KeyboardDelegate = useMemo(
+    () => props.keyboardDelegate || new ListKeyboardDelegate(state.collection),
+    [props.keyboardDelegate, state.collection]
+  );
+
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
-  const {collectionProps} = useSelectableCollection(state);
+  const {collectionProps} = useSelectableCollection({...state, keyboardDelegate: delegate});
   const {selectionManager} = state;
 
   const inputProps = {
@@ -66,5 +74,6 @@ export function useSelect(props, state): SelectAria {
       'aria-activedescendant': focusedKeyId,
     },
     listBoxProps: menuProps,
+    keyboardDelegate: delegate,
   };
 }
