@@ -8,6 +8,7 @@ import {
 import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
 import {mergeProps} from './mergeProps';
+import {useTypeSelect} from './useTypeSelect';
 
 export function useSelectState(props) {
   const triggerState = useMenuTriggerState();
@@ -39,9 +40,18 @@ export function useSelect(props, state): SelectAria {
     [props.keyboardDelegate, state.collection]
   );
 
+  const {selectionManager} = state;
+  const {typeSelectProps} = useTypeSelect({
+    keyboardDelegate: delegate,
+    selectionManager,
+    onTypeSelect(key) {
+      if (state.isOpen) return;
+      selectionManager.replaceSelection(key);
+    },
+  });
+
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
   const {collectionProps} = useSelectableCollection({...state, keyboardDelegate: delegate});
-  const {selectionManager} = state;
 
   const inputProps = {
     onKeyDown(e) {
@@ -67,7 +77,7 @@ export function useSelect(props, state): SelectAria {
 
   return {
     inputProps: {
-      ...mergeProps(menuTriggerProps, inputProps),
+      ...mergeProps(typeSelectProps, menuTriggerProps, inputProps),
       role: 'combobox',
       'aria-controls': state.isOpen ? menuProps.id : undefined,
       'aria-autocomplete': 'list',

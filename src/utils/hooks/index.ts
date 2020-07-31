@@ -3,7 +3,6 @@ export {default as useEventListenerOutside} from './useEventListenerOutside';
 export {default as useFocus} from './useFocus';
 export {default as useHover} from './useHover';
 export {default as useInput} from './useInput';
-export {default as useJumpToOption} from './useJumpToOption';
 export {default as useOnClickOutside} from './useOnClickOutside';
 export {default as useOnFocusOutside} from './useOnFocusOutside';
 export {default as usePopper} from './usePopper';

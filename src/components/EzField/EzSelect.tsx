@@ -1,6 +1,5 @@
 import React, {useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useJumpToOption} from '../../utils/hooks';
 import {useOverlayPosition} from './Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
@@ -9,7 +8,7 @@ import EzListBox from './EzListBox';
 import {useSelectState, useSelect} from './useSelect';
 
 const EzSelect = props => {
-  const {options, onChange} = props;
+  const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
   const ariaLabelledBy = props['aria-labelledby'];
@@ -31,19 +30,7 @@ const EzSelect = props => {
       onChange(changeEvent(value));
     },
   });
-  const {inputProps, listBoxProps, keyboardDelegate} = useSelect(props, state);
-  const {isOpen, selectionManager} = state;
-
-  const move = useCallback(
-    option => {
-      if (isOpen) selectionManager.setFocusedKey(keyboardDelegate.getKeyForSearch(option.label));
-      else onChange(changeEvent(option.value));
-    },
-    [isOpen, onChange, changeEvent, selectionManager, keyboardDelegate]
-  );
-
-  useJumpToOption(triggerRef, {options, move});
-
+  const {inputProps, listBoxProps} = useSelect(props, state);
   const overlayPosition = useOverlayPosition({
     targetRef: triggerRef,
     placement: 'bottom-start',
