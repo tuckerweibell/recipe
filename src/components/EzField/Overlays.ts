@@ -1,4 +1,4 @@
-import {useState, useMemo, Key} from 'react';
+import {useState, useMemo, Key, useEffect} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {createCollection} from './Collection';
 import {SelectionState} from './EzField.types';
@@ -115,16 +115,16 @@ export function useListState(props) {
   const {options, value} = props;
   const collection = createCollection(options);
 
-  const selectedKey: Key = Array.from<any>(collection.index.values()).findIndex(
+  const selectedIndex: Key = Array.from<any>(collection.index.values()).findIndex(
     item => item.value === value
   );
 
-  const [focusedKey, setFocusedKey] = useState<Key>(selectedKey);
+  const [focusedKey, setFocusedKey] = useState<Key>(null);
 
   const manager: SelectionState = {
     focusedKey,
     setFocusedKey,
-    selectedKey,
+    selectedKey: selectedIndex < 0 ? null : selectedIndex,
     replaceSelection: props.onSelectionChange,
   };
 
@@ -137,18 +137,18 @@ export function useListState(props) {
 export function useSelectableCollection(options) {
   const {selectionManager: manager, keyboardDelegate: delegate} = options;
 
+  useEffect(() => {
+    // focus the selected item if there is one, otherwise focus on the first item
+    const focusedKey = manager.selectedKey || delegate.getFirstKey();
+    manager.setFocusedKey(focusedKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const arrowDown = () =>
-    manager.setFocusedKey(
-      manager.focusedKey === null
-        ? delegate.getFirstKey()
-        : delegate.getKeyBelow(manager.focusedKey) ?? delegate.getFirstKey()
-    );
+    manager.setFocusedKey(delegate.getKeyBelow(manager.focusedKey) ?? delegate.getFirstKey());
+
   const arrowUp = () =>
-    manager.setFocusedKey(
-      manager.focusedKey === null
-        ? delegate.getLastKey()
-        : delegate.getKeyAbove(manager.focusedKey) ?? delegate.getLastKey()
-    );
+    manager.setFocusedKey(delegate.getKeyAbove(manager.focusedKey) ?? delegate.getLastKey());
 
   const keyMap = {
     ArrowUp: arrowUp,
