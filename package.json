@@ -80,6 +80,7 @@
     "@emotion/is-prop-valid": "^0.7.3",
     "@popperjs/core": "^2.1.1",
     "dayjs": "^1.8.14",
+    "react-highlight-words": "^0.16.0",
     "reakit": "^1.0.0-rc.0",
     "styled-component-variant": "^1.0.1"
   }

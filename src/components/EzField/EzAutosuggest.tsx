@@ -37,6 +37,7 @@ const EzAutosuggest = props => {
             onClick={() => triggerRef.current.focus()}
             collection={state.collection}
             selectionManager={state.selectionManager}
+            searchWords={[inputProps.value]}
           />
         </EzPopover>
       )}

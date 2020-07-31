@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, {useRef} from 'react';
 import {jsx} from '@emotion/core';
+import Highlighter from 'react-highlight-words';
 import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
 import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
@@ -19,7 +20,15 @@ const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selectedKey
       onClick={() => props.replaceSelection(option.key)}
       id={props.id}
     >
-      {option.label}
+      <Highlighter
+        searchWords={props.searchWords}
+        textToHighlight={option.label}
+        highlightStyle={{
+          backgroundColor: 'inherit',
+          color: 'currentColor',
+          textDecoration: 'underline',
+        }}
+      />
     </li>
   );
 };
@@ -45,7 +54,7 @@ const hasGroupedOptions = options => Array.isArray(options[0]);
 const EzListBox = (props, ref) => {
   const theme = useTheme();
   const activeOptionRef = useRef<HTMLElement>();
-  const {collection, selectionManager, ...domProps} = props;
+  const {collection, selectionManager, searchWords, ...domProps} = props;
   const {items} = collection;
 
   // keep the focused list item visible within the scrollable listbox
@@ -58,6 +67,7 @@ const EzListBox = (props, ref) => {
       option={o}
       key={o.label}
       activeOptionRef={activeOptionRef}
+      searchWords={searchWords || []}
     />
   );
 
