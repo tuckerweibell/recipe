@@ -13,7 +13,14 @@ const EzAutosuggest = props => {
   const ariaLabelledBy = props['aria-labelledby'];
 
   const state = useComboBoxState(props);
-  const {inputProps, listBoxProps} = useComboBox(props, state);
+  const {inputProps, listBoxProps} = useComboBox(
+    {
+      ...props,
+      triggerRef,
+      popoverRef: listboxRef,
+    },
+    state
+  );
 
   const overlayPosition = useOverlayPosition({
     targetRef: triggerRef,

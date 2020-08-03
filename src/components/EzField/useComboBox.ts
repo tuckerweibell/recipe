@@ -6,6 +6,7 @@ import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
 import {mergeProps} from './mergeProps';
 import {filterDOMProps} from './filterDOMProps';
+import {useOnFocusOutside, useOnClickOutside} from '../../utils/hooks';
 
 export function useComboBoxState(props) {
   const {onFilter, onSelectionChange} = props;
@@ -15,8 +16,8 @@ export function useComboBoxState(props) {
     ...props,
     onSelectionChange: key => {
       const item = collection.index.get(key);
-      onSelectionChange(item.value);
-      setInputValue(item.label);
+      onSelectionChange?.(item?.value ?? null);
+      setInputValue(item?.label ?? '');
       triggerState.close();
     },
   });
@@ -39,6 +40,7 @@ export function useComboBoxState(props) {
     selectionManager,
     inputValue,
     setInputValue,
+    lastValue: lastValue.current,
   };
 }
 
@@ -58,9 +60,16 @@ export function useComboBox(props, state): ComboBoxAria {
   const {collectionProps} = useSelectableCollection({...state, keyboardDelegate: delegate});
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // clear the current value to ensure the text input and the value don't fall out of sync
+    selectionManager.replaceSelection(null);
+
     state.setInputValue(e.target.value);
+
+    // keep the listbox open
     state.open();
   };
+
+  const focusState = useRef({isFocusWithin: false}).current;
 
   const inputProps: React.InputHTMLAttributes<HTMLInputElement> = {
     onKeyDown(e) {
@@ -71,6 +80,9 @@ export function useComboBox(props, state): ComboBoxAria {
       if (e.key === 'Enter' && selectionManager.focusedKey !== null)
         selectionManager.replaceSelection(selectionManager.focusedKey);
     },
+    onFocus() {
+      focusState.isFocusWithin = true;
+    },
     value: state.inputValue,
     onChange,
   };
@@ -79,15 +91,33 @@ export function useComboBox(props, state): ComboBoxAria {
     propNames: new Set(['id', 'name', 'disabled', 'placeholder', 'onFocus']),
   });
 
+  const onFocusLost = e => {
+    if (!focusState.isFocusWithin) return;
+
+    focusState.isFocusWithin = false;
+
+    state.close();
+
+    // call the user defined onBlur (if provided)
+    props.onBlur?.(e);
+
+    // clear the input if no value was selected
+    if (selectionManager.selectedKey === null) state.setInputValue('');
+  };
+
+  useOnClickOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
+  useOnFocusOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
+
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
 
   return {
     inputProps: {
       ...mergeProps(inputProps, menuTriggerProps, domProps),
       role: 'combobox',
+      'aria-haspopup': 'listbox',
       'aria-controls': state.isOpen ? menuProps.id : undefined,
       'aria-autocomplete': 'list',
-      'aria-activedescendant': focusedKeyId,
+      'aria-activedescendant': state.isOpen ? focusedKeyId : undefined,
     },
     listBoxProps: menuProps,
   };
