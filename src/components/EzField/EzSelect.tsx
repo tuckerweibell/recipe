@@ -1,4 +1,6 @@
-import React, {useRef, useCallback} from 'react';
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
+import {useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
 import {useOverlayPosition} from './Overlays';
 import EzTextInput from './EzTextInput';
@@ -50,7 +52,13 @@ const EzSelect = props => {
       opened={state.isOpen}
     >
       <TextInputWrapper className={props.className} disabled={props.disabled}>
-        <EzTextInput {...inputProps} ref={triggerRef} error={props.error} touched={props.touched} />
+        <EzTextInput
+          {...inputProps}
+          ref={triggerRef}
+          error={props.error}
+          touched={props.touched}
+          css={{cursor: 'default'}}
+        />
         <InsetIcon insetY0 right0 pr2>
           <ChevronIcon flip={state.isOpen} />
         </InsetIcon>

@@ -20,7 +20,6 @@ const hideErrorMessageWhenOpen = ({hasError, opened}) =>
 
 export const OverlayFieldWrapper = styled.div<any>`
   input {
-    cursor: default;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
