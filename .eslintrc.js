@@ -12,5 +12,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     '@typescript-eslint/prefer-interface': 'off',
     'react/no-multi-comp': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': 'error',
   },
 };
