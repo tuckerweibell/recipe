@@ -7,6 +7,7 @@ import {getItemId} from './EzListBox';
 import {mergeProps} from './mergeProps';
 import {useTypeSelect} from './useTypeSelect';
 import {filterDOMProps} from './filterDOMProps';
+import {useOnClickOutside, useOnFocusOutside} from '../../utils/hooks';
 
 export function useSelectState(props) {
   const triggerState = useMenuTriggerState();
@@ -68,10 +69,21 @@ export function useSelect(props, state): SelectAria {
   };
 
   const domProps = filterDOMProps(props, {
-    propNames: new Set(['id', 'name', 'disabled', 'placeholder']),
+    propNames: new Set(['id', 'name', 'disabled', 'placeholder', 'onFocus']),
   });
 
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
+
+  const onFocusLost = e => {
+    if (!state.isOpen) return;
+
+    state.close();
+
+    props.onBlur?.(e);
+  };
+
+  useOnClickOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
+  useOnFocusOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
 
   return {
     inputProps: {

@@ -30,7 +30,14 @@ const EzSelect = props => {
       onChange(changeEvent(value));
     },
   });
-  const {inputProps, listBoxProps} = useSelect(props, state);
+  const {inputProps, listBoxProps} = useSelect(
+    {
+      ...props,
+      triggerRef,
+      popoverRef: listboxRef,
+    },
+    state
+  );
   const overlayPosition = useOverlayPosition({
     targetRef: triggerRef,
     placement: 'bottom-start',

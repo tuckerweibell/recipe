@@ -392,5 +392,39 @@ describe('EzField', () => {
 
       expect(lastCall[0].target.value).toEqual(10);
     });
+
+    it('should trigger blur when no longer focused', () => {
+      const onChange = jest.fn();
+      const onBlur = jest.fn();
+
+      const {container} = render(
+        <>
+          <EzField
+            type="select"
+            label={inputLabel}
+            options={options}
+            value="upcoming"
+            onChange={onChange}
+            onBlur={onBlur}
+          />
+          <button type="button">click me</button>
+        </>
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown(' ');
+      jest.runAllTimers();
+
+      expect(onBlur).not.toHaveBeenCalled();
+
+      // mouse down on a different button to trigger focus change
+      fireEvent.mouseDown(getByText(container, 'click me'));
+
+      expect(onBlur).toHaveBeenCalled();
+    });
   });
 });
