@@ -6,6 +6,7 @@ import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
 import {mergeProps} from './mergeProps';
 import {useTypeSelect} from './useTypeSelect';
+import {filterDOMProps} from './filterDOMProps';
 
 export function useSelectState(props) {
   const triggerState = useMenuTriggerState();
@@ -64,17 +65,17 @@ export function useSelect(props, state): SelectAria {
     onSelect: e => (e.target as HTMLInputElement).setSelectionRange(0, 0),
     value: state.collection.index.get(selectionManager.selectedKey)?.label || '',
     readOnly: true,
-    id: props.id,
-    name: props.name,
-    disabled: props.disabled,
-    placeholder: props.placeholder,
   };
+
+  const domProps = filterDOMProps(props, {
+    propNames: new Set(['id', 'name', 'disabled', 'placeholder']),
+  });
 
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
 
   return {
     inputProps: {
-      ...mergeProps(typeSelectProps, menuTriggerProps, inputProps),
+      ...mergeProps(typeSelectProps, menuTriggerProps, inputProps, domProps),
       role: 'combobox',
       'aria-controls': state.isOpen ? menuProps.id : undefined,
       'aria-autocomplete': 'list',
