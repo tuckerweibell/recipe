@@ -18,10 +18,6 @@ export const base = ({theme, subnav}) => css`
   box-shadow: inset 0 -1px 0 0 ${theme.colors.border.base};
 
   ${spacing({theme, subnav})}
-
-  && > * + * {
-    margin-top: ${theme.spacing.sm};
-  }
 `;
 
 const subheaderSpacing = ({theme}) => css`
