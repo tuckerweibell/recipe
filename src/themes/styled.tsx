@@ -1,11 +1,15 @@
 import React from 'react';
 import styled, {CreateStyled, StyledOptions} from '@emotion/styled';
-import {ThemeContext} from '@emotion/core';
+import {ThemeContext, Interpolation} from '@emotion/core';
 import * as standard from './standard';
 
 export function useTheme(): Theme {
   const theme = React.useContext(ThemeContext) as Theme;
   return Object.keys(theme).length ? theme : standard;
+}
+
+export function mq(bp: string, i: Interpolation): Interpolation {
+  return {[`@media (min-width: ${bp})`]: i};
 }
 
 export type Theme = typeof standard;

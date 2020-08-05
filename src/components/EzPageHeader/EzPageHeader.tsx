@@ -1,11 +1,14 @@
-import React, {createRef, useRef} from 'react';
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
+import {createRef, useRef} from 'react';
 import LinkButton from './LinkButton';
 import {Link, LabelledLink, Labelled} from '../EzLink/EzLink.types';
 import {EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
-import {StyledHeading, StyledSubheading} from './EzPageHeader.styles';
+import {Surface} from './EzPageHeader.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {wrapEvent} from '../../utils';
+import {useTheme, mq} from '../../themes/styled';
 
 type TabType = Labelled | (Labelled & Link);
 
@@ -67,11 +70,12 @@ const EzPageHeader: React.FC<HeaderProps> = ({
   subnav,
   subheader,
 }) => {
+  const theme = useTheme();
   const refs = useRef(subnav && subnav.tabs.map(() => createRef<HTMLElement>())).current;
   const selected = subnav && subnav.selected;
   return (
-    <div>
-      <StyledHeading subnav={subnav}>
+    <div css={{backgroundColor: theme.colors.content.background}}>
+      <Surface css={subnav ? {paddingBottom: 0} : {}}>
         <MaxWidth>
           <EzLayout layout="stack">
             <EzLayout
@@ -126,11 +130,11 @@ const EzPageHeader: React.FC<HeaderProps> = ({
             )}
           </EzLayout>
         </MaxWidth>
-      </StyledHeading>
+      </Surface>
       {subheader && (
-        <StyledSubheading>
+        <Surface css={mq(theme.breakpoints.medium, {'--recipe-surface-py': theme.spacing.lg})}>
           <MaxWidth>{subheader}</MaxWidth>
-        </StyledSubheading>
+        </Surface>
       )}
     </div>
   );
