@@ -102,3 +102,12 @@
   );
 };
 ```
+
+### Buttons are automatically responsive on small screens
+
+```jsx
+<Media size="small">
+  <EzPageHeader title="Order # XYZ-123" actions={<EzButton use="primary">Accept Order</EzButton>} />
+  <EzPage />
+</Media>
+```

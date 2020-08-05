@@ -112,7 +112,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
                   <div>{status}</div>
                 </EzLayout>
               </div>
-              {actions && <div>{actions}</div>}
+              {actions && <EzLayout layout={{base: 'stack', medium: 'basic'}}>{actions}</EzLayout>}
             </EzLayout>
             {subnav && (
               <TabList onKeyDown={handleKeyDown(refs, subnav)}>
