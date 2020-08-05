@@ -23,6 +23,9 @@ title: 'Unreleased changes'
 - Fix: Opening EzField[type=select] with arrow key up/down no longer causes the currently focused item to change.
 - Fix: Missing focus outline on EzField[type=select|time] in Safari.
 - Fix: Avoid prematurely closing EzField[type=select|time|date] popup when nested within a programmatically focusable container.
+- Fix: Page header wrapping priority. When there isn't space to present the title, status and actions side-by-side, the Page Header will now wrap status onto a new line, and will subsequently wrap the title if needed. Closes [issue #249](https://github.com/ezcater/recipe/issues/249).
+- Fix: Buttons are automatically responsive on small screens. Closes [issue #249](https://github.com/ezcater/recipe/issues/249).
+- Fix: Align Page header's subheader with title and content.
 
 #### Documentation
 
