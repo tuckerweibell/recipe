@@ -16,13 +16,12 @@ const propRe = /^((data|aria)-.*)$/;
  */
 export function filterDOMProps<TElement, T extends object>(
   props: T,
-  opts: Options = {}
+  opts: Options
 ): HTMLAttributes<TElement> {
-  const {propNames} = opts;
   const filteredProps: HTMLAttributes<TElement> = {};
 
   Object.keys(props)
-    .filter(prop => propNames?.has(prop) || propRe.test(prop))
+    .filter(prop => opts?.propNames?.has(prop) || propRe.test(prop))
     .forEach(prop => {
       filteredProps[prop] = props[prop];
     });
