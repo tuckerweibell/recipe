@@ -9,6 +9,7 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new [`autosuggest`](/components/ez-field#autosuggest-list) variation EzField. Supports typeahead-style filtering of drop-down lists to help users find what they're looking for in larger data-sets.
 - New internal-only EzListBox component to encapsulate behavior for selecting from a list of options.
 
 #### Enhancements
@@ -26,5 +27,7 @@ title: 'Unreleased changes'
 #### Documentation
 
 #### Dependency upgrades
+
+- Added/Updated testing library dependencies: `@testing-library/dom`, `@testing-library/react` and `@testing-library/user-event`
 
 #### Development workflow
