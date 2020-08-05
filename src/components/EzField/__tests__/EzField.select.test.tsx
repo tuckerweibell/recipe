@@ -1,6 +1,6 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
-import {getByLabelText, getByText, fireEvent, act} from '@testing-library/react';
+import {getByLabelText, getByText, fireEvent, act, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ReactTestUtils from 'react-dom/test-utils';
 import ezSelectTests from './EzSelect.test.md';
@@ -56,9 +56,9 @@ describe('EzField', () => {
 
       keyDown(' ');
 
-      const option1 = getByText(container, 'All Upcoming');
-      const option2 = getByText(container, 'Today');
-      const lastOption = getByText(container, 'This Month');
+      const option1 = screen.getByRole('option', {name: /All Upcoming/i});
+      const option2 = screen.getByRole('option', {name: /Today/i});
+      const lastOption = screen.getByRole('option', {name: /This Month/i});
 
       expect(option1).toHaveAttribute('aria-selected', 'true');
       expect(input.getAttribute('aria-activedescendant')).toEqual(option1.id);
@@ -102,8 +102,8 @@ describe('EzField', () => {
       keyDown(' ');
       jest.runAllTimers();
 
-      const optionAllUpcoming = getByText(container, 'All Upcoming');
-      const optionAllTime = getByText(container, 'All Time');
+      const optionAllUpcoming = screen.getByRole('option', {name: /All Upcoming/i});
+      const optionAllTime = screen.getByRole('option', {name: /All Time/i});
 
       expect(optionAllUpcoming).toHaveAttribute('aria-selected', 'false');
       expect(optionAllTime).toHaveAttribute('aria-selected', 'false');
