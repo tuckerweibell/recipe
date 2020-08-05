@@ -31,7 +31,7 @@ export const actions = () => css`
 `;
 
 const subheaderSpacing = ({theme}) => css`
-  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+  padding: ${theme.spacing.sm} ${theme.spacing.lg};
 
   @media screen and (min-width: ${theme.breakpoints.medium}) {
     padding: ${theme.spacing.lg} ${theme.spacing.xl2};

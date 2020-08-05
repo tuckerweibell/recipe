@@ -66,3 +66,39 @@
   </EzPage>
 </Media>
 ```
+
+### Subheader padding on small screens
+
+```jsx
+() => {
+  const tabs = [{label: 'Customers'}, {label: 'Leads'}];
+  return (
+    <Media size="small">
+      <EzPageHeader
+        title="Customers"
+        subnav={{tabs, selected: tabs[0]}}
+        subheader={
+          <EzLayout
+            layout={{
+              base: 'stack',
+              medium: 'basic',
+            }}
+          >
+            <EzLabelledItem position="top" size="small" title="Customers" htmlFor="search">
+              <EzSearchInput id="search" placeholder="Search" />
+            </EzLabelledItem>
+            <EzLabelledItem position="top" size="small" title="Leads" htmlFor="search">
+              <EzSearchInput id="search" placeholder="Search" />
+            </EzLabelledItem>
+          </EzLayout>
+        }
+      />
+      <EzPage>
+        <EzCard title="Customer List">
+          <div>List content</div>
+        </EzCard>
+      </EzPage>
+    </Media>
+  );
+};
+```
