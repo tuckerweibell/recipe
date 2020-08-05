@@ -24,12 +24,6 @@ export const base = ({theme, subnav}) => css`
   }
 `;
 
-export const actions = () => css`
-  > * {
-    justify-content: flex-end;
-  }
-`;
-
 const subheaderSpacing = ({theme}) => css`
   padding: ${theme.spacing.sm} ${theme.spacing.lg};
 
@@ -39,5 +33,4 @@ const subheaderSpacing = ({theme}) => css`
 `;
 
 export const StyledHeading = styled.div<{subnav?: any}>(base as any);
-export const StyledActions = styled.div(actions as any);
 export const StyledSubheading = styled(StyledHeading)(subheaderSpacing as any);

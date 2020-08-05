@@ -3,7 +3,7 @@ import LinkButton from './LinkButton';
 import {Link, LabelledLink, Labelled} from '../EzLink/EzLink.types';
 import {EzHeading, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
-import {StyledHeading, StyledActions, StyledSubheading} from './EzPageHeader.styles';
+import {StyledHeading, StyledSubheading} from './EzPageHeader.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {wrapEvent} from '../../utils';
 
@@ -107,7 +107,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
                 <div>{status}</div>
               </EzLayout>
             </div>
-            {actions && <StyledActions>{actions}</StyledActions>}
+            {actions && <div>{actions}</div>}
           </EzLayout>
         </MaxWidth>
         {subnav && (
