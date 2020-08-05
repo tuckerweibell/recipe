@@ -76,7 +76,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
           <EzLayout
             layout={{
               base: 'stack',
-              medium: 'equal',
+              medium: 'split',
             }}
           >
             <div>
@@ -100,7 +100,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
               <EzLayout
                 layout={{
                   base: 'stack',
-                  medium: 'basic',
+                  medium: 'cluster',
                 }}
               >
                 <EzHeading size="1">{title}</EzHeading>
