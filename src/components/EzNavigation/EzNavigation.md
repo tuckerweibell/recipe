@@ -97,6 +97,48 @@ When using the `as` prop, you must use the `to` prop in place of `href` to provi
 };
 ```
 
+### Grouped Navigation links
+
+Use grouped navigation links to promote discoverability of related pages.
+
+```jsx
+() => {
+  const [active, setActive] = React.useState('Components');
+  const onClick = e => {
+    e.preventDefault();
+    setActive(e.target.text);
+  };
+  return (
+    <EzAppLayout>
+      <EzNavigation
+        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        links={[
+          {href: '#', label: 'Components', active: active === 'Components', onClick},
+          {
+            label: 'Styles',
+            links: [
+              {href: '#', label: 'Colors', active: active === 'Colors', onClick},
+              {href: '#', label: 'Spacing', active: active === 'Spacing', onClick},
+              {href: '#', label: 'Typography', active: active === 'Typography', onClick},
+            ],
+          },
+          {href: '#', label: 'Cookbook', active: active === 'Cookbook', onClick},
+        ]}
+      >
+        <EzPage>
+          <EzCard title={active}>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+          </EzCard>
+        </EzPage>
+      </EzNavigation>
+    </EzAppLayout>
+  );
+};
+```
+
 ### Utility Navigation
 
 Use utility links to offer navigation paths to sections of the application that offer content to support the primary purpose of the application, e.g. managing user account settings.
