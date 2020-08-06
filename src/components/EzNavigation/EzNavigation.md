@@ -31,7 +31,7 @@ Use the Navigation component to offer a menu containing navigation links, either
   const [active, setActive] = React.useState('Customers');
   const onClick = e => {
     e.preventDefault();
-    setActive(e.target.text);
+    setActive(e.currentTarget.text);
   };
   return (
     <EzAppLayout>
@@ -106,7 +106,7 @@ Use grouped navigation links to promote discoverability of related pages.
   const [active, setActive] = React.useState('Components');
   const onClick = e => {
     e.preventDefault();
-    setActive(e.target.text);
+    setActive(e.currentTarget.text);
   };
   return (
     <EzAppLayout>
