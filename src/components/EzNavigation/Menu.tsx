@@ -21,6 +21,11 @@ export const menuStyles = ({theme}) => css`
   :active {
     box-shadow: inset 0px 0px 10px #000000;
   }
+
+  :focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #3e90d6;
+  }
 `;
 
 const Link = React.forwardRef<HTMLElement, any>(({as: component = 'a', ...props}, ref) => {
