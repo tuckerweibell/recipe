@@ -6,7 +6,7 @@ import Hamburger from './Hamburger';
 import UserMenu from './UserMenu';
 import {NotificationCounter} from './Notifications';
 import {Wrapper, NavWrapper, Menus, MenuContent, ContentContainer} from './EzNavigation.styles';
-import {LabelledLink} from '../EzLink/EzLink.types';
+import {LabelledLink, Labelled} from '../EzLink/EzLink.types';
 import {useTranslation} from '../../utils/hooks';
 
 const countNotifications = links =>
@@ -20,7 +20,13 @@ type HomeLink = LabelledLink & {
   logo?: LogoType;
 };
 
-type NavLink = LabelledLink & {
+type LinkGroup = Labelled & {
+  links: LabelledLink[];
+};
+
+type LinkOrGroup = LabelledLink | LinkGroup;
+
+type NavLink = LinkOrGroup & {
   notifications?: number | '★';
 };
 
