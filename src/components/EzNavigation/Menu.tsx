@@ -1,7 +1,6 @@
 import React from 'react';
 import {css} from '@emotion/core';
 import styled from '../../themes/styled';
-import {wrapEvent} from '../../utils';
 import {Counter, Marketing} from './Notifications';
 
 export const menuStyles = ({theme}) => css`
@@ -45,18 +44,15 @@ const Notification = ({value}) => {
   return value === '★' ? <Marketing>★</Marketing> : <Counter>{value}</Counter>;
 };
 
-const Menu = ({link: {active, onClick, label, notifications, ...link}, sidebarToggle}: any) => (
-  <div>
-    <MenuLink
-      {...link}
-      onClick={wrapEvent(onClick, sidebarToggle)}
-      className={active ? 'active' : undefined}
-      {...(link.to ? {activeClassName: 'active'} : {})}
-    >
-      <span>{label}</span>
-      {Boolean(notifications) && <Notification value={notifications} />}
-    </MenuLink>
-  </div>
+const Menu = ({link: {active, label, notifications, ...link}}: any) => (
+  <MenuLink
+    {...link}
+    className={active ? 'active' : undefined}
+    {...(link.to ? {activeClassName: 'active'} : {})}
+  >
+    <span>{label}</span>
+    {Boolean(notifications) && <Notification value={notifications} />}
+  </MenuLink>
 );
 
 export default Menu;

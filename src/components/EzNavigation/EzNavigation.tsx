@@ -42,6 +42,8 @@ type Props = {
   home: HomeLink;
 };
 
+const Links = ({links}) => links.map((link, i) => <Menu key={i} link={link} />);
+
 const EzNavigation: SFC<Props> = ({
   children,
   links,
@@ -52,41 +54,32 @@ const EzNavigation: SFC<Props> = ({
   const {t} = useTranslation(en);
   const [hidden, setHidden] = useState(true);
 
-  const handleSidebarToggle = () => setHidden(s => !s);
+  const toggle = () => setHidden(s => !s);
 
   const notificationSummary = countNotifications(links) + countNotifications(utilityLinks || []);
 
   return (
     <Wrapper>
       <NavWrapper opened={hidden}>
-        <Hamburger opened={!hidden} onClick={handleSidebarToggle} />
+        <Hamburger opened={!hidden} onClick={toggle} />
         {notificationSummary > 0 && (
-          <NotificationCounter onClick={handleSidebarToggle} opened={!hidden}>
+          <NotificationCounter onClick={toggle} opened={!hidden}>
             {notificationSummary}
           </NotificationCounter>
         )}
         <Logo link={homeLink} logo={logo} />
         <MenuContent opened={!hidden}>
-          <Menus primary aria-label={t('Primary navigation')}>
-            {links.map((link, i) => (
-              <Menu key={i} link={link} sidebarToggle={handleSidebarToggle} />
-            ))}
+          <Menus primary aria-label={t('Primary navigation')} onClick={toggle}>
+            <Links links={links} />
           </Menus>
           {utilityLinks && (
-            <Menus aria-label={t('Utility navigation')}>
-              {utilityLinks &&
-                utilityLinks.map((link, i) => (
-                  <Menu key={i} link={link} sidebarToggle={handleSidebarToggle} />
-                ))}
+            <Menus aria-label={t('Utility navigation')} onClick={toggle}>
+              <Links links={utilityLinks} />
             </Menus>
           )}
           {userMenu && (
             <Menus aria-label={t('User menu')}>
-              <UserMenu
-                name={userMenu.name}
-                links={userMenu.links}
-                sidebarToggle={handleSidebarToggle}
-              />
+              <UserMenu name={userMenu.name} links={userMenu.links} sidebarToggle={toggle} />
             </Menus>
           )}
         </MenuContent>
