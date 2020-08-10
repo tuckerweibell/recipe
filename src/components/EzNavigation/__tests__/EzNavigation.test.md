@@ -43,3 +43,45 @@
   );
 };
 ```
+
+### Navigation without logo small screen
+
+```jsx
+<Media size="small">
+  <EzNavigation
+    home={{href: '#', label: 'Homepage'}}
+    links={[
+      {href: '#', label: 'Orders'},
+      {href: '#', label: 'Customers'},
+      {href: '#', label: 'Reports'},
+    ]}
+  />
+</Media>
+```
+
+### Navigation with notifications small screen
+
+```jsx
+<Media size="small">
+  <EzAppLayout>
+    <EzNavigation
+      home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+      links={[
+        {href: '/orders', label: 'Orders', active: true, notifications: 15},
+        {href: '/ezo', label: 'Get More Orders', notifications: '★'},
+        {href: '/customers', label: 'Customers', notifications: 5},
+        {href: '/reports', label: 'Reports'},
+      ]}
+    >
+      <EzPage>
+        <EzCard>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+            in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+          </p>
+        </EzCard>
+      </EzPage>
+    </EzNavigation>
+  </EzAppLayout>
+</Media>
+```
