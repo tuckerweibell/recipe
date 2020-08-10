@@ -1,7 +1,8 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from '@testing-library/react';
+import {fireEvent, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {ThemeProvider} from 'emotion-theming';
 import markdown from '../EzNavigation.md';
 import regressionTests from './EzNavigation.test.md';
@@ -54,6 +55,79 @@ describe('EzNavigation', () => {
     const renderAfterClick = queryByText('Settings');
 
     expect(renderAfterClick).toBeVisible();
+  });
+
+  it('should expand grouped navigation links when clicked', () => {
+    render(
+      <EzNavigation
+        home={{href: '#', label: 'Homepage'}}
+        links={[
+          {href: '#', label: 'Components'},
+          {
+            label: 'Styles',
+            links: [
+              {href: '#', label: 'Colors'},
+              {href: '#', label: 'Spacing'},
+              {href: '#', label: 'Typography'},
+            ],
+          },
+          {href: '#', label: 'Cookbook'},
+        ]}
+      />
+    );
+
+    userEvent.click(screen.queryByLabelText('Menu'));
+
+    expect(screen.queryByText('Colors')).not.toBeVisible();
+
+    userEvent.click(screen.getByRole('button', {name: /Styles/i}));
+
+    expect(screen.queryByText('Colors')).toBeVisible();
+  });
+
+  it('should toggle grouped navigation links on Enter or Space', () => {
+    render(
+      <EzNavigation
+        home={{href: '#', label: 'Homepage'}}
+        links={[
+          {href: '#', label: 'Components'},
+          {
+            label: 'Styles',
+            links: [
+              {href: '#', label: 'Colors'},
+              {href: '#', label: 'Spacing'},
+              {to: '#', label: 'Typography', as: ({to, children}) => <a href={to}>{children}</a>},
+            ],
+          },
+          {href: '#', label: 'Cookbook'},
+        ]}
+      />
+    );
+
+    userEvent.click(screen.queryByLabelText('Menu'));
+
+    expect(screen.queryByText('Colors')).not.toBeVisible();
+
+    fireEvent.keyDown(screen.getByRole('button', {name: /Styles/i}), {key: 'Enter'});
+
+    expect(screen.queryByText('Colors')).toBeVisible();
+
+    fireEvent.keyDown(screen.getByRole('button', {name: /Styles/i}), {key: 'Enter'});
+
+    expect(screen.queryByText('Colors')).not.toBeVisible();
+
+    fireEvent.keyDown(screen.getByRole('button', {name: /Styles/i}), {key: ' '});
+
+    expect(screen.queryByText('Colors')).toBeVisible();
+
+    fireEvent.keyDown(screen.getByRole('button', {name: /Styles/i}), {key: ' '});
+
+    expect(screen.queryByText('Colors')).not.toBeVisible();
+
+    // ignores other keys
+    fireEvent.keyDown(screen.getByRole('button', {name: /Styles/i}), {key: 'Escape'});
+
+    expect(screen.queryByText('Colors')).not.toBeVisible();
   });
 
   it('should meet accessibility guidelines', async () => {
