@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 import Link from 'gatsby-link';
@@ -13,103 +13,8 @@ import {
   EzCard,
   EzCardSection,
 } from '@ezcater/recipe';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
 import './layout.css';
 import logo from '../recipe-logo.svg';
-
-const List = styled.dl`
-  flex: 1;
-  overflow-y: auto;
-  display: ${p => (p.opened ? 'block' : 'none')};
-  margin: 0;
-  && {
-    text-decoration: none;
-  }
-`;
-
-const iconRotate = p => (p.opened ? '-180deg' : '0deg');
-
-const Icon = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%) rotate(${iconRotate});
-  transform-origin: 50% 50%;
-  transition: transform 0.3s;
-  & svg {
-    stroke: '#b8bdc2';
-  }
-`;
-
-const menuStyles = ({theme}) => css`
-  color: #b8bdc2;
-  font-weight: normal;
-  display: flex;
-  align-items: center;
-  padding: ${theme.spacing.xs} ${theme.spacing.xl4} ${theme.spacing.xs} ${theme.spacing.xl3};
-  width: 100%;
-  position: relative;
-  text-decoration: none;
-
-  :hover:enabled {
-    color: white;
-    text-decoration: none;
-  }
-
-  :active:enabled,
-  :not([aria-disabled='true'])[aria-expanded='true'] {
-    box-shadow: inset 0px 0px 10px #000000;
-  }
-`;
-
-const MenuLink = styled(Link)(menuStyles);
-
-const Menu = ({children, links, location, ...props}) => {
-  const [opened, setOpened] = useState(location.pathname.includes(props.to));
-  const toggle = () => setOpened(s => !s);
-  const hasChildren = Boolean(links.length);
-
-  const handleToggle = ev => {
-    ev.preventDefault();
-    toggle();
-  };
-  return (
-    <>
-      <Link {...props} partiallyActive={!hasChildren} {...(hasChildren && {onClick: handleToggle})}>
-        {children}
-        {hasChildren && (
-          <Icon opened={opened}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </Icon>
-        )}
-      </Link>
-      {hasChildren && (
-        <List opened={opened}>
-          {links.map(({label, to}) => (
-            <dt key={label}>
-              <MenuLink to={to} activeStyle={{backgroundColor: '#1b2023'}} partiallyActive={true}>
-                {label}
-              </MenuLink>
-            </dt>
-          ))}
-        </List>
-      )}
-    </>
-  );
-};
 
 const Layout = ({name, title, path, children, sections, location, layout}) => (
   <StaticQuery
@@ -154,10 +59,11 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
           .map(page => ({
             to: page.frontmatter.path,
             label: page.frontmatter.title,
+            as: Link,
           }))
           .sort((a, b) => naturalSort()(a.label, b.label)),
-        location,
-        as: Menu,
+        partiallyActive: true,
+        as: Link,
       }));
 
       const activeLink = links.find(link => location.pathname.includes(link.to));
