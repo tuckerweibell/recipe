@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix: Focus detection bug preventing `onClick` being called on EzField[type=select] when used inside EzModal. Closes [issue #412](https://github.com/ezcater/recipe/issues/412).
+
 #### Documentation
 
 #### Dependency upgrades
