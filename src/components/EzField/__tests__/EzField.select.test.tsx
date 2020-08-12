@@ -10,6 +10,7 @@ import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzButton, EzLayout} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
+import EzModal from '../../EzModal';
 
 const scope = {EzField, EzButton, EzLayout, EzFormLayout, Open, Media};
 
@@ -425,6 +426,36 @@ describe('EzField', () => {
       fireEvent.mouseDown(getByText(container, 'click me'));
 
       expect(onBlur).toHaveBeenCalled();
+    });
+
+    it('should trigger onChange for the current item when clicked, when inside a modal', () => {
+      const onChange = jest.fn();
+
+      render(
+        <EzModal isOpen onDismiss={() => {}} dismissLabel="Dismiss" headerText="Header">
+          <EzField
+            type="select"
+            label={inputLabel}
+            options={options}
+            value="upcoming"
+            onChange={onChange}
+          />
+        </EzModal>
+      );
+
+      const input = screen.getByRole('combobox', {name: /Select dropdown/i});
+
+      userEvent.click(input);
+
+      const option2 = screen.getByRole('option', {name: /Today/i});
+
+      userEvent.click(option2);
+
+      expect(onChange).toHaveBeenCalled();
+
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+
+      expect(lastCall[0].target.value).toEqual('today');
     });
   });
 });
