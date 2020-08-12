@@ -56,7 +56,7 @@ const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, childr
 
   return (
     // eslint-disable-next-line no-underscore-dangle
-    <StyledDialog {...dialog} tabIndex={0} className={Portal.__className}>
+    <StyledDialog {...dialog} className={Portal.__className}>
       <PortalContext.Provider value={ref}>{props.visible && children}</PortalContext.Provider>
     </StyledDialog>
   );
@@ -91,7 +91,7 @@ const EzModal: React.FC<Props> = ({
           <EzHeading size="2" id={labelId}>
             {headerText}
           </EzHeading>
-          <CloseButton label={dismissLabel} onClick={onDismiss} />
+          <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
         </HeaderContainer>
 
         <ContentContainer>{children}</ContentContainer>

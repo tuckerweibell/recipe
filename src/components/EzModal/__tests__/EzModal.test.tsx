@@ -1,5 +1,6 @@
 import React from 'react';
-import {fireEvent, cleanup} from '@testing-library/react';
+import {fireEvent, cleanup, screen, waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzModal.test.md';
@@ -112,6 +113,39 @@ describe('EzModal', () => {
       unmount();
       const actual = await axe(baseElement.innerHTML);
       expect(actual).toHaveNoViolations();
+    });
+
+    it('should focus the first focusable element inside the modal when opened', async () => {
+      // NOTE: reaktit uses getClientRects to check it tabbable elements are visible before setting focus
+      jest.spyOn(window.Element.prototype, 'getClientRects').mockImplementation(() => [{}] as any);
+
+      const FocusExample = () => {
+        const [isOpen, setOpen] = React.useState(false);
+        return (
+          <>
+            <button type="button" onClick={() => setOpen(true)}>
+              Outside
+            </button>
+            <EzModal isOpen={isOpen} dismissLabel="dismiss" headerText="header">
+              <button type="button">Inside</button>
+            </EzModal>
+          </>
+        );
+      };
+
+      fullRender(<FocusExample />);
+
+      const trigger = screen.getByRole('button', {name: /outside/i});
+
+      trigger.focus();
+
+      expect(document.activeElement).toBe(trigger);
+
+      userEvent.click(trigger);
+
+      const firstFocusable = await screen.findByRole('button', {name: /inside/i});
+
+      await waitFor(() => expect(document.activeElement).toBe(firstFocusable));
     });
   });
 });
