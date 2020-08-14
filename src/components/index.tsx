@@ -19,6 +19,7 @@ export {default as EzOrderSummary} from './EzOrderSummary';
 export {EzPage, EzPageSection} from './EzPage';
 export {default as EzPageHeader} from './EzPageHeader';
 export {EzPageContent, EzContentGroup} from './EzPageContent';
+export {default as EzProgressTracker} from './EzProgressTracker';
 export {default as EzSegmentedControl} from './EzSegmentedControl';
 export {default as EzSearchInput} from './EzSearchInput';
 export {default as EzStatus} from './EzStatus';
