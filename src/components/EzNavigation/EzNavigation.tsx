@@ -45,7 +45,7 @@ type Props = {
 };
 
 const Group = ({links, className, children}) => {
-  const active = links.some(link => document.location.pathname.includes(link.href || link.to));
+  const active = links.some(link => link.active);
   const [open, setOpen] = useState(active);
 
   return (

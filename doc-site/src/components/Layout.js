@@ -60,6 +60,7 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
             to: page.frontmatter.path,
             label: page.frontmatter.title,
             as: Link,
+            active: location.pathname === page.frontmatter.path,
           }))
           .sort((a, b) => naturalSort()(a.label, b.label)),
         partiallyActive: true,
