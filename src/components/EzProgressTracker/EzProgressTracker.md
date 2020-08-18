@@ -65,6 +65,55 @@ Progress trackers should:
 };
 ```
 
+### Vertical progress tracker
+
+```jsx
+() => {
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const steps = [
+    {label: 'Catering Menu'},
+    {label: 'Delivery Capcity & Hours'},
+    {label: 'Delivery Range & Fees'},
+    {label: 'Order Lead Time'},
+    {label: 'Payment Information'},
+  ].map((step, i) => ({...step, complete: i < activeStep}));
+
+  return (
+    <EzLayout layout="stack">
+      <EzProgressTracker
+        steps={steps}
+        selected={steps[activeStep] || steps[steps.length - 1]}
+        orientation="vertical"
+      />
+
+      {/* Buttons to navigatie between steps */}
+      <EzLayout layout="split">
+        {activeStep === steps.length ? (
+          <EzButton use="primary" onClick={() => setActiveStep(0)}>
+            Reset
+          </EzButton>
+        ) : (
+          <>
+            <EzButton
+              use="tertiary"
+              disabled={activeStep === 0}
+              onClick={() => setActiveStep(activeStep - 1)}
+            >
+              Prev
+            </EzButton>
+            {steps[activeStep].label}
+            <EzButton use="primary" onClick={() => setActiveStep(activeStep + 1)}>
+              {activeStep < steps.length - 1 ? 'Next' : 'Finish'}
+            </EzButton>
+          </>
+        )}
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
 ---
 
 ## Related components

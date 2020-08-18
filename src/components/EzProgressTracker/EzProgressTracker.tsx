@@ -21,18 +21,20 @@ const UncheckedPath = ({active}) => (
 /**
  * A progress tracker conveys progress through linear steps or actions across multiple screens, in order to complete a task.
  */
-const EzProgressTracker: React.FC = ({steps = [], selected}: any) => {
+const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horizontal'}: any) => {
+  const isHorizontal = orientation === 'horizontal';
   return (
     <nav>
       <ol
         css={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: isHorizontal ? 'row' : 'column',
           alignItems: 'flex-start',
           listStyle: 'none',
           justifyContent: 'space-between',
           margin: 0,
           padding: 0,
+          ...(isHorizontal ? {} : {minHeight: `${steps.length * 3}rem`}),
         }}
       >
         {steps.map((step, i) => (
@@ -47,33 +49,55 @@ const EzProgressTracker: React.FC = ({steps = [], selected}: any) => {
             css={{
               position: 'relative',
               flex: '1 1 0px',
-              padding: '0 8px',
+              padding: isHorizontal ? '0 8px' : '8px 0',
+              display: 'flex',
+              justifyContent: 'center',
               // pseudo element line connecting step to previous step
               '+ li:before': {
                 content: "''",
                 position: 'absolute',
-                height: '100%',
                 pointerEvents: 'none',
-                top: '12px',
-                left: '0',
-                right: 'calc(50% + 10px)',
-                borderTop: 'solid 3px #00b06e',
+                ...(isHorizontal
+                  ? {
+                      top: '12px',
+                      left: '0',
+                      right: 'calc(50% + 10px)',
+                      borderTop: 'solid 3px #00b06e',
+                    }
+                  : {
+                      left: '11px',
+                      top: '0',
+                      bottom: 'calc(50% + 10px)',
+                      borderLeft: 'solid 3px #00b06e',
+                    }),
               },
               // pseudo element line connecting step to next step
               ':not(:only-child):not(:last-child):after': {
                 content: "''",
                 position: 'absolute',
-                height: '100%',
                 pointerEvents: 'none',
-                top: '12px',
-                left: 'calc(50% + 10px)',
-                right: '0',
-                borderTop: 'solid 3px #00b06e',
+                ...(isHorizontal
+                  ? {
+                      top: '12px',
+                      left: 'calc(50% + 10px)',
+                      right: '0',
+                      borderTop: 'solid 3px #00b06e',
+                    }
+                  : {
+                      left: '11px',
+                      top: 'calc(50% + 10px)',
+                      bottom: '0',
+                      borderLeft: 'solid 3px #00b06e',
+                    }),
               },
             }}
           >
-            <EzLayout layout="stack" alignX="center">
-              <span>
+            <EzLayout
+              layout={isHorizontal ? 'stack' : 'basic'}
+              alignX={isHorizontal ? 'center' : 'left'}
+              alignY={isHorizontal ? 'top' : 'center'}
+            >
+              <span css={{lineHeight: 0}}>
                 <svg
                   viewBox="0 0 24 24"
                   focusable="false"
@@ -103,7 +127,7 @@ const EzProgressTracker: React.FC = ({steps = [], selected}: any) => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    transform="rotate(90)"
+                    transform={isHorizontal ? 'rotate(90)' : ''}
                   >
                     <polygon points="5 4 15 12 5 20 5 4" />
                   </svg>
