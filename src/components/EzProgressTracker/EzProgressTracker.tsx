@@ -1,30 +1,51 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx, Interpolation} from '@emotion/core';
 import {Fragment} from 'react';
 import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
+import {useTheme} from '../../themes/styled';
 
-const iconDiameter = '1.5rem';
+const verticalOffset = -8;
 
-const CheckedPath = () => (
-  <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z" />
-);
+const roundedTop = {borderTopLeftRadius: 12, borderTopRightRadius: 12};
+const roundedBottom = {borderBottomLeftRadius: 12, borderBottomRightRadius: 12};
+const roundedLeft = {borderTopLeftRadius: 12, borderBottomLeftRadius: 12};
+const roundedRight = {borderTopRightRadius: 12, borderBottomRightRadius: 12};
 
-const UncheckedPath = ({active}) => (
-  <Fragment>
-    <circle cx="12" cy="12" r="12" />
-    <circle cx="12" cy="12" r="9" css={{fill: 'white'}} />
-    {active && <circle cx="12" cy="12" r="6" />}
-  </Fragment>
-);
+const railOutline = ({isHorizontal, visited, isStart, isEnd}: any) => {
+  const {bg, fg} = {bg: '#006548', fg: '#00b06e'};
+  const {top, bottom} = {top: '0 4px 0 0', bottom: '0 -4px 0 0'};
+  const {left, right} = {left: '4px 0 0 0', right: '-4px 0 0 0'};
+  const backgroundColor = visited ? fg : bg;
+  const outline = (pos, color) => `inset ${pos} ${color}`;
+  const outlineFull = outline('0 0 0 4px', bg);
+  const outlineHorizontal = [outline(top, bg), outline(bottom, bg)].join();
+  const outlineVertical = [outline(left, bg), outline(right, bg)].join();
+  const rail = isHorizontal ? outlineHorizontal : outlineVertical;
+  const maskedSide = outline(
+    isHorizontal ? (isStart ? right : left) : isStart ? bottom : top,
+    backgroundColor
+  );
+  const outlineSingleSided = [rail, maskedSide, outlineFull].join();
+
+  return cx(
+    {boxShadow: isStart && isEnd ? outlineFull : isStart || isEnd ? outlineSingleSided : rail},
+    {backgroundColor},
+    isStart && (isHorizontal ? roundedLeft : roundedTop),
+    isEnd && (isHorizontal ? roundedRight : roundedBottom)
+  );
+};
+
+const cx = (...args: Interpolation[]) => args.reduce((res, v) => Object.assign(res, v || {}), {});
 
 /**
  * A progress tracker conveys progress through linear steps or actions across multiple screens, in order to complete a task.
  */
 const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horizontal'}: any) => {
   const isHorizontal = orientation === 'horizontal';
+  const progress = steps.findIndex(step => step === selected);
   return (
-    <nav>
+    <nav css={cx(!isHorizontal && {paddingTop: 8, paddingBottom: 8})}>
       <ol
         css={{
           display: 'flex',
@@ -34,111 +55,112 @@ const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horiz
           justifyContent: 'space-between',
           margin: 0,
           padding: 0,
-          ...(isHorizontal ? {} : {minHeight: `${steps.length * 3}rem`}),
+          ...(isHorizontal ? {} : {minHeight: `${steps.length * 3.5}rem`}),
         }}
       >
         {steps.map((step, i) => (
-          <li
-            key={i}
-            // The line between steps is defined using two pseudo elements:
-            // One connects to previous element, one connects to next element.
-            // NOTE: While it seems like this does double work, the line doesn't
-            // extend passed the elements boundary. This allows items to have a
-            // dynamic width without a danger of over extending the line when the
-            // element content exceeds the available space.
-            css={{
-              position: 'relative',
-              flex: '1 1 0px',
-              padding: isHorizontal ? '0 8px' : '8px 0',
-              display: 'flex',
-              justifyContent: 'center',
-              // pseudo element line connecting step to previous step
-              '+ li:before': {
-                content: "''",
-                position: 'absolute',
-                pointerEvents: 'none',
-                ...(isHorizontal
-                  ? {
-                      top: '12px',
-                      left: '0',
-                      right: 'calc(50% + 10px)',
-                      borderTop: 'solid 3px #00b06e',
-                    }
-                  : {
-                      left: '11px',
-                      top: '0',
-                      bottom: 'calc(50% + 10px)',
-                      borderLeft: 'solid 3px #00b06e',
-                    }),
-              },
-              // pseudo element line connecting step to next step
-              ':not(:only-child):not(:last-child):after': {
-                content: "''",
-                position: 'absolute',
-                pointerEvents: 'none',
-                ...(isHorizontal
-                  ? {
-                      top: '12px',
-                      left: 'calc(50% + 10px)',
-                      right: '0',
-                      borderTop: 'solid 3px #00b06e',
-                    }
-                  : {
-                      left: '11px',
-                      top: 'calc(50% + 10px)',
-                      bottom: '0',
-                      borderLeft: 'solid 3px #00b06e',
-                    }),
-              },
-            }}
-          >
-            <EzLayout
-              layout={isHorizontal ? 'stack' : 'basic'}
-              alignX={isHorizontal ? 'center' : 'left'}
-              alignY={isHorizontal ? 'top' : 'center'}
-            >
-              <span css={{lineHeight: 0}}>
-                <svg
-                  viewBox="0 0 24 24"
-                  focusable="false"
-                  aria-hidden="true"
-                  css={{
-                    height: iconDiameter,
-                    width: iconDiameter,
-                    fill: '#00b06e',
-                  }}
-                >
-                  {step.complete ? <CheckedPath /> : <UncheckedPath active={selected === step} />}
-                </svg>
-              </span>
-              <EzTextStyle align="center" use={selected === step ? 'strong' : undefined}>
-                {step.label}
-              </EzTextStyle>
-              {selected === step && (
-                <span>
-                  <svg
-                    viewBox="0 0 24 24"
-                    focusable="false"
-                    aria-hidden="true"
-                    width="0.75rem"
-                    height="0.75rem"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    transform={isHorizontal ? 'rotate(90)' : ''}
-                  >
-                    <polygon points="5 4 15 12 5 20 5 4" />
-                  </svg>
-                </span>
-              )}
-            </EzLayout>
-          </li>
+          <Fragment key={i}>
+            {i !== 0 && <Spacer isHorizontal={isHorizontal} visited={i <= progress} />}
+            <Step
+              label={step.label}
+              active={i === progress}
+              visited={i <= progress}
+              complete={step.complete}
+              isHorizontal={isHorizontal}
+              isFirst={i === 0}
+              isLast={i === steps.length - 1}
+            />
+          </Fragment>
         ))}
       </ol>
     </nav>
   );
 };
+
+const Step = ({label, active, visited, complete, isHorizontal, isFirst, isLast}) => (
+  <li css={{position: 'relative', flex: '0 1 auto', display: 'flex', justifyContent: 'center'}}>
+    <StepConnector
+      active={active}
+      visited={visited}
+      isFirst={isFirst}
+      isLast={isLast}
+      isHorizontal={isHorizontal}
+    />
+    <EzLayout
+      layout={isHorizontal ? 'stack' : 'basic'}
+      alignX={isHorizontal ? 'center' : 'left'}
+      alignY={isHorizontal ? 'top' : 'center'}
+    >
+      <StepIcon complete={complete} />
+      <StepLabel label={label} visited={visited} isHorizontal={isHorizontal} />
+    </EzLayout>
+  </li>
+);
+
+const StepIcon = ({complete}) => (
+  <span css={{lineHeight: 0}}>
+    <svg
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+      css={{height: 24, width: 24, position: 'relative', pointerEvents: 'none'}}
+    >
+      {complete ? (
+        <path
+          fill="white"
+          d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"
+          css={{transformOrigin: 'center', transform: 'scale(0.5)'}}
+        />
+      ) : (
+        <circle cx="12" cy="12" r="4" css={{fill: 'white'}} />
+      )}
+    </svg>
+  </span>
+);
+
+const StepConnector = ({active, visited, isFirst, isLast, isHorizontal}) => {
+  const track = cx(
+    {content: "''", position: 'absolute'},
+    {top: 0, left: 0, bottom: 0, right: 0},
+    {[isHorizontal ? 'height' : 'width']: 24},
+    !isHorizontal && {top: verticalOffset, bottom: verticalOffset}
+  );
+
+  return (
+    <span
+      css={{
+        pointerEvents: 'none',
+        // pseudo element "track" behind each step
+        '&:before': cx(track, railOutline({isHorizontal, isStart: isFirst, isEnd: isLast})),
+        // pseudo element line showing progress through steps
+        '&:after':
+          visited &&
+          cx(track, railOutline({isHorizontal, visited, isStart: isFirst, isEnd: active})),
+      }}
+    />
+  );
+};
+
+const StepLabel = ({label, visited, isHorizontal}) => {
+  const theme = useTheme();
+  const color = !visited && theme.colors.text.deemphasis;
+  const paddingLeft = !isHorizontal && theme.spacing.sm;
+  return (
+    <EzTextStyle align="center" use="strong" css={{color, paddingLeft}}>
+      {label}
+    </EzTextStyle>
+  );
+};
+
+const Spacer = ({isHorizontal, visited}) => (
+  <li
+    aria-hidden
+    css={cx(
+      {flex: '1 0 12px'},
+      {[isHorizontal ? 'height' : 'width']: 24},
+      railOutline({isHorizontal, visited})
+    )}
+  />
+);
 
 export default EzProgressTracker;
