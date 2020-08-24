@@ -13,7 +13,17 @@ describe('EzProgressTracker', () => {
   visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(<EzProgressTracker />);
+    const wrapper = renderToHtml(
+      <EzProgressTracker
+        steps={[
+          {label: 'Catering Menu'},
+          {label: 'Delivery Capcity & Hours'},
+          {label: 'Delivery Range & Fees'},
+          {label: 'Order Lead Time'},
+          {label: 'Payment Information'},
+        ]}
+      />
+    );
     const actual = await axe(wrapper);
     expect(actual).toHaveNoViolations();
   });

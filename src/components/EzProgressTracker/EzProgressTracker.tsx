@@ -5,6 +5,8 @@ import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
 import {useTheme} from '../../themes/styled';
 import LinkButton from '../EzPageHeader/LinkButton';
+import {LabelledOptionalLink} from '../EzLink/EzLink.types';
+import {isLink} from '../EzLink';
 
 const verticalOffset = -8;
 
@@ -39,10 +41,26 @@ const railOutline = ({isHorizontal, visited, isStart, isEnd}: any) => {
 
 const cx = (...args: Interpolation[]) => args.reduce((res, v) => Object.assign(res, v || {}), {});
 
+type Orientation = 'horizontal' | 'vertical';
+
+type Step = LabelledOptionalLink & {
+  complete?: boolean;
+};
+
+type ProgressTrackerProps = {
+  steps: Step[];
+  selected?: Step;
+  orientation?: Orientation;
+};
+
 /**
  * A progress tracker conveys progress through linear steps or actions across multiple screens, in order to complete a task.
  */
-const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horizontal'}: any) => {
+const EzProgressTracker: React.FC<ProgressTrackerProps> = ({
+  steps,
+  selected,
+  orientation = 'horizontal',
+}) => {
   const isHorizontal = orientation === 'horizontal';
   const progress = steps.findIndex(step => step === selected);
   return (
@@ -70,7 +88,7 @@ const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horiz
               isHorizontal={isHorizontal}
               isFirst={i === 0}
               isLast={i === steps.length - 1}
-              link={step.onClick || step.to || step.href ? step : undefined}
+              link={step.onClick || isLink(step) ? step : undefined}
             />
           </Fragment>
         ))}
