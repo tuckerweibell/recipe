@@ -114,6 +114,84 @@ Progress trackers should:
 };
 ```
 
+### Navigating through steps
+
+Non-linear steps, or complex multi-step flows can be supported, allowing the user to enter or revist any prior step in the flow.
+
+Each step passed to the `steps` prop allows an optional `href`, or `onClick` handler to be provided, making each step label a clickable link to navigate through multi-step flows.
+
+In order to support client-side routing implementations, each step also supports an optional `as` property, accepting a Link component such as [react-router's Link](https://reacttraining.com/react-router/web/api/Link). The any additional props on each step will also be forwarded to the link component.
+
+```jsx
+() => {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState(new Set());
+
+  const steps = [
+    {label: 'Catering Menu'},
+    {label: 'Delivery Capcity & Hours'},
+    {label: 'Delivery Range & Fees'},
+    {label: 'Order Lead Time'},
+    {label: 'Payment Information'},
+  ].map((step, i) => ({
+    ...step,
+    complete: completed.has(i),
+    onClick: () => setActiveStep(i),
+  }));
+
+  return (
+    <EzLayout layout="stack">
+      <EzProgressTracker
+        steps={steps}
+        selected={steps[activeStep] || steps[steps.length - 1]}
+        orientation="vertical"
+      />
+
+      {/* Buttons to navigatie between steps */}
+      <EzLayout layout="split">
+        {activeStep === steps.length ? (
+          <EzButton
+            use="primary"
+            onClick={() => {
+              setActiveStep(0);
+              setCompleted(new Set());
+            }}
+          >
+            Reset
+          </EzButton>
+        ) : (
+          <>
+            <EzLayout>
+              <EzButton
+                use="tertiary"
+                disabled={activeStep === 0}
+                onClick={() => setActiveStep(activeStep - 1)}
+              >
+                Prev
+              </EzButton>
+              <EzButton
+                use="primary"
+                onClick={() => {
+                  if (completed.has(activeStep)) completed.delete(activeStep);
+                  else completed.add(activeStep);
+                  setCompleted(new Set(completed));
+                }}
+              >
+                {completed.has(activeStep) ? 'Mark as Incomplete' : 'Mark as Complete'}
+              </EzButton>
+            </EzLayout>
+            {steps[activeStep].label}
+            <EzButton use="primary" onClick={() => setActiveStep(activeStep + 1)}>
+              {activeStep < steps.length - 1 ? 'Next' : 'Finish'}
+            </EzButton>
+          </>
+        )}
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
 ---
 
 ## Related components

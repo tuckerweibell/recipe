@@ -4,6 +4,7 @@ import {Fragment} from 'react';
 import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
 import {useTheme} from '../../themes/styled';
+import LinkButton from '../EzPageHeader/LinkButton';
 
 const verticalOffset = -8;
 
@@ -69,6 +70,7 @@ const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horiz
               isHorizontal={isHorizontal}
               isFirst={i === 0}
               isLast={i === steps.length - 1}
+              link={step.onClick || step.to || step.href ? step : undefined}
             />
           </Fragment>
         ))}
@@ -77,7 +79,7 @@ const EzProgressTracker: React.FC = ({steps = [], selected, orientation = 'horiz
   );
 };
 
-const Step = ({label, active, visited, complete, isHorizontal, isFirst, isLast}) => (
+const Step = ({label, active, visited, complete, isHorizontal, isFirst, isLast, link}) => (
   <li css={{position: 'relative', flex: '0 1 auto', display: 'flex', justifyContent: 'center'}}>
     <StepConnector
       active={active}
@@ -92,7 +94,7 @@ const Step = ({label, active, visited, complete, isHorizontal, isFirst, isLast})
       alignY={isHorizontal ? 'top' : 'center'}
     >
       <StepIcon complete={complete} />
-      <StepLabel label={label} visited={visited} isHorizontal={isHorizontal} />
+      <StepLabel label={label} visited={visited} isHorizontal={isHorizontal} link={link} />
     </EzLayout>
   </li>
 );
@@ -141,11 +143,15 @@ const StepConnector = ({active, visited, isFirst, isLast, isHorizontal}) => {
   );
 };
 
-const StepLabel = ({label, visited, isHorizontal}) => {
+const StepLabel = ({label, visited, isHorizontal, link}) => {
   const theme = useTheme();
   const color = !visited && theme.colors.text.deemphasis;
   const paddingLeft = !isHorizontal && theme.spacing.sm;
-  return (
+  return link ? (
+    <span css={{paddingLeft}}>
+      <LinkButton label={label} {...link} css={{color}} />
+    </span>
+  ) : (
     <EzTextStyle align="center" use="strong" css={{color, paddingLeft}}>
       {label}
     </EzTextStyle>
