@@ -9,6 +9,8 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new [EzProgressTracker](/components/ez-progress-tracker) component for visualizing progression through multi-step workflows. Closes [issue #400](https://github.com/ezcater/recipe/issues/400).
+
 #### Enhancements
 
 - Added support for grouped (expand/collapse) items in EzNavigation, promoting the discoverability of related pages. Closes [issue #391](https://github.com/ezcater/recipe/issues/391).
