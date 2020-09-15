@@ -32,7 +32,7 @@ type MultipleChoiceProps = {
 };
 
 type HtmlInputProps = {
-  type?: 'text' | 'number' | 'textarea';
+  type?: 'text' | 'number' | 'textarea' | 'password';
   value?: string | number;
 };
 
