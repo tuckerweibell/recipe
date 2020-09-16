@@ -14,13 +14,12 @@ export const TextInputWrapper = styled(BaseCombobox)`
 const arrowSize = 5;
 
 export const CalendarWrapper = styled('div')`
-  z-index: 1;
-  padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.sm};
+  position: relative;
+  padding: ${props => props.theme.spacing.sm};
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: ${props => props.theme.fontSizes[300]};
   width: 320px;
-  position: absolute;
-  margin-top: ${props => props.theme.spacing.sm};
+  margin-top: ${props => props.theme.spacing.xs};
   border-radius: ${props => props.theme.borderRadius[3]};
   border: ${props => props.theme.borderWidth[0]} solid ${props => props.theme.colors.border.base};
   background-color: ${props => props.theme.colors.content.background};

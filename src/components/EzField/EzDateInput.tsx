@@ -2,9 +2,10 @@ import React, {useState, useEffect, useRef} from 'react';
 import dayjs from 'dayjs';
 import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
+import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTriggerState, useMenuTrigger} from './Overlays';
-import {useUpdateEffect, useOnClickOutside, useOnFocusOutside} from '../../utils/hooks';
+import {useMenuTriggerState, useMenuTrigger, useOverlayPosition} from './Overlays';
+import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 
 const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
@@ -22,7 +23,6 @@ const EzDateInput = ({
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
 
-  const clickOutsideRef = useRef();
   const state = useMenuTriggerState();
   const combobox = {
     ...props,
@@ -32,7 +32,9 @@ const EzDateInput = ({
 
   const {close, isOpen} = state;
 
+  const onChangeRef = React.useRef(onChange);
   const timeout = useRef(null);
+  const triggerRef = useRef<HTMLInputElement>();
 
   useEffect(() => () => clearTimeout(timeout.current), []);
 
@@ -40,8 +42,9 @@ const EzDateInput = ({
     if (dayjs(value).isValid()) setValidDate(value);
   }, [value]);
 
-  const onChangeRef = React.useRef(onChange);
-  onChangeRef.current = onChange;
+  useUpdateEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   useUpdateEffect(() => {
     onChangeRef.current(validDate);
@@ -49,12 +52,9 @@ const EzDateInput = ({
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(state);
 
-  useOnClickOutside(close, [clickOutsideRef]);
-  useOnFocusOutside(close, [clickOutsideRef]);
-
   const comboboxInput = {
     ...menuTriggerProps,
-    ref: useRef<HTMLInputElement>(),
+    ref: triggerRef,
     id,
     name,
     value,
@@ -67,14 +67,15 @@ const EzDateInput = ({
     touched: props.touched,
   };
 
+  const overlayPosition = useOverlayPosition({
+    targetRef: triggerRef,
+    placement: 'bottom-start',
+  });
+
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <OverlayFieldWrapper
-      ref={clickOutsideRef}
-      hasError={props.touched && props.error}
-      opened={isOpen}
-    >
+    <OverlayFieldWrapper hasError={props.touched && props.error} opened={isOpen}>
       <TextInputWrapper {...combobox}>
         <InsetIcon insetY0 left0 pl3>
           <CalendarIcon />
@@ -85,22 +86,24 @@ const EzDateInput = ({
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (
-        <CalendarWrapper
-          {...menuProps}
-          onKeyDown={event => {
-            if (event.key === 'Escape') close();
-          }}
-        >
-          <EzCalendar
-            {...{minDate, maxDate, filterDate}}
-            value={validDate}
-            onChange={date => {
-              setValue(date);
-              comboboxInput.ref.current.focus();
-              timeout.current = setTimeout(close, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
+        <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
+          <CalendarWrapper
+            {...menuProps}
+            onKeyDown={event => {
+              if (event.key === 'Escape') close();
             }}
-          />
-        </CalendarWrapper>
+          >
+            <EzCalendar
+              {...{minDate, maxDate, filterDate}}
+              value={validDate}
+              onChange={date => {
+                setValue(date);
+                comboboxInput.ref.current.focus();
+                timeout.current = setTimeout(close, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
+              }}
+            />
+          </CalendarWrapper>
+        </EzPopover>
       )}
     </OverlayFieldWrapper>
   );
