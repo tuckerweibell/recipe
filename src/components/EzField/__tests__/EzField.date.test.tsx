@@ -224,22 +224,6 @@ describe('EzField', () => {
 
       expect(document.body).not.toHaveTextContent('January 2019');
     });
-    it('should hide calendar on click outside', async () => {
-      render(
-        <>
-          <button type="button">Outside Button</button>
-          <EzField type="date" value="01/01/2019" label={inputLabel} />
-        </>
-      );
-
-      fireEvent.mouseDown(screen.getByLabelText(inputLabel));
-
-      expect(document.body).toHaveTextContent('January 2019');
-
-      fireEvent.mouseDown(screen.getByText(/Outside Button/));
-
-      expect(document.body).not.toHaveTextContent('January 2019');
-    });
     it('should fire onchange AFTER day is clicked', async () => {
       const handleChange = jest.fn();
       render(<EzField type="date" value="01/01/2019" label={inputLabel} onChange={handleChange} />);
