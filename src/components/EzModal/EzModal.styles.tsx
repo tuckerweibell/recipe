@@ -80,4 +80,9 @@ export const ButtonFooter = styled.div`
   background: ${props => props.theme.colors.page.background};
   border-top: 1px solid ${props => props.theme.colors.border.subtle};
   flex: none;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
 `;
