@@ -128,3 +128,38 @@
   );
 };
 ```
+
+### EzField date input within modal
+
+```jsx
+() => {
+  const containerRef = React.createRef();
+
+  const isWeekday = date => {
+    const day = new Date(date).getDay();
+    return day !== 0 && day !== 6;
+  };
+
+  return (
+    <EzModal
+      isOpen
+      submitLabel="Submit"
+      destructive
+      dismissLabel="Dismiss"
+      headerText="Header goes here"
+    >
+      <div ref={containerRef}>
+        <Open containerRef={containerRef}>
+          <EzField
+            label="Order date"
+            filterDate={isWeekday}
+            type="date"
+            value="01/20/2020"
+            autoFocus
+          />
+        </Open>
+      </div>
+    </EzModal>
+  );
+};
+```

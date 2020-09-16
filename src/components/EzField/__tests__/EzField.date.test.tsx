@@ -8,8 +8,9 @@ import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzLayout} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
+import EzModal from '../../EzModal';
 
-const scope = {EzField, EzLayout, EzFormLayout, Open, Media};
+const scope = {EzField, EzLayout, EzFormLayout, Open, Media, EzModal};
 
 describe('EzField', () => {
   visualSnapshots({markdown: ezDateInputTests, scope});
