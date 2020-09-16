@@ -9,6 +9,7 @@ import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
 import {ThemeProvider} from 'emotion-theming';
 import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
+import './mocks';
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);

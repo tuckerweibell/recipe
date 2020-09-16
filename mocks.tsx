@@ -3,7 +3,7 @@ import React from 'react';
 // popovers render inside of a portal and the bottom of the doc, and reposition using popper.js
 // This depends on APIs that JSDOM doesn't support, so instead, "float" the content below the
 // current position.
-jest.mock('../EzPopover', () => {
+jest.mock('./src/components/EzPopover', () => {
   return {
     __esModule: true,
     default: ({children}) => (

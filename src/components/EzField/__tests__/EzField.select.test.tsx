@@ -4,7 +4,6 @@ import {getByLabelText, getByText, fireEvent, act, screen} from '@testing-librar
 import userEvent from '@testing-library/user-event';
 import ReactTestUtils from 'react-dom/test-utils';
 import ezSelectTests from './EzSelect.test.md';
-import '../mocks';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzButton, EzLayout} from '../../index';

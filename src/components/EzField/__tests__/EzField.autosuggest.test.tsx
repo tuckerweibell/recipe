@@ -3,7 +3,6 @@ import {visualSnapshots} from 'sosia';
 import {getByLabelText, fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import markdown from './EzField.autosuggest.test.md';
-import '../mocks';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzButton, EzLayout} from '../../index';
