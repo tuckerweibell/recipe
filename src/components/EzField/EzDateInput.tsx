@@ -25,7 +25,7 @@ const EzDateInput = ({
 
   const state = useMenuTriggerState();
   const combobox = {
-    ...props,
+    className: props.className,
     disabled,
     opened: state.isOpen,
   };
