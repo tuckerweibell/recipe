@@ -1,12 +1,14 @@
 import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
+import {useDialogState} from 'reakit/Dialog';
 import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTriggerState, useMenuTrigger, useOverlayPosition} from './Overlays';
+import {useMenuTrigger, useOverlayPosition} from './Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
+import {Dialog} from '../EzModal/Dialog';
 
 const EzDateInput = ({
   id,
@@ -20,16 +22,16 @@ const EzDateInput = ({
 
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
+  const dialogState = useDialogState();
 
-  const state = useMenuTriggerState();
   const combobox = {
     className: props.className,
     disabled,
-    opened: state.isOpen,
+    opened: dialogState.visible,
   };
 
-  const {close, isOpen} = state;
-
+  const {hide: close, visible: isOpen, show: open, toggle} = dialogState;
+  const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
   const onChangeRef = React.useRef(onChange);
   const triggerRef = useRef<HTMLInputElement>();
 
@@ -45,7 +47,7 @@ const EzDateInput = ({
     onChangeRef.current(validDate);
   }, [validDate]);
 
-  const {menuTriggerProps, menuProps} = useMenuTrigger(state);
+  const {menuTriggerProps, menuProps} = useMenuTrigger({isOpen, open, close, toggle});
 
   const comboboxInput = {
     ...menuTriggerProps,
@@ -71,33 +73,45 @@ const EzDateInput = ({
 
   return (
     <OverlayFieldWrapper hasError={props.touched && props.error} opened={isOpen}>
-      <TextInputWrapper {...combobox}>
+      <TextInputWrapper
+        {...combobox}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key !== 'Tab' || !isOpen) return;
+          e.preventDefault();
+          calendarRef.current.focus();
+        }}
+      >
         <InsetIcon insetY0 left0 pl3>
           <CalendarIcon />
         </InsetIcon>
-        <EzTextInput {...comboboxInput} />
+        <EzTextInput {...comboboxInput} type="text" />
         <InsetIcon insetY0 right0 pr2>
           <ChevronIcon flip={isOpen} />
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (
-        <EzPopover shouldCloseOnBlur onClose={close} {...overlayPosition}>
-          <CalendarWrapper
-            {...menuProps}
-            onKeyDown={event => {
-              if (event.key === 'Escape') close();
-            }}
-          >
-            <EzCalendar
-              {...{minDate, maxDate, filterDate}}
-              value={validDate}
-              onChange={date => {
-                setValue(date);
-                close();
+        <EzPopover {...overlayPosition}>
+          <Dialog preventBodyScroll={false} {...dialogState} {...menuProps}>
+            <CalendarWrapper
+              onKeyDown={e => {
+                if (e.key !== 'Escape') return;
+                e.stopPropagation();
                 comboboxInput.ref.current.focus();
+                close();
               }}
-            />
-          </CalendarWrapper>
+            >
+              <EzCalendar
+                {...{minDate, maxDate, filterDate}}
+                ref={calendarRef}
+                value={validDate}
+                onChange={date => {
+                  setValue(date);
+                  close();
+                  comboboxInput.ref.current.focus();
+                }}
+              />
+            </CalendarWrapper>
+          </Dialog>
         </EzPopover>
       )}
     </OverlayFieldWrapper>

@@ -23,6 +23,7 @@ export const useMenuTrigger = (state: OverlayTriggerState) => {
         const action = keyMap[e.key];
         if (e.defaultPrevented || !action) return;
         if (!state.isOpen) e.preventDefault();
+        e.stopPropagation();
         action(e);
       },
     },

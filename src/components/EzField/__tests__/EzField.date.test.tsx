@@ -2,6 +2,7 @@ import React from 'react';
 import {visualSnapshots} from 'sosia';
 import dayjs from 'dayjs';
 import {fireEvent, act, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ezDateInputTests from './EzDateInput.test.md';
 import EzField from '../EzField';
 import {fullRender as render} from '../../../jest-globals';
@@ -124,9 +125,7 @@ describe('EzField', () => {
 
       const input = container.querySelector('input');
 
-      act(() => {
-        fireEvent.change(input, {target: {value: '02/01/2019'}});
-      });
+      userEvent.type(input, '02/01/2019');
 
       expect(handleChange).toHaveBeenCalled();
     });
@@ -227,6 +226,23 @@ describe('EzField', () => {
       });
 
       expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+    it('should focus calendar when tabbing from date input', async () => {
+      render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      const input = screen.getByLabelText(inputLabel);
+
+      input.focus();
+
+      fireEvent.mouseDown(input);
+
+      expect(document.body).toHaveTextContent('January 2019');
+
+      expect(document.activeElement).toBe(input);
+
+      userEvent.tab();
+
+      expect(screen.getByRole('dialog')).toContainElement(document.activeElement as HTMLElement);
     });
   });
 });

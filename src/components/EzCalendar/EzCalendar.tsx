@@ -39,7 +39,7 @@ const populateMonth = (date: any) => {
   );
 };
 
-const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}) => {
+const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
   const {t} = useTranslation(en);
   const calendarRef = useRef(null);
   const refs = useRef(repeat(maxDaysInMonth).map(() => createRef<HTMLButtonElement>())).current;
@@ -47,6 +47,13 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}) => {
   const selectedDate = dayjs(value).isValid() ? dayjs(value) : dayjs();
 
   const [focusedDate, setFocusedDate] = useState(selectedDate);
+  const focusTarget = useRef<HTMLButtonElement>();
+
+  React.useImperativeHandle(ref, () => ({
+    focus() {
+      focusTarget.current.focus();
+    },
+  }));
 
   useEffect(() => {
     const {activeElement, body} = calendarRef.current.ownerDocument;
@@ -108,6 +115,7 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}) => {
           <MonthNavigation>
             <button
               type="button"
+              ref={focusTarget}
               onClick={() => setFocusedDate(focusedDate.subtract(1, 'month').set('date', 1))}
             >
               ← {t('Prev')}
@@ -166,4 +174,6 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}) => {
   );
 };
 
-export default EzCalendar;
+type Handles = {focus: () => void};
+
+export default React.forwardRef(EzCalendar as React.RefForwardingComponent<Handles, any>);
