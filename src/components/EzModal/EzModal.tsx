@@ -1,19 +1,13 @@
-import React, {useRef, useContext, useEffect} from 'react';
-import {useDialog, useDialogState, useDialogBackdrop, DialogStateReturn} from 'reakit/Dialog';
-import {Portal} from 'reakit/Portal';
+import React, {useRef} from 'react';
+import {useDialogState, useDialogBackdrop} from 'reakit/Dialog';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
-import {
-  ButtonFooter,
-  HeaderContainer,
-  ContentContainer,
-  StyledDialog,
-  StyledOverlay,
-} from './EzModal.styles';
+import {ButtonFooter, HeaderContainer, ContentContainer, StyledOverlay} from './EzModal.styles';
 import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
-import EzPortal, {PortalContext} from '../EzPortal';
+import EzPortal from '../EzPortal';
+import {Dialog} from './Dialog';
 
 type Props = {
   children: React.ReactNode;
@@ -33,34 +27,6 @@ const PortalledOverlay = ({children, ...props}) => (
     <StyledOverlay {...useDialogBackdrop(props)}>{children}</StyledOverlay>
   </EzPortal>
 );
-
-const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, children, ...props}) => {
-  const {current: hostNode} = useContext(PortalContext);
-  const initialFocusRef = useRef<HTMLElement>();
-  const ref = useRef<HTMLElement>();
-
-  useEffect(() => {
-    if (isOpen) initialFocusRef.current = hostNode.ownerDocument.activeElement as HTMLElement;
-  }, [hostNode, isOpen]);
-
-  const preventBodyScroll = !isSSR && hostNode.ownerDocument === document;
-  const dialog = useDialog(
-    {
-      ...props,
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      unstable_finalFocusRef: initialFocusRef,
-      preventBodyScroll,
-    },
-    {ref}
-  );
-
-  return (
-    // eslint-disable-next-line no-underscore-dangle
-    <StyledDialog {...dialog} className={Portal.__className}>
-      <PortalContext.Provider value={ref}>{props.visible && children}</PortalContext.Provider>
-    </StyledDialog>
-  );
-};
 
 const isSSR = typeof document === 'undefined';
 
@@ -86,7 +52,7 @@ const EzModal: React.FC<Props> = ({
 
   return (
     <PortalledOverlay {...dialog}>
-      <Dialog {...dialog} isOpen={isOpen} aria-labelledby={labelId}>
+      <Dialog {...dialog} aria-labelledby={labelId}>
         <HeaderContainer>
           <EzHeading size="2" id={labelId}>
             {headerText}
