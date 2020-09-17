@@ -1,7 +1,6 @@
 import React, {useRef, useContext, useEffect} from 'react';
 import {useDialog, DialogProps} from 'reakit/Dialog';
 import {Portal} from 'reakit/Portal';
-import {StyledDialog} from './EzModal.styles';
 import {PortalContext} from '../EzPortal';
 
 const isSSR = typeof document === 'undefined';
@@ -18,12 +17,16 @@ export const Dialog: React.FC<DialogProps> = ({children, ...props}) => {
 
   const preventBodyScroll = !isSSR && hostNode?.ownerDocument === document;
   const initialFocus = 'unstable_finalFocusRef';
-  const dialog = useDialog({[initialFocus]: initialFocusRef, preventBodyScroll, ...props}, {ref});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {wrapElement, ...dialog} = useDialog(
+    {[initialFocus]: initialFocusRef, preventBodyScroll, ...props},
+    {ref}
+  );
 
   return (
     // eslint-disable-next-line no-underscore-dangle
-    <StyledDialog {...dialog} className={Portal.__className}>
+    <div {...dialog} className={`${Portal.__className} ${props.className}`}>
       <PortalContext.Provider value={ref}>{props.visible && children}</PortalContext.Provider>
-    </StyledDialog>
+    </div>
   );
 };

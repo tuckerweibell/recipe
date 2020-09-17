@@ -15,8 +15,8 @@ export const StyledOverlay = styled.div`
   left: 0;
 `;
 
-export const StyledDialog = styled.div`
-  background: ${props => props.theme.colors.white};
+export const dialogStyles = props => css`
+  background: ${props.theme.colors.white};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -25,15 +25,15 @@ export const StyledDialog = styled.div`
   width: 100%;
   overflow-y: auto; // IE fix to prevent flex items overflowing. See: https://github.com/philipwalton/flexbugs#flexbug-3
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
+  @media screen and (min-width: ${props.theme.breakpoints.medium}) {
     border-radius: 12px;
     height: auto;
-    max-height: calc(100vh - ${props => props.theme.spacing.xl4});
+    max-height: calc(100vh - ${props.theme.spacing.xl4});
     width: 575px;
   }
 
   :focus {
-    box-shadow: 0px 0px 2px 2px ${({theme}) => theme.colors.interactive.focus.outline},
+    box-shadow: 0px 0px 2px 2px ${props.theme.colors.interactive.focus.outline},
       0 1px 1px 0 rgba(0, 0, 0, 0.12);
   }
 `;

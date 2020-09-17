@@ -1,13 +1,22 @@
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
 import React, {useRef} from 'react';
 import {useDialogState, useDialogBackdrop} from 'reakit/Dialog';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
-import {ButtonFooter, HeaderContainer, ContentContainer, StyledOverlay} from './EzModal.styles';
+import {
+  ButtonFooter,
+  HeaderContainer,
+  ContentContainer,
+  StyledOverlay,
+  dialogStyles,
+} from './EzModal.styles';
 import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
 import {Dialog} from './Dialog';
+import {useTheme} from '../../themes/styled';
 
 type Props = {
   children: React.ReactNode;
@@ -49,10 +58,11 @@ const EzModal: React.FC<Props> = ({
 
   dialog.hide = onDismiss;
   dialog.visible = isOpen;
+  const theme = useTheme();
 
   return (
     <PortalledOverlay {...dialog}>
-      <Dialog {...dialog} aria-labelledby={labelId}>
+      <Dialog css={dialogStyles({theme})} {...dialog} aria-labelledby={labelId}>
         <HeaderContainer>
           <EzHeading size="2" id={labelId}>
             {headerText}
