@@ -143,23 +143,13 @@ describe('EzField', () => {
       expect(handleChange).toHaveBeenCalled();
     });
     it('should hide calendar when day is clicked', () => {
-      jest.useFakeTimers();
-
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       fireEvent.mouseDown(screen.getByLabelText(inputLabel));
 
       expect(document.body).toHaveTextContent('January 2019');
 
-      act(() => {
-        fireEvent.click(screen.getByText('1'));
-      });
-
-      // Calendar is still visible for 100 milliseconds to make clicking feel more solid
-      expect(document.body).toHaveTextContent('January 2019');
-
-      // Fast-forward until all timers have been executed
-      act(jest.runAllTimers);
+      fireEvent.click(screen.getByText('1'));
 
       expect(document.body).not.toHaveTextContent('January 2019');
     });

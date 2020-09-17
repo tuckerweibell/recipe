@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
 import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
@@ -7,8 +7,6 @@ import EzCalendar from '../EzCalendar/EzCalendar';
 import {useMenuTriggerState, useMenuTrigger, useOverlayPosition} from './Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
-
-const CLOSE_CALENDAR_ON_SELECT_DELAY_MS = 100;
 
 const EzDateInput = ({
   id,
@@ -33,10 +31,7 @@ const EzDateInput = ({
   const {close, isOpen} = state;
 
   const onChangeRef = React.useRef(onChange);
-  const timeout = useRef(null);
   const triggerRef = useRef<HTMLInputElement>();
-
-  useEffect(() => () => clearTimeout(timeout.current), []);
 
   useUpdateEffect(() => {
     if (dayjs(value).isValid()) setValidDate(value);
@@ -98,8 +93,8 @@ const EzDateInput = ({
               value={validDate}
               onChange={date => {
                 setValue(date);
+                close();
                 comboboxInput.ref.current.focus();
-                timeout.current = setTimeout(close, CLOSE_CALENDAR_ON_SELECT_DELAY_MS);
               }}
             />
           </CalendarWrapper>
