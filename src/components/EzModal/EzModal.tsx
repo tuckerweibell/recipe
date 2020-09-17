@@ -43,7 +43,7 @@ const Dialog: React.FC<DialogStateReturn & {isOpen: boolean}> = ({isOpen, childr
     if (isOpen) initialFocusRef.current = hostNode.ownerDocument.activeElement as HTMLElement;
   }, [hostNode, isOpen]);
 
-  const preventBodyScroll = hostNode === document.body;
+  const preventBodyScroll = !isSSR && hostNode.ownerDocument === document;
   const dialog = useDialog(
     {
       ...props,
