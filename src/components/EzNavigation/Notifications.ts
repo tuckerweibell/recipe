@@ -34,7 +34,6 @@ const hideOnOpen = ({opened}) =>
 
 export const NotificationCounter = styled(Counter)`
   position: absolute;
-  z-index: 2;
   top: 15px;
   right: 10px;
   box-shadow: 0px 0px 1px 5px #373c43;
