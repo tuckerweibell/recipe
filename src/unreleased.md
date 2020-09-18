@@ -20,6 +20,7 @@ title: 'Unreleased changes'
 - Fix: body element scroll-lock when EzModal is open. Closes [issue #418](https://github.com/ezcater/recipe/issues/418).
 - Fix: Unwanted html attributes duplicated from EzField[type=date] input onto its container element.
 - Fix: Focus-lock applied to EzField[type=date] flyout.
+- Fix: Remove z-index from notifiation count, causing notification to incorrectly appear above EzModal.
 
 #### Documentation
 
