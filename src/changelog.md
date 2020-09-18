@@ -8,6 +8,16 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.7.1 - 2020-09-18
+
+#### Bug fixes
+
+- Fix: The calendar flyout is no longer clipped by ancestor elements that with non-visible overflow. Closes [issue #419](https://github.com/ezcater/recipe/issues/419).
+- Fix: body element scroll-lock when EzModal is open. Closes [issue #418](https://github.com/ezcater/recipe/issues/418).
+- Fix: Unwanted html attributes duplicated from EzField[type=date] input onto its container element.
+- Fix: Focus-lock applied to EzField[type=date] flyout.
+- Fix: Remove z-index from notifiation count, causing notification to incorrectly appear above EzModal.
+
 ## 10.7.0 - 2020-09-14
 
 #### New components
