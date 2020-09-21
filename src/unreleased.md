@@ -19,4 +19,6 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- locked internal dependency on reakit to 1.2.0.
+
 #### Development workflow
