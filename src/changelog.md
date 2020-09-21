@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 10.7.2 - 2020-09-21
+
+#### Dependency upgrades
+
+- locked internal dependency on reakit to 1.2.0.
+
 ## 10.7.1 - 2020-09-18
 
 #### Bug fixes
