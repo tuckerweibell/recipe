@@ -4,7 +4,7 @@ import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from './Overlays';
+import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from '../Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 import FocusScope from '../FocusScope';

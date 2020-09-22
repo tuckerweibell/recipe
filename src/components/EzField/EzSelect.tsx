@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core';
 import {useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useOverlayPosition} from './Overlays';
+import {useOverlayPosition} from '../Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';

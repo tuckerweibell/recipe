@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {useMenuTriggerState, useMenuTrigger} from './Overlays';
+import {useMenuTriggerState, useMenuTrigger} from '../Overlays';
 import {useSelectableCollection} from './useSelectableCollection';
 import {useListState} from './useListState';
 import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
