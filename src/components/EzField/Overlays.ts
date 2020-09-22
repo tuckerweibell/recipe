@@ -16,7 +16,7 @@ export const useMenuTrigger = (state: OverlayTriggerState) => {
     menuTriggerProps: {
       ...triggerProps,
       id: menuTriggerId,
-      onMouseDown() {
+      onClick() {
         state.toggle();
       },
       onKeyDown(e) {

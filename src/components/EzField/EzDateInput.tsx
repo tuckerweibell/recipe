@@ -1,14 +1,13 @@
 import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
-import {useDialogState} from 'reakit/Dialog';
 import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTrigger, useOverlayPosition} from './Overlays';
+import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from './Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
-import {Dialog} from '../EzModal/Dialog';
+import FocusScope from '../FocusScope';
 
 const EzDateInput = ({
   id,
@@ -22,15 +21,15 @@ const EzDateInput = ({
 
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
-  const dialogState = useDialogState();
 
+  const menuState = useMenuTriggerState();
   const combobox = {
     className: props.className,
     disabled,
-    opened: dialogState.visible,
+    opened: menuState.isOpen,
   };
 
-  const {hide: close, visible: isOpen, show: open, toggle} = dialogState;
+  const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
   const onChangeRef = React.useRef(onChange);
   const triggerRef = useRef<HTMLInputElement>();
@@ -47,7 +46,7 @@ const EzDateInput = ({
     onChangeRef.current(validDate);
   }, [validDate]);
 
-  const {menuTriggerProps, menuProps} = useMenuTrigger({isOpen, open, close, toggle});
+  const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
 
   const comboboxInput = {
     ...menuTriggerProps,
@@ -90,13 +89,15 @@ const EzDateInput = ({
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (
-        <EzPopover {...overlayPosition}>
-          <Dialog preventBodyScroll={false} {...dialogState} {...menuProps}>
+        <EzPopover {...overlayPosition} shouldCloseOnBlur onClose={close}>
+          <FocusScope contain restoreFocus>
             <CalendarWrapper
+              {...menuProps}
+              role="dialog"
+              aria-labelledby={id}
               onKeyDown={e => {
                 if (e.key !== 'Escape') return;
                 e.stopPropagation();
-                comboboxInput.ref.current.focus();
                 close();
               }}
             >
@@ -107,11 +108,10 @@ const EzDateInput = ({
                 onChange={date => {
                   setValue(date);
                   close();
-                  comboboxInput.ref.current.focus();
                 }}
               />
             </CalendarWrapper>
-          </Dialog>
+          </FocusScope>
         </EzPopover>
       )}
     </OverlayFieldWrapper>
