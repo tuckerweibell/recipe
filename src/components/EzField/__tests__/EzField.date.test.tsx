@@ -53,6 +53,9 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
+
+      screen.getByText('1').focus();
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowLeft'});
 
       expect(document.body).toHaveTextContent('December 2018');
@@ -61,6 +64,7 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'});
 
       expect(screen.getByText('2').getAttribute('tabindex')).toBe('0');
@@ -69,6 +73,7 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowDown'});
 
       expect(screen.getByText('8').getAttribute('tabindex')).toBe('0');
@@ -77,6 +82,7 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowUp'});
 
       expect(screen.getByText('25').getAttribute('tabindex')).toBe('0');
@@ -88,6 +94,7 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
 
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(screen.getByText('2'), {key: 'ArrowRight'}); // Day
@@ -104,6 +111,7 @@ describe('EzField', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
+      userEvent.tab();
 
       fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'}); // Day
       fireEvent.keyDown(screen.getByText('2'), {key: 'ArrowRight'}); // Day
