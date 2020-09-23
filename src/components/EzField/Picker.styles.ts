@@ -1,22 +1,4 @@
-import {css} from '@emotion/core';
 import styled from '../../themes/styled';
-
-const errorIconPosition = ({hasError}) =>
-  hasError &&
-  css`
-    + * > svg {
-      right: 1em;
-    }
-  `;
-
-const hideErrorMessageWhenOpen = ({hasError, opened}) =>
-  hasError &&
-  opened &&
-  css`
-    + * + * {
-      display: none;
-    }
-  `;
 
 export const OverlayFieldWrapper = styled.div<any>`
   input {
@@ -28,9 +10,6 @@ export const OverlayFieldWrapper = styled.div<any>`
       outline-style: auto;
     }
   }
-
-  ${errorIconPosition};
-  ${hideErrorMessageWhenOpen};
 `;
 
 const iconColor = p =>

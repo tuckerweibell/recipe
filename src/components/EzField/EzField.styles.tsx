@@ -87,6 +87,7 @@ export const InlineError = styled.div`
   display: flex;
   justify-content: flex-end;
   position: relative;
+  pointer-events: none;
 
   > * {
     ${callout};
