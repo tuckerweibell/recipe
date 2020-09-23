@@ -2,21 +2,13 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {fireEvent} from '@testing-library/react';
 import {EzCard, EzCardSection, EzCardExpandable} from '..';
 import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzPageSection, EzLayout, EzButton, EzField} from '../../index';
 import Media from '../../EzField/Media';
-
-const Open = ({children, containerRef}) => {
-  React.useEffect(() => {
-    const input = containerRef.current.querySelector('input');
-    fireEvent.mouseDown(input);
-  }, [containerRef]);
-  return children;
-};
+import Open from '../../EzField/Open';
 
 const scope = {
   EzButton,

@@ -1,10 +1,10 @@
 import React from 'react';
-import {fireEvent} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 const Open = ({children, containerRef}) => {
   React.useEffect(() => {
     const input = containerRef.current.querySelector('input');
-    fireEvent.mouseDown(input);
+    userEvent.click(input);
   }, [containerRef]);
   return children;
 };

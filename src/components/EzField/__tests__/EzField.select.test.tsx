@@ -143,7 +143,7 @@ describe('EzField', () => {
 
       const keyDown = key => fireEvent.keyDown(input, {key});
 
-      fireEvent.mouseDown(input);
+      userEvent.click(input);
 
       expect(queryByText('Today')).not.toBeNull();
 
@@ -234,7 +234,7 @@ describe('EzField', () => {
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
 
       // open the menu
-      fireEvent.mouseDown(input);
+      userEvent.click(input);
 
       const option2 = getByText(container, 'Today');
 
@@ -267,7 +267,7 @@ describe('EzField', () => {
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
 
       // open the menu
-      fireEvent.mouseDown(input);
+      userEvent.click(input);
 
       const option2 = getByText(container, 'Today');
 
@@ -422,7 +422,7 @@ describe('EzField', () => {
       expect(onBlur).not.toHaveBeenCalled();
 
       // mouse down on a different button to trigger focus change
-      fireEvent.mouseDown(getByText(container, 'click me'));
+      userEvent.click(getByText(container, 'click me'));
 
       expect(onBlur).toHaveBeenCalled();
     });
