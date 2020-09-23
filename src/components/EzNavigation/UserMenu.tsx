@@ -1,11 +1,11 @@
-import React, {forwardRef} from 'react';
+import React, {useRef} from 'react';
 import {css} from '@emotion/core';
-import {Button} from 'reakit/Button';
-import {useDialogState, Dialog, DialogDisclosure} from 'reakit/Dialog';
+import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from '../Overlays';
 import {menuStyles} from './Menu';
 import EzLink from '../EzLink';
 import styled from '../../themes/styled';
 import {wrapEvents} from '../../utils';
+import EzPopover from '../EzPopover';
 
 type MenuProps = {
   name: string;
@@ -23,16 +23,16 @@ const buttonReset = () => css`
   }
 `;
 
-export const nestedStyles = () => css`
+const nestedStyles = () => css`
   background-color: #373d43;
   border-radius: 8px;
   box-shadow: 0 3px 6px 0 rgba(#1b2023, 0.6);
-  width: calc(100% - 10px);
-  margin: 0 5px;
+  width: calc(100% - 8px);
+  margin-left: -4px;
   outline: none;
 `;
 
-export const nestedMenuItem = () => css`
+const nestedMenuItem = () => css`
   color: #b8bdc2;
   display: block;
   font-weight: normal;
@@ -54,7 +54,7 @@ const ProfileIcon = () => (
   </svg>
 );
 
-export const iconMenuItem = () => css`
+const iconMenuItem = () => css`
   display: flex;
   align-items: center;
   svg {
@@ -62,35 +62,46 @@ export const iconMenuItem = () => css`
   }
 `;
 
-const Trigger = styled(DialogDisclosure)(menuStyles, buttonReset, iconMenuItem) as any;
-const StyledMenu = styled(Dialog)(nestedStyles) as any;
-const StyledMenuItem = styled(Button)(nestedMenuItem, buttonReset) as any;
+const Trigger = styled.button(menuStyles, buttonReset, iconMenuItem) as any;
+const StyledMenu = styled.div(nestedStyles) as any;
+const StyledMenuItem = styled.button(nestedMenuItem, buttonReset) as any;
 
-const UserMenu = forwardRef<HTMLButtonElement, MenuProps>((props, ref) => {
-  const dialog = useDialogState({modal: false});
+const UserMenu: React.FC<MenuProps> = props => {
+  const ref = useRef();
+  const menuState = useMenuTriggerState();
+  const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
+
+  const overlayPosition = useOverlayPosition({
+    targetRef: ref,
+    placement: 'top-start',
+  });
+
   return (
     <>
-      <StyledMenu {...dialog} aria-label="User options">
-        {props.links.map((link, i) => (
-          <StyledMenuItem
-            key={i}
-            {...dialog}
-            {...link}
-            as={EzLink}
-            {...wrapEvents(link, {
-              onClick: props.sidebarToggle,
-            })}
-          >
-            {link.label}
-          </StyledMenuItem>
-        ))}
-      </StyledMenu>
-      <Trigger ref={ref} {...dialog}>
+      {menuState.isOpen && (
+        <EzPopover {...overlayPosition} shouldCloseOnBlur onClose={menuState.close}>
+          <StyledMenu {...menuProps} aria-label="User options">
+            {props.links.map((link, i) => (
+              <StyledMenuItem
+                key={i}
+                {...link}
+                as={EzLink}
+                {...wrapEvents(link, {
+                  onClick: props.sidebarToggle,
+                })}
+              >
+                {link.label}
+              </StyledMenuItem>
+            ))}
+          </StyledMenu>
+        </EzPopover>
+      )}
+      <Trigger ref={ref} {...menuTriggerProps}>
         <ProfileIcon />
         {props.name}
       </Trigger>
     </>
   );
-});
+};
 
 export default UserMenu;

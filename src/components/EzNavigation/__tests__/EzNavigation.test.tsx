@@ -63,15 +63,11 @@ describe('EzNavigation', () => {
 
     fireEvent.click(hamburger);
 
-    const initialRender = queryByText('Settings');
-
-    expect(initialRender).not.toBeVisible();
+    expect(queryByText('Settings')).not.toBeInTheDocument();
 
     fireEvent.click(getByText('Stefania Mallett'));
 
-    const renderAfterClick = queryByText('Settings');
-
-    expect(renderAfterClick).toBeVisible();
+    expect(queryByText('Settings')).toBeVisible();
   });
 
   it('should expand grouped navigation links when clicked', () => {
