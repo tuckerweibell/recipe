@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import React, {useRef} from 'react';
-import {useDialogState, useDialogBackdrop} from 'reakit/Dialog';
+import React from 'react';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
@@ -12,14 +11,14 @@ import {
   StyledOverlay,
   dialogStyles,
 } from './EzModal.styles';
+import FocusScope from '../FocusScope';
 import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
-import {Dialog} from './Dialog';
 import {useTheme} from '../../themes/styled';
+import {ScrollLock} from './ScrollLock';
 
 type Props = {
-  children: React.ReactNode;
   headerText: string;
   destructive?: boolean;
   dismissLabel: string;
@@ -31,13 +30,21 @@ type Props = {
   appElement?: string;
 };
 
-const PortalledOverlay = ({children, ...props}) => (
-  <EzPortal>
-    <StyledOverlay {...useDialogBackdrop(props)}>{children}</StyledOverlay>
-  </EzPortal>
-);
+const useDialogBackdrop = ({onDismiss}) => ({
+  onClick: e => e.target === e.currentTarget && onDismiss(),
+});
 
-const isSSR = typeof document === 'undefined';
+const useDialog = ({onDismiss}) => ({
+  role: 'dialog',
+  'aria-modal': true,
+  tabIndex: -1,
+  onKeyDown: (event: React.KeyboardEvent) => {
+    if (event.defaultPrevented) return;
+    if (event.key !== 'Escape') return;
+    event.stopPropagation();
+    onDismiss();
+  },
+});
 
 const EzModal: React.FC<Props> = ({
   children,
@@ -46,51 +53,53 @@ const EzModal: React.FC<Props> = ({
   dismissLabel,
   isOpen,
   isSubmitting,
-  onDismiss: initialOnDismiss,
+  onDismiss,
   onSubmit,
   submitLabel,
 }) => {
   const labelId = useUniqueId();
-  // JSDOM doesn't support this API
-  const modalOption = {modal: Boolean(!isSSR && Element.prototype.insertAdjacentElement)};
-  const dialog = useDialogState({visible: isOpen, ...modalOption});
-  const {current: onDismiss} = useRef(initialOnDismiss);
-
-  dialog.hide = onDismiss;
-  dialog.visible = isOpen;
   const theme = useTheme();
+  const backdrop = useDialogBackdrop({onDismiss});
+  const dialog = useDialog({onDismiss});
+
+  if (!isOpen) return null;
 
   return (
-    <PortalledOverlay {...dialog}>
-      <Dialog css={dialogStyles({theme})} {...dialog} aria-labelledby={labelId}>
-        <HeaderContainer>
-          <EzHeading size="2" id={labelId}>
-            {headerText}
-          </EzHeading>
-          <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
-        </HeaderContainer>
+    <EzPortal>
+      <StyledOverlay {...backdrop}>
+        <ScrollLock />
+        <FocusScope contain restoreFocus autoFocus>
+          <div {...dialog} css={dialogStyles({theme})} aria-labelledby={labelId}>
+            <HeaderContainer>
+              <EzHeading size="2" id={labelId}>
+                {headerText}
+              </EzHeading>
+              <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
+            </HeaderContainer>
 
-        <ContentContainer>{children}</ContentContainer>
+            <ContentContainer>{children}</ContentContainer>
 
-        <ButtonFooter>
-          <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-            {submitLabel && (
-              <EzButton
-                use="primary"
-                destructive={destructive}
-                onClick={onSubmit}
-                loading={isSubmitting}
-              >
-                {submitLabel}
-              </EzButton>
-            )}
-            <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-              {dismissLabel}
-            </EzButton>
-          </EzLayout>
-        </ButtonFooter>
-      </Dialog>
-    </PortalledOverlay>
+            <ButtonFooter>
+              <EzLayout layout={{base: 'stack', medium: 'basic'}}>
+                {submitLabel && (
+                  <EzButton
+                    use="primary"
+                    destructive={destructive}
+                    onClick={onSubmit}
+                    loading={isSubmitting}
+                  >
+                    {submitLabel}
+                  </EzButton>
+                )}
+                <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                  {dismissLabel}
+                </EzButton>
+              </EzLayout>
+            </ButtonFooter>
+          </div>
+        </FocusScope>
+      </StyledOverlay>
+    </EzPortal>
   );
 };
 

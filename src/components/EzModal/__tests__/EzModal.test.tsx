@@ -61,6 +61,78 @@ describe('EzModal', () => {
     expect(clickSpy).toHaveBeenCalled();
   });
 
+  it('calls dismiss when clicking outside of the modal', () => {
+    const dismiss = jest.fn();
+    const dismissLabel = 'dismiss';
+    fullRender(
+      <EzModal
+        isOpen
+        dismissLabel={dismissLabel}
+        submitLabel="submit"
+        onDismiss={dismiss}
+        headerText="header"
+      >
+        Test
+      </EzModal>
+    );
+
+    const outside = screen.getByRole('dialog').parentElement;
+
+    fireEvent.click(outside);
+    expect(dismiss).toHaveBeenCalled();
+  });
+
+  it('calls dismiss when Escape is pressed', () => {
+    const dismiss = jest.fn();
+    const dismissLabel = 'dismiss';
+    fullRender(
+      <EzModal
+        isOpen
+        dismissLabel={dismissLabel}
+        submitLabel="submit"
+        onDismiss={dismiss}
+        headerText="header"
+      >
+        Test
+      </EzModal>
+    );
+
+    const dialog = screen.getByRole('dialog');
+
+    userEvent.type(dialog, '{esc}');
+
+    expect(dismiss).toHaveBeenCalled();
+  });
+
+  it('does NOT call dismiss when Escape is pressed but is already handled by a descendant component', () => {
+    const dismiss = jest.fn();
+    const dismissLabel = 'dismiss';
+
+    const Child = () => (
+      <input data-testid="child" onKeyDown={e => e.key === 'Escape' && e.preventDefault()} />
+    );
+
+    fullRender(
+      <EzModal
+        isOpen
+        dismissLabel={dismissLabel}
+        submitLabel="submit"
+        onDismiss={dismiss}
+        headerText="header"
+      >
+        <Child />
+      </EzModal>
+    );
+
+    const child = screen.getByTestId('child');
+
+    userEvent.type(child, 'sample text');
+
+    userEvent.type(child, '{esc}');
+
+    expect(dismiss).not.toHaveBeenCalled();
+  });
+
   it('disables the submit button when the form is submitting', () => {
     const submitLabel = 'submit';
     const {getByText} = fullRender(
@@ -87,6 +159,28 @@ describe('EzModal', () => {
     );
     const dismissButton = getByText(dismissLabel);
     expect(dismissButton).toHaveAttribute('disabled');
+  });
+
+  it('prevents the main document body from scrolling when open', () => {
+    const dismissLabel = 'dismiss';
+
+    const Test = ({isOpen = false}) => (
+      <EzModal isOpen={isOpen} dismissLabel={dismissLabel} headerText="header">
+        test
+      </EzModal>
+    );
+
+    const {rerender} = fullRender(<Test />);
+
+    expect(document.body.style.overflow).toEqual('');
+
+    rerender(<Test isOpen />);
+
+    expect(document.body.style.overflow).toEqual('hidden');
+
+    rerender(<Test />);
+
+    expect(document.body.style.overflow).toEqual('');
   });
 
   /**

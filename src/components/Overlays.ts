@@ -64,12 +64,12 @@ interface OverlayTriggerState {
  * Manages state for a menu trigger. Tracks whether the menu is currently open,
  * and controls which item will receive focus when it opens.
  */
-export const useMenuTriggerState = (): OverlayTriggerState => {
-  return useOverlayTriggerState();
+export const useMenuTriggerState = (options = {}): OverlayTriggerState => {
+  return useOverlayTriggerState(options);
 };
 
-const useOverlayTriggerState = (): OverlayTriggerState => {
-  const [isOpen, setOpen] = useState(false);
+const useOverlayTriggerState = ({initialIsOpen = false}): OverlayTriggerState => {
+  const [isOpen, setOpen] = useState(initialIsOpen);
 
   return {
     isOpen,
@@ -89,7 +89,7 @@ const useOverlayTriggerState = (): OverlayTriggerState => {
  * Handles positioning overlays like popovers and menus relative to a trigger
  * element, and updating the position when the window resizes.
  */
-export const useOverlayPosition = options => ({
+export const useOverlayPosition = options => /* istanbul ignore next */ ({
   ...options,
   modifiers: [
     {
