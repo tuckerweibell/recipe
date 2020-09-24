@@ -74,6 +74,9 @@ export default () => {
               alignSelf: 'start',
               overflow: 'visible',
             },
+            '&& > * + *': {
+              flex: '1 1 0px',
+            },
           }}
         >
           <EzHeading size="3" css={{flexShrink: 0, flexBasis: '20% !important'}}>
