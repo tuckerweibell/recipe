@@ -6,8 +6,6 @@
   </a>
 </p>
 
-
-
 <p align="center">
   Delicious UI components, from <a href="https://www.ezcater.com/">ezcater</a>.
   <br>
@@ -18,7 +16,7 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/npm/v/@ezcater/recipe.svg" /></a>
-  <a href="https://npmjs.org/package/reakit"><img alt="NPM version" src="https://img.shields.io/bundlephobia/minzip/@ezcater/recipe" /></a>
+  <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/bundlephobia/minzip/@ezcater/recipe" /></a>
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@ezcater/recipe.svg"></a>
   <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/maintainability"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/maintainability" /></a>
   <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/test_coverage" /></a>
@@ -45,8 +43,6 @@ export const MyComponent = () => (
   </div>
 );
 ```
-
-
 
 ## Contributing / Creating Components
 
