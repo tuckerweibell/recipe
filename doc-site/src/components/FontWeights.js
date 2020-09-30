@@ -1,36 +1,25 @@
 /** @jsx jsx */
-import {jsx, css} from '@emotion/core';
-import {themes} from '@ezcater/recipe';
+import {jsx} from '@emotion/core';
+import {themes, EzTable} from '@ezcater/recipe';
 
 const {standard} = themes;
 
-export default props => {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <td>Variable</td>
-          <td>Weight</td>
-          <td>Example</td>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.keys(standard.fontWeights).map(key => {
-          return (
-            <tr key={key}>
-              <td>{key}</td>
-              <td>{standard.fontWeights[key]}</td>
-              <td
-                css={css`
-                  font-weight: ${standard.fontWeights[key]};
-                `}
-              >
-                Order catering now
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-};
+const Example = ({item: {variable}}) => (
+  <span css={{fontWeight: standard.fontWeights[variable]}}>
+    Order catering now
+  </span>
+);
+
+export default () => (
+  <EzTable
+    columns={[
+      {heading: 'Example', component: Example},
+      {heading: 'Variable', key: 'variable'},
+      {heading: 'Weight', key: 'weight'},
+    ]}
+    items={Object.keys(standard.fontWeights).map(variable => ({
+      variable,
+      weight: standard.fontWeights[variable]
+    }))}
+  />
+);

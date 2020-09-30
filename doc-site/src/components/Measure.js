@@ -1,7 +1,6 @@
 import {useLayoutEffect, useRef, useState} from 'react';
 
-export default ({cssProperty, children}) => {
-  const ref = useRef(null);
+export const useMeasure = (ref, cssProperty) => {
   const [value, setValue] = useState(null);
 
   useLayoutEffect(() => {
@@ -9,5 +8,10 @@ export default ({cssProperty, children}) => {
     setValue(newValue);
   });
 
-  return children([ref, value]);
+  return value;
+}
+
+export default ({cssProperty, children}) => {
+  const ref = useRef(null);
+  return children([ref, useMeasure(ref, cssProperty)]);
 };
