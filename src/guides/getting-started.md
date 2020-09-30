@@ -33,7 +33,7 @@ order: 10
 
 - A good place to start is by reading the overview of how to do [high level screen layout](/components/ez-app-layout) with Recipe
 - Most Recipe components are opinionated about how to layout their child content. However in some cases you may need to use [Layout](/components/ez-layout) to control the horizontal layout of individual components across multiple breakpoints.
-- If you want to see what's available in Recipe, you can [browse all componenets](/components/).
+- If you want to see what's available in Recipe, you can [browse all componets](/components/).
 - We have a [Styles](/styles) page that documents available values for color, spacing, and typography. However, you shouldn't need to refer to these unless you are authoring new components. When Recipe components can be configured with multiple appearances, we typically design them to take semantic property names that reflect the usage. For example, the `use` property on [Alert](/components/ez-alert) takes values like `info` and `error`, which happen to render as blue and red respectively.
 - Recipe components use consistent patterns for properties; you'll find various components use similarly named properties like `title` or `value` when the usage is equivalent across the components. Certain properties will also have a consistent shape wherever they are found. For example, the `breadcrumb` and `tabs` properties on [Page Header](/components/ez-page-header) and the `home` and `links` properties on [Navigation](/components/ez-navigation) accept a common "link" shaped object that accepts a url as an `href` or a [Router compatible Link](https://reacttraining.com/react-router/web/api/Link).
 - [Principles for using recipe](/guides/principles#principles-for-using-recipe)
