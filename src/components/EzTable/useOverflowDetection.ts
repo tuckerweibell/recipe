@@ -10,7 +10,7 @@ const useOverflowDetection = <T extends HTMLElement>(): [boolean, OverflowBindin
 
   useEffect(() => {
     const el = ref.current;
-    set(el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight);
+    set(el.scrollWidth > el.clientWidth);
   }, [ref]);
 
   return [hasOverflow, {ref}];
