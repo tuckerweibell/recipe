@@ -33,9 +33,6 @@ const IFramePlayground = props => {
       // without taking an effect dependency on changes to the margin
       setMargin(m => {
         const newMargin = (el.parentElement.offsetWidth - el.offsetWidth) / 2;
-
-        if (m === '0px' && newMargin === 0) return m;
-
         const currentScrollPosition = [window.scrollX, window.scrollY];
 
         iframe.style.height = 0;
@@ -47,6 +44,21 @@ const IFramePlayground = props => {
       });
     };
 
+    // copy gatsby's included link based styles
+    const links = Array.from(document.getElementsByTagName('link'));
+    links.forEach(link => {
+      if (link.rel === 'stylesheet') {
+        iframe.contentDocument.head.appendChild(link.cloneNode(true));
+      }
+    });
+
+    // copy gatsby pre-rendered styles
+    const styles = Array.from(document.getElementsByTagName('style'));
+
+    styles.forEach(style => {
+      iframe.contentDocument.head.appendChild(style.cloneNode(true));
+    });
+
     iframe.contentWindow.onmousedown = resizeBasedOnContent;
     iframe.contentWindow.onclick = resizeBasedOnContent;
     iframe.contentWindow.onfocus = resizeBasedOnContent;
@@ -54,6 +66,8 @@ const IFramePlayground = props => {
 
     const resizeObserver = new ResizeObserver(resizeBasedOnContent);
     resizeObserver.observe(contentDocument.querySelector('body'));
+
+    resizeBasedOnContent();
   }, [container]);
 
   const createStylesCache = useCallback(
