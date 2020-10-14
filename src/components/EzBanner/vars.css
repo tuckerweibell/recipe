@@ -1,0 +1,13 @@
+:root {
+  --recipe-banner-marketing-background-color: var(--recipe-global-color-static-purple-600);
+  --recipe-banner-ezordering-background-color: var(--recipe-global-color-static-teal-600);
+  --recipe-banner-body-padding-x: var(--recipe-global-static-size-400);
+  --recipe-banner-body-padding-y: var(--recipe-global-static-size-300);
+  --recipe-banner-border-radius: var(--recipe-alias-border-radius-regular);
+  --recipe-banner-body-text-color: var(--recipe-global-color-static-white);
+  --recipe-banner-button-radius: var(--recipe-alias-border-radius-regular);
+  --recipe-banner-button-padding-x: var(--recipe-global-static-size-200);
+  --recipe-banner-button-padding-y: var(--recipe-global-static-size-100);
+  --recipe-banner-button-background-color: var(--recipe-global-color-static-white);
+  --recipe-banner-button-text-color: var(--recipe-global-color-static-gray-700);
+}
