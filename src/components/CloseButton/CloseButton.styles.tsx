@@ -1,24 +1,34 @@
 import {css} from '@emotion/core';
+import './vars.css';
 
-export const base = ({theme}) => css`
+export const base = () => css`
   align-self: center;
   background-color: transparent;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
   outline: none;
-  padding: ${theme.spacing.lg};
-  margin: calc(${theme.spacing.lg} * -1);
+  padding: var(--recipe-dismiss-padding);
+  margin: calc(var(--recipe-dismiss-padding) * -1);
+  background-color: var(--recipe-dismiss-background-color);
+  --recipe-dismiss-background-color-translucent: rgba(
+    var(--recipe-dismiss-color-translucent-rgb),
+    var(--recipe-dismiss-color-translucent-opacity)
+  );
 
-  :hover {
-    background-color: hsla(240, 11%, 95%, 0.4);
+  :hover,
+  :focus {
+    --recipe-dismiss-color-translucent-rgb: var(--recipe-dismiss-color-translucent-rgb-dark);
+    --recipe-dismiss-color-translucent-opacity: var(
+      --recipe-dismiss-color-translucent-opacity-dark
+    );
+    --recipe-dismiss-background-color: var(--recipe-dismiss-background-color-translucent);
   }
   :active {
-    background-color: hsla(204, 11%, 79%, 0.4);
-  }
-  :focus {
-    background-color: hsla(204, 11%, 79%, 0.4);
-    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline},
-      0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    --recipe-dismiss-color-translucent-rgb: var(--recipe-dismiss-color-translucent-rgb-darker);
+    --recipe-dismiss-color-translucent-opacity: var(
+      --recipe-dismiss-color-translucent-opacity-darker
+    );
+    --recipe-dismiss-background-color: var(--recipe-dismiss-background-color-translucent);
   }
 `;
