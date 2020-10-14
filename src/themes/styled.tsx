@@ -8,8 +8,10 @@ export function useTheme(): Theme {
   return Object.keys(theme).length ? theme : standard;
 }
 
+const bps = {medium: '768px', large: '1061px'};
+
 export function mq(bp: string, i: Interpolation): Interpolation {
-  return {[`@media (min-width: ${bp})`]: i};
+  return {[`@media (min-width: ${bp in bps ? bps[bp] : bp})`]: i};
 }
 
 export type Theme = typeof standard;
