@@ -1,6 +1,4 @@
 const path = require('path');
-const createPreviewImage = require('./utils/snapshot');
-const generateImages = false;
 
 exports.createPages = ({actions, graphql}) => {
   const {createPage} = actions;
@@ -37,12 +35,6 @@ exports.createPages = ({actions, graphql}) => {
         context: {},
       })
     );
-
-    if (!generateImages) return;
-
-    const previews = files.filter(f => f.fileAbsolutePath.endsWith('.preview.md'));
-
-    return Promise.all(previews.map(createPreviewImage));
   });
 };
 
