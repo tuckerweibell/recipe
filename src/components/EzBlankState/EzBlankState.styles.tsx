@@ -1,20 +1,21 @@
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
 export const BlankStateWrapper = styled.div`
-  padding: ${({theme}) => theme.spacing.xl4} ${({theme}) => theme.spacing.lg};
+  padding: var(--recipe-blank-state-padding-y) var(--recipe-blank-state-padding-x);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   && > * + * {
-    margin-top: ${props => props.theme.spacing.lg};
+    margin-top: var(--recipe-blank-state-content-spacing);
   }
 `;
 
 export const BlankStateImageWrapper = styled.div`
-  width: 150px;
-  height: 150px;
+  width: var(--recipe-blank-state-image-width);
+  height: var(--recipe-blank-state-image-height);
   display: flex;
   align-items: center;
   justify-content: center;

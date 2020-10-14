@@ -1,0 +1,8 @@
+:root {
+  --recipe-blank-state-padding-x: var(--recipe-global-static-size-250);
+  --recipe-blank-state-padding-y: var(--recipe-global-static-size-750);
+  --recipe-blank-state-content-spacing: var(--recipe-global-static-size-250);
+  --recipe-blank-state-image-size: 150px;
+  --recipe-blank-state-image-height: var(--recipe-blank-state-image-size);
+  --recipe-blank-state-image-width: var(--recipe-blank-state-image-size);
+}
