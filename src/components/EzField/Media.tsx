@@ -24,6 +24,23 @@ const IFrameContent = ({iframeEl, children}) => {
   );
 };
 
+// smaller output than encodeURIComponent...
+const encodeHead = head =>
+  head
+    // strip newlines and whitespace
+    .replace(/\n|\s\s/g, '')
+    // strip whitespace between rules
+    .replace(/:\s/g, ':')
+    // strip comments
+    .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*/g, '')
+    // replace hex color symbol
+    .replace(/#/g, '%23')
+    // replace url contents
+    .replace(/url\([^)]*\)|\[[^\]]*\]/g, old => encodeURIComponent(old));
+
+const toDataUri = ({head, body}) =>
+  `data:text/html,<html>${encodeHead(head)}<body>${encodeURIComponent(body)}</body></html>`;
+
 const Media = ({size, children}) => {
   const iframeEl = useRef(null);
   const linkRef = useRef(null);
@@ -38,9 +55,10 @@ const Media = ({size, children}) => {
   useEffect(() => {
     if (!linkRef.current) return;
     setSrc(
-      `data:text/html,${encodeURIComponent(
-        `<html>${linkRef.current.ownerDocument.head.outerHTML}<body>${iframeEl.current.innerHTML}</body></html>`
-      )}`
+      toDataUri({
+        head: linkRef.current.ownerDocument.head.outerHTML,
+        body: iframeEl.current.innerHTML,
+      })
     );
   }, [container]);
 
