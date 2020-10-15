@@ -9,6 +9,7 @@ import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
 import {ThemeProvider} from 'emotion-theming';
 import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
+import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 
 // Add custom matchers
@@ -30,6 +31,8 @@ const EmotionCacheProvider = ({children}) => {
   const cache = React.useRef(
     createCache({
       prefix: false,
+      // default key prefix is 'css'. Changing it to 'r' (for recipe), to trim the size of the generated output by two chars per class.
+      key: 'r',
       stylisPlugins: [
         // can't trigger :hover and :active pseudo classes with JS, so replace the pseudo classes with custom class,
         // e.g. :hover => .__hover
@@ -91,14 +94,14 @@ const markdownSourceWithThemeWrapper = {
   },
 };
 
+const chromeDesktop = new RemotePuppeteerBrowserTarget({
+  url: new URL('https://remote-screenshot-puppeteer.craigcavalier.now.sh/'),
+  width: 1024,
+  height: 768,
+});
+
 configureSosia({
-  targets: {
-    'chrome-desktop': new RemotePuppeteerBrowserTarget({
-      url: new URL('https://remote-screenshot-puppeteer.craigcavalier.now.sh/'),
-      width: 1024,
-      height: 768,
-    }),
-  },
+  targets: {'chrome-desktop': minifyDecorator(chromeDesktop)},
   sources: {documentation: markdownSourceWithThemeWrapper},
 });
 
