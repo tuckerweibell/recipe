@@ -11,6 +11,7 @@ import {
 } from './EzCalendar.styles';
 
 import en from './en';
+import EzButton from '../EzButton';
 import {useTranslation} from '../../utils/hooks';
 
 const weekDayCount = 7;
@@ -113,22 +114,22 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
       <CalendarTable ref={calendarRef}>
         <Row>
           <MonthNavigation>
-            <button
-              type="button"
+            <EzButton
+              use="tertiary"
               ref={focusTarget}
               onClick={() => setFocusedDate(focusedDate.subtract(1, 'month').set('date', 1))}
             >
               ← {t('Prev')}
-            </button>
+            </EzButton>
           </MonthNavigation>
           <MonthName>{focusedDate.format('MMMM YYYY')}</MonthName>
           <MonthNavigation>
-            <button
-              type="button"
+            <EzButton
+              use="tertiary"
               onClick={() => setFocusedDate(focusedDate.add(1, 'month').set('date', 1))}
             >
               {t('Next')} →
-            </button>
+            </EzButton>
           </MonthNavigation>
         </Row>
         <Row>
