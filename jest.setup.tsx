@@ -29,6 +29,7 @@ expect.extend(matchers);
 const EmotionCacheProvider = ({children}) => {
   const cache = React.useRef(
     createCache({
+      prefix: false,
       stylisPlugins: [
         // can't trigger :hover and :active pseudo classes with JS, so replace the pseudo classes with custom class,
         // e.g. :hover => .__hover

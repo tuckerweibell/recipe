@@ -12,7 +12,9 @@ const sizes = {
 };
 
 const IFrameContent = ({iframeEl, children}) => {
-  const cache = useRef(createCache({container: iframeEl.ownerDocument.head, key: 'frame'}));
+  const cache = useRef(
+    createCache({container: iframeEl.ownerDocument.head, key: 'frame', prefix: false})
+  );
 
   // Remove any injected stylesheets from the page when the component is unmounted
   React.useEffect(() => () => cache.current.sheet.flush());
