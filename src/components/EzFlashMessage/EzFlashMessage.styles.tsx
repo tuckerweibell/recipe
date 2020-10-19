@@ -52,6 +52,9 @@ export type FlashMessageProps = FlashMessageContainerProps & {
 export const FlashMessageContainer = styled(EzCard)<FlashMessageContainerProps>`
   ${accent};
   background-color: var(--recipe-flash-message-background-color);
+  --recipe-card-dropshadow: none;
+  border-style: solid;
+  border-width: 1px;
   border-color: var(--recipe-flash-message-border-color);
   border-left-width: var(--recipe-flash-message-accent-border-size);
   border-left-color: var(--recipe-flash-message-accent-color);
