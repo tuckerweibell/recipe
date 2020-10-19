@@ -1,11 +1,11 @@
 import {css} from '@emotion/core';
-import {standard} from '../../themes';
+import './vars.css';
 
-export const base = ({theme}) => css`
-  padding: ${theme.spacing.sm} ${theme.spacing.lg};
+export const base = () => css`
+  padding: var(--recipe-global-static-size-150) var(--recipe-card-padding);
   text-align: center;
-  border-top: 1px solid ${theme.colors.border.base};
-  border-radius: 0 0 ${standard.borderRadius[2]} ${standard.borderRadius[2]};
-  background-color: ${standard.colors.grays[100]};
+  border-top: 1px solid var(--recipe-card-border-color);
+  border-radius: 0 0 var(--recipe-card-border-radius) var(--recipe-card-border-radius);
+  background-color: var(--recipe-card-footer-background-color);
   overflow: hidden;
 `;

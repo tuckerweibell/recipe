@@ -1,9 +1,10 @@
 import {css} from '@emotion/core';
+import './vars.css';
 
-export const base = ({theme}) => css`
-  padding: ${theme.spacing.lg};
+export const base = () => css`
+  padding: var(--recipe-card-padding);
 
   && > * + * {
-    margin-top: ${theme.spacing.md};
+    margin-top: var(--recipe-card-body-content-margin-top);
   }
 `;

@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import {base} from './EzCardFooter.styles';
-import styled from '../../themes/styled';
 
 type Props = {
   children?: any;

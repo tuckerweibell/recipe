@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import {base} from './EzCardSection.styles';
 import EzCardHeading from './EzCardHeading';
-import styled from '../../themes/styled';
 
 type HeadingProps = React.ComponentProps<typeof EzCardHeading>;
 
