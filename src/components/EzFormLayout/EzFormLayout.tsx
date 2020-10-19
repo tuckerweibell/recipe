@@ -1,8 +1,9 @@
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
 const EzFormLayout = styled.div`
   && > * + * {
-    margin-top: ${({theme}) => theme.spacing.xl};
+    margin-top: var(--recipe-form-layout-field-margin);
   }
 `;
 
