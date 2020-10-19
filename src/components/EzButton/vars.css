@@ -1,0 +1,80 @@
+:root {
+  --recipe-button-font-size: var(--recipe-alias-font-size-default);
+  --recipe-button-font-family: var(--recipe-global-font-family-base);
+  --recipe-button-font-weight: var(--recipe-global-font-weight-bold);
+  --recipe-button-leading: var(--recipe-global-leading-tight);
+  --recipe-button-border-radius: var(--recipe-alias-border-radius-regular);
+  --recipe-button-border-size: var(--recipe-alias-border-size-thin);
+  --recipe-button-padding-x: var(--recipe-global-static-size-200);
+  --recipe-button-padding-y: var(--recipe-global-static-size-75);
+
+  /* primary */
+  --recipe-button-primary-background-color: var(--recipe-global-color-static-blue-600);
+  --recipe-button-primary-background-color-hover: var(--recipe-global-color-static-blue-800);
+  --recipe-button-primary-background-color-down: var(--recipe-global-color-static-blue-900);
+  --recipe-button-primary-background-color-focus: var(--recipe-global-color-static-blue-650);
+
+  --recipe-button-primary-text-color: var(--recipe-global-color-static-white);
+  --recipe-button-primary-text-color-hover: var(--recipe-global-color-static-white);
+  --recipe-button-primary-text-color-down: var(--recipe-global-color-static-white);
+  
+  --recipe-button-primary-border-color: var(--recipe-global-color-static-blue-600);
+  --recipe-button-primary-border-color-hover: var(--recipe-global-color-static-blue-800);
+  --recipe-button-primary-border-color-down: var(--recipe-global-color-static-blue-900);
+  --recipe-button-primary-border-color-focus: var(--recipe-global-color-static-blue-950);
+
+  /* primary--destructive */
+  --recipe-button-primary-destructive-background-color: var(--recipe-global-color-static-red-600);
+  --recipe-button-primary-destructive-background-color-hover: var(--recipe-global-color-static-red-800);
+  --recipe-button-primary-destructive-background-color-down: var(--recipe-global-color-static-red-900);
+  --recipe-button-primary-destructive-background-color-focus: var(--recipe-global-color-static-red-600);
+
+  --recipe-button-primary-destructive-text-color: var(--recipe-global-color-static-white);
+  --recipe-button-primary-destructive-text-color-hover: var(--recipe-global-color-static-white);
+  --recipe-button-primary-destructive-text-color-down: var(--recipe-global-color-static-white);
+  
+  --recipe-button-primary-destructive-border-color: var(--recipe-global-color-static-red-600);
+  --recipe-button-primary-destructive-border-color-hover: var(--recipe-global-color-static-red-800);
+  --recipe-button-primary-destructive-border-color-down: var(--recipe-global-color-static-red-900);
+  --recipe-button-primary-destructive-border-color-focus: var(--recipe-global-color-static-red-950);
+
+  /* secondary */
+  --recipe-button-secondary-background-color: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-background-color-hover: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-background-color-down: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-background-color-focus: var(--recipe-global-color-static-white);
+
+  --recipe-button-secondary-text-color: var(--recipe-global-color-static-blue-600);
+  --recipe-button-secondary-text-color-hover: var(--recipe-global-color-static-blue-800);
+  --recipe-button-secondary-text-color-down: var(--recipe-global-color-static-blue-900);
+  
+  --recipe-button-secondary-border-color: var(--recipe-global-color-static-gray-400);
+  --recipe-button-secondary-border-color-hover: var(--recipe-global-color-static-gray-500);
+  --recipe-button-secondary-border-color-down: var(--recipe-global-color-static-gray-400);
+  --recipe-button-secondary-border-color-focus: var(--recipe-global-color-blue-gray-600);
+
+  /* secondary--destructive */
+  --recipe-button-secondary-destructive-background-color: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-destructive-background-color-hover: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-destructive-background-color-down: var(--recipe-global-color-static-white);
+  --recipe-button-secondary-destructive-background-color-focus: var(--recipe-global-color-static-white);
+
+  --recipe-button-secondary-destructive-text-color: var(--recipe-global-color-static-red-600);
+  --recipe-button-secondary-destructive-text-color-hover: var(--recipe-global-color-static-red-800);
+  --recipe-button-secondary-destructive-text-color-down: var(--recipe-global-color-static-red-900);
+  
+  --recipe-button-secondary-destructive-border-color: var(--recipe-global-color-static-gray-400);
+  --recipe-button-secondary-destructive-border-color-hover: var(--recipe-global-color-static-gray-500);
+  --recipe-button-secondary-destructive-border-color-down: var(--recipe-global-color-static-gray-400);
+  --recipe-button-secondary-destructive-border-color-focus: var(--recipe-global-color-static-blue-600);
+
+  /* tertiary */
+  --recipe-button-tertiary-text-color: var(--recipe-global-color-static-blue-600);
+  --recipe-button-tertiary-text-color-hover: var(--recipe-global-color-static-blue-800);
+  --recipe-button-tertiary-text-color-down: var(--recipe-global-color-static-blue-900);
+
+  /* tertiary--destructive */
+  --recipe-button-tertiary-destructive-text-color: var(--recipe-global-color-static-red-600);
+  --recipe-button-tertiary-destructive-text-color-hover: var(--recipe-global-color-static-red-800);
+  --recipe-button-tertiary-destructive-text-color-down: var(--recipe-global-color-static-red-900);
+}

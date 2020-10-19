@@ -70,6 +70,13 @@ const button = () => css`
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
     text-decoration: none;
   }
+  &:hover,
+  a&:hover {
+    color: var(--recipe-banner-button-text-color-hover);
+  }
+  &:active {
+    color: var(--recipe-banner-button-text-color-down);
+  }
 `;
 
 const backgroundColor = variant('use', {

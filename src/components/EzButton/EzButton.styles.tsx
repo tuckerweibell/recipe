@@ -1,22 +1,27 @@
 import React, {forwardRef} from 'react';
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
-import styled from '../../themes/styled';
-import {keyframes, darken, pseudoClasses} from '../../styles';
+import {keyframes} from '../../styles';
+import './vars.css';
 
-const base = ({theme}) => css`
+const base = () => css`
   cursor: pointer;
   display: inline-block;
   outline: 0;
-  font-size: ${theme.baseFontSize};
-  font-family: ${theme.baseFontFamily};
-  font-weight: ${theme.fontWeights.bold};
-  line-height: 1.25rem;
+  font-size: var(--recipe-button-font-size);
+  font-family: var(--recipe-button-font-family);
+  font-weight: var(--recipe-button-font-weight);
+  line-height: var(--recipe-button-leading);
   min-height: 1rem;
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
+
+  color: var(--recipe-button-text-color);
+  background-color: var(--recipe-button-background-color);
+  border-color: var(--recipe-button-border-color);
 `;
 
 const disabled = ({disabled: isDisabled}) =>
@@ -27,20 +32,15 @@ const disabled = ({disabled: isDisabled}) =>
     pointer-events: none;
   `;
 
-const outlineStyles = ({theme}) => css`
-  border-radius: ${theme.borderRadius[1]};
+const outlineStyles = () => css`
+  border-radius: var(--recipe-button-border-radius);
   border-style: solid;
-  border-width: ${theme.borderWidth[0]};
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  /* 
-    inputs and buttons should be equivalent in size, but since inputs can't be a line-height lower than 1.25em
-    we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
-  */
-  padding: calc(${theme.spacing.xs} - 0.125rem) ${theme.spacing.md};
+  border-width: var(--recipe-button-border-size);
+  box-shadow: var(--recipe-alias-shadow-small);
+  padding: var(--recipe-button-padding-y) var(--recipe-button-padding-x);
 
   :focus {
-    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline},
-      0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: var(--recipe-alias-focus-ring-shadow);
   }
 `;
 
@@ -49,52 +49,178 @@ const outline = variant('use', {
   secondary: outlineStyles,
 });
 
-const primary = ({theme: {colors}, destructive}) => {
-  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
-  return css`
-    color: ${colors.white};
-    border-color: ${color};
-    ${pseudoClasses('border-color', {color, focusColor: darken(color, 0.25)})};
-    ${pseudoClasses('background-color', {color})};
-  `;
+const primaryBase = () => css`
+  --recipe-button-text-color: var(--recipe-button-primary-text-color);
+  --recipe-button-background-color: var(--recipe-button-primary-background-color);
+  --recipe-button-border-color: var(--recipe-button-primary-border-color);
+
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-primary-text-color);
+    --recipe-button-background-color: var(--recipe-button-primary-background-color-focus);
+    --recipe-button-border-color: var(--recipe-button-primary-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-primary-text-color-hover);
+    --recipe-button-background-color: var(--recipe-button-primary-background-color-hover);
+    --recipe-button-border-color: var(--recipe-button-primary-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-primary-text-color-down);
+    --recipe-button-background-color: var(--recipe-button-primary-background-color-down);
+    --recipe-button-border-color: var(--recipe-button-primary-border-color-down);
+  }
+`;
+
+const primaryDestructive = () => css`
+  --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color);
+  --recipe-button-background-color: var(--recipe-button-primary-destructive-background-color);
+  --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color);
+
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color);
+    --recipe-button-background-color: var(
+      --recipe-button-primary-destructive-background-color-focus
+    );
+    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color-hover);
+    --recipe-button-background-color: var(
+      --recipe-button-primary-destructive-background-color-hover
+    );
+    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color-down);
+    --recipe-button-background-color: var(
+      --recipe-button-primary-destructive-background-color-down
+    );
+    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-down);
+  }
+`;
+
+const primary = ({destructive}) => {
+  return destructive ? primaryDestructive() : primaryBase();
 };
 
-const secondary = ({theme: {colors}, destructive}) => {
-  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
-  const borderColor = colors.border.base;
-  const focusColor = colors.interactive.focus.outline;
-  return css`
-    background-color: white;
-    border: solid 1px;
-    ${pseudoClasses('border-color', {color: borderColor, focusColor})};
-    ${pseudoClasses('color', {color})};
-    &:hover:enabled {
-      background-color: ${colors.interactive.hover.background};
-    }
-    &:active:enabled {
-      background-color: ${colors.interactive.active.background};
-    }
-  `;
+const secondaryBase = () => css`
+  --recipe-button-text-color: var(--recipe-button-secondary-text-color);
+  --recipe-button-background-color: var(--recipe-button-secondary-background-color);
+  --recipe-button-border-color: var(--recipe-button-secondary-border-color);
+
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-secondary-text-color);
+    --recipe-button-background-color: var(--recipe-button-secondary-background-color-focus);
+    --recipe-button-border-color: var(--recipe-button-secondary-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-secondary-text-color-hover);
+    --recipe-button-background-color: var(--recipe-button-secondary-background-color-hover);
+    --recipe-button-border-color: var(--recipe-button-secondary-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-secondary-text-color-down);
+    --recipe-button-background-color: var(--recipe-button-secondary-background-color-down);
+    --recipe-button-border-color: var(--recipe-button-secondary-border-color-down);
+  }
+`;
+
+const secondaryDestructive = () => css`
+  --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color);
+  --recipe-button-background-color: var(--recipe-button-secondary-destructive-background-color);
+  --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color);
+
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color);
+    --recipe-button-background-color: var(
+      --recipe-button-secondary-destructive-background-color-focus
+    );
+    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color-hover);
+    --recipe-button-background-color: var(
+      --recipe-button-secondary-destructive-background-color-hover
+    );
+    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color-down);
+    --recipe-button-background-color: var(
+      --recipe-button-secondary-destructive-background-color-down
+    );
+    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-down);
+  }
+`;
+
+const secondary = ({destructive}) => {
+  return destructive ? secondaryDestructive() : secondaryBase();
 };
 
-const tertiary = ({theme: {colors}, destructive}) => {
-  const color = destructive ? colors.destructive.foreground : colors.interactive.base;
-  return css`
-    background: none;
-    border: none;
-    line-height: 1rem;
-    padding: 0;
-    ${pseudoClasses('color', {color})};
+const tertiaryBase = () => css`
+  --recipe-button-text-color: var(--recipe-button-tertiary-text-color);
+  --recipe-button-background-color: var(--recipe-button-tertiary-background-color);
+  --recipe-button-border-color: var(--recipe-button-tertiary-border-color);
 
-    &:focus {
-      outline: auto;
-    }
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-tertiary-text-color);
+    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-focus);
+    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-tertiary-text-color-hover);
+    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-hover);
+    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-tertiary-text-color-down);
+    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-down);
+    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-down);
+  }
+`;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  `;
-};
+const tertiaryDestructive = () => css`
+  --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color);
+  --recipe-button-background-color: var(--recipe-button-tertiary-destructive-background-color);
+  --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color);
+
+  :focus {
+    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color);
+    --recipe-button-background-color: var(
+      --recipe-button-tertiary-destructive-background-color-focus
+    );
+    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-focus);
+  }
+  :hover {
+    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color-hover);
+    --recipe-button-background-color: var(
+      --recipe-button-tertiary-destructive-background-color-hover
+    );
+    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-hover);
+  }
+  :active {
+    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color-down);
+    --recipe-button-background-color: var(
+      --recipe-button-tertiary-destructive-background-color-down
+    );
+    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-down);
+  }
+`;
+
+const tertiary = ({destructive}) => css`
+  border: none;
+  line-height: 1rem;
+  padding: 0;
+  ${destructive ? tertiaryDestructive() : tertiaryBase()};
+
+  &:focus {
+    outline: auto;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const spinnerSize = 1.28571429;
 const spinnerOptions = {
@@ -138,10 +264,10 @@ const spinner = ({margin, size, radius, thickness, color}) => css`
   }
 `;
 
-const loading = ({isLoading, use, theme: {colors}}) => {
+const loading = ({isLoading, use}) => {
   const color = variant('use', {
-    primary: colors.white,
-    secondary: colors.grays[700],
+    primary: 'var(--recipe-button-primary-text-color)',
+    secondary: 'var(--recipe-button-secondary-text-color)',
   })({use});
   return isLoading && spinner({...spinnerOptions, color});
 };
@@ -167,19 +293,18 @@ export const DisabledButtonWrapper = forwardRef<any, any>((props, ref) => (
 export const IconContainer = styled.span`
   display: flex;
   /* enough padding to give rectangle outline (instead of jagged outline of icon/text) */
-  padding: 2px 2px 2px ${({theme}) => theme.spacing.xs};
+  padding: 2px;
   align-items: center;
   justify-content: center;
 
   svg {
     width: 1em;
     height: 1em;
-    /* visually center svg icon in the space by offsetting by half the margin between the icon and text */
-    margin-left: calc(${({theme}) => theme.spacing.xs2} * -1);
+    margin-left: 2px;
   }
 
   > * + * {
-    margin-left: ${({theme}) => theme.spacing.xs};
+    margin-left: 8px;
   }
 `;
 
