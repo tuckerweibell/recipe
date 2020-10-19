@@ -1,0 +1,5 @@
+:root {
+  --recipe-calendar-day-text-color: var(--recipe-global-color-static-blue-600);
+  --recipe-calendar-day-border-color-selected: var(--recipe-global-color-static-blue-500);
+  --recipe-calendar-day-background-color-selected: var(--recipe-global-color-static-blue-200);
+}

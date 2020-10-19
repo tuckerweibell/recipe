@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
 export const MonthNavigation = styled.span`
   flex: 0;
@@ -7,12 +8,12 @@ export const MonthNavigation = styled.span`
 `;
 
 export const MonthName = styled.span`
-  font-weight: ${props => props.theme.fontWeights.bold};
+  font-weight: var(--recipe-global-font-weight-bold);
 `;
 
 export const WeekdayName = styled.span`
-  padding: ${props => props.theme.spacing.sm} 0;
-  font-weight: ${props => props.theme.fontWeights.bold};
+  padding: var(--recipe-global-static-size-150) 0;
+  font-weight: var(--recipe-global-font-weight-bold);
 `;
 
 export const Row = styled.div`
@@ -24,27 +25,30 @@ export const Row = styled.div`
   }
 `;
 
-const day = ({theme}) => css`
+const day = () => css`
   button {
-    border: ${theme.borderWidth[0]} solid transparent;
-    border-radius: ${theme.borderRadius[1]};
+    border: var(--recipe-alias-border-size-thin) solid transparent;
+    border-radius: var(--recipe-alias-border-radius-regular);
+    color: var(--recipe-calendar-day-text-color);
 
     &[aria-disabled='true'] {
       opacity: 0.6;
       cursor: default;
-      color: ${theme.colors.interactive.disabled.foreground};
+      --recipe-calendar-day-text-color: var(--recipe-alias-text-color-disabled);
       pointer-events: none;
     }
   }
 `;
 
-const selected = ({theme, isSelected}) =>
+const selected = ({isSelected}) =>
   isSelected &&
   css`
     button {
-      border-radius: ${theme.borderRadius[1]};
-      border: ${theme.borderWidth[0]} solid ${theme.colors.interactive.checked.border};
-      background-color: ${theme.colors.interactive.checked.background};
+      border-radius: var(--recipe-alias-border-radius-regular);
+      border-style: solid;
+      border-width: var(--recipe-alias-border-size-thin);
+      border-color: var(--recipe-calendar-day-border-color-selected);
+      background-color: var(--recipe-calendar-day-background-color-selected);
     }
   `;
 
@@ -53,12 +57,11 @@ export const Day = styled.span<any>(day, selected);
 export const CalendarTable = styled.div`
   width: 100%;
   button {
-    padding: ${props => props.theme.spacing.xs};
+    padding: var(--recipe-global-static-size-100);
     width: 100%;
     font-family: inherit;
     font-size: inherit;
-    font-weight: ${props => props.theme.fontWeights.bold};
-    color: ${props => props.theme.colors.interactive.base};
+    font-weight: var(--recipe-global-font-weight-bold);
     appearance: none;
     border: 0;
     background-color: transparent;
