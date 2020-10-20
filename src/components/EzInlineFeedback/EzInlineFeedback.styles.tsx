@@ -1,32 +1,32 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
-import styled from '../../themes/styled';
+import './vars.css';
 
-const base = ({theme}) => css`
+const base = () => css`
   display: inline-block;
-  margin-left: ${theme.spacing.sm};
-  line-height: ${theme.lineHeights.heading};
+  line-height: var(--recipe-inline-feedback-leading);
   vertical-align: top;
   svg {
-    margin-right: ${theme.spacing.xs};
+    margin-right: var(--recipe-global-static-size-100);
   }
 `;
 
 const useStyles = variant('use', {
-  error: ({theme}) => css`
-    color: ${theme.colors.destructive.main};
+  error: () => css`
+    color: var(--recipe-semantic-negative-color-default);
     svg path {
-      fill: ${theme.colors.destructive.main};
+      fill: var(--recipe-semantic-negative-color-default);
     }
   `,
-  progress: ({theme}) => css`
+  progress: () => css`
     svg path {
-      fill: ${theme.colors.text.deemphasis};
+      fill: var(--recipe-alias-deemphasis-text-color);
     }
   `,
-  success: ({theme}) => css`
+  success: () => css`
     svg path {
-      fill: ${theme.colors.success.text};
+      fill: var(--recipe-semantic-positive-color-text-small);
     }
   `,
 });

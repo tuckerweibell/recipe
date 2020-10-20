@@ -2,6 +2,7 @@ import React, {forwardRef, useRef, useState} from 'react';
 import {Container, Track} from './EzToggle.styles';
 import EzLabel from '../EzLabel';
 import EzInlineFeedback from '../EzInlineFeedback';
+import EzLayout from '../EzLayout';
 import {useUniqueId} from '../../utils/hooks';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -34,16 +35,18 @@ const EzToggle = forwardRef<HTMLDivElement, Props>(({id, label, status, ...props
   };
 
   return (
-    <Container disabled={props.disabled} checked={checked} onClick={handleClick} ref={ref}>
-      <input {...props} id={idOrDefault} ref={inputRef} type="checkbox" />
-      <Track />
-      {label && (
-        <EzLabel htmlFor={idOrDefault} position="right" as="label">
-          {label}
-        </EzLabel>
-      )}
+    <EzLayout layout="basic">
+      <Container disabled={props.disabled} checked={checked} onClick={handleClick} ref={ref}>
+        <input {...props} id={idOrDefault} ref={inputRef} type="checkbox" />
+        <Track />
+        {label && (
+          <EzLabel htmlFor={idOrDefault} position="right" as="label">
+            {label}
+          </EzLabel>
+        )}
+      </Container>
       {status && <EzInlineFeedback use={status} />}
-    </Container>
+    </EzLayout>
   );
 });
 
