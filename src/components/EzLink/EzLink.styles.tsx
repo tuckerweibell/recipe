@@ -1,21 +1,28 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
-import {pseudoClasses} from '../../styles';
+import styled from '@emotion/styled';
+import './vars.css';
 
-const base = ({theme}) => css`
+const base = () => css`
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
-  ${pseudoClasses('color', {color: theme.colors.interactive.base})};
+  color: var(--recipe-link-text-color);
+
+  :hover {
+    --recipe-link-text-color: var(--recipe-link-text-color-hover);
+  }
+  :active {
+    --recipe-link-text-color: var(--recipe-link-text-color-down);
+  }
 
   &:hover {
     text-decoration: underline;
   }
 `;
 
-const link = p => css`
+const link = () => css`
   > * {
-    ${base(p)};
+    ${base()};
   }
 `;
 
