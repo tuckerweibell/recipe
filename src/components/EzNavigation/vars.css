@@ -1,0 +1,10 @@
+:root {
+  --recipe-navigation-sidebar-width: 240px;
+  --recipe-navigation-background: linear-gradient(60deg, #1b2023 0%, #373d43 100%);
+  --recipe-navigation-text-color: #b8bdc2;
+  --recipe-navigation-text-color-hover: var(--recipe-global-color-static-white);
+  --recipe-navigation-text-color-selected: var(--recipe-global-color-static-white);
+  --recipe-navigation-background-color-selected: var(--recipe-global-color-static-gray-900);
+  --recipe-navigation-notification-background-color: var(--recipe-global-color-static-red-600);
+  --recipe-navigation-notification-text-color: var(--recipe-global-color-static-white);
+}

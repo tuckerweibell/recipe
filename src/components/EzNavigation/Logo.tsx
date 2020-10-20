@@ -1,9 +1,7 @@
-import React, {SFC} from 'react';
-import styled from '../../themes/styled';
+import React, {FC} from 'react';
+import styled from '@emotion/styled';
 import {Link} from '../EzLink/EzLink';
 import {LabelledLink, Link as LinkType} from '../EzLink/EzLink.types';
-
-const sidebarText = '#B8BDC2';
 
 const Wrapper = styled.div`
   position: relative;
@@ -13,7 +11,7 @@ const Wrapper = styled.div`
   a:visited {
     text-decoration: none;
   }
-  padding: ${({theme}) => theme.spacing.xl};
+  padding: var(--recipe-global-static-size-300);
 `;
 
 const LogoImg = styled('img')`
@@ -24,7 +22,7 @@ const LogoImg = styled('img')`
 const LogoText = styled('h1')`
   font-size: 24px;
   font-weight: 600;
-  color: ${sidebarText};
+  color: var(--recipe-navigation-text-color);
   margin: 0;
 `;
 
@@ -33,7 +31,7 @@ interface LogoProps {
   logo: {src: string; width: number | string};
 }
 
-const Logo: SFC<LogoProps> = ({link: {label, ...link}, logo}) => (
+const Logo: FC<LogoProps> = ({link: {label, ...link}, logo}) => (
   <Wrapper>
     <Link {...link} aria-label={label}>
       {logo ? <LogoImg src={logo.src} width={logo.width} alt="" /> : <LogoText>{label}</LogoText>}

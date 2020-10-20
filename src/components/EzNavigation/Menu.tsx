@@ -1,20 +1,23 @@
 import React from 'react';
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 import {Counter, Marketing} from './Notifications';
 
-export const menuStyles = ({theme}) => css`
-  color: #b8bdc2;
+export const menuStyles = () => css`
+  color: var(--recipe-navigation-text-color);
   font-weight: normal;
   display: flex;
   align-items: center;
-  padding: ${theme.spacing.md} ${theme.spacing.xl4} ${theme.spacing.md} ${theme.spacing.xl};
+  padding-top: var(--recipe-global-static-size-200);
+  padding-right: var(--recipe-global-static-size-750);
+  padding-bottom: var(--recipe-global-static-size-200);
+  padding-left: var(--recipe-global-static-size-300);
   width: 100%;
   position: relative;
   text-decoration: none;
 
   :hover {
-    color: white;
+    color: var(--recipe-navigation-text-color-hover);
   }
 
   :active {
@@ -35,8 +38,8 @@ const MenuLink = styled(Link)`
   ${menuStyles};
 
   &.active {
-    color: white;
-    background-color: ${({theme}) => theme.colors.grays[900]};
+    color: var(--recipe-navigation-text-color-selected);
+    background-color: var(--recipe-navigation-background-color-selected);
   }
 `;
 

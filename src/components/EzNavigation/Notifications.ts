@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import {mq} from '../../themes/styled';
 
 const Notification = styled.span`
   align-items: center;
@@ -20,8 +21,8 @@ export const Marketing = styled(Notification)`
 `;
 
 export const Counter = styled(Notification)`
-  background-color: ${({theme}) => theme.colors.reds.base};
-  color: white;
+  background-color: var(--recipe-navigation-notification-background-color);
+  color: var(--recipe-navigation-notification-text-color);
 `;
 
 const hideOnOpen = ({opened}) =>
@@ -39,10 +40,6 @@ export const NotificationCounter = styled(Counter)`
   box-shadow: 0px 0px 1px 5px #373c43;
   cursor: pointer;
   user-select: none;
-
-  ${hideOnOpen}
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-    visibility: hidden;
-  }
+  ${hideOnOpen};
+  ${mq('large', {visibility: 'hidden'})};
 `;

@@ -1,9 +1,9 @@
 import React, {useRef} from 'react';
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from '../Overlays';
 import {menuStyles} from './Menu';
 import EzLink from '../EzLink';
-import styled from '../../themes/styled';
 import {wrapEvents} from '../../utils';
 import EzPopover from '../EzPopover';
 

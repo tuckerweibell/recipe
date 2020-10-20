@@ -1,9 +1,10 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import {mq} from '../../themes/styled';
+import './vars.css';
 
 interface WrapperProps {
   opened: boolean;
-  theme?: any;
 }
 
 export const Wrapper = styled.div`
@@ -12,20 +13,12 @@ export const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-    flex-direction: row;
-  }
+  ${mq('large', {flexDirection: 'row'})};
 `;
 
 export const NavWrapper = styled.div<WrapperProps>`
   position: relative;
-  background: linear-gradient(60deg, #1b2023 0%, #373d43 100%);
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-    position: sticky;
-    height: 100vh;
-    top: 0;
-  }
+  background: var(--recipe-navigation-background);
 
   [aria-label='Menu'] {
     display: block;
@@ -33,10 +26,10 @@ export const NavWrapper = styled.div<WrapperProps>`
     right: 0;
     top: 10px;
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-      display: none;
-    }
+    ${mq('large', {display: 'none'})};
   }
+
+  ${mq('large', {position: 'sticky', height: '100vh', top: 0})};
 `;
 
 export const MenuContent = styled.div<WrapperProps>`
@@ -55,13 +48,16 @@ export const MenuContent = styled.div<WrapperProps>`
       overflow-y: auto;
     `}
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-    visibility: visible;
-    width: 240px;
-    transition: none;
-    height: calc(100vh - 70px);
-    overflow-y: auto;
-  }
+  ${mq(
+    'large',
+    css`
+      visibility: visible;
+      width: var(--recipe-navigation-sidebar-width);
+      transition: none;
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+    `
+  )}
 `;
 
 export const Menus = styled.nav<{primary?: boolean}>`
@@ -88,8 +84,5 @@ export const ContentContainer = styled.div<WrapperProps>`
       overflow: hidden;
     `}
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.large}) {
-    height: auto;
-    overflow: visible;
-  }
+  ${mq('large', {height: 'auto', overflow: 'visible'})};
 `;
