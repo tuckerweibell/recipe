@@ -169,7 +169,7 @@
   --recipe-alias-text-color: var(--recipe-global-color-static-gray-700);
   --recipe-alias-text-color-disabled: var(--recipe-global-color-static-gray-600);
   --recipe-alias-heading-text-color: var(--recipe-global-color-static-gray-700);
-  --recipe-alias-deemphasis-text-color: var(--recipe-global-color-static-gray-700);
+  --recipe-alias-deemphasis-text-color: var(--recipe-global-color-static-gray-600);
   --recipe-alias-border-size-thin: var(--recipe-global-static-size-10);
   --recipe-alias-border-size-thick: var(--recipe-global-static-size-25);
   --recipe-alias-border-size-thicker: var(--recipe-global-static-size-50);

@@ -1,0 +1,8 @@
+:root {
+  --recipe-heading-text-color: var(--recipe-alias-text-color);
+  --recipe-heading-leading: var(--recipe-alias-leading-title);
+  --recipe-subheading-text-color: var(--recipe-alias-deemphasis-text-color);
+  --recipe-subheading-font-size: var(--recipe-global-font-size-100);
+  --recipe-subheading-font-weight: var(--recipe-global-font-weight-regular);
+  --recipe-subheading-leading: var(--recipe-alias-leading-title);
+}

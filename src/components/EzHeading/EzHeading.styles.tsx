@@ -1,36 +1,42 @@
 import variant from 'styled-component-variant';
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import {align} from '../EzTextStyle/EzTextStyle.styles';
-import styled from '../../themes/styled';
+import './vars.css';
 
 export const Subheading = styled.div`
-  color: ${props => props.theme.colors.text.deemphasis};
-  font-size: ${props => props.theme.fontSizes[300]};
-  font-weight: ${props => props.theme.fontWeights.normal};
-  line-height: ${props => props.theme.lineHeights.heading};
-  margin-top: ${props => props.theme.spacing.xs};
+  color: var(--recipe-subheading-text-color);
+  font-size: var(--recipe-subheading-font-size);
+  font-weight: var(--recipe-subheading-font-weight);
+  line-height: var(--recipe-subheading-leading);
+  margin-top: var(--recipe-global-static-size-100);
 `;
 
-const heading = (size, weight) => ({theme}) => css`
-  color: ${theme.colors.text.base};
-  font-size: ${theme.fontSizes[size]};
-  font-weight: ${theme.fontWeights[weight]};
-  line-height: ${theme.lineHeights.heading};
-  margin: 0;
+const base = () => css`
+  color: var(--recipe-heading-text-color);
+  font-size: var(--recipe-heading-font-size);
+  font-weight: var(--recipe-heading-font-weight);
+  line-height: var(--recipe-heading-leading);
+  margin: var(--recipe-global-static-size-0);
 `;
+
+const heading = (fs, fw) => ({
+  '--recipe-heading-font-size': `var(--recipe-global-font-size-${fs})`,
+  '--recipe-heading-font-weight': `var(--recipe-global-font-weight-${fw})`,
+});
 
 const size = variant('size', {
-  1: heading(700, 'normal'),
-  2: heading(600, 'normal'),
-  3: heading(500, 'bold'),
-  4: heading(400, 'normal'),
-  5: heading(300, 'bold'),
-  6: heading(200, 'normal'),
+  1: heading(800, 'regular'),
+  2: heading(450, 'regular'),
+  3: heading(300, 'bold'),
+  4: heading(200, 'regular'),
+  5: heading(100, 'bold'),
+  6: heading(75, 'regular'),
 });
 
 export const headings = ['1', '2', '3', '4', '5', '6'].reduce((res, n) => {
   const tag = `h${n}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  return {[tag]: styled(tag)(size, align), ...res};
+  return {[tag]: styled(tag)(size, base, align), ...res};
 }, {});
 
 export const Header = styled.header(align);
