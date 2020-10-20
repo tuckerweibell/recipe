@@ -1,7 +1,8 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import {EzCardSection} from '..';
 import {TableCardSection} from '../EzTable/EzTable.styles';
-import styled from '../../themes/styled';
+import './vars.css';
 
 /*
   With table-layout: auto, widths of table cells only shrink to the size of their content,
@@ -19,23 +20,23 @@ export const ItemsSection = styled(TableCardSection)`
 
   && table tr th,
   && table tr td {
-    padding: ${({theme}) => theme.spacing.sm} ${({theme}) => theme.spacing.xs};
-    background-color: ${({theme}) => theme.colors.content.background};
+    padding: var(--recipe-global-static-size-150) var(--recipe-global-static-size-100);
+    background-color: var(--recipe-global-color-static-white);
   }
 
   && table tr th:first-of-type,
   && table tr td:first-of-type {
-    padding-left: ${({theme}) => theme.spacing.xs};
+    padding-left: var(--recipe-global-static-size-100);
   }
 
   && table tr th:last-of-type,
   && table tr td:last-of-type {
-    padding-right: ${({theme}) => theme.spacing.lg};
+    padding-right: var(--recipe-global-static-size-250);
   }
 
   th:first-of-type,
   td:first-of-type {
-    width: ${({theme}) => theme.spacing.xl4};
+    width: var(--recipe-global-static-size-750);
   }
 
   td:last-of-type {
@@ -44,19 +45,19 @@ export const ItemsSection = styled(TableCardSection)`
 `;
 
 export const Total = styled.span`
-  font-size: ${({theme}) => theme.fontSizes[500]};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
+  font-size: var(--recipe-order-summary-total-font-size);
+  font-weight: var(--recipe-order-summary-total-font-weight);
 `;
 
 // left padding here is the fixed width of the first column of the previous table
 // plus the padding of the second column
-const totals = ({theme}) => css`
-  padding-left: calc(${theme.spacing.xl4} + ${theme.spacing.xs});
+const totals = () => css`
+  padding-left: calc(var(--recipe-global-static-size-750) + var(--recipe-global-static-size-100));
 
   table {
     width: auto;
-    margin-left: calc(${theme.spacing.xs} * -1);
-    margin-right: calc(${theme.spacing.xs} * -1);
+    margin-left: calc(var(--recipe-global-static-size-100) * -1);
+    margin-right: calc(var(--recipe-global-static-size-100) * -1);
   }
 
   th,
@@ -65,7 +66,7 @@ const totals = ({theme}) => css`
     font-weight: normal;
     width: 100%;
     border: none;
-    padding: ${theme.spacing.xs2} ${theme.spacing.xs};
+    padding: var(--recipe-global-static-size-50) var(--recipe-global-static-size-100);
   }
 
   td:last-of-type {
@@ -73,19 +74,19 @@ const totals = ({theme}) => css`
   }
 
   tr:nth-of-type(even) {
-    background-color: ${theme.colors.grays[100]};
+    background-color: var(--recipe-global-color-static-gray-100);
   }
 `;
 
 export const SummarySection = styled(EzCardSection)(totals as any);
 
-const tableware = ({theme}) => css`
-  background-color: ${theme.colors.grays[100]};
-  border-radius: ${theme.borderRadius[1]};
+const tableware = () => css`
+  background-color: var(--recipe-global-color-static-gray-100);
+  border-radius: var(--recipe-alias-border-radius-regular);
   display: inline-block;
-  font-size: ${theme.fontSizes[200]};
-  margin-top: ${theme.spacing.xs};
-  padding: ${theme.spacing.sm} ${theme.spacing.md};
+  font-size: var(--recipe-global-font-size-75);
+  margin-top: var(--recipe-global-static-size-100);
+  padding: var(--recipe-global-static-size-150) var(--recipe-global-static-size-200);
 `;
 
 export const SpecialInstructions = styled.div(tableware as any);
