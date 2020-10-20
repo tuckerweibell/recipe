@@ -1,0 +1,8 @@
+:root {
+  --recipe-label-leading: var(--recipe-global-leading-snug);
+  --recipe-label-font-weight: var(--recipe-global-font-weight-bold);
+  --recipe-label-color: var(--recipe-alias-label-text-color);
+  --recipe-label-font-size: var(--recipe-global-font-size-100);
+  --recipe-label-small-color: var(--recipe-alias-deemphasis-text-color);
+  --recipe-label-small-font-size: var(--recipe-global-font-size-75);
+}

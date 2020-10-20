@@ -1,42 +1,44 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
 import {hideVisually} from '../../styles';
-import styled, {Themed} from '../../themes/styled';
+import './vars.css';
 
-const base = ({theme}: Themed) => css`
+const base = () => css`
   display: block;
-  line-height: ${theme.lineHeights.heading};
-  font-weight: ${theme.fontWeights.bold};
+  line-height: var(--recipe-label-leading);
+  font-weight: var(--recipe-label-font-weight);
   padding: 0; /* remove user agent styles (in particular when element is fieldset legend) */
 `;
 
-const typography = ({shade, size}) => ({theme}: Themed) => css`
-  color: ${theme.colors.text[shade]};
-  font-size: ${theme.fontSizes[size]};
-`;
-
 const size = variant('size', {
-  small: typography({shade: 'deemphasis', size: 200}),
-  normal: typography({shade: 'base', size: 300}),
+  small: {
+    color: 'var(--recipe-label-small-color)',
+    fontSize: 'var(--recipe-label-small-font-size)',
+  },
+  normal: {
+    color: 'var(--recipe-label-color)',
+    fontSize: 'var(--recipe-label-font-size)',
+  },
 });
 
-const top = ({theme}: Themed) => ({marginBottom: theme.spacing.xs2});
-const bottom = ({theme}: Themed) => ({marginTop: theme.spacing.xs2});
+const top = () => ({marginBottom: 'var(--recipe-global-static-size-50)'});
+const bottom = () => ({marginTop: 'var(--recipe-global-static-size-50)'});
 
-const left = ({theme}: Themed) => css`
+const left = () => css`
   display: inline-block;
-  margin-right: ${theme.spacing.sm};
+  margin-right: var(--recipe-global-static-size-150);
 `;
 
-const right = ({theme}: Themed) => css`
+const right = () => css`
   display: inline-block;
-  margin-left: ${theme.spacing.sm};
+  margin-left: var(--recipe-global-static-size-150);
 `;
 
-const error = ({error: hasError, theme}) =>
+const error = ({error: hasError}) =>
   hasError &&
   css`
-    color: ${theme.colors.destructive.foreground};
+    color: var(--recipe-semantic-negative-color-default);
   `;
 
 const position = variant('position', {
