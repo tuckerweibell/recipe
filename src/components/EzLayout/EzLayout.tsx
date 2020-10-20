@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
+import styled from '@emotion/styled';
 import {base, layout, spacing, wrapper, alignX, alignY} from './EzLayout.styles';
-import styled from '../../themes/styled';
 import {breakpoints} from '../../themes/standard';
 
 /**

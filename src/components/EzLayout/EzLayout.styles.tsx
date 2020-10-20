@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
 import {responsive} from '../../styles';
+import './vars.css';
 
 export const base = () => css`
   display: flex;
@@ -26,31 +27,26 @@ const stack = () => css`
   flex-direction: column;
 `;
 
-const supportsCssVars =
-  typeof window !== 'undefined' && window.CSS?.supports?.('color', 'var(--a)');
+const space = 'var(--recipe-layout-gap)';
+const flexBasisForColumnCount = n => `calc(${n < 2 ? 100 : 100 / n}% - ${space})`;
 
 const columnWidth = props => {
-  const {columns, theme} = props;
-  const calcFlexBasis = n => `calc(${n < 2 ? 100 : 100 / n}% - ${theme.spacing.sm})`;
-
-  if (typeof columns !== 'object') return {flexBasis: calcFlexBasis(columns)};
-
-  if (supportsCssVars) {
-    return cx(
-      {flexBasis: 'var(--recipe-tile-col-count)'},
-      responsive('columns', value => ({'--recipe-tile-col-count': calcFlexBasis(value)}))(props)
-    );
-  }
-
-  return responsive('columns', value => ({flexBasis: calcFlexBasis(value)}))(props);
+  const {columns} = props;
+  if (typeof columns !== 'object') return {flexBasis: flexBasisForColumnCount(columns)};
+  return cx(
+    {flexBasis: 'var(--recipe-layout-tile-col-count)'},
+    responsive('columns', value => ({
+      '--recipe-layout-tile-col-count': flexBasisForColumnCount(value),
+    }))(props)
+  );
 };
 
-const tile = ({columns, theme}) => css`
+const tile = props => css`
   flex-wrap: wrap;
 
   > * {
     flex-grow: 0;
-    ${columnWidth({columns, theme})};
+    ${columnWidth(props)};
   }
 `;
 
@@ -82,28 +78,28 @@ const mx = v => cx(ml(v), mr(v), mt(v), mb(v));
 const outerNegativeMargin = props =>
   responsive('layout', {
     /* multiply by -1 to negate the margin, since the container absorbs the additional outer margin of the children) */
-    tile: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
-    cluster: mx(`calc(${props.theme.spacing.sm} / 2 * -1)`),
+    tile: mx(`calc(${space} / 2 * -1)`),
+    cluster: mx(`calc(${space} / 2 * -1)`),
     reset: mx(0),
   })(props);
 
 const innerPositiveMargin = props =>
   responsive('layout', {
     /* ↓ half the value, to avoid doubling up the space between columns */
-    tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
-    cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    tile: mx(`calc(${space} / 2)`),
+    cluster: mx(`calc(${space} / 2)`),
     reset: mx(0),
   })(props);
 
 // spacing for other layouts (between items)
 const spacingBetweenItems = props =>
   responsive('layout', {
-    basic: ml(props.theme.spacing.sm),
-    right: ml(props.theme.spacing.sm),
-    equal: ml(props.theme.spacing.sm),
-    stack: mt(props.theme.spacing.sm),
-    tile: mx(`calc(${props.theme.spacing.sm} / 2)`),
-    cluster: mx(`calc(${props.theme.spacing.sm} / 2)`),
+    basic: ml(space),
+    right: ml(space),
+    equal: ml(space),
+    stack: mt(space),
+    tile: mx(`calc(${space} / 2)`),
+    cluster: mx(`calc(${space} / 2)`),
     reset: mx(0),
   })(props);
 
