@@ -1,0 +1,13 @@
+:root {
+  --recipe-dialog-background-color: var(--recipe-global-color-static-white);
+  --recipe-dialog-border-radius: 12px;
+
+  --recipe-dialog-tray-padding-x: var(--recipe-global-static-size-200);
+  --recipe-dialog-tray-padding-y: var(--recipe-global-static-size-300);
+
+  --recipe-dialog-modal-padding-x: var(--recipe-global-static-size-400);
+  --recipe-dialog-modal-padding-y: var(--recipe-global-static-size-300);
+
+  --recipe-dialog-content-margin-top: var(--recipe-global-static-size-200);
+  --recipe-dialog-footer-background-color: var(--recipe-global-color-static-gray-200);
+}

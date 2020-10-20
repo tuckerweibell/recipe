@@ -1,5 +1,7 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import {mq} from '../../themes/styled';
+import './vars.css';
 
 export const StyledOverlay = styled.div`
   align-items: center;
@@ -15,74 +17,74 @@ export const StyledOverlay = styled.div`
   left: 0;
 `;
 
-export const dialogStyles = props => css`
-  background: ${props.theme.colors.white};
+export const dialogStyles = () => css`
+  background-color: var(--recipe-dialog-background-color);
   display: flex;
   flex-direction: column;
   height: 100%;
   max-height: 100vh;
   outline: none;
   width: 100%;
-  overflow-y: auto; // IE fix to prevent flex items overflowing. See: https://github.com/philipwalton/flexbugs#flexbug-3
-
-  @media screen and (min-width: ${props.theme.breakpoints.medium}) {
-    border-radius: 12px;
-    height: auto;
-    max-height: calc(100vh - ${props.theme.spacing.xl4});
-    width: 575px;
-  }
+  overflow-y: auto; /* IE fix to prevent flex items overflowing. See: https://github.com/philipwalton/flexbugs#flexbug-3 */
 
   :focus {
-    box-shadow: 0px 0px 2px 2px ${props.theme.colors.interactive.focus.outline},
-      0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: var(--recipe-alias-focus-ring-shadow);
   }
+
+  ${mq('medium', {
+    borderRadius: 'var(--recipe-dialog-border-radius)',
+    height: 'auto',
+    maxHeight: 'calc(100vh - var(--recipe-global-static-size-750))',
+    width: '575px',
+  }) as any};
 `;
 
-const containerPadding = ({theme: {spacing, breakpoints}}) => css`
-  padding: ${spacing.md} ${spacing.xl};
+const containerPadding = () => css`
+  --recipe-dialog-padding-x: var(--recipe-dialog-tray-padding-x);
+  --recipe-dialog-padding-y: var(--recipe-dialog-tray-padding-y);
 
-  @media screen and (min-width: ${breakpoints.medium}) {
-    padding: ${spacing.xl} ${spacing.xl2};
-  }
+  ${mq('medium', {
+    '--recipe-dialog-padding-x': 'var(--recipe-dialog-modal-padding-x)',
+    '--recipe-dialog-padding-y': 'var(--recipe-dialog-modal-padding-y)',
+  })};
+
+  padding: var(--recipe-dialog-padding-y) var(--recipe-dialog-padding-x);
 `;
 
 export const HeaderContainer = styled.div`
-  ${props => containerPadding({theme: props.theme})}
-  border-bottom: 1px solid ${props => props.theme.colors.border.subtle};
+  ${containerPadding};
+  border-bottom: 1px solid var(--recipe-alias-border-color-light);
   display: flex;
   flex: none;
   justify-content: space-between;
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    border-bottom: none;
-  }
   button svg path {
-    fill: #3a81be;
+    fill: var(--recipe-alias-icon-color);
   }
+
+  ${mq('medium', {borderBottom: 'none'}) as any};
 `;
 
 export const ContentContainer = styled.div`
-  ${props => containerPadding({theme: props.theme})}
+  ${containerPadding}
   flex: auto;
   overflow-y: auto;
 
   && > * + * {
-    margin-top: ${props => props.theme.spacing.lg};
+    margin-top: var(--recipe-global-static-size-250);
   }
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    padding-top: 0;
-  }
+  ${mq('medium', {paddingTop: 0}) as any};
 `;
 
 export const ButtonFooter = styled.div`
-  ${props => containerPadding({theme: props.theme})}
-  background: ${props => props.theme.colors.page.background};
-  border-top: 1px solid ${props => props.theme.colors.border.subtle};
+  ${containerPadding}
+  background: var(--recipe-dialog-footer-background-color);
+  border-top: 1px solid var(--recipe-alias-border-color-light);
   flex: none;
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
+  ${mq('medium', {
+    borderBottomLeftRadius: 'var(--recipe-dialog-border-radius)',
+    borderBottomRightRadius: 'var(--recipe-dialog-border-radius)',
+  }) as any};
 `;

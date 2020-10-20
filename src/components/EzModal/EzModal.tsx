@@ -15,7 +15,6 @@ import FocusScope from '../FocusScope';
 import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
-import {useTheme} from '../../themes/styled';
 import {ScrollLock} from './ScrollLock';
 
 type Props = {
@@ -58,7 +57,6 @@ const EzModal: React.FC<Props> = ({
   submitLabel,
 }) => {
   const labelId = useUniqueId();
-  const theme = useTheme();
   const backdrop = useDialogBackdrop({onDismiss});
   const dialog = useDialog({onDismiss});
 
@@ -69,7 +67,7 @@ const EzModal: React.FC<Props> = ({
       <StyledOverlay {...backdrop}>
         <ScrollLock />
         <FocusScope contain restoreFocus autoFocus>
-          <div {...dialog} css={dialogStyles({theme})} aria-labelledby={labelId}>
+          <div {...dialog} css={dialogStyles()} aria-labelledby={labelId}>
             <HeaderContainer>
               <EzHeading size="2" id={labelId}>
                 {headerText}
