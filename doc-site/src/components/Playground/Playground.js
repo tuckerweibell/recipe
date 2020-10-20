@@ -2,7 +2,6 @@ import React from 'react';
 import {components} from 'docz-theme-default';
 import styled from '@emotion/styled';
 import {Global, css} from '@emotion/core';
-import {themes} from '@ezcater/recipe';
 import DocFrame from './Frame';
 
 const {playground: DoczPlayground} = components;
@@ -49,7 +48,6 @@ const DoczGlobals = () => (
       @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
       @import url('https://fonts.googleapis.com/css?family=Inconsolata');
       body {
-        font-size: ${themes.standard.baseFontSize};
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
         line-height: normal;
       }

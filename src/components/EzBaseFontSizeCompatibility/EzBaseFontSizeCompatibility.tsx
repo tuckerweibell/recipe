@@ -6,6 +6,7 @@ export default () => (
     styles={css`
       :root {
         --recipe-base-font-size: 14;
+        --recipe-compat-font-size: 14px;
       }
     `}
   />

@@ -6,6 +6,8 @@ import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
 import {fullRender as render} from '../../../jest-globals';
 
+jest.unmock('../../EzPopover');
+
 const scope = {EzTooltip, Global, css};
 
 describe('EzTooltip', () => {

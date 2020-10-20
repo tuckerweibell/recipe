@@ -9,6 +9,8 @@ import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 import {fullRender, renderToHtml} from '../../../jest-globals';
 
+jest.unmock('../../EzPopover');
+
 const scope = {EzButton, EzLayout, Global, css};
 
 describe('EzButton', () => {
