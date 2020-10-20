@@ -1,55 +1,55 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
+import {mq} from '../../themes/styled';
 import {childStyles} from './styles';
-import styled from '../../themes/styled';
 
-const asideWidth = '290px';
+const aside = () => mq('medium', {width: 'var(--recipe-page-section-aside-width)'});
 
-const aside = ({theme}) => css`
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    width: ${asideWidth};
-  }
+const main = () =>
+  mq(
+    'medium',
+    css`
+      width: calc(
+        100% - var(--recipe-page-section-aside-width) - var(--recipe-global-static-size-600)
+      );
+    `
+  );
+
+const vertical = () => css`
+  ${childStyles()};
+  ${mq('medium', {display: 'inline-block'})};
 `;
 
-const main = ({theme}) => css`
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    width: calc(100% - ${asideWidth} - ${theme.spacing.xl3});
-  }
-`;
-
-const vertical = ({theme}) => css`
-  ${childStyles({theme})};
-
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    display: inline-block;
-  }
-`;
-
-const horizontal = ({theme}) => css`
+const horizontal = () => css`
   > *:not(:last-child) {
-    margin-bottom: ${theme.spacing.sm};
+    margin-bottom: var(--recipe-global-static-size-150);
   }
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    display: flex;
-    > * {
-      flex-basis: 0;
-      flex-grow: 1;
-      :not(:last-child) {
-        margin-bottom: 0;
+
+  ${mq(
+    'medium',
+    css`
+      display: flex;
+      > * {
+        flex-basis: 0;
+        flex-grow: 1;
+        :not(:last-child) {
+          margin-bottom: 0;
+        }
+        + * {
+          margin-left: var(--recipe-global-static-size-250);
+        }
       }
-      + * {
-        margin-left: ${theme.spacing.lg};
-      }
-    }
-  }
+    `
+  )};
 `;
 
 const cx = (...args) => props => args.reduce((res, v) => css(res, v(props)), {});
 
-const siblingSpacing = ({theme, sibling}) =>
+const siblingSpacing = ({sibling}) =>
   sibling &&
   css`
-    margin-left: ${theme.spacing.xl3};
+    margin-left: var(--recipe-global-static-size-600);
   `;
 
 const use = variant('use', {
@@ -58,11 +58,12 @@ const use = variant('use', {
   horizontal,
 });
 
-export const PageSection = styled.div<any>`
-  ${use};
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.medium}) {
-    vertical-align: top;
-    ${siblingSpacing};
-  }
-`;
+export const PageSection = styled.div<any>(use, props =>
+  mq(
+    'medium',
+    css`
+      vertical-align: top;
+      ${siblingSpacing(props)};
+    `
+  )
+);

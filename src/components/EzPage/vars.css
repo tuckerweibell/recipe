@@ -1,0 +1,4 @@
+:root {
+  --recipe-page-background-color: var(--recipe-global-color-static-gray-200);
+  --recipe-page-section-aside-width: 290px;
+}

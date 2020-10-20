@@ -1,8 +1,8 @@
 import React, {useRef, useContext} from 'react';
+import styled from '@emotion/styled';
 import {base, resets} from './EzPage.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {childStyles} from './styles';
-import styled from '../../themes/styled';
 
 type PageProps = {
   children: React.ReactNode;
