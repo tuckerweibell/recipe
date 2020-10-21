@@ -1,24 +1,20 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
 const base = () => css`
   position: relative;
   padding: 0.5rem;
   max-width: 300px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--recipe-alias-shadow-small);
   white-space: pre-line;
 `;
 
-const color = ({theme}) => {
-  const backgroundColor = theme.colors.grays['800'];
-  const textColor = theme.colors.white;
-
-  return css`
-    color: ${textColor};
-    border: 1px solid ${backgroundColor};
-    background-color: ${backgroundColor};
-  `;
-};
+const color = () => css`
+  color: var(--recipe-tooltip-text-color);
+  border: 1px solid var(--recipe-tooltip-border-color);
+  background-color: var(--recipe-tooltip-background-color);
+`;
 
 export const Message = styled.p`
   margin-top: 0;
@@ -30,7 +26,7 @@ export const TooltipArrow = styled.div`
   > svg {
     position: absolute;
     pointer-events: none;
-    fill: ${({theme}) => theme.colors.grays['800']};
+    fill: var(--recipe-tooltip-background-color);
   }
 
   [data-popper-placement^='top'] > &[data-popper-arrow] {

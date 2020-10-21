@@ -1,0 +1,5 @@
+:root {
+  --recipe-tooltip-text-color: var(--recipe-global-color-static-white);
+  --recipe-tooltip-background-color: var(--recipe-global-color-static-gray-800);
+  --recipe-tooltip-border-color: var(--recipe-global-color-static-gray-800);
+}
