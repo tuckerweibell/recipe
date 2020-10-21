@@ -1,31 +1,24 @@
 import {css} from '@emotion/core';
-import variant from 'styled-component-variant';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
-const coloredStyles = getColors => ({theme: {colors}}) => {
-  const [lightColor, darkColor] = getColors(colors);
-  return css`
-    background-color: ${lightColor};
-    color: ${darkColor};
-  `;
-};
-
-const use = variant('use', {
-  neutral: coloredStyles(colors => [colors.page.background, colors.text.base]),
-  success: coloredStyles(colors => [colors.success.background, colors.success.text]),
-  informational: coloredStyles(colors => [colors.info.background, colors.info.text]),
-  attention: coloredStyles(colors => [colors.info.background, colors.info.text]),
-  warning: coloredStyles(colors => [colors.warning.background, colors.warning.text]),
-  error: coloredStyles(colors => [colors.destructive.background, colors.destructive.text]),
+const styles = status => ({
+  '--recipe-status-background-color': `var(--recipe-status-background-color-${status})`,
+  '--recipe-status-text-color': `var(--recipe-status-text-color-${status})`,
 });
 
-const base: any = ({theme, size}) => css`
-  padding: ${theme.spacing.xs2} ${theme.spacing.sm};
+const base: any = ({size, use}) => css`
+  padding: var(--recipe-global-static-size-50) var(--recipe-global-static-size-150);
   line-height: 1;
-  font-size: ${size === 'small' ? theme.fontSizes[200] : theme.fontSizes[400]};
+  font-size: ${size === 'small'
+    ? 'var(--recipe-global-font-size-75)'
+    : 'var(--recipe-global-font-size-200)'};
   font-weight: bold;
   border-radius: 1em;
   white-space: nowrap;
+  background-color: var(--recipe-status-background-color);
+  color: var(--recipe-status-text-color);
+  ${styles(use)};
 `;
 
-export const EzStatusContainer = styled.span(base, use);
+export const EzStatusContainer = styled.span(base);
