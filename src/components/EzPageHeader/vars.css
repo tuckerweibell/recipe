@@ -1,0 +1,4 @@
+:root {
+  --recipe-page-header-background-color: var(--recipe-global-color-static-white);
+  --recipe-page-header-border-color: var(--recipe-alias-border-color);
+}

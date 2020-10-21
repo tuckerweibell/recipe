@@ -1,50 +1,49 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
-import {darken} from '../../styles';
+import styled from '@emotion/styled';
 
-const listBase = ({theme}) => css`
+const listBase = () => css`
   display: flex;
   margin: 0;
   padding: 0;
   list-style: none;
 
   && > * + * {
-    margin-left: ${theme.spacing.sm};
+    margin-left: var(--recipe-global-static-size-150);
   }
 `;
 
-const activeTab = ({theme, active}) =>
+const activeTab = ({active}) =>
   active &&
   css`
-    box-shadow: inset 0 -2px 0 0 ${theme.colors.interactive.focus.outline};
+    box-shadow: inset 0 -2px 0 0 var(--recipe-alias-focus-ring-color);
 
     && > *,
     && a {
-      color: ${theme.colors.text.base};
+      color: var(--recipe-alias-text-color);
 
       :focus {
-        outline-color: ${theme.colors.interactive.focus.outline};
+        outline-color: var(--recipe-alias-focus-ring-color);
       }
     }
   `;
 
-const tabBase = ({theme, active}) => css`
+const tabBase = ({active}) => css`
   display: flex;
   margin: 0;
 
   && a,
   && > button {
     display: flex;
-    padding: ${theme.spacing.sm} ${theme.spacing.xs};
+    padding: var(--recipe-global-static-size-150) var(--recipe-global-static-size-100);
     text-decoration: none;
 
     &:hover {
-      box-shadow: ${!active && `inset 0 -2px 0 0 ${darken(theme.colors.border.base, 0.15)}`};
+      box-shadow: ${!active && `inset 0 -2px 0 0 var(--recipe-alias-border-color)`};
     }
 
     &:focus {
       outline: auto;
-      outline-color: ${theme.colors.interactive.focus.outline};
+      outline-color: var(--recipe-alias-focus-ring-color);
     }
   }
 `;

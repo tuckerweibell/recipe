@@ -1,21 +1,28 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import {mq} from '../../themes/styled';
+import './vars.css';
 
-const base = ({theme}) => css`
-  background-color: ${theme.colors.content.background};
-  box-shadow: inset 0 -1px 0 0 ${theme.colors.border.base};
+const base = () => css`
+  background-color: var(--recipe-page-header-background-color);
+  box-shadow: inset 0 -1px 0 0 var(--recipe-page-header-border-color);
 
-  /* fallback for browsers that don't support css vars */
-  padding: ${theme.spacing.sm} ${theme.spacing.lg};
-
-  --recipe-surface-py: ${theme.spacing.sm};
-  --recipe-surface-px: ${theme.spacing.lg};
-  padding: var(--recipe-surface-py) var(--recipe-surface-px);
-
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    --recipe-surface-py: ${theme.spacing.md};
-    --recipe-surface-px: ${theme.spacing.xl2};
-  }
+  --recipe-page-header-content-padding-y: var(--recipe-global-static-size-150);
+  --recipe-page-header-content-padding-x: var(--recipe-global-static-size-250);
+  padding: var(--recipe-page-header-content-padding-y) var(--recipe-page-header-content-padding-x);
 `;
 
-export const Surface = styled.div(base);
+const medium = () =>
+  mq(
+    'medium',
+    css`
+      --recipe-page-header-content-padding-y: var(--recipe-global-static-size-200);
+      --recipe-page-header-content-padding-x: var(--recipe-global-static-size-400);
+
+      &.subheader {
+        --recipe-page-header-content-padding-y: var(--recipe-global-static-size-250);
+      }
+    `
+  );
+
+export const Surface = styled.div<any>(base, medium);

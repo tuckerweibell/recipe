@@ -8,7 +8,6 @@ import {Tab, TabList} from './Tabs';
 import {Surface} from './EzPageHeader.styles';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {wrapEvent} from '../../utils';
-import {useTheme, mq} from '../../themes/styled';
 
 type TabType = Labelled | (Labelled & Link);
 
@@ -70,11 +69,10 @@ const EzPageHeader: React.FC<HeaderProps> = ({
   subnav,
   subheader,
 }) => {
-  const theme = useTheme();
   const refs = useRef(subnav && subnav.tabs.map(() => createRef<HTMLElement>())).current;
   const selected = subnav && subnav.selected;
   return (
-    <div css={{backgroundColor: theme.colors.content.background}}>
+    <div css={{backgroundColor: 'var(--recipe-global-color-static-white)'}}>
       <Surface css={subnav ? {paddingBottom: 0} : {}}>
         <MaxWidth>
           <EzLayout layout="stack">
@@ -132,7 +130,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
         </MaxWidth>
       </Surface>
       {subheader && (
-        <Surface css={mq(theme.breakpoints.medium, {'--recipe-surface-py': theme.spacing.lg})}>
+        <Surface className="subheader">
           <MaxWidth>{subheader}</MaxWidth>
         </Surface>
       )}
