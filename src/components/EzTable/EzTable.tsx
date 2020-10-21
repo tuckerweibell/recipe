@@ -166,6 +166,14 @@ const iconStates: Interpolation = {
 
 const cx = (...args): Interpolation => Object.assign({}, ...args);
 
+// merging the virtualTouchable with button was causing emotion to balloon the number
+// of generated styles, so apply to a parent element instead
+const VirtualTouchable = ({children}) => {
+  const virtualTouchable = useVirtualTouchable();
+  const nested = {'> *': virtualTouchable};
+  return <div css={nested}>{children}</div>;
+};
+
 const TablePagination = ({pagination}) => {
   const {t} = useTranslation(en);
   const {rowsPerPage, currentPage: page, totalRows: count} = pagination;
@@ -174,7 +182,7 @@ const TablePagination = ({pagination}) => {
   const to = Math.min(count, page * rowsPerPage);
   const range = count === 1 ? 1 : `${from}-${to}`;
 
-  const virutualTouchable = useVirtualTouchable();
+  const virtualTouchable = useVirtualTouchable();
   return (
     <EzCardFooter>
       <EzLayout layout="right">
@@ -186,36 +194,38 @@ const TablePagination = ({pagination}) => {
           }}
         >
           <span css={{whiteSpace: 'nowrap'}}>{t('{{range}} of {{count}}', {range, count})}</span>
-          <EzButton
-            use="tertiary"
-            title={t('Previous Page')}
-            aria-label={t('Previous Page')}
-            onClick={pagination.onPrevPageClick}
-            disabled={pagination.currentPage === 1}
-            css={virutualTouchable}
-            icon={
-              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-              </svg>
-            }
-          />
-          <EzButton
-            use="tertiary"
-            title={t('Next Page')}
-            aria-label={t('Next Page')}
-            onClick={pagination.onNextPageClick}
-            disabled={pagination.currentPage === pages}
-            css={virutualTouchable}
-            icon={
-              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-              </svg>
-            }
-          />
+          <VirtualTouchable>
+            <EzButton
+              use="tertiary"
+              title={t('Previous Page')}
+              aria-label={t('Previous Page')}
+              onClick={pagination.onPrevPageClick}
+              disabled={pagination.currentPage === 1}
+              icon={
+                <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+                </svg>
+              }
+            />
+          </VirtualTouchable>
+          <VirtualTouchable>
+            <EzButton
+              use="tertiary"
+              title={t('Next Page')}
+              aria-label={t('Next Page')}
+              onClick={pagination.onNextPageClick}
+              disabled={pagination.currentPage === pages}
+              icon={
+                <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+                </svg>
+              }
+            />
+          </VirtualTouchable>
         </nav>
         <div css={cx({position: 'relative'}, iconSize)}>
           <select
-            css={cx(virutualTouchable[':after'], {opacity: 0.001})} // opacity 0 is ignored by some screen readers
+            css={cx(virtualTouchable[':after'], {opacity: 0.001})} // opacity 0 is ignored by some screen readers
             defaultValue={pagination.rowsPerPage}
             onChange={pagination.onRowsPerPageChange}
             title={t('Show rows per page options')}
@@ -231,7 +241,7 @@ const TablePagination = ({pagination}) => {
             focusable={false}
             viewBox="-8 -8 40 40"
             aria-hidden="true"
-            css={cx(virutualTouchable[':after'], {
+            css={cx(virtualTouchable[':after'], {
               pointerEvents: 'none',
               fill: iconStates.fill,
               'select:focus + &': {

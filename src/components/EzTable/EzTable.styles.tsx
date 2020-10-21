@@ -1,6 +1,7 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import {EzCardSection} from '../EzCard';
-import styled, {Theme} from '../../themes/styled';
+import './vars.css';
 
 const fullBleed = () => css`
   padding: 0;
@@ -9,14 +10,14 @@ const fullBleed = () => css`
   }
 `;
 
-const spacing = ({theme}) => css`
+const spacing = () => css`
   th,
   td {
     &:first-of-type {
-      padding-left: ${theme.spacing.lg};
+      padding-left: var(--recipe-global-static-size-250);
     }
     &:last-of-type {
-      padding-right: ${theme.spacing.lg};
+      padding-right: var(--recipe-global-static-size-250);
     }
   }
 `;
@@ -26,32 +27,34 @@ const interactiveStyles = () => css`
   user-select: none;
 `;
 
-const hoverRows = ({theme}) =>
+const hoverRows = () =>
   css`
     && tr:hover {
       td {
-        background-color: ${theme.colors.interactive.hover.background};
+        background-color: var(--recipe-table-background-color-hover);
       }
     }
   `;
 
-const cell = ({theme, numeric}) => css`
+const cell = ({numeric}) => css`
   text-align: ${numeric ? 'right' : 'left'};
-  padding: ${theme.spacing.sm} ${theme.spacing.xs};
+  padding: var(--recipe-global-static-size-150) var(--recipe-global-static-size-100);
 `;
 
-const heading = ({theme}) => css`
-  ${theme.fonts.small}
-  font-weight: bold;
+const heading = () => css`
+  font-weight: var(--recipe-table-heading-font-weight);
+  font-size: var(--recipe-table-heading-font-size);
+  line-height: var(--recipe-table-heading-leading);
+  color: var(--recipe-table-heading-text-color);
 `;
 
-const borders = ({theme}) => css`
+const borders = () => css`
   tbody tr:first-of-type td {
-    border-top: 1px solid ${theme.colors.border.subtle};
+    border-top: 1px solid var(--recipe-alias-border-color-light);
   }
 
   && td {
-    border-bottom: 1px solid ${theme.colors.border.subtle};
+    border-bottom: 1px solid var(--recipe-alias-border-color-light);
   }
 
   tr:last-of-type td {
@@ -59,10 +62,10 @@ const borders = ({theme}) => css`
   }
 
   overflow: hidden;
-  border-radius: ${theme.borderRadius[2]};
+  border-radius: var(--recipe-table-border-radius);
 `;
 
-const sortable = ({theme, sorted, sortable: isSortable}) =>
+const sortable = ({sorted, sortable: isSortable}) =>
   isSortable &&
   css`
     ${interactiveStyles()};
@@ -72,43 +75,27 @@ const sortable = ({theme, sorted, sortable: isSortable}) =>
       align-items: center;
     }
     svg {
-      fill: ${theme.colors.text.deemphasis};
-      margin-left: ${theme.spacing.xs};
+      fill: var(--recipe-alias-deemphasis-text-color);
+      margin-left: var(--recipe-global-static-size-100);
       opacity: ${sorted ? '1' : '0'};
     }
   `;
 
-type CellProps = {
-  numeric?: boolean;
-  sorted?: boolean;
-};
-
-const rowHover = ({clickable, theme}) =>
+const rowHover = ({clickable}) =>
   clickable &&
   css`
     &&:hover {
       td {
-        background-color: ${theme.colors.interactive.hover.highlight};
         user-select: none;
         cursor: pointer;
       }
     }
   `;
 
-export const Th = styled.th<CellProps & {sortable?: boolean}>(cell, heading, sortable);
-export const Td = styled.td<CellProps>(cell);
+export const Th = styled.th<any>(cell, heading, sortable);
+export const Td = styled.td<any>(cell);
 export const ClickableTr = styled.tr<{clickable: boolean}>(rowHover);
-
-type TableCardSectionProps = {
-  theme?: Theme;
-};
-
-export const TableCardSection = styled(EzCardSection)<TableCardSectionProps>(
-  fullBleed,
-  spacing,
-  borders,
-  hoverRows
-);
+export const TableCardSection = styled(EzCardSection)<any>(fullBleed, spacing, borders, hoverRows);
 
 /*
   With table-layout: auto, widths of table cells only shrink to the size of their content,
@@ -117,7 +104,7 @@ export const TableCardSection = styled(EzCardSection)<TableCardSectionProps>(
 */
 const cellFitContent = '1%';
 
-const selectionColumn = ({theme, selectable}) =>
+const selectionColumn = ({selectable}) =>
   selectable &&
   css`
     th:first-of-type,
@@ -129,10 +116,10 @@ const selectionColumn = ({theme, selectable}) =>
     && thead tr + tr {
       td,
       td:hover {
-        background-color: ${theme.colors.info.background};
-        border-bottom: solid 1px ${theme.colors.info.border};
-        border-top: solid 1px ${theme.colors.info.border};
-        padding: ${theme.spacing.xs};
+        background-color: var(--recipe-table-selection-summary-background-color);
+        border-bottom: solid 1px var(--recipe-table-selection-summary-border-color);
+        border-top: solid 1px var(--recipe-table-selection-summary-border-color);
+        padding: var(--recipe-global-static-size-100);
 
         > * {
           justify-content: center;
@@ -144,12 +131,15 @@ const selectionColumn = ({theme, selectable}) =>
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
 TableCardSection.displayName = EzCardSection.displayName;
 
-const base = ({theme}) => css`
+const base = () => css`
   margin: 0;
-  line-height: 1.5rem;
   border-collapse: collapse;
   width: auto;
-  ${theme.fonts.body};
+  font-family: var(--recipe-table-font-family);
+  font-weight: var(--recipe-table-font-weight);
+  font-size: var(--recipe-table-font-size);
+  line-height: var(--recipe-table-leading);
+  color: var(--recipe-table-text-color);
 
   th,
   td {
@@ -159,38 +149,38 @@ const base = ({theme}) => css`
   }
 `;
 
-const stripedRows = ({theme}) =>
+const stripedRows = () =>
   css`
     tr:nth-of-type(odd) {
       td {
-        background-color: ${theme.colors.interactive.hover.background};
+        background-color: var(--recipe-table-background-color-alternate);
       }
     }
   `;
 
-const simple = ({theme, use}) =>
+const simple = ({use}) =>
   use === 'simple' &&
   css`
     tr th:first-of-type,
     tr td:first-of-type {
-      padding-left: ${theme.spacing.sm};
+      padding-left: var(--recipe-global-static-size-150);
     }
     tr th:last-of-type,
     tr td:last-of-type {
-      padding-right: ${theme.spacing.sm};
+      padding-right: var(--recipe-global-static-size-150);
     }
     tr th {
       padding-top: 0;
       padding-bottom: 6px;
     }
     tr td {
-      padding-top: ${theme.spacing.xs2};
-      padding-bottom: ${theme.spacing.xs2};
+      padding-top: var(--recipe-global-static-size-50);
+      padding-bottom: var(--recipe-global-static-size-50);
     }
     tr td:not(:last-of-type) {
-      padding-right: ${theme.spacing.xl2};
+      padding-right: var(--recipe-global-static-size-400);
     }
-    ${stripedRows({theme})}
+    ${stripedRows()}
   `;
 
 export const Table = styled.table<any>(base, selectionColumn, simple);
@@ -237,17 +227,17 @@ const pinnedSecondColumn = ({selectable, cols, isScrolling}) =>
     }
   `;
 
-const responsive = ({overflowing, theme}) => css`
+const responsive = ({overflowing}) => css`
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
   ${overflowing &&
     css`
-      margin-top: ${theme.spacing.lg};
+      margin-top: var(--recipe-global-static-size-250);
 
       thead tr th {
-        border-top: 1px solid ${theme.colors.border.subtle};
+        border-top: 1px solid var(--recipe-alias-border-color-light);
       }
     `}
 `;
