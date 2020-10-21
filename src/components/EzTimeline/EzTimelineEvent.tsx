@@ -8,7 +8,6 @@ import EzTextStyle from '../EzTextStyle';
 import EzTimelineIcon from './EzTimelineIcon';
 import EzLink, {isLink} from '../EzLink';
 import {TimelineEventProps} from './EzTimeline.types';
-import {useTheme} from '../../themes/styled';
 
 const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   title,
@@ -20,7 +19,6 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   as,
   href,
 }) => {
-  const {colors, lineHeights, fontSizes, borderRadius} = useTheme();
   const arrow: Interpolation = {
     '::before': {
       content: "''",
@@ -30,7 +28,7 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
       height: '0',
       width: '0',
       border: '7px solid transparent',
-      borderRight: `7px solid ${colors.border.base}`,
+      borderRight: `7px solid var(--recipe-alias-border-color)`,
     },
     '::after': {
       content: "''",
@@ -40,13 +38,13 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
       height: '0',
       width: '0',
       border: '6px solid transparent',
-      borderRight: `6px solid ${colors.content.background}`,
+      borderRight: `6px solid var(--recipe-global-color-static-white)`,
     },
   };
   return (
     <EzLayout layout="basic">
       <EzTimelineIcon icon={icon} css={arrow} />
-      <EzCard css={{flex: 1, borderRadius: borderRadius[2]}}>
+      <EzCard css={{flex: 1, borderRadius: 6}}>
         <header>
           <EzLayout layout="split" alignY="top">
             <EzLayout layout="cluster" css={{alignItems: 'baseline'}}>
@@ -54,7 +52,12 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
                 {isLink({to, as, href}) ? <EzLink {...{to, as, href}}>{title}</EzLink> : title}
               </EzHeading>
               <EzTextStyle use="subdued">
-                <time css={{fontSize: fontSizes[300], lineHeight: lineHeights.heading}}>
+                <time
+                  css={{
+                    fontSize: 'var(--recipe-global-font-size-100)',
+                    lineHeight: 'var(--recipe-global-leading-snug)',
+                  }}
+                >
                   {time}
                 </time>
               </EzTextStyle>

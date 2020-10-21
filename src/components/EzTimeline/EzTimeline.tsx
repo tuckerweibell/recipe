@@ -2,7 +2,8 @@
 import {jsx, Interpolation} from '@emotion/core';
 import EzButton from '../EzButton';
 import {TimelineProps} from './EzTimeline.types';
-import {useTheme} from '../../themes/styled';
+import {mq} from '../../themes/styled';
+import './vars.css';
 
 const psuedo: Interpolation = {
   content: "''",
@@ -15,9 +16,8 @@ const psuedo: Interpolation = {
 const minus = v => `calc(-1 * ${v})`;
 
 const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
-  const theme = useTheme();
-  const gap = theme.spacing.sm;
-  const stemColor = `${theme.colors.border.base}57`; // NOTE: the 57 suffix is to adjust the hex color transparency
+  const gap = 'var(--recipe-global-static-size-150)';
+  const stemColor = `var(--recipe-timeline-stem-color)`; // NOTE: the 57 suffix is to adjust the hex color transparency
   const stem: Interpolation = {
     background: `linear-gradient(90deg, transparent, transparent calc(1rem - 1px), 
       ${stemColor} calc(1rem - 1px), ${stemColor} calc(1rem + 1px), transparent calc(1rem + 1px))`,
@@ -27,12 +27,9 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
   return (
     <div
       css={{
-        paddingRight: theme.spacing.xs,
-        paddingLeft: theme.spacing.xs,
-        [`@media screen and (min-width: ${theme.breakpoints.medium})`]: {
-          paddingRight: 0,
-          paddingLeft: 0,
-        },
+        paddingRight: 'var(--recipe-global-static-size-100)',
+        paddingLeft: 'var(--recipe-global-static-size-100)',
+        ...(mq('medium', {paddingRight: 0, paddingLeft: 0}) as any),
         '> section': {
           '> h3': stem,
           '> ol > li': {
@@ -72,10 +69,10 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
               marginTop: minus(gap),
               marginLeft: minus(stemWidth),
               // height varies based on ez-page bottom padding (at different breakpoints)
-              height: `calc(100% + ${theme.spacing.md})`,
-              [`@media screen and (min-width: ${theme.breakpoints.medium})`]: {
-                height: `calc(100% + ${theme.spacing.xl2})`,
-              },
+              height: `calc(100% + var(--recipe-global-static-size-200))`,
+              ...(mq('medium', {
+                height: 'calc(100% + var(--recipe-global-static-size-400))',
+              }) as any),
             },
           }}
         >
@@ -85,11 +82,11 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
             onClick={expandable.onClick}
             css={{
               width: '100%',
-              borderRadius: theme.borderRadius[2],
-              backgroundColor: theme.colors.grays[100],
-              fontSize: theme.fontSizes[200],
+              borderRadius: 'var(--recipe-timeline-footer-border-radius)',
+              backgroundColor: 'var(--recipe-timeline-footer-background-color)',
+              fontSize: 'var(--recipe-global-font-size-75)',
               letterSpacing: 1,
-              padding: `${theme.spacing.sm} ${theme.spacing.lg}`,
+              padding: `var(--recipe-global-static-size-150) var(--recipe-global-static-size-250)`,
               textTransform: 'uppercase',
             }}
           >
