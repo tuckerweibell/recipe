@@ -1,6 +1,6 @@
 import variant from 'styled-component-variant';
+import styled from '@emotion/styled';
 import {base, align, strong, subdued} from './EzTextStyle.styles';
-import styled from '../../themes/styled';
 
 const use = variant('use', {
   strong,
