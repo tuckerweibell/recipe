@@ -1,6 +1,7 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 import {hideVisually} from '../../styles';
+import './vars.css';
 
 const base = () => css`
   display: flex;
@@ -25,22 +26,22 @@ const disabled = ({disabled: isDisabled}) =>
     transition: opacity 0.25s;
   `;
 
-const track = ({theme}) => css`
+const track = () => css`
   position: relative;
   display: inline-block;
   width: 42px;
   height: 22px;
-  border: 1px solid ${theme.colors.grays[500]};
+  border: 1px solid var(--recipe-toggle-track-border-color);
   border-radius: 16px;
-  background-color: ${theme.colors.page.background};
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  background-color: var(--recipe-alias-background-color-default);
+  box-shadow: var(--recipe-alias-shadow-small);
   transition-property: background-color, border-color;
   transition-duration: 0.2s;
 
   input:focus + &,
   input:active + & {
     ::after {
-      box-shadow: 0px 0px 2px 3px ${theme.colors.interactive.focus.outline};
+      box-shadow: var(--recipe-alias-focus-ring-shadow);
     }
   }
   ::after {
@@ -51,7 +52,7 @@ const track = ({theme}) => css`
     left: 2px;
     width: 16px;
     height: 16px;
-    border: 1px solid ${theme.colors.grays[500]};
+    border: 1px solid var(--recipe-toggle-track-border-color);
     border-radius: 50%;
     background-color: white;
     transition-property: border-color, left;
@@ -69,11 +70,11 @@ const track = ({theme}) => css`
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00IDIuNTk4TDYuNDUuMTQ4YS41LjUgMCAwIDEgLjcwNyAwbC42OTUuNjk1YS41LjUgMCAwIDEgMCAuNzA3TDUuNDAyIDRsMi40NSAyLjQ1YS41LjUgMCAwIDEgMCAuNzA3bC0uNjk1LjY5NWEuNS41IDAgMCAxLS43MDcgMEw0IDUuNDAybC0yLjQ1IDIuNDVhLjUuNSAwIDAgMS0uNzA3IDBsLS42OTUtLjY5NWEuNS41IDAgMCAxIDAtLjcwN0wyLjU5OCA0IC4xNDggMS41NWEuNS41IDAgMCAxIDAtLjcwN0wuODQzLjE0OGEuNS41IDAgMCAxIC43MDcgMEw0IDIuNTk4eiIgZmlsbD0iIzhCOTlBNiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+);
   }
   input:checked + & {
-    border-color: ${theme.colors.interactive.checked.border};
-    background-color: ${theme.colors.interactive.checked.background};
+    border-color: var(--recipe-toggle-border-color-selected);
+    background-color: var(--recipe-toggle-background-color-selected);
 
     ::after {
-      border-color: ${theme.colors.interactive.checked.border};
+      border-color: var(--recipe-toggle-border-color-selected);
       left: 50%;
     }
 

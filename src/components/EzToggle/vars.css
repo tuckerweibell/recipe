@@ -1,0 +1,5 @@
+:root {
+  --recipe-toggle-track-border-color: var(--recipe-global-color-static-gray-500);
+  --recipe-toggle-background-color-selected: var(--recipe-global-color-static-blue-200);
+  --recipe-toggle-border-color-selected: var(--recipe-global-color-static-blue-500);
+}
