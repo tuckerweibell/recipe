@@ -3,7 +3,6 @@ import React, {useRef} from 'react';
 import {jsx} from '@emotion/core';
 import Highlighter from 'react-highlight-words';
 import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
-import {useTheme} from '../../themes/styled';
 import {listbox as styles} from './EzSelect.styles';
 
 const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selectedKey, ...props}) => {
@@ -52,7 +51,6 @@ export const getItemId = (listId, itemKey) => `${listId}-option-${itemKey}`;
 const hasGroupedOptions = options => Array.isArray(options[0]);
 
 const EzListBox = (props, ref) => {
-  const theme = useTheme();
   const activeOptionRef = useRef<HTMLElement>();
   const {collection, selectionManager, searchWords, ...domProps} = props;
   const {items} = collection;
@@ -78,7 +76,7 @@ const EzListBox = (props, ref) => {
   );
 
   return (
-    <ul css={styles({theme})} role="listbox" ref={ref} {...domProps}>
+    <ul css={styles()} role="listbox" ref={ref} {...domProps}>
       {hasGroupedOptions(items) ? items.map(renderGroup) : items.map(renderItem)}
     </ul>
   );

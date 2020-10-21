@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react';
+import styled from '@emotion/styled';
 import {filterValidProps} from '../../utils';
-import styled from '../../themes/styled';
 import styles from './EzTextInput.styles';
 
 type ErrorOrMessage = string | boolean;

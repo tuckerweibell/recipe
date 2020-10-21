@@ -2,11 +2,11 @@ import {css} from '@emotion/core';
 
 export {TextInputWrapper, OverlayFieldWrapper} from './Picker.styles';
 
-export const listbox = ({theme}) => css`
+export const listbox = () => css`
   min-width: 230px;
   background: white;
   border: 1px solid #ccc;
-  border-radius: ${theme.borderRadius[2]};
+  border-radius: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -23,25 +23,27 @@ export const listbox = ({theme}) => css`
 
   [role='group'] {
     > :first-of-type {
-      ${theme.fonts.small};
+      font-weight: var(--recipe-global-font-weight-bold);
+      font-size: var(--recipe-global-font-size-75);
+      line-height: 1.3em;
+      color: var(--recipe-alias-deemphasis-text-color);
       margin: 0;
-      padding: ${theme.spacing.xs} ${theme.spacing.sm};
-      font-weight: bold;
+      padding: var(--recipe-global-static-size-100) var(--recipe-global-static-size-150);
     }
   }
 
   [role='option'] {
     cursor: default;
     margin: 0;
-    padding: ${theme.spacing.xs} ${theme.spacing.sm};
-    color: ${theme.colors.interactive.base};
+    padding: var(--recipe-global-static-size-100) var(--recipe-global-static-size-150);
+    color: var(--recipe-global-color-static-blue-600);
     font-weight: bold;
     position: relative;
     padding-right: 2em;
 
     &[aria-selected='true'] {
-      background-color: ${theme.colors.interactive.base};
-      color: ${theme.colors.content.background};
+      background-color: var(--recipe-global-color-static-blue-600);
+      color: var(--recipe-global-color-static-white);
 
       &[aria-current='true'] {
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e");

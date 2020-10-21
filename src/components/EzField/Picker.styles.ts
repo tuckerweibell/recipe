@@ -1,4 +1,4 @@
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 
 export const OverlayFieldWrapper = styled.div<any>`
   input {
@@ -13,7 +13,9 @@ export const OverlayFieldWrapper = styled.div<any>`
 `;
 
 const iconColor = p =>
-  p.disabled ? p.theme.colors.interactive.disabled.foreground : p.theme.colors.interactive.base;
+  p.disabled
+    ? 'var(--recipe-alias-text-color-disabled)'
+    : 'var(--recipe-global-color-static-blue-600)';
 
 export const TextInputWrapper = styled.div`
   && input {

@@ -1,4 +1,4 @@
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 import {TextInputWrapper as BaseCombobox} from './Picker.styles';
 
 export {OverlayFieldWrapper} from './Picker.styles';
@@ -11,18 +11,16 @@ export const TextInputWrapper = styled(BaseCombobox)`
   }
 `;
 
-const arrowSize = 5;
-
 export const CalendarWrapper = styled('div')`
   position: relative;
-  padding: ${props => props.theme.spacing.sm};
+  padding: var(--recipe-global-static-size-150);
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: ${props => props.theme.fontSizes[300]};
+  font-size: var(--recipe-global-font-size-100);
   width: 320px;
-  margin-top: ${props => props.theme.spacing.xs};
-  border-radius: ${props => props.theme.borderRadius[3]};
-  border: ${props => props.theme.borderWidth[0]} solid ${props => props.theme.colors.border.base};
-  background-color: ${props => props.theme.colors.content.background};
+  margin-top: var(--recipe-global-static-size-100);
+  border-radius: var(--recipe-alias-border-radius-medium);
+  border: 1px solid var(--recipe-alias-border-color);
+  background-color: var(--recipe-global-color-static-white);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
   &:after,
   &:before {
@@ -34,13 +32,13 @@ export const CalendarWrapper = styled('div')`
     width: 0;
   }
   &:after {
-    margin-left: -${arrowSize}px;
-    border: ${arrowSize}px solid transparent;
-    border-bottom-color: ${props => props.theme.colors.content.background};
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-bottom-color: var(--recipe-global-color-static-white);
   }
   &:before {
-    margin-left: -${props => arrowSize + parseInt(props.theme.borderWidth[0], 10) * 2}px;
-    border: ${props => arrowSize + parseInt(props.theme.borderWidth[0], 10) * 2}px solid transparent;
-    border-bottom-color: ${props => props.theme.colors.border.base};
+    margin-left: -7px;
+    border: 7px solid transparent;
+    border-bottom-color: var(--recipe-alias-border-color);
   }
 `;

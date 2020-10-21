@@ -1,7 +1,7 @@
 import React from 'react';
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import styles from './EzTextInput.styles';
-import styled from '../../themes/styled';
 
 const rows = size => {
   switch (size) {
@@ -15,12 +15,12 @@ const rows = size => {
   }
 };
 
-const overrides = ({theme}) => css`
+const overrides = () => css`
   resize: vertical;
 
   && {
     line-height: 1.5rem;
-    padding: ${theme.spacing.xs} ${theme.spacing.sm};
+    padding: var(--recipe-global-static-size-100) var(--recipe-global-static-size-150);
   }
 `;
 

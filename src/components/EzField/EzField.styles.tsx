@@ -1,6 +1,8 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
+import variant from 'styled-component-variant';
 import {hideVisually} from '../../styles';
-import styled from '../../themes/styled';
+import {mq} from '../../themes/styled';
 import inputStyles from './EzTextInput.styles';
 import {ErrorTriangle as ErrorIcon} from '../Icons';
 
@@ -26,14 +28,15 @@ export const Field = styled.div`
   padding: 0;
 
   > * + * {
-    margin-top: ${({theme, labelSize}: any) => theme.spacing[labelSize === 'small' ? 'xs2' : 'xs']};
+    margin-top: var(--recipe-global-static-size-100);
+    margin-top: ${variant('labelSize', {small: 'var(--recipe-global-static-size-50)'})};
   }
 `;
 
 export const Helper = styled.div`
-  font-size: ${({theme}) => theme.fontSizes[200]};
-  color: ${({theme}) => theme.colors.text.deemphasis};
-  margin-top: ${({theme}) => theme.spacing.xs};
+  font-size: var(--recipe-global-font-size-75);
+  color: var(--recipe-alias-deemphasis-text-color);
+  margin-top: var(--recipe-global-static-size-100);
 `;
 
 const detached = css`
@@ -43,11 +46,11 @@ const detached = css`
 
 const inlineMessageOffset = {transform: 'translate3d(0, -2px, 0)'};
 
-const callout = ({theme, active, showInlineError}: any) => css`
-  background-color: ${theme.colors.destructive.foreground};
-  color: ${theme.colors.white};
-  font-size: ${theme.fontSizes[200]};
-  padding: ${theme.spacing.xs} ${theme.spacing.sm};
+const callout = ({active, showInlineError}: any) => css`
+  background-color: var(--recipe-semantic-negative-color-default);
+  color: var(--recipe-global-color-static-white);
+  font-size: var(--recipe-global-font-size-75);
+  padding: var(--recipe-global-static-size-100) var(--recipe-global-static-size-150);
   position: relative;
   flex-grow: 1;
   right: 0;
@@ -62,7 +65,7 @@ const callout = ({theme, active, showInlineError}: any) => css`
     height: 0px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid ${theme.colors.destructive.foreground};
+    border-bottom: 5px solid var(--recipe-semantic-negative-color-default);
     position: absolute;
     top: -5px;
     right: 10px;
@@ -73,14 +76,17 @@ const callout = ({theme, active, showInlineError}: any) => css`
     transform: 'translate3d(0, 6px, 0)',
   }}
 
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    position: absolute;
-    ${detached};
-    user-select: none;
-    z-index: 1;
-    ${!active && hideVisually()};
-    ${showInlineError && inlineMessageOffset};
-  }
+  ${mq(
+    'medium',
+    css`
+      position: absolute;
+      ${detached};
+      user-select: none;
+      z-index: 1;
+      ${!active && hideVisually()};
+      ${showInlineError && inlineMessageOffset};
+    `
+  )};
 `;
 
 export const InlineError = styled.div`
@@ -95,12 +101,12 @@ export const InlineError = styled.div`
 `;
 
 export const CharacterLimit = styled.div`
-  font-size: ${({theme}) => theme.fontSizes[200]};
-  margin-top: ${({theme}) => theme.spacing.xs};
+  font-size: var(--recipe-global-font-size-75);
+  margin-top: var(--recipe-global-static-size-100);
 `;
 
 export const ErrorTriangle = styled(ErrorIcon)`
-  color: ${({theme}) => theme.colors.destructive.foreground};
+  color: var(--recipe-semantic-negative-color-default);
 `;
 
 export const ScreenReaderOnly = styled.div(hideVisually());
