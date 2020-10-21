@@ -1,0 +1,10 @@
+:root {
+  --recipe-radiobutton-box-size: var(--recipe-global-static-size-200);
+  --recipe-radiobutton-checkmark-color: var(--recipe-global-color-static-blue-600);
+  --recipe-radiobutton-checkmark-color-disabled: var(--recipe-alias-text-color-disabled);
+  --recipe-radiobutton-box-border-color: var(--recipe-alias-border-color);
+  --recipe-radiobutton-box-background-color-hover: var(--recipe-global-color-static-gray-100);
+  --recipe-radiobutton-box-border-color-hover: var(--recipe-global-color-static-gray-500);
+  --recipe-radiobutton-box-background-color-down: var(--recipe-global-color-static-gray-300);
+  --recipe-radiobutton-box-background-color-disabled: var(--recipe-global-color-static-gray-200);
+}

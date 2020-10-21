@@ -1,12 +1,11 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
+import './vars.css';
 
-const sizePx = `16px`;
-
-const base = ({theme: {colors}}) => css`
+const base = () => css`
   display: inline-block;
-  height: ${sizePx};
-  width: ${sizePx};
+  height: var(--recipe-radiobutton-box-size);
+  width: var(--recipe-radiobutton-box-size);
   position: relative;
   top: 3px;
 
@@ -21,7 +20,7 @@ const base = ({theme: {colors}}) => css`
 
   /* Checked */
   input:checked + svg path:nth-of-type(2) {
-    fill: ${colors.interactive.base};
+    fill: var(--recipe-radiobutton-checkmark-color);
   }
 
   /* Not Checked */
@@ -31,28 +30,28 @@ const base = ({theme: {colors}}) => css`
 
   /* Focused */
   input:focus + svg {
-    box-shadow: 0px 0px 2px 2px ${colors.interactive.focus.outline};
+    box-shadow: 0 0 0 2px var(--recipe-alias-focus-ring-color);
     border-radius: 50%;
   }
 
   /* Hover */
   input:hover + svg path:nth-of-type(1) {
-    fill: ${colors.interactive.hover.background};
-    stroke: ${colors.interactive.hover.border};
+    fill: var(--recipe-radiobutton-box-background-color-hover);
+    stroke: var(--recipe-radiobutton-box-border-color-hover);
   }
 
   /* Active */
   input:active + svg path:nth-of-type(1) {
-    fill: ${colors.interactive.active.background};
+    fill: var(--recipe-radiobutton-box-background-color-down);
   }
 
   /* Disabled */
   input:disabled + svg path:nth-of-type(1) {
-    fill: ${colors.interactive.disabled.background};
+    fill: var(--recipe-radiobutton-box-background-color-disabled);
   }
 
   input:checked:disabled + svg path:nth-of-type(2) {
-    fill: ${colors.interactive.disabled.foreground};
+    fill: var(--recipe-radiobutton-checkmark-color-disabled);
   }
 `;
 
