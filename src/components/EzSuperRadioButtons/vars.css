@@ -1,0 +1,17 @@
+:root {
+  --recipe-super-radiobutton-background-color: var(--recipe-global-color-static-white);
+  --recipe-super-radiobutton-background-color-hover: var(--recipe-global-color-static-gray-100);
+  --recipe-super-radiobutton-background-color-selected: var(--recipe-global-color-static-blue-200);
+  --recipe-super-radiobutton-background-color-down: var(--recipe-global-color-static-gray-300);
+  --recipe-super-radiobutton-text-color: var(--recipe-global-color-static-blue-600);
+  --recipe-super-radiobutton-text-color-hover: var(--recipe-global-color-static-blue-700);
+  --recipe-super-radiobutton-font-weight: var(--recipe-global-font-weight-bold);
+  --recipe-super-radiobutton-size-default: 150px;
+  --recipe-super-radiobutton-image-size: var(--recipe-global-static-size-750);
+  --recipe-super-radiobutton-border-color: var(--recipe-alias-border-color);
+  --recipe-super-radiobutton-border-color-hover: var(--recipe-global-color-static-gray-500);
+  --recipe-super-radiobutton-border-color-selected: var(--recipe-global-color-static-blue-500);
+  --recipe-super-radiobutton-text-color-disabled: var(--recipe-alias-text-color-disabled);
+  --recipe-super-radiobutton-background-color-disabled: var(--recipe-global-color-static-gray-200);
+  --recipe-super-radiobutton-checkmark-color: var(--recipe-global-color-static-blue-600);
+}

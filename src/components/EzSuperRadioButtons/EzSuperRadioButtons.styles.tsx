@@ -1,10 +1,8 @@
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 import {hideVisually} from '../../styles';
-
 import RadioButtonIcon from '../EzRadioButton/RadioButtonIcon';
-
-const imageWidthAndHeight = 60;
+import './vars.css';
 
 const container = () =>
   css`
@@ -25,45 +23,45 @@ export const EzSuperRadioButtonsLabel = styled.div`
   ${hideVisually()}
 `;
 
-const item = ({theme}) => css`
+const item = () => css`
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
-  flex-basis: 150px;
-  min-height: 150px;
-  font-weight: bold;
-  color: ${theme.colors.interactive.base};
+  flex-basis: var(--recipe-super-radiobutton-size-default);
+  min-height: var(--recipe-super-radiobutton-size-default);
+  font-weight: var(--recipe-super-radiobutton-font-weight);
+  color: var(--recipe-super-radiobutton-text-color);
 
-  border: 1px solid ${theme.colors.border.base};
-  border-radius: ${theme.borderRadius[1]};
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  background-color: white;
+  border: 1px solid var(--recipe-super-radiobutton-border-color);
+  border-radius: var(--recipe-alias-border-radius-regular);
+  box-shadow: var(--recipe-alias-shadow-small);
+  background-color: var(--recipe-super-radiobutton-background-color);
 
   input:not(:disabled):not(:checked) + &:hover {
-    background-color: ${theme.colors.interactive.hover.background};
-    border-color: ${theme.colors.interactive.hover.border};
-    color: ${theme.colors.interactive.checked.foreground};
+    background-color: var(--recipe-super-radiobutton-background-color-hover);
+    border-color: var(--recipe-super-radiobutton-border-color-hover);
+    color: var(--recipe-super-radiobutton-text-color-hover);
   }
 
   input:checked:not(:disabled) + & {
-    background: ${theme.colors.interactive.checked.background};
-    border: 1px solid ${theme.colors.interactive.checked.border};
+    background: var(--recipe-super-radiobutton-background-color-selected);
+    border-color: var(--recipe-super-radiobutton-border-color-selected);
     position: relative;
   }
 
   input:active + & {
-    background: ${theme.colors.interactive.active.background};
+    background: var(--recipe-super-radiobutton-background-color-down);
   }
 
   input:focus + & {
-    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline};
+    box-shadow: var(--recipe-alias-focus-ring-shadow);
   }
 
   input:disabled + & {
     cursor: default;
-    color: ${theme.colors.interactive.disabled.foreground};
-    background-color: ${theme.colors.interactive.disabled.background};
+    color: var(--recipe-super-radiobutton-text-color-disabled);
+    background-color: var(--recipe-super-radiobutton-background-color-disabled);
 
     img {
       opacity: 0.5;
@@ -71,21 +69,22 @@ const item = ({theme}) => css`
   }
 `;
 
-const itemSquareStyles = ({theme}) => css`
-  padding: ${theme.spacing.xl2} ${theme.spacing.md} ${theme.spacing.md};
-  margin-bottom: ${theme.spacing.md};
+const itemSquareStyles = () => css`
+  padding: var(--recipe-global-static-size-400) var(--recipe-global-static-size-200)
+    var(--recipe-global-static-size-200);
+  margin-bottom: var(--recipe-global-static-size-200);
   align-items: center;
   &:not(:last-of-type) {
-    margin-right: ${theme.spacing.md};
+    margin-right: var(--recipe-global-static-size-200);
   }
 `;
 
 export const EzSuperRadioButtonsItem = styled.label<any>(item, itemSquareStyles);
 
 export const EzSuperRadioButtonsImageWrapper = styled.div`
-  margin-bottom: ${props => props.theme.spacing.lg};
-  width: ${imageWidthAndHeight}px;
-  height: ${imageWidthAndHeight}px;
+  margin-bottom: var(--recipe-global-static-size-250);
+  width: var(--recipe-super-radiobutton-image-size);
+  height: var(--recipe-super-radiobutton-image-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,8 +92,8 @@ export const EzSuperRadioButtonsImageWrapper = styled.div`
 
 export const EzSuperRadioButtonsImage = styled.img`
   margin: 0;
-  max-width: ${imageWidthAndHeight}px;
-  max-height: ${imageWidthAndHeight}px;
+  max-width: var(--recipe-super-radiobutton-image-size);
+  max-height: var(--recipe-super-radiobutton-image-size);
 `;
 
 export const EzSuperRadioButtonsItemLabel = styled.p`
@@ -104,16 +103,16 @@ export const EzSuperRadioButtonsItemLabel = styled.p`
 
 export const RadioButton = styled(RadioButtonIcon)`
   position: absolute;
-  top: ${props => props.theme.spacing.sm};
-  right: ${props => props.theme.spacing.sm};
+  top: var(--recipe-global-static-size-150);
+  right: var(--recipe-global-static-size-150);
 
   /* Checked */
   input:checked:not(:disabled) + label & path:nth-of-type(1) {
-    stroke: ${props => props.theme.colors.brandColors.ezBlue};
+    stroke: var(--recipe-super-radiobutton-checkmark-color);
   }
 
   input:checked:not(:disabled) + label & path:nth-of-type(2) {
-    fill: ${props => props.theme.colors.interactive.base};
+    fill: var(--recipe-super-radiobutton-checkmark-color);
   }
 
   /* Not Checked */
@@ -123,22 +122,22 @@ export const RadioButton = styled(RadioButtonIcon)`
 
   /* Focused */
   input:focus + label & {
-    box-shadow: 0px 0px 2px 2px ${props => props.theme.colors.interactive.focus.outline};
+    box-shadow: var(--recipe-alias-focus-ring-shadow);
     border-radius: 50%;
   }
 
   /* Hover */
   input:hover:not(:disabled):not(:checked) + label & path:nth-of-type(1) {
-    fill: ${props => props.theme.colors.interactive.hover.background};
-    stroke: ${props => props.theme.colors.interactive.hover.border};
+    fill: var(--recipe-super-radiobutton-background-color-hover);
+    stroke: var(--recipe-super-radiobutton-border-color-hover);
   }
 
   /* Disabled */
   input:disabled + label & path:nth-of-type(1) {
-    fill: ${props => props.theme.colors.interactive.disabled.background};
+    fill: var(--recipe-super-radiobutton-background-color-disabled);
   }
 
   input:disabled:checked + label & path:nth-of-type(2) {
-    fill: ${props => props.theme.colors.interactive.disabled.foreground};
+    fill: var(--recipe-super-radiobutton-text-color-disabled);
   }
 `;
