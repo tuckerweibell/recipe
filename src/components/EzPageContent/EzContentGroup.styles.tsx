@@ -1,20 +1,18 @@
 import {css} from '@emotion/core';
-import {Theme} from '../../themes/styled';
 
 type Props = {
   horizontal?: boolean;
-  theme: Theme;
 };
 
-export const vertical = ({horizontal, theme}: Props) =>
+export const vertical = ({horizontal}: Props) =>
   !horizontal &&
   css`
     && > * + * {
-      margin-top: ${theme.spacing.md};
+      margin-top: var(--recipe-global-static-size-200);
     }
   `;
 
-export const horizontal = ({horizontal: isHorizontal, theme}: Props) =>
+export const horizontal = ({horizontal: isHorizontal}: Props) =>
   isHorizontal &&
   css`
     display: flex;
@@ -25,6 +23,6 @@ export const horizontal = ({horizontal: isHorizontal, theme}: Props) =>
     }
 
     && > * + * {
-      margin-left: ${theme.spacing.lg};
+      margin-left: var(--recipe-global-static-size-250);
     }
   `;

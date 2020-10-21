@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import {base} from './EzPageContent.styles';
-import styled from '../../themes/styled';
 
 type PageContentProps = {
   children: React.ReactNode;

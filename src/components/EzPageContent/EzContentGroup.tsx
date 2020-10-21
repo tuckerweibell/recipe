@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import {horizontal, vertical} from './EzContentGroup.styles';
-import styled from '../../themes/styled';
 
 type ContentGroupProps = {
   children: React.ReactNode;
