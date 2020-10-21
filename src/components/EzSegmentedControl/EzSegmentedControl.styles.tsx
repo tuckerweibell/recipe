@@ -1,13 +1,14 @@
 import {css} from '@emotion/core';
-import styled, {Themed} from '../../themes/styled';
+import styled from '@emotion/styled';
 import {hideVisually} from '../../styles';
+import './vars.css';
 
-const label = ({theme}: Themed) => css`
+const label = () => css`
   cursor: pointer;
   background-color: white;
-  border: 1px solid ${theme.colors.border.base};
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  color: ${theme.colors.text.base};
+  border: 1px solid var(--recipe-segmented-box-border-color);
+  box-shadow: var(--recipe-alias-shadow-small);
+  color: var(--recipe-segmented-box-text-color);
   display: block;
   flex: 1;
 
@@ -16,8 +17,9 @@ const label = ({theme}: Themed) => css`
     we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
   */
   line-height: 1.25rem;
-  padding: calc(${theme.spacing.xs} - 0.125rem) ${theme.spacing.sm};
-  font-size: ${theme.fontSizes[300]};
+  --recipe-segmented-padding-y: calc(var(--recipe-global-static-size-100) - 0.125rem);
+  padding: var(--recipe-segmented-padding-y) var(--recipe-global-static-size-150);
+  font-size: var(--recipe-global-font-size-100);
 
   text-align: center;
   margin-left: -1px;
@@ -26,33 +28,33 @@ const label = ({theme}: Themed) => css`
 
   &:first-of-type {
     margin-left: 0;
-    border-top-left-radius: ${theme.borderRadius[1]};
-    border-bottom-left-radius: ${theme.borderRadius[1]};
+    border-top-left-radius: var(--recipe-segmented-box-border-radius);
+    border-bottom-left-radius: var(--recipe-segmented-box-border-radius);
   }
 
   &:last-of-type {
-    border-top-right-radius: ${theme.borderRadius[1]};
-    border-bottom-right-radius: ${theme.borderRadius[1]};
+    border-top-right-radius: var(--recipe-segmented-box-border-radius);
+    border-bottom-right-radius: var(--recipe-segmented-box-border-radius);
   }
 
   &:hover {
-    background-color: ${theme.colors.interactive.hover.background};
-    border-color: ${theme.colors.interactive.hover.border};
+    background-color: var(--recipe-segmented-box-background-color-hover);
+    border-color: var(--recipe-segmented-box-border-color-hover);
   }
 
   input:checked + & {
-    color: ${theme.colors.interactive.checked.foreground};
-    background: ${theme.colors.interactive.checked.background};
-    border: 1px solid ${theme.colors.interactive.checked.border};
+    color: var(--recipe-segmented-box-text-color-selected);
+    background: var(--recipe-segmented-box-background-color-selected);
+    border: 1px solid var(--recipe-segmented-box-border-color-selected);
     position: relative;
   }
 
   input:active + & {
-    background: ${theme.colors.interactive.active.background};
+    background: var(--recipe-segmented-box-background-color-down);
   }
 
   input:focus + & {
-    box-shadow: 0px 0px 2px 2px ${theme.colors.interactive.focus.outline};
+    box-shadow: var(--recipe-alias-focus-ring-shadow);
   }
 
   input:disabled + & {
@@ -62,7 +64,7 @@ const label = ({theme}: Themed) => css`
   }
 `;
 
-export const Option = styled.label<Partial<Themed>>(label);
+export const Option = styled.label(label);
 
 export const Fieldset = styled.div`
   display: flex;
