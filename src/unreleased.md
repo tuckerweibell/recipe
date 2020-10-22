@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- updated internal Media component for visual snapshot testing components at specific breakpoints in order to reduce the payload size of visual regression tests.
+
 #### Design updates
 
 #### Bug fixes
