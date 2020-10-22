@@ -35,6 +35,15 @@ const Media = ({size, children}) => {
     setContainer(iframeEl.current);
   }, [container]);
 
+  useEffect(() => {
+    if (!linkRef.current) return;
+    setSrc(
+      `data:text/html,${encodeURIComponent(
+        `<html>${linkRef.current.ownerDocument.head.outerHTML}<body>${iframeEl.current.innerHTML}</body></html>`
+      )}`
+    );
+  }, [container]);
+
   return (
     <iframe
       title={size}
@@ -54,12 +63,6 @@ const Media = ({size, children}) => {
           />
           <EzGlobalStyles />
           {children}
-          {linkRef.current &&
-            setSrc(
-              `data:text/html,${encodeURIComponent(
-                `<html>${linkRef.current.ownerDocument.head.outerHTML}<body>${iframeEl.current.innerHTML}</body></html>`
-              )}`
-            )}
         </IFrameContent>
       )}
     </iframe>
