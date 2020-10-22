@@ -19,4 +19,6 @@ title: 'Unreleased changes'
 
 #### Dependency upgrades
 
+- upgrade gatsby dev dependency (for doc-site).
+
 #### Development workflow
