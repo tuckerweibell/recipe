@@ -1,6 +1,7 @@
 import {css} from '@emotion/core';
+import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
-import styled from '../../themes/styled';
+import './vars.css';
 
 const sharedDirectionalStyles = () => css`
   border-width: 6px;
@@ -25,41 +26,47 @@ const topStyles = () => css`
   }
 `;
 
-const coloredStyles = (lightColor, darkColor) => css`
-  background-color: ${lightColor};
-  color: ${darkColor};
+const colorStyles = () => css`
+  background-color: var(--recipe-alert-background-color);
+  color: var(--recipe-alert-text-color);
 
   &::after {
-    border-top-color: ${lightColor};
+    border-top-color: var(--recipe-alert-background-color);
   }
 
   &::before {
-    border-bottom-color: ${lightColor};
+    border-bottom-color: var(--recipe-alert-background-color);
   }
 `;
 
-const successStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.success.background, colors.success.text)};
+const successStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-semantic-positive-color-background);
+  --recipe-alert-text-color: var(--recipe-semantic-positive-color-text-small);
 `;
 
-const errorStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.destructive.background, colors.destructive.text)};
+const errorStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-semantic-negative-color-background);
+  --recipe-alert-text-color: var(--recipe-semantic-negative-color-text-small);
 `;
 
-const warningStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.warning.background, colors.warning.text)};
+const warningStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-semantic-caution-color-background);
+  --recipe-alert-text-color: var(--recipe-semantic-caution-color-text-small);
 `;
 
-const infoStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.info.background, colors.info.text)};
+const infoStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-semantic-informative-color-background);
+  --recipe-alert-text-color: var(--recipe-semantic-informative-color-text-small);
 `;
 
-const marketingStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.teals.lighter, colors.teals.dark)};
+const marketingStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-global-color-static-teal-200);
+  --recipe-alert-text-color: var(--recipe-global-color-static-teal-700);
 `;
 
-const tipStyles = ({theme: {colors}}) => css`
-  ${coloredStyles(colors.purples.lighter, colors.purples.dark)};
+const tipStyles = () => css`
+  --recipe-alert-background-color: var(--recipe-global-color-static-purple-200);
+  --recipe-alert-text-color: var(--recipe-global-color-static-purple-700);
 `;
 
 const arrowStyles = variant('arrow', {
@@ -82,17 +89,20 @@ type AlertContainerProps = {
 };
 
 export const AlertContainer = styled.div<AlertContainerProps>`
-  border-radius: ${props => props.theme.borderRadius[1]};
+  border-radius: var(--recipe-alert-border-radius);
   border-width: 0;
   display: inline-flex;
-  padding: ${props => props.theme.spacing.sm};
-  padding-right: ${props => props.theme.spacing.lg};
+  padding-top: var(--recipe-alert-padding-top);
+  padding-right: var(--recipe-alert-padding-right);
+  padding-bottom: var(--recipe-alert-padding-bottom);
+  padding-left: var(--recipe-alert-padding-left);
   position: relative;
 
   ${useStyles};
+  ${colorStyles};
   ${arrowStyles};
 `;
 
 export const AlertContent = styled.div`
-  margin-left: ${props => props.theme.spacing.xs};
+  margin-left: var(--recipe-global-static-size-100);
 `;

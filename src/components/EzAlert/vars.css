@@ -1,0 +1,7 @@
+:root {
+  --recipe-alert-border-radius: var(--recipe-alias-border-radius-regular);
+  --recipe-alert-padding-top: var(--recipe-global-static-size-150);
+  --recipe-alert-padding-right: var(--recipe-global-static-size-250);
+  --recipe-alert-padding-left: var(--recipe-global-static-size-150);
+  --recipe-alert-padding-bottom: var(--recipe-global-static-size-150);
+}
