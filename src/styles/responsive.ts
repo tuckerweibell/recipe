@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
 import variant from 'styled-component-variant';
+import {breakpoints as standardBreakpoints} from '../themes/standard';
 
 const getValue = (props, val, name) => (typeof val === 'function' ? val(props, name) : val);
 const createMediaQuery = (n, styles, reset) => css`
@@ -31,15 +32,7 @@ export default (prop, config) => props => {
     return undefined;
   }
 
-  const breakpoints = props?.theme?.breakpoints;
-
-  if (!breakpoints) {
-    // eslint-disable-next-line no-console
-    console.error(
-      `Breakpoints must be defined when using responsive props on components. No breakpoints where found on your current theme.`
-    );
-    return undefined;
-  }
+  const breakpoints = props?.theme?.breakpoints || standardBreakpoints;
 
   const responsive = Object.keys(breakpoints).reduce((styles, breakpointName) => {
     const variantName = options[breakpointName];

@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import {responsive} from '..';
-import styled from '../../themes/styled';
 import {fullRender} from '../../jest-globals';
 
 describe('responsive()', () => {
@@ -41,16 +41,6 @@ describe('responsive()', () => {
 
   it('should raise an error if called without a base variant', () => {
     fn({use: {desktop: 'dark'}, colors, theme});
-    expect(spyOnErrors).toHaveBeenCalled();
-  });
-
-  it('should raise an error if called without a theme', () => {
-    fn({use: {base: 'light', desktop: 'dark'}, colors});
-    expect(spyOnErrors).toHaveBeenCalled();
-  });
-
-  it('should raise an error if called without breakpoints', () => {
-    fn({use: {base: 'light', desktop: 'dark'}, colors, theme: {}});
     expect(spyOnErrors).toHaveBeenCalled();
   });
 });
