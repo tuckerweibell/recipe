@@ -1,6 +1,6 @@
 import React from 'react';
 import {css} from '@emotion/core';
-import styled from '../../themes/styled';
+import styled from '@emotion/styled';
 
 const alignBaseline = () => css`
   height: 1em;
