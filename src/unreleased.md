@@ -15,7 +15,11 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- fix: EzTable responsive logic incorrectly detecting horizontal overflow.
+
 #### Documentation
+
+- updated typography docs to list options within an EzTable.
 
 #### Dependency upgrades
 
