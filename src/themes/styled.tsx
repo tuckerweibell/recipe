@@ -8,9 +8,6 @@ export function mq(bp: string, i: Interpolation): Interpolation {
   return {[`@media (min-width: ${bp in bps ? bps[bp] : bp})`]: i};
 }
 
-export type Theme = typeof standard;
-export type Themed = {theme: Theme};
-
 const wrapWithStandardTheme = interpolation => {
   if (typeof interpolation !== 'function') return interpolation;
   return ({theme, ...props}) =>
@@ -40,4 +37,4 @@ Object.keys(styled)
     createStyled[tagName] = createStyled(tagName);
   });
 
-export default createStyled as CreateStyled<Theme>;
+export default createStyled as CreateStyled<typeof standard>;
