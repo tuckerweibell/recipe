@@ -1,12 +1,6 @@
-import React from 'react';
 import styled, {CreateStyled, StyledOptions} from '@emotion/styled';
-import {ThemeContext, Interpolation} from '@emotion/core';
+import {Interpolation} from '@emotion/core';
 import * as standard from './standard';
-
-export function useTheme(): Theme {
-  const theme = React.useContext(ThemeContext) as Theme;
-  return Object.keys(theme).length ? theme : standard;
-}
 
 const bps = {medium: '768px', large: '1061px'};
 
