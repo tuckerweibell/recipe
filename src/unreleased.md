@@ -7,6 +7,9 @@ title: 'Unreleased changes'
 
 #### Breaking changes
 
+- Significant reworking of Recipe's theming support, implementing the [Recipe Theming RFC](https://github.com/ezcater/recipe/issues/430). Recipe theming is no longer provided by [`emotion-theming`](https://emotion.sh/docs/theming) and instead is powered by CSS custom properties. For applications that need to support IE11, a polyfill will be required to enable support for CSS custom properties. We recommend using the [css-vars-ponyfill by jhildenbiddle](https://github.com/jhildenbiddle/css-vars-ponyfill).
+- Responsive breakpoints can no longer be modified by providing custom breakpoints via `emotion-theming`. Instead the Recipe v10 "standard theme" breakpoint values will be used. The medium breakpoint is to `768px` and the large breakpoint is `1061px`.
+
 #### New components
 
 #### Enhancements
@@ -26,6 +29,7 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 - upgrade gatsby dev dependency (for doc-site).
+- remove `emotion-theming` devDependency from Recipe.
 
 #### Development workflow
 
