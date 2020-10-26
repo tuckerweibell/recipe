@@ -100,16 +100,6 @@ To ensure Recipe's default font is available in a webpage, copy this code into t
 <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet" />
 ```
 
-### Using Recipe theme with emotion
-
-Recipe components are pre-styled out-of-the-box with our standard theme, however, if you wish to create your own components that build upon Recipe's standard theme, you can do so by setting up [theming](https://emotion.sh/docs/theming).
-
-```term
-npm install -S emotion-theming
-```
-
-Add ThemeProvider component to the top level of your app and access the theme with `props.theme` in a styled component. For more information on theming, see the [emotion-theming docs](https://emotion.sh/docs/emotion-theming).
-
 ### Updating to new releases
 
 To install or update to the [latest version of Recipe](/changelog) in your application, you can run the following npm command:
