@@ -17,8 +17,8 @@ const label = () => css`
     we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding
   */
   line-height: 1.25rem;
-  --recipe-segmented-padding-y: calc(var(--recipe-global-static-size-100) - 0.125rem);
-  padding: var(--recipe-segmented-padding-y) var(--recipe-global-static-size-150);
+  padding: calc(var(--recipe-global-static-size-100) - 0.125rem)
+    var(--recipe-global-static-size-150);
   font-size: var(--recipe-global-font-size-100);
 
   text-align: center;

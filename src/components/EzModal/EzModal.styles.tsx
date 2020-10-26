@@ -40,15 +40,11 @@ export const dialogStyles = () => css`
 `;
 
 const containerPadding = () => css`
-  --recipe-dialog-padding-x: var(--recipe-dialog-tray-padding-x);
-  --recipe-dialog-padding-y: var(--recipe-dialog-tray-padding-y);
+  padding: var(--recipe-dialog-tray-padding-y) var(--recipe-dialog-tray-padding-x);
 
   ${mq('medium', {
-    '--recipe-dialog-padding-x': 'var(--recipe-dialog-modal-padding-x)',
-    '--recipe-dialog-padding-y': 'var(--recipe-dialog-modal-padding-y)',
+    padding: 'var(--recipe-dialog-modal-padding-y) var(--recipe-dialog-modal-padding-x)',
   })};
-
-  padding: var(--recipe-dialog-padding-y) var(--recipe-dialog-padding-x);
 `;
 
 export const HeaderContainer = styled.div`

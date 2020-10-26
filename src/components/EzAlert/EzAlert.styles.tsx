@@ -26,48 +26,52 @@ const topStyles = () => css`
   }
 `;
 
-const colorStyles = () => css`
-  background-color: var(--recipe-alert-background-color);
-  color: var(--recipe-alert-text-color);
-
+const colorStyles = (lightColor, darkColor) => css`
+  background-color: ${lightColor};
+  color: ${darkColor};
   &::after {
-    border-top-color: var(--recipe-alert-background-color);
+    border-top-color: ${lightColor};
   }
-
   &::before {
-    border-bottom-color: var(--recipe-alert-background-color);
+    border-bottom-color: ${lightColor};
   }
 `;
 
-const successStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-semantic-positive-color-background);
-  --recipe-alert-text-color: var(--recipe-semantic-positive-color-text-small);
-`;
+const successStyles = () =>
+  colorStyles(
+    'var(--recipe-semantic-positive-color-background)',
+    'var(--recipe-semantic-positive-color-text-small)'
+  );
 
-const errorStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-semantic-negative-color-background);
-  --recipe-alert-text-color: var(--recipe-semantic-negative-color-text-small);
-`;
+const errorStyles = () =>
+  colorStyles(
+    'var(--recipe-semantic-negative-color-background)',
+    'var(--recipe-semantic-negative-color-text-small)'
+  );
 
-const warningStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-semantic-caution-color-background);
-  --recipe-alert-text-color: var(--recipe-semantic-caution-color-text-small);
-`;
+const warningStyles = () =>
+  colorStyles(
+    'var(--recipe-semantic-caution-color-background)',
+    'var(--recipe-semantic-caution-color-text-small)'
+  );
 
-const infoStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-semantic-informative-color-background);
-  --recipe-alert-text-color: var(--recipe-semantic-informative-color-text-small);
-`;
+const infoStyles = () =>
+  colorStyles(
+    'var(--recipe-semantic-informative-color-background)',
+    'var(--recipe-semantic-informative-color-text-small)'
+  );
 
-const marketingStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-global-color-static-teal-200);
-  --recipe-alert-text-color: var(--recipe-global-color-static-teal-700);
-`;
+const marketingStyles = () =>
+  colorStyles(
+    'var(--recipe-global-color-static-teal-200)',
+    'var(--recipe-global-color-static-teal-700)'
+  );
 
-const tipStyles = () => css`
-  --recipe-alert-background-color: var(--recipe-global-color-static-purple-200);
-  --recipe-alert-text-color: var(--recipe-global-color-static-purple-700);
-`;
+const tipStyles = () =>
+  colorStyles(
+    'var(--recipe-global-color-static-purple-200)',
+    'var(--recipe-global-color-static-purple-700)'
+  );
 
 const arrowStyles = variant('arrow', {
   bottom: bottomStyles,
@@ -99,7 +103,6 @@ export const AlertContainer = styled.div<AlertContainerProps>`
   position: relative;
 
   ${useStyles};
-  ${colorStyles};
   ${arrowStyles};
 `;
 

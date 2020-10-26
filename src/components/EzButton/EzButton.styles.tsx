@@ -18,10 +18,6 @@ const base = () => css`
   user-select: none;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-
-  color: var(--recipe-button-text-color);
-  background-color: var(--recipe-button-background-color);
-  border-color: var(--recipe-button-border-color);
 `;
 
 const disabled = ({disabled: isDisabled}) =>
@@ -50,52 +46,46 @@ const outline = variant('use', {
 });
 
 const primaryBase = () => css`
-  --recipe-button-text-color: var(--recipe-button-primary-text-color);
-  --recipe-button-background-color: var(--recipe-button-primary-background-color);
-  --recipe-button-border-color: var(--recipe-button-primary-border-color);
+  color: var(--recipe-button-primary-text-color);
+  background-color: var(--recipe-button-primary-background-color);
+  border-color: var(--recipe-button-primary-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-primary-text-color);
-    --recipe-button-background-color: var(--recipe-button-primary-background-color-focus);
-    --recipe-button-border-color: var(--recipe-button-primary-border-color-focus);
+    color: var(--recipe-button-primary-text-color);
+    background-color: var(--recipe-button-primary-background-color-focus);
+    border-color: var(--recipe-button-primary-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-primary-text-color-hover);
-    --recipe-button-background-color: var(--recipe-button-primary-background-color-hover);
-    --recipe-button-border-color: var(--recipe-button-primary-border-color-hover);
+    color: var(--recipe-button-primary-text-color-hover);
+    background-color: var(--recipe-button-primary-background-color-hover);
+    border-color: var(--recipe-button-primary-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-primary-text-color-down);
-    --recipe-button-background-color: var(--recipe-button-primary-background-color-down);
-    --recipe-button-border-color: var(--recipe-button-primary-border-color-down);
+    color: var(--recipe-button-primary-text-color-down);
+    background-color: var(--recipe-button-primary-background-color-down);
+    border-color: var(--recipe-button-primary-border-color-down);
   }
 `;
 
 const primaryDestructive = () => css`
-  --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color);
-  --recipe-button-background-color: var(--recipe-button-primary-destructive-background-color);
-  --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color);
+  color: var(--recipe-button-primary-destructive-text-color);
+  background-color: var(--recipe-button-primary-destructive-background-color);
+  border-color: var(--recipe-button-primary-destructive-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color);
-    --recipe-button-background-color: var(
-      --recipe-button-primary-destructive-background-color-focus
-    );
-    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-focus);
+    color: var(--recipe-button-primary-destructive-text-color);
+    background-color: var(--recipe-button-primary-destructive-background-color-focus);
+    border-color: var(--recipe-button-primary-destructive-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color-hover);
-    --recipe-button-background-color: var(
-      --recipe-button-primary-destructive-background-color-hover
-    );
-    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-hover);
+    color: var(--recipe-button-primary-destructive-text-color-hover);
+    background-color: var(--recipe-button-primary-destructive-background-color-hover);
+    border-color: var(--recipe-button-primary-destructive-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-primary-destructive-text-color-down);
-    --recipe-button-background-color: var(
-      --recipe-button-primary-destructive-background-color-down
-    );
-    --recipe-button-border-color: var(--recipe-button-primary-destructive-border-color-down);
+    color: var(--recipe-button-primary-destructive-text-color-down);
+    background-color: var(--recipe-button-primary-destructive-background-color-down);
+    border-color: var(--recipe-button-primary-destructive-border-color-down);
   }
 `;
 
@@ -104,52 +94,46 @@ const primary = ({destructive}) => {
 };
 
 const secondaryBase = () => css`
-  --recipe-button-text-color: var(--recipe-button-secondary-text-color);
-  --recipe-button-background-color: var(--recipe-button-secondary-background-color);
-  --recipe-button-border-color: var(--recipe-button-secondary-border-color);
+  color: var(--recipe-button-secondary-text-color);
+  background-color: var(--recipe-button-secondary-background-color);
+  border-color: var(--recipe-button-secondary-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-secondary-text-color);
-    --recipe-button-background-color: var(--recipe-button-secondary-background-color-focus);
-    --recipe-button-border-color: var(--recipe-button-secondary-border-color-focus);
+    color: var(--recipe-button-secondary-text-color);
+    background-color: var(--recipe-button-secondary-background-color-focus);
+    border-color: var(--recipe-button-secondary-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-secondary-text-color-hover);
-    --recipe-button-background-color: var(--recipe-button-secondary-background-color-hover);
-    --recipe-button-border-color: var(--recipe-button-secondary-border-color-hover);
+    color: var(--recipe-button-secondary-text-color-hover);
+    background-color: var(--recipe-button-secondary-background-color-hover);
+    border-color: var(--recipe-button-secondary-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-secondary-text-color-down);
-    --recipe-button-background-color: var(--recipe-button-secondary-background-color-down);
-    --recipe-button-border-color: var(--recipe-button-secondary-border-color-down);
+    color: var(--recipe-button-secondary-text-color-down);
+    background-color: var(--recipe-button-secondary-background-color-down);
+    border-color: var(--recipe-button-secondary-border-color-down);
   }
 `;
 
 const secondaryDestructive = () => css`
-  --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color);
-  --recipe-button-background-color: var(--recipe-button-secondary-destructive-background-color);
-  --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color);
+  color: var(--recipe-button-secondary-destructive-text-color);
+  background-color: var(--recipe-button-secondary-destructive-background-color);
+  border-color: var(--recipe-button-secondary-destructive-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color);
-    --recipe-button-background-color: var(
-      --recipe-button-secondary-destructive-background-color-focus
-    );
-    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-focus);
+    color: var(--recipe-button-secondary-destructive-text-color);
+    background-color: var(--recipe-button-secondary-destructive-background-color-focus);
+    border-color: var(--recipe-button-secondary-destructive-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color-hover);
-    --recipe-button-background-color: var(
-      --recipe-button-secondary-destructive-background-color-hover
-    );
-    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-hover);
+    color: var(--recipe-button-secondary-destructive-text-color-hover);
+    background-color: var(--recipe-button-secondary-destructive-background-color-hover);
+    border-color: var(--recipe-button-secondary-destructive-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-secondary-destructive-text-color-down);
-    --recipe-button-background-color: var(
-      --recipe-button-secondary-destructive-background-color-down
-    );
-    --recipe-button-border-color: var(--recipe-button-secondary-destructive-border-color-down);
+    color: var(--recipe-button-secondary-destructive-text-color-down);
+    background-color: var(--recipe-button-secondary-destructive-background-color-down);
+    border-color: var(--recipe-button-secondary-destructive-border-color-down);
   }
 `;
 
@@ -158,52 +142,46 @@ const secondary = ({destructive}) => {
 };
 
 const tertiaryBase = () => css`
-  --recipe-button-text-color: var(--recipe-button-tertiary-text-color);
-  --recipe-button-background-color: var(--recipe-button-tertiary-background-color);
-  --recipe-button-border-color: var(--recipe-button-tertiary-border-color);
+  color: var(--recipe-button-tertiary-text-color);
+  background-color: var(--recipe-button-tertiary-background-color);
+  border-color: var(--recipe-button-tertiary-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-tertiary-text-color);
-    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-focus);
-    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-focus);
+    color: var(--recipe-button-tertiary-text-color);
+    background-color: var(--recipe-button-tertiary-background-color-focus);
+    border-color: var(--recipe-button-tertiary-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-tertiary-text-color-hover);
-    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-hover);
-    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-hover);
+    color: var(--recipe-button-tertiary-text-color-hover);
+    background-color: var(--recipe-button-tertiary-background-color-hover);
+    border-color: var(--recipe-button-tertiary-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-tertiary-text-color-down);
-    --recipe-button-background-color: var(--recipe-button-tertiary-background-color-down);
-    --recipe-button-border-color: var(--recipe-button-tertiary-border-color-down);
+    color: var(--recipe-button-tertiary-text-color-down);
+    background-color: var(--recipe-button-tertiary-background-color-down);
+    border-color: var(--recipe-button-tertiary-border-color-down);
   }
 `;
 
 const tertiaryDestructive = () => css`
-  --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color);
-  --recipe-button-background-color: var(--recipe-button-tertiary-destructive-background-color);
-  --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color);
+  color: var(--recipe-button-tertiary-destructive-text-color);
+  background-color: var(--recipe-button-tertiary-destructive-background-color);
+  border-color: var(--recipe-button-tertiary-destructive-border-color);
 
   :focus {
-    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color);
-    --recipe-button-background-color: var(
-      --recipe-button-tertiary-destructive-background-color-focus
-    );
-    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-focus);
+    color: var(--recipe-button-tertiary-destructive-text-color);
+    background-color: var(--recipe-button-tertiary-destructive-background-color-focus);
+    border-color: var(--recipe-button-tertiary-destructive-border-color-focus);
   }
   :hover {
-    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color-hover);
-    --recipe-button-background-color: var(
-      --recipe-button-tertiary-destructive-background-color-hover
-    );
-    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-hover);
+    color: var(--recipe-button-tertiary-destructive-text-color-hover);
+    background-color: var(--recipe-button-tertiary-destructive-background-color-hover);
+    border-color: var(--recipe-button-tertiary-destructive-border-color-hover);
   }
   :active {
-    --recipe-button-text-color: var(--recipe-button-tertiary-destructive-text-color-down);
-    --recipe-button-background-color: var(
-      --recipe-button-tertiary-destructive-background-color-down
-    );
-    --recipe-button-border-color: var(--recipe-button-tertiary-destructive-border-color-down);
+    color: var(--recipe-button-tertiary-destructive-text-color-down);
+    background-color: var(--recipe-button-tertiary-destructive-background-color-down);
+    border-color: var(--recipe-button-tertiary-destructive-border-color-down);
   }
 `;
 

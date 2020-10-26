@@ -1,10 +1,8 @@
 :root {
   --recipe-dismiss-padding: var(--recipe-global-static-size-250);
   --recipe-dismiss-background-color: var(--recipe-global-color-transparent);
-  --recipe-dismiss-color-translucent-rgb: 0,0,0;
   --recipe-dismiss-color-translucent-rgb-dark: 241, 241, 244;
   --recipe-dismiss-color-translucent-rgb-darker: 196, 203, 207;
-  --recipe-dismiss-color-translucent-opacity: var(--recipe-global-opacity-40);
   --recipe-dismiss-color-translucent-opacity-dark: var(--recipe-global-opacity-40);
   --recipe-dismiss-color-translucent-opacity-darker: var(--recipe-global-opacity-40);
 }

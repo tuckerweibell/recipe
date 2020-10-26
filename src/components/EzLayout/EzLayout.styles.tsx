@@ -33,12 +33,7 @@ const flexBasisForColumnCount = n => `calc(${n < 2 ? 100 : 100 / n}% - ${space})
 const columnWidth = props => {
   const {columns} = props;
   if (typeof columns !== 'object') return {flexBasis: flexBasisForColumnCount(columns)};
-  return cx(
-    {flexBasis: 'var(--recipe-layout-tile-col-count)'},
-    responsive('columns', value => ({
-      '--recipe-layout-tile-col-count': flexBasisForColumnCount(value),
-    }))(props)
-  );
+  return responsive('columns', value => ({flexBasis: flexBasisForColumnCount(value)}))(props);
 };
 
 const tile = props => css`

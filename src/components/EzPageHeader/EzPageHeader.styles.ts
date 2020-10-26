@@ -9,6 +9,8 @@ const base = () => css`
 
   --recipe-page-header-content-padding-y: var(--recipe-global-static-size-150);
   --recipe-page-header-content-padding-x: var(--recipe-global-static-size-250);
+  /* fallback for browsers that don't support css vars */
+  padding: var(--recipe-global-static-size-150) var(--recipe-global-static-size-250);
   padding: var(--recipe-page-header-content-padding-y) var(--recipe-page-header-content-padding-x);
 `;
 

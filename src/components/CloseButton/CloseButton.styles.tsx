@@ -11,24 +11,18 @@ export const base = () => css`
   padding: var(--recipe-dismiss-padding);
   margin: calc(var(--recipe-dismiss-padding) * -1);
   background-color: var(--recipe-dismiss-background-color);
-  --recipe-dismiss-background-color-translucent: rgba(
-    var(--recipe-dismiss-color-translucent-rgb),
-    var(--recipe-dismiss-color-translucent-opacity)
-  );
 
   :hover,
   :focus {
-    --recipe-dismiss-color-translucent-rgb: var(--recipe-dismiss-color-translucent-rgb-dark);
-    --recipe-dismiss-color-translucent-opacity: var(
-      --recipe-dismiss-color-translucent-opacity-dark
+    background-color: rgba(
+      var(--recipe-dismiss-color-translucent-rgb-dark),
+      var(--recipe-dismiss-color-translucent-opacity-dark)
     );
-    --recipe-dismiss-background-color: var(--recipe-dismiss-background-color-translucent);
   }
   :active {
-    --recipe-dismiss-color-translucent-rgb: var(--recipe-dismiss-color-translucent-rgb-darker);
-    --recipe-dismiss-color-translucent-opacity: var(
-      --recipe-dismiss-color-translucent-opacity-darker
+    background-color: rgba(
+      var(--recipe-dismiss-color-translucent-rgb-darker),
+      var(--recipe-dismiss-color-translucent-opacity-darker)
     );
-    --recipe-dismiss-background-color: var(--recipe-dismiss-background-color-translucent);
   }
 `;

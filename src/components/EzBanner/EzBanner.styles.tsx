@@ -62,6 +62,7 @@ const button = () => css`
   padding: var(--recipe-banner-button-padding-y) var(--recipe-banner-button-padding-x);
 
   &:focus {
+    background-color: var(--recipe-banner-button-background-color-focus);
     box-shadow: var(--recipe-alias-focus-ring-shadow);
     outline: none;
   }
@@ -73,9 +74,11 @@ const button = () => css`
   &:hover,
   a&:hover {
     color: var(--recipe-banner-button-text-color-hover);
+    background-color: var(--recipe-banner-button-background-color-hover);
   }
   &:active {
     color: var(--recipe-banner-button-text-color-down);
+    background-color: var(--recipe-banner-button-background-color-down);
   }
 `;
 

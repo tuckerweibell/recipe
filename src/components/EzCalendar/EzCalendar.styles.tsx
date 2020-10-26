@@ -34,7 +34,7 @@ const day = () => css`
     &[aria-disabled='true'] {
       opacity: 0.6;
       cursor: default;
-      --recipe-calendar-day-text-color: var(--recipe-alias-text-color-disabled);
+      color: var(--recipe-alias-text-color-disabled);
       pointer-events: none;
     }
   }

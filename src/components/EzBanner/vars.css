@@ -9,6 +9,9 @@
   --recipe-banner-button-padding-x: var(--recipe-global-static-size-200);
   --recipe-banner-button-padding-y: var(--recipe-global-static-size-100);
   --recipe-banner-button-background-color: var(--recipe-global-color-static-white);
+  --recipe-banner-button-background-color-hover: var(--recipe-global-color-static-white);
+  --recipe-banner-button-background-color-down: var(--recipe-global-color-static-white);
+  --recipe-banner-button-background-color-focus: var(--recipe-global-color-static-white);
   --recipe-banner-button-text-color: var(--recipe-global-color-static-gray-700);
   --recipe-banner-button-text-color-hover: var(--recipe-button-tertiary-text-color-hover);
   --recipe-banner-button-text-color-down: var(--recipe-button-tertiary-text-color-down);

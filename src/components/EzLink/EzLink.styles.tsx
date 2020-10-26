@@ -9,10 +9,10 @@ const base = () => css`
   color: var(--recipe-link-text-color);
 
   :hover {
-    --recipe-link-text-color: var(--recipe-link-text-color-hover);
+    color: var(--recipe-link-text-color-hover);
   }
   :active {
-    --recipe-link-text-color: var(--recipe-link-text-color-down);
+    color: var(--recipe-link-text-color-down);
   }
 
   &:hover {
