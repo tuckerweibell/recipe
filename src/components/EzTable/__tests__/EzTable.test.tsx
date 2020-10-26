@@ -139,8 +139,8 @@ describe('EzTable', () => {
     function render(props) {
       const {queryByLabelText, queryAllByLabelText} = fullRender(<EzTable {...props} />);
       return {
-        bulkSelectInput: queryByLabelText('Select all'),
-        rowSelectInputs: queryAllByLabelText('Select row'),
+        bulkSelectInput: queryByLabelText('Select all') as HTMLInputElement,
+        rowSelectInputs: queryAllByLabelText('Select row') as HTMLInputElement[],
       };
     }
 

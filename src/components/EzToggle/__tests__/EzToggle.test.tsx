@@ -3,11 +3,11 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
-import {fireEvent, cleanup} from '@testing-library/react';
+import {fireEvent, cleanup, render as fullRender} from '@testing-library/react';
 import regressionTests from './EzToggle.test.md';
 import markdown from '../EzToggle.md';
 import EzToggle from '../EzToggle';
-import {renderToHtml, fullRender} from '../../../jest-globals';
+import {renderToHtml} from '../../../jest-globals';
 
 const scope = {EzToggle, Global, css};
 
@@ -58,7 +58,7 @@ describe('EzToggle', () => {
       </label>
     );
 
-    const toggle = queryByLabelText('Toggle me');
+    const toggle = queryByLabelText('Toggle me') as HTMLInputElement;
 
     expect(toggle.checked).toBe(false);
 

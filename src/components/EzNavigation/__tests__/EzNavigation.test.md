@@ -26,20 +26,18 @@
   }, [ref]);
 
   return (
-    <ThemeProvider theme={{...themes.standard, breakpoints: {medium: '768px', large: '800px'}}}>
-      <Router>
-        <div ref={ref}>
-          <EzNavigation
-            home={{href: '#', label: 'Logo'}}
-            links={[
-              {to: '/link-1', label: 'link 1', as: NavLink},
-              {to: '/link-hover', label: 'hovered link', as: NavLink},
-              {to: '/link-3', label: 'link 3', as: NavLink},
-            ]}
-          />
-        </div>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <div ref={ref}>
+        <EzNavigation
+          home={{href: '#', label: 'Logo'}}
+          links={[
+            {to: '/link-1', label: 'link 1', as: NavLink},
+            {to: '/link-hover', label: 'hovered link', as: NavLink},
+            {to: '/link-3', label: 'link 3', as: NavLink},
+          ]}
+        />
+      </div>
+    </Router>
   );
 };
 ```

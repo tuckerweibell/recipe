@@ -6,7 +6,6 @@ import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
-import {ThemeProvider} from 'emotion-theming';
 import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
@@ -56,31 +55,29 @@ const EmotionCacheProvider = ({children}) => {
 
 const GlobalStylesWrapper = ({children}) => (
   <EmotionCacheProvider>
-    <ThemeProvider theme={themes.standard}>
-      <>
-        <link
-          href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-          rel="stylesheet"
-        />
-        <EzGlobalStyles />
-        <Global
-          styles={css`
-            /* disable animations in visual snapshots */
-            *,
-            ::before,
-            ::after {
-              transition-property: none !important;
-              animation: none !important;
-            }
-            body {
-              /* restore user agent based margin for backward compatibility with existing snapshots */
-              margin: 8px;
-            }
-          `}
-        />
-        {children}
-      </>
-    </ThemeProvider>
+    <>
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+        rel="stylesheet"
+      />
+      <EzGlobalStyles />
+      <Global
+        styles={css`
+          /* disable animations in visual snapshots */
+          *,
+          ::before,
+          ::after {
+            transition-property: none !important;
+            animation: none !important;
+          }
+          body {
+            /* restore user agent based margin for backward compatibility with existing snapshots */
+            margin: 8px;
+          }
+        `}
+      />
+      {children}
+    </>
   </EmotionCacheProvider>
 );
 

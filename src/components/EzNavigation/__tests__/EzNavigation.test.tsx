@@ -3,7 +3,6 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {ThemeProvider} from 'emotion-theming';
 import markdown from '../EzNavigation.md';
 import regressionTests from './EzNavigation.test.md';
 import EzNavigation from '../EzNavigation';
@@ -30,7 +29,6 @@ const scope = {
   EzCard,
   ezCaterLogoPath,
   require,
-  ThemeProvider,
   themes,
   Media,
 };
