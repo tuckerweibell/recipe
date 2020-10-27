@@ -3,11 +3,10 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
-import {fireEvent, cleanup, render as fullRender} from '@testing-library/react';
+import {fireEvent, cleanup, render} from '@testing-library/react';
 import regressionTests from './EzToggle.test.md';
 import markdown from '../EzToggle.md';
 import EzToggle from '../EzToggle';
-import {renderToHtml} from '../../../jest-globals';
 
 const scope = {EzToggle, Global, css};
 
@@ -19,7 +18,7 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the input is clicked', () => {
     const spy = jest.fn();
 
-    const {queryByLabelText} = fullRender(
+    const {queryByLabelText} = render(
       <label htmlFor="toggle">
         <EzToggle id="toggle" onChange={spy} checked />
         <span>Toggle me</span>
@@ -36,7 +35,7 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the stylized container is clicked', () => {
     const spy = jest.fn();
 
-    const {queryByLabelText} = fullRender(
+    const {queryByLabelText} = render(
       <label htmlFor="toggle">
         <EzToggle id="toggle" onChange={spy} checked />
         <span>Toggle me</span>
@@ -51,7 +50,7 @@ describe('EzToggle', () => {
   });
 
   it('submits the correct input state when using uncontrolled input', () => {
-    const {queryByLabelText} = fullRender(
+    const {queryByLabelText} = render(
       <label htmlFor="toggle">
         <EzToggle id="toggle" />
         <span>Toggle me</span>
@@ -68,13 +67,13 @@ describe('EzToggle', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <label htmlFor="toggle">
         <EzToggle id="toggle" onChange={() => {}} checked />
         <span>Toggle me</span>
       </label>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

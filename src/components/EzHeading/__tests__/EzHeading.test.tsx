@@ -1,10 +1,10 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import markdown from '../EzHeading.md';
 import EzHeading from '../EzHeading';
 import {EzCard} from '../../index';
-import {fullRender, renderToHtml} from '../../../jest-globals';
 
 const scope = {EzHeading, EzCard, React};
 
@@ -12,7 +12,7 @@ describe('EzHeading', () => {
   visualSnapshots({markdown, scope});
 
   it('should render with the specified tag', () => {
-    const {container} = fullRender(
+    const {container} = render(
       <EzHeading as="h1" size="6">
         Heading
       </EzHeading>
@@ -23,7 +23,7 @@ describe('EzHeading', () => {
   test.each(['1', '2', '3', '4', '5', '6'])('Shows/Hides subheading for size %i', n => {
     const size = n as '1' | '2' | '3' | '4' | '5' | '6';
 
-    const {container} = fullRender(
+    const {container} = render(
       <EzHeading size={size} subheading="Subheading">
         Heading
       </EzHeading>
@@ -33,8 +33,8 @@ describe('EzHeading', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(<EzHeading size="1">Heading</EzHeading>);
-    const actual = await axe(wrapper);
+    const {container} = render(<EzHeading size="1">Heading</EzHeading>);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

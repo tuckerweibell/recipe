@@ -11,6 +11,7 @@ import EzGlobalStyles from './src/components/EzGlobalStyles';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 import './src/themes/recipe-global.css';
+import '@testing-library/jest-dom/extend-expect';
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);

@@ -1,9 +1,9 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {EzCard, EzCardSection, EzCardExpandable} from '..';
-import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
 import {EzPage, EzPageSection, EzLayout, EzButton, EzField} from '../../index';
@@ -39,38 +39,35 @@ describe('EzCard', () => {
   // Blowing up when empty breaks the live-reload dev experience
   it('should NOT throw if empty', () => {
     expect(() => {
-      renderToHtml(React.createElement(EzCard, {} as any));
+      render(React.createElement(EzCard, {} as any));
     }).not.toThrow();
   });
 
   it('should NOT throw for simple text content', () => {
     expect(() => {
-      renderToHtml(<EzCard>hello</EzCard>);
+      render(<EzCard>hello</EzCard>);
     }).not.toThrow();
   });
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzCard title="Card Heading">
         <EzCardSection>Lorem ipsum dolor</EzCardSection>
         <EzCardSection>sit amet, consectetur adipiscing</EzCardSection>
       </EzCard>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 
   describe('data-* props', () => {
-    let actual;
-    beforeEach(() => {
-      actual = renderToHtml(
+    it('renders valid props for html elements', () => {
+      const {container} = render(
         <EzCard data-test="my-test-selector">
           <EzCardSection>content</EzCardSection>
         </EzCard>
       );
-    });
-    it('renders valid props for html elements', () => {
-      expect(actual).toContain('data-test="my-test-selector"');
+      expect(container.outerHTML).toContain('data-test="my-test-selector"');
     });
   });
 });

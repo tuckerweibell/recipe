@@ -2,7 +2,7 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {Link, StaticRouter, Route} from 'react-router-dom';
-import {fireEvent, cleanup} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import markdown from '../EzPageHeader.md';
 import regressionTests from './EzPageHeader.test.md';
 import EzPageHeader from '../EzPageHeader';
@@ -16,7 +16,6 @@ import {
   EzField,
   EzSearchInput,
 } from '../../index';
-import {fullRender, renderToHtml} from '../../../jest-globals';
 import Media from '../../EzField/Media';
 
 afterEach(cleanup);
@@ -53,7 +52,7 @@ describe('EzPageHeader', () => {
     const tabs = [{label: 'All'}, {label: 'Accepted'}, {label: 'Draft'}];
     const onChange = jest.fn();
 
-    const {getByText} = fullRender(
+    const {getByText} = render(
       React.createElement(() => {
         const [selected, setSelected] = React.useState(tabs[1]);
         onChange.mockImplementation(setSelected);
@@ -107,7 +106,7 @@ describe('EzPageHeader', () => {
     const tabs = [{label: 'All'}, {label: 'Accepted'}, {label: 'Draft'}];
     const onChange = jest.fn();
 
-    const {getByText} = fullRender(
+    const {getByText} = render(
       React.createElement(() => {
         const [selected, setSelected] = React.useState(null);
         onChange.mockImplementation(setSelected);
@@ -126,7 +125,7 @@ describe('EzPageHeader', () => {
 
   it('should meet accessibility guidelines', async () => {
     const tabs = [{label: 'All'}, {label: 'Accepted'}, {label: 'Draft'}];
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzPageHeader
         title="Order # XYZ-123"
         breadcrumb={{
@@ -138,7 +137,7 @@ describe('EzPageHeader', () => {
         actions={<EzButton use="primary">Accept Order</EzButton>}
       />
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

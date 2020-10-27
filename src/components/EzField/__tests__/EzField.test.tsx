@@ -1,11 +1,10 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
-import {getByLabelText, fireEvent, act} from '@testing-library/react';
+import {render, getByLabelText, fireEvent, act} from '@testing-library/react';
 import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
-import {fullRender as render, renderToHtml} from '../../../jest-globals';
 import {EzButton, EzFormLayout, EzLayout, EzLabelledItem, EzSearchInput} from '../../index';
 import Open from '../Open';
 import Media from '../Media';
@@ -109,8 +108,8 @@ describe('EzField', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(<EzField label="Basic text" />);
-    const actual = await axe(wrapper);
+    const {container} = render(<EzField label="Basic text" />);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

@@ -1,10 +1,10 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import markdown from '../EzFlashMessage.md';
 import EzFlashMessage from '../EzFlashMessage';
 import {EzPage} from '../../EzPage';
-import {renderToHtml} from '../../../jest-globals';
 
 const scope = {EzFlashMessage, EzPage};
 
@@ -12,7 +12,7 @@ describe('EzFlashMessage', () => {
   visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzFlashMessage use="error" headline="Oh Crumbs!">
         <p>
           Looks like we’re having trouble loading this store’s data. Try reloading the page or
@@ -21,7 +21,7 @@ describe('EzFlashMessage', () => {
         </p>
       </EzFlashMessage>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

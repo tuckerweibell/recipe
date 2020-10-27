@@ -1,10 +1,10 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import markdown from '../EzTimeline.md';
 import {EzTimeline, EzTimelinePeriod, EzTimelineEvent} from '..';
 import {EzPage, EzButton, EzStatus} from '../..';
-import {renderToHtml} from '../../../jest-globals';
 import regressionTests from './EzTimeline.test.md';
 
 const scope = {EzTimeline, EzTimelinePeriod, EzTimelineEvent, EzPage, EzButton, EzStatus};
@@ -14,7 +14,7 @@ describe('EzTimeline', () => {
   visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzPage>
         <EzTimeline
           expandable={{expandLabel: 'Show Older Events', onClick: e => e.preventDefault()}}
@@ -27,7 +27,7 @@ describe('EzTimeline', () => {
         </EzTimeline>
       </EzPage>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

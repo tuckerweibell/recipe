@@ -1,9 +1,9 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import markdown from '../{{ name }}.md';
 import {{ name }} from '../{{ name }}';
-import {renderToHtml} from '../../../jest-globals';
 
 const scope = { {{ name }} };
 
@@ -16,8 +16,8 @@ describe('{{ name }}', () => {
   it('should have tests', () => {});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(<{{ name }} />);
-    const actual = await axe(wrapper);
+    const {container} = render(<{{ name }} />);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

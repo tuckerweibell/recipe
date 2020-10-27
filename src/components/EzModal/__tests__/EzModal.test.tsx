@@ -1,11 +1,10 @@
 import React from 'react';
-import {fireEvent, cleanup, screen, waitFor} from '@testing-library/react';
+import {render, fireEvent, cleanup, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
-import {fullRender} from '../../../jest-globals';
 
 afterEach(cleanup);
 
@@ -15,7 +14,7 @@ describe('EzModal', () => {
   visualSnapshots({markdown: regressionTests, scope});
 
   it('does not render the children if not open', () => {
-    const {queryByText} = fullRender(
+    const {queryByText} = render(
       <EzModal isOpen={false} dismissLabel="dismiss" headerText="header">
         <div>foo</div>
       </EzModal>
@@ -26,7 +25,7 @@ describe('EzModal', () => {
   it('calls submit handler when submit button is clicked', () => {
     const clickSpy = jest.fn();
     const submitLabel = 'submit';
-    const {getByText} = fullRender(
+    const {getByText} = render(
       <EzModal
         isOpen
         submitLabel={submitLabel}
@@ -45,7 +44,7 @@ describe('EzModal', () => {
   it('calls dismiss handler when dismiss button is clicked', () => {
     const clickSpy = jest.fn();
     const dismissLabel = 'dismiss';
-    const {getByText} = fullRender(
+    const {getByText} = render(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
@@ -64,7 +63,7 @@ describe('EzModal', () => {
   it('calls dismiss when clicking outside of the modal', () => {
     const dismiss = jest.fn();
     const dismissLabel = 'dismiss';
-    fullRender(
+    render(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
@@ -85,7 +84,7 @@ describe('EzModal', () => {
   it('calls dismiss when Escape is pressed', () => {
     const dismiss = jest.fn();
     const dismissLabel = 'dismiss';
-    fullRender(
+    render(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
@@ -112,7 +111,7 @@ describe('EzModal', () => {
       <input data-testid="child" onKeyDown={e => e.key === 'Escape' && e.preventDefault()} />
     );
 
-    fullRender(
+    render(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
@@ -135,7 +134,7 @@ describe('EzModal', () => {
 
   it('disables the submit button when the form is submitting', () => {
     const submitLabel = 'submit';
-    const {getByText} = fullRender(
+    const {getByText} = render(
       <EzModal
         isOpen
         isSubmitting
@@ -152,7 +151,7 @@ describe('EzModal', () => {
 
   it('sets the disabled prop on dismiss button when isSubmitting is true', () => {
     const dismissLabel = 'dismiss';
-    const {getByText} = fullRender(
+    const {getByText} = render(
       <EzModal isOpen isSubmitting dismissLabel={dismissLabel} headerText="header">
         test
       </EzModal>
@@ -170,7 +169,7 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    const {rerender} = fullRender(<Test />);
+    const {rerender} = render(<Test />);
 
     expect(document.body.style.overflow).toEqual('');
 
@@ -188,7 +187,7 @@ describe('EzModal', () => {
    */
   describe('Accessibility tests', () => {
     it('should meet accessibility guidelines when required labels / text are given', async () => {
-      const {baseElement, unmount} = fullRender(
+      const {baseElement, unmount} = render(
         <EzModal isOpen dismissLabel="dismiss" headerText="header">
           test
         </EzModal>
@@ -199,7 +198,7 @@ describe('EzModal', () => {
     });
 
     it('should meet accessibility guidelines when all labels / text are given', async () => {
-      const {baseElement, unmount} = fullRender(
+      const {baseElement, unmount} = render(
         <EzModal isOpen headerText="Header" submitLabel="submit" dismissLabel="dismiss">
           test
         </EzModal>
@@ -227,7 +226,7 @@ describe('EzModal', () => {
         );
       };
 
-      fullRender(<FocusExample />);
+      render(<FocusExample />);
 
       const trigger = screen.getByRole('button', {name: /outside/i});
 

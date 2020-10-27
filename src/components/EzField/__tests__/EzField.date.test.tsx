@@ -1,11 +1,10 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
 import dayjs from 'dayjs';
-import {fireEvent, act, screen} from '@testing-library/react';
+import {render, fireEvent, act, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ezDateInputTests from './EzDateInput.test.md';
 import EzField from '../EzField';
-import {fullRender as render} from '../../../jest-globals';
 import {EzFormLayout, EzLayout} from '../../index';
 import Open from '../Open';
 import Media from '../Media';

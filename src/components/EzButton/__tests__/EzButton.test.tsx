@@ -2,12 +2,11 @@ import React from 'react';
 import {Global, css} from '@emotion/core';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
 import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
-import {fullRender, renderToHtml} from '../../../jest-globals';
 
 jest.unmock('../../EzPopover');
 
@@ -18,13 +17,13 @@ describe('EzButton', () => {
   visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
 
   it('renders a button element by default', () => {
-    const {getByText} = fullRender(<EzButton use="primary">Click Me</EzButton>);
+    const {getByText} = render(<EzButton use="primary">Click Me</EzButton>);
     expect(getByText('Click Me').tagName).toEqual('BUTTON');
   });
 
   describe('disabled', () => {
     it('it disables the button element', () => {
-      const {getByText} = fullRender(
+      const {getByText} = render(
         <EzButton use="primary" disabled>
           Click Me
         </EzButton>
@@ -38,7 +37,7 @@ describe('EzButton', () => {
     const tooltipText = 'Invalid form';
 
     it('wraps the button in a tooltip if a value is provided and the button is disabled', () => {
-      const {container, getByText, getByRole} = fullRender(
+      const {container, getByText, getByRole} = render(
         <EzButton use="primary" disabled disabledMessage={tooltipText}>
           Submit
         </EzButton>
@@ -53,7 +52,7 @@ describe('EzButton', () => {
     });
 
     it('does not wrap the button in a tooltip if a value is provided and the button is not disabled', () => {
-      const {container, queryByRole} = fullRender(
+      const {container, queryByRole} = render(
         <EzButton use="primary" disabledMessage={tooltipText}>
           Submit
         </EzButton>
@@ -68,7 +67,7 @@ describe('EzButton', () => {
 
   describe('loading', () => {
     it('is applies the disabled attribute to the button element', () => {
-      const {getByText} = fullRender(
+      const {getByText} = render(
         <EzButton use="primary" loading>
           Click Me
         </EzButton>
@@ -79,22 +78,19 @@ describe('EzButton', () => {
   });
 
   describe('data-* props', () => {
-    let actual;
-    beforeEach(() => {
-      actual = renderToHtml(
+    it('renders valid props for html elements', () => {
+      const {container} = render(
         <EzButton use="primary" data-test="my-test-selector">
           Click Me
         </EzButton>
       );
-    });
-    it('renders valid props for html elements', () => {
-      expect(actual).toContain('data-test="my-test-selector"');
+      expect(container.outerHTML).toContain('data-test="my-test-selector"');
     });
   });
 
   it('should meet accessibility guidelines for buttons', async () => {
-    const wrapper = renderToHtml(<EzButton use="primary">Click Me</EzButton>);
-    const html = await axe(wrapper);
+    const {container} = render(<EzButton use="primary">Click Me</EzButton>);
+    const html = await axe(container.outerHTML);
     expect(html).toHaveNoViolations();
   });
 });

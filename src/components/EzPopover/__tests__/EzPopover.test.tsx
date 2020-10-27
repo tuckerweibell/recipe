@@ -1,9 +1,8 @@
 import React, {useRef} from 'react';
 import {axe} from 'jest-axe';
-import {screen, fireEvent} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 import EzPopover from '../EzPopover';
 import {useCloseOnBlur} from '../useCloseOnBlur';
-import {renderToHtml, fullRender as render} from '../../../jest-globals';
 
 describe('EzPopover', () => {
   describe('shouldCloseOnBlur', () => {
@@ -44,12 +43,12 @@ describe('EzPopover', () => {
     });
   });
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzPopover targetRef={{current: document.createElement('div')}}>
         <div>Hi!</div>
       </EzPopover>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

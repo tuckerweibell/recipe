@@ -1,10 +1,9 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import markdown from '../EzSegmentedControl.md';
 import EzSegmentedControl from '../EzSegmentedControl';
-import {fullRender, renderToHtml} from '../../../jest-globals';
 
 const scope = {EzSegmentedControl};
 
@@ -15,7 +14,7 @@ describe('EzSegmentedControl', () => {
     it('triggers onChange when segment is clicked', () => {
       const onChangeSpy: (value: string) => void = jest.fn();
 
-      const {getByText} = fullRender(
+      const {getByText} = render(
         <EzSegmentedControl
           name="test-segment"
           label="test segment"
@@ -40,7 +39,7 @@ describe('EzSegmentedControl', () => {
   it('should meet accessibility guidelines', async () => {
     const onChangeSpy: (value: string) => void = jest.fn();
 
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzSegmentedControl
         name="test-segment"
         label="accessibility test"
@@ -55,7 +54,7 @@ describe('EzSegmentedControl', () => {
         ]}
       />
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

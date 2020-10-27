@@ -1,10 +1,9 @@
 import React from 'react';
 import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
-import {fireEvent} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
-import {fullRender as render} from '../../../jest-globals';
 
 jest.unmock('../../EzPopover');
 

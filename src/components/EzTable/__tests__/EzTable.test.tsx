@@ -1,12 +1,11 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {fireEvent, cleanup} from '@testing-library/react';
+import {render, fireEvent, cleanup} from '@testing-library/react';
 import regressionTests from './EzTable.test.md';
 import markdown from '../EzTable.md';
 import EzTable from '../EzTable';
 import {EzButton, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
-import {fullRender, renderToHtml} from '../../../jest-globals';
 
 let mockOverflow = false;
 jest.mock('../useOverflowDetection', () => () => [mockOverflow, () => {}]);
@@ -53,7 +52,7 @@ describe('EzTable', () => {
       });
 
       it('notifies the client that sort is requested', () => {
-        const {getByText} = fullRender(<EzTable {...props} />);
+        const {getByText} = render(<EzTable {...props} />);
 
         fireEvent.click(getByText(sortableColumns[0].heading));
 
@@ -68,7 +67,7 @@ describe('EzTable', () => {
       });
 
       it('does NOT notify the client of a sort when a column is not sortable', () => {
-        const {getByText} = fullRender(
+        const {getByText} = render(
           <EzTable
             {...props}
             columns={[
@@ -84,7 +83,7 @@ describe('EzTable', () => {
       });
 
       it('can sort a single column in both ascending and descending order', () => {
-        const {getByText} = fullRender(<EzTable {...props} />);
+        const {getByText} = render(<EzTable {...props} />);
 
         fireEvent.click(getByText(sortableColumns[1].heading));
 
@@ -108,7 +107,7 @@ describe('EzTable', () => {
       });
 
       it('should not change the sort order if the provided onSortClick callback prevents default', () => {
-        const {getByText} = fullRender(<EzTable {...props} />);
+        const {getByText} = render(<EzTable {...props} />);
 
         onSortClick.mockImplementation(event => event.preventDefault());
 
@@ -136,8 +135,8 @@ describe('EzTable', () => {
   });
 
   describe('bulk-select', () => {
-    function render(props) {
-      const {queryByLabelText, queryAllByLabelText} = fullRender(<EzTable {...props} />);
+    function findInputs(props) {
+      const {queryByLabelText, queryAllByLabelText} = render(<EzTable {...props} />);
       return {
         bulkSelectInput: queryByLabelText('Select all') as HTMLInputElement,
         rowSelectInputs: queryAllByLabelText('Select row') as HTMLInputElement[],
@@ -158,18 +157,18 @@ describe('EzTable', () => {
       });
 
       it('renders a bulk-select input in a column header', () => {
-        const {bulkSelectInput} = render(props);
+        const {bulkSelectInput} = findInputs(props);
         expect(bulkSelectInput).not.toBeNull();
       });
 
       it('renders a row-select input for each row', () => {
-        const {rowSelectInputs} = render(props);
+        const {rowSelectInputs} = findInputs(props);
         expect(rowSelectInputs).toHaveLength(items.length);
       });
 
       describe('the bulk-select input', () => {
         it('calls the provided click handler when the input state changes', () => {
-          const {bulkSelectInput} = render(props);
+          const {bulkSelectInput} = findInputs(props);
 
           bulkSelectInput.click();
 
@@ -181,7 +180,7 @@ describe('EzTable', () => {
           let expectedState;
 
           afterEach(() => {
-            const {bulkSelectInput} = render(props);
+            const {bulkSelectInput} = findInputs(props);
             expect(bulkSelectInput.checked).toBe(expectedState);
           });
 
@@ -204,7 +203,7 @@ describe('EzTable', () => {
 
       describe('the row-select input', () => {
         it('calls the provided click handler when clicked', () => {
-          const {rowSelectInputs} = render(props);
+          const {rowSelectInputs} = findInputs(props);
 
           fireEvent.click(rowSelectInputs[0]);
 
@@ -215,7 +214,7 @@ describe('EzTable', () => {
         it('determines its checked state based on the provided function', () => {
           isRowSelected.mockImplementation(item => item.id === items[0].id);
 
-          const {rowSelectInputs} = render(props);
+          const {rowSelectInputs} = findInputs(props);
 
           expect(rowSelectInputs[0].checked).toBe(true);
           expect(rowSelectInputs[1].checked).toBe(false);
@@ -225,18 +224,18 @@ describe('EzTable', () => {
 
     describe('when a bulk-select functionality is not requested', () => {
       it('does not render a bulk-select input in a column header', () => {
-        const {bulkSelectInput} = render({columns, items});
+        const {bulkSelectInput} = findInputs({columns, items});
         expect(bulkSelectInput).toBeNull();
       });
 
       it('does not render a row-select input for each row', () => {
-        const {rowSelectInputs} = render({columns, items});
+        const {rowSelectInputs} = findInputs({columns, items});
         expect(rowSelectInputs[0]).toBeUndefined();
       });
     });
 
     it('should meet accessibility guidelines', async () => {
-      const wrapper = renderToHtml(
+      const {container} = render(
         <EzTable
           columns={columns}
           items={items}
@@ -247,7 +246,7 @@ describe('EzTable', () => {
           }}
         />
       );
-      const actual = await axe(wrapper);
+      const actual = await axe(container.outerHTML);
       expect(actual).toHaveNoViolations();
     });
   });
@@ -269,7 +268,7 @@ describe('EzTable', () => {
     it('shows option to select all rows when a page is selected', () => {
       const onSelectAllClick = jest.fn();
 
-      const {getByText} = fullRender(
+      const {getByText} = render(
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
@@ -324,7 +323,7 @@ describe('EzTable', () => {
     it('calls the onClick of the link target when clicking inside a table row', () => {
       const spy = jest.fn();
 
-      const {getByText} = fullRender(
+      const {getByText} = render(
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
@@ -348,7 +347,7 @@ describe('EzTable', () => {
     it('does NOT call the onClick of the link target if clicking interactive elements in the row', () => {
       const spy = jest.fn();
 
-      const {queryAllByLabelText} = fullRender(
+      const {queryAllByLabelText} = render(
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
@@ -383,7 +382,7 @@ describe('EzTable', () => {
     ];
 
     beforeEach(() => {
-      component = fullRender(
+      component = render(
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
@@ -411,8 +410,8 @@ describe('EzTable', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(<EzTable columns={columns} items={items} />);
-    const actual = await axe(wrapper);
+    const {container} = render(<EzTable columns={columns} items={items} />);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });

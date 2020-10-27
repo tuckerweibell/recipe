@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {render} from '@testing-library/react';
 import {responsive} from '..';
-import {fullRender} from '../../jest-globals';
 
 describe('responsive()', () => {
   let fn;
@@ -35,7 +35,7 @@ describe('responsive()', () => {
   it('should render base styles plus media queries for each breakpoint provided', () => {
     const subjectUnderTest = fn({use: {base: 'light', desktop: 'dark'}, colors, theme});
     const Component = styled.div(subjectUnderTest);
-    const {container} = fullRender(<Component />);
+    const {container} = render(<Component />);
     expect(container.firstChild).toMatchSnapshot();
   });
 

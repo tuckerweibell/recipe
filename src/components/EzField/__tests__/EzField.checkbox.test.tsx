@@ -1,9 +1,8 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
-import {getByLabelText, fireEvent, screen} from '@testing-library/react';
+import {render, getByLabelText, fireEvent, screen} from '@testing-library/react';
 import regressionTests from './EzField.checkbox.test.md';
 import EzField from '../EzField';
-import {fullRender as render} from '../../../jest-globals';
 
 const scope = {EzField};
 

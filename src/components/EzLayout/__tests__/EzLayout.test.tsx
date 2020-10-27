@@ -1,13 +1,13 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import regressionTests from './EzLayout.test.md';
 import alignmentTests from './EzLayout.alignment.test.md';
 import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection, EzHeading, EzField, EzPage} from '../../index';
-import {renderToHtml} from '../../../jest-globals';
 import Media from '../../EzField/Media';
 import Placeholder from '../../../../doc-site/src/components/Placeholder';
 
@@ -30,7 +30,7 @@ describe('EzLayout', () => {
   visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzLayout layout="basic">
         <div>Content</div>
         <div>Content</div>
@@ -38,7 +38,7 @@ describe('EzLayout', () => {
         <div>Content</div>
       </EzLayout>
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 

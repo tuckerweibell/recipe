@@ -1,11 +1,11 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
+import {render} from '@testing-library/react';
 import markdown from '../EzOrderSummary.md';
 import regressionTests from './EzOrderSummary.test.md';
 import EzOrderSummary from '../EzOrderSummary';
 import {EzButton, EzPage} from '../../index';
-import {renderToHtml} from '../../../jest-globals';
 
 const scope = {EzButton, EzPage, EzOrderSummary};
 
@@ -14,7 +14,7 @@ describe('EzOrderSummary', () => {
   visualSnapshots({markdown: regressionTests, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const wrapper = renderToHtml(
+    const {container} = render(
       <EzOrderSummary
         title="Required heading"
         subtitle="Optional subtitle"
@@ -70,7 +70,7 @@ describe('EzOrderSummary', () => {
         }}
       />
     );
-    const actual = await axe(wrapper);
+    const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
 });
