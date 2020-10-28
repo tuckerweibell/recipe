@@ -1,9 +1,9 @@
-[id="___gatsby"] code,
-[id="___gatsby"] pre {
+code,
+pre {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-[id="___gatsby"] ul {
+.gatsby ul {
   margin-left: 1.45rem;
   margin-right: 0;
   margin-top: 0;
@@ -15,7 +15,7 @@
   list-style-position: outside;
   list-style-image: none;
 }
-[id="___gatsby"] ol {
+.gatsby ol {
   margin-left: 1.45rem;
   margin-right: 0;
   margin-top: 0;
@@ -27,7 +27,7 @@
   list-style-position: outside;
   list-style-image: none;
 }
-[id="___gatsby"] pre {
+pre {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -44,19 +44,19 @@
   word-wrap: normal;
   padding: 1.45rem;
 }
-[id="___gatsby"] li {
+.gatsby li {
   margin-bottom: calc(1.45rem / 2);
 }
-[id="___gatsby"] li > ul {
+.gatsby li > ul {
   margin-left: 1.45rem;
   margin-bottom: calc(1.45rem / 2);
   margin-top: calc(1.45rem / 2);
 }
-[id="___gatsby"] code {
+code {
   font-size: 0.85rem;
   line-height: 1.45rem;
 }
-[id="___gatsby"] code {
+code {
   background-color: rgba(27, 31, 35, 0.075);
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono',
@@ -65,14 +65,14 @@
 .EzAppLayout table img {
   width: 100%;
 }
-[id="___gatsby"] img.avatar {
+img.avatar {
   border-radius: 100%;
 }
-[id="___gatsby"] h1,
-[id="___gatsby"] h2,
-[id="___gatsby"] h3,
-[id="___gatsby"] h4,
-[id="___gatsby"] h5,
-[id="___gatsby"] h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   position: relative;
 }

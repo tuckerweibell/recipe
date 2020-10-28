@@ -70,7 +70,9 @@ const HtmlAst = ({htmlAst, scope}) => {
   };
 
   const heading = (size, as) => props =>
-    React.createElement(Components.EzHeading, {size, as, ...props});
+    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+
+  const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 
   const componentMap = {
     code: Code,
@@ -95,6 +97,9 @@ const HtmlAst = ({htmlAst, scope}) => {
     fontweights: FontWeights,
     ezalert: Components.EzAlert,
     timelinestatus: TimelineStatus,
+    ul: wrapEl('ul'),
+    ol: wrapEl('ol'),
+    li: wrapEl('li'),
     h1: heading(1),
     h2: heading(3, 'h2'),
     h3: heading(3, 'h3'),
