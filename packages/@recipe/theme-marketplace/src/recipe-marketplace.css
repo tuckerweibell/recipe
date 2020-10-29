@@ -1,0 +1,5 @@
+.recipe-marketplace {
+  --recipe-page-background-color: var(--recipe-global-color-static-white);
+  --recipe-card-border-radius: 0;
+  --recipe-card-dropshadow: 0px 2px 25px 0px rgba(0, 0, 0, 0.12);
+}
