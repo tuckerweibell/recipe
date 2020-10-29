@@ -4,6 +4,7 @@
   "description": "ezCater's React UI Component library",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "sideEffects": [
     "*.css"
   ],
