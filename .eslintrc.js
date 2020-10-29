@@ -14,5 +14,14 @@ module.exports = {
     'react/no-multi-comp': 'off',
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
+    'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
+  },
+  settings: {
+    parser: '@typescript-eslint/parser',
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
   },
 };
