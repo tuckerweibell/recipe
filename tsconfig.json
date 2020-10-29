@@ -2,13 +2,16 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
+    // Search under node_modules for non-relative imports.
+    "moduleResolution": "node",
+    // allows react jsx in tsx files
     "jsx": "react",
     "declaration": true,
     "outDir": "lib",
-    "rootDir": "src",
     "strict": false,
+    // Import non-ES modules as default imports.
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src", "packages"],
+  "exclude": ["**/node_modules"]
 }
