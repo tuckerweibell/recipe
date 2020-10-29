@@ -76,3 +76,12 @@ h5,
 h6 {
   position: relative;
 }
+
+.token-line:not(:last-child) {
+  min-height: 1rem;
+}
+
+[id='___gatsby'] pre[class*='language-'] {
+  font-size: 14px;
+  background: #fafafa;
+}
