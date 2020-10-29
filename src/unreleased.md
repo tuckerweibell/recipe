@@ -12,11 +12,15 @@ title: 'Unreleased changes'
 
 #### New components
 
+- Added new [EzProvider](/components/ez-provider) component. Provider is the container for customizing Recipe applications. It defines the application theme that is applied to descendant content.
+
 #### Enhancements
 
 - updated internal Media component for visual snapshot testing components at specific breakpoints in order to reduce the payload size of visual regression tests.
 
 #### Design updates
+
+- Updated doc-site styles for code-snippets to more closely match live code (playground) examples.
 
 #### Bug fixes
 
@@ -30,6 +34,7 @@ title: 'Unreleased changes'
 
 - upgrade gatsby dev dependency (for doc-site).
 - remove `emotion-theming` devDependency from Recipe.
+- added dependency on `@react-types/provider` (provides type definition only).
 
 #### Development workflow
 
@@ -37,3 +42,5 @@ title: 'Unreleased changes'
 - Disabled [emotion's vendor prefixing](https://emotion.sh/docs/@emotion/cache#prefix) during visual regression test runs (in order to shrink the payload size of visual regression tests). Given our only browser target in use today is Chrome, we shouldn't need vendor prefixes during tests.
 - Switched [emotion's default style prefix](https://emotion.sh/docs/@emotion/cache#key) for emotions generated class names from `css` to `r` (for recipe). This change is only applied to styles generated during test runs and does not impact production. This change reduces the payload size of visual regression tests.
 - removed `jest.globals` in favor of using `@testing-library/react` directly (we no longer need to wrap components in a theme provider).
+- created private css-module-types package to allow provide TypeScript definitions for CSS imports.
+- added top-level `repository` and `types` fields to Recipe's package.json.
