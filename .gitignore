@@ -10,3 +10,4 @@ lib
 .tool-versions
 .eslintcache
 *.cache
+.parcel-cache
