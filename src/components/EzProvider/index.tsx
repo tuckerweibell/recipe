@@ -1,3 +1,1 @@
-import {EzProvider} from './EzProvider';
-
-export default EzProvider;
+export {EzProvider, useProvider} from './EzProvider';
