@@ -3,7 +3,7 @@ import {createPortal} from 'react-dom';
 import {CacheProvider} from '@emotion/core';
 import createCache from '@emotion/cache';
 import styled from '@emotion/styled';
-import {EzGlobalStyles} from '@ezcater/recipe';
+import {EzGlobalStyles, EzProvider, useProvider} from '@ezcater/recipe';
 import ResizeObserver from 'resize-observer-polyfill';
 
 const spacing = ({margin, page}) =>
@@ -20,6 +20,7 @@ const IFramePlayground = props => {
   const [container, setContainer] = useState(null);
   const playgroundRef = useRef(null);
   const [margin, setMargin] = useState('20px');
+  const {theme} = useProvider();
 
   useLayoutEffect(() => {
     if (!container) return;
@@ -95,7 +96,14 @@ const IFramePlayground = props => {
                 rel="stylesheet"
               />
               <EzGlobalStyles />
-              {props.children}
+              {/* 
+                the styles applied by the page aren't carried through to the iframe,
+                and providers skip rendering unless its context has changed,
+                so force a change by emptying the theme, and resetting it to its outer value.
+               */}
+              <EzProvider theme={{global: ''}}>
+                <EzProvider theme={theme}>{props.children}</EzProvider>
+              </EzProvider>
             </Wrapper>
           </CacheProvider>,
           container

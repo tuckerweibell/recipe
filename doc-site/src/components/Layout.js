@@ -12,7 +12,9 @@ import {
   EzPageHeader,
   EzCard,
   EzCardSection,
+  EzProvider,
 } from '@ezcater/recipe';
+import { theme as marketplaceTheme } from '@recipe/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
 
@@ -72,7 +74,7 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
       const tabs = relatedPages.length && relatedPages.length < 5 ? relatedPages : undefined;
 
       return (
-        <>
+        <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
           <Helmet
             title={`Recipe - ${title}`}
             meta={[
@@ -130,7 +132,7 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
               </EzAppLayout>
             </div>
           </ThemeProvider>
-        </>
+        </EzProvider>
       );
     }}
   />
