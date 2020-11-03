@@ -4,11 +4,11 @@ import {responsive} from '../../styles';
 
 const styles = {
   left: {
+    order: -1,
     borderTopLeftRadius: 'var(--recipe-card-border-radius)',
     borderBottomLeftRadius: 'var(--recipe-card-border-radius)',
   },
   right: {
-    order: 1,
     borderTopRightRadius: 'var(--recipe-card-border-radius)',
     borderBottomRightRadius: 'var(--recipe-card-border-radius)',
   },
@@ -21,6 +21,7 @@ const styles = {
     },
   },
   top: {
+    order: -1,
     maxWidth: '100%',
     width: '100%',
     height: 'auto',
@@ -49,6 +50,6 @@ const position = responsive('position', {
   reset: styles.reset,
 });
 
-const EzCardImage = styled.img<any>(position);
+const EzCardImage = styled.img<any>(position, {flexShrink: 0});
 
 export default EzCardImage;

@@ -71,14 +71,6 @@ const EzCard: React.FC<CardProps> = ({
     imagePosition={imageSrc && imagePosition}
     size={size}
   >
-    {imageSrc && (
-      <EzCardImage
-        src={imageSrc}
-        position={imagePosition}
-        imageMaxWidth={imageMaxWidth}
-        imageMaxHeight={imageMaxHeight}
-      />
-    )}
     <div>
       {title && <EzCardHeading {...{actions, title, subtitle}} />}
       <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
@@ -92,6 +84,14 @@ const EzCard: React.FC<CardProps> = ({
         </EzCardFooter>
       )}
     </div>
+    {imageSrc && (
+      <EzCardImage
+        src={imageSrc}
+        position={imagePosition}
+        imageMaxWidth={imageMaxWidth}
+        imageMaxHeight={imageMaxHeight}
+      />
+    )}
   </CardContainer>
 );
 
