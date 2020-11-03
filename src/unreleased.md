@@ -16,25 +16,33 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added `size="small"` variant to EzCard. Small cards are best for browsing content as part of a list or grid of cards.
+- Added `imageMaxHeight` and `imageMaxWidth` options to EzCard to provide more granular control over the size of card images.
 - updated internal Media component for visual snapshot testing components at specific breakpoints in order to reduce the payload size of visual regression tests.
 
 #### Design updates
 
+- Added new `@recipe/theme-marketplace` package for customizing Recipe for marketplace applications.
 - Updated doc-site styles for code-snippets to more closely match live code (playground) examples.
 
 #### Bug fixes
 
 - fix: EzTable responsive logic incorrectly detecting horizontal overflow.
+- fix: border-radius of card images now matches the radius of the cards remaining corners.
+- fix: Inverted the DOM order of the card body and the card image within EzCard. Since headings introduce sections, having the image after the heading lets users know that the image belongs to the section.
+- fix: Added empty alt text to card images to indicate that the card's image is decorative.
 
 #### Documentation
 
 - updated typography docs to list options within an EzTable.
+- added basic theming switch to enable users of the doc-site to toggle between marketplace and fulfillment application styles.
 
 #### Dependency upgrades
 
 - upgrade gatsby dev dependency (for doc-site).
 - remove `emotion-theming` devDependency from Recipe.
 - added dependency on `@react-types/provider` (provides type definition only).
+- added `parcel` and `postcss` devDependencies for building standalone theme packages.
 
 #### Development workflow
 
