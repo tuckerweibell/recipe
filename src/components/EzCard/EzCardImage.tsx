@@ -4,13 +4,13 @@ import {responsive} from '../../styles';
 
 const styles = {
   left: {
-    borderTopLeftRadius: 4,
-    borderBottomLeftRadius: 4,
+    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
+    borderBottomLeftRadius: 'var(--recipe-card-border-radius)',
   },
   right: {
     order: 1,
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
+    borderTopRightRadius: 'var(--recipe-card-border-radius)',
+    borderBottomRightRadius: 'var(--recipe-card-border-radius)',
   },
   side: {
     objectFit: 'cover',
@@ -25,8 +25,8 @@ const styles = {
     width: '100%',
     height: 'auto',
     flexBasis: '100%',
-    borderTopLeftRadius: 4,
-    borderTopRightRadius: 4,
+    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
+    borderTopRightRadius: 'var(--recipe-card-border-radius)',
   },
   reset: {
     flexBasis: 'auto',
