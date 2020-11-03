@@ -19,9 +19,13 @@ const imagePos = responsive('imagePosition', {
   reset: {flexWrap: 'nowrap'},
 });
 
-const rounded = mq('medium', {
-  borderRadius: 'var(--recipe-card-border-radius)',
-});
+const rounded = Object.assign(
+  mq('medium', {
+    borderRadius: 'var(--recipe-card-border-radius)',
+    '--recipe-card-border-radius': 'inherit',
+  }),
+  {'--recipe-card-border-radius': 0}
+);
 
 export const CardContainer = styled.div<any>`
   background: var(--recipe-card-background-color);
