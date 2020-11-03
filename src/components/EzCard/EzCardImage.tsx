@@ -39,11 +39,13 @@ const styles = {
 };
 
 const cx = (...args) => args.reduce((res, v) => css(res, v), {});
+const maxHeight = props => ({maxHeight: props.imageMaxHeight || 'none', objectFit: 'cover'});
+const maxWidth = props => ({maxWidth: props.imageMaxWidth || 'none'});
 
 const position = responsive('position', {
-  left: cx(styles.left, styles.side),
-  right: cx(styles.right, styles.side),
-  top: styles.top,
+  left: props => cx(styles.left, styles.side, maxWidth(props)),
+  right: props => cx(styles.right, styles.side, maxWidth(props)),
+  top: props => cx(styles.top, maxHeight(props)),
   reset: styles.reset,
 });
 

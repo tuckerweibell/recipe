@@ -246,6 +246,8 @@ Card images can be used to enhance the content of the card and are ideal for mar
 
 - use `imageSrc` to provide an image URL
 - use `imagePosition` to provide an optional image position; `left`, `right`, `top`, or responsive e.g. `{base: 'top', medium: 'left'}`.
+- use `imageMaxHeight` to constrain the max image height. When using this option, if the image's aspect ratio does not match the aspect ratio of its box, the image will be clipped to fit the available space. This option is available for `imagePosition="top"` only.
+- use `imageMaxWidth` to constrain the max image width. This option is available with `imagePosition="left"` and `imagePosition="right"`.
 
 ```jsx
 <EzPage>
@@ -284,6 +286,7 @@ Medium is the default size for a card. Small cards are best for browsing content
       title="Splitz Wrap Boxed Lunch"
       subtitle="Corporate Catering  |  3 mi  |  $$$$"
       imageSrc={withPrefix('/images/wrap.jpg')}
+      imageMaxHeight={120}
       size="small"
     >
       <p>
@@ -305,6 +308,7 @@ Medium is the default size for a card. Small cards are best for browsing content
       title="Flaming Pit Pizza"
       subtitle="Globally Inspired Pizza  |  1 mi  |  $$$$"
       imageSrc={withPrefix('/images/pizza.jpg')}
+      imageMaxHeight={120}
       size="small"
     >
       <p>
@@ -326,6 +330,7 @@ Medium is the default size for a card. Small cards are best for browsing content
       title="Dakzen Thai"
       subtitle="Modern Thai  |  10 mi  |  $$$$"
       imageSrc={withPrefix('/images/thai.jpg')}
+      imageMaxHeight={120}
       size="small"
     >
       <p>

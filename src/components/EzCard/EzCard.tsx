@@ -1,4 +1,5 @@
 import React from 'react';
+import * as CSS from 'csstype';
 import {CardContainer, SectionContainer} from './EzCard.styles';
 import EzLink from '../EzLink';
 import EzCardFooter from './EzCardFooter';
@@ -30,8 +31,12 @@ type Position = 'top' | 'right' | 'left';
 type ImageProps =
   | {imageSrc: string; imagePosition?: Position}
   | {imageSrc?: never; imagePosition?: never};
+type ImageSizeProps = {
+  imageMaxHeight?: CSS.MaxHeightProperty<string | number>;
+  imageMaxWidth?: CSS.MaxWidthProperty<string | number>;
+};
 
-type CardProps = (HeadingProps & ImageProps) & {
+type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   children: React.ReactNode;
   horizontal?: boolean;
   accent?: 'info';
@@ -55,6 +60,8 @@ const EzCard: React.FC<CardProps> = ({
   children,
   imageSrc,
   imagePosition = 'top',
+  imageMaxWidth,
+  imageMaxHeight,
   size,
   ...props
 }) => (
@@ -64,7 +71,14 @@ const EzCard: React.FC<CardProps> = ({
     imagePosition={imageSrc && imagePosition}
     size={size}
   >
-    {imageSrc && <EzCardImage src={imageSrc} position={imagePosition} />}
+    {imageSrc && (
+      <EzCardImage
+        src={imageSrc}
+        position={imagePosition}
+        imageMaxWidth={imageMaxWidth}
+        imageMaxHeight={imageMaxHeight}
+      />
+    )}
     <div>
       {title && <EzCardHeading {...{actions, title, subtitle}} />}
       <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
