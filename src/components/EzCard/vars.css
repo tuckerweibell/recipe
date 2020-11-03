@@ -5,6 +5,7 @@
   --recipe-card-dropshadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   --recipe-card-border-radius: 6px;
   --recipe-card-padding: var(--recipe-global-static-size-250);
+  --recipe-card-padding-small: var(--recipe-global-static-size-150);
   --recipe-card-border-color: var(--recipe-alias-border-color);
   --recipe-card-header-gutter-size: var(--recipe-global-static-size-150);
   --recipe-card-footer-background-color: var(--recipe-global-color-static-gray-100);

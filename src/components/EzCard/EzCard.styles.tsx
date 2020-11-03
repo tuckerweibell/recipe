@@ -1,5 +1,6 @@
 import {css} from '@emotion/core';
 import styled from '@emotion/styled';
+import variant from 'styled-component-variant';
 import {responsive} from '../../styles';
 import {mq} from '../../themes/styled';
 import './vars.css';
@@ -27,11 +28,16 @@ const rounded = Object.assign(
   {'--recipe-card-border-radius': 0}
 );
 
+const size = variant('size', {
+  small: {'--recipe-card-padding': 'var(--recipe-card-padding-small)'},
+});
+
 export const CardContainer = styled.div<any>`
   background: var(--recipe-card-background-color);
   box-shadow: var(--recipe-card-dropshadow);
   ${accentStyles};
   ${rounded};
+  ${size};
   display: flex;
   ${imagePos};
   > * {

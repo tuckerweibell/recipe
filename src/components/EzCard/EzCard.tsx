@@ -36,6 +36,7 @@ type CardProps = (HeadingProps & ImageProps) & {
   horizontal?: boolean;
   accent?: 'info';
   expandable?: ExpandableCardFooter;
+  size?: 'small';
 };
 
 const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFooter =>
@@ -54,12 +55,14 @@ const EzCard: React.FC<CardProps> = ({
   children,
   imageSrc,
   imagePosition = 'top',
+  size,
   ...props
 }) => (
   <CardContainer
     {...filterValidProps(props)}
     accent={accent}
     imagePosition={imageSrc && imagePosition}
+    size={size}
   >
     {imageSrc && <EzCardImage src={imageSrc} position={imagePosition} />}
     <div>

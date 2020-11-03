@@ -5,7 +5,7 @@ category: Layout
 path: '/components/ez-card'
 ---
 
-Cards are the primary means of visually grouping content on a page. Most content should appear inside a card. Cards control the vertical spacing of their content.
+Cards are the primary means of visually grouping content on a page. Cards can be completely custom, or build using any of the card options provided out-of-the-box. Cards may have a cover photo or preview image, a card body or multiple card sections with information about the content, and an optional footer.
 
 ---
 
@@ -14,7 +14,7 @@ Cards are the primary means of visually grouping content on a page. Most content
 Cards should:
 
 - Be used to organize page content.
-- Contain related content. Otherwise consider using two separate Cards.
+- Group related content. Otherwise consider using two separate Cards.
 - Contain a maximum of one primary call-to-action per card.
 - Position calls-to-action for next steps at the bottom of the card, and use the space in the top right for optional actions.
 - Use [Card Sections](#card-with-sections) for related but distinct content. Multiple sections can help break up complicated concepts to make them easier to scan.
@@ -24,11 +24,6 @@ Cards should:
 Cards should not:
 
 - Be nested inside each other.
-- Be customized to make the entire card a clickable trigger for an action. Use a button or link or form element inside a card to trigger the action instead.
-
-Card Sections should not:
-
-- Be used outside of a Card
 
 ---
 
@@ -247,7 +242,7 @@ Accented info cards can be used when you want to draw attention to a card that d
 
 ### Card images
 
-Card images can be used to enhance the content of the card and are ideal for marketing content. Images will render full-bleed inside of a card (i.e. without padding between the image and the card container). By default, images will fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image if to match the aspect ratio of the available space.
+Card images can be used to enhance the content of the card and are ideal for marketing content. Images will render full-bleed inside of a card (i.e. without padding between the image and the card container). By default, images will fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image to match the aspect ratio of the available space.
 
 - use `imageSrc` to provide an image URL
 - use `imagePosition` to provide an optional image position; `left`, `right`, `top`, or responsive e.g. `{base: 'top', medium: 'left'}`.
@@ -273,6 +268,82 @@ Card images can be used to enhance the content of the card and are ideal for mar
       maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
     </p>
   </EzCard>
+</EzPage>
+```
+
+### Card Size
+
+Cards apply spacing to the card container, card header, card sections and top-level content within the card body.
+
+Medium is the default size for a card. Small cards are best for browsing content as part of a list or grid of cards.
+
+```jsx
+<EzPage>
+  <EzPageSection use="horizontal">
+    <EzCard
+      title="Splitz Wrap Boxed Lunch"
+      subtitle="Corporate Catering  |  3 mi  |  $$$$"
+      imageSrc={withPrefix('/images/wrap.jpg')}
+      size="small"
+    >
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
+          <path
+            id="B"
+            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
+            fill="currentColor"
+          />
+          <use width="535" height="110" xlink:href="#B" x="105" />
+          <use width="535" height="110" xlink:href="#B" x="211" />
+          <use width="535" height="110" xlink:href="#B" x="316" />
+          <use width="535" height="110" xlink:href="#B" x="421" />
+        </svg>
+        4.7 (463 reviews)
+      </p>
+    </EzCard>
+    <EzCard
+      title="Flaming Pit Pizza"
+      subtitle="Globally Inspired Pizza  |  1 mi  |  $$$$"
+      imageSrc={withPrefix('/images/pizza.jpg')}
+      size="small"
+    >
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
+          <path
+            id="B"
+            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
+            fill="currentColor"
+          />
+          <use width="535" height="110" xlink:href="#B" x="105" />
+          <use width="535" height="110" xlink:href="#B" x="211" />
+          <use width="535" height="110" xlink:href="#B" x="316" />
+          <use width="535" height="110" xlink:href="#B" x="421" />
+        </svg>
+        4.8 (671 reviews)
+      </p>
+    </EzCard>
+    <EzCard
+      title="Dakzen Thai"
+      subtitle="Modern Thai  |  10 mi  |  $$$$"
+      imageSrc={withPrefix('/images/thai.jpg')}
+      size="small"
+    >
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
+          <path
+            id="B"
+            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
+            fill="currentColor"
+          />
+          <use width="535" height="110" xlink:href="#B" x="105" />
+          <use width="535" height="110" xlink:href="#B" x="211" />
+          <use width="535" height="110" xlink:href="#B" x="316" />
+          <use width="535" height="110" xlink:href="#B" x="421" />
+        </svg>
+        4.7 (467 reviews)
+      </p>
+    </EzCard>
+  </EzPageSection>
 </EzPage>
 ```
 
