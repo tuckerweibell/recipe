@@ -90,6 +90,7 @@ const EzCard: React.FC<CardProps> = ({
         position={imagePosition}
         imageMaxWidth={imageMaxWidth}
         imageMaxHeight={imageMaxHeight}
+        alt=""
       />
     )}
   </CardContainer>
