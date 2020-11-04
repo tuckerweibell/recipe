@@ -17,7 +17,7 @@ import {
   EzCardSection,
   EzProvider,
 } from '@ezcater/recipe';
-import { theme as marketplaceTheme } from '@recipe/theme-marketplace';
+import { theme as marketplaceTheme } from '@recipe-ui/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
 

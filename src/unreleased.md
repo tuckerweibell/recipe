@@ -22,7 +22,7 @@ title: 'Unreleased changes'
 
 #### Design updates
 
-- Added new `@recipe/theme-marketplace` package for customizing Recipe for marketplace applications.
+- Added new `@recipe-ui/theme-marketplace` package for customizing Recipe for marketplace applications.
 - Updated doc-site styles for code-snippets to more closely match live code (playground) examples.
 
 #### Bug fixes

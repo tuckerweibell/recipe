@@ -12,7 +12,7 @@ Provider is the container for customizing Recipe applications. It defines the ap
 
 ```tsx
 import {EzProvider, EzButton} from '@ezcater/recipe';
-import {marketplaceTheme} from '@recipe/theme-marketplace';
+import {marketplaceTheme} from '@recipe-ui/theme-marketplace';
 
 function App() {
   return (
