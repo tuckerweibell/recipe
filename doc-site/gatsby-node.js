@@ -40,7 +40,7 @@ exports.createPages = ({actions, graphql}) => {
 
 exports.onCreateBabelConfig = ({actions}) => {
   actions.setBabelPlugin({
-    name: require.resolve('@ezcater/recipe/packages/plugin'),
+    name: require.resolve('@ezcater/babel-plugin-recipe'),
   });
 };
 
