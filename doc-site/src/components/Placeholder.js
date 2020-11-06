@@ -2,7 +2,7 @@
 // to be easily shared with recipe specs
 const {jsx} = require('@emotion/core');
 
-const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight}) =>
+const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight, style}) =>
   jsx(
     'div',
     {
@@ -19,6 +19,7 @@ const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight}) =>
         minWidth,
         minHeight,
       },
+      style
     },
     jsx(
       'svg',

@@ -1,0 +1,6 @@
+:root {
+  --recipe-carousel-button-color: var(--recipe-global-color-static-white);
+  --recipe-carousel-button-background: rgba(0, 0, 0, 0.5);
+  --recipe-carousel-button-background-hover: rgba(0, 0, 0, 0.7);
+  --recipe-carousel-button-width: var(--recipe-global-static-size-750);
+}
