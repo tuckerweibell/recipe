@@ -62,6 +62,22 @@ The `slidesPerPage` prop accents either an integer, or an object defining the nu
 </EzLayout>
 ```
 
+### Peek
+
+Offset the slide size to show a glimpse of the next and/or previous slides at the edge of the carousel.
+
+```jsx
+<EzCarousel slidesPerPage={2} peek>
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
+</EzCarousel>
+```
+
 ---
 
 ## Related components
