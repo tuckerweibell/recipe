@@ -2,6 +2,7 @@
 import {Interpolation, jsx} from '@emotion/core';
 import React from 'react';
 import {useUniqueId} from '../../utils/hooks';
+import {responsive} from '../../styles';
 import './vars.css';
 
 const nextPrevStyle: Interpolation = {
@@ -49,6 +50,28 @@ const nextPrevClick = (
   });
 };
 
+const slidesPerPageStyles = slidesPerPage => {
+  const style = n => ({
+    flexShrink: 0,
+    flexBasis: `${100 / n}%`,
+    [`:nth-of-type(0)`]: {scrollSnapAlign: 'start'},
+    [`:nth-of-type(${n}n + 1)`]: {scrollSnapAlign: 'start'},
+  });
+
+  if (typeof slidesPerPage === 'number') return style(slidesPerPage);
+
+  const breakpoints = Object.values(slidesPerPage).reduce((res: any, value: number, i, arr) => {
+    if (i === 0) return {[value]: style(value)};
+
+    // restore the initial value of snap-points to override the previous breakpoint.
+    const reset = {[`:nth-of-type(${arr[i - i]}n + 1)`]: {scrollSnapAlign: 'initial'}};
+
+    return {...res, [value]: {...reset, ...style(value)}};
+  }, {});
+
+  return responsive('slidesPerPage', breakpoints)({slidesPerPage});
+};
+
 /**
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
@@ -69,12 +92,7 @@ const EzCarousel = ({children, slidesPerPage = 1}) => {
           display: 'flex',
           overflowX: 'scroll',
           scrollSnapType: 'x mandatory',
-          '> *': {
-            flexBasis: `${100 / slidesPerPage}%`,
-            flexShrink: 0,
-            [`:nth-of-type(0)`]: {scrollSnapAlign: 'start'},
-            [`:nth-of-type(${slidesPerPage}n + 1)`]: {scrollSnapAlign: 'start'},
-          },
+          '> *': slidesPerPageStyles(slidesPerPage),
 
           // reset list styles
           listStyle: 'none',

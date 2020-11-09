@@ -42,9 +42,12 @@ A carousel with default props. The carousel will show a single item per page, wi
 
 Varies the number of items visible at the same time.
 
+The `slidesPerPage` prop accents either an integer, or an object defining the number of visible items at different breakpoints. The `base` value will be applied from the smallest devices up, until reaching the next breakpoint.
+
 ```jsx
 <EzLayout layout="stack">
-  <EzCarousel slidesPerPage={3}>
+  <EzHeading size="3">Show two slides on small screens, 4 slides on larger screens</EzHeading>
+  <EzCarousel slidesPerPage={{base: 2, medium: 4}}>
     <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
     <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
     <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
