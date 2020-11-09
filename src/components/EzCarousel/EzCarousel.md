@@ -38,6 +38,27 @@ A carousel with default props. The carousel will show a single item per page, wi
 </EzCarousel>
 ```
 
+### Slides per page
+
+Varies the number of items visible at the same time.
+
+```jsx
+<EzLayout layout="stack">
+  <EzCarousel slidesPerPage={3}>
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 24%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 14%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 4%)'}} />
+  </EzCarousel>
+</EzLayout>
+```
+
 ---
 
 ## Related components

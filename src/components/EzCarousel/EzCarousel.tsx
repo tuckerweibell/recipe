@@ -53,7 +53,7 @@ const nextPrevClick = (
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
-const EzCarousel = ({children}) => {
+const EzCarousel = ({children, slidesPerPage = 1}) => {
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
   return (
@@ -70,9 +70,10 @@ const EzCarousel = ({children}) => {
           overflowX: 'scroll',
           scrollSnapType: 'x mandatory',
           '> *': {
-            flexBasis: '100%',
+            flexBasis: `${100 / slidesPerPage}%`,
             flexShrink: 0,
-            scrollSnapAlign: 'center',
+            [`:nth-of-type(0)`]: {scrollSnapAlign: 'start'},
+            [`:nth-of-type(${slidesPerPage}n + 1)`]: {scrollSnapAlign: 'start'},
           },
 
           // reset list styles
