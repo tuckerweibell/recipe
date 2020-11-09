@@ -19,7 +19,7 @@ export default (prop, config) => props => {
   const options = props[prop];
   const values = typeof config === 'function' ? createConfig(options, config) : config;
 
-  if (typeof options === 'string') return variant(prop, values)(props);
+  if (typeof options !== 'object') return variant(prop, values)(props);
 
   const base = options && options.base;
 
