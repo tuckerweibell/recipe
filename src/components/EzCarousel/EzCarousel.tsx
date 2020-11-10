@@ -32,13 +32,30 @@ const svgProps: React.ComponentProps<'svg'> = {
   strokeLinejoin: 'round',
 };
 
+const nextPrevClick = (
+  pageOffset: number,
+  scrollerRef: React.MutableRefObject<HTMLUListElement>
+) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const {scrollLeft, scrollWidth, offsetWidth} = scrollerRef.current;
+  const numberOfPages = Math.round(scrollWidth / offsetWidth);
+  const currentPageIndex = Math.round((scrollLeft / scrollWidth) * numberOfPages);
+  const nextPageIndex = currentPageIndex + pageOffset;
+
+  scrollerRef.current.scrollTo({
+    left: Math.floor(scrollWidth * (nextPageIndex / numberOfPages)),
+    behavior: 'smooth',
+  });
+};
+
 /**
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
 const EzCarousel = ({children}) => {
   const id = useUniqueId();
-
+  const scroller = React.useRef<HTMLUListElement>();
   return (
     <section aria-roledescription="carousel" css={{position: 'relative'}}>
       <ul
@@ -63,19 +80,32 @@ const EzCarousel = ({children}) => {
           margin: 0,
           padding: 0,
         }}
+        ref={scroller}
       >
         {React.Children.map(children, (child, index) => (
           <li key={child.key || index}>{child}</li>
         ))}
       </ul>
       <div>
-        <button type="button" aria-controls={id} aria-label="Previous Page" css={prevStyle}>
+        <button
+          type="button"
+          aria-controls={id}
+          aria-label="Previous Page"
+          css={prevStyle}
+          onClick={nextPrevClick(-1, scroller)}
+        >
           <svg {...svgProps}>
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
 
-        <button type="button" aria-controls={id} aria-label="Next Page" css={nextStyle}>
+        <button
+          type="button"
+          aria-controls={id}
+          aria-label="Next Page"
+          css={nextStyle}
+          onClick={nextPrevClick(1, scroller)}
+        >
           <svg {...svgProps}>
             <path d="M9 18l6-6-6-6" />
           </svg>
