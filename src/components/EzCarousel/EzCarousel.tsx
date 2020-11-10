@@ -13,7 +13,7 @@ const nextPrevStyle: Interpolation = {
   color: 'var(--recipe-carousel-button-color)',
   position: 'absolute',
   top: 0,
-  bottom: 0,
+  bottom: 'var(--recipe-carousel-item-offset)',
   width: 'var(--recipe-carousel-button-width)',
   ':hover': {
     background: 'var(--recipe-carousel-button-background-hover)',
@@ -147,6 +147,7 @@ const EzCarousel = ({children, ...options}) => {
           listStyle: 'none',
           margin: 0,
           padding: 0,
+          paddingBottom: 'var(--recipe-carousel-item-offset)',
         }}
         ref={scroller}
       >

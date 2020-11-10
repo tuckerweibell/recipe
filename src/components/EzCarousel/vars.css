@@ -5,4 +5,5 @@
   --recipe-carousel-button-width: var(--recipe-global-static-size-750);
   --recipe-carousel-item-margin: var(--recipe-global-static-size-75);
   --recipe-carousel-item-double-margin: var(--recipe-global-static-size-150);
+  --recipe-carousel-item-offset: var(--recipe-global-static-size-25);
 }
