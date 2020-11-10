@@ -5,6 +5,8 @@ import {useUniqueId} from '../../utils/hooks';
 import {responsive} from '../../styles';
 import './vars.css';
 
+const cx = (...args): Interpolation => Object.assign({}, ...args);
+
 const nextPrevStyle: Interpolation = {
   border: 'none',
   background: 'var(--recipe-carousel-button-background)',
@@ -54,16 +56,47 @@ const pseudo: Interpolation = {content: "''", position: 'absolute'};
 
 const mid = n => `${n}n - ${Math.floor(n / 2)}`;
 
-const slidesPerPageStyles = (slidesPerPage, peek) => {
+const calcMargin = double =>
+  double ? 'var(--recipe-carousel-item-double-margin)' : 'var(--recipe-carousel-item-margin)';
+
+// ideally, we'd be able to set a CSS var for this, but that would break IE11 (as the polyfill can't handle it)
+const calcButtonWidth = (gap, outer = false) => {
+  // for the first and last items, we have to double the margin to account for left/right margin between on sibling items
+  const margin = calcMargin(outer);
+  return gap
+    ? `calc(var(--recipe-carousel-button-width) + ${margin})`
+    : 'var(--recipe-carousel-button-width)';
+};
+
+/**
+ * Provisions enough space for all the slides, including optional space between slides and the optional next/previous slide preview
+ */
+const calcSlideWidth = options => {
+  const {n, gap = false, peek = false} = options;
+
+  let slideWidth = `${100 / n}%`;
+
+  // note: when peek = true, the carousel has outer margin (between the button and the slides) that needs to be accounted for
+  slideWidth = gap ? `calc(${slideWidth} - ${calcMargin(peek)})` : slideWidth;
+
+  slideWidth = peek ? `calc(${slideWidth} - ${calcButtonWidth(gap)} / ${n / 2})` : slideWidth;
+
+  return slideWidth;
+};
+
+const slidesPerPageStyles = options => {
+  const {slidesPerPage = 1} = options;
+
+  // when centering on the pseudo element, we need to offset for the gap (if one is applied)
+  const right = options.gap ? 'calc(var(--recipe-carousel-item-margin) * -1)' : 0;
+
   const style = n => ({
     position: 'relative',
     flexShrink: 0,
-    flexBasis: peek
-      ? `calc(${100 / n}% - calc(var(--recipe-carousel-button-width) / ${n / 2}))`
-      : `${100 / n}%`,
+    flexBasis: calcSlideWidth({n, ...options}),
 
     ...(n % 2 === 0
-      ? {[`:nth-of-type(${mid(n)}):after`]: {...pseudo, right: 0, scrollSnapAlign: 'center'}}
+      ? {[`:nth-of-type(${mid(n)}):after`]: {...pseudo, right, scrollSnapAlign: 'center'}}
       : {[`:nth-of-type(${mid(n)})`]: {scrollSnapAlign: 'center'}}),
 
     // for lists that aren't evenly divided, ensure the last item snaps to the end of the list
@@ -93,7 +126,7 @@ const slidesPerPageStyles = (slidesPerPage, peek) => {
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
-const EzCarousel = ({children, slidesPerPage = 1, peek = false}) => {
+const EzCarousel = ({children, ...options}) => {
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
   return (
@@ -109,7 +142,7 @@ const EzCarousel = ({children, slidesPerPage = 1, peek = false}) => {
           display: 'flex',
           overflowX: 'scroll',
           scrollSnapType: 'x mandatory',
-          '> *': slidesPerPageStyles(slidesPerPage, peek),
+          '> *': slidesPerPageStyles(options),
           // reset list styles
           listStyle: 'none',
           margin: 0,
@@ -120,13 +153,13 @@ const EzCarousel = ({children, slidesPerPage = 1, peek = false}) => {
         {React.Children.map(children, (child, index) => (
           <React.Fragment key={child.key || index}>
             <li
-              css={
-                peek && {
+              css={cx(
+                options.peek && {
                   ':first-of-type': {
-                    marginLeft: 'var(--recipe-carousel-button-width)',
+                    marginLeft: calcButtonWidth(options.gap, true),
                   },
                   ':last-of-type': {
-                    marginRight: 'var(--recipe-carousel-button-width)',
+                    marginRight: calcButtonWidth(options.gap, true),
                   },
                   // Padding/margin when applied inside a scroll container gets
                   // absorbed (but only on the right side). Apply a
@@ -135,11 +168,12 @@ const EzCarousel = ({children, slidesPerPage = 1, peek = false}) => {
                   '&:before': {
                     ...pseudo,
                     left: '100%',
-                    width: 'var(--recipe-carousel-button-width)',
+                    width: calcButtonWidth(options.gap, true),
                     height: '1px',
                   },
-                }
-              }
+                },
+                options.gap && {margin: '0 var(--recipe-carousel-item-margin)'}
+              )}
             >
               {child}
             </li>
