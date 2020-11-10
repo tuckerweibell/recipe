@@ -148,6 +148,10 @@ const EzCarousel = ({children, ...options}) => {
           margin: 0,
           padding: 0,
           paddingBottom: 'var(--recipe-carousel-item-offset)',
+          // hide scroll bar
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          '::-webkit-scrollbar': {display: 'none'},
         }}
         ref={scroller}
       >
