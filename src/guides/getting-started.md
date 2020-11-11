@@ -117,6 +117,7 @@ We strive for Recipe to have feature parity across all modern browsers as well a
 For applications that wish to run Recipe in IE11, Recipe requires polyfills for the following browser features:
 
 - [`Element.prototype.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)
+- [`Element.prototype.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo)
 - [`CSS custom properties`](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 
 We recommend using [Polyfill.io](https://polyfill.io/) in your application to apply necessary polyfills only when they are needed for the requesting browser. For IE11 support for CSS custom properties, we recommend also using the [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill).
