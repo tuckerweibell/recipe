@@ -2,7 +2,7 @@
 // to be easily shared with recipe specs
 const {jsx} = require('@emotion/core');
 
-const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight, style}) =>
+const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight, style, children}) =>
   jsx(
     'div',
     {
@@ -41,7 +41,8 @@ const Placeholder = ({width = 'auto', height = 120, minWidth, minHeight, style})
         x2: 0,
         y2: '100%',
       })
-    )
+    ),
+    jsx('span', {children}),
   );
 
 module.exports = Placeholder;
