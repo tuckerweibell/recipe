@@ -1,8 +1,0 @@
-coverage
-src
-node_modules
-test.js
-templates
-doc-site
-.*
-packages
