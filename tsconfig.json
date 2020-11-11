@@ -12,6 +12,6 @@
     // Import non-ES modules as default imports.
     "esModuleInterop": true
   },
-  "include": ["src", "packages"],
+  "include": ["src"],
   "exclude": ["**/node_modules"]
 }
