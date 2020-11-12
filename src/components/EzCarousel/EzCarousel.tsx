@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {Interpolation, jsx} from '@emotion/core';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {responsive} from '../../styles';
 import './vars.css';
@@ -18,10 +18,12 @@ const nextPrevStyle: Interpolation = {
   ':hover': {
     background: 'var(--recipe-carousel-button-background-hover)',
   },
+  transition: 'opacity 0.3s',
 };
 
 const nextStyle: Interpolation = {...nextPrevStyle, right: 0};
 const prevStyle: Interpolation = {...nextPrevStyle, left: 0};
+const hiddenStyle: Interpolation = {opacity: 0};
 
 const svgProps: React.ComponentProps<'svg'> = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -122,6 +124,44 @@ const slidesPerPageStyles = options => {
   return responsive('slidesPerPage', breakpoints)({slidesPerPage});
 };
 
+function debounce(func, ms) {
+  let timeout;
+  return () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      timeout = null;
+      func();
+    }, ms);
+  };
+}
+
+function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
+  const [data, setData] = useState({
+    index: 0,
+    isFirst: true,
+    isLast: false,
+  });
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+
+    const setCurrentPage = debounce(() => {
+      const {scrollLeft, scrollWidth, offsetWidth} = scroller;
+      const numberOfPages = Math.ceil(scrollWidth / offsetWidth);
+      const index = Math.round((scrollLeft / scrollWidth) * numberOfPages);
+      setData({index, isFirst: index === 0, isLast: index === numberOfPages - 1});
+    }, 50);
+
+    scroller.addEventListener('scroll', setCurrentPage);
+
+    return () => {
+      scroller.removeEventListener('scroll', setCurrentPage);
+    };
+  }, [scrollerRef]);
+
+  return data;
+}
+
 /**
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
@@ -129,6 +169,7 @@ const slidesPerPageStyles = options => {
 const EzCarousel = ({children, ...options}) => {
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
+  const {isFirst, isLast} = useCurrentPage(scroller);
   return (
     <section aria-roledescription="carousel" css={{position: 'relative'}}>
       <ul
@@ -160,22 +201,8 @@ const EzCarousel = ({children, ...options}) => {
             <li
               css={cx(
                 options.peek && {
-                  ':first-of-type': {
-                    marginLeft: calcButtonWidth(options.gap, true),
-                  },
-                  ':last-of-type': {
-                    marginRight: calcButtonWidth(options.gap, true),
-                  },
-                  // Padding/margin when applied inside a scroll container gets
-                  // absorbed (but only on the right side). Apply a
-                  // pseudo element as a workaround - see: https://github.com/w3c/csswg-drafts/issues/129#issuecomment-501855090
-                  position: 'relative',
-                  '&:before': {
-                    ...pseudo,
-                    left: '100%',
-                    width: calcButtonWidth(options.gap, true),
-                    height: '1px',
-                  },
+                  ':first-of-type': {marginLeft: 0},
+                  ':last-of-type': {marginRight: 0},
                 },
                 options.gap && {margin: '0 var(--recipe-carousel-item-margin)'}
               )}
@@ -190,7 +217,7 @@ const EzCarousel = ({children, ...options}) => {
           type="button"
           aria-controls={id}
           aria-label="Previous Page"
-          css={prevStyle}
+          css={cx(prevStyle, isFirst && hiddenStyle)}
           onClick={nextPrevClick(-1, scroller)}
         >
           <svg {...svgProps}>
@@ -202,7 +229,7 @@ const EzCarousel = ({children, ...options}) => {
           type="button"
           aria-controls={id}
           aria-label="Next Page"
-          css={nextStyle}
+          css={cx(nextStyle, isLast && hiddenStyle)}
           onClick={nextPrevClick(1, scroller)}
         >
           <svg {...svgProps}>
