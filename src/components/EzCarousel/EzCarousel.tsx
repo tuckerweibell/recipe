@@ -41,8 +41,11 @@ const calculatePageData = scroller => {
   const {scrollLeft, scrollWidth, offsetWidth} = scroller;
   const itemWidth = scroller.children[0].clientWidth;
   const itemsPerPage = Math.round(offsetWidth / itemWidth);
-  const index = Math.round((scrollLeft / scrollWidth) * numberOfPages);
   const numberOfPages = Math.ceil(scroller.children.length / itemsPerPage);
+  const index =
+    scrollWidth - offsetWidth === scrollLeft
+      ? numberOfPages - 1
+      : Math.round((scrollLeft / scrollWidth) * numberOfPages);
   return {index, numberOfPages};
 };
 

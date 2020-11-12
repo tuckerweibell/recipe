@@ -10,7 +10,9 @@ import {EzCard, EzLayout, EzHeading, EzPage} from '../../index';
 
 if (!('scrollTo' in Element.prototype)) {
   Object.assign(Element.prototype, {
-    scrollTo() {
+    scrollTo({left}) {
+      jest.spyOn(this, 'scrollLeft', 'get').mockReturnValue(left);
+      const lastItem = left === this.scrollWidth - this.offsetWidth;
       fireEvent.scroll(this);
       // since scroll isn't declarative
       // it won't persist in the visual regression tests.
@@ -20,7 +22,9 @@ if (!('scrollTo' in Element.prototype)) {
         // can't provide a measurement, so we'll use a fixed offset
         // to shift each li two positions to the left (plus button width to use that space)
         Object.assign(child, {
-          style: `transform: translateX(calc(-200% + var(--recipe-carousel-button-width)))`,
+          style: `transform: translateX(calc(-${
+            lastItem ? 1 : 2
+          }00% + var(--recipe-carousel-button-width)))`,
         });
       });
     },
@@ -40,6 +44,13 @@ const scope = {
   },
   useNextPage() {
     useEffect(() => {
+      const list = screen.getByRole('list');
+      const listItems = screen.getAllByRole('listitem');
+      // fake out some DOM sizes, since JSDOM doesn't provide real values
+      jest.spyOn(list, 'scrollWidth', 'get').mockReturnValue(listItems.length * 2);
+      jest.spyOn(list, 'offsetWidth', 'get').mockReturnValue(3);
+      jest.spyOn(listItems[0], 'clientWidth', 'get').mockReturnValue(2);
+
       const button = screen.getByRole('button', {name: /next/i});
       userEvent.click(button);
       // run through the debounce timer

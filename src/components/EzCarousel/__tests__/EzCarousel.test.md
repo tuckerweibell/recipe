@@ -15,3 +15,18 @@
   );
 };
 ```
+
+### Items on last page with odd number of items
+
+```jsx
+() => {
+  useNextPage();
+  return (
+    <EzCarousel slidesPerPage={{base: 1, medium: 2}} peek>
+      <Placeholder>1</Placeholder>
+      <Placeholder>2</Placeholder>
+      <Placeholder>3</Placeholder>
+    </EzCarousel>
+  );
+};
+```
