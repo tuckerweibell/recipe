@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 11.0.0-beta.1 - 2020-11-11
+
+#### New components
+
+- Added new [EzCarousel](/components/ez-carousel) component. Carousels allow users to browse through a set of items, to find items that may be of interest to them. For applications that need to support IE11, a polyfill will be required to support `Element.prototype.scrollTo()`. See the carousel [browser support documentation](/components/ez-carousel#browser-support) for more information.
+
 ## 11.0.0-beta.0 - 2020-11-4
 
 #### Breaking changes
