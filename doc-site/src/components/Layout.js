@@ -93,6 +93,7 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
               href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i"
               rel="stylesheet"
             />
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2Csmoothscroll" type="text/javascript" />
           </Helmet>
           <ThemeProvider
             theme={{
