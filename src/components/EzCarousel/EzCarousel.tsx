@@ -58,32 +58,32 @@ const pseudo: Interpolation = {content: "''", position: 'absolute'};
 
 const mid = n => `${n}n - ${Math.floor(n / 2)}`;
 
-const calcMargin = double =>
-  double ? 'var(--recipe-carousel-item-double-margin)' : 'var(--recipe-carousel-item-margin)';
-
 // ideally, we'd be able to set a CSS var for this, but that would break IE11 (as the polyfill can't handle it)
-const calcButtonWidth = (gap, outer = false) => {
-  // for the first and last items, we have to double the margin to account for left/right margin between on sibling items
-  const margin = calcMargin(outer);
+const calcButtonWidth = gap => {
   return gap
-    ? `(var(--recipe-carousel-button-width) + ${margin})`
+    ? `(var(--recipe-carousel-button-width) + var(--recipe-carousel-item-double-margin))`
     : 'var(--recipe-carousel-button-width)';
 };
 
 /**
  * Provisions enough space for all the slides, including optional space between slides and the optional next/previous slide preview
  */
-const calcSlideWidth = options => {
+const calcSlideWidthStyles = options => {
   const {n, gap = false, peek = false} = options;
 
   let slideWidth = `${100 / n}%`;
 
-  // note: when peek = true, the carousel has outer margin (between the button and the slides) that needs to be accounted for
-  slideWidth = gap ? `(${slideWidth} - ${calcMargin(peek)})` : slideWidth;
+  // subtract the total margin (left & right) between items (i.e `n-1`), spread over each item (i.e. `/ n`)
+  if (gap)
+    slideWidth = `${slideWidth} - (var(--recipe-carousel-item-double-margin) * ${n - 1} / ${n})`;
 
-  slideWidth = peek ? `(${slideWidth} - ${calcButtonWidth(gap)} / ${n / 2})` : slideWidth;
+  // when peek is enabled, we need to provision space for the next/prev button (i.e. `* 2` for two buttons)
+  // so we divide the button width + margin between each item
+  if (peek) slideWidth = `${slideWidth} - (${calcButtonWidth(gap)} * 2 / ${n})`;
 
-  return `calc(${slideWidth})`;
+  return {
+    flexBasis: `calc(${slideWidth})`,
+  };
 };
 
 const slidesPerPageStyles = options => {
@@ -92,18 +92,21 @@ const slidesPerPageStyles = options => {
   // when centering on the pseudo element, we need to offset for the gap (if one is applied)
   const right = options.gap ? 'calc(var(--recipe-carousel-item-margin) * -1)' : 0;
 
-  const style = n => ({
-    position: 'relative',
-    flexShrink: 0,
-    flexBasis: calcSlideWidth({n, ...options}),
+  const style = n =>
+    cx(
+      {
+        position: 'relative',
+        flexShrink: 0,
 
-    ...(n % 2 === 0
-      ? {[`:nth-of-type(${mid(n)}):after`]: {...pseudo, right, scrollSnapAlign: 'center'}}
-      : {[`:nth-of-type(${mid(n)})`]: {scrollSnapAlign: 'center'}}),
+        ...(n % 2 === 0
+          ? {[`:nth-of-type(${mid(n)}):after`]: {...pseudo, right, scrollSnapAlign: 'center'}}
+          : {[`:nth-of-type(${mid(n)})`]: {scrollSnapAlign: 'center'}}),
 
-    // for lists that aren't evenly divided, ensure the last item snaps to the end of the list
-    ':last-of-type': {scrollSnapAlign: 'start'},
-  });
+        // for lists that aren't evenly divided, ensure the last item snaps to the end of the list
+        ':last-of-type': {scrollSnapAlign: 'start'},
+      },
+      calcSlideWidthStyles({n, ...options})
+    );
 
   if (typeof slidesPerPage === 'number') return style(slidesPerPage);
 
@@ -118,7 +121,7 @@ const slidesPerPageStyles = options => {
         ? {[`:nth-of-type(${mid(n)}):after`]: {content: 'none'}}
         : {[`:nth-of-type(${mid(n)})`]: {scrollSnapAlign: 'initial'}};
 
-    return {...res, [value]: {...reset, ...style(value)}};
+    return {...res, [value]: Object.assign(reset, style(value))};
   }, {});
 
   return responsive('slidesPerPage', breakpoints)({slidesPerPage});
