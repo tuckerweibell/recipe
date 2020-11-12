@@ -37,19 +37,26 @@ const svgProps: React.ComponentProps<'svg'> = {
   strokeLinejoin: 'round',
 };
 
+const calculatePageData = scroller => {
+  const {scrollLeft, scrollWidth, offsetWidth} = scroller;
+  const itemWidth = scroller.children[0].clientWidth;
+  const itemsPerPage = Math.round(offsetWidth / itemWidth);
+  const index = Math.round((scrollLeft / scrollWidth) * numberOfPages);
+  const numberOfPages = Math.ceil(scroller.children.length / itemsPerPage);
+  return {index, numberOfPages};
+};
+
 const nextPrevClick = (
   pageOffset: number,
   scrollerRef: React.MutableRefObject<HTMLUListElement>
 ) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   e.preventDefault();
   e.stopPropagation();
-  const {scrollLeft, scrollWidth, offsetWidth} = scrollerRef.current;
-  const numberOfPages = Math.round(scrollWidth / offsetWidth);
-  const currentPageIndex = Math.round((scrollLeft / scrollWidth) * numberOfPages);
-  const nextPageIndex = currentPageIndex + pageOffset;
-
-  scrollerRef.current.scrollTo({
-    left: Math.floor(scrollWidth * (nextPageIndex / numberOfPages)),
+  const {current: scroller} = scrollerRef;
+  const {scrollWidth} = scroller;
+  const {index, numberOfPages} = calculatePageData(scroller);
+  scroller.scrollTo({
+    left: Math.floor(scrollWidth * ((index + pageOffset) / numberOfPages)),
     behavior: 'smooth',
   });
 };
@@ -149,9 +156,7 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
     const scroller = scrollerRef.current;
 
     const setCurrentPage = debounce(() => {
-      const {scrollLeft, scrollWidth, offsetWidth} = scroller;
-      const numberOfPages = Math.ceil(scrollWidth / offsetWidth);
-      const index = Math.round((scrollLeft / scrollWidth) * numberOfPages);
+      const {index, numberOfPages} = calculatePageData(scroller);
       setData({index, isFirst: index === 0, isLast: index === numberOfPages - 1});
     }, 50);
 
