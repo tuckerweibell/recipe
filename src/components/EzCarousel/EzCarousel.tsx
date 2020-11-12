@@ -66,7 +66,7 @@ const calcButtonWidth = (gap, outer = false) => {
   // for the first and last items, we have to double the margin to account for left/right margin between on sibling items
   const margin = calcMargin(outer);
   return gap
-    ? `calc(var(--recipe-carousel-button-width) + ${margin})`
+    ? `(var(--recipe-carousel-button-width) + ${margin})`
     : 'var(--recipe-carousel-button-width)';
 };
 
@@ -79,11 +79,11 @@ const calcSlideWidth = options => {
   let slideWidth = `${100 / n}%`;
 
   // note: when peek = true, the carousel has outer margin (between the button and the slides) that needs to be accounted for
-  slideWidth = gap ? `calc(${slideWidth} - ${calcMargin(peek)})` : slideWidth;
+  slideWidth = gap ? `(${slideWidth} - ${calcMargin(peek)})` : slideWidth;
 
-  slideWidth = peek ? `calc(${slideWidth} - ${calcButtonWidth(gap)} / ${n / 2})` : slideWidth;
+  slideWidth = peek ? `(${slideWidth} - ${calcButtonWidth(gap)} / ${n / 2})` : slideWidth;
 
-  return slideWidth;
+  return `calc(${slideWidth})`;
 };
 
 const slidesPerPageStyles = options => {
