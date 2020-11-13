@@ -17,9 +17,12 @@ const svgProps: React.ComponentProps<'svg'> = {
   strokeLinejoin: 'round',
 };
 
-const calculatePageData = scroller => {
+const measureCarouselPosition = scroller => {
   const {scrollLeft, scrollWidth, offsetWidth} = scroller;
   const itemWidth = scroller.children[0].clientWidth;
+  // NOTE: we measure this, rather than figuring it out from props
+  // as slidesPerPage can vary based on a media query.
+  // It's possible to use `window.matchMedia` but this is WAY simpler.
   const itemsPerPage = Math.round(offsetWidth / itemWidth);
   const numberOfPages = Math.ceil(scroller.children.length / itemsPerPage);
   const index =
@@ -37,7 +40,7 @@ const nextPrevClick = (
   e.stopPropagation();
   const {current: scroller} = scrollerRef;
   const {scrollWidth} = scroller;
-  const {index, numberOfPages} = calculatePageData(scroller);
+  const {index, numberOfPages} = measureCarouselPosition(scroller);
   scroller.scrollTo({
     left: Math.floor(scrollWidth * ((index + pageOffset) / numberOfPages)),
     behavior: 'smooth',
@@ -62,7 +65,7 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
     const scroller = scrollerRef.current;
 
     const setCurrentPage = debounce(() => {
-      const {index, numberOfPages} = calculatePageData(scroller);
+      const {index, numberOfPages} = measureCarouselPosition(scroller);
       setData({index, isFirst: index === 0, isLast: index === numberOfPages - 1});
     }, 50);
 
