@@ -8,6 +8,12 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 11.0.0-beta.3 - 2020-11-13
+
+#### Enhancements
+
+- Excluded unwanted files from npm deploy, to keep the package install size to a minimum. npm package size down to 622.3 kB (includes ESM and commonjs builds, plus type definitions).
+
 ## 11.0.0-beta.2 - 2020-11-13
 
 #### Enhancements
