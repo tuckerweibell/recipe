@@ -8,6 +8,20 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 11.0.0-beta.2 - 2020-11-13
+
+#### Enhancements
+
+- Excluded unwanted files from npm deploy, to keep the package install size to a minimum.
+
+#### Design updates
+
+- Updated EzCarousel to show and hide the previous and next buttons, based on whether the action can be taken on the current page. The carousel items grow to fill the space that was occupied by the now hidden buttons.
+
+#### Bug fixes
+
+- Fix typescript definition build output path, that caused the typescript type definitions to be unavailable in the 11.0.0-beta.0 release.
+
 ## 11.0.0-beta.1 - 2020-11-11
 
 #### New components
