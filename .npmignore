@@ -1,0 +1,6 @@
+# ignore markdown
+*.md
+
+# ignore test files
+__tests__
+.DS_Store
