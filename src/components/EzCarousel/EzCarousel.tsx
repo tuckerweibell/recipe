@@ -79,7 +79,7 @@ const calcButtonWidth = gap => {
  * Provisions enough space for all the slides, including optional space between slides and the optional next/previous slide preview
  */
 const calcSlideWidthStyles = options => {
-  const {n, gap = false, peek = false} = options;
+  const {n, gap = false, peek = false, count} = options;
 
   let slideWidth = `${100 / n}%`;
 
@@ -87,13 +87,41 @@ const calcSlideWidthStyles = options => {
   if (gap)
     slideWidth = `${slideWidth} - (var(--recipe-carousel-item-double-margin) * ${n - 1} / ${n})`;
 
+  const buttonWidth = calcButtonWidth(gap);
+
   // when peek is enabled, we need to provision space for the next/prev button (i.e. `* 2` for two buttons)
   // so we divide the button width + margin between each item
-  if (peek) slideWidth = `${slideWidth} - (${calcButtonWidth(gap)} * 2 / ${n})`;
+  if (peek) slideWidth = `${slideWidth} - (${buttonWidth} * 2 / ${n})`;
 
-  return {
-    flexBasis: `calc(${slideWidth})`,
-  };
+  // grow the items on the first and last page to account for only having a single button
+  const firstAndLast = {flexBasis: `calc(${slideWidth} + (${buttonWidth} / ${n}))`};
+
+  // for the last page, we need to select only the items on the page (vs the slidesPerPage size)
+  const lastPageCount = count % n || n;
+
+  return cx(
+    {flexBasis: `calc(${slideWidth})`},
+    peek &&
+      cx(
+        {
+          [`:nth-of-type(-n+${n})`]: firstAndLast,
+          [`:nth-last-of-type(-n+${lastPageCount})`]: firstAndLast,
+        },
+        // if last page doesn't contain n items, we need to pad the remaining space
+        // unfortunately, scroll containers don't like having right-margin on the last item
+        // see: https://github.com/w3c/csswg-drafts/issues/129#issuecomment-501855090
+        // so instead, we'll pad it out with a pseudo element
+        n - lastPageCount > 0 && {
+          ':last-of-type:before': {
+            ...pseudo,
+            left: '100%',
+            // allocate the remaining width
+            width: `calc((${buttonWidth} / ${n}) * ${n - lastPageCount})`,
+            height: '1px',
+          },
+        }
+      )
+  );
 };
 
 const slidesPerPageStyles = options => {
@@ -194,7 +222,7 @@ const EzCarousel = ({children, ...options}) => {
           display: 'flex',
           overflowX: 'scroll',
           scrollSnapType: 'x mandatory',
-          '> *': slidesPerPageStyles(options),
+          '> *': slidesPerPageStyles({...options, count: React.Children.count(children)}),
           // reset list styles
           listStyle: 'none',
           margin: 0,

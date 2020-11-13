@@ -17,14 +17,16 @@ if (!('scrollTo' in Element.prototype)) {
       // since scroll isn't declarative
       // it won't persist in the visual regression tests.
       // we'll set the position as a style transform
-      [...this.children].forEach(child => {
+      [...this.children].forEach((child, i) => {
+        // we only care about the first and second page (for these tests)
+        if (i > 3) return;
         // we also can't use the actual scroll value, since JSDOM
         // can't provide a measurement, so we'll use a fixed offset
         // to shift each li two positions to the left (plus button width to use that space)
         Object.assign(child, {
-          style: `transform: translateX(calc(-${
-            lastItem ? 1 : 2
-          }00% + var(--recipe-carousel-button-width)))`,
+          style: `transform: translateX(${
+            lastItem ? `calc(-100% + var(--recipe-carousel-button-width))` : '-200%'
+          })`,
         });
       });
     },
