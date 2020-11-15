@@ -9,6 +9,8 @@
     "lib"
   ],
   "sideEffects": [
+    "lib/index.js",
+    "lib/esm/index.js",
     "*.css"
   ],
   "repository": {
