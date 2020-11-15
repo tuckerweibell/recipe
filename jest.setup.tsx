@@ -6,11 +6,10 @@ import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
-import * as themes from './src/themes';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
-import './src/themes/recipe-global.css';
+import './src/styles/recipe-global.css';
 import '@testing-library/jest-dom/extend-expect';
 
 // Add custom matchers
