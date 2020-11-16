@@ -1,5 +1,5 @@
 ---
-path: '/advanced/migrating-to-recipe-10'
+path: '/support/migrating-to-recipe-10'
 title: 'Migrating to Recipe 10'
 ---
 
