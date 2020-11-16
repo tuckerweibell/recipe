@@ -8,6 +8,17 @@ The latest news, updates, and changes to the Recipe design system.
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+## 11.0.0-beta.4 - 2020-11-16
+
+#### Bug fixes
+
+- Fix: Ensure global style tokens are imported when including a top-level export from Recipe.
+- Fix: Mark top-level import with [sideEffects](https://webpack.js.org/guides/tree-shaking/#clarifying-tree-shaking-and-sideeffects) to ensure global tokens do not get tree-shaken out of client builds.
+
+#### Development workflow
+
+- Fix: Remove private deep-path imports from tree-shaking test. The test now uses a baseline size of 10KB to determine if a component import has been successfully tree-shaken.
+
 ## 11.0.0-beta.3 - 2020-11-13
 
 #### Enhancements
