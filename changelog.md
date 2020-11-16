@@ -6,6 +6,10 @@ order: 70
 
 The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
 
+---
+
+## Version 11
+
 ## 11.0.0-beta.4 - 2020-11-16
 
 #### Bug fixes
@@ -92,6 +96,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - removed `jest.globals` in favor of using `@testing-library/react` directly (we no longer need to wrap components in a theme provider).
 - created private css-module-types package to allow provide TypeScript definitions for CSS imports.
 - added top-level `repository` and `types` fields to Recipe's package.json.
+
+---
+
+## Version 10
 
 ## 10.7.3 - 2020-09-24
 
@@ -544,6 +552,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - split up tests for EzField by type (i.e. checkbox, radio, select, date, time etc)
 - updated EzField[type=time] tests to use public API, rather than internal/private methods
 
+---
+
+## Version 8
+
 ## 8.0.2 - 2020-01-16
 
 #### Breaking changes
@@ -608,6 +620,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - Updated Spacing and Typography documentation to no longer perform "rem to pixel" math on theme values.
 - Added guidance on base font size compatibility to support applications that use a 14px base font size instead of Recipe's recommended size of 16px.
 - Added CSS Custom Variable Polyfill recommendation for applications that need to support IE.
+
+---
+
+## Version 7
 
 ## 7.1.3 - 2019-12-16
 
@@ -683,6 +699,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 - updated ez-scripts (linting) version
 - Dependency bumps for security vulnerability warning from npm audit.
+
+---
+
+## Version 6
 
 ## 6.1.3 - 2019-08-28
 
@@ -798,6 +818,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - Fixed an issue with emotion css-in-js leaking state across visual regression test runs
 - Replace manual style reset from `jest.config` in favor of using `EzGlobalStyles` component.
 
+---
+
+## Version 5
+
 ## 5.2.0 - 2019-06-24
 
 #### New components
@@ -908,6 +932,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 #### Development workflow
 
 - Added the `--open` flag to `gatsby develop` NPM target. This will launch the doc site during development similar to how create-react-app auto launches when running.
+
+---
+
+## Version 4
 
 ## 4.5.0 - 2019-05-06
 
@@ -1034,6 +1062,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
   - Remove unneeded `Component` wrapper from example that didn't use state
   - Use reference equality for bulk selection example to simplify selection logic
 
+---
+
+## Version 3
+
 ## 3.0.1
 
 #### Enhancements
@@ -1045,6 +1077,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 #### Breaking changes
 
 - Updated internals of EzField to use React hooks, which required a peerDependency bump of React to a >16.8 version.
+
+---
+
+## Version 2
 
 ## 2.4.1
 
@@ -1144,6 +1180,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 - Upgraded Recipe to Typescript
 - Removed internal `withTheme` wrapper around components; Recipe components must now be used inside a `ThemeProvider`
+
+---
+
+## Version 1
 
 ## 1.13.0 - 2018-11-28
 
