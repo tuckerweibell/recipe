@@ -1,11 +1,8 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// dynamic imports to trigger code-split points
-const ImportWithFullPath = React.lazy(() =>
-  import(/* webpackChunkName: "ImportWithFullPath" */ './ImportWithFullPath')
-);
+// dynamic imports to trigger code-split point
 const ImportWithIndex = React.lazy(() =>
   import(/* webpackChunkName: "ImportWithIndex" */ './ImportWithIndex')
 );
@@ -28,8 +25,6 @@ function App() {
         </a>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <br />
-          <ImportWithFullPath />
           <br />
           <ImportWithIndex />
         </Suspense>
