@@ -7,13 +7,20 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-plugin-emotion`,
-      options: {sourceMap: false, autoLabel: false},
+      options: { sourceMap: false, autoLabel: false },
     },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/../src`,
+        name: 'components',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
         name: 'pages',
       },
     },
