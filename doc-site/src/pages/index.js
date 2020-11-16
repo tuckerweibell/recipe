@@ -307,7 +307,7 @@ export default () => (
                 </MediaObject>
               </a>
               <a href="https://github.com/ayip8">
-                <MediaObject imgSrc="https://avatars0.githubusercontent.com/u/16192761?s=160&v=4">
+                <MediaObject imgSrc="https://pbs.twimg.com/profile_images/1826024514/avatar_200x200.jpg">
                   <p css={[font.semibold, text.white]}>Andrew Yip</p>
                   <p css={[text.sm, text.gray._500]}>Co-creator of Recipe</p>
                 </MediaObject>
