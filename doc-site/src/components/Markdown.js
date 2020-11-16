@@ -15,7 +15,6 @@ import FontLineHeights from './FontLineHeights';
 import FontSizes from './FontSizes';
 import FontWeights from './FontWeights';
 import Layout from './Layout';
-import TimelineStatus from './TimelineStatus';
 import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
@@ -96,7 +95,6 @@ const HtmlAst = ({htmlAst, scope}) => {
     fontsizes: FontSizes,
     fontweights: FontWeights,
     ezalert: Components.EzAlert,
-    timelinestatus: TimelineStatus,
     ul: wrapEl('ul'),
     ol: wrapEl('ol'),
     li: wrapEl('li'),
