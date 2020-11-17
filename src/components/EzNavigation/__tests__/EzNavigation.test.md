@@ -83,3 +83,34 @@
   </EzAppLayout>
 </Media>
 ```
+
+### Grouped Navigation links open
+
+```jsx
+<EzAppLayout>
+  <EzNavigation
+    home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+    links={[
+      {href: '#', label: 'Components'},
+      {
+        label: 'Styles',
+        links: [
+          {href: '#', label: 'Colors', active: true},
+          {href: '#', label: 'Spacing'},
+          {href: '#', label: 'Typography'},
+        ],
+      },
+      {href: '#', label: 'Cookbook'},
+    ]}
+  >
+    <EzPage>
+      <EzCard title="Colors">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus,
+          in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+        </p>
+      </EzCard>
+    </EzPage>
+  </EzNavigation>
+</EzAppLayout>
+```

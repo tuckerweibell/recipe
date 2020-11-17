@@ -96,7 +96,7 @@ const Group = ({links, className, children}) => {
       <div
         css={{
           display: open ? 'block' : 'none',
-          '& a': {paddingLeft: 48, paddingTop: 8, paddingBottom: 8},
+          '& a': {paddingLeft: 32, paddingTop: 12, paddingBottom: 12},
         }}
       >
         <Links links={links} />
