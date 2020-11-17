@@ -9,19 +9,21 @@ export const menuStyles = () => css`
   display: flex;
   align-items: center;
   padding-top: var(--recipe-global-static-size-200);
-  padding-right: var(--recipe-global-static-size-750);
+  padding-right: var(--recipe-global-static-size-600);
   padding-bottom: var(--recipe-global-static-size-200);
   padding-left: var(--recipe-global-static-size-300);
   width: 100%;
   position: relative;
   text-decoration: none;
 
+  border: none;
+  background: none;
+  font-size: 1em;
+  text-align: left;
+  font-family: var(--recipe-global-font-family-base);
+
   :hover {
     color: var(--recipe-navigation-text-color-hover);
-  }
-
-  :active {
-    box-shadow: inset 0px 0px 10px #000000;
   }
 
   :focus {
@@ -30,9 +32,11 @@ export const menuStyles = () => css`
   }
 `;
 
-const Link = React.forwardRef<HTMLElement, any>(({as: component = 'a', ...props}, ref) => {
-  return React.createElement(component, {...props, ref});
-});
+const Link = React.forwardRef<HTMLElement, any>(
+  ({href, as: component = href ? 'a' : 'button', ...props}, ref) => {
+    return React.createElement(component, {...props, href, ref});
+  }
+);
 
 const MenuLink = styled(Link)`
   ${menuStyles};
