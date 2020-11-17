@@ -17,19 +17,23 @@ export const Wrapper = styled.div`
 `;
 
 export const NavWrapper = styled.div<WrapperProps>`
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
   background: var(--recipe-navigation-background);
 
   [aria-label='Menu'] {
     display: block;
-    position: absolute;
-    right: 0;
-    top: 10px;
+    height: var(--recipe-navigation-top-bar-height);
 
     ${mq('large', {display: 'none'})};
   }
 
-  ${mq('large', {position: 'sticky', height: '100vh', top: 0})};
+  ${mq('large', {
+    position: 'sticky',
+    height: '100vh',
+    top: 0,
+    width: 'var(--recipe-navigation-sidebar-width)',
+  })};
 `;
 
 export const MenuContent = styled.div<WrapperProps>`
@@ -39,12 +43,13 @@ export const MenuContent = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  width: 100%;
 
   ${({opened}) =>
     opened &&
     css`
       visibility: visible;
-      height: calc(100vh - 70px);
+      height: calc(100vh - var(--recipe-navigation-top-bar-height));
       overflow-y: auto;
     `}
 
@@ -54,7 +59,7 @@ export const MenuContent = styled.div<WrapperProps>`
       visibility: visible;
       width: var(--recipe-navigation-sidebar-width);
       transition: none;
-      height: calc(100vh - 70px);
+      height: calc(100vh - var(--recipe-navigation-top-bar-height));
       overflow-y: auto;
     `
   )}

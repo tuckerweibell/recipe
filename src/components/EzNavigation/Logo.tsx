@@ -5,13 +5,18 @@ import {LabelledLink, Link as LinkType} from '../EzLink/EzLink.types';
 
 const Wrapper = styled.div`
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  padding-left: var(--recipe-global-static-size-300);
+  height: var(--recipe-navigation-top-bar-height);
+  flex-basis: calc(100% - var(--recipe-navigation-top-bar-height));
+  order: var(--recipe-navigation-logo-position);
+
   a,
   a:hover,
   a:visited {
     text-decoration: none;
   }
-  padding: var(--recipe-global-static-size-300);
 `;
 
 const LogoImg = styled('img')`

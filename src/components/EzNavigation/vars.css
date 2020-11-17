@@ -7,4 +7,6 @@
   --recipe-navigation-background-color-selected: var(--recipe-global-color-static-gray-900);
   --recipe-navigation-notification-background-color: var(--recipe-global-color-static-red-600);
   --recipe-navigation-notification-text-color: var(--recipe-global-color-static-white);
+  --recipe-navigation-top-bar-height: 70px;
+  --recipe-navigation-logo-position: -1;
 }

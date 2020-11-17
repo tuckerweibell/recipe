@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import {SFC, useState} from 'react';
+import {FC, useState} from 'react';
 import en from './en';
 import Logo, {LogoType} from './Logo';
 import Menu from './Menu';
@@ -110,7 +110,7 @@ const Links = ({links}) =>
     <Menu key={i} link={{...link, as: link.links?.length ? Group : link.as}} />
   ));
 
-const EzNavigation: SFC<Props> = ({
+const EzNavigation: FC<Props> = ({
   children,
   links,
   utilityLinks,
