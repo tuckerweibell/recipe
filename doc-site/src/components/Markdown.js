@@ -6,14 +6,8 @@ import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
 import loadable from '@loadable/component';
 import Highlight, {defaultProps} from 'prism-react-renderer';
-import {ColorDefinition, Example} from './ColorVariables';
 import ComponentGrid from './ComponentGrid';
 import Cookbook from './Cookbook';
-import SpacingVariables from './SpacingVariables';
-import FontCombinations from './FontCombinations';
-import FontLineHeights from './FontLineHeights';
-import FontSizes from './FontSizes';
-import FontWeights from './FontWeights';
 import Layout from './Layout';
 import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
@@ -83,17 +77,8 @@ const HtmlAst = ({htmlAst, scope}) => {
       return hasNestedComponent ? children : React.createElement('p', props, children);
     },
     pre: ({children}) => children,
-    colordefinition: ColorDefinition,
-    baseexample: Example.Base,
-    checkedexample: Example.Checked,
-    hoverexample: Example.Hover,
     componentgrid: ComponentGrid,
     cookbook: Cookbook,
-    spacingvariables: SpacingVariables,
-    fontcombinations: FontCombinations,
-    fontlineheights: FontLineHeights,
-    fontsizes: FontSizes,
-    fontweights: FontWeights,
     ezalert: Components.EzAlert,
     ul: wrapEl('ul'),
     ol: wrapEl('ol'),
