@@ -53,7 +53,7 @@ const scope = {
       const itemWidth = 2;
       jest.spyOn(list, 'scrollWidth', 'get').mockReturnValue(listItems.length * itemWidth);
       jest.spyOn(list, 'offsetWidth', 'get').mockReturnValue(itemsPerPage * itemWidth);
-      jest.spyOn(listItems[0], 'clientWidth', 'get').mockReturnValue(itemWidth);
+      jest.spyOn(HTMLLIElement.prototype, 'clientWidth', 'get').mockReturnValue(itemWidth);
 
       const button = screen.getByRole('button', {name: /next/i});
       userEvent.click(button);

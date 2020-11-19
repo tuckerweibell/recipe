@@ -18,13 +18,18 @@ const svgProps: React.ComponentProps<'svg'> = {
 };
 
 const measureCarouselPosition = scroller => {
+  const count = scroller.children.length;
   const {scrollLeft, scrollWidth, offsetWidth} = scroller;
-  const itemWidth = scroller.children[0].clientWidth;
-  // NOTE: we measure this, rather than figuring it out from props
+  // NOTE: we measure the number of items per page, rather than figuring it out from props
   // as slidesPerPage can vary based on a media query.
   // It's possible to use `window.matchMedia` but this is WAY simpler.
-  const itemsPerPage = Math.floor(offsetWidth / itemWidth);
-  const numberOfPages = Math.ceil(scroller.children.length / itemsPerPage);
+  const itemWidths = Array.from(scroller.children).reduce(
+    (res: number, child: HTMLElement) => res + child.clientWidth,
+    0
+  ) as number;
+  const averageItemWidth = itemWidths / count;
+  const itemsPerPage = Math.floor(offsetWidth / averageItemWidth);
+  const numberOfPages = Math.ceil(count / itemsPerPage);
   const index =
     scrollWidth - offsetWidth === scrollLeft
       ? numberOfPages - 1
