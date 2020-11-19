@@ -12,7 +12,7 @@ if (!('scrollTo' in Element.prototype)) {
   Object.assign(Element.prototype, {
     scrollTo({left}) {
       jest.spyOn(this, 'scrollLeft', 'get').mockReturnValue(left);
-      const lastItem = left === this.scrollWidth - this.offsetWidth;
+      const lastItem = left >= this.scrollWidth - this.offsetWidth;
       fireEvent.scroll(this);
       // since scroll isn't declarative
       // it won't persist in the visual regression tests.
@@ -48,10 +48,12 @@ const scope = {
     useEffect(() => {
       const list = screen.getByRole('list');
       const listItems = screen.getAllByRole('listitem');
+      const itemsPerPage = 2;
       // fake out some DOM sizes, since JSDOM doesn't provide real values
-      jest.spyOn(list, 'scrollWidth', 'get').mockReturnValue(listItems.length * 2);
-      jest.spyOn(list, 'offsetWidth', 'get').mockReturnValue(3);
-      jest.spyOn(listItems[0], 'clientWidth', 'get').mockReturnValue(2);
+      const itemWidth = 2;
+      jest.spyOn(list, 'scrollWidth', 'get').mockReturnValue(listItems.length * itemWidth);
+      jest.spyOn(list, 'offsetWidth', 'get').mockReturnValue(itemsPerPage * itemWidth);
+      jest.spyOn(listItems[0], 'clientWidth', 'get').mockReturnValue(itemWidth);
 
       const button = screen.getByRole('button', {name: /next/i});
       userEvent.click(button);

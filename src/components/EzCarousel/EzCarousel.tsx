@@ -23,7 +23,7 @@ const measureCarouselPosition = scroller => {
   // NOTE: we measure this, rather than figuring it out from props
   // as slidesPerPage can vary based on a media query.
   // It's possible to use `window.matchMedia` but this is WAY simpler.
-  const itemsPerPage = Math.round(offsetWidth / itemWidth);
+  const itemsPerPage = Math.floor(offsetWidth / itemWidth);
   const numberOfPages = Math.ceil(scroller.children.length / itemsPerPage);
   const index =
     scrollWidth - offsetWidth === scrollLeft
