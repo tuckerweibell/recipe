@@ -49,6 +49,7 @@ const calcSlideWidthStyles = options => {
 
   // for the last page, we need to select only the items on the page (vs the slidesPerPage size)
   const lastPageCount = count % n || n;
+  const padLastPageItems = n - lastPageCount > 0;
 
   return cx(
     {flexBasis: `calc(${slideWidth})`},
@@ -62,9 +63,10 @@ const calcSlideWidthStyles = options => {
         // unfortunately, scroll containers don't like having right-margin on the last item
         // see: https://github.com/w3c/csswg-drafts/issues/129#issuecomment-501855090
         // so instead, we'll pad it out with a pseudo element
-        n - lastPageCount > 0 && {
+        {
           ':last-of-type:before': {
             ...pseudo,
+            content: padLastPageItems ? pseudo.content : 'none',
             left: '100%',
             // allocate the remaining width
             width: `calc((${buttonWidth} / ${n}) * ${n - lastPageCount})`,
