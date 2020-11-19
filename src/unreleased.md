@@ -23,6 +23,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Fixed documentation for EzProvider to show the correct named import from `@recipe-ui/theme-marketplace`.
+
 #### Dependency upgrades
 
 #### Development workflow
