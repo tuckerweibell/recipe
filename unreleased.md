@@ -23,6 +23,14 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Significant restructuring of the doc-site to account for the v11 release changes:
+  - Removed documentation references to Recipe's former theming object, including Colors, Spacing and Typography documentation pages.
+  - Renamed "What's new?" page to "Releases" to better reflect that the content is a formal change-log and not more informal prose content.
+  - Renamed "Advanced" page to "Support". This page contains migration guides between Recipe versions, rather than "advanced" usage instructions.
+  - Removed stale "timeline" page. This page had not been available from the docs to for sometime, but was still in the deployed site.
+- Updated "team" page to reflect recent contributions
+- Remove theme-switcher button, and replaced with new entry on the side navigation for toggling the theme.
+- Added migration docs for the v11 release.
 - Fixed documentation for EzProvider to show the correct named import from `@recipe-ui/theme-marketplace`.
 
 #### Dependency upgrades
