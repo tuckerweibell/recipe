@@ -49,7 +49,7 @@ const calcSlideWidthStyles = options => {
 
   // for the last page, we need to select only the items on the page (vs the slidesPerPage size)
   const lastPageCount = count % n || n;
-  const padLastPageItems = n - lastPageCount > 0;
+  const padLastPageItems = n - lastPageCount > 0 && count / n > 2;
 
   return cx(
     {flexBasis: `calc(${slideWidth})`},
@@ -60,7 +60,11 @@ const calcSlideWidthStyles = options => {
           [`:nth-last-of-type(-n+${lastPageCount})`]: firstAndLast,
         },
         // if last page doesn't contain n items, we need to pad the remaining space
-        // unfortunately, scroll containers don't like having right-margin on the last item
+        // to ensure that space provisioned next/prev buttons is still balanced
+        // Note: this only applies if there are more than two pages, since the items on
+        // the first and last page are evenly sized (it's only the "middle" pages of the
+        // carousel that have smaller items).
+        // Unfortunately, scroll containers don't like having right-margin on the last item
         // see: https://github.com/w3c/csswg-drafts/issues/129#issuecomment-501855090
         // so instead, we'll pad it out with a pseudo element
         {
