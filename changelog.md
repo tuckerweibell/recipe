@@ -10,6 +10,10 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 11
 
+## 11.0.1 - 2020-11-20
+
+- Fix: EzCarousel next/prev button not showing/hiding when number of slides per page changes at different breakpoints.
+
 ## 11.0.0 - 2020-11-20
 
 #### Design updates
