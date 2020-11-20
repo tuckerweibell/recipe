@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useUniqueId} from '../../utils/hooks';
 import {nextStyle, prevStyle, listStyle, listItemStyle} from './EzCarousel.styles';
 import './vars.css';
@@ -34,7 +34,7 @@ const measureCarouselPosition = scroller => {
     scrollWidth - offsetWidth === scrollLeft
       ? numberOfPages - 1
       : Math.round((scrollLeft / scrollWidth) * numberOfPages);
-  return {index, numberOfPages};
+  return {index, numberOfPages, isAwaitingPaint: itemWidths === 0};
 };
 
 const nextPrevClick = (
@@ -64,20 +64,34 @@ function debounce(func, ms) {
 }
 
 function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
-  const [data, setData] = useState({index: 0, isFirst: true, isLast: false});
+  const [data, setData] = useState({index: 0, isFirst: true, isLast: true});
+  const requestAnimationFrameId = useRef(null);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
 
-    const setCurrentPage = debounce(() => {
-      const {index, numberOfPages} = measureCarouselPosition(scroller);
+    const measure = () => {
+      const {index, numberOfPages, isAwaitingPaint} = measureCarouselPosition(scroller);
+
+      if (isAwaitingPaint) {
+        requestAnimationFrameId.current = requestAnimationFrame(measure);
+        return;
+      }
+
       setData({index, isFirst: index === 0, isLast: index === numberOfPages - 1});
-    }, 50);
+    };
+
+    const setCurrentPage = debounce(measure, 50);
+
+    // initially measure the container to see if the first/last button needs to be hidden.
+    // This has to happen AFTER the first paint, so use requestAnimationFrame to request a callback
+    requestAnimationFrameId.current = requestAnimationFrame(measure);
 
     scroller.addEventListener('scroll', setCurrentPage);
 
     return () => {
       scroller.removeEventListener('scroll', setCurrentPage);
+      cancelAnimationFrame(requestAnimationFrameId.current);
     };
   }, [scrollerRef]);
 

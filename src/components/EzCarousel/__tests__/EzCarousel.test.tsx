@@ -1,5 +1,5 @@
-import {useEffect} from 'react';
-import {screen, fireEvent} from '@testing-library/react';
+import React, {useEffect} from 'react';
+import {screen, fireEvent, render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzCarousel.test.md';
@@ -33,6 +33,10 @@ if (!('scrollTo' in Element.prototype)) {
   });
 }
 
+// fake out some DOM sizes, since JSDOM doesn't provide real values
+const itemWidth = 2;
+const itemsPerPage = 2;
+
 const scope = {
   EzCarousel,
   Placeholder,
@@ -46,15 +50,6 @@ const scope = {
   },
   useNextPage() {
     useEffect(() => {
-      const list = screen.getByRole('list');
-      const listItems = screen.getAllByRole('listitem');
-      const itemsPerPage = 2;
-      // fake out some DOM sizes, since JSDOM doesn't provide real values
-      const itemWidth = 2;
-      jest.spyOn(list, 'scrollWidth', 'get').mockReturnValue(listItems.length * itemWidth);
-      jest.spyOn(list, 'offsetWidth', 'get').mockReturnValue(itemsPerPage * itemWidth);
-      jest.spyOn(HTMLLIElement.prototype, 'clientWidth', 'get').mockReturnValue(itemWidth);
-
       const button = screen.getByRole('button', {name: /next/i});
       userEvent.click(button);
       // run through the debounce timer
@@ -64,7 +59,43 @@ const scope = {
 };
 
 describe('EzCarousel', () => {
+  jest
+    .spyOn(HTMLUListElement.prototype, 'scrollWidth', 'get')
+    .mockImplementation(function fakeScrollWidth() {
+      return this.children.length * itemWidth;
+    });
+  jest
+    .spyOn(HTMLUListElement.prototype, 'offsetWidth', 'get')
+    .mockImplementation(function fakeOffsetWidth() {
+      return itemsPerPage * itemWidth;
+    });
+  const mockItemWidth = jest
+    .spyOn(HTMLLIElement.prototype, 'clientWidth', 'get')
+    .mockReturnValue(itemWidth);
+  const mockAnimationFrame = jest
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation(callback => callback(0) as any);
   jest.useFakeTimers();
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
+
+  it('tries to remeasure the carousel if the browser has not finished painting carousel items', () => {
+    mockItemWidth
+      // initially return a zero width for each of the items (i.e the browser hasn't finished painting)
+      // and then return the actual size for the subsequent calls
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(0)
+      .mockReturnValue(itemWidth);
+
+    render(
+      <EzCarousel>
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+      </EzCarousel>
+    );
+
+    expect(mockAnimationFrame).toHaveBeenCalled();
+  });
 });
