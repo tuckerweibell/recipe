@@ -128,6 +128,8 @@ const slidesPerPageStyles = options => {
 
 export const listStyle = (options): Interpolation => ({
   display: 'flex',
+  // parent is a flex container (to prevent margin collapse, so make sure we fill the available space)
+  flexGrow: 1,
   overflowX: 'scroll',
   scrollSnapType: 'x mandatory',
   '> *': slidesPerPageStyles(options),

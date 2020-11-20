@@ -93,7 +93,11 @@ const EzCarousel = ({children, ...options}) => {
   const scroller = React.useRef<HTMLUListElement>();
   const {isFirst, isLast} = useCurrentPage(scroller);
   return (
-    <section aria-roledescription="carousel" css={{position: 'relative'}}>
+    <section
+      aria-roledescription="carousel"
+      // display flex to prevent margin collapse, position relative to contain pagination buttons
+      css={{position: 'relative', display: 'flex'}}
+    >
       <ul
         id={id}
         // assistive technology users are informed about changes to the region
