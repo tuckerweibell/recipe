@@ -30,3 +30,25 @@
   );
 };
 ```
+
+### Cards are always equal in width even with uneven content
+
+```jsx
+<div style={{width: 700}}>
+  <EzCarousel slidesPerPage={2} peek gap>
+    <EzCard
+      title="Short name"
+      imageSrc={withPrefix('/images/wrap.jpg')}
+      imageMaxHeight={120}
+      size="small"
+    />
+    <EzCard
+      title="Constantine Wolfeschlegelsteinhausenbergerdorff"
+      imageSrc={withPrefix('/images/pizza.jpg')}
+      imageMaxHeight={120}
+      size="small"
+    />
+    <Placeholder>3</Placeholder>
+  </EzCarousel>
+</div>
+```

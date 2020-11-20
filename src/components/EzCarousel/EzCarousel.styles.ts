@@ -94,6 +94,8 @@ const slidesPerPageStyles = options => {
       {
         position: 'relative',
         flexShrink: 0,
+        // ignore the intrinsic width of the carousel item content, so flex-basis is king
+        width: 0,
 
         ...(n % 2 === 0
           ? {[`:nth-of-type(${mid(n)}):after`]: {...pseudo, right, scrollSnapAlign: 'center'}}
