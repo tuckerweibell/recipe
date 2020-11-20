@@ -88,9 +88,11 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
     requestAnimationFrameId.current = requestAnimationFrame(measure);
 
     scroller.addEventListener('scroll', setCurrentPage);
+    scroller.ownerDocument.defaultView.addEventListener('resize', setCurrentPage);
 
     return () => {
       scroller.removeEventListener('scroll', setCurrentPage);
+      scroller.ownerDocument.defaultView.removeEventListener('resize', setCurrentPage);
       cancelAnimationFrame(requestAnimationFrameId.current);
     };
   }, [scrollerRef]);
