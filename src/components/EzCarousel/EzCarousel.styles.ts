@@ -11,7 +11,7 @@ const nextPrevStyle: Interpolation = {
   color: 'var(--recipe-carousel-button-color)',
   position: 'absolute',
   top: 0,
-  bottom: 'var(--recipe-carousel-item-offset)',
+  bottom: 0,
   width: 'var(--recipe-carousel-button-width)',
   ':hover': {
     background: 'var(--recipe-carousel-button-background-hover)',
@@ -135,9 +135,8 @@ export const listStyle = (options): Interpolation => ({
   '> *': slidesPerPageStyles(options),
   // reset list styles
   listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  paddingBottom: 'var(--recipe-carousel-item-offset)',
+  margin: 'calc(var(--recipe-carousel-item-offset, 0) * -1) 0',
+  padding: 'var(--recipe-carousel-item-offset, 0) 0',
   // hide scroll bar
   scrollbarWidth: 'none',
   msOverflowStyle: 'none',
