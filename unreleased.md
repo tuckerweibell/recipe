@@ -20,6 +20,13 @@ title: 'Unreleased changes'
 - Fix: Change build target for @recipe-ui/theme-marketplace to support ES5 syntax. This allows downstream applications to include Recipe without running build steps within `node_modules`.
 - Fix: EzNavigation utility links were clipped when logo size was taller than 70px.
 - Fix: EzNavigation links with `onClick` and no `href` now render as buttons, rather than links.
+- Fix: EzCarousel sometimes skips pages when using next/prev buttons.
+- Fix: EzCarousel next/prev button not aligning correctly when using responsive layout.
+- Fix: EzCarousel next/prev button not aligning correctly when there are only 2 pages in the carousel.
+- Fix: EzCarousel items have unevenly widths when the intrinsic width of carousel items is uneven.
+- Fix: Prevent margin collapse on EzCarousel.
+- Fix: EzCarousel clipping EzCard box-shadow over the EzCarousel.
+- Fix: EzCarousel showing next button when there are fewer items than the page size.
 
 #### Documentation
 
