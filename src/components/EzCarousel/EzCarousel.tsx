@@ -110,17 +110,16 @@ const EzCarousel = ({children, ...options}) => {
   const {isFirst, isLast} = useCurrentPage(scroller);
   return (
     <section
-      aria-roledescription="carousel"
       // display flex to prevent margin collapse, position relative to contain pagination buttons
       css={{position: 'relative', display: 'flex'}}
     >
       <ul
         id={id}
-        // assistive technology users are informed about changes to the region
-        // at the next available opportunity.
-        // This causes screen readers to automatically announce the content of
-        // slides when the next and previous slide buttons are activated.
-        aria-live="polite"
+        aria-roledescription="carousel"
+        // ensure that scrollable region has keyboard access
+        // see: https://dequeuniversity.com/rules/axe/3.5/scrollable-region-focusable
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={0}
         css={listStyle({...options, count: React.Children.count(children)})}
         ref={scroller}
       >
@@ -133,6 +132,7 @@ const EzCarousel = ({children, ...options}) => {
       <div>
         <button
           type="button"
+          tabIndex={-1}
           aria-controls={id}
           aria-label="Previous Page"
           css={prevStyle(isFirst)}
@@ -145,6 +145,7 @@ const EzCarousel = ({children, ...options}) => {
 
         <button
           type="button"
+          tabIndex={-1}
           aria-controls={id}
           aria-label="Next Page"
           css={nextStyle(isLast)}

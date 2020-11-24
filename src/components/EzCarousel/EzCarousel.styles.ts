@@ -4,7 +4,7 @@ import {responsive} from '../../styles';
 const cx = (...args): Interpolation => Object.assign({}, ...args);
 
 const pseudo: Interpolation = {content: "''", position: 'absolute'};
-const hiddenStyle: Interpolation = {opacity: 0};
+const hiddenStyle: Interpolation = {opacity: 0, visibility: 'hidden'};
 const nextPrevStyle: Interpolation = {
   border: 'none',
   background: 'var(--recipe-carousel-button-background)',
@@ -16,7 +16,7 @@ const nextPrevStyle: Interpolation = {
   ':hover': {
     background: 'var(--recipe-carousel-button-background-hover)',
   },
-  transition: 'opacity 0.3s',
+  transition: 'opacity 0.3s, visibility 0.3s',
 };
 
 export const nextStyle = (isFirst): Interpolation =>
@@ -157,6 +157,7 @@ export const listStyle = (options): Interpolation => ({
   scrollbarWidth: 'none',
   msOverflowStyle: 'none',
   '::-webkit-scrollbar': {display: 'none'},
+  outline: 'none',
 });
 
 export const listItemStyle = (options): Interpolation =>
