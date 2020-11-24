@@ -51,12 +51,16 @@ const setFlexBasis = ({gap, peek, n}) => ({
  * Provisions enough space for all the slides alongside the next/previous slide preview
  */
 const resizeForPeek = options => {
-  const {n, count} = options;
+  const {n, next, count, reset} = options;
   const slideWidth = getSlideWidthCalc(options);
   const buttonWidth = getButtonWidthCalc(options);
 
   // grow the items on the first and last page to account for only having a single button
-  const firstAndLast = {flexBasis: `calc(${slideWidth} + (${buttonWidth} / ${n}))`};
+  const firstAndLast = {
+    flexBasis: reset
+      ? `calc(${getSlideWidthCalc({...options, n: next})})`
+      : `calc(${slideWidth} + (${buttonWidth} / ${n}))`,
+  };
 
   // for the last page, we need to select only the items on the page (vs the slidesPerPage size)
   const lastPageCount = count % n || n;
@@ -115,6 +119,8 @@ const slidesPerPageStyles = options => {
       // reset the snap-points from the previous breakpoint.
       prev && snapPoints({n: prev, gap, reset: true}),
       snapPoints({n, gap}),
+      // reset the slide resizing from the previous breakpoint.
+      peek && prev && resizeForPeek({n: prev, next: n, ...options, reset: true}),
       peek && resizeForPeek({n, ...options})
     );
 

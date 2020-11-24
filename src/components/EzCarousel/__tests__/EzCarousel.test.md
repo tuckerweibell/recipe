@@ -52,3 +52,25 @@
   </EzCarousel>
 </div>
 ```
+
+### Space for peek is reapplied across breakpoints
+
+```jsx
+() => {
+  useNextPage();
+  return (
+    <EzCarousel slidesPerPage={{base: 4, medium: 2}} peek>
+      <Placeholder>1</Placeholder>
+      <Placeholder>2</Placeholder>
+      <Placeholder>3</Placeholder>
+      <Placeholder>4</Placeholder>
+      <Placeholder>5</Placeholder>
+      <Placeholder>6</Placeholder>
+      <Placeholder>7</Placeholder>
+      <Placeholder>8</Placeholder>
+      <Placeholder>9</Placeholder>
+      <Placeholder>10</Placeholder>
+    </EzCarousel>
+  );
+};
+```
