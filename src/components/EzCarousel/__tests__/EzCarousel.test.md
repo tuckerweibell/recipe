@@ -74,3 +74,21 @@
   );
 };
 ```
+
+### Peek does not offset slide size when there is only one page
+
+```jsx
+<EzCarousel slidesPerPage={2} peek>
+  <Placeholder>1</Placeholder>
+  <Placeholder>2</Placeholder>
+</EzCarousel>
+```
+
+### Peek does not offset slide size when there is only one page at current breakpoint
+
+```jsx
+<EzCarousel slidesPerPage={{base: 1, medium: 2}} peek>
+  <Placeholder>1</Placeholder>
+  <Placeholder>2</Placeholder>
+</EzCarousel>
+```

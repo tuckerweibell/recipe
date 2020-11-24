@@ -24,12 +24,15 @@ export const nextStyle = (isFirst): Interpolation =>
 export const prevStyle = (isLast): Interpolation =>
   cx({...nextPrevStyle, left: 0}, isLast && hiddenStyle);
 
+const showPeek = ({count, n, peek}: {count: number; n: number; peek: boolean}): boolean =>
+  peek && count > n;
+
 const getButtonWidthCalc = ({gap}) =>
   gap
     ? `(var(--recipe-carousel-button-width) + var(--recipe-carousel-item-double-margin))`
     : 'var(--recipe-carousel-button-width)';
 
-const getSlideWidthCalc = ({gap, peek, n}) => {
+const getSlideWidthCalc = ({gap, peek, n, count}) => {
   let slideWidth = `${100 / n}%`;
 
   // subtract the total margin (left & right) between items (i.e `n-1`), spread over each item (i.e. `/ n`)
@@ -38,13 +41,14 @@ const getSlideWidthCalc = ({gap, peek, n}) => {
 
   // when peek is enabled, we need to provision space for the next/prev button (i.e. `* 2` for two buttons)
   // so we divide the button width + margin between each item
-  if (peek) slideWidth = `${slideWidth} - (${getButtonWidthCalc({gap})} * 2 / ${n})`;
+  if (showPeek({n, peek, count}))
+    slideWidth = `${slideWidth} - (${getButtonWidthCalc({gap})} * 2 / ${n})`;
 
   return slideWidth;
 };
 
-const setFlexBasis = ({gap, peek, n}) => ({
-  flexBasis: `calc(${getSlideWidthCalc({gap, peek, n})})`,
+const setFlexBasis = options => ({
+  flexBasis: `calc(${getSlideWidthCalc(options)})`,
 });
 
 /**
@@ -54,6 +58,8 @@ const resizeForPeek = options => {
   const {n, next, count, reset} = options;
   const slideWidth = getSlideWidthCalc(options);
   const buttonWidth = getButtonWidthCalc(options);
+
+  if (!showPeek(options)) return false;
 
   // grow the items on the first and last page to account for only having a single button
   const firstAndLast = {
@@ -111,17 +117,17 @@ const snapPoints = ({n, gap, reset}: {n: number; gap: boolean; reset?: boolean})
 };
 
 const slidesPerPageStyles = options => {
-  const {slidesPerPage = 1, gap, peek} = options;
+  const {slidesPerPage = 1, gap} = options;
 
   const style = (n: number, prev?: number) =>
     cx(
-      setFlexBasis({n, gap, peek}),
+      setFlexBasis({n, ...options}),
       // reset the snap-points from the previous breakpoint.
       prev && snapPoints({n: prev, gap, reset: true}),
       snapPoints({n, gap}),
       // reset the slide resizing from the previous breakpoint.
-      peek && prev && resizeForPeek({n: prev, next: n, ...options, reset: true}),
-      peek && resizeForPeek({n, ...options})
+      prev && resizeForPeek({n: prev, next: n, ...options, reset: true}),
+      resizeForPeek({n, ...options})
     );
 
   if (typeof slidesPerPage === 'number') return style(slidesPerPage);
