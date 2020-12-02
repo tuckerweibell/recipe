@@ -20,3 +20,5 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+
+- add [Storybook](https://storybook.js.org/) tooling to provide a familiar environment for developing UI components in isolation.
