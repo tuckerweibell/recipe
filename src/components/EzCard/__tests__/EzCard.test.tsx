@@ -6,7 +6,15 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import {EzCard, EzCardSection, EzCardExpandable} from '..';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
-import {EzPage, EzPageSection, EzLayout, EzButton, EzField} from '../../index';
+import {
+  EzPage,
+  EzPageSection,
+  EzLayout,
+  EzButton,
+  EzField,
+  EzHeading,
+  EzTextStyle,
+} from '../../index';
 import Media from '../../EzField/Media';
 import Open from '../../EzField/Open';
 
@@ -15,10 +23,12 @@ const scope = {
   EzCard,
   EzCardSection,
   EzCardExpandable,
+  EzField,
+  EzHeading,
   EzLayout,
   EzPage,
   EzPageSection,
-  EzField,
+  EzTextStyle,
   Open,
   Media,
   withPrefix() {

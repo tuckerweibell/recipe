@@ -32,12 +32,17 @@ const size = variant('size', {
   small: {'--recipe-card-padding': 'var(--recipe-card-padding-small)'},
 });
 
+const isQuiet = variant('isQuiet', {
+  true: {'--recipe-card-dropshadow': 'var(--recipe-card-dropshadow-quiet)'},
+});
+
 export const CardContainer = styled.div<any>`
   background: var(--recipe-card-background-color);
   box-shadow: var(--recipe-card-dropshadow);
   ${accentStyles};
   ${rounded};
   ${size};
+  ${isQuiet};
   display: flex;
   ${imagePos};
   > * {

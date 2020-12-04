@@ -41,7 +41,8 @@ type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   horizontal?: boolean;
   accent?: 'info';
   expandable?: ExpandableCardFooter;
-  size?: 'small';
+  size?: 'small' | 'medium';
+  isQuiet?: boolean;
 };
 
 const isExpandableCardFooter = (expandable: any): expandable is ExpandableCardFooter =>
@@ -63,13 +64,15 @@ const EzCard: React.FC<CardProps> = ({
   imageMaxWidth,
   imageMaxHeight,
   size,
+  isQuiet,
   ...props
 }) => (
   <CardContainer
     {...filterValidProps(props)}
     accent={accent}
     imagePosition={imageSrc && imagePosition}
-    size={size}
+    size={size || (isQuiet ? 'small' : undefined)}
+    isQuiet={isQuiet}
   >
     <div>
       {title && <EzCardHeading {...{actions, title, subtitle}} />}
