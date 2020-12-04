@@ -352,6 +352,47 @@ Medium is the default size for a card. Small cards are best for browsing content
 </EzPage>
 ```
 
+### Quiet Cards
+
+By default, cards are intentionally prominent and use a drop-shadow to allow the surface of the card to appear slightly raised from the page. By contrast, quiet cards use a solid outline and appear flat on the page, as they are intended for secondary content or lists of homogeneous content where we intentionally trade prominence for easy-scanning.
+
+Quiet cards are [small](#card-size) by default.
+
+```jsx
+<EzPage>
+  <EzPageSection use="horizontal">
+    <EzCard isQuiet>
+      <EzLayout layout="stack">
+        <EzHeading size="5">Chicken Rice Bowl</EzHeading>
+        <EzLayout>
+          <span>$9.65</span>
+          <svg viewBox="0 0 1148 1008" height="16" width="16">
+            <path
+              fill="#c30"
+              d="M1146 138q9 51-15 93t-43 52q51 71 51 179t-80 176q-106 90-212 158T656.5 903.5 490 967q-136 41-251 41-63 0-96-7.5t-34.5-7.5-12.5-5-20.5-9.5-23.5-13T28 948Q3 926 0 899q0-38 14-56t23.5-26 14-11.5 9-6T71 794t11-5q16-8 27-13 101-44 167-109 29-29 87-116 1-2 21.5-30.5t24.5-34 24-32.5 28-36.5 28-34.5 32.5-37.5 34-34.5 39.5-38q51-44 87-70 76-54 181-45.5t181 74.5q5 0 14.5-10.5t17.5-32 3.5-46.5-28-48.5T1001 65q-15 0-22-11.5t-7-23 6-18.5q11-12 30-12 56 11 94 48t44 90zM65 885q0 10 22.5 24.5t48 20T190 938t112-2.5T470 906t211.5-87T935 660V500l-145 51q-19 10-36-7-1-3-4-8t-4-7-2-6q-1-7 3-15l51-145-174-22h-8q-31 29-49.5 49.5t-28 31T515 450t-20 26-20.5 28-18 25-19.5 27q-46 66-111 147-73 81-188 131-22 14-51 29-19 13-22 22zm928-283l22-15q58-41 58-123 11-98-53-162t-151-74q-94-12-173 48-14 10-22 14l167 15q6 0 14 4.5t8 9.5v29l-36 109 123-44q22 0 32.5 11t10.5 26v152z"
+            ></path>
+          </svg>
+        </EzLayout>
+        <EzTextStyle use="subdued" as="small">
+          Topped with your choices of up to 5 vegetables and 3 sauces. Consider adding drinks.
+          Please limit your order to three bowl types.
+        </EzTextStyle>
+      </EzLayout>
+    </EzCard>
+    <EzCard isQuiet>
+      <EzLayout layout="stack">
+        <EzHeading size="5">Braised Beef Rice Bowl</EzHeading>
+        <small>$11.65</small>
+        <EzTextStyle use="subdued" as="small">
+          Topped with your choices of up to 5 vegetables and 3 sauces. Consider adding drinks.
+          Please limit your order to three bowl types.
+        </EzTextStyle>
+      </EzLayout>
+    </EzCard>
+  </EzPageSection>
+</EzPage>
+```
+
 ---
 
 ## Limitations
