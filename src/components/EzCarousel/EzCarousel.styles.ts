@@ -4,7 +4,7 @@ import {responsive} from '../../styles';
 const cx = (...args): Interpolation => Object.assign({}, ...args);
 
 const pseudo: Interpolation = {content: "''", position: 'absolute'};
-const hiddenStyle: Interpolation = {opacity: 0, visibility: 'hidden'};
+const hiddenStyle: Interpolation = {opacity: 0, visibility: 'hidden', pointerEvents: 'none'};
 const nextPrevStyle: Interpolation = {
   border: 'none',
   background: 'var(--recipe-carousel-button-background)',
