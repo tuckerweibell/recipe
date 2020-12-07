@@ -17,6 +17,9 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix: Carousels with more than two responsive layouts both snap and align incorrectly at the largest breakpoint.
+- Fix: Next/prev buttons on carousels that are hidden on the last/first page respectively, were masking clicks within the carousel item.
+
 #### Documentation
 
 #### Dependency upgrades
