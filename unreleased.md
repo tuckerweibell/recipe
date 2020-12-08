@@ -24,6 +24,8 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Clarify that recipe is MIT licensed
+
 #### Dependency upgrades
 
 #### Development workflow

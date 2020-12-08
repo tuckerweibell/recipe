@@ -2,6 +2,7 @@
   "name": "@ezcater/recipe",
   "version": "11.0.2",
   "description": "ezCater's React UI Component library",
+  "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
