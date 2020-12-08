@@ -12,6 +12,8 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - Add new ["quiet" card variation](/components/ez-card#quiet-cards). Quiet cards are intended for secondary content or lists of homogeneous content where we intentionally trade prominence for easy-scanning.
+- Added standalone `@recipe-ui/legacy-theme` package, to provide access to the `themes/standard` module from prior Recipe releases.
+- Deprecated usage of `themes/standard`, recommending direct use of `@recipe-ui/legacy-theme` for backwards compatibility, or favoring locally defined variables where appropriate. The standard theme is no longer used by Recipe and is no longer maintained in this package.
 
 #### Design updates
 
