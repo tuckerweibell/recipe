@@ -5,13 +5,13 @@ This package enables the usage of @ezcater/recipe (which uses CSS imports) withi
 ## Installation
 
 ```
-npm install --save-dev next-recipe-css
+npm install next-recipe-css
 ```
 
 or
 
 ```
-yarn add next-recipe-css --dev
+yarn add next-recipe-css
 ```
 
 ## Usage
