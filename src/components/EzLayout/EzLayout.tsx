@@ -3,16 +3,7 @@ import {jsx} from '@emotion/core';
 import styled from '@emotion/styled';
 import {base, layout, spacing, wrapper, alignX, alignY} from './EzLayout.styles';
 import {breakpoints} from '../../themes/standard';
-
-/**
- * Union of properties from T
- */
-type Properties<T> = {[K in keyof T]: Pick<T, K>}[keyof T];
-
-/**
- * Require at least one of the properties of T
- */
-type RequireAtLeastOne<T> = Required<Properties<T>>;
+import {RequireAtLeastOne} from '../../typings/utility';
 
 /**
  * Create a type that disallows values for any of the keys of T

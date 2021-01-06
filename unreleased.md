@@ -4,6 +4,7 @@ title: 'Unreleased changes'
 ---
 
 ## Unreleased Changes
+- Add EzModal support for Required Action (non-dismissible) modals
 
 #### Breaking changes.
 

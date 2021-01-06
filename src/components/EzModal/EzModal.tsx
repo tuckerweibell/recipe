@@ -16,18 +16,21 @@ import CloseButton from '../CloseButton';
 import {useUniqueId} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
 import {ScrollLock} from './ScrollLock';
+import {RequireAtLeastOne} from '../../typings/utility';
 
 type Props = {
   headerText: string;
   destructive?: boolean;
-  dismissLabel: string;
   isOpen: boolean;
   isSubmitting?: boolean;
   onDismiss?: () => void;
   onSubmit?: () => void;
-  submitLabel?: string;
   appElement?: string;
+  submitLabel?: string;
+  dismissLabel?: string;
 };
+
+type PropsWithRequiredLabels = Props & RequireAtLeastOne<'submitLabel' | 'dismissLabel'>;
 
 const useDialogBackdrop = ({onDismiss}) => ({
   onClick: e => e.target === e.currentTarget && onDismiss(),
@@ -45,14 +48,14 @@ const useDialog = ({onDismiss}) => ({
   },
 });
 
-const EzModal: React.FC<Props> = ({
+const EzModal: React.FC<PropsWithRequiredLabels> = ({
   children,
   headerText,
   destructive,
   dismissLabel,
   isOpen,
   isSubmitting,
-  onDismiss,
+  onDismiss = () => {},
   onSubmit,
   submitLabel,
 }) => {
@@ -72,7 +75,9 @@ const EzModal: React.FC<Props> = ({
               <EzHeading size="2" id={labelId}>
                 {headerText}
               </EzHeading>
-              <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
+              {dismissLabel && (
+                <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
+              )}
             </HeaderContainer>
 
             <ContentContainer>{children}</ContentContainer>
@@ -89,9 +94,11 @@ const EzModal: React.FC<Props> = ({
                     {submitLabel}
                   </EzButton>
                 )}
-                <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-                  {dismissLabel}
-                </EzButton>
+                {dismissLabel && (
+                  <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                    {dismissLabel}
+                  </EzButton>
+                )}
               </EzLayout>
             </ButtonFooter>
           </div>

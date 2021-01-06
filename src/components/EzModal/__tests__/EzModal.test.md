@@ -14,6 +14,18 @@
 </EzModal>
 ```
 
+### Informational modal
+
+```jsx
+<EzModal
+  isOpen
+  dismissLabel="Dismiss"
+  headerText="Header goes here"
+>
+  <p>Modal content goes here!</p>
+</EzModal>
+```
+
 ### Confirmation modals
 
 ```jsx
@@ -22,6 +34,18 @@
   submitLabel="Submit"
   destructive
   dismissLabel="Dismiss"
+  headerText="Header goes here"
+>
+  <p>Modal content goes here!</p>
+</EzModal>
+```
+
+### Required action modals
+
+```jsx
+<EzModal
+  isOpen
+  submitLabel="Submit"
   headerText="Header goes here"
 >
   <p>Modal content goes here!</p>

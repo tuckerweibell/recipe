@@ -148,6 +148,56 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 };
 ```
 
+### Required action modals
+
+Use a required action modal only when the user must accept or submit the modal information to move forward on the site.
+
+- Most use cases for this will involve the legal team, as the modal will block use of the site until submitted. 
+
+Omit the `dismissLabel` prop to hide the dismiss button and the close button. 
+
+Omit the `onDismiss` action prop so that nothing happens when the user clicks outside the modal or hits the ESC button. 
+
+The `submitLabel` prop is required without a `dismissLabel` prop. 
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  const [submitted, setSubmitted] = React.useState(null);
+
+  React.useEffect(
+    function openModalUponClosing() {
+      const id = setTimeout(setIsOpen, 1000, true);
+      return () => clearTimeout(id);
+    },
+    [isOpen]
+  );
+
+  return (
+    <>
+      <EzModal
+        isOpen={isOpen}
+        submitLabel="Submit"
+        headerText="Header goes here"
+        onSubmit={() => {
+          setSubmitted(true);
+          setIsOpen(false);
+        }}
+      >
+        Modal content goes here!
+      </EzModal>
+      <div>
+        {submitted !== null ? (
+          submitted ? (
+            <EzAlert headline="Submitted" use="success" />
+          ) : null
+        ) : null}
+      </div>
+    </>
+  );
+};
+```
+
 ### Asynchronous actions
 
 When triggering an action that may take some time, is can be useful for the user to remain on the modal until the action has completed.
