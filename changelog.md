@@ -10,7 +10,14 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 11
 
-## 11.1.0 0 - 2020-12-16
+## 11.2.0 - 2021-01-06
+
+#### Enhancements
+
+- Add EzModal support for required actions (non-dismissible modals).
+- Added support for Next.js applications with the new Next.js plugin: `next-recipe-css`. The `next-recipe-css` package enables `@ezcater/recipe` to import css files by leveraging a [custom webpack config](https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config) in Next.js. See the [next-recipe-css package readme](https://github.com/ezcater/recipe/tree/d71b0e18c949b2e5abf4c3a7158428d508b874bb/packages/next-recipe-css) for more info.
+
+## 11.1.0 - 2020-12-16
 
 #### Enhancements
 
