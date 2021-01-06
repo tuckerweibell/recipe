@@ -55,6 +55,7 @@ Meet the people that have helped make Recipe happen with their valuable contribu
 <a href="https://github.com/eebs"><img src="https://avatars1.githubusercontent.com/u/597311?s=60&amp;v=4" class="avatar" alt="eebs" width="50" height="50"></a>
 <a href="https://github.com/tjwp"><img src="https://avatars3.githubusercontent.com/u/1476506?s=60&amp;v=4" class="avatar" alt="tjwp" width="50" height="50"></a>
 <a href="https://github.com/morgannegagne"><img src="https://avatars3.githubusercontent.com/u/32595022?s=60&amp;v=4" class="avatar" alt="Morganne Gagne" width="50" height="50"></a>
+<a href="https://github.com/maggiedbaker"><img src="https://avatars3.githubusercontent.com/u/4922450?s=60&amp;v=4" class="avatar" alt="Maggie Baker" width="50" height="50"></a>
 <a href="https://github.com/kristenlk"><img src="https://avatars1.githubusercontent.com/u/5618997?s=60&amp;v=4" class="avatar" alt="kristenlk" width="50" height="50"></a>
 <a href="https://github.com/jaeger401"><img src="https://avatars2.githubusercontent.com/u/2601267?s=60&amp;v=4" class="avatar" alt="jaeger401" width="50" height="50"></a>
 <a href="https://github.com/evan-ezcater"><img src="https://avatars1.githubusercontent.com/u/36675523?s=60&amp;v=4" class="avatar" alt="evan-ezcater" width="50" height="50"></a>
