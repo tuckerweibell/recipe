@@ -393,11 +393,150 @@ Quiet cards are [small](#card-size) by default.
 </EzPage>
 ```
 
+### Clickable Cards
+
+Clickable cards present a preview of a piece of content and offer a large hit-surface to make it easy to link to the full content.
+
+A clickable card typically belongs to a [list item](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) - it is rare to see a clickable card presented on it's own. Using lists to present cards allows assistive technology to help users know how many cards are available and provide a shortcut between items.
+
+When using clickable cards, the whole card surface becomes interactive and is visually presented as being clickable. Clickable cards should be reserved for content where there is a single unique and predictable outcome resulting from interaction with the card. Consequently, clickable cards **should not** contain more than one link, button or other call-to-action. For cards that require multiple links, buttons or other calls-to-action, consider using [quiet cards](#quiet-cards) instead.
+
+- use the `clickable` prop to indicate to users that a card is clickable
+- use the `onClick` prop to handle click or touch interactions with the card. Typically this action will to trigger the navigation action of an link within the card, but may also be used to display a [modal dialog](/components/ez-modal).
+
+#### Cards with a heading link
+
+When the card heading text describes the content at the destination of the link, it follows that the header text should become the primary link for the card. The advantage here over having a specific calls-to-action within the card, such as "order now", is that each link represents a unique and descriptive label, which is useful when users are searching through aggregated lists of links.
+
+In this example, the click handler for the card triggers the click method on the link found within the body of the card. This allows the whole card to act as a large hit-surface for the link, without negatively impacting keyboard users, who retain access to original link. Recipe takes care of perceived affordances, allowing users know that the whole card is clickable, not just the link inside the card.
+
+Care should be taken to avoid triggering a redundant click event, caused when a click event directly on the link bubbles up to the card. The click handler for the card can be skipped if the user clicked the link directly.
+
+```jsx
+<EzPage>
+  <EzCard
+    title={
+      <EzLink
+        href="/orders"
+        use="reset"
+        onClick={e => {
+          // avoid triggering navigation for this code example
+          e.preventDefault();
+          alert(`clicked: ${e.target.text}`);
+        }}
+      >
+        Amuleto Mexican Table
+      </EzLink>
+    }
+    subtitle="Upscale Authentic Flavor  |  10 mi  |  $$$"
+    imageSrc={withPrefix('/images/tacos.jpg')}
+    imagePosition="left"
+    imageMaxWidth={200}
+    clickable
+    onClick={e => {
+      // find the primary link within this card, and click it
+      // NOTE: Using querySelector for simplicity - you could bind a ref to the link instead.
+      const link = e.currentTarget.querySelector('a');
+
+      // if the click target is the already link, we don't need to do anything else.
+      if (e.target !== link) link.click();
+    }}
+  >
+    <p>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
+        <path
+          id="B"
+          d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
+          fill="currentColor"
+        />
+        <use width="535" height="110" xlink:href="#B" x="105" />
+        <use width="535" height="110" xlink:href="#B" x="211" />
+        <use width="535" height="110" xlink:href="#B" x="316" />
+        <use width="535" height="110" xlink:href="#B" x="421" />
+      </svg>
+      4.7 (467 reviews)
+    </p>
+  </EzCard>
+</EzPage>
+```
+
+#### Card with a specific call to action
+
+Depending on the content of the card, and the context of the current page, it may prove instructive to provide an explicit call-to-action (CTA) button or link within a card to grab the user's attention or further emphasize that a card is interactive.
+
+Calls-to-action tell the user exactly what action to take and how to take it, and are often short simple instructions like "Order now" or "Read more".
+
+Calls to action may need some extra help to ensure the user has sufficient context to know what the link represents. In particular, when multiple CTA links are aggregated into a glossary for assistive technology, it becomes difficult to determine what the link represents. To avoid this issue, it typically makes sense to use the logical title or heading as the primary link, and use the CTA as an additional decorative element.
+
+Use `aria-hidden=true` on the CTA to remove the redundant functionality and avoid the unwanted tab-stop for keyboard users. We can re-attach the CTA "order now" text to the heading link as a description using `aria-describedby`. This can help to avoid confusion for sighted screen reader users, allowing the link to be read as "Taco bar for Taco Tuesday, Order now".
+
+```jsx
+<EzPage>
+  <EzCard
+    imageSrc={withPrefix('/images/tacos.jpg')}
+    imagePosition="left"
+    imageMaxWidth={200}
+    clickable
+    onClick={e => {
+      // find the primary link within this card, and click it
+      // NOTE: Using querySelector for simplicity - you could bind a ref to the link instead.
+      const link = e.currentTarget.querySelector('a');
+
+      // if the click target is the already link, we don't need to do anything else.
+      if (e.target !== link) link.click();
+    }}
+  >
+    <EzLayout layout="stack">
+      <EzHeading size="3">
+        <EzLink
+          href="/orders"
+          use="reset"
+          onClick={e => {
+            // avoid triggering navigation for this code example
+            e.preventDefault();
+
+            // read out the aria description, as well as the link text
+            // to simulate what a screen reader can see
+            const el = e.target.ownerDocument.getElementById(
+              e.currentTarget.getAttribute('aria-describedby')
+            );
+
+            alert(`clicked: ${e.target.text}, ${el.textContent}`);
+          }}
+          aria-describedby="order-now-btn"
+        >
+          Taco bar for Taco Tuesday
+        </EzLink>
+      </EzHeading>
+      <p>Or taco any day. Spice up your next meeting.</p>
+      <p>
+        <EzButton use="tertiary" as="span" aria-hidden id="order-now-btn">
+          Order Now
+          <svg
+            aria-hidden="true"
+            height={16}
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -8 30 30"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h20M20 5l7 7-8 7" />
+          </svg>
+        </EzButton>
+      </p>
+    </EzLayout>
+  </EzCard>
+</EzPage>
+```
+
 ---
 
 ## Limitations
 
-- Cards currently do not support full-sized linkable content.
 - Cards currently do not support varying horizontal/vertical layouts for Card Sections across breakpoints.
 
 ---
