@@ -10,6 +10,12 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 11
 
+## 11.2.1 - 2021-01-07
+
+#### Bug fixes
+
+- Fix: missing typescript file for `RequireAtLeastOne` utility type in build output.
+
 ## 11.2.0 - 2021-01-06
 
 #### Enhancements
