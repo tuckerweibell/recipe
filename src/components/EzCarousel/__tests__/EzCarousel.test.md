@@ -92,3 +92,16 @@
   <Placeholder>2</Placeholder>
 </EzCarousel>
 ```
+
+### Space for peek is reset across breakpoints when extra space for peek is no longer needed
+
+Note: You typically wouldn't run two equal responsive values, since medium already applies to
+large screens, however this triggers the same bug, without us needing to force the test to
+run at the largest breakpoint.
+
+```jsx
+<EzCarousel slidesPerPage={{base: 1, medium: 2, large: 2}} gap peek>
+  <Placeholder>1</Placeholder>
+  <Placeholder>2</Placeholder>
+</EzCarousel>
+```

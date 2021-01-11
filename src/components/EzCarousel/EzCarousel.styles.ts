@@ -59,7 +59,7 @@ const resizeForPeek = options => {
   const slideWidth = getSlideWidthCalc(options);
   const buttonWidth = getButtonWidthCalc(options);
 
-  if (!showPeek(options)) return false;
+  if (!showPeek(options) && !reset) return false;
 
   // grow the items on the first and last page to account for only having a single button
   const firstAndLast = {
