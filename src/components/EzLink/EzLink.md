@@ -5,7 +5,7 @@ category: Navigation
 path: '/components/ez-link'
 ---
 
-Links are used to embed navigation paths to related content from within a page. Typically links will be used to trigger navigation to other pages in an application.
+Links allow users to navigate to other pages in an application. Links can be presented as standalone text or inline inside a paragraph, or used to enhance other elements, like headings or images, with navigation behavior.
 
 ---
 
@@ -23,39 +23,30 @@ Links should not:
 
 ## Examples
 
-### Basic link
+### Text link
 
-Used for either stand-alone navigational actions or links within larger spans of text. Use the `href` prop to provide the destination url for the link.
+Used for either stand-alone navigational actions or links within larger spans of text.
 
-```jsx
-<EzLink href="/orders">View Orders</EzLink>
-```
-
-### Link component
-
-Normally links render an [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), but in order to support client-side routing implementations, you can provide a Link component, such as [react-router's link component](https://reacttraining.com/react-router/web/api/Link), to render via the optional `as` property. EzLink will forward its props to the provided component.
-
-When using the `as` prop, you must use the `to` prop in place of `href` to provide the destination url for the link.
+Links accept any [ReactElement](https://flow.org/en/docs/react/types/#toc-react-element) as children. The link component will add Recipe's styles and event handlers to that element. Actual navigation will be handled by the wrapped element.
 
 ```jsx
-() => {
-  const {Link, BrowserRouter: Router, Route} = require('react-router-dom');
-  return (
-    <Router>
-      <EzLayout layout="basic">
-        <EzLink to="/orders" as={Link}>
-          View Orders
-        </EzLink>
-        <EzLink to="/accounts" as={Link}>
-          View Accounts
-        </EzLink>
-      </EzLayout>
-      <Route exact path="/orders" component={() => 'Orders'} />
-      <Route exact path="/accounts" component={() => 'Accounts'} />
-    </Router>
-  );
-};
+<EzLink>
+  <a href="/orders">View Orders</a>
+</EzLink>
 ```
+
+To use with React Router
+
+```tsx
+import {EzLink} from '@ezcater/recipe';
+import {Link as RouterLink} from 'react-router-dom';
+
+<EzLink>
+  <RouterLink to="/next-page">Next Page</RouterLink>
+</EzLink>;
+```
+
+If the ReactNode provided to the link component is plain text, it will be styled and exposed to assistive technologies as a link. Interaction will need to be handled in JavaScript with the `onClick` prop. Note: this will not behave like a native link. Browser features like context menus and open in new tab will not be available.
 
 ---
 

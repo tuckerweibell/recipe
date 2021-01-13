@@ -7,13 +7,17 @@ import markdown from '../EzLink.md';
 import EzLink from '../EzLink';
 import {EzLayout} from '../../index';
 
-const scope = {EzLink, EzLayout, require};
+const scope = {EzLink, EzLayout};
 
 describe('EzLink', () => {
   visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
-    const {container} = render(<EzLink href="/orders">View Orders</EzLink>);
+    const {container} = render(
+      <EzLink>
+        <a href="/orders">View Orders</a>
+      </EzLink>
+    );
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
@@ -21,7 +25,7 @@ describe('EzLink', () => {
   it('should pass type checking', () => {
     [
       {
-        EzLinkWithReactRouterToOptions: (
+        EzLinkWithDeprecatedReactRouterProps: (
           <EzLink
             to={{
               pathname: '/courses',
@@ -30,7 +34,24 @@ describe('EzLink', () => {
               state: {fromDashboard: true},
             }}
             as={Link}
-          />
+          >
+            View courses
+          </EzLink>
+        ),
+        EzLinkWithDeprecatedAnchorProps: <EzLink href="/orders">View Orders</EzLink>,
+      },
+      {
+        EzLinkWithAnchor: (
+          <EzLink href="/orders">
+            <a href="/orders">View Orders</a>
+          </EzLink>
+        ),
+      },
+      {
+        EzLinkWithReactRouter: (
+          <EzLink href="/orders">
+            <Link to="/orders">View Orders</Link>
+          </EzLink>
         ),
       },
     ].forEach(() => {});
