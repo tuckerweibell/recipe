@@ -48,6 +48,17 @@ import {Link as RouterLink} from 'react-router-dom';
 
 If the ReactNode provided to the link component is plain text, it will be styled and exposed to assistive technologies as a link. Interaction will need to be handled in JavaScript with the `onClick` prop. Note: this will not behave like a native link. Browser features like context menus and open in new tab will not be available.
 
+### Secondary links
+
+The `secondary` link variant matches the current color of the containing paragraph text. Its subdued appearance is suitable when the primary variant is too overwhelming, such as in blocks of text with several references linked throughout.
+
+```jsx
+<p>
+  These earnings roll into your total <EzLink use="secondary">ezRewards</EzLink>. Use as payment on
+  any order at checkout.
+</p>
+```
+
 ---
 
 ## Related components

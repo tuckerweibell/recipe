@@ -19,3 +19,18 @@ export const primary = () => css`
     text-decoration: underline;
   }
 `;
+
+export const secondary = () => css`
+  font-weight: normal;
+  text-decoration: underline;
+  color: inherit;
+  cursor: pointer;
+  outline-offset: 2px;
+
+  :hover {
+    color: var(--recipe-link-text-color-hover);
+  }
+  :active {
+    color: var(--recipe-link-text-color-down);
+  }
+`;
