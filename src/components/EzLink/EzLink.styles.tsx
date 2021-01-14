@@ -34,3 +34,8 @@ export const secondary = () => css`
     color: var(--recipe-link-text-color-down);
   }
 `;
+
+export const reset = () => css`
+  color: inherit;
+  text-decoration: none;
+`;

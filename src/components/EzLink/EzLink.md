@@ -59,6 +59,18 @@ The `secondary` link variant matches the current color of the containing paragra
 </p>
 ```
 
+### Reset links
+
+The `reset` link variant removes the browser default text decoration and color from the wrapped navigation element. This variant can be used to provide navigation semantics to other elements, such as headings or charts, without impacting their default appearance.
+
+```jsx
+<EzLink use="reset">
+  <a href="/" target="_blank">
+    <Placeholder>This placeholder is a link</Placeholder>
+  </a>
+</EzLink>
+```
+
 ---
 
 ## Related components

@@ -6,8 +6,9 @@ import {render} from '@testing-library/react';
 import markdown from '../EzLink.md';
 import EzLink from '../EzLink';
 import {EzLayout} from '../../index';
+import Placeholder from '../../../../doc-site/src/components/Placeholder';
 
-const scope = {EzLink, EzLayout};
+const scope = {EzLink, EzLayout, Placeholder};
 
 describe('EzLink', () => {
   visualSnapshots({markdown, scope});

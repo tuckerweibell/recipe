@@ -1,6 +1,6 @@
 import {ClassNames} from '@emotion/core';
 import React, {forwardRef, ReactElement, ReactNode} from 'react';
-import {primary, secondary} from './EzLink.styles';
+import {primary, secondary, reset} from './EzLink.styles';
 import {Link as LinkProps} from './EzLink.types';
 import {isAnchor, isLink} from './utils';
 
@@ -49,7 +49,7 @@ const EzLink = forwardRef<HTMLElement, EzLinkProps>((props, ref) => {
     content = React.createElement(type, options, children);
   }
 
-  const styles = {primary, secondary};
+  const styles = {primary, secondary, reset};
   const style = styles[use];
 
   return (
