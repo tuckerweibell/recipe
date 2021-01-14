@@ -1,6 +1,14 @@
 import {css} from '@emotion/core';
 import './vars.css';
 
+const linkBase = () => css`
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+    text-decoration-style: double;
+  }
+`;
+
 export const primary = () => css`
   font-weight: bold;
   text-decoration: none;
@@ -18,6 +26,7 @@ export const primary = () => css`
   &:hover {
     text-decoration: underline;
   }
+  ${linkBase()};
 `;
 
 export const secondary = () => css`
@@ -33,6 +42,7 @@ export const secondary = () => css`
   :active {
     color: var(--recipe-link-text-color-down);
   }
+  ${linkBase()};
 `;
 
 export const reset = () => css`
