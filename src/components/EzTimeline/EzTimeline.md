@@ -80,8 +80,7 @@ Each timeline period must contain one or more timeline events. Each timeline eve
 
       <EzTimelineEvent
         title="Order # 1V3023D"
-        to="/order/1V3023D"
-        as={({children}) => <a onClick={e => e.preventDefault()}>{children}</a>}
+        href="/order/1V3023D"
         time="11/15/2019 at 2:45PM EST"
         status={<EzStatus text="Complete" use="success" size="small" />}
         icon={
