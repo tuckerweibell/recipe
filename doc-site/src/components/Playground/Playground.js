@@ -39,6 +39,13 @@ const Container = styled.div`
       min-height: 350px;
     }
   }
+
+  [class^='ActionsBar__Actions'] {
+    > *:focus {
+      outline: revert; /* undo the hard-coded outline: none from the docz playground component */
+      position: relative; /* make sure outline isn't masked by sibling elements */
+    }
+  }
 `;
 
 const DoczGlobals = () => (
