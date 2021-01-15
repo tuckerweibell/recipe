@@ -1,7 +1,7 @@
 import React from 'react';
 import * as CSS from 'csstype';
 import {CardContainer, SectionContainer} from './EzCard.styles';
-import EzLink from '../EzLink';
+import EzButton from '../EzButton';
 import EzCardFooter from './EzCardFooter';
 import EzCardSection from './EzCardSection';
 import EzCardHeading from './EzCardHeading';
@@ -79,11 +79,11 @@ const EzCard: React.FC<CardProps> = ({
       <SectionContainer horizontal={horizontal}>{wrappedChildren(children)}</SectionContainer>
       {isExpandableCardFooter(expandable) && (
         <EzCardFooter>
-          <EzLink href="#" onClick={expandable.onClick}>
+          <EzButton use="tertiary" onClick={expandable.onClick}>
             {expandable.isExpanded && expandable.collapseLabel
               ? expandable.collapseLabel
               : expandable.expandLabel}
-          </EzLink>
+          </EzButton>
         </EzCardFooter>
       )}
     </div>
