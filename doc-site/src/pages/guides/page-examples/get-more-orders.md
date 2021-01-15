@@ -182,14 +182,22 @@ tags: ['wide']
             <EzCard title="Access more of ezCater’s tools">
               <p>
                 <EzTextStyle use="strong">
-                  Get help with <EzLink href="#">delivery</EzLink>.
+                  Get help with{' '}
+                  <EzLink>
+                    <a href="#">delivery</a>
+                  </EzLink>
+                  .
                 </EzTextStyle>{' '}
                 ezDispatch is our network of professional delivery providers. You can get drivers on
                 demand for your ezOrdering orders.
               </p>
               <p>
                 <EzTextStyle use="strong">
-                  Create custom <EzLink href="#">promotions</EzLink>.
+                  Create custom{' '}
+                  <EzLink>
+                    <a href="#">promotions</a>
+                  </EzLink>
+                  .
                 </EzTextStyle>{' '}
                 Get access to our Promotions tool in ezManage to create and run promotions on your
                 ezOrdering site.

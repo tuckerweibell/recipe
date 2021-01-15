@@ -177,7 +177,7 @@ Details pages should:
                   Next Gear Solutions
                 </EzLabelledItem>
                 <EzLabelledItem position="top" size="small" title="Address">
-                  <EzLink href="#" onClick={onClick}>
+                  <EzLink onClick={onClick}>
                     <address style={{fontStyle: 'normal'}}>
                       <p>36790 Cremin Park</p>
                       <p>Atlanta, GA, 303309</p>

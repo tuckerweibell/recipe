@@ -73,22 +73,16 @@ Optionally, a `terms` prop may be used to present a small amount of text inline 
       terms={
         <span>
           I have read and agree to the{' '}
-          <EzLink
-            href="#"
-            onClick={e => e.preventDefault()}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            terms of service
+          <EzLink>
+            <a href="/" target="_blank" rel="noreferrer noopener">
+              terms of service
+            </a>
           </EzLink>{' '}
           and{' '}
-          <EzLink
-            href="#"
-            onClick={e => e.preventDefault()}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            privacy policy
+          <EzLink>
+            <a href="/" target="_blank" rel="noreferrer noopener">
+              privacy policy
+            </a>
           </EzLink>
           .
         </span>
