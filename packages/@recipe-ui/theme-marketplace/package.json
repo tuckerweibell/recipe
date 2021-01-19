@@ -1,6 +1,6 @@
 {
   "name": "@recipe-ui/theme-marketplace",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "ezCater's React UI Component library",
   "license": "MIT",
   "main": "lib/main.js",
@@ -35,7 +35,9 @@
     },
     "module": {
       "engines": {
-        "browsers": ["ie 11"]
+        "browsers": [
+          "ie 11"
+        ]
       }
     }
   }
