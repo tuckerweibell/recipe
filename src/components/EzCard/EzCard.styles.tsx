@@ -36,6 +36,68 @@ const isQuiet = variant('isQuiet', {
   true: {'--recipe-card-dropshadow': 'var(--recipe-card-dropshadow-quiet)'},
 });
 
+const clickable = variant('clickable', {
+  true: () => css`
+    position: relative;
+
+    /* 
+      semi-transparent overlay on top of the card
+      allowing varied opacity on hover
+    */
+    &:before {
+      content: ' ';
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      position: absolute;
+      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-radius: inherit;
+      pointer-events: none;
+      background-color: var(--recipe-global-color-transparent);
+    }
+
+    &:hover {
+      /* double up the shadow on hover */
+      box-shadow: var(--recipe-card-dropshadow), var(--recipe-card-dropshadow);
+      cursor: pointer;
+
+      /*  make the mask darker on hover */
+      &:before {
+        background-color: var(--recipe-global-color-translucent-dark);
+      }
+    }
+
+    /* make the mask even darker still when active/clicking */
+    &:active:before {
+      background-color: var(--recipe-global-color-translucent-darker);
+    }
+
+    /* when the card content is in focus, promote the focus up to the card itself */
+    &:focus-within {
+      box-shadow: var(--recipe-card-dropshadow), rgb(0, 95, 204) 0 0px 0px 2px;
+    }
+
+    /*
+      for browsers that don't support :focus-within,
+      make sure links retain their focus style
+    */
+    & a:focus {
+      text-decoration: underline;
+    }
+
+    /*
+      remove decoration for focused links within the card
+      (since focus is promoted to the card itself)
+    */
+    &:focus-within a:focus {
+      text-decoration: none;
+      outline: none;
+    }
+  `,
+});
+
 export const CardContainer = styled.div<any>`
   background: var(--recipe-card-background-color);
   box-shadow: var(--recipe-card-dropshadow);
@@ -43,6 +105,7 @@ export const CardContainer = styled.div<any>`
   ${rounded};
   ${size};
   ${isQuiet};
+  ${clickable};
   display: flex;
   ${imagePos};
   > * {
