@@ -45,6 +45,7 @@ Meet the people that have helped make Recipe happen with their valuable contribu
 <a href="https://github.com/spdonegan1"><img src="https://avatars0.githubusercontent.com/u/1735195?s=60&amp;v=4" class="avatar" alt="Sean Donegan" width="50" height="50"></a>
 <a href="https://github.com/ezrohall"><img src="https://avatars3.githubusercontent.com/u/48689546?s=60&amp;v=4" class="avatar" alt="Rick O'Halloran" width="50" height="50"></a>
 <a href="https://github.com/acconrad"><img src="https://avatars1.githubusercontent.com/u/422184?s=60&amp;v=4" class="avatar" alt="acconrad" width="50" height="50"></a>
+<a href="https://github.com/danidewitt"><img src="https://avatars1.githubusercontent.com/u/3790037?s=60&amp;v=4" class="avatar" alt="danidewitt" width="50" height="50"></a>
 <a href="https://github.com/bjackson2"><img src="https://avatars2.githubusercontent.com/u/3217775?s=60&amp;v=4" class="avatar" alt="bjackson2" width="50" height="50"></a>
 <a href="https://github.com/kevinmook"><img src="https://avatars2.githubusercontent.com/u/832755?s=60&amp;v=4" class="avatar" alt="kevinmook" width="50" height="50"></a>
 <a href="https://github.com/pgrippi"><img src="https://avatars2.githubusercontent.com/u/1180841?s=60&amp;v=4" class="avatar" alt="pgrippi" width="50" height="50"></a>
