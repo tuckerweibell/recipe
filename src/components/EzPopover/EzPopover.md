@@ -1,3 +1,10 @@
+---
+name: EzPopover
+title: Popover
+category: Overlays
+path: '/components/ez-popover'
+---
+
 Popover is a non-modal dialog that floats relative to another element. It's commonly used for displaying additional rich content on top of something. Popovers can alter their floating position to avoid overflowing the page.
 
 ---
