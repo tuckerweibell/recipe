@@ -85,23 +85,3 @@ const useOverlayTriggerState = ({initialIsOpen = false}): OverlayTriggerState =>
   };
 };
 
-/**
- * Handles positioning overlays like popovers and menus relative to a trigger
- * element, and updating the position when the window resizes.
- */
-export const useOverlayPosition = options => /* istanbul ignore next */ ({
-  ...options,
-  modifiers: [
-    {
-      name: 'matchWidth',
-      enabled: true,
-      fn: ({state}) => {
-        // eslint-disable-next-line no-param-reassign
-        state.styles.popper.width = `${state.rects.reference.width}px`;
-      },
-      phase: 'beforeWrite',
-      requires: ['computeStyles'],
-    },
-    {name: 'offset', options: {offset: [0, 5]}},
-  ],
-});
