@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React from 'react';
 import {Placement, Modifier} from '@popperjs/core';
 import EzPortal from '../EzPortal';
