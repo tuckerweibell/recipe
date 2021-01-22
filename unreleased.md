@@ -8,6 +8,7 @@ title: 'Unreleased changes'
 #### Breaking changes.
 
 #### New components
+- Added new [EzPopover](/components/ez-popover) component. Popover is a non-modal dialog that floats relative to another element. It's commonly used for displaying additional rich content on top of something.
 
 #### Enhancements
 
