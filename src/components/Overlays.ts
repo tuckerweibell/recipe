@@ -84,4 +84,3 @@ const useOverlayTriggerState = ({initialIsOpen = false}): OverlayTriggerState =>
     },
   };
 };
-

@@ -74,7 +74,13 @@ const UserMenu: React.FC<MenuProps> = props => {
   return (
     <>
       {menuState.isOpen && (
-        <EzPopover targetRef={ref} placement="top-start" matchWidth shouldCloseOnBlur onClose={menuState.close}>
+        <EzPopover
+          targetRef={ref}
+          placement="top-start"
+          matchWidth
+          shouldCloseOnBlur
+          onClose={menuState.close}
+        >
           <StyledMenu {...menuProps} aria-label="User options">
             {props.links.map((link, i) => (
               <StyledMenuItem

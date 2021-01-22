@@ -30,7 +30,13 @@ const EzAutosuggest = props => {
         </InsetIcon>
       </TextInputWrapper>
       {state.isOpen && (
-        <EzPopover shouldCloseOnBlur onClose={state.close} targetRef={triggerRef} placement="bottom-start" matchWidth>
+        <EzPopover
+          shouldCloseOnBlur
+          onClose={state.close}
+          targetRef={triggerRef}
+          placement="bottom-start"
+          matchWidth
+        >
           <EzListBox
             {...listBoxProps}
             aria-labelledby={[ariaLabelledBy, props.id].join(' ')}

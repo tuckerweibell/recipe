@@ -30,8 +30,8 @@ const PopoverImpl: React.FC<Props> = ({
   ...rest
 }) => {
   const modifiers: Array<Partial<Modifier<any>>> = [{name: 'offset', options: {offset: [0, 5]}}];
-  
-  if (matchWidth) { 
+
+  if (matchWidth) {
     modifiers.push({
       name: 'matchWidth',
       enabled: true,
@@ -44,9 +44,7 @@ const PopoverImpl: React.FC<Props> = ({
     });
   }
 
-  if (showArrow) {
-    modifiers.push({name: 'arrow', enabled: true, options: {padding: 5}});
-  }
+  if (showArrow) modifiers.push({name: 'arrow', enabled: true, options: {padding: 5}});
 
   const {popper, reference} = usePopper({placement, modifiers});
   reference.current = targetRef.current;

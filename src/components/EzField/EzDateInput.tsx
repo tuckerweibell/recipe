@@ -84,7 +84,12 @@ const EzDateInput = ({
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (
-        <EzPopover targetRef={triggerRef} placement="bottom-start" shouldCloseOnBlur onClose={close}>
+        <EzPopover
+          targetRef={triggerRef}
+          placement="bottom-start"
+          shouldCloseOnBlur
+          onClose={close}
+        >
           <FocusScope contain restoreFocus>
             <CalendarWrapper
               {...menuProps}
