@@ -13,6 +13,13 @@ Popover is a non-modal dialog that floats relative to another element. It's comm
 
 ### Popover
 
+- Use `targetRef` to tell EzPopover about the element that the popover should position next to. 
+- Use `showArrow` (optional) to show triangle or caret that points towards the reference element.
+- Use `matchWidth` (optional) to size the popover relative to the width of the target element.
+- Use `placement` (optional) to position the popover relative to the target element. Defaults to `"bottom"`, accepts: `"top-start"` | `"top-end"` | `"bottom-start"` | `"bottom-end"` | `"right-start"` | `"right-end"` | `"left-start"` | `"left-end"` |  `"top"` | `"bottom"` | `"right"` | `"left"`.
+- Use `onClose` (optional) to be notified when the popover closes.
+- Use `shouldCloseOnBlur` (optional) to automatically close the popover when the user clicks away. 
+
 ```jsx
 () => {
   const ref = React.useRef(null);
