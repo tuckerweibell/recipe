@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {css} from '@emotion/core';
 import styled from '@emotion/styled';
-import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from '../Overlays';
+import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import {menuStyles} from './Menu';
 import EzLink from '../EzLink';
 import {wrapEvents} from '../../utils';
@@ -71,15 +71,10 @@ const UserMenu: React.FC<MenuProps> = props => {
   const menuState = useMenuTriggerState();
   const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
 
-  const overlayPosition = useOverlayPosition({
-    targetRef: ref,
-    placement: 'top-start',
-  });
-
   return (
     <>
       {menuState.isOpen && (
-        <EzPopover {...overlayPosition} shouldCloseOnBlur onClose={menuState.close}>
+        <EzPopover targetRef={ref} placement="top-start" matchWidth shouldCloseOnBlur onClose={menuState.close}>
           <StyledMenu {...menuProps} aria-label="User options">
             {props.links.map((link, i) => (
               <StyledMenuItem

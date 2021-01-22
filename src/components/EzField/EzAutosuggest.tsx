@@ -1,6 +1,5 @@
 import React, {useRef} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useOverlayPosition} from '../Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -22,11 +21,6 @@ const EzAutosuggest = props => {
     state
   );
 
-  const overlayPosition = useOverlayPosition({
-    targetRef: triggerRef,
-    placement: 'bottom-start',
-  });
-
   return (
     <OverlayFieldWrapper hasError={props.touched && props.error} opened={state.isOpen}>
       <TextInputWrapper className={props.className} disabled={props.disabled}>
@@ -36,7 +30,7 @@ const EzAutosuggest = props => {
         </InsetIcon>
       </TextInputWrapper>
       {state.isOpen && (
-        <EzPopover shouldCloseOnBlur onClose={state.close} {...overlayPosition}>
+        <EzPopover shouldCloseOnBlur onClose={state.close} targetRef={triggerRef} placement="bottom-start" matchWidth>
           <EzListBox
             {...listBoxProps}
             aria-labelledby={[ariaLabelledBy, props.id].join(' ')}

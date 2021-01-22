@@ -2,7 +2,6 @@
 import {jsx} from '@emotion/core';
 import {useRef, useCallback} from 'react';
 import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
-import {useOverlayPosition} from '../Overlays';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -40,10 +39,6 @@ const EzSelect = props => {
     },
     state
   );
-  const overlayPosition = useOverlayPosition({
-    targetRef: triggerRef,
-    placement: 'bottom-start',
-  });
 
   return (
     <OverlayFieldWrapper
@@ -64,7 +59,7 @@ const EzSelect = props => {
         </InsetIcon>
       </TextInputWrapper>
       {state.isOpen && (
-        <EzPopover shouldCloseOnBlur onClose={state.close} {...overlayPosition}>
+        <EzPopover shouldCloseOnBlur onClose={state.close} targetRef={triggerRef} placement="bottom-start" matchWidth>
           <EzListBox
             {...listBoxProps}
             aria-labelledby={[ariaLabelledBy, props.id].join(' ')}

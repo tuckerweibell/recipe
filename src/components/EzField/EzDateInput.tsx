@@ -4,7 +4,7 @@ import EzTextInput from './EzTextInput';
 import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
-import {useMenuTrigger, useMenuTriggerState, useOverlayPosition} from '../Overlays';
+import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 import FocusScope from '../FocusScope';
@@ -63,11 +63,6 @@ const EzDateInput = ({
     touched: props.touched,
   };
 
-  const overlayPosition = useOverlayPosition({
-    targetRef: triggerRef,
-    placement: 'bottom-start',
-  });
-
   const {minDate, maxDate, filterDate} = props;
 
   return (
@@ -89,7 +84,7 @@ const EzDateInput = ({
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (
-        <EzPopover {...overlayPosition} shouldCloseOnBlur onClose={close}>
+        <EzPopover targetRef={triggerRef} placement="bottom-start" shouldCloseOnBlur onClose={close}>
           <FocusScope contain restoreFocus>
             <CalendarWrapper
               {...menuProps}

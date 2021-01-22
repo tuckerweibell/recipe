@@ -40,10 +40,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
         <EzPopover
           targetRef={targetRef}
           placement={position === 'horizontal' ? 'right' : 'bottom'}
-          modifiers={[
-            {name: 'arrow', enabled: true, options: {padding: 5}},
-            {name: 'offset', options: {offset: [0, 5]}},
-          ]}
+          showArrow
         >
           <TooltipArrow data-popper-arrow>
             <svg width="10" height="10">
