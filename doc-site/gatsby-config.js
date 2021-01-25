@@ -43,5 +43,13 @@ module.exports = {
         features: ['default', 'NodeList.prototype.forEach'],
       },
     },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-TJRFGNR",
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+      },
+    },
   ],
 };
