@@ -20,3 +20,4 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+- Added [gatsby-plugin-google-tagmanager](https://www.gatsbyjs.com/plugins/gatsby-plugin-google-tagmanager/) and google tag manager id for doc-site usage visibility.
