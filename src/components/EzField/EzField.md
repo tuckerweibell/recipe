@@ -133,6 +133,26 @@ Allows the user to securely enter a password, typically as part of a login form.
 };
 ```
 
+### Email input field
+
+Allows the user to input email values.
+
+- Can be paired with the any of the following props to forward supported [HTML input element attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#additional_attributes) onto the rendered input element: `list`, `maxLength`, `minLength`, `multiple`, `pattern`, `placeholder`, and `readOnly`.
+
+```jsx
+() => {
+  const [value, setValue] = React.useState('eat@ezcater.com');
+  return (
+    <EzField
+      type="email"
+      label="Email"
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
+  );
+};
+```
+
 ### Multiple choice input field
 
 Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.

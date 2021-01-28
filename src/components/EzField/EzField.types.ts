@@ -31,6 +31,10 @@ type MultipleChoiceProps = {
   bordered?: boolean;
 };
 
+type EmailProps = {
+  type: 'email';
+};
+
 type HtmlInputProps = {
   type?: 'text' | 'number' | 'textarea' | 'password';
   value?: string | number;
@@ -78,6 +82,7 @@ type FieldTypeProps =
   | SingleChoiceProps
   | MultipleChoiceProps
   | ListboxProps
+  | EmailProps
   | HtmlInputProps
   | DateInputProps
   | TimeInputProps
@@ -87,7 +92,7 @@ type FieldTypeProps =
 
 type ErrorOrMessage = string | boolean;
 
-type BaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
+type BaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   /**
    * Display that the input has an error
    */

@@ -21,7 +21,7 @@ import EzSelect from './EzSelect';
 import EzAutosuggest from './EzAutosuggest';
 import EzTextInput from './EzTextInput';
 
-const inputElements = ['text', 'number', 'password'];
+const inputElements = ['text', 'number', 'password', 'email'];
 const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
