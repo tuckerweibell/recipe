@@ -32,12 +32,12 @@ Popovers should not:
 
 ### Popover
 
-- Use `targetRef` to tell EzPopover about the element that the popover should position next to. 
-- Use `showArrow` (optional) to show triangle or caret that points towards the reference element.
+- Use `targetRef` to tell EzPopover about the element that the popover should position next to.
+- Use `showArrow` (optional) to positions an inner element of the popover so it appears centered relative to the reference element, usually the triangle or caret that points toward the reference element. EzPopover will automatically pick up an element decorated with `the data-popper-arrow attribute` and position it within the popover.
 - Use `matchWidth` (optional) to size the popover relative to the width of the target element.
-- Use `placement` (optional) to position the popover relative to the target element. Defaults to `"bottom"`, accepts: `"top-start"` | `"top-end"` | `"bottom-start"` | `"bottom-end"` | `"right-start"` | `"right-end"` | `"left-start"` | `"left-end"` |  `"top"` | `"bottom"` | `"right"` | `"left"`.
+- Use `placement` (optional) to position the popover relative to the target element. Defaults to `"bottom"`, accepts: `"top-start"` | `"top-end"` | `"bottom-start"` | `"bottom-end"` | `"right-start"` | `"right-end"` | `"left-start"` | `"left-end"` | `"top"` | `"bottom"` | `"right"` | `"left"`.
+- Use `shouldCloseOnBlur` (optional) to automatically call `onClose` when the user clicks away from the popover.
 - Use `onClose` (optional) to be notified when the popover closes.
-- Use `shouldCloseOnBlur` (optional) to automatically close the popover when the user clicks away. 
 
 ```jsx
 () => {
@@ -45,12 +45,17 @@ Popovers should not:
   const [visible, setVisible] = React.useState(false);
   return (
     <div style={{height: 150}}>
-      <button ref={ref} onClick={() => setVisible(!visible)}>
+      <EzButton
+        use="secondary"
+        ref={ref}
+        onClick={() => setVisible(!visible)}
+        onKeyDown={e => e.key === 'Escape' && setVisible(false)}
+      >
         Open popover
-      </button>
+      </EzButton>
 
       {visible && (
-        <EzPopover targetRef={ref}>
+        <EzPopover targetRef={ref} shouldCloseOnBlur onClose={() => setVisible(false)}>
           <div
             style={{
               border: 'solid 1px hsla(0, 0%, 0%, 0.25)',
