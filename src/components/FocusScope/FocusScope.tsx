@@ -49,7 +49,7 @@ const scopes: Set<RefObject<HTMLElement[]>> = new Set();
  * management interface that can be used to move focus forward and back in response
  * to user events.
  */
-export default function FocusScope(props: FocusScopeProps) {
+export default React.forwardRef(function FocusScope(props: FocusScopeProps, ref) {
   const {children, contain, restoreFocus, autoFocus} = props;
   const startRef = useRef<HTMLSpanElement>();
   const endRef = useRef<HTMLSpanElement>();
@@ -75,6 +75,10 @@ export default function FocusScope(props: FocusScopeProps) {
   useRestoreFocus(scopeRef, restoreFocus, contain);
   useAutoFocus(scopeRef, autoFocus);
 
+  React.useImperativeHandle(ref, () => ({
+    focusFirstInScope: () => focusFirstInScope(scopeRef.current),
+  }));
+
   return (
     <>
       <span hidden ref={startRef} />
@@ -82,7 +86,7 @@ export default function FocusScope(props: FocusScopeProps) {
       <span hidden ref={endRef} />
     </>
   );
-}
+});
 
 const focusableElements = [
   'input:not([disabled]):not([type=hidden])',
@@ -262,8 +266,8 @@ function useRestoreFocus(
         walker.currentNode = nodeToRestore;
 
         // Skip over elements within the scope, in case the scope immediately follows the node to restore.
-        do nextElement = (e.shiftKey ? walker.previousNode() : walker.nextNode()) as HTMLElement;
-        while (isElementInScope(nextElement, scope));
+        do nextElement = (e.shiftKey ? walker.currentNode : walker.nextNode()) as HTMLElement;
+        while (isElementInScope(nextElement, scope) && !e.shiftKey);
 
         e.preventDefault();
         e.stopPropagation();
@@ -280,7 +284,7 @@ function useRestoreFocus(
     return () => {
       if (!contain) document.removeEventListener('keydown', onKeyDown, true);
 
-      if (restoreFocus && nodeToRestore) {
+      if (restoreFocus && nodeToRestore && isElementInScope(document.activeElement, scope)) {
         requestAnimationFrame(() => {
           if (document.body.contains(nodeToRestore)) focusElement(nodeToRestore);
         });
