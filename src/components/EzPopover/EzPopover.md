@@ -18,6 +18,18 @@ Popover is a non-modal dialog that floats relative to another element. It's comm
 <br/>
 <br/>
 
+## Best Practices
+
+Popovers should:
+
+- Be used to build custom overlay experiences, like context menus, custom dialogs and information overlays.
+- Follow implementation guidelines of specific accessibility patterns, such as the [WAI-ARIA Disclosure Pattern](https://www.w3.org/TR/wai-aria-practices/#disclosure) or the [WAI-ARIA Menu or Menu bar Pattern](https://www.w3.org/TR/wai-aria-practices/#menu).
+- Be paired with appropriate keyboard event handlers to support common interactions. For example, in some pattern like dialogs and menus, pressing the `Escape` key should dismisses the popover if it is visible and restore focus to the trigger element.
+
+Popovers should not:
+
+- Be used when a more specific overlay component is available, such as [modal dialogs](/components/ez-modal) or [Tooltips](/components/components/ez-tooltip).
+
 ### Popover
 
 - Use `targetRef` to tell EzPopover about the element that the popover should position next to. 
