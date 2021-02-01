@@ -1,59 +1,37 @@
+/* eslint-disable */
+const fs = require('fs');
 const React = require('react');
 const Components = require('@ezcater/recipe');
 const styled = require('@emotion/styled').default;
 const {Global, css} = require('@emotion/core');
 const {ThemeProvider} = require('emotion-theming');
 const buble = require('buble/dist/buble-browser-deps.umd.js');
+const MDX = require('@mdx-js/runtime');
 const repng = require('./repng');
-
-const path = require('path');
-const fs = require('fs');
 
 const scope = {...Components, Global, css, ThemeProvider};
 
-const cleanProps = p =>
-  Object.keys(p).reduce((previous, current) => {
-    const key = current.startsWith('aria')
-      ? current.toLowerCase().replace('aria', 'aria-')
-      : current;
-    const value = Array.isArray(p[current]) ? p[current].join(' ') : p[current];
-    return {...previous, [key]: value};
-  }, {});
-
-module.exports = ({htmlAst, fileAbsolutePath}) => {
-  const componentMap = {
+module.exports = ({content, outputFilename, globalStyles}) => {
+  const components = {
     code: props => {
-      return React.createElement(Preview, {code: props.children[0], scope});
+      return React.createElement(Preview, {code: props.children, scope});
     },
     pre: 'div',
-  };
-
-  const renderTag = (node, i) => {
-    if (node.type === 'element') {
-      const {tagName, properties, children} = node;
-      properties.key = i;
+    wrapper: ({children}) => {
+      // tried include these global styles with Emotion's Global component, but it didn't seem to work 🤷
       return React.createElement(
-        componentMap[tagName] || tagName,
-        cleanProps(properties),
-        (children.length && children.map(renderTag)) || undefined
+        'div',
+        {},
+        React.createElement('style', {dangerouslySetInnerHTML: {__html: globalStyles.join('\n')}}),
+        children
       );
-    } else {
-      return node.value;
-    }
+    },
   };
 
-  const Component = () => htmlAst.children.map(renderTag);
+  const Component = () => React.createElement(MDX, {components, scope}, content);
 
   const width = 1024;
   const height = width / 2;
-
-  const previewFilename = path.basename(
-    fileAbsolutePath.replace(/.preview/, ''),
-    path.extname(fileAbsolutePath)
-  );
-  const outFile = `${previewFilename}.png`;
-
-  const filename = path.join(__dirname, '../static/images/preview/', outFile);
 
   return repng(Component, {
     width,
@@ -64,13 +42,13 @@ module.exports = ({htmlAst, fileAbsolutePath}) => {
     },
   }).then(image => {
     return new Promise((resolve, reject) => {
-      fs.writeFile(filename, image, err => {
+      fs.writeFile(outputFilename, image, err => {
         if (err) {
-          console.log('Failed to write image to ', filename);
+          console.log('Failed to write image to ', outputFilename);
           console.log(err);
           reject(err);
         } else {
-          console.log('Wrote file: ', filename);
+          console.log('Wrote file: ', outputFilename);
           resolve();
         }
       });
