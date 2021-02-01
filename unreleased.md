@@ -26,3 +26,4 @@ title: 'Unreleased changes'
 #### Development workflow
 
 - Added [gatsby-plugin-google-tagmanager](https://www.gatsbyjs.com/plugins/gatsby-plugin-google-tagmanager/) and google tag manager id for doc-site usage visibility.
+- Added new CLI tool for generating the component preview images used within the [components list page](/components) of the doc-site.
