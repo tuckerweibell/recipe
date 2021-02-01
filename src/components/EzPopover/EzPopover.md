@@ -77,4 +77,5 @@ Popovers should not:
 
 ## Related components
 
-- [Related](/components/ez-related)
+- [Modal](/components/ez-modal)
+- [Tooltip](/components/components/ez-tooltip)
