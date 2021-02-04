@@ -5,7 +5,7 @@ category: Layout
 path: '/components/ez-card'
 ---
 
-Cards are the primary means of visually grouping content on a page. Cards can be completely custom, or build using any of the card options provided out-of-the-box. Cards may have a cover photo or preview image, a card body or multiple card sections with information about the content, and an optional footer.
+Cards are a means of visually grouping content on a page. Cards can be completely custom, or build using any of the card options provided out-of-the-box. Cards may have a cover photo or preview image, a card body or multiple card sections with information about the content, and an optional footer.
 
 ---
 
@@ -27,11 +27,78 @@ Cards should not:
 
 ---
 
-## Examples
+## Content
+
+A standard Card has the following anatomy:
+
+|                                                                                                                                                                                                                     |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ![Image illustrating through labels the component parts of a standard-style card, including a preview image, caption, title, action menu, and empty content areas for body content and other actions.](Anatomy.svg) |
+
+The areas within a card can be populated either by providing the relevant props (`title`, `subtitle`, `imageSrc` etc), or by providing the following content components to your Card as **direct descendants** to the card: [EzHeader](/components/ez-header) (header content and actions), [EzHeading](/components/ez-heading) (title), [EzContent](/components/ez-content) (body), and [Footer](/components/ez-footer).
+
+## Example
+
+```jsx
+<EzPage>
+  <EzCard>
+    <EzPreview>
+      <picture>
+        <source media="(max-width: 799px)" srcSet={withPrefix('/images/tacos.jpg')} />
+        <source media="(min-width: 800px)" srcSet={withPrefix('/images/tacos-high.jpg')} />
+        <img
+          src={withPrefix('/images/tacos.jpg')}
+          alt="Selection of Baja Fish tacos and Beef Barbacoa Tacos"
+          style={{
+            width: '100%',
+            maxHeight: 300,
+            objectFit: 'cover',
+          }}
+        />
+      </picture>
+    </EzPreview>
+    <EzHeader>
+      <EzLayout layout="split">
+        <EzHeading size="3" subheading="Upscale Authentic Flavor">
+          Amuleto Mexican Table
+        </EzHeading>
+        <EzButton use="tertiary">
+          <span hidden>Menu</span>
+          <svg viewBox="0 0 36 36" height="20" width="20" aria-hidden="true" focusable="false">
+            <circle cy="6.1" cx="18.2" r="3.8"></circle>
+            <circle cy="17.8" cx="18.2" r="3.8"></circle>
+            <circle cy="29.5" cx="18.2" r="3.8"></circle>
+          </svg>
+        </EzButton>
+      </EzLayout>
+    </EzHeader>
+    <EzContent>
+      <p>
+        We pride ourselves on serving the most authentic Mexican food outside of Mexico. But we're
+        warning you: once you try our food, you'll never be able to order from another Mexican
+        restaurant. It's that good! Indulge in our variety of tacos or our flavorful house salsa. We
+        can't wait for you to try it!
+      </p>
+    </EzContent>
+    <EzFooter>
+      <EzLayout layout="right">
+        <EzButton use="secondary" onClick={close}>
+          Cancel
+        </EzButton>
+        <EzButton use="primary" onClick={close}>
+          Confirm
+        </EzButton>
+      </EzLayout>
+    </EzFooter>
+  </EzCard>
+</EzPage>
+```
+
+---
 
 ### Basic Card
 
-Used to separate a screen's main content into meaningful groups.
+Cards use a background container to organize page content into meaningful groups.
 
 ```jsx
 <EzPage>
@@ -50,7 +117,9 @@ Used to separate a screen's main content into meaningful groups.
 
 ### Card with Heading
 
-Cards can have an optional heading. Headings should be descriptive of the entire card, not just the first section. Headings should be used when you want the content to be identifiable at a glance.
+Cards can have an optional [Heading](/components/ez-heading) for titles. Headings should be descriptive of the entire card, not just the first section within the card. Headings should be used when you want the content to be identifiable at a glance.
+
+Heading sizes can be customized depending on the use case using by providing a [Heading](/components/ez-heading) to your Card as children. The heading will be automatically placed within the cards layout according the [card content guidelines](#content).
 
 ```jsx
 <EzPage>
@@ -130,7 +199,7 @@ When the `expandable` attribute is set a footer will appear at the bottom of `Ez
 
 ### Card with Actions
 
-While call to actions are typically found at the bottom of a card, the space in the top-right can be include optional actions. Optional actions should only be provided with a corresponding card title, such that the target of the action is clear.
+While call to actions are typically found at the bottom of a card, quick actions may optionally be included in the card [Header](/components/ez-header). Optional actions should only be provided with a corresponding card title, such that the target of the action is clear. As the card header has limited space, it's recommended to minimize the number of actions offered.
 
 Consider wrapping actions in an EzLayout to manage how they stack at smaller breakpoints.
 
@@ -543,4 +612,8 @@ Use `aria-hidden=true` on the CTA to remove the redundant functionality and avoi
 
 ## Related components
 
-- [Page Content](/components/ez-page-content)
+- [Header](/components/ez-header)
+- [Footer](/components/ez-footer)
+- [Content](/components/ez-content)
+- [Preview](/components/ez-preview)
+- [Page Content (deprecated)](/components/ez-page-content)
