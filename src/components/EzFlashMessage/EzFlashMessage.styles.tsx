@@ -62,7 +62,7 @@ export type FlashMessageProps = FlashMessageContainerProps & {
 
 export const FlashMessageContainer = styled(EzCard)<FlashMessageContainerProps>`
   ${accent};
-  box-shadow: none;
+  box-shadow: var(--recipe-flash-message-accent-box-shadow);
   border-style: solid;
   border-width: 1px;
   border-left-width: var(--recipe-flash-message-accent-border-size);
