@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 - Remove unwanted/collapsed margin from first checkbox/radio option.
 
 #### Bug fixes
+- Fix tapered accent border corners in marketplace theme for `EzFlashMessage`.
 
 #### Documentation
 
