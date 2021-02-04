@@ -88,3 +88,7 @@ h6 {
   font-size: 14px;
   background: #fafafa;
 }
+
+table {
+  width: 100%;
+}
