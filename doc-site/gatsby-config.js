@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-plugin-emotion`,
-      options: { sourceMap: false, autoLabel: false },
+      options: {sourceMap: false, autoLabel: false},
     },
     'gatsby-plugin-react-helmet',
     {
@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [`gatsby-remark-autolink-headers`],
+        plugins: ['gatsby-remark-autolink-headers', 'gatsby-remark-copy-images'],
       },
     },
     {
@@ -44,11 +44,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: "GTM-TJRFGNR",
+        id: 'GTM-TJRFGNR',
         includeInDevelopment: false,
-        defaultDataLayer: { platform: "gatsby" },
+        defaultDataLayer: {platform: 'gatsby'},
       },
     },
   ],
