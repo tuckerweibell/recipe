@@ -112,4 +112,237 @@ describe('EzField', () => {
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        listBox: (
+          <EzField
+            type="select"
+            label="list box"
+            value="1"
+            onChange={e => alert(e.target.value)}
+            options={[
+              {label: '1', value: 1, disabled: false},
+              {label: '2', value: 2, disabled: false},
+            ]}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        singleChoice: (
+          <EzField
+            type="radio"
+            label="single choice"
+            value="1"
+            onChange={e => alert(e.target.value)}
+            options={[
+              {label: '1', value: 1, disabled: false},
+              {label: '2', value: 2, disabled: false},
+            ]}
+            bordered={false}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        multipleChoice: (
+          <EzField
+            type="checkbox"
+            label="multiple choice"
+            value={['1', '2']}
+            onChange={e => alert(e.target.value)}
+            options={[
+              {label: '1', value: 1, disabled: false},
+              {label: '2', value: 2, disabled: false},
+            ]}
+            bordered={false}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        email: (
+          <EzField
+            type="email"
+            label="email"
+            value="eat@ezcater.com"
+            onChange={e => alert(e.target.value)}
+            list="1"
+            minLength={3}
+            multiple={false}
+            pattern=".+@ezcater.com"
+            placeholder="enter your email"
+            readOnly={false}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        textInput: (
+          <EzField
+            type="text"
+            label="text"
+            value="some text"
+            onChange={e => alert(e.target.value)}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        numberInput: (
+          <EzField
+            type="number"
+            label="number"
+            value={3}
+            onChange={e => alert(e.target.value)}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        textareaInput: (
+          <EzField
+            type="textarea"
+            label="textarea"
+            value="some text"
+            onChange={e => alert(e.target.value)}
+            error="error"
+            size="small"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={300}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        passwordInput: (
+          <EzField
+            type="password"
+            label="password"
+            value="password123"
+            onChange={e => alert(e.target.value)}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        dateInput: (
+          <EzField
+            type="date"
+            label="date"
+            value="january 1, 2021"
+            onChange={e => alert(e.target.value)}
+            minDate="january 10, 2021"
+            maxDate="january 31, 2021"
+            filterDate={() => true}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        timeInput: (
+          <EzField
+            type="time"
+            label="time"
+            value="5:00pm"
+            onChange={e => alert(e.target.value)}
+            start="12:00am"
+            end="10:00pm"
+            step={1}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        autosuggestInput: (
+          <EzField
+            type="autosuggest"
+            label="autosuggest"
+            value="1"
+            options={[
+              {label: '1', value: 1, disabled: false},
+              {label: '2', value: 2, disabled: false},
+            ]}
+            onFilter={() => true}
+            onSelectionChange={() => true}
+            onChange={e => alert(e.target.value)}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        customFieldInput: (
+          <EzField
+            label="custom"
+            value="1"
+            onChange={e => alert(e.target.value)}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });
