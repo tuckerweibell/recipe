@@ -5,10 +5,6 @@ export const StyledOptions = styled.div`
   > label + label {
     margin-top: var(--recipe-global-static-size-100);
   }
-
-  label {
-    margin-top: var(--recipe-global-static-size-100);
-  }
 `;
 
 const borderStyle = ({bordered, isDisabled}) =>
