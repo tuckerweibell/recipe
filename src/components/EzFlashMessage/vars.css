@@ -1,4 +1,4 @@
 :root {
   --recipe-flash-message-accent-border-size: var(--recipe-global-static-size-65);
-  --recipe-flash-message-accent-box-shadow: none;
+  --recipe-flash-message-accent-box-shadow-size: 0;
 }

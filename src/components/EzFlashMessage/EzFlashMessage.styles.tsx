@@ -8,6 +8,7 @@ const colors = (background, border, accent) =>
   css`
     background-color: ${background};
     border-color: ${border};
+    box-shadow: var(--recipe-flash-message-accent-box-shadow-size) 0 0 0 ${accent};
     border-left-width: 5px;
     border-left-color: ${accent};
     svg path {
@@ -62,7 +63,6 @@ export type FlashMessageProps = FlashMessageContainerProps & {
 
 export const FlashMessageContainer = styled(EzCard)<FlashMessageContainerProps>`
   ${accent};
-  box-shadow: var(--recipe-flash-message-accent-box-shadow);
   border-style: solid;
   border-width: 1px;
   border-left-width: var(--recipe-flash-message-accent-border-size);

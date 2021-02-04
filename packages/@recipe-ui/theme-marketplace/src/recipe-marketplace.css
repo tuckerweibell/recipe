@@ -4,6 +4,5 @@
   --recipe-card-dropshadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.1);
   --recipe-carousel-item-offset: var(--recipe-global-static-size-250);
   --recipe-flash-message-accent-border-size: 0;
-  /* TODO: use the right color, just use a more obvious color for testing */
-  --recipe-flash-message-accent-box-shadow: -4px 0 0 0 purple; 
+  --recipe-flash-message-accent-box-shadow-size: -4px;
 }
