@@ -4,7 +4,7 @@ import {useSelectableCollection} from './useSelectableCollection';
 import {useListState} from './useListState';
 import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
-import {mergeProps} from './mergeProps';
+import {mergeProps} from '../../utils/mergeProps';
 import {filterDOMProps} from './filterDOMProps';
 import {useOnFocusOutside, useOnClickOutside} from '../../utils/hooks';
 

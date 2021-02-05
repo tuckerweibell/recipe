@@ -1,4 +1,4 @@
-import {mergeIds} from '../../utils/hooks/useUniqueId';
+import {mergeIds} from './hooks/useUniqueId';
 
 interface Props {
   [key: string]: any;
