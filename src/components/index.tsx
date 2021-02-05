@@ -7,6 +7,7 @@ export {default as EzButton} from './EzButton';
 export {default as EzCarousel} from './EzCarousel';
 export {default as EzCheckbox} from './EzCheckbox';
 export {EzCard, EzCardSection, EzCardExpandable} from './EzCard';
+export {EzContent, EzHeader, EzFooter, EzPreview} from './EzContent';
 export {default as EzField} from './EzField';
 export {default as EzFlashMessage} from './EzFlashMessage';
 export {default as EzFormLayout} from './EzFormLayout';
