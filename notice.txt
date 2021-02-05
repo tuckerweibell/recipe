@@ -1,0 +1,12 @@
+Recipe
+=================
+The following is a list of sources from which code was used/modified in this codebase.
+
+-------------------------------------------------------------------------------
+This codebase contains a modified portion of code from Adobe which can be obtained at:
+  * SOURCE:
+    * https://github.com/adobe/react-spectrum/
+  * LICENSE:
+    * https://github.com/adobe/react-spectrum/blob/main/LICENSE
+
+-------------------------------------------------------------------------------
