@@ -23,15 +23,24 @@ type AlertProps = {
  * Alerts represent highlighted messages on a page that call out important information.
  * Alerts can be used both with page content as well as a subheader as a status for the entire page.
  */
-const EzAlert: React.FC<AlertProps> = ({arrow, tagline, headline, use}) => (
-  <AlertContainer arrow={arrow} use={use}>
-    {icons[use]}
-    <AlertContent>
-      <EzTextStyle use="strong">{headline}</EzTextStyle>
-      <div>{tagline}</div>
-    </AlertContent>
-  </AlertContainer>
-);
+const EzAlert: React.FC<AlertProps> = ({arrow, tagline, headline, use}) => {
+  // Hints at the importance of this message.
+  // the "status" is generally used for "less important" or "less urgent" content
+  // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_status_role
+  const role = use === 'error' ? 'alert' : 'status';
+  // in assistive technology, this will hint how important this message is.
+  // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#preferring_specialized_live_region_roles
+  const live = use === 'error' ? 'assertive' : 'polite';
+  return (
+    <AlertContainer role={role} aria-live={live} arrow={arrow} use={use}>
+      {icons[use]}
+      <AlertContent>
+        <EzTextStyle use="strong">{headline}</EzTextStyle>
+        <div>{tagline}</div>
+      </AlertContent>
+    </AlertContainer>
+  );
+};
 
 /**
  * defaultProps
