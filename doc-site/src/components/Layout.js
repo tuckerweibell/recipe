@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { jsx } from '@emotion/core';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
@@ -12,14 +12,17 @@ import {
   EzPage,
   EzNavigation,
   EzPageHeader,
-  EzButton,
   EzCard,
   EzCardSection,
   EzProvider,
+  EzLayout,
+  EzSearchInput
 } from '@ezcater/recipe';
 import { theme as marketplaceTheme } from '@recipe-ui/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
+import ComponentGrid from './ComponentGrid';
+import {SearchProvider} from  '../providers/SearchProvider';
 
 const Layout = ({ name, title, path, children, sections, location, layout }) => (
   <StaticQuery
@@ -79,6 +82,12 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
       const [theme, setTheme] = React.useState(false);
       const isMarketPlace = theme === true;
 
+      const [searchTerm, setSearchTerm] = useState('');
+
+      useEffect(() => {
+        setSearchTerm('');
+      }, [location.pathname]);
+
       return (
         <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
           <Helmet
@@ -129,14 +138,35 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
                     subnav={
                       tabs && { tabs, selected: tabs.find(tab => tab.to === location.pathname) }
                     }
+                    actions={
+                      <EzLayout
+                        layout={{
+                          base: 'stack',
+                          medium: 'basic',
+                        }}
+                      >
+                        <EzSearchInput
+                          placeholder="Search components"
+                          aria-label="Search components"
+                          value={searchTerm}
+                          onChange={e => setSearchTerm(e.target.value)}
+                        />
+                      </EzLayout>
+                    }
                   />
-                  <EzPage>
-                    <EzCard>
-                      {children ||
-                        sections.map((section, i) => (
-                          <EzCardSection key={i}>{section}</EzCardSection>
-                        ))}
-                    </EzCard>
+                  <EzPage> 
+                    <SearchProvider value={searchTerm}>                
+                      <EzCard>
+                        {searchTerm
+                          ?
+                            <ComponentGrid />
+                          :
+                          children || sections.map((section, i) => (
+                            <EzCardSection key={i}>{section}</EzCardSection>
+                          ))
+                        }
+                      </EzCard>
+                    </SearchProvider>
                   </EzPage>
                 </EzNavigation>
               </EzAppLayout>
