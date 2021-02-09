@@ -66,7 +66,7 @@
     "jest-environment-jsdom": "^26.3.0",
     "jest-raw-loader": "^1.0.1",
     "jest-transform-css": "^2.1.0",
-    "parcel": "nightly",
+    "parcel": "^2.0.0-nightly.435",
     "plop": "^2.5.3",
     "postcss": "^8.1.4",
     "prettier": "^1.19.1",

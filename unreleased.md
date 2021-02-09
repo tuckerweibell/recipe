@@ -18,10 +18,10 @@ title: 'Unreleased changes'
 - Remove unwanted/collapsed margin from first checkbox/radio option.
 
 #### Bug fixes
-
 - Fix: Unexpected tab-sequence from popover trigger buttons to EzPopover content (and back) caused by to EzPopovers' [Portal](https://reactjs.org/docs/portals.html) use.
 - Fix: Broken "related component" links in EzPopover documentation.
 - Fix: Incorrect/inconsistent sizing of icons within EzAlert.
+- Fix: Tapered accent border corners in marketplace theme for `EzFlashMessage`.
 
 #### Documentation
 
