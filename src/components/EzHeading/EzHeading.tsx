@@ -1,5 +1,6 @@
 import React from 'react';
 import {headings, Subheading} from './EzHeading.styles';
+import {ClearSlots, useSlotProps} from '../../utils/slots';
 
 const classNames = (...args) => args.filter(Boolean).join(' ');
 
@@ -27,15 +28,18 @@ const EzHeading: React.FC<HeadingProps> = ({
 }) => {
   const headingElement = as || `h${headingSize}`;
   const Heading = headings[headingElement];
+  const slotProps = useSlotProps({}, 'heading');
 
   const heading = (
     <Heading size={headingSize} id={id}>
-      {title}
+      <ClearSlots>{title}</ClearSlots>
     </Heading>
   );
 
   const subheading = subtitle && (headingSize === '3' || headingSize === '5') && (
-    <Subheading>{subtitle}</Subheading>
+    <Subheading>
+      <ClearSlots>{subtitle}</ClearSlots>
+    </Subheading>
   );
 
   const header = (
@@ -51,6 +55,7 @@ const EzHeading: React.FC<HeadingProps> = ({
   return React.cloneElement(subheading ? header : heading, {
     className: classNameWithInternal,
     align,
+    ...slotProps,
   });
 };
 
