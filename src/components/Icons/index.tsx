@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 const alignBaseline = () => css`
   height: 1em;
   width: 1em;
+  min-width: 1em;
   position: relative;
   top: 0.125em;
 `;
@@ -26,7 +27,7 @@ const rotateAnimationStyles = () => css`
 `;
 
 const Svg = ({children, title, className}: React.SVGProps<SVGSVGElement> & {title: string}) => (
-  <svg version="1.1" viewBox="0 0 14 14" className={className}>
+  <svg version="1.1" viewBox="0 0 14 14" height="1rem" width="1rem" className={className}>
     <title>{title}</title>
     {children}
   </svg>

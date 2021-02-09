@@ -373,7 +373,7 @@ describe('FocusScope', () => {
       expect(document.activeElement).toBe(document.body);
     });
 
-    it('should move focus to the previous element after the previously focused node on Shift+Tab', () => {
+    it('should move focus to the previous element on Shift+Tab', () => {
       function Test({show = false}) {
         return (
           <div>
@@ -404,7 +404,7 @@ describe('FocusScope', () => {
       expect(document.activeElement).toBe(input1);
 
       fireEvent.keyDown(input1, {key: 'Tab', shiftKey: true});
-      expect(document.activeElement).toBe(getByTestId('before'));
+      expect(document.activeElement).toBe(getByTestId('trigger'));
     });
 
     it('should skip over elements within the scope when moving focus to the next element', () => {
