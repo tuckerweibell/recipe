@@ -11,11 +11,21 @@ const Container = styled.div`
     overflow: scroll;
   }
 
+  div[class^='Playground__PreviewWrapper'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  *[class^='Playground__StyledError'] {
+    order: -1;
+    position: relative;
+    min-height: 100px;
+  }
+
   div[class^='Playground__StyledPreview'] {
     padding: 0;
     margin-bottom: -3px;
     overflow: hidden;
-    height: 100%;
   }
 
   div[class^='ActionsBar'] button {
