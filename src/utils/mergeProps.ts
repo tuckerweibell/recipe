@@ -11,6 +11,8 @@ function chain(...callbacks: any[]): (...args: any[]) => void {
   };
 }
 
+const clsx = (...args) => args.filter(Boolean).join(' ');
+
 function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
   const res: Props = {};
 
@@ -20,6 +22,12 @@ function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
       res[key] = chain(a[key], b[key]);
       return;
     }
+
+    if (key === 'className' && typeof a.className === 'string' && typeof b.className === 'string') {
+      res[key] = clsx(a.className, b.className);
+      return;
+    }
+
     // If props both have an ID, we need to merge them (in order to use the same ID everywhere)
     if (key === 'id' && a.id && b.id) {
       res.id = mergeIds(a.id, b.id);
