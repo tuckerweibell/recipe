@@ -1,21 +1,29 @@
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
 import React from 'react';
-import styled from '@emotion/styled';
 import {base} from './EzCardSection.styles';
 import EzCardHeading from './EzCardHeading';
+import {EzContent, EzHeader} from '../EzContent';
 
 type HeadingProps = React.ComponentProps<typeof EzCardHeading>;
 
 /**
- * Card Sections represent chunks of content within a Card.
+ * Card Sections represent a grouping of content within a Card.
  */
-const StyledSection = styled.section<any>(base);
-
 const EzCardSection: React.FC<HeadingProps> = ({title, subtitle, actions, children, ...props}) => {
-  return (
-    <div>
-      {title && <EzCardHeading {...{actions, title, subtitle}} />}
-      <StyledSection {...props}>{children}</StyledSection>
-    </div>
+  const content = (
+    <EzContent css={base} {...props}>
+      {children}
+    </EzContent>
+  );
+
+  return !title ? (
+    content
+  ) : (
+    <section>
+      <EzHeader>{<EzCardHeading {...{actions, title, subtitle}} />}</EzHeader>
+      {content}
+    </section>
   );
 };
 

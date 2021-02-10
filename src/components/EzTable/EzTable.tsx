@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx, Interpolation} from '@emotion/core';
 import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
-import {EzCard, EzCardFooter} from '../EzCard';
+import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
@@ -14,6 +14,7 @@ import {useTranslation, useScrollPosition, useVirtualTouchable} from '../../util
 import useOverflowDetection from './useOverflowDetection';
 import useExpandedClickTarget from './useExpandedClickTarget';
 import EzTextStyle from '../EzTextStyle';
+import {EzFooter} from '../EzContent';
 
 const {Fragment} = React;
 const TableContext = createContext(null);
@@ -184,7 +185,7 @@ const TablePagination = ({pagination}) => {
 
   const virtualTouchable = useVirtualTouchable();
   return (
-    <EzCardFooter>
+    <EzFooter>
       <EzLayout layout="right">
         <nav
           aria-label={t('Pagination')}
@@ -256,7 +257,7 @@ const TablePagination = ({pagination}) => {
           </svg>
         </div>
       </EzLayout>
-    </EzCardFooter>
+    </EzFooter>
   );
 };
 

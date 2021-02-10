@@ -14,10 +14,12 @@ type PropsWithTitle = {
   title: string;
 };
 
-type OptionalTitle = PropsWithTitle | PropsWithoutTitle;
-type Props = React.HTMLAttributes<HTMLDivElement> & OptionalTitle;
+type Props = PropsWithTitle | PropsWithoutTitle;
+type DOMProps = React.HTMLAttributes<HTMLElement>;
 
-const EzCardHeading: React.FC<Props> = ({title, subtitle, actions}) => {
+export type HeadingProps = DOMProps & Props;
+
+const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions}) => {
   const heading = title && (
     <EzHeading size="3" subheading={subtitle}>
       {title}

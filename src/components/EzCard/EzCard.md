@@ -35,7 +35,11 @@ A standard Card has the following anatomy:
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | ![Image illustrating through labels the component parts of a standard-style card, including a preview image, caption, title, action menu, and empty content areas for body content and other actions.](Anatomy.svg) |
 
-The areas within a card can be populated either by providing the relevant props (`title`, `subtitle`, `imageSrc` etc), or by providing the following content components to your Card as **direct descendants** to the card: [EzHeader](/components/ez-header) (header content and actions), [EzHeading](/components/ez-heading) (title), [EzContent](/components/ez-content) (body), and [Footer](/components/ez-footer).
+The areas within a card can be populated either by providing the relevant props (`title`, `subtitle`, `imageSrc` etc), or by providing the following content components to your Card as **direct descendants** to the card:
+
+- [EzHeader](/components/ez-header) (title and other header content e.g. card actions)
+- [EzContent](/components/ez-content) (body)
+- [Footer](/components/ez-footer).
 
 ## Example
 

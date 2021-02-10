@@ -13,13 +13,6 @@ const accentStyles = ({accent}) =>
     border-left-color: var(--recipe-card-accent-color);
   `;
 
-const imagePos = responsive('imagePosition', {
-  top: {flexWrap: 'wrap'},
-  right: {flexWrap: 'nowrap'},
-  left: {flexWrap: 'nowrap'},
-  reset: {flexWrap: 'nowrap'},
-});
-
 const rounded = Object.assign(
   mq('medium', {
     borderRadius: 'var(--recipe-card-border-radius)',
@@ -98,24 +91,8 @@ const clickable = variant('clickable', {
   `,
 });
 
-export const CardContainer = styled.div<any>`
-  background: var(--recipe-card-background-color);
-  box-shadow: var(--recipe-card-dropshadow);
-  ${accentStyles};
-  ${rounded};
-  ${size};
-  ${isQuiet};
-  ${clickable};
-  display: flex;
-  ${imagePos};
-  > * {
-    flex-grow: 1;
-    max-width: 100%;
-  }
-`;
-
 export const CardHeadingContainer = styled.div`
-  margin: var(--recipe-card-padding) var(--recipe-card-padding) 0;
+  position: relative;
 `;
 
 const gutter = () => css`
@@ -135,23 +112,129 @@ export const CardLayout = styled.div`
   ${gutter};
 `;
 
-const vertical = ({horizontal}) =>
-  !horizontal &&
+export const container = props => css`
+  background: var(--recipe-card-background-color);
+  box-shadow: var(--recipe-card-dropshadow);
+  ${accentStyles(props)};
+  ${rounded};
+  ${size({size: props.size || (props.isQuiet ? 'small' : undefined)})};
+  ${isQuiet(props)};
+  ${clickable(props)};
+`;
+
+const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value);
+
+const columns = responsive('imagePosition', {
+  top: {
+    gridTemplateColumns: `
+      [left] 0
+      [header] minmax(0, 100%)
+      [right] 0
+    `,
+  },
+  right: ({maxWidth}) => ({
+    gridTemplateColumns: `
+      [left] 0
+      [header] minmax(0, 100%)
+      [right] ${unitlessToPx(maxWidth) || '50%'}
+    `,
+  }),
+  left: ({maxWidth}) => ({
+    gridTemplateColumns: `
+      [left] ${unitlessToPx(maxWidth) || '50%'}
+      [header] minmax(0, 100%)
+      [right] 0
+    `,
+  }),
+});
+
+export const grid = props => css`
+  display: grid;
+  ${columns(props)};
+  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-areas:
+    '. top .'
+    'left header right'
+    'left content right'
+    'left sections right'
+    'left footer right';
+  width: 100%;
+`;
+
+const position = responsive('imagePosition', {
+  left: {
+    gridArea: 'left',
+    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
+    borderBottomLeftRadius: 'var(--recipe-card-border-radius)',
+    '> img': {height: '100%'},
+  },
+  right: {
+    gridArea: 'right',
+    borderTopRightRadius: 'var(--recipe-card-border-radius)',
+    borderBottomRightRadius: 'var(--recipe-card-border-radius)',
+    '> img': {height: '100%'},
+  },
+  top: {
+    gridArea: 'top',
+    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
+    borderTopRightRadius: 'var(--recipe-card-border-radius)',
+  },
+  reset: {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+});
+
+export const preview = props =>
   css`
-    && > * + * {
-      border-top: 1px solid var(--recipe-card-border-color);
+    margin: 0;
+    overflow: hidden;
+    ${position(props)};
+    > img {
+      width: 100%;
+      /* the default would be vertical-align: baseline, but we don't need
+      to align the image with text descenders */
+      vertical-align: top;
     }
   `;
-
-const horizontal = ({horizontal: isHorizontal}) =>
-  isHorizontal &&
+export const header = () =>
   css`
-    display: flex;
-
-    > * {
-      flex-basis: 0;
-      flex-grow: 1;
-    }
+    grid-area: header;
+    padding: var(--recipe-card-padding) var(--recipe-card-padding) 0;
+  `;
+export const content = () =>
+  css`
+    grid-area: content;
+    padding: var(--recipe-card-padding);
+  `;
+export const sections = () =>
+  css`
+    grid-area: sections;
+  `;
+export const footer = () =>
+  css`
+    grid-area: footer;
+    padding: var(--recipe-global-static-size-150) var(--recipe-card-padding);
+    text-align: center;
+    border-top: 1px solid var(--recipe-card-border-color);
+    border-radius: 0 0 var(--recipe-card-border-radius) var(--recipe-card-border-radius);
+    background-color: var(--recipe-card-footer-background-color);
+    overflow: hidden;
   `;
 
-export const SectionContainer = styled.div(vertical, horizontal);
+export const vertical = () => css`
+  && > * + * {
+    border-top: 1px solid var(--recipe-card-border-color);
+  }
+`;
+
+export const horizontal = () => css`
+  display: flex;
+
+  > * {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+`;
