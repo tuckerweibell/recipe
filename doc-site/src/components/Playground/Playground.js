@@ -24,8 +24,11 @@ const Container = styled.div`
 
   div[class^='Playground__StyledPreview'] {
     padding: 0;
-    margin-bottom: -3px;
     overflow: hidden;
+
+    > iframe {
+      display: block;
+    }
   }
 
   div[class^='ActionsBar'] button {
