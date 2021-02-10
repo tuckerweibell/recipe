@@ -5,11 +5,13 @@ title: 'Unreleased changes'
 
 ## Unreleased Changes
 
-#### Breaking changes.
+#### Breaking changes
 
 #### New components
 
 #### Enhancements
+
+- Added support for capturing email address with `EzField[type=email]`.
 
 #### Design updates
 
@@ -18,6 +20,7 @@ title: 'Unreleased changes'
 - Remove unwanted/collapsed margin from first checkbox/radio option.
 
 #### Bug fixes
+
 - Fix: Unexpected tab-sequence from popover trigger buttons to EzPopover content (and back) caused by to EzPopovers' [Portal](https://reactjs.org/docs/portals.html) use.
 - Fix: Broken "related component" links in EzPopover documentation.
 - Fix: Incorrect/inconsistent sizing of icons within EzAlert.
