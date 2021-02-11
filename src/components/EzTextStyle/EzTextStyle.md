@@ -3,6 +3,7 @@ name: EzTextStyle
 title: Text Style
 category: Typography
 path: '/components/ez-text-style'
+tags: ['font']
 ---
 
 Enhances text with styles to visually communicate meaning, such as emphasis.

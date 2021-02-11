@@ -3,6 +3,7 @@ name: EzSuperRadioButtons
 title: Super radio buttons
 category: Inputs
 path: '/components/ez-super-radio-buttons'
+tags: ['radio']
 ---
 
 Super radio buttons can be used to highlight an important choice between multiple options that the user needs to make. This control lives outside of a form

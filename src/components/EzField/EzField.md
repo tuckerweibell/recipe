@@ -3,6 +3,25 @@ name: EzField
 title: Input Fields
 category: Inputs
 path: '/components/ez-field'
+tags:
+  [
+    'field',
+    'text',
+    'validation',
+    'number',
+    'numeric',
+    'password',
+    'multiple choice',
+    'email',
+    'select',
+    'dropdown',
+    'drop down',
+    'autosuggest',
+    'date',
+    'datepicker',
+    'time',
+    'placeholder',
+  ]
 ---
 
 Form input fields provide a structured format for capturing form data, such as text, dates, emails and other data types. Further customization of input fields can be achieved by providing a custom input component, such as an application-specific control.
@@ -143,12 +162,7 @@ Allows the user to input email values.
 () => {
   const [value, setValue] = React.useState('eat@ezcater.com');
   return (
-    <EzField
-      type="email"
-      label="Email"
-      value={value}
-      onChange={e => setValue(e.target.value)}
-    />
+    <EzField type="email" label="Email" value={value} onChange={e => setValue(e.target.value)} />
   );
 };
 ```

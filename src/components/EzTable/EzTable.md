@@ -3,6 +3,7 @@ name: EzTable
 title: Table
 category: Data
 path: '/components/ez-table'
+tags: ['pagination']
 ---
 
 Tables are used to display information from a data set in a way that's easy to scan. Tables allow users to compare and analyze the data to look for patterns and insights. Tables will often be the primary content within a [Card](/components/ez-card).
