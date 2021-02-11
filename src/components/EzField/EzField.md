@@ -550,6 +550,12 @@ Show users that a field is not available for interaction. Often used where a for
 
 ---
 
+## Browser support
+
+The Field component internally uses [`Array.prototype.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) and may require a polyfill to provide [browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex#browser_compatibility) depending on the specific requirements for your application. We recommend using [Polyfill.io](https://polyfill.io/v3/) in your application to apply necessary polyfills only when they are needed for the requesting browser.
+
+---
+
 ## Related components
 
 - [EzFormLayout](/components/ez-form-layout)
