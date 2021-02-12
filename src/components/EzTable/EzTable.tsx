@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx, Interpolation} from '@emotion/core';
+import {jsx, Interpolation, ClassNames} from '@emotion/core';
 import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
 import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
@@ -166,6 +166,7 @@ const iconStates: Interpolation = {
 };
 
 const cx = (...args): Interpolation => Object.assign({}, ...args);
+const clsx = (...args) => args.filter(Boolean).join(' ');
 
 // merging the virtualTouchable with button was causing emotion to balloon the number
 // of generated styles, so apply to a parent element instead
@@ -185,79 +186,92 @@ const TablePagination = ({pagination}) => {
 
   const virtualTouchable = useVirtualTouchable();
   return (
-    <EzFooter>
-      <EzLayout layout="right">
-        <nav
-          aria-label={t('Pagination')}
-          css={{
-            display: 'flex',
-            '> * + *': {marginLeft: 16},
-          }}
-        >
-          <span css={{whiteSpace: 'nowrap'}}>{t('{{range}} of {{count}}', {range, count})}</span>
-          <VirtualTouchable>
-            <EzButton
-              use="tertiary"
-              title={t('Previous Page')}
-              aria-label={t('Previous Page')}
-              onClick={pagination.onPrevPageClick}
-              disabled={pagination.currentPage === 1}
-              icon={
-                <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-                </svg>
-              }
-            />
-          </VirtualTouchable>
-          <VirtualTouchable>
-            <EzButton
-              use="tertiary"
-              title={t('Next Page')}
-              aria-label={t('Next Page')}
-              onClick={pagination.onNextPageClick}
-              disabled={pagination.currentPage === pages}
-              icon={
-                <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-                </svg>
-              }
-            />
-          </VirtualTouchable>
-        </nav>
-        <div css={cx({position: 'relative'}, iconSize)}>
-          <select
-            css={cx(virtualTouchable[':after'], {opacity: 0.001})} // opacity 0 is ignored by some screen readers
-            defaultValue={pagination.rowsPerPage}
-            onChange={pagination.onRowsPerPageChange}
-            title={t('Show rows per page options')}
-            aria-label={t('Show rows per page options')}
-          >
-            {pagination.rowsPerPageOptions.map(value => (
-              <option key={value} value={value}>
-                {t('{{num}} rows per page', {num: value})}
-              </option>
-            ))}
-          </select>
-          <svg
-            focusable={false}
-            viewBox="-8 -8 40 40"
-            aria-hidden="true"
-            css={cx(virtualTouchable[':after'], {
-              pointerEvents: 'none',
-              fill: iconStates.fill,
-              'select:focus + &': {
-                borderRadius: 3,
-                boxShadow: '#3e90d6 0px 0px 0px 2px',
-              },
-              'select:hover + &': iconStates[':hover'],
-              'select:active + &': iconStates[':active'],
-            })}
-          >
-            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-          </svg>
-        </div>
-      </EzLayout>
-    </EzFooter>
+    <ClassNames>
+      {({css: toClassName}) => (
+        <EzFooter>
+          <EzLayout layout="right">
+            <nav
+              aria-label={t('Pagination')}
+              css={{
+                display: 'flex',
+                '> * + *': {marginLeft: 16},
+              }}
+            >
+              <span css={{whiteSpace: 'nowrap'}}>
+                {t('{{range}} of {{count}}', {range, count})}
+              </span>
+              <VirtualTouchable>
+                <EzButton
+                  use="tertiary"
+                  title={t('Previous Page')}
+                  aria-label={t('Previous Page')}
+                  onClick={pagination.onPrevPageClick}
+                  disabled={pagination.currentPage === 1}
+                  icon={
+                    <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                      <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+                    </svg>
+                  }
+                />
+              </VirtualTouchable>
+              <VirtualTouchable>
+                <EzButton
+                  use="tertiary"
+                  title={t('Next Page')}
+                  aria-label={t('Next Page')}
+                  onClick={pagination.onNextPageClick}
+                  disabled={pagination.currentPage === pages}
+                  icon={
+                    <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
+                      <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+                    </svg>
+                  }
+                />
+              </VirtualTouchable>
+            </nav>
+            <div css={cx({position: 'relative'}, iconSize)}>
+              <select
+                className={clsx(
+                  toClassName(virtualTouchable[':after']),
+                  // opacity 0 is ignored by some screen readers
+                  toClassName({opacity: 0.001})
+                )}
+                defaultValue={pagination.rowsPerPage}
+                onChange={pagination.onRowsPerPageChange}
+                title={t('Show rows per page options')}
+                aria-label={t('Show rows per page options')}
+              >
+                {pagination.rowsPerPageOptions.map(value => (
+                  <option key={value} value={value}>
+                    {t('{{num}} rows per page', {num: value})}
+                  </option>
+                ))}
+              </select>
+              <svg
+                className={clsx(
+                  toClassName(virtualTouchable[':after']),
+                  toClassName({
+                    pointerEvents: 'none',
+                    fill: iconStates.fill,
+                    'select:focus + &': {
+                      borderRadius: 3,
+                      boxShadow: '#3e90d6 0px 0px 0px 2px',
+                    },
+                    'select:hover + &': iconStates[':hover'],
+                    'select:active + &': iconStates[':active'],
+                  })
+                )}
+                focusable={false}
+                viewBox="-8 -8 40 40"
+                aria-hidden="true"
+              >
+                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+              </svg>
+            </div>
+          </EzLayout>
+        </EzFooter>
+      )}
+    </ClassNames>
   );
 };
 
