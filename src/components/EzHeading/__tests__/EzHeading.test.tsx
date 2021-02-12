@@ -28,8 +28,10 @@ describe('EzHeading', () => {
         Heading
       </EzHeading>
     );
-    const shown = n === '3' || n === '5' ? 1 : 0;
-    expect(container.querySelectorAll('div')).toHaveLength(shown);
+    const shown = n === '3' || n === '5';
+
+    if (shown) expect(container).toHaveTextContent(/Subheading/);
+    else expect(container).not.toHaveTextContent(/Subheading/);
   });
 
   it('should meet accessibility guidelines', async () => {

@@ -43,10 +43,10 @@ const EzHeading: React.FC<HeadingProps> = ({
   );
 
   const header = (
-    <header>
+    <div>
       {heading}
       {subheading}
-    </header>
+    </div>
   );
 
   // eslint-disable-next-line dot-notation
