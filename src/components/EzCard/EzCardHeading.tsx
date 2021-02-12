@@ -1,6 +1,7 @@
 import React from 'react';
-import {CardHeadingContainer, CardLayout} from './EzCard.styles';
+import {CardHeadingContainer} from './EzCard.styles';
 import EzHeading from '../EzHeading';
+import EzLayout from '../EzLayout';
 
 type PropsWithoutTitle = {
   subtitle?: never;
@@ -27,10 +28,10 @@ const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions}) => {
   );
 
   const layout = actions && (
-    <CardLayout>
+    <EzLayout layout="cluster" css={{justifyContent: 'space-between', alignItems: 'baseline'}}>
       <div>{heading}</div>
       <div>{actions}</div>
-    </CardLayout>
+    </EzLayout>
   );
 
   return <CardHeadingContainer>{actions ? layout : heading}</CardHeadingContainer>;

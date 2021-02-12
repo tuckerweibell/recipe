@@ -95,23 +95,6 @@ export const CardHeadingContainer = styled.div`
   position: relative;
 `;
 
-const gutter = () => css`
-  margin: calc(var(--recipe-card-header-gutter-size) * -1) 0 0
-    calc(var(--recipe-card-header-gutter-size) * -1);
-
-  > * {
-    margin: var(--recipe-card-header-gutter-size) 0 0 var(--recipe-card-header-gutter-size);
-  }
-`;
-
-export const CardLayout = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  ${gutter};
-`;
-
 export const container = props => css`
   background: var(--recipe-card-background-color);
   box-shadow: var(--recipe-card-dropshadow);
