@@ -58,7 +58,7 @@ const skipCssWithIframeBody = ({css, body, name}) => {
 
 const warnLargeSnapshot = page => {
   /* eslint-disable no-console */
-  if (page.css.length + page.body.length > 24650) {
+  if (page.css.length + page.body.length > 24600) {
     console.warn(`The snapshot for "${page.name}" is too large.`);
     console.log({
       name: page.name,
