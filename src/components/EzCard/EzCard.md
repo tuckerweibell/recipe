@@ -488,20 +488,6 @@ Care should be taken to avoid triggering a redundant click event, caused when a 
 ```jsx
 <EzPage>
   <EzCard
-    title={
-      <EzLink
-        href="/orders"
-        use="reset"
-        onClick={e => {
-          // avoid triggering navigation for this code example
-          e.preventDefault();
-          alert(`clicked: ${e.target.text}`);
-        }}
-      >
-        Amuleto Mexican Table
-      </EzLink>
-    }
-    subtitle="Upscale Authentic Flavor  |  10 mi  |  $$$"
     imageSrc={withPrefix('/images/tacos.jpg')}
     imagePosition="left"
     imageMaxWidth={200}
@@ -515,20 +501,37 @@ Care should be taken to avoid triggering a redundant click event, caused when a 
       if (e.target !== link) link.click();
     }}
   >
-    <p>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-        <path
-          id="B"
-          d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-          fill="currentColor"
-        />
-        <use width="535" height="110" xlink:href="#B" x="105" />
-        <use width="535" height="110" xlink:href="#B" x="211" />
-        <use width="535" height="110" xlink:href="#B" x="316" />
-        <use width="535" height="110" xlink:href="#B" x="421" />
-      </svg>
-      4.7 (467 reviews)
-    </p>
+    <EzHeader>
+      <EzHeading size="3" subheading="Upscale Authentic Flavor  |  10 mi  |  $$$">
+        <EzLink
+          href="/orders"
+          use="reset"
+          onClick={e => {
+            // avoid triggering navigation for this code example
+            e.preventDefault();
+            alert(`clicked: ${e.target.text}`);
+          }}
+        >
+          Amuleto Mexican Table
+        </EzLink>
+      </EzHeading>
+    </EzHeader>
+    <EzContent>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
+          <path
+            id="B"
+            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
+            fill="currentColor"
+          />
+          <use width="535" height="110" xlink:href="#B" x="105" />
+          <use width="535" height="110" xlink:href="#B" x="211" />
+          <use width="535" height="110" xlink:href="#B" x="316" />
+          <use width="535" height="110" xlink:href="#B" x="421" />
+        </svg>
+        4.7 (467 reviews)
+      </p>
+    </EzContent>
   </EzCard>
 </EzPage>
 ```
