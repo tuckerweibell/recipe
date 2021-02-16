@@ -31,6 +31,9 @@ title: 'Unreleased changes'
 - Added best practices guidance to EzPopover documentation.
 - Added accessibility reminder to EzPopover documentation; EzPopover is a low-level building block for building more complex interactions, and cannot provide a complete accessibility story for every scenario. Additional care should be taken to ensure the interactions you are building are accessible, in particular, when handling user events, key presses and focus.
 - Added more detailed property descriptions within the EzPopover documentation.
+- Added license notice for referenced sources.
+- Fix: doc-site playground scroll flicker/jumping (Closes #503)
+- Fix: Added min-height on doc-site playground when rendering error messages.
 
 #### Dependency upgrades
 
