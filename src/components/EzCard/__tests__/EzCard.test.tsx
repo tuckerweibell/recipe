@@ -6,36 +6,22 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import {EzCard, EzCardSection, EzCardExpandable} from '..';
 import regressionTests from './EzCard.test.md';
 import markdown from '../EzCard.md';
-import {
-  EzPage,
-  EzPageSection,
-  EzLayout,
-  EzLink,
-  EzButton,
-  EzField,
-  EzHeading,
-  EzTextStyle,
-} from '../../index';
+import * as Components from '../../index';
 import Media from '../../EzField/Media';
 import Open from '../../EzField/Open';
 
 const scope = {
-  EzButton,
   EzCard,
   EzCardSection,
   EzCardExpandable,
-  EzField,
-  EzHeading,
-  EzLayout,
-  EzLink,
-  EzPage,
-  EzPageSection,
-  EzTextStyle,
+  ...Components,
   Open,
   Media,
-  withPrefix() {
+  withPrefix(file) {
     // swap the provided images for placeholder values
-    return 'https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400';
+    return `https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400${
+      file.includes('high') ? '+(high-res)' : ''
+    }`;
   },
 };
 
