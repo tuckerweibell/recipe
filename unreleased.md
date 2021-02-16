@@ -12,13 +12,12 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - Added support for capturing email address with `EzField[type=email]`.
-- Added a search input to the component list.
-
-#### Design updates
+- Added new "slots" based API for [EzCard](/components/ez-card), allowing areas within a card can be populated by providing content components (Preview, Header, Content, Footer) as direct descendants to the card.
 
 #### Design updates
 
 - Remove unwanted/collapsed margin from first checkbox/radio option.
+- EzHeading no longer renders a semantic `header` element.
 
 #### Bug fixes
 
@@ -33,15 +32,17 @@ title: 'Unreleased changes'
 - Added accessibility reminder to EzPopover documentation; EzPopover is a low-level building block for building more complex interactions, and cannot provide a complete accessibility story for every scenario. Additional care should be taken to ensure the interactions you are building are accessible, in particular, when handling user events, key presses and focus.
 - Added more detailed property descriptions within the EzPopover documentation.
 - Added license notice for referenced sources.
+- Added a search input to the component list page.
+- Added instructions for using `findIndex()` polyfill to `Getting Started`, `EzField`, `EzProgressTracker`, and `EzPageHeader`.
 - Fix: doc-site playground scroll flicker/jumping (Closes #503)
 - Fix: Added min-height on doc-site playground when rendering error messages.
-- Added instructions for using `findIndex()` polyfill to `Getting Started`, `EzField`, `EzProgressTracker`, and `EzPageHeader`.
+- Fix: doc-site component preview having unbounded width when viewed in IE11.
+- Fix: `findIndex()` polyfill to the doc-site for compatibility with IE11.
 
 #### Dependency upgrades
-
-- Added `findIndex()` to polyfill script.
 
 #### Development workflow
 
 - Added [gatsby-plugin-google-tagmanager](https://www.gatsbyjs.com/plugins/gatsby-plugin-google-tagmanager/) and google tag manager id for doc-site usage visibility.
 - Added new CLI tool for generating the component preview images used within the [components list page](/components) of the doc-site.
+- Added [gatsby-remark-copy-images](https://www.gatsbyjs.com/plugins/gatsby-remark-copy-images/) to allow Recipe image assets to be available within the doc-site.
