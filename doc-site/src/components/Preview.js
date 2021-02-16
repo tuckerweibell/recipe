@@ -68,6 +68,7 @@ export const Eval = ({code = '', scope = {}}) => {
 const Container = styled.div`
   border: 1px solid #ced4d9;
   padding: 20px;
+  max-width: 950px;
 
   > * + * {
     margin-top: 1em;
