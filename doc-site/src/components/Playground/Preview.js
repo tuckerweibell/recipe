@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import {jsx} from '@emotion/core';
 import React from 'react';
-import styled from '@emotion/styled';
 import * as buble from 'buble/dist/buble-browser-deps.umd.js';
 import Code from '../Code';
 
@@ -66,25 +67,64 @@ export const Eval = ({code = '', scope = {}}) => {
   return typeof result === 'function' ? React.createElement(result, null) : result;
 };
 
-const Container = styled.div`
-  border: 1px solid #ced4d9;
-  padding: 20px;
-  max-width: 950px;
-
-  > * + * {
-    margin-top: 1em;
-    margin-bottom: 0;
-  }
-`;
-
 export default ({code, scope, language}) => {
+  const [showCode, setShowCode] = React.useState(false);
+  const border = '1px solid #ced4d9';
+
   return (
-    <Container>
+    <div css={{border, marginBottom: 30, maxWidth: 950}}>
       <ErrorBoundary>
-        <Eval code={code} scope={scope} />
+        <div css={{margin: 20}}>
+          <Eval code={code} scope={scope} />
+        </div>
       </ErrorBoundary>
 
-      <Code code={code} language={language} />
-    </Container>
+      <div
+        css={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '0 5px',
+          background: '#f6f7f9',
+          borderTop: border,
+        }}
+      >
+        <button
+          title="Show editor"
+          css={{
+            padding: '3px 10px',
+            borderLeft: border,
+            outline: 'none',
+            borderTop: 'none',
+            borderBottom: 'none',
+            borderRight: 'none',
+            display: 'flex',
+            color: '#2d374766',
+            background: 'transparent',
+            fontSize: 12,
+          }}
+          onClick={() => setShowCode(!showCode)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </button>
+      </div>
+      {showCode && (
+        <div css={{margin: 0, borderTop: border, '& > pre[class*="language-"]': {margin: '0'}}}>
+          <Code code={code} language={language} />
+        </div>
+      )}
+    </div>
   );
 };
