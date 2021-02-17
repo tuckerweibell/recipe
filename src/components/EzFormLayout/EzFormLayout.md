@@ -39,12 +39,15 @@ Forms should:
 
 ### Field groups
 
-Use `EzLayout` to arrange multiple fields into a row or to vary form field layout across various breakpoints.
+Visually grouping closely related fields such as state and zip code, or start and end dates can help users make sense of the information they must fill in. 
 
-Typically used to group familiar layouts such as state and zip code, or start/end dates. Fields that are not directly related to each other should not be grouped next to each other as this makes it easier to miss at a glance.
+Fields that are not directly related to each other should not be visually grouped together as this can make it easier to overlook certain fields.
+
+Use [EzLayout](/components/ez-layout) to arrange fields into groups, or to vary field layouts across different screen sizes and device types.
 
 ```jsx
 <EzFormLayout>
+  {/* a basic layout is used here to group fields into a single row, but you can also tile or cluster fields as needed */}
   <EzLayout layout="basic">
     <EzField type="text" label="First name" />
     <EzField type="text" label="Last name" />
