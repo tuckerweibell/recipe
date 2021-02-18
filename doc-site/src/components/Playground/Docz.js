@@ -1,7 +1,7 @@
 import React from 'react';
 import Theme from 'docz-theme-default';
 import {StyleSheetManager} from 'styled-components';
-import Playground from './Playground';
+import Playground from '.';
 
 const isSSR = typeof document === 'undefined';
 
