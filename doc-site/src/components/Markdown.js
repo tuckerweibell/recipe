@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
-import loadable from '@loadable/component';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 import ComponentGrid from './ComponentGrid';
 import Cookbook from './Cookbook';
@@ -13,9 +12,6 @@ import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import 'prismjs/themes/prism.css';
-
-const isIE11 =
-  typeof window !== `undefined` && !!window.MSInputMethodContext && !!document.documentMode;
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -29,24 +25,16 @@ const cleanProps = p =>
 const HtmlAst = ({htmlAst, scope}) => {
   const Code = props => {
     const {className} = props;
+    const language = className?.replace('language-', '') || 'jsx';
 
     if (className && className.includes('language-jsx')) {
-      const Playground = loadable(() => import(`./Playground/Docz`));
-      const Preview = loadable(() => import(`./Playground/Preview`));
-      const Codez = isIE11 ? Preview : Playground;
-
-      return <Codez code={props.children[0]} scope={scope} />;
+      return <Playground code={props.children[0]} scope={scope} language={language} />;
     }
 
     if (!className) return <code {...props} />;
 
     return (
-      <Highlight
-        {...defaultProps}
-        code={props.children[0]}
-        language={props.className.replace('language-', '')}
-        theme={undefined}
-      >
+      <Highlight {...defaultProps} code={props.children[0]} language={language} theme={undefined}>
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
