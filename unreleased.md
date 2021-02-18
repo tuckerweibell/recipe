@@ -34,8 +34,11 @@ title: 'Unreleased changes'
 - Added license notice for referenced sources.
 - Fix: doc-site playground scroll flicker/jumping (Closes #503)
 - Fix: Added min-height on doc-site playground when rendering error messages.
+- Added instructions for using `findIndex()` polyfill to `Getting Started`, `EzField`, `EzProgressTracker`, and `EzPageHeader`.
 
 #### Dependency upgrades
+
+- Added `findIndex()` to polyfill script.
 
 #### Development workflow
 

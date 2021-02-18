@@ -194,6 +194,12 @@ In order to support client-side routing implementations, each step also supports
 
 ---
 
+## Browser support
+
+The Progress Tracker component internally uses [`Array.prototype.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) and may require a polyfill to provide [browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex#browser_compatibility) depending on the specific requirements for your application. We recommend using [Polyfill.io](https://polyfill.io/v3/) in your application to apply necessary polyfills only when they are needed for the requesting browser.
+
+---
+
 ## Related components
 
 - [Related](/components/ez-related)
