@@ -1,9 +1,9 @@
 import {createContext, useContext} from 'react';
 
-const SearchContext = createContext();
+const SearchContext = createContext('');
 
-export const useSearchTerm = () => {
-  return useContext(SearchContext);
-}
+export const useSearchTerms = () => {
+  return useContext(SearchContext).split(' ');
+};
 
 export const SearchProvider = SearchContext.Provider;

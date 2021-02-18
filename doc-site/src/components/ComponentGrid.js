@@ -3,15 +3,11 @@ import {jsx} from '@emotion/core';
 import {useStaticQuery, graphql, withPrefix} from 'gatsby';
 import {EzLayout, EzHeading, EzBlankState} from '@ezcater/recipe';
 import PreviewCard from './PreviewCard';
-import {useSearchTerm} from  '../providers/SearchProvider';
+import {useSearchTerms} from '../providers/SearchProvider';
 
 const ComponentLink = props => (
   <PreviewCard {...props} subtitle={`${props.html.match(/language-jsx/g).length} examples`} />
 );
-
-const isMatch = (item, searchTerm) => {
-  return item.toLowerCase().startsWith(searchTerm);
-}
 
 export default () => {
   const {allMarkdownRemark: data} = useStaticQuery(graphql`
@@ -54,21 +50,17 @@ export default () => {
   ]);
 
   components.forEach(component => {
-    const {category} = component;
-    const {tags} = component;
-    const {title} = component;
-    const {name} = component;
-    const searchTerm = useSearchTerm();
+    const {category, tags, title, name} = component;
+    const searchTerms = useSearchTerms();
+    const tagsList = tags || [];
 
     // ignore uncategorized components
     if (!category) return;
 
-    const matchesTagSearch = tags && tags.some(tag => 
-      searchTerm.split(' ').some(term => isMatch(tag, term))
-    );
+    const texts = [...tagsList, category, title, name].map(text => text.toLowerCase());
 
-    const matchesSearch = matchesTagSearch || isMatch(category, searchTerm) || isMatch(title, searchTerm) || isMatch(name, searchTerm);
-    
+    const matchesSearch = texts.some(text => searchTerms.some(term => text.startsWith(term)));
+
     if (!matchesSearch) return;
 
     if (!categorized.has(category)) categorized.set(category, []);
@@ -77,17 +69,18 @@ export default () => {
   });
 
   const entries = [...categorized].map(([category, components]) => [category, components]);
-  const filteredEntries = entries.filter(entry => entry[1].length > 0);
+  const filteredEntries = entries.filter(([, components]) => components.length > 0);
 
   return (
     <div>
       <div css={{maxWidth: '90rem'}}>
-        {filteredEntries.length === 0 ? 
+        {filteredEntries.length === 0 ? (
           <EzBlankState
             imageSrc={withPrefix('/images/empty-search.svg')}
             title="We didn't find any matching component search results"
             message="Try some other search terms"
-          /> :
+          />
+        ) : (
           <div>
             {filteredEntries.map(([category, components]) => (
               <EzLayout
@@ -117,15 +110,14 @@ export default () => {
                   columns={{base: 2, medium: 3, xlarge: 4}}
                   css={{'& + &': {marginTop: 25}}}
                 >
-                  
                   {components.map(component => (
                     <ComponentLink {...component} key={component.path} />
                   ))}
                 </EzLayout>
               </EzLayout>
-              ))}
-            </div>
-          }
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
