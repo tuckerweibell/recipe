@@ -29,8 +29,8 @@ Global Styles should:
 By including the Global Styles component inside your application, the Recipe global style rules will be inserted into the top of the `head` of the current document.
 
 ```jsx
+/* No rendered output */
 <EzGlobalStyles />
-No rendered output
 ```
 
 ---
