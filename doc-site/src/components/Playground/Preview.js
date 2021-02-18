@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import * as buble from 'buble/dist/buble-browser-deps.umd.js';
+import Code from '../Code';
 
 const opts = {
   objectAssign: '_poly.assign',
@@ -76,16 +77,14 @@ const Container = styled.div`
   }
 `;
 
-export default ({code, scope}) => {
+export default ({code, scope, language}) => {
   return (
     <Container>
       <ErrorBoundary>
         <Eval code={code} scope={scope} />
       </ErrorBoundary>
 
-      <pre>
-        <code>{code}</code>
-      </pre>
+      <Code code={code} language={language} />
     </Container>
   );
 };
