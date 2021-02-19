@@ -152,13 +152,13 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 
 Use a required action modal only when the user must accept or submit the modal information to move forward on the site.
 
-- Most use cases for this will involve the legal team, as the modal will block use of the site until submitted. 
+- Most use cases for this will involve the legal team, as the modal will block use of the site until submitted.
 
-Omit the `dismissLabel` prop to hide the dismiss button and the close button. 
+Omit the `dismissLabel` prop to hide the dismiss button and the close button.
 
-Omit the `onDismiss` action prop so that nothing happens when the user clicks outside the modal or hits the ESC button. 
+Omit the `onDismiss` action prop so that nothing happens when the user clicks outside the modal or hits the ESC button.
 
-The `submitLabel` prop is required without a `dismissLabel` prop. 
+The `submitLabel` prop is required without a `dismissLabel` prop.
 
 ```jsx
 () => {

@@ -3,6 +3,7 @@ name: EzPageHeader
 title: Page Header
 category: Layout
 path: '/components/ez-page-header'
+tags: ['header', 'title', 'breadcrumb']
 ---
 
 A Page header is used to build the outer structure of a page, including the page title and associated actions.

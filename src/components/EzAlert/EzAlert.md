@@ -3,6 +3,7 @@ name: EzAlert
 title: Alert
 category: Feedback
 path: '/components/ez-alert'
+tags: ['success', 'error', 'warning', 'info', 'tip']
 ---
 
 Alerts represent highlighted messages on a page that call out important information. Alerts can be used both inline with page content as well as a subheader as a status for the entire page.

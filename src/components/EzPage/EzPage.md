@@ -3,6 +3,7 @@ name: EzPage
 title: Page
 category: Layout
 path: '/components/ez-page'
+tags: ['sidebar']
 ---
 
 Page is the main content container for a page. The Page component controls the horizontal margins of the content area, as well as the vertical spacing between content.

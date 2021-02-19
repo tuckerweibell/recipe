@@ -3,7 +3,7 @@ path: '/unreleased'
 title: 'Unreleased changes'
 ---
 
-## Unreleased Changes
+## Unreleased changes
 
 #### Breaking changes
 
@@ -12,6 +12,7 @@ title: 'Unreleased changes'
 #### Enhancements
 
 - Added support for capturing email address with `EzField[type=email]`.
+- Added a search input to the component list.
 
 #### Design updates
 

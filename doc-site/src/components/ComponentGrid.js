@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
-import {useStaticQuery, graphql} from 'gatsby';
-import {EzLayout, EzHeading} from '@ezcater/recipe';
+import {useStaticQuery, graphql, withPrefix} from 'gatsby';
+import {EzLayout, EzHeading, EzBlankState} from '@ezcater/recipe';
 import PreviewCard from './PreviewCard';
+import {useSearchTerms} from '../providers/SearchProvider';
 
 const ComponentLink = props => (
   <PreviewCard {...props} subtitle={`${props.html.match(/language-jsx/g).length} examples`} />
@@ -22,6 +23,7 @@ export default () => {
               title
               path
               order
+              tags
             }
           }
         }
@@ -48,52 +50,75 @@ export default () => {
   ]);
 
   components.forEach(component => {
-    const {category} = component;
+    const {category, tags, title, name} = component;
+    const searchTerms = useSearchTerms();
+    const tagsList = tags || [];
 
     // ignore uncategorized components
     if (!category) return;
+
+    const texts = [...tagsList, category, title, name].map(text => text.toLowerCase());
+
+    const matchesSearch = texts.some(text => searchTerms.some(term => text.startsWith(term)));
+
+    if (!matchesSearch) return;
 
     if (!categorized.has(category)) categorized.set(category, []);
 
     categorized.get(category).push(component);
   });
 
-  return (
-    <div css={{maxWidth: '90rem'}}>
-      {[...categorized].map(([category, components]) => (
-        <EzLayout
-          key={category}
-          layout={{base: 'stack', large: 'split'}}
-          css={{
-            '& + &': {
-              marginTop: 25,
-              borderTop: '1px solid #e5e7eb',
-              paddingTop: 25,
-            },
-            '&& > *': {
-              alignSelf: 'start',
-              overflow: 'visible',
-            },
-            '&& > * + *': {
-              flex: '1 1 0px',
-            },
-          }}
-        >
-          <EzHeading size="3" css={{flexShrink: 0, flexBasis: '20% !important'}}>
-            {category}
-          </EzHeading>
+  const entries = [...categorized].map(([category, components]) => [category, components]);
+  const filteredEntries = entries.filter(([, components]) => components.length > 0);
 
-          <EzLayout
-            layout="tile"
-            columns={{base: 2, medium: 3, xlarge: 4}}
-            css={{'& + &': {marginTop: 25}}}
-          >
-            {components.map(component => (
-              <ComponentLink {...component} key={component.path} />
+  return (
+    <div>
+      <div css={{maxWidth: '90rem'}}>
+        {filteredEntries.length === 0 ? (
+          <EzBlankState
+            imageSrc={withPrefix('/images/empty-search.svg')}
+            title="We didn't find any matching component search results"
+            message="Try some other search terms"
+          />
+        ) : (
+          <div>
+            {filteredEntries.map(([category, components]) => (
+              <EzLayout
+                key={category}
+                layout={{base: 'stack', large: 'split'}}
+                css={{
+                  '& + &': {
+                    marginTop: 25,
+                    borderTop: '1px solid #e5e7eb',
+                    paddingTop: 25,
+                  },
+                  '&& > *': {
+                    alignSelf: 'start',
+                    overflow: 'visible',
+                  },
+                  '&& > * + *': {
+                    flex: '1 1 0px',
+                  },
+                }}
+              >
+                <EzHeading size="3" css={{flexShrink: 0, flexBasis: '20% !important'}}>
+                  {category}
+                </EzHeading>
+
+                <EzLayout
+                  layout="tile"
+                  columns={{base: 2, medium: 3, xlarge: 4}}
+                  css={{'& + &': {marginTop: 25}}}
+                >
+                  {components.map(component => (
+                    <ComponentLink {...component} key={component.path} />
+                  ))}
+                </EzLayout>
+              </EzLayout>
             ))}
-          </EzLayout>
-        </EzLayout>
-      ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

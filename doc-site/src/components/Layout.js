@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import React from 'react';
-import { jsx } from '@emotion/core';
+import React, {useEffect, useState} from 'react';
+import {jsx} from '@emotion/core';
 import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
+import {StaticQuery, graphql} from 'gatsby';
 import Link from 'gatsby-link';
-import { ThemeProvider } from 'emotion-theming';
+import {ThemeProvider} from 'emotion-theming';
 import naturalSort from 'natural-sort';
 import {
   themes,
@@ -12,16 +12,19 @@ import {
   EzPage,
   EzNavigation,
   EzPageHeader,
-  EzButton,
   EzCard,
   EzCardSection,
   EzProvider,
+  EzLayout,
+  EzSearchInput,
 } from '@ezcater/recipe';
-import { theme as marketplaceTheme } from '@recipe-ui/theme-marketplace';
+import {theme as marketplaceTheme} from '@recipe-ui/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
+import ComponentGrid from './ComponentGrid';
+import {SearchProvider} from '../providers/SearchProvider';
 
-const Layout = ({ name, title, path, children, sections, location, layout }) => (
+const Layout = ({name, title, path, children, sections, location, layout}) => (
   <StaticQuery
     query={graphql`
       query {
@@ -41,8 +44,8 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
       }
     `}
     render={data => {
-      const { edges: files } = data.allMarkdownRemark || { edges: [] };
-      const pages = files.map(({ node }) => node);
+      const {edges: files} = data.allMarkdownRemark || {edges: []};
+      const pages = files.map(({node}) => node);
 
       const topLevel = pages
         .filter(p => Boolean(p.frontmatter.order))
@@ -73,19 +76,25 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
       }));
 
       const activeLink = links.find(link => location.pathname.includes(link.to));
-      const relatedPages = activeLink ? activeLink.links.map(l => ({ ...l, as: Link })) : [];
+      const relatedPages = activeLink ? activeLink.links.map(l => ({...l, as: Link})) : [];
       const tabs = relatedPages.length && relatedPages.length < 5 ? relatedPages : undefined;
 
       const [theme, setTheme] = React.useState(false);
       const isMarketPlace = theme === true;
+
+      const [searchTerms, setSearchTerms] = useState('');
+
+      useEffect(() => {
+        setSearchTerms('');
+      }, [location.pathname]);
 
       return (
         <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
           <Helmet
             title={`Recipe - ${title}`}
             meta={[
-              { name: 'description', content: 'Recipe Design System' },
-              { name: 'keywords', content: 'Recipe Design System EzCater' },
+              {name: 'description', content: 'Recipe Design System'},
+              {name: 'keywords', content: 'Recipe Design System EzCater'},
             ]}
           >
             <html lang="en" />
@@ -93,12 +102,15 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
               href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i"
               rel="stylesheet"
             />
-            <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2Csmoothscroll%2CArray.prototype.findIndex" type="text/javascript" />
+            <script
+              src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2Csmoothscroll%2CArray.prototype.findIndex"
+              type="text/javascript"
+            />
           </Helmet>
           <ThemeProvider
             theme={{
               ...themes.standard,
-              breakpoints: { medium: '768px', large: '1061px', xlarge: '1280px' },
+              breakpoints: {medium: '768px', large: '1061px', xlarge: '1280px'},
             }}
           >
             <div className={name}>
@@ -108,11 +120,14 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
                     to: '/',
                     as: Link,
                     label: 'Recipe',
-                    logo: { src: logo, width: 120 },
+                    logo: {src: logo, width: 120},
                   }}
                   links={links}
                   utilityLinks={[
-                    { label: `Use ${isMarketPlace ? 'fulfillment' : 'marketplace'} theme`, onClick: () => setTheme(theme => !theme) }
+                    {
+                      label: `Use ${isMarketPlace ? 'fulfillment' : 'marketplace'} theme`,
+                      onClick: () => setTheme(theme => !theme),
+                    },
                   ]}
                 >
                   <EzPageHeader
@@ -120,23 +135,44 @@ const Layout = ({ name, title, path, children, sections, location, layout }) => 
                     breadcrumb={
                       path.includes('/components/')
                         ? {
-                          as: Link,
-                          to: '/components',
-                          label: 'Back to Components',
-                        }
+                            as: Link,
+                            to: '/components',
+                            label: 'Back to Components',
+                          }
                         : undefined
                     }
                     subnav={
-                      tabs && { tabs, selected: tabs.find(tab => tab.to === location.pathname) }
+                      tabs && {tabs, selected: tabs.find(tab => tab.to === location.pathname)}
+                    }
+                    actions={
+                      <EzLayout
+                        layout={{
+                          base: 'stack',
+                          medium: 'basic',
+                        }}
+                      >
+                        <EzSearchInput
+                          placeholder="Search components"
+                          aria-label="Search components"
+                          value={searchTerms}
+                          onChange={e => setSearchTerms(e.target.value.toLowerCase())}
+                        />
+                      </EzLayout>
                     }
                   />
                   <EzPage>
-                    <EzCard>
-                      {children ||
-                        sections.map((section, i) => (
-                          <EzCardSection key={i}>{section}</EzCardSection>
-                        ))}
-                    </EzCard>
+                    <SearchProvider value={searchTerms}>
+                      <EzCard>
+                        {searchTerms ? (
+                          <ComponentGrid />
+                        ) : (
+                          children ||
+                          sections.map((section, i) => (
+                            <EzCardSection key={i}>{section}</EzCardSection>
+                          ))
+                        )}
+                      </EzCard>
+                    </SearchProvider>
                   </EzPage>
                 </EzNavigation>
               </EzAppLayout>

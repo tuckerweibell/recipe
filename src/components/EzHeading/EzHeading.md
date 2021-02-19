@@ -3,6 +3,7 @@ name: EzHeading
 title: Heading
 category: Typography
 path: '/components/ez-heading'
+tags: ['title', 'text', 'font', 'subheading', 'subheader']
 ---
 
 Headings are the primary way of styling text in Recipe. Use them to create visual hierarchy on the page.

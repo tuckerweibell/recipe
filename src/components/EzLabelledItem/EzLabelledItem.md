@@ -3,6 +3,7 @@ name: EzLabelledItem
 title: Labelling
 category: Inputs
 path: '/components/ez-labelled-item'
+tags: ['label']
 ---
 
 Provides a label that can appear in one of several positions relative to its associated content. Typically used to label an interactive element or a short string of text.

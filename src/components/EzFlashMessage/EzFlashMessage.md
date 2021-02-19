@@ -3,6 +3,7 @@ name: EzFlashMessage
 title: Flash Message
 category: Feedback
 path: '/components/ez-flash-message'
+tags: ['success', 'error', 'warning', 'info', 'dismissable']
 ---
 
 Flash messages are used to display contextual messages related to content on the page. This could be an action that was just performed by the user or an action that should be taken by the user.

@@ -3,6 +3,7 @@ name: EzBaseFontSizeCompatibility
 title: Base Font Size
 category: Typography
 path: '/components/ez-base-font-size-compatibility'
+tags: ['compatibility', 'font', 'text']
 ---
 
 Base Font Size Compatibility is a component that enables applications that are not yet using Recipe's base font size to run in compatibility mode with a base font size of 14px.

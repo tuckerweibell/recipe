@@ -3,6 +3,7 @@ name: EzProgressTracker
 title: Progress tracker
 category: Navigation
 path: '/components/ez-progress-tracker'
+tags: ['tracker', 'steps']
 ---
 
 A progress tracker conveys progress through linear steps or actions across multiple screens, in order to complete a task. The tracker shows users where they are in the process, and can be used to navigate through the process by selecting steps.

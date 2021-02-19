@@ -3,6 +3,7 @@ name: EzLink
 title: Links
 category: Navigation
 path: '/components/ez-link'
+tags: ['href']
 ---
 
 Links allow users to navigate to other pages in an application. Links can be presented as standalone text or inline inside a paragraph, or used to enhance other elements, like headings or images, with navigation behavior.

@@ -3,6 +3,7 @@ name: EzBlankState
 title: Blank State
 category: Marketing
 path: '/components/ez-blank-state'
+tags: ['empty', 'zero']
 ---
 
 Blank states are used when a container has no data to show. This can happen when no results are returned while filtering, or for new users of the product when they haven't had time to create data yet. Blank should inform the user why they're seeing the blank state, and what action the user can take (if applicable) to resolve the blank state.
