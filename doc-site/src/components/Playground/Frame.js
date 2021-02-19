@@ -25,10 +25,23 @@ const IFramePlayground = props => {
 
     // copy gatsby's included link based styles
     const links = Array.from(document.getElementsByTagName('link'));
-    links.forEach(link => {
-      if (link.rel === 'stylesheet') {
-        iframe.contentDocument.head.appendChild(link.cloneNode(true));
-      }
+
+    const clonedLinks = links
+      .filter(link => link.rel === 'stylesheet')
+      .map(link => link.cloneNode(true));
+
+    // resize after all inserted styles have loaded
+    Promise.all(
+      clonedLinks.map(link => {
+        return new Promise((resolve, reject) => {
+          link.onload = resolve;
+          link.onerror = reject;
+        });
+      })
+    ).finally(() => resizeBasedOnContent());
+
+    clonedLinks.map(clonedLink => {
+      iframe.contentDocument.head.appendChild(clonedLink);
     });
 
     // copy gatsby pre-rendered styles
@@ -45,8 +58,6 @@ const IFramePlayground = props => {
 
     const resizeObserver = new ResizeObserver(resizeBasedOnContent);
     resizeObserver.observe(contentDocument.querySelector('body'));
-
-    resizeBasedOnContent();
   }, [container]);
 
   const createStylesCache = useCallback(
