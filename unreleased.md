@@ -34,10 +34,13 @@ title: 'Unreleased changes'
 - Added license notice for referenced sources.
 - Added a search input to the component list page.
 - Added instructions for using `findIndex()` polyfill to `Getting Started`, `EzField`, `EzProgressTracker`, and `EzPageHeader`.
+- Improved IE11 support for the doc-site component preview. The code preview feature has been visually updated to more closely match the design of the code playground available in modern browsers.
 - Fix: doc-site playground scroll flicker/jumping (Closes #503)
-- Fix: Added min-height on doc-site playground when rendering error messages.
 - Fix: doc-site component preview having unbounded width when viewed in IE11.
-- Fix: `findIndex()` polyfill to the doc-site for compatibility with IE11.
+- Fix: Added min-height on doc-site playground when rendering error messages.
+- Fix: Added `findIndex()` polyfill to the doc-site for compatibility with IE11.
+- Fix: Avoid syntax error when evaluating code example in the `EzGlobalStyles` component documentation.
+- Fix: Avoid layout-shift caused by the code playground. This detrimentally affected jump-to-anchor behavior within the doc-site.
 
 #### Dependency upgrades
 
