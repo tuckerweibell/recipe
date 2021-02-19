@@ -2,24 +2,13 @@ import React, {useCallback, useLayoutEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import {CacheProvider} from '@emotion/core';
 import createCache from '@emotion/cache';
-import styled from '@emotion/styled';
 import {EzGlobalStyles, EzProvider, useProvider} from '@ezcater/recipe';
 import ResizeObserver from 'resize-observer-polyfill';
-
-const spacing = ({margin, page}) =>
-  page
-    ? {margin: 0, width: '100%'}
-    : {margin: `${margin} auto`, width: 'calc(100% - 40px)', minWidth: ' fit-content'};
-
-const Wrapper = styled.div`
-  ${spacing};
-`;
 
 const IFramePlayground = props => {
   const iframeEl = useRef(null);
   const [container, setContainer] = useState(null);
   const playgroundRef = useRef(null);
-  const [margin, setMargin] = useState('20px');
   const {theme} = useProvider();
 
   useLayoutEffect(() => {
@@ -28,21 +17,10 @@ const IFramePlayground = props => {
     const contentDocument = iframe.contentDocument;
 
     const resizeBasedOnContent = () => {
-      const el = playgroundRef.current || container;
-
-      // this is kind of gross, but we want the latest margin value in the resize handler
-      // without taking an effect dependency on changes to the margin
-      setMargin(m => {
-        const newMargin = (el.parentElement.offsetWidth - el.offsetWidth) / 2;
-        const currentScrollPosition = [window.scrollX, window.scrollY];
-
-        iframe.style.height = 0;
-        iframe.style.height = `${contentDocument.documentElement.scrollHeight + newMargin}px`;
-
-        window.scroll(...currentScrollPosition);
-
-        return `${newMargin}px`;
-      });
+      const currentScrollPosition = [window.scrollX, window.scrollY];
+      iframe.style.height = 0;
+      iframe.style.height = `${contentDocument.documentElement.scrollHeight}px`;
+      window.scroll(...currentScrollPosition);
     };
 
     // copy gatsby's included link based styles
@@ -76,21 +54,19 @@ const IFramePlayground = props => {
     [container]
   );
 
-  const page = props.code.includes('<EzPage>');
-
   return (
     <iframe
       frameBorder="0"
       allowFullScreen={true}
       ref={iframeEl}
-      style={{border: 'none', margin: 0, width: '100%'}}
+      style={{border: 'none', width: '100%', height: 0}}
       srcDoc={`<!DOCTYPE html><head><base target="_parent" /></head>`}
       onLoad={() => setContainer(iframeEl.current.contentDocument.body)}
     >
       {container &&
         createPortal(
           <CacheProvider value={createStylesCache()}>
-            <Wrapper ref={playgroundRef} margin={margin} page={page}>
+            <div ref={playgroundRef} style={{padding: 20}}>
               <link
                 href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
                 rel="stylesheet"
@@ -104,7 +80,7 @@ const IFramePlayground = props => {
               <EzProvider theme={{global: ''}}>
                 <EzProvider theme={theme}>{props.children}</EzProvider>
               </EzProvider>
-            </Wrapper>
+            </div>
           </CacheProvider>,
           container
         )}
