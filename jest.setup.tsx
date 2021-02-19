@@ -84,7 +84,7 @@ const GlobalStylesWrapper = ({children}) => (
 const markdownSource = new MarkdownSource();
 const markdownSourceWithThemeWrapper = {
   execute: options => {
-    const examples = markdownSource.execute(options).filter(e => Boolean(e.name.trim()));
+    const examples = markdownSource.execute(options).filter(e => Boolean(e.name?.trim()));
     return examples.map(({name, component}) => ({
       name,
       component: () => <GlobalStylesWrapper>{component()}</GlobalStylesWrapper>,
