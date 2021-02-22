@@ -13,6 +13,7 @@ title: 'Unreleased changes'
 
 - Added support for capturing email address with `EzField[type=email]`.
 - Added new "slots" based API for [EzCard](/components/ez-card), allowing areas within a card can be populated by providing content components (Preview, Header, Content, Footer) as direct descendants to the card.
+- Added ARIA live region on [EzAlert](/components/ez-alert) to allow content changes to be announced by assistive technologies.
 
 #### Design updates
 
