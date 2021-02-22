@@ -86,12 +86,8 @@ The areas within a card can be populated either by providing the relevant props 
     </EzContent>
     <EzFooter>
       <EzLayout layout="right">
-        <EzButton use="secondary" onClick={close}>
-          Cancel
-        </EzButton>
-        <EzButton use="primary" onClick={close}>
-          Confirm
-        </EzButton>
+        <EzButton use="secondary">Cancel</EzButton>
+        <EzButton use="primary">Confirm</EzButton>
       </EzLayout>
     </EzFooter>
   </EzCard>
