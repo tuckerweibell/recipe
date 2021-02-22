@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
 import * as Components from '@ezcater/recipe';
 import {withPrefix} from 'gatsby-link';
-import Highlight, {defaultProps} from 'prism-react-renderer';
 import ComponentGrid from './ComponentGrid';
 import Cookbook from './Cookbook';
 import Layout from './Layout';
@@ -12,6 +11,8 @@ import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import 'prismjs/themes/prism.css';
+import CodeHighlighting from './Code';
+import Playground from './Playground';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -23,45 +24,29 @@ const cleanProps = p =>
   }, {});
 
 const HtmlAst = ({htmlAst, scope}) => {
-  const Code = props => {
-    const {className} = props;
-    const language = className?.replace('language-', '') || 'jsx';
-
-    if (className && className.includes('language-jsx')) {
-      return <Playground code={props.children[0]} scope={scope} language={language} />;
-    }
-
-    if (!className) return <code {...props} />;
-
-    return (
-      <Highlight {...defaultProps} code={props.children[0]} language={language} theme={undefined}>
-        {({className, style, tokens, getLineProps, getTokenProps}) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div {...getLineProps({line, key: i})}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({token, key})} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    );
-  };
-
   const heading = (size, as) => props =>
     React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
   const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 
   const componentMap = {
-    code: Code,
+    code: props => {
+      const {className} = props;
+      const language = className?.replace('language-', '') || 'jsx';
+
+      if (className && className.includes('language-jsx')) {
+        return <Playground code={props.children[0]} scope={scope} language={language} />;
+      }
+
+      if (!className) return <code {...props} />;
+
+      return <CodeHighlighting code={props.children[0]} language={language} />;
+    },
     a: props => React.createElement(props.className ? 'a' : Components.EzLink, props),
     p: props => {
       const {children} = props;
       const type = children[0].type;
-      const hasNestedComponent = children.length === 1 && type && type !== Code;
+      const hasNestedComponent = children.length === 1 && type && type !== 'string';
       return hasNestedComponent ? children : React.createElement('p', props, children);
     },
     pre: ({children}) => children,
