@@ -1,4 +1,4 @@
-import {css, Interpolation} from '@emotion/core';
+import {css} from '@emotion/core';
 import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
 import {responsive} from '../../styles';
@@ -107,18 +107,9 @@ export const container = props => css`
 
 const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value);
 
-const isIE11 =
-  typeof window !== `undefined` &&
-  !!window.MSInputMethodContext &&
-  !!(document as any).documentMode;
-
-// only include MS prefix for IE
-// the prefix will be excluded from server rendering, but 🤷‍♂️
-const ms = (styles: Interpolation): any => isIE11 && styles;
-
 const columns = responsive('imagePosition', {
   top: {
-    ...ms({'-ms-grid-columns': '0px minmax(0px, 100%)'}),
+    msGridColumns: '0px minmax(0px, 100%)',
     gridTemplateColumns: `
       [left] 0
       [header] minmax(0, 100%)
@@ -126,7 +117,7 @@ const columns = responsive('imagePosition', {
     `,
   },
   right: ({maxWidth}) => ({
-    ...ms({'-ms-grid-columns': `0px minmax(0px, 100%) ${unitlessToPx(maxWidth) || '50%'}`}),
+    msGridColumns: `0px minmax(0px, 100%) ${unitlessToPx(maxWidth) || '50%'}`,
     gridTemplateColumns: `
       [left] 0
       [header] minmax(0, 100%)
@@ -134,7 +125,7 @@ const columns = responsive('imagePosition', {
     `,
   }),
   left: ({maxWidth}) => ({
-    ...ms({'-ms-grid-columns': `${unitlessToPx(maxWidth) || '50%'} minmax(0px, 100%) 0px`}),
+    msGridColumns: `${unitlessToPx(maxWidth) || '50%'} minmax(0px, 100%) 0px`,
     gridTemplateColumns: `
       [left] ${unitlessToPx(maxWidth) || '50%'}
       [header] minmax(0, 100%)
@@ -144,10 +135,10 @@ const columns = responsive('imagePosition', {
 });
 
 export const grid = props => css`
-  ${ms({display: '-ms-grid'})};
+  display: -ms-grid;
   display: grid;
   ${columns(props)};
-  ${ms({'-ms-grid-rows': 'auto auto 1fr auto'})};
+  -ms-grid-rows: 'auto auto 1fr auto';
   grid-template-rows: auto auto auto 1fr auto;
   grid-template-areas:
     '. top .'
@@ -164,27 +155,27 @@ const position = responsive('imagePosition', {
     borderTopLeftRadius: 'var(--recipe-card-border-radius)',
     borderBottomLeftRadius: 'var(--recipe-card-border-radius)',
     '> img': {height: '100%'},
-    ...ms({'-ms-grid-column': '1', '-ms-grid-row-span': '3', '-ms-grid-row': '1'}),
+    ...{msGridColumn: '1', msGridRowSpan: '3', msGridRow: '1'},
   },
   right: {
     gridArea: 'right',
     borderTopRightRadius: 'var(--recipe-card-border-radius)',
     borderBottomRightRadius: 'var(--recipe-card-border-radius)',
     '> img': {height: '100%'},
-    ...ms({'-ms-grid-column': '3', '-ms-grid-row-span': '3', '-ms-grid-row': '1'}),
+    ...{msGridColumn: '3', msGridRowSpan: '3', msGridRow: '1'},
   },
   top: {
     gridArea: 'top',
     borderTopLeftRadius: 'var(--recipe-card-border-radius)',
     borderTopRightRadius: 'var(--recipe-card-border-radius)',
-    ...ms({'-ms-grid-column': '1', '-ms-grid-column-span': '3', '-ms-grid-row': '1'}),
+    ...{msGridColumn: '1', msGridColumnSpan: '3', msGridRow: '1'},
   },
   reset: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-    ...ms({'-ms-grid-row-span': '1', '-ms-grid-column-span': '1'}),
+    ...{msGridRowSpan: '1', msGridColumnSpan: '1'},
   },
 });
 
@@ -202,24 +193,24 @@ export const preview = props =>
   `;
 export const header = () =>
   css`
-    ${ms({'-ms-grid-column': '2', '-ms-grid-row': '2'})};
+    ${{msGridColumn: '2', msGridRow: '2'}};
     grid-area: header;
     padding: var(--recipe-card-padding) var(--recipe-card-padding) 0;
   `;
 export const content = () =>
   css`
-    ${ms({'-ms-grid-column': '2', '-ms-grid-row': '3'})};
+    ${{msGridColumn: '2', msGridRow: '3'}};
     grid-area: content;
     padding: var(--recipe-card-padding);
   `;
 export const sections = () =>
   css`
-    ${ms({'-ms-grid-column': '2', '-ms-grid-row': '3'})};
+    ${{msGridColumn: '2', msGridRow: '3'}};
     grid-area: sections;
   `;
 export const footer = () =>
   css`
-    ${ms({'-ms-grid-column': '2', '-ms-grid-row': '4'})};
+    ${{msGridColumn: '2', msGridRow: '4'}};
     grid-area: footer;
     padding: var(--recipe-global-static-size-150) var(--recipe-card-padding);
     text-align: center;

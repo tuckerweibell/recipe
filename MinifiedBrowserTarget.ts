@@ -1,6 +1,7 @@
 import CleanCSS from 'clean-css';
 
 const customPropertyRegExp = /(--[A-z][\w-]*):/g;
+const vendorPrefixedRulesRegEx = /-(moz|o|webkit|ms|khtml)-(?!font-smoothing|osx|print|scrollbar|[A-z]*;).+?;/g;
 
 const rewriteCssCustomVars = ({css, body, name}) => {
   // rewrite css vars to shrink them as a work around for
@@ -40,6 +41,15 @@ const minifyCss = ({css, body, name}) => {
   };
 };
 
+// remove extra bloat caused by vendor prefixing (since tests currently run in chromium only)
+const removeVendorPrefix = ({css, body, name}) => {
+  return {
+    css: css.replace(vendorPrefixedRulesRegEx, ''),
+    body: body.replace(vendorPrefixedRulesRegEx, ''),
+    name,
+  };
+};
+
 // Any visual regression tests that test media queries use the Media component
 // to embed the content within an iframe that is sized to the breakpoint being tested.
 // The Media component duplicates the css from the page into the iframe so that it's
@@ -73,6 +83,7 @@ export const decorate = target => ({
     return target.execute(
       pages
         .map(rewriteCssCustomVars)
+        .map(removeVendorPrefix)
         .map(minifyCss)
         .map(skipCssWithIframeBody)
         .map(warnLargeSnapshot)
