@@ -34,7 +34,15 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: ['gatsby-remark-autolink-headers'],
+        plugins: [
+          'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+            options: {
+              destinationDir: 'public/static/images',
+            },
+          },
+        ],
       },
     },
     {
