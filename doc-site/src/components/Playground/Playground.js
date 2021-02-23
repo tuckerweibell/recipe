@@ -47,7 +47,6 @@ const Container = styled.div`
   /* when the playground is popped up, we don't want the playground to have a min-height */
   [class^='Playground__Overlay'] {
     .EzAppLayout & iframe,
-    .EzModal & iframe,
     .EzNavigation & iframe {
       min-height: 350px;
     }

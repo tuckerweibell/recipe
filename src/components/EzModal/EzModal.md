@@ -38,23 +38,17 @@ When the user clicks outside the modal, hits the escape key, or hits close, the 
 () => {
   const [isOpen, setIsOpen] = React.useState(true);
 
-  React.useEffect(
-    function openModalUponClosing() {
-      const id = setTimeout(setIsOpen, 1000, true);
-      return () => clearTimeout(id);
-    },
-    [isOpen]
-  );
-
   return (
-    <EzModal
-      isOpen={isOpen}
-      onDismiss={() => setIsOpen(false)}
-      dismissLabel="Dismiss"
-      headerText="Header goes here"
-    >
-      Modal content goes here!
-    </EzModal>
+    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+      <EzModal
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </CodePlaygroundHostNode>
   );
 };
 ```
@@ -70,16 +64,8 @@ The `onSubmit` function will be called when the user clicking the button labelle
   const [isOpen, setIsOpen] = React.useState(true);
   const [submitted, setSubmitted] = React.useState(null);
 
-  React.useEffect(
-    function openModalUponClosing() {
-      const id = setTimeout(setIsOpen, 1000, true);
-      return () => clearTimeout(id);
-    },
-    [isOpen]
-  );
-
   return (
-    <>
+    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
       <EzModal
         isOpen={isOpen}
         onSubmit={() => {
@@ -105,7 +91,7 @@ The `onSubmit` function will be called when the user clicking the button labelle
           )
         ) : null}
       </div>
-    </>
+    </CodePlaygroundHostNode>
   );
 };
 ```
@@ -124,26 +110,20 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 () => {
   const [isOpen, setIsOpen] = React.useState(true);
 
-  React.useEffect(
-    function openModalUponClosing() {
-      const id = setTimeout(setIsOpen, 1000, true);
-      return () => clearTimeout(id);
-    },
-    [isOpen]
-  );
-
   return (
-    <EzModal
-      destructive
-      isOpen={isOpen}
-      onSubmit={() => setIsOpen(false)}
-      submitLabel="Submit"
-      onDismiss={() => setIsOpen(false)}
-      dismissLabel="Dismiss"
-      headerText="Header goes here"
-    >
-      Modal content goes here!
-    </EzModal>
+    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+      <EzModal
+        destructive
+        isOpen={isOpen}
+        onSubmit={() => setIsOpen(false)}
+        submitLabel="Submit"
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </CodePlaygroundHostNode>
   );
 };
 ```
@@ -165,16 +145,8 @@ The `submitLabel` prop is required without a `dismissLabel` prop.
   const [isOpen, setIsOpen] = React.useState(true);
   const [submitted, setSubmitted] = React.useState(null);
 
-  React.useEffect(
-    function openModalUponClosing() {
-      const id = setTimeout(setIsOpen, 1000, true);
-      return () => clearTimeout(id);
-    },
-    [isOpen]
-  );
-
   return (
-    <>
+    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
       <EzModal
         isOpen={isOpen}
         submitLabel="Submit"
@@ -193,7 +165,7 @@ The `submitLabel` prop is required without a `dismissLabel` prop.
           ) : null
         ) : null}
       </div>
-    </>
+    </CodePlaygroundHostNode>
   );
 };
 ```
@@ -209,32 +181,26 @@ You can set the `isSubmitting` prop to indicate that the modal is processing the
   const [isOpen, setIsOpen] = React.useState(true);
   const [isSubmitting, setIsSubmitting] = React.useState(null);
 
-  React.useEffect(
-    function openModalUponClosing() {
-      const id = setTimeout(setIsOpen, 1000, true);
-      return () => clearTimeout(id);
-    },
-    [isOpen]
-  );
-
   return (
-    <EzModal
-      isSubmitting={isSubmitting}
-      isOpen={isOpen}
-      onSubmit={() => {
-        setIsSubmitting(true);
-        setTimeout(() => {
-          setIsSubmitting(false);
-          setIsOpen(false);
-        }, 2000);
-      }}
-      submitLabel="Submit"
-      onDismiss={() => setIsOpen(false)}
-      dismissLabel="Dismiss"
-      headerText="Header goes here"
-    >
-      Modal content goes here!
-    </EzModal>
+    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+      <EzModal
+        isSubmitting={isSubmitting}
+        isOpen={isOpen}
+        onSubmit={() => {
+          setIsSubmitting(true);
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setIsOpen(false);
+          }, 2000);
+        }}
+        submitLabel="Submit"
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </CodePlaygroundHostNode>
   );
 };
 ```

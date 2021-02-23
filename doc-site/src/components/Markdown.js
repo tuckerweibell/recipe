@@ -13,6 +13,7 @@ import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-do
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
 import Playground from './Playground';
+import CodePlaygroundHostNode from './ModalWrapper';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -99,6 +100,7 @@ const scope = {
   ezCaterLogoPath,
   withPrefix,
   Placeholder,
+  CodePlaygroundHostNode,
 };
 
 const splitOnTagName = (list, tagName) => {

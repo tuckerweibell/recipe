@@ -8,7 +8,7 @@ import EzModal from '../EzModal';
 
 afterEach(cleanup);
 
-const scope = {EzModal};
+const scope = {EzModal, CodePlaygroundHostNode: 'div'};
 
 describe('EzModal', () => {
   visualSnapshots({markdown: regressionTests, scope});
