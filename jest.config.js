@@ -8,6 +8,7 @@ module.exports = {
     '!src/@(components|util|styles)/**/*types.{ts,tsx}',
     '!src/@(components|util|styles)/**/en.{ts,tsx}',
     '!**/node_modules/**',
+    '!src/components/**/*snippets.{ts,tsx}',
   ],
   moduleDirectories: ['node_modules', 'src'],
   transform: {

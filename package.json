@@ -69,6 +69,7 @@
     "jest-standard-reporter": "^2.0.0",
     "jest-transform-css": "^2.1.0",
     "parcel": "^2.0.0-nightly.435",
+    "playroom": "^0.23.0",
     "plop": "^2.5.3",
     "postcss": "^8.1.4",
     "prettier": "^1.19.1",
@@ -85,6 +86,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop)\" --kill-others",
+    "start:with-playroom": "concurrently \"npm run playroom:start\" \"npm run start\"",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build": "npm run clean && npm run build:types && npm run build:cjs && npm run build:esm && cp .npmignore lib",
@@ -93,6 +95,9 @@
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline --copy-files",
     "build:esm": "cross-env BABEL_ENV=esm babel src --out-dir lib/esm --extensions \".ts,.tsx\" --source-maps inline --copy-files",
     "build:watch": "npm run build:cjs && npm run build:esm -- --watch",
+    "build:docs:prod": "cd doc-site && npm run build:prod",
+    "push:docs": "cd doc-site && npm run deploy",
+    "deploy": "npm run build:docs:prod && npm run playroom:build && npm run push:docs",
     "bundle-size": "cd tree-shaking-size/ && npm i && npm run build && node check-size.js",
     "clean": "rm -rf lib",
     "create-component": "plop component",
@@ -102,7 +107,9 @@
     "lint": "ez-scripts lint",
     "lint:fix": "ez-scripts lint --fix",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "playroom:start": "playroom start",
+    "playroom:build": "playroom build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.3",

@@ -1,8 +1,18 @@
+const {createProxyMiddleware} = require('http-proxy-middleware');
 module.exports = {
   pathPrefix: '/recipe',
   siteMetadata: {
     title: 'Recipe',
     description: "Documentation for Recipe, ezCater's design system library",
+  },
+  developMiddleware: app => {
+    app.use(
+      '/playroom/',
+      createProxyMiddleware({
+        target: 'http://localhost:9000',
+        pathRewrite: {'/playroom/': ''},
+      })
+    );
   },
   plugins: [
     {
