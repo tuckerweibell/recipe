@@ -8,6 +8,7 @@ tests:
       command: tail -f /dev/null
       environment:
         NODE_ENV: 'test'
+      junit: 'reports/'
   steps:
     - run:
         test: Fetch the latest CodeClimate test reporter script
