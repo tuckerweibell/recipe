@@ -10,6 +10,17 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 11
 
+## 11.4.1 - 2021-02-26
+
+#### Dependency upgrades
+
+- Added `jest-junit` will generate a junit xml file that Jenkins knows how to read.
+- Added `jest-standard-reporter` to allow the output of jest to be sent to stdout for CI.
+
+#### Development workflow
+
+- Stripped code comments/JSX pragma comment for compatibility with babels automatic runtime mode and React 17.
+
 ## 11.4.0 - 2021-02-22
 
 #### Enhancements
@@ -45,8 +56,6 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 - Fix: Added `findIndex()` polyfill to the doc-site for compatibility with IE11.
 - Fix: Avoid syntax error when evaluating code example in the `EzGlobalStyles` component documentation.
 - Fix: Avoid layout-shift caused by the code playground. This detrimentally affected jump-to-anchor behavior within the doc-site.
-
-#### Dependency upgrades
 
 #### Development workflow
 
