@@ -20,3 +20,5 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+
+- Stripped code comments/JSX pragma comment for compatibility with babels automatic runtime mode and React 17.
