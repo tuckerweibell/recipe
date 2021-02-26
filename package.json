@@ -112,5 +112,9 @@
     "dayjs": "^1.8.14",
     "react-highlight-words": "^0.16.0",
     "styled-component-variant": "^1.0.1"
+  },
+  "jest-junit": {
+    "outputDirectory": "./reports/jest",
+    "outputName": "junit.xml"
   }
 }
