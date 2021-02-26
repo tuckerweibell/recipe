@@ -15,5 +15,6 @@
         "@babel/preset-typescript"
       ]
     }
-  }
+  },
+  "comments": false
 }
