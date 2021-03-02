@@ -1,8 +1,14 @@
 import variant from 'styled-component-variant';
 import {css} from '@emotion/core';
 import styled from '@emotion/styled';
-import {align} from '../EzTextStyle/EzTextStyle.styles';
+import {responsive} from '../../styles';
 import './vars.css';
+
+const align = responsive('align', {
+  center: {display: 'block', textAlign: 'center'},
+  left: {display: 'block', textAlign: 'left'},
+  right: {display: 'block', textAlign: 'right'},
+});
 
 export const Subheading = styled.div`
   color: var(--recipe-subheading-text-color);

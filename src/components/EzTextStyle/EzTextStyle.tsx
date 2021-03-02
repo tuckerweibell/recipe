@@ -1,21 +1,44 @@
-import variant from 'styled-component-variant';
-import styled from '@emotion/styled';
-import {base, align, strong, subdued} from './EzTextStyle.styles';
+import React, {forwardRef, AllHTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzTextStyle.theme.config';
 
-const use = variant('use', {
-  strong,
-  subdued,
+const text = theme.css({
+  display: 'inline-block',
+
+  variants: {
+    use: {
+      strong: {
+        fontWeight: '$text-strong',
+      },
+      subdued: {
+        color: '$text-subdued',
+      },
+    },
+    align: {
+      center: {display: 'block', textAlign: 'center'},
+      left: {display: 'block', textAlign: 'left'},
+      right: {display: 'block', textAlign: 'right'},
+    },
+  },
 });
 
-type Props = {
-  use?: 'strong' | 'subdued';
-  align?: 'left' | 'right' | 'center';
-  children?: React.ReactNode;
-};
+interface Props
+  extends Omit<Parameters<typeof text>[0], 'css'>,
+    Omit<AllHTMLAttributes<HTMLElement>, 'as' | 'css'> {
+  as?: keyof JSX.IntrinsicElements;
+}
+
 /**
  * Enhances text with styles to communicate emphasis.
  */
-const EzTextStyle = styled.span<Props>(base, use, align);
+const EzTextStyle = forwardRef<HTMLElement, Props>(({as: Text = 'span', ...initProps}) => {
+  const {props} = text(initProps);
+  return (
+    <Style ruleset={theme}>
+      <Text {...props} />
+    </Style>
+  );
+});
 
 /**
  * @component
