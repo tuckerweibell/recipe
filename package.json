@@ -82,7 +82,7 @@
     "sosia-types": "^1.0.4",
     "ts-jest": "^24.3.0",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.4"
+    "typescript": "^4.2.2"
   },
   "scripts": {
     "start": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop)\" --kill-others",
