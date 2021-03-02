@@ -10,7 +10,8 @@
     "outDir": "lib",
     "strict": false,
     // Import non-ES modules as default imports.
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["**/node_modules"]
