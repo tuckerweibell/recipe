@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import React, {useState} from 'react';
+import React from 'react';
 import {Placement, Modifier} from '@popperjs/core';
 import EzPortal from '../EzPortal';
 import {usePopper} from '../../utils/hooks';

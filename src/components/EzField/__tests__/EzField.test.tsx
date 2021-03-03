@@ -114,6 +114,10 @@ describe('EzField', () => {
   });
 
   it('should pass type checking', () => {
+    const onChange = e => {
+      // eslint-disable-next-line no-alert
+      alert(e.target.value);
+    };
     [
       {
         listBox: (
@@ -121,7 +125,7 @@ describe('EzField', () => {
             type="select"
             label="list box"
             value="1"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             options={[
               {label: '1', value: 1, disabled: false},
               {label: '2', value: 2, disabled: false},
@@ -141,7 +145,7 @@ describe('EzField', () => {
             type="radio"
             label="single choice"
             value="1"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             options={[
               {label: '1', value: 1, disabled: false},
               {label: '2', value: 2, disabled: false},
@@ -162,7 +166,7 @@ describe('EzField', () => {
             type="checkbox"
             label="multiple choice"
             value={['1', '2']}
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             options={[
               {label: '1', value: 1, disabled: false},
               {label: '2', value: 2, disabled: false},
@@ -183,7 +187,7 @@ describe('EzField', () => {
             type="email"
             label="email"
             value="eat@ezcater.com"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             list="1"
             minLength={3}
             multiple={false}
@@ -205,7 +209,7 @@ describe('EzField', () => {
             type="text"
             label="text"
             value="some text"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             helperText="helper text"
             labelHidden={false}
@@ -221,7 +225,7 @@ describe('EzField', () => {
             type="number"
             label="number"
             value={3}
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             helperText="helper text"
             labelHidden={false}
@@ -237,7 +241,7 @@ describe('EzField', () => {
             type="textarea"
             label="textarea"
             value="some text"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             size="small"
             helperText="helper text"
@@ -254,7 +258,7 @@ describe('EzField', () => {
             type="password"
             label="password"
             value="password123"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             helperText="helper text"
             labelHidden={false}
@@ -270,7 +274,7 @@ describe('EzField', () => {
             type="date"
             label="date"
             value="january 1, 2021"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             minDate="january 10, 2021"
             maxDate="january 31, 2021"
             filterDate={() => true}
@@ -289,7 +293,7 @@ describe('EzField', () => {
             type="time"
             label="time"
             value="5:00pm"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             start="12:00am"
             end="10:00pm"
             step={1}
@@ -314,7 +318,7 @@ describe('EzField', () => {
             ]}
             onFilter={() => true}
             onSelectionChange={() => true}
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             helperText="helper text"
             labelHidden={false}
@@ -329,7 +333,7 @@ describe('EzField', () => {
           <EzField
             label="custom"
             value="1"
-            onChange={e => alert(e.target.value)}
+            onChange={onChange}
             error="error"
             helperText="helper text"
             labelHidden={false}
