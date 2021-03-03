@@ -13,7 +13,7 @@ describe('EzField', () => {
   describe('radio button list', () => {
     const radiobuttonProps = {
       label: 'Single choice list',
-      type: 'radio' as 'radio',
+      type: 'radio' as const,
       options: [
         {label: 'Choice A', value: 'a'},
         {label: 'Choice B', value: 'b'},

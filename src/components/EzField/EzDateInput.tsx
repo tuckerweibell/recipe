@@ -54,7 +54,7 @@ const EzDateInput = ({
     id,
     name,
     value,
-    'aria-haspopup': 'dialog' as 'dialog',
+    'aria-haspopup': 'dialog' as const,
     'aria-labelledby': ariaLabelledBy,
     onChange: e => setValue(e.target.value),
     disabled,

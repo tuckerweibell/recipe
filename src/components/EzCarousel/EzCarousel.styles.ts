@@ -133,7 +133,7 @@ const slidesPerPageStyles = options => {
   if (typeof slidesPerPage === 'number') return style(slidesPerPage);
 
   const breakpoints = Object.values(slidesPerPage).reduce(
-    (res: object, n: number, i, arr: number[]) => {
+    (res: Record<string, unknown>, n: number, i, arr: number[]) => {
       return {...res, [n]: style(n, i > 0 ? arr[i - 1] : undefined)};
     },
     {}

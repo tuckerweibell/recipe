@@ -22,7 +22,7 @@ const StaticRouterWithProps = ({children}) => (
 // this is copied almost verbatim from our doc-site
 // we can likely remove this/replace this with inline module imports
 // if and when migrate our docs to MDX format instead of standard markdown
-const scope = {
+const scope: any = {
   ...Components,
   css,
   Global,

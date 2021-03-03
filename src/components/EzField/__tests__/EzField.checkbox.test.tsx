@@ -12,8 +12,8 @@ describe('EzField', () => {
   describe('check box list', () => {
     const checkboxProps = {
       label: 'Multiple choice list',
-      type: 'checkbox' as 'checkbox',
-      multiple: true as true,
+      type: 'checkbox' as const,
+      multiple: true as const,
       options: [
         {label: 'Choice A', value: 'a'},
         {label: 'Choice B', value: 'b'},

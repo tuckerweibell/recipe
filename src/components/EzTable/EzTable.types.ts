@@ -103,6 +103,7 @@ export type Sortable = {
   onClick: (
     event: React.MouseEvent<HTMLElement>,
     column: Column,
+    // eslint-disable-next-line no-shadow
     callback: (event: React.MouseEvent<HTMLElement>, options: OnSortClickOptions) => void
   ) => void;
 };

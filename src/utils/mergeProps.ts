@@ -6,7 +6,7 @@ interface Props {
 
 function chain(...callbacks: any[]): (...args: any[]) => void {
   return (...args: any[]) => {
-    const fns = callbacks.filter(Boolean) as ((...args: any[]) => any)[];
+    const fns = callbacks.filter(Boolean);
     fns.forEach(callback => callback(...args));
   };
 }
