@@ -15,6 +15,9 @@ module.exports = {
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': 2,
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   settings: {
     parser: '@typescript-eslint/parser',

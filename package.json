@@ -112,7 +112,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "playroom:start": "playroom start",
-    "playroom:build": "playroom build"
+    "playroom:build": "playroom build",
+    "preinstall": "npx npm-force-resolutions@0.0.3"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.3",
@@ -128,5 +129,9 @@
   "jest-junit": {
     "outputDirectory": "./reports/jest",
     "outputName": "junit.xml"
+  },
+  "resolutions": {
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1"
   }
 }
