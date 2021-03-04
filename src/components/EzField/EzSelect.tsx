@@ -8,6 +8,16 @@ import {ChevronIcon, InsetIcon} from '../Icons';
 import EzListBox from './EzListBox';
 import {useSelectState, useSelect} from './useSelect';
 
+/* istanbul ignore next */
+const createChangeEvent = () => {
+  if (typeof CustomEvent === 'function') return new CustomEvent('change');
+
+  const evt = document.createEvent('HTMLEvents');
+  evt.initEvent('change', false, true);
+
+  return evt;
+};
+
 const EzSelect = props => {
   const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
@@ -16,8 +26,8 @@ const EzSelect = props => {
   const containerRef = useRef<HTMLDivElement>();
   const changeEvent = useCallback(
     optionValue => {
-      const event = new Event('change');
-      // TODO: replace onChange with something like onSelectionChange. Issue #222.
+      const event = createChangeEvent();
+      // TODO: deprecate and remove in favor of onSelectionChange. Issue #222.
       (containerRef.current as any).value = optionValue;
       containerRef.current.dispatchEvent(event);
       return event;
