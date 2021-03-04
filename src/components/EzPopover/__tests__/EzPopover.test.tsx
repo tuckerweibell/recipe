@@ -3,7 +3,11 @@ import {axe} from 'jest-axe';
 import {render, screen, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import EzPopover from '../EzPopover';
+import EzField from '../../EzField';
 import {useCloseOnBlur} from '../useCloseOnBlur';
+
+// Not sure why this path is two levels deep instead of one, but 🤷‍♂️
+jest.unmock('../../EzPopover');
 
 describe('EzPopover', () => {
   describe('shouldCloseOnBlur', () => {
@@ -41,6 +45,62 @@ describe('EzPopover', () => {
       fireEvent.mouseDown(screen.getByRole('button', {name: /outside/i}));
 
       expect(onClose).toHaveBeenCalled();
+    });
+
+    it('should not call onClose only when clicking within select options inside of the popover', () => {
+      const onClose = jest.fn();
+      const onChange = jest.fn();
+
+      const PopoverExample = () => {
+        const ref = React.useRef(null);
+        const [visible, setVisible] = React.useState(false);
+        return (
+          <div>
+            <button type="button" ref={ref} onClick={() => setVisible(!visible)}>
+              Open popover
+            </button>
+            <button type="button">outside</button>
+
+            {visible && (
+              <EzPopover targetRef={ref} shouldCloseOnBlur onClose={onClose}>
+                <EzField
+                  type="select"
+                  label="Select dropdown"
+                  placeholder="Choose..."
+                  options={[
+                    {label: 'All Upcoming', value: 'upcoming'},
+                    {label: 'Today', value: 'today'},
+                    {label: 'Tomorrow', value: 'tomorrow'},
+                    {label: 'All Time', value: 'all'},
+                    {label: 'Yesterday', value: 'yesterday'},
+                    {label: 'Last 7 Days', value: 'week'},
+                    {label: 'This Month', value: 'month'},
+                  ]}
+                  value={'yesterday'}
+                  onChange={onChange}
+                />
+              </EzPopover>
+            )}
+          </div>
+        );
+      };
+
+      render(<PopoverExample />);
+
+      // open the popover
+      userEvent.click(screen.getByRole('button', {name: /Open popover/i}));
+
+      const input = screen.getByRole('combobox', {name: /Select dropdown/i});
+
+      userEvent.click(input);
+
+      const option = screen.getByRole('option', {name: /Today/i});
+
+      userEvent.click(option);
+
+      expect(onChange).toHaveBeenCalled();
+
+      expect(onClose).not.toHaveBeenCalled();
     });
   });
 

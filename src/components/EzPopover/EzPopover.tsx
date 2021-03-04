@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React from 'react';
 import {Placement, Modifier} from '@popperjs/core';
-import EzPortal from '../EzPortal';
+import EzPortal, {PortalContext} from '../EzPortal';
 import {usePopper} from '../../utils/hooks';
 import {useCloseOnBlur} from './useCloseOnBlur';
 import FocusScope from '../FocusScope';
@@ -76,9 +76,11 @@ const PopoverImpl: React.FC<Props> = ({
 
   return (
     <div data-popper-placement ref={popper as any} {...rest}>
-      <FocusScope restoreFocus ref={scopeRef}>
-        {children}
-      </FocusScope>
+      <PortalContext.Provider value={popper}>
+        <FocusScope restoreFocus ref={scopeRef}>
+          {children}
+        </FocusScope>
+      </PortalContext.Provider>
     </div>
   );
 };
