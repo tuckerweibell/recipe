@@ -15,6 +15,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fixed nested popover issue where the parent popover's `close` method was called when clicking inside of a nested popover's content. Closes #522.
+
 #### Documentation
 
 #### Dependency upgrades
