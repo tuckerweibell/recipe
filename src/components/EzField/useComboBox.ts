@@ -6,7 +6,6 @@ import {ListKeyboardDelegate, KeyboardDelegate} from './KeyboardDelegate';
 import {getItemId} from './EzListBox';
 import {mergeProps} from '../../utils/mergeProps';
 import {filterDOMProps} from './filterDOMProps';
-import {useOnFocusOutside, useOnClickOutside} from '../../utils/hooks';
 
 export function useComboBoxState(props) {
   const {onFilter, onSelectionChange} = props;
@@ -69,8 +68,6 @@ export function useComboBox(props, state): ComboBoxAria {
     state.open();
   };
 
-  const focusState = useRef({isFocusWithin: false}).current;
-
   const inputProps: React.InputHTMLAttributes<HTMLInputElement> = {
     onKeyDown(e) {
       if (!state.isOpen) return;
@@ -79,9 +76,6 @@ export function useComboBox(props, state): ComboBoxAria {
 
       if (e.key === 'Enter' && selectionManager.focusedKey !== null)
         selectionManager.replaceSelection(selectionManager.focusedKey);
-    },
-    onFocus() {
-      focusState.isFocusWithin = true;
     },
     value: state.inputValue,
     onChange,
@@ -92,12 +86,6 @@ export function useComboBox(props, state): ComboBoxAria {
   });
 
   const onFocusLost = e => {
-    if (!focusState.isFocusWithin) return;
-
-    focusState.isFocusWithin = false;
-
-    state.close();
-
     // call the user defined onBlur (if provided)
     props.onBlur?.(e);
 
@@ -105,14 +93,11 @@ export function useComboBox(props, state): ComboBoxAria {
     if (selectionManager.selectedKey === null) state.setInputValue('');
   };
 
-  useOnClickOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
-  useOnFocusOutside(onFocusLost, [props.triggerRef, props.popoverRef]);
-
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
 
   return {
     inputProps: {
-      ...mergeProps(inputProps, menuTriggerProps, domProps),
+      ...mergeProps(inputProps, menuTriggerProps, domProps, {onBlur: onFocusLost}),
       role: 'combobox',
       'aria-haspopup': 'listbox',
       'aria-controls': state.isOpen ? menuProps.id : undefined,
