@@ -6,7 +6,9 @@ import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
+import Style from '@ezcater/snitches';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
+import themeGlobals from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 import './src/styles/recipe-global.css';
@@ -76,7 +78,7 @@ const GlobalStylesWrapper = ({children}) => (
           }
         `}
       />
-      {children}
+      <Style ruleset={themeGlobals}>{children}</Style>
     </>
   </EmotionCacheProvider>
 );
