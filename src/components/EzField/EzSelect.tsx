@@ -28,7 +28,8 @@ const EzSelect = props => {
   const state = useSelectState({
     ...props,
     onSelectionChange(value) {
-      onChange(changeEvent(value));
+      onChange?.(changeEvent(value));
+      props.onSelectionChange?.(value);
     },
   });
   const {inputProps, listBoxProps} = useSelect(

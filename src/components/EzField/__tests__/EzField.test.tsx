@@ -120,12 +120,32 @@ describe('EzField', () => {
     };
     [
       {
-        listBox: (
+        'listBox-onChange': (
           <EzField
             type="select"
             label="list box"
             value="1"
             onChange={onChange}
+            options={[
+              {label: '1', value: 1, disabled: false},
+              {label: '2', value: 2, disabled: false},
+            ]}
+            error="error"
+            helperText="helper text"
+            labelHidden={false}
+            labelSize="normal"
+            maxLength={10}
+            prefix="prefix"
+            suffix="suffix"
+            touched={false}
+          />
+        ),
+        listBox: (
+          <EzField
+            type="select"
+            label="list box"
+            value="1"
+            onSelectionChange={() => {}}
             options={[
               {label: '1', value: 1, disabled: false},
               {label: '2', value: 2, disabled: false},

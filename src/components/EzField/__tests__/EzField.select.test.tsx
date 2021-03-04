@@ -151,7 +151,7 @@ describe('EzField', () => {
       expect(queryByText('Today')).toBeNull();
     });
 
-    it('should trigger onChange for the current item when enter is pressed', () => {
+    it('should trigger onChange for the current item when enter is pressed (backwards compat)', () => {
       const onChange = jest.fn();
 
       const {container} = render(
@@ -184,8 +184,8 @@ describe('EzField', () => {
       expect(lastCall[0].target.value).toEqual('today');
     });
 
-    it('should trigger onChange for the current item when space is pressed', () => {
-      const onChange = jest.fn();
+    it('should trigger onSelectionChange for the current item when enter is pressed', () => {
+      const onSelectionChange = jest.fn();
 
       const {container} = render(
         <EzField
@@ -193,7 +193,40 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="upcoming"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
+        />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      const keyDown = key => fireEvent.keyDown(input, {key});
+
+      // open the menu
+      keyDown(' ');
+      jest.runAllTimers();
+
+      // select the second next option (value is "today")
+      keyDown('ArrowDown');
+
+      keyDown('Enter');
+
+      expect(onSelectionChange).toHaveBeenCalled();
+
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
+
+      expect(lastCall[0]).toEqual('today');
+    });
+
+    it('should trigger onSelectionChange for the current item when space is pressed', () => {
+      const onSelectionChange = jest.fn();
+
+      const {container} = render(
+        <EzField
+          type="select"
+          label={inputLabel}
+          options={options}
+          value="upcoming"
+          onSelectionChange={onSelectionChange}
         />
       );
 
@@ -210,15 +243,15 @@ describe('EzField', () => {
 
       keyDown(' ');
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
 
-      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
 
-      expect(lastCall[0].target.value).toEqual('today');
+      expect(lastCall[0]).toEqual('today');
     });
 
-    it('should trigger onChange for the current item when clicked', () => {
-      const onChange = jest.fn();
+    it('should trigger onSelectionChange for the current item when clicked', () => {
+      const onSelectionChange = jest.fn();
 
       const {container} = render(
         <EzField
@@ -226,7 +259,7 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="upcoming"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
 
@@ -241,15 +274,15 @@ describe('EzField', () => {
 
       fireEvent.click(option2);
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
 
-      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
 
-      expect(lastCall[0].target.value).toEqual('today');
+      expect(lastCall[0]).toEqual('today');
     });
 
     it('bubbling focus event does NOT cause the dialog to close before a value is set', () => {
-      const onChange = jest.fn();
+      const onSelectionChange = jest.fn();
 
       const {container} = render(
         <div tabIndex={-1}>
@@ -258,7 +291,7 @@ describe('EzField', () => {
             label={inputLabel}
             options={options}
             value="upcoming"
-            onChange={onChange}
+            onSelectionChange={onSelectionChange}
           />
         </div>
       );
@@ -272,11 +305,11 @@ describe('EzField', () => {
 
       userEvent.click(option2);
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
     });
 
-    it('should not trigger onChange on the initial render', () => {
-      const onChange = jest.fn();
+    it('should not trigger onSelectionChange on the initial render', () => {
+      const onSelectionChange = jest.fn();
 
       render(
         <EzField
@@ -284,15 +317,15 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="upcoming"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
 
-      expect(onChange).not.toHaveBeenCalled();
+      expect(onSelectionChange).not.toHaveBeenCalled();
     });
 
-    it('should trigger onChange after matching typed characters to an option, even with the list is closed', () => {
-      const onChange = jest.fn();
+    it('should trigger onSelectionChange after matching typed characters to an option, even with the list is closed', () => {
+      const onSelectionChange = jest.fn();
 
       const {container} = render(
         <EzField
@@ -300,7 +333,7 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="today"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
 
@@ -310,15 +343,15 @@ describe('EzField', () => {
 
       keyDown('y');
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
 
-      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
 
-      expect(lastCall[0].target.value).toEqual('yesterday');
+      expect(lastCall[0]).toEqual('yesterday');
     });
 
-    it('should not trigger onChange when re-rendered with new props', () => {
-      const onChange = jest.fn();
+    it('should not trigger onSelectionChange when re-rendered with new props', () => {
+      const onSelectionChange = jest.fn();
 
       const {rerender} = render(
         <EzField
@@ -326,7 +359,7 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="upcoming"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
       // change to a new value
@@ -336,7 +369,7 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="tomorrow"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
       // "reset" back to original value
@@ -346,15 +379,15 @@ describe('EzField', () => {
           label={inputLabel}
           options={options}
           value="upcoming"
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
 
-      expect(onChange).not.toHaveBeenCalled();
+      expect(onSelectionChange).not.toHaveBeenCalled();
     });
 
     it('should support choices with numeric values', () => {
-      const onChange = jest.fn();
+      const onSelectionChange = jest.fn();
 
       const optionsWithNumericValues = [
         {label: 'Short', value: 5},
@@ -368,7 +401,7 @@ describe('EzField', () => {
           label={inputLabel}
           options={optionsWithNumericValues}
           value={5}
-          onChange={onChange}
+          onSelectionChange={onSelectionChange}
         />
       );
 
@@ -385,15 +418,15 @@ describe('EzField', () => {
 
       keyDown('Enter');
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
 
-      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
 
-      expect(lastCall[0].target.value).toEqual(10);
+      expect(lastCall[0]).toEqual(10);
     });
 
     it('should trigger blur when no longer focused', () => {
-      const onChange = jest.fn();
+      const onSelectionChange = jest.fn();
       const onBlur = jest.fn();
 
       const {container} = render(
@@ -403,7 +436,7 @@ describe('EzField', () => {
             label={inputLabel}
             options={options}
             value="upcoming"
-            onChange={onChange}
+            onSelectionChange={onSelectionChange}
             onBlur={onBlur}
           />
           <button type="button">click me</button>
@@ -426,8 +459,8 @@ describe('EzField', () => {
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('should trigger onChange for the current item when clicked, when inside a modal', () => {
-      const onChange = jest.fn();
+    it('should trigger onSelectionChange for the current item when clicked, when inside a modal', () => {
+      const onSelectionChange = jest.fn();
 
       render(
         <EzModal isOpen onDismiss={() => {}} dismissLabel="Dismiss" headerText="Header">
@@ -436,7 +469,7 @@ describe('EzField', () => {
             label={inputLabel}
             options={options}
             value="upcoming"
-            onChange={onChange}
+            onSelectionChange={onSelectionChange}
           />
         </EzModal>
       );
@@ -449,11 +482,11 @@ describe('EzField', () => {
 
       userEvent.click(option2);
 
-      expect(onChange).toHaveBeenCalled();
+      expect(onSelectionChange).toHaveBeenCalled();
 
-      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1];
+      const lastCall = onSelectionChange.mock.calls[onSelectionChange.mock.calls.length - 1];
 
-      expect(lastCall[0].target.value).toEqual('today');
+      expect(lastCall[0]).toEqual('today');
     });
   });
 });

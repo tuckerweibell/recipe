@@ -15,6 +15,8 @@ type ListboxProps = {
   type: 'select';
   value?: ChoiceValue;
   options: Choice[];
+  /** Handler that is called when the selection changes. */
+  onSelectionChange?: (key: Key) => any;
 };
 
 type SingleChoiceProps = {

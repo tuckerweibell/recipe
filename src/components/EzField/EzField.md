@@ -253,6 +253,12 @@ Option labels for bordered multiple choice inputs should be kept short. Unlike t
 
 Allows the user to choose between a larger set of options than would be appropriate for radio buttons. Use `type="select"` to enable the user to pick from a dropdown list of available options.
 
+- Use `type="select"` to enable the user to pick from a list of available options.
+- Use `options` to provide a array of objects with `label` and `value` properties for each option to present for selection.
+- Use `onSelectionChange` to identify the selected item. The `onSelectionChange` callback is provided the `value` of the selected option.
+
+Using `onChange` for `EzField[type=select]` is currently supported, but is deprecated in favor of `onSelectionChange`.
+
 ```jsx
 () => {
   const [choice, setChoice] = React.useState(null);
@@ -272,7 +278,7 @@ Allows the user to choose between a larger set of options than would be appropri
           {label: 'This Month', value: 'month'},
         ]}
         value={choice}
-        onChange={e => setChoice(e.target.value)}
+        onSelectionChange={setChoice}
       />
     </EzFormLayout>
   );
@@ -303,7 +309,7 @@ Options are presented in the order in which they are grouped, and then by the or
           {label: 'This Month', value: 'month', group: 'Past'},
         ]}
         value={choice}
-        onChange={e => setChoice(e.target.value)}
+        onSelectionChange={setChoice}
       />
     </EzFormLayout>
   );
@@ -317,7 +323,7 @@ Allows the user to filter longer lists of options to a set that match the text e
 If you have fewer than 6 items, consider using [radio buttons](/components/ez-field#multiple-choice-input-field) instead.
 
 - Use `type="autosuggest"` to enable the user to pick from a filtered list of available options.
-- Use `onSelectionChange` to to identify the selected item.
+- Use `onSelectionChange` to identify the selected item.
 - Use `onFilter` to react to user text input, in order to filter options to match. When updating the options list, it is strongly recommended that results are first sorted so that options are listed in the order in which the term appears earliest. For example, when searching "al", "**Al**bany, New York" appears before "T**al**lahassee, Florida".
 
 When providing
