@@ -13,7 +13,7 @@ const scope = {EzField, EzButton, EzLayout, EzFormLayout, Open, Media};
 describe('EzField', () => {
   visualSnapshots({markdown, scope: {...scope, fireEvent}});
 
-  describe('select list', () => {
+  describe('autosuggest list', () => {
     jest.useFakeTimers();
     const inputLabel = 'Select dropdown';
     const options = [
