@@ -5,7 +5,7 @@ import {render, fireEvent} from '@testing-library/react';
 import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
 
-jest.unmock('../../EzPopover');
+jest.unmock('../../../utils/hooks/usePopper');
 
 const scope = {EzTooltip, Global, css};
 

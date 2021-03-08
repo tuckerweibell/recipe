@@ -8,7 +8,7 @@ import EzButton from '../EzButton';
 import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
 
-jest.unmock('../../EzPopover');
+jest.unmock('../../../utils/hooks/usePopper');
 
 const scope = {EzButton, EzLayout, Global, css};
 
