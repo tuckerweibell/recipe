@@ -94,7 +94,7 @@ type FieldTypeProps =
 
 type ErrorOrMessage = string | boolean;
 
-type BaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
+type BaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> & {
   /**
    * Display that the input has an error
    */

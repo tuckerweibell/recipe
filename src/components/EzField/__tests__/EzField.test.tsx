@@ -351,6 +351,9 @@ describe('EzField', () => {
         ),
         customFieldInput: (
           <EzField
+            type={({value, onChange: changeHandler}) => (
+              <input value={value} onChange={changeHandler} />
+            )}
             label="custom"
             value="1"
             onChange={onChange}
