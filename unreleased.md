@@ -11,6 +11,9 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added [seek-oss playroom](https://github.com/seek-oss/playroom) to the doc-site.
+- Added internal utility for extending Recipe's base theme tokens with component-level tokens in support of component-level theming.
+
 #### Design updates
 
 #### Bug fixes
@@ -19,6 +22,7 @@ title: 'Unreleased changes'
 
 - Add documentation on how to run the doc-site locally with playroom.
 - Add documentation on how to run the doc-site locally for IE11.
+- Added instructions for using `Object.entries()` polyfill.
 
 #### Dependency upgrades
 
