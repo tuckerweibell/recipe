@@ -105,7 +105,7 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
               rel="stylesheet"
             />
             <script
-              src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2Csmoothscroll%2CArray.prototype.findIndex"
+              src="https://polyfill.io/v3/polyfill.min.js?features=es2016%2Cdefault%2Ces2017%2Ces2015%2Csmoothscroll"
               type="text/javascript"
             />
           </Helmet>
