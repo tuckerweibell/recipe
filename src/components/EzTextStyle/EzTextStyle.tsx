@@ -31,14 +31,16 @@ interface Props
 /**
  * Enhances text with styles to communicate emphasis.
  */
-const EzTextStyle = forwardRef<HTMLElement, Props>(({as: Text = 'span', ...initProps}) => {
-  const {props} = text(initProps);
-  return (
-    <Style ruleset={theme}>
-      <Text {...props} />
-    </Style>
-  );
-});
+const EzTextStyle = forwardRef<HTMLElement, Props>(
+  ({as: Text = 'span' as any, ...initProps}, ref) => {
+    const {props} = text(initProps);
+    return (
+      <Style ruleset={theme}>
+        <Text {...props} ref={ref} />
+      </Style>
+    );
+  }
+);
 
 /**
  * @component
