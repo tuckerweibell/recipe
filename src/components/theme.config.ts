@@ -14,11 +14,22 @@ const stitches = createCss({
     colors: {
       gray600: '#8b99a6',
 
+      transparent: 'transparent',
+
       // aliases
       deemphasisText: '$gray600',
     },
     fontWeights: {
       bold: 700,
+    },
+    space: {
+      250: '20px',
+    },
+    shadows: {
+      opacity40: 0.4,
+    },
+    radii: {
+      round: '50%',
     },
   },
   utils: {},
