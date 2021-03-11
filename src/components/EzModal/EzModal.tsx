@@ -80,6 +80,7 @@ const EzModal: React.FC<PropsWithRequiredLabels> = ({
                   css={{alignSelf: 'center'}}
                   tabIndex={-1}
                   label={dismissLabel}
+                  aria-hidden
                   onClick={onDismiss}
                 />
               )}
