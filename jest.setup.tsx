@@ -35,17 +35,6 @@ const EmotionCacheProvider = ({children}) => {
       prefix: false,
       // default key prefix is 'css'. Changing it to 'r' (for recipe), to trim the size of the generated output by two chars per class.
       key: 'r',
-      stylisPlugins: [
-        // can't trigger :hover and :active pseudo classes with JS, so replace the pseudo classes with custom class,
-        // e.g. :hover => .__hover
-        // for plugin overview, see: https://github.com/thysultan/stylis.js#plugins
-        (context, content) => {
-          switch (context) {
-            case -2:
-              return content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
-          }
-        },
-      ],
     })
   );
 
@@ -100,10 +89,24 @@ const chromeDesktop = new RemotePuppeteerBrowserTarget({
   height: 768,
 });
 
+const replacePseudoClasses = target => ({
+  execute(pages: any) {
+    const replace = content => content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
+    return target.execute(
+      pages.map(({css, body, name}) => ({
+        css: replace(css),
+        body: replace(body),
+        name,
+      }))
+    );
+  },
+});
+
 const target = [
   // decorators effectively run in reverse order as they modify the
   // page content *before* running executing the next target
   minifyDecorator,
+  replacePseudoClasses,
 ].reduce((res, fn) => fn(res) as any, chromeDesktop);
 
 configureSosia({
