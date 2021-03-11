@@ -25,7 +25,7 @@ describe('EzModal', () => {
   it('calls submit handler when submit button is clicked', () => {
     const clickSpy = jest.fn();
     const submitLabel = 'submit';
-    const {getByText} = render(
+    render(
       <EzModal
         isOpen
         submitLabel={submitLabel}
@@ -37,14 +37,14 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    fireEvent.click(getByText(submitLabel));
+    fireEvent.click(screen.getByRole('button', {name: submitLabel}));
     expect(clickSpy).toHaveBeenCalled();
   });
 
   it('calls dismiss handler when dismiss button is clicked', () => {
     const clickSpy = jest.fn();
     const dismissLabel = 'dismiss';
-    const {getByText} = render(
+    render(
       <EzModal
         isOpen
         dismissLabel={dismissLabel}
@@ -56,7 +56,7 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    fireEvent.click(getByText(dismissLabel));
+    fireEvent.click(screen.getByRole('button', {name: dismissLabel}));
     expect(clickSpy).toHaveBeenCalled();
   });
 
@@ -134,7 +134,7 @@ describe('EzModal', () => {
 
   it('disables the submit button when the form is submitting', () => {
     const submitLabel = 'submit';
-    const {getByText} = render(
+    render(
       <EzModal
         isOpen
         isSubmitting
@@ -145,18 +145,18 @@ describe('EzModal', () => {
         test
       </EzModal>
     );
-    const submitButton = getByText(submitLabel);
+    const submitButton = screen.getByRole('button', {name: submitLabel});
     expect(submitButton).toHaveAttribute('disabled');
   });
 
   it('sets the disabled prop on dismiss button when isSubmitting is true', () => {
     const dismissLabel = 'dismiss';
-    const {getByText} = render(
+    render(
       <EzModal isOpen isSubmitting dismissLabel={dismissLabel} headerText="header">
         test
       </EzModal>
     );
-    const dismissButton = getByText(dismissLabel);
+    const dismissButton = screen.getByRole('button', {name: dismissLabel});
     expect(dismissButton).toHaveAttribute('disabled');
   });
 
