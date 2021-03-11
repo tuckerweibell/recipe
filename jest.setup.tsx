@@ -100,8 +100,14 @@ const chromeDesktop = new RemotePuppeteerBrowserTarget({
   height: 768,
 });
 
+const target = [
+  // decorators effectively run in reverse order as they modify the
+  // page content *before* running executing the next target
+  minifyDecorator,
+].reduce((res, fn) => fn(res) as any, chromeDesktop);
+
 configureSosia({
-  targets: {'chrome-desktop': minifyDecorator(chromeDesktop)},
+  targets: {'chrome-desktop': target},
   sources: {documentation: markdownSourceWithThemeWrapper},
 });
 
