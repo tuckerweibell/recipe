@@ -74,7 +74,13 @@ const Playground = ({code, scope, language}) => {
     >
       <div
         ref={previewRef}
-        css={{gridArea: 'playground', marginRight: 16, opacity: isFrameLoaded ? 0 : 1}}
+        css={{
+          gridArea: 'playground',
+          marginRight: 16,
+          opacity: isFrameLoaded ? 0 : 1,
+          // ensure hidden content doesn't receive focus
+          visibility: isFrameLoaded ? 'hidden' : 'visible',
+        }}
       >
         {/* 
           This playground is rendered inline, but is hidden via opacity.
