@@ -17,6 +17,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- Fix: hidden content receiving focus in doc-site playground.
+
 #### Documentation
 
 #### Dependency upgrades
