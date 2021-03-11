@@ -76,7 +76,12 @@ const EzModal: React.FC<PropsWithRequiredLabels> = ({
                 {headerText}
               </EzHeading>
               {dismissLabel && (
-                <CloseButton tabIndex={-1} label={dismissLabel} onClick={onDismiss} />
+                <CloseButton
+                  css={{alignSelf: 'center'}}
+                  tabIndex={-1}
+                  label={dismissLabel}
+                  onClick={onDismiss}
+                />
               )}
             </HeaderContainer>
 

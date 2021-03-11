@@ -2,7 +2,6 @@ import {css} from '@emotion/core';
 import './vars.css';
 
 export const base = () => css`
-  align-self: center;
   background-color: transparent;
   border: 0;
   border-radius: 50%;
