@@ -11,6 +11,8 @@ title: 'Unreleased changes'
 
 #### Enhancements
 
+- Added [seek-oss playroom](https://github.com/seek-oss/playroom) to the doc-site.
+
 #### Design updates
 
 #### Bug fixes
