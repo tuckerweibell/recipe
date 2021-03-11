@@ -102,11 +102,37 @@ const replacePseudoClasses = target => ({
   },
 });
 
+// This works around an issue in Sosia whereby any inline style tags are
+// retained, but their content is also copied into the `css` block
+// rendered into the head of the page
+const removeServerRenderedStyleTags = target => ({
+  execute(pages: any) {
+    return target.execute(
+      pages.map(({css, body, name}) => {
+        // parse the body string as HTML, then nuke any inline styles
+        const container = document.createElement('body');
+        container.innerHTML = body;
+
+        container.querySelectorAll('style').forEach(el => {
+          el.parentElement.removeChild(el);
+        });
+
+        return {
+          css: css,
+          body: container.outerHTML,
+          name,
+        };
+      })
+    );
+  },
+});
+
 const target = [
   // decorators effectively run in reverse order as they modify the
   // page content *before* running executing the next target
   minifyDecorator,
   replacePseudoClasses,
+  removeServerRenderedStyleTags,
 ].reduce((res, fn) => fn(res) as any, chromeDesktop);
 
 configureSosia({
