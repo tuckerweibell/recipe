@@ -6,7 +6,7 @@ import {
   TThemeMap,
   CSSPropertiesToTokenScale,
   TStyledSheet,
-  IConfig
+  IConfig,
 } from '@stitches/core';
 
 type Globals = 'inherit' | 'initial' | 'revert' | 'unset';
@@ -19,7 +19,9 @@ const stitches = createCss({
     colors: {
       blue200: '#ebf7ff',
       blue700: '#1e70bf',
+      gray200: '#f4f7f8',
       gray600: '#8b99a6',
+      gray700: '##565a5c',
       green200: '#f3f8eb',
       green700: '#609b3b',
       purple200: '#f8f3fa',
@@ -46,23 +48,32 @@ const stitches = createCss({
       // aliases
       deemphasisText: '$gray600',
     },
+    fontSizes: {
+      75: '12px',
+      200: '16px',
+    },
     fontWeights: {
       bold: 700,
     },
-    space: {
-      100: '8px',
-      150: '12px',
-      250: '20px',
-    },
-    shadows: {
-      opacity40: 0.4,
+    lineHeights: {
+      1: 1,
     },
     radii: {
       // sizes
       regular: '4px',
 
       // shapes
+      pill: '9999px',
       round: '50%',
+    },
+    space: {
+      50: '4px',
+      100: '8px',
+      150: '12px',
+      250: '20px',
+    },
+    shadows: {
+      opacity40: 0.4,
     },
   },
   utils: {
@@ -73,7 +84,7 @@ const stitches = createCss({
     px: () => (value: TokenValue<'space'>) => ({
       paddingLeft: value,
       paddingRight: value,
-    })
+    }),
   },
   conditions: {
     base: '@media all',
@@ -89,11 +100,10 @@ export default stitches;
 type ExtractToken<P> = P extends TokenValue<infer T> ? T : never;
 
 type MapUtils<U, T extends TTheme> = {
-  [k in keyof U]: U[k] extends (theme: any) => 
-    (value: infer V) => any 
-      ? Token<T[ExtractToken<V>]>
-      : never
-}
+  [k in keyof U]: U[k] extends (theme: any) => (value: infer V) => any
+    ? Token<T[ExtractToken<V>]>
+    : never;
+};
 
 /**
  * Extends the base stitches configuration with additional theme tokens.
@@ -119,10 +129,7 @@ export function mergeCss<
   return {
     ...stitches,
     toString() {
-      return [
-        stitches.toString(),
-        config.toString(),
-      ].join(' ');
-    }
+      return [stitches.toString(), config.toString()].join(' ');
+    },
   } as any;
 }
