@@ -1,11 +1,5 @@
 :root {
-  --recipe-global-color-static-black: #000;
   --recipe-global-color-static-white: #fff;
-
-  /* brand colors */
-  --recipe-global-color-static-orange: #ff6b1e;
-  --recipe-global-color-static-blue: #3e90d6;
-  --recipe-global-color-static-green: #88bb40;
 
   /* grays */
   --recipe-global-color-static-gray-100: #fafafb;
@@ -53,27 +47,10 @@
   --recipe-global-color-static-green-700: #609b3b;
 
   /* teals */
-  --recipe-global-color-static-teal-200: #effaf8;
-  --recipe-global-color-static-teal-500: #6fd5c0;
   --recipe-global-color-static-teal-600: #1bbc9b;
-  --recipe-global-color-static-teal-700: #008066;
 
   /* purples */
-  --recipe-global-color-static-purple-200: #f8f3fa;
-  --recipe-global-color-static-purple-500: #b98acb;
   --recipe-global-color-static-purple-600: #9b59b6;
-  --recipe-global-color-static-purple-700: #7f379c;
-
-  /* opacity */
-  --recipe-global-opacity-100: 1;
-  --recipe-global-opacity-90: 0.9;
-  --recipe-global-opacity-80: 0.8;
-  --recipe-global-opacity-60: 0.6;
-  --recipe-global-opacity-50: 0.5;
-  --recipe-global-opacity-40: 0.4;
-  --recipe-global-opacity-30: 0.3;
-  --recipe-global-opacity-20: 0.2;
-  --recipe-global-opacity-10: 0.1;
 
   /* translucent */
   --recipe-global-color-transparent: transparent;
@@ -98,20 +75,11 @@
   --recipe-global-static-size-600: 48px;
   --recipe-global-static-size-750: 60px;
 
-  /* breakpoints */
-  --recipe-global-static-breakpoint-xsmall: 304px;
-  --recipe-global-static-breakpoint-small: 768px;
-  --recipe-global-static-breakpoint-medium: 1280px;
-  --recipe-global-static-breakpoint-large: 1768px;
-  --recipe-global-static-breakpoint-xlarge: 2160px;
-
   /* font */
   --recipe-global-font-family-base: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   --recipe-global-font-family-code: 'Source Code Pro', Monaco, monospace;
   --recipe-global-font-weight-regular: 400;
   --recipe-global-font-weight-bold: 700;
-  --recipe-global-leading-loose: 2;
-  --recipe-global-leading-relaxed: 1.7;
   --recipe-global-leading-normal: 1.5;
   --recipe-global-leading-snug: 1.35;
   --recipe-global-leading-tight: 1.25;
@@ -183,9 +151,6 @@
   --recipe-alias-shadow-small: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 
   /* these are set to a static size, but we may want to vary them by device scale */
-  --recipe-alias-border-radius-xsmall: var(--recipe-global-static-size-10);
-  --recipe-alias-border-radius-small: var(--recipe-global-static-size-25);
   --recipe-alias-border-radius-regular: var(--recipe-global-static-size-50);
   --recipe-alias-border-radius-medium: var(--recipe-global-static-size-100);
-  --recipe-alias-border-radius-large: var(--recipe-global-static-size-200);
 }
