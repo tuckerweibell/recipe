@@ -57,32 +57,6 @@ const stitches = createCss({
 type BaseConfig = typeof stitches.config;
 
 export default stitches;
-interface IObject {
-  [key: string]: any;
-}
-
-type TUnionToIntersection<U> = (U extends any
-? (k: U) => void
-: never) extends (k: infer I) => void
-  ? I
-  : never;
-
-export const deepMerge = <T extends IObject[]>(...objects: T): TUnionToIntersection<T[number]> => {
-  const result: any = {};
-
-  function merge(obj) {
-    Object.entries(obj).forEach(([key, value]) => {
-      result[key] =
-        typeof value === 'object' && typeof result[key] === 'object'
-          ? deepMerge(result[key], value)
-          : value;
-    });
-  }
-
-  objects.forEach(merge);
-
-  return result;
-};
 
 type ExtractToken<P> = P extends TokenValue<infer T> ? T : never;
 
@@ -112,6 +86,15 @@ export function mergeCss<
   Prefix,
   ThemeMap & BaseConfig['themeMap']
 > {
-  const mergedConfig = deepMerge(stitches.config, extension);
-  return createCss(mergedConfig) as any;
+  const config = createCss(extension);
+
+  return {
+    ...stitches,
+    toString() {
+      return [
+        stitches.toString(),
+        config.toString(),
+      ].join(' ');
+    }
+  } as any;
 }
