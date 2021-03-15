@@ -54,12 +54,17 @@ const Media = ({size, children}) => {
 
   useEffect(() => {
     if (!linkRef.current) return;
-    setSrc(
-      toDataUri({
-        head: linkRef.current.ownerDocument.head.outerHTML,
-        body: iframeEl.current.innerHTML,
-      })
-    );
+
+    // copy inline stitches tags inside the iframe
+    const ssrStyles = document.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+
+    let head = linkRef.current.ownerDocument.head.outerHTML;
+
+    Array.from(ssrStyles).forEach(tag => {
+      head += tag.outerHTML;
+    });
+
+    setSrc(toDataUri({head, body: iframeEl.current.innerHTML}));
   }, [container]);
 
   return (
