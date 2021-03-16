@@ -29,3 +29,4 @@ title: 'Unreleased changes'
 #### Development workflow
 
 - Add npm script to run the doc-site for IE11 with a workaround for [a known issue](https://github.com/gatsbyjs/gatsby/issues/14502).
+- Updated latest babel build tooling (to support TS template literals)
