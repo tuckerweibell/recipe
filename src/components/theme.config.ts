@@ -17,9 +17,31 @@ type TokenValue<T extends keyof TTheme> = T;
 const stitches = createCss({
   theme: {
     colors: {
+      blue200: '#ebf7ff',
+      blue700: '#1e70bf',
       gray600: '#8b99a6',
+      green200: '#f3f8eb',
+      green700: '#609b3b',
+      purple200: '#f8f3fa',
+      purple700: '#7f379c',
+      red200: '#fdefef',
+      red700: '#ae4d4d',
+      teal200: '#effaf8',
+      teal700: '#008066',
+      yellow200: '#fcf6e5',
+      yellow700: '#926a00',
 
       transparent: 'transparent',
+
+      // semantic
+      positiveBg: '$green200',
+      positiveText: '$green700',
+      negativeBg: '$red200',
+      negativeText: '$red700',
+      cautionBg: '$yellow200',
+      cautionText: '$yellow700',
+      informativeBg: '$blue200',
+      informativeText: '$blue700',
 
       // aliases
       deemphasisText: '$gray600',
@@ -28,12 +50,18 @@ const stitches = createCss({
       bold: 700,
     },
     space: {
+      100: '8px',
+      150: '12px',
       250: '20px',
     },
     shadows: {
       opacity40: 0.4,
     },
     radii: {
+      // sizes
+      regular: '4px',
+
+      // shapes
       round: '50%',
     },
   },
