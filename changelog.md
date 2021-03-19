@@ -10,6 +10,18 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 11
 
+## 11.4.3 - 2021-03-19
+
+#### Enhancements
+
+- Added [seek-oss playroom](https://github.com/seek-oss/playroom) to the doc-site.
+
+#### Bug fixes
+
+- Fix: hidden content receiving focus in doc-site playground.
+- Fix: Disabled state not working on EzField[type=time]. Closes #321.
+- Fix: Select list being dismissed prematurely in IE11, preventing item selection.
+
 ## 11.4.2 - 2021-03-09
 
 #### Enhancements
