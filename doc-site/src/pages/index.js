@@ -303,19 +303,25 @@ export default () => (
               <a href="https://github.com/CraigCav">
                 <MediaObject imgSrc="https://avatars0.githubusercontent.com/u/109814?s=160&v=4">
                   <p css={[font.semibold, text.white]}>Craig Cavalier</p>
-                  <p css={[text.sm, text.gray._500]}>Co-creator of Recipe</p>
+                  <p css={[text.sm, text.gray._500]}>Recipe Developer</p>
                 </MediaObject>
               </a>
-              <a href="https://github.com/ayip8">
-                <MediaObject imgSrc="https://pbs.twimg.com/profile_images/1826024514/avatar_200x200.jpg">
-                  <p css={[font.semibold, text.white]}>Andrew Yip</p>
-                  <p css={[text.sm, text.gray._500]}>Co-creator of Recipe</p>
+              <a href="https://github.com/danidewitt">
+                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/3790037?s=160&v=4">
+                  <p css={[font.semibold, text.white]}>Dani Dewitt</p>
+                  <p css={[text.sm, text.gray._500]}>Recipe Developer</p>
                 </MediaObject>
               </a>
-              <a href="https://github.com/dave-ezcater">
-                <MediaObject imgSrc="https://avatars0.githubusercontent.com/u/39057183?s=160&v=4">
-                  <p css={[font.semibold, text.white]}>Dave Janelle</p>
-                  <p css={[text.sm, text.gray._500]}>Design lead of Recipe</p>
+              <a href="https://github.com/johnhemminger">
+                <MediaObject imgSrc="https://ca.slack-edge.com/T032QEDCF-UC3DFULSE-275c0445daa9-512">
+                  <p css={[font.semibold, text.white]}>John Hemminger</p>
+                  <p css={[text.sm, text.gray._500]}>Recipe Designer</p>
+                </MediaObject>
+              </a>
+              <a href="https://github.com/sambrocc">
+                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/10697937?s=160&v=4">
+                  <p css={[font.semibold, text.white]}>Samantha Broccoli</p>
+                  <p css={[text.sm, text.gray._500]}>Recipe Designer</p>
                 </MediaObject>
               </a>
             </EzLayout>
