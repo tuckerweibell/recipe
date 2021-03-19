@@ -65,3 +65,18 @@
   );
 };
 ```
+
+### EzField time input disabled
+
+```jsx
+
+  <EzField
+    type="time"
+    label="Select delivery time"
+    helperText="This is the time your food will be delivered."
+    start="9:00am"
+    end="5:00pm"
+    value="1:00 PM"
+    disabled
+  />
+```

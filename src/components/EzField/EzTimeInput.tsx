@@ -48,6 +48,7 @@ export default ({start, end, step = 60, value, ...rest}) => {
         value={valueTimeString}
         onChange={rest.onChange}
         aria-labelledby={rest['aria-labelledby']}
+        disabled={rest.disabled}
       />
     </TimeInput>
   );
