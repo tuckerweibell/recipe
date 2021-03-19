@@ -1,6 +1,6 @@
 {
   "name": "@ezcater/recipe",
-  "version": "11.4.2",
+  "version": "11.4.3",
   "description": "ezCater's React UI Component library",
   "license": "MIT",
   "main": "lib/index.js",
