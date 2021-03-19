@@ -16,12 +16,20 @@ type TokenValue<T extends keyof TTheme> = T;
 
 const stitches = createCss({
   theme: {
+    borderWidths: {
+      thin: '1px',
+    },
     colors: {
       blue200: '#ebf7ff',
+      blue600: '#3e90d6',
+      blue650: '#3a81be',
       blue700: '#1e70bf',
       blue800: '#316da1',
       blue900: '#2b608e',
+      blue950: '#0f4879',
       gray200: '#f4f7f8',
+      gray400: '#ced4d9',
+      gray500: '#b2b3b3',
       gray600: '#8b99a6',
       gray700: '#565a5c',
       green200: '#f3f8eb',
@@ -30,7 +38,11 @@ const stitches = createCss({
       purple600: '#9b59b6',
       purple700: '#7f379c',
       red200: '#fdefef',
+      red600: '#ec5353',
       red700: '#ae4d4d',
+      red800: '#c84646',
+      red900: '#b03e3e',
+      red950: '#972f2f',
       teal200: '#effaf8',
       teal600: '#1bbc9b',
       teal700: '#008066',
@@ -51,16 +63,24 @@ const stitches = createCss({
 
       // aliases
       deemphasisText: '$gray600',
+      focusRing: '$blue600',
+    },
+    fonts: {
+      sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
     },
     fontSizes: {
       75: '12px',
       200: '16px',
+      // aliases
+      text: 'var(--recipe-compat-font-size, $200)',
     },
     fontWeights: {
       bold: 700,
     },
     lineHeights: {
       1: 1,
+      // aliases
+      tight: 1.25,
     },
     radii: {
       // sizes
@@ -72,6 +92,7 @@ const stitches = createCss({
     },
     space: {
       50: '4px',
+      75: '6px',
       100: '8px',
       150: '12px',
       200: '16px',
@@ -80,7 +101,10 @@ const stitches = createCss({
       400: '32px',
     },
     shadows: {
+      sm: '0 1px 1px 0 rgba(0, 0, 0, 0.12)',
+      'focus-ring': '$colors$focusRing 0px 0px 2px 2px',
       opacity40: 0.4,
+      opacity45: 0.45,
     },
   },
   utils: {
