@@ -18,6 +18,7 @@ title: 'Unreleased changes'
 #### Bug fixes
 
 - Fix: hidden content receiving focus in doc-site playground.
+- Fix: Disabled state not working on EzField[type=time]. Closes #321.
 
 #### Documentation
 
