@@ -19,6 +19,7 @@ title: 'Unreleased changes'
 
 - Fix: hidden content receiving focus in doc-site playground.
 - Fix: Disabled state not working on EzField[type=time]. Closes #321.
+- Fix: Select list being dismissed prematurely in IE11, preventing item selection.
 
 #### Documentation
 
