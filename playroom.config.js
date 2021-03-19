@@ -4,7 +4,7 @@ module.exports = {
   components: './src/components/index.tsx',
   outputPath: './doc-site/public/playroom',
   title: 'ezCater Recipe',
-  themes: './src/themes',
+  themes: './src/themes/index.ts',
   snippets: './playroom/snippets.js',
   frameComponent: './playroom/FrameComponent.js',
   widths: [320, 768, 1024],
