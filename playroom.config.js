@@ -16,7 +16,7 @@ module.exports = {
       <EzCard>Hello World!</EzCard>
     </EzPage>
   `,
-  baseUrl: '/playroom/',
+  baseUrl: '/recipe/playroom/',
   webpackConfig: () => ({
     module: {
       rules: [
