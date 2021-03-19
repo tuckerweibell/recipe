@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {jsx} from '@emotion/core';
 import Helmet from 'react-helmet';
-import {StaticQuery, graphql} from 'gatsby';
+import {StaticQuery, graphql, withPrefix} from 'gatsby';
 import Link from 'gatsby-link';
 import {ThemeProvider} from 'emotion-theming';
 import naturalSort from 'natural-sort';
@@ -75,7 +75,7 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
         as: Link,
       }));
 
-      links.splice(3, 0, {href: '/playroom', label: 'Playroom'});
+      links.splice(3, 0, {href: withPrefix('/playroom'), label: 'Playroom'});
 
       const activeLink = links.find(link => location.pathname.includes(link.to));
       const relatedPages = activeLink ? activeLink.links.map(l => ({...l, as: Link})) : [];
