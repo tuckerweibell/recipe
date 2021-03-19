@@ -1,4 +1,4 @@
-### EzField[type=time] with error
+### EzField time input with error
 
 ```jsx
 <EzFormLayout>
