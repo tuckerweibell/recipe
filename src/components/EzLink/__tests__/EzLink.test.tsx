@@ -23,6 +23,19 @@ describe('EzLink', () => {
     expect(actual).toHaveNoViolations();
   });
 
+  it('should retain className and refs in wrapped element', () => {
+    const ref = React.createRef<HTMLAnchorElement>();
+    render(
+      <EzLink>
+        <a href="/orders" ref={ref} className="custom-class-name">
+          View Orders
+        </a>
+      </EzLink>
+    );
+
+    expect(ref.current.className).toMatch(/custom-class-name/);
+  });
+
   it('should pass type checking', () => {
     [
       {
