@@ -82,6 +82,7 @@ const linkButton = theme.css({
   py: '$banner-button-py',
   borderRadius: '$banner-button-rounded',
   boxShadow: '$banner-button-shadow',
+  lineHeight: 'normal',
 
   '&:focus, &:hover, &:active': {
     backgroundColor: '$banner-button-bg',
