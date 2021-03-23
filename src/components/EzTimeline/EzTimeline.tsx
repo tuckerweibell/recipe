@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import {jsx, Interpolation} from '@emotion/core';
-import EzButton from '../EzButton';
 import {TimelineProps} from './EzTimeline.types';
 import {mq} from '../../themes/styled';
 import './vars.css';
@@ -76,11 +75,15 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
             },
           }}
         >
-          <EzButton
-            use="secondary"
+          <button
             type="button"
             onClick={expandable.onClick}
             css={{
+              color: 'var(--recipe-global-color-static-blue-600)',
+              boxShadow: 'var(--recipe-alias-shadow-small)',
+              border: 'solid var(--recipe-alias-border-size-thin) var(--recipe-alias-border-color)',
+              fontWeight: 'bold',
+              fontFamily: 'var(--recipe-global-font-family-base)',
               width: '100%',
               borderRadius: 'var(--recipe-timeline-footer-border-radius)',
               backgroundColor: 'var(--recipe-timeline-footer-background-color)',
@@ -88,10 +91,18 @@ const EzTimeline: React.FC<TimelineProps> = ({children, expandable}) => {
               letterSpacing: 1,
               padding: `var(--recipe-global-static-size-150) var(--recipe-global-static-size-250)`,
               textTransform: 'uppercase',
+              '&:hover': {
+                color: 'var(--recipe-global-color-static-blue-800)',
+                backgroundColor: 'white',
+              },
+              '&:focus': {
+                outline: 'none',
+                boxShadow: 'var(--recipe-alias-focus-ring-shadow)',
+              },
             }}
           >
             {expandable.expandLabel}
-          </EzButton>
+          </button>
         </section>
       )}
     </div>
