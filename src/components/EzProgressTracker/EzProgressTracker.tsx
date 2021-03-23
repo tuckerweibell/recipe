@@ -3,7 +3,7 @@ import {jsx, Interpolation} from '@emotion/core';
 import {Fragment} from 'react';
 import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
-import LinkButton from '../EzPageHeader/LinkButton';
+import LinkButton from '../LinkButton';
 import {LabelledOptionalLink} from '../EzLink/EzLink.types';
 import {isLink} from '../EzLink';
 
@@ -164,9 +164,21 @@ const StepLabel = ({label, visited, isHorizontal, link}) => {
   const color = !visited && 'var(--recipe-alias-deemphasis-text-color)';
   const paddingLeft = !isHorizontal && 'var(--recipe-global-static-size-150)';
   return link ? (
-    <span css={{paddingLeft}}>
-      <LinkButton label={label} {...link} css={{color}} />
-    </span>
+    <LinkButton
+      label={label}
+      {...link}
+      css={{
+        color: color || 'var(--recipe-global-color-static-blue-600)',
+        appearance: 'none',
+        border: 'none',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        fontSize: '1rem',
+        fontFamily: 'var(--recipe-global-font-family-base)',
+        padding: 0,
+        paddingLeft,
+      }}
+    />
   ) : (
     <EzTextStyle align="center" use="strong" css={{color, paddingLeft}}>
       {label}
