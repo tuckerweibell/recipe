@@ -2,8 +2,8 @@ import React, {forwardRef} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzBanner.theme.config';
 import CloseButton from '../CloseButton';
-import LinkButton from '../EzPageHeader/LinkButton';
 import EzHeading from '../EzHeading';
+import LinkButton from '../LinkButton';
 
 type Ref = HTMLDivElement;
 type Props = {
@@ -80,14 +80,21 @@ const linkButton = theme.css({
   color: '$banner-button-text',
   px: '$banner-button-px',
   py: '$banner-button-py',
+  border: 'none',
   borderRadius: '$banner-button-rounded',
   boxShadow: '$banner-button-shadow',
-  lineHeight: 'normal',
+  fontFamily: '$sans',
+  fontWeight: '$bold',
+  fontSize: '$text',
+  cursor: 'pointer',
 
   '&:focus, &:hover, &:active': {
     backgroundColor: '$banner-button-bg',
     textDecoration: 'none',
     outline: 'none',
+  },
+  '&:focus': {
+    boxShadow: '$focus-ring',
   },
   '&:hover, &:active': {
     boxShadow: '$banner-button-shadow-dark',
@@ -112,7 +119,7 @@ const EzBanner = forwardRef<Ref, Props>(({title, link, use, message, onDismiss},
         </EzHeading>
         <CloseButton label="Close" onClick={onDismiss} className={closeButton()} />
         <p>{message}</p>
-        <LinkButton className={linkButton().toString()} {...link} />
+        <LinkButton {...link} className={linkButton()} />
       </div>
     </Style>
   );
