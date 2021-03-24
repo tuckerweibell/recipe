@@ -59,14 +59,28 @@ const Media = ({size, children}) => {
   useEffect(() => {
     if (!linkRef.current) return;
 
+    const ownerDocument = linkRef.current.ownerDocument as Document;
+    const frame = iframeEl.current as HTMLElement;
+
     // copy inline stitches tags inside the iframe
-    const ssrStyles = document.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+    const ssrStyles = ownerDocument.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+    const frameStyles = frame.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
 
-    let head = linkRef.current.ownerDocument.head.outerHTML;
+    let head = ownerDocument.head.outerHTML;
 
+    // copy styles from parent into iframe
     Array.from(ssrStyles).forEach(tag => {
       head += tag.outerHTML;
     });
+    // move inline styles from iframe into head
+    // snitches would typically do this for us, but can't reach inside the iframe
+    Array.from(frameStyles).forEach(tag => {
+      head += tag.outerHTML;
+      tag.parentNode.removeChild(tag);
+    });
+
+    // join style tags together to reduce the payload size
+    head = head.replace(/<\/style><style\s?.*?>/g, '');
 
     setSrc(toDataUri({head, body: iframeEl.current.innerHTML}));
   }, [container]);
