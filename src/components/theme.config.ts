@@ -155,12 +155,14 @@ export function mergeCss<
   Prefix,
   ThemeMap & BaseConfig['themeMap']
 > {
-  const config = createCss(extension);
+  const utils = Object.assign({}, stitches.config.utils, extension.utils) as any;
+  const conditions = Object.assign({}, stitches.config.conditions, extension.conditions) as any;
+  const merged = createCss({...extension, utils, conditions});
 
   return {
-    ...stitches,
+    ...merged,
     toString() {
-      return [stitches.toString(), config.toString()].join(' ');
+      return [stitches.toString(), merged.toString()].join(' ');
     },
   } as any;
 }
