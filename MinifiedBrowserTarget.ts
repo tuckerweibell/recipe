@@ -50,6 +50,23 @@ const removeVendorPrefix = ({css, body, name}) => {
   };
 };
 
+const groupRootStyles = ({css, body, name}) => {
+  const pattern = /\s*:root {([^}]+)}\s*:root {\s*([^}]+)}/g;
+  const replacement = '\n:root {$1$2}';
+
+  let output = css;
+  let next;
+
+  // eslint-disable-next-line no-cond-assign
+  while ((next = output.replace(pattern, replacement)) !== output) output = next;
+
+  return {
+    css: output,
+    body,
+    name,
+  };
+};
+
 // Any visual regression tests that test media queries use the Media component
 // to embed the content within an iframe that is sized to the breakpoint being tested.
 // The Media component duplicates the css from the page into the iframe so that it's
@@ -84,6 +101,7 @@ export const decorate = target => ({
       pages
         .map(rewriteCssCustomVars)
         .map(removeVendorPrefix)
+        .map(groupRootStyles)
         .map(minifyCss)
         .map(skipCssWithIframeBody)
         .map(warnLargeSnapshot)
