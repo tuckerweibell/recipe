@@ -70,6 +70,7 @@
     "jest-raw-loader": "^1.0.1",
     "jest-standard-reporter": "^2.0.0",
     "jest-transform-css": "^2.1.0",
+    "lz-string": "^1.4.4",
     "parcel": "^2.0.0-nightly.435",
     "playroom": "^0.23.0",
     "plop": "^2.5.3",

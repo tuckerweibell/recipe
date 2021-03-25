@@ -1,4 +1,5 @@
 import CleanCSS from 'clean-css';
+import lzString from 'lz-string';
 
 const customPropertyRegExp = /(--[A-z][\w-]*):/g;
 const vendorPrefixedRulesRegEx = /-(moz|o|webkit|ms|khtml)-(?!font-smoothing|osx|print|scrollbar|[A-z]*;).+?;/g;
@@ -83,6 +84,30 @@ const skipCssWithIframeBody = ({css, body, name}) => {
   };
 };
 
+const compress = ({css, body, name}) => {
+  const page = `<style>${css}</style><body>${body}</body>`;
+  const encoded = lzString.compressToEncodedURIComponent(page);
+  return {
+    css: '',
+    // including the font here is a bit of a hack... but let's face it, this whole file is 🤷‍♂️
+    body: `
+      <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap" rel="stylesheet">
+      <script type="module">
+        import lzString from 'https://cdn.skypack.dev/lz-string';
+        const decompressed = lzString.decompressFromEncodedURIComponent(\`${encoded}\`);
+        const doc = new DOMParser().parseFromString(decompressed, 'text/html');
+        document.replaceChild(doc.documentElement, document.documentElement);
+        for (let script of Array.from(document.scripts)) {
+          var clone = document.createElement('script');
+          clone.appendChild(document.createTextNode(script.textContent));
+          script.replaceWith(clone);
+        }
+      </script>
+    `,
+    name,
+  };
+};
+
 const warnLargeSnapshot = page => {
   /* eslint-disable no-console */
   if (page.css.length + page.body.length > 24600) {
@@ -104,6 +129,7 @@ export const decorate = target => ({
         .map(groupRootStyles)
         .map(minifyCss)
         .map(skipCssWithIframeBody)
+        .map(compress)
         .map(warnLargeSnapshot)
     );
   },
