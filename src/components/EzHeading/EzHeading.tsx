@@ -1,66 +1,116 @@
-import React from 'react';
-import {headings, Subheading} from './EzHeading.styles';
+import React, {forwardRef, HTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzHeading.theme.config';
 import {ClearSlots, useSlotProps} from '../../utils/slots';
+import {domProps, mergeProps} from '../../utils';
 
-const classNames = (...args) => args.filter(Boolean).join(' ');
+const headingCss = theme.css({
+  color: '$heading-text',
+  lineHeight: '$heading',
+  margin: 0,
 
-type HeadingProps = {
+  variants: {
+    size: {
+      1: {
+        fontSize: '$800',
+        fontWeight: '$regular',
+      },
+      2: {
+        fontSize: '$450',
+        fontWeight: '$regular',
+      },
+      3: {
+        fontSize: '$300',
+        fontWeight: '$bold',
+      },
+      4: {
+        fontSize: '$200',
+        fontWeight: '$regular',
+      },
+      5: {
+        fontSize: '$100',
+        fontWeight: '$bold',
+      },
+      6: {
+        fontSize: '$75',
+        fontWeight: '$regular',
+      },
+    },
+  },
+});
+
+const subheadingCss = theme.css({
+  color: '$subheading-text',
+  fontSize: '$subheading',
+  fontWeight: '$subheading',
+  lineHeight: '$subheading',
+  marginTop: '$100',
+});
+
+const alignCss = theme.css({
+  variants: {
+    align: {
+      center: {display: 'block', textAlign: 'center'},
+      left: {display: 'block', textAlign: 'left'},
+      right: {display: 'block', textAlign: 'right'},
+    },
+  },
+});
+
+type Sizes = Pick<Parameters<typeof headingCss>[0], 'size'>;
+type Alignment = Pick<Parameters<typeof alignCss>[0], 'align'>;
+type Tag = React.ComponentType<any>;
+interface Props extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>, Alignment, Sizes {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  align?: 'left' | 'right' | 'center';
-  children: React.ReactNode;
-  size: '1' | '2' | '3' | '4' | '5' | '6';
-  id?: string;
-  className?: string;
   subheading?: string;
-};
+}
 
 /**
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
-const EzHeading: React.FC<HeadingProps> = ({
-  as,
-  id,
-  children: title,
-  className,
-  align,
-  size: headingSize,
-  subheading: subtitle,
-}) => {
-  const headingElement = as || `h${headingSize}`;
-  const Heading = headings[headingElement];
-  const slotProps = useSlotProps({}, 'heading');
+const EzHeading = forwardRef<HTMLElement, Props>(
+  ({children: title, subheading: subtitle, align, size, as, ...additionalProps}, ref) => {
+    const HeadingLevel = (as || (`h${size}` as any)) as Tag;
+    const slotProps = useSlotProps({}, 'heading');
 
-  const heading = (
-    <Heading size={headingSize} id={id}>
-      <ClearSlots>{title}</ClearSlots>
-    </Heading>
-  );
+    const headingElement = (
+      <HeadingLevel className={headingCss({size})}>
+        <ClearSlots>{title}</ClearSlots>
+      </HeadingLevel>
+    );
 
-  const subheading = subtitle && (headingSize === '3' || headingSize === '5') && (
-    <Subheading>
-      <ClearSlots>{subtitle}</ClearSlots>
-    </Subheading>
-  );
+    const subheadingElement = subtitle && (size === '3' || size === '5') && (
+      <div className={subheadingCss()}>
+        <ClearSlots>{subtitle}</ClearSlots>
+      </div>
+    );
 
-  const header = (
-    <div>
-      {heading}
-      {subheading}
-    </div>
-  );
+    const wrapperElement = (
+      <div>
+        {headingElement}
+        {subheadingElement}
+      </div>
+    );
 
-  // eslint-disable-next-line dot-notation
-  const classNameWithInternal = classNames(className, EzHeading['__internalComponentSelector']);
+    const el = subheadingElement ? wrapperElement : headingElement;
+    const props = domProps(slotProps, alignCss({align}));
 
-  return React.cloneElement(subheading ? header : heading, {
-    className: classNameWithInternal,
-    align,
-    ...slotProps,
-  });
-};
+    const children = React.cloneElement(
+      el,
+      mergeProps(
+        props,
+        additionalProps,
+        // eslint-disable-next-line dot-notation
+        {ref, className: EzHeading['__internalComponentSelector']},
+        {className: el.props.className?.toString()}
+      )
+    );
+
+    return <Style ruleset={theme}>{children}</Style>;
+  }
+);
 
 // eslint-disable-next-line dot-notation
 EzHeading['__internalComponentSelector'] = 'css-ezh';
 
-// wrap with styled to allow emotion to target as child component
 export default EzHeading;

@@ -62,6 +62,7 @@ const stitches = createCss({
       informativeText: '$blue700',
 
       // aliases
+      text: '$gray700',
       deemphasisText: '$gray600',
       focusRing: '$blue600',
     },
@@ -70,16 +71,22 @@ const stitches = createCss({
     },
     fontSizes: {
       75: '12px',
+      100: '14px',
       200: '16px',
+      300: '18px',
+      450: '21px',
+      800: '32px',
       // aliases
       text: 'var(--recipe-compat-font-size, $200)',
     },
     fontWeights: {
+      regular: 400,
       bold: 700,
     },
     lineHeights: {
       1: 1,
       // aliases
+      snug: 1.35,
       tight: 1.25,
     },
     radii: {
