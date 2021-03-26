@@ -72,7 +72,7 @@ const closeButton = theme.css({
 });
 
 const heading = theme.css({
-  color: '$$banner-text',
+  '&&': {color: '$$banner-text'},
 });
 
 const linkButton = theme.css({
