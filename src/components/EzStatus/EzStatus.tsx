@@ -11,6 +11,7 @@ const status = theme.css({
   fontWeight: '$status-bold',
   borderRadius: '$pill',
   whiteSpace: 'nowrap',
+  fill: 'currentColor',
 
   variants: {
     use: {

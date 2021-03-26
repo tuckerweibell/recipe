@@ -28,6 +28,7 @@ const container = theme.css({
   py: '$alert-py',
   px: '$alert-px',
   paddingLeft: '$alert-p-icon-side',
+  fill: 'currentColor',
 
   // pseudo element for the arrow
   '&::before, &::after': {

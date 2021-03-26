@@ -107,6 +107,7 @@ export const CharacterLimit = styled.div`
 
 export const ErrorTriangle = styled(ErrorIcon)`
   color: var(--recipe-semantic-negative-color-default);
+  fill: var(--recipe-semantic-negative-color-default);
 `;
 
 export const ScreenReaderOnly = styled.div(hideVisually());
