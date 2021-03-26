@@ -55,6 +55,7 @@ const stitches = createCss({
       positiveBg: '$green200',
       positiveText: '$green700',
       negativeBg: '$red200',
+      negative: '$red600',
       negativeText: '$red700',
       cautionBg: '$yellow200',
       cautionText: '$yellow700',

@@ -1,10 +1,10 @@
-import React from 'react';
-import {InlineFeedback} from './EzInlineFeedback.styles';
-
+import React, {forwardRef, HTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzInlineFeedback.theme.config';
 import {ErrorIcon, ProgressIcon, SuccessIcon} from '../Icons';
-
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
+import {domProps} from '../../utils';
 
 const icons = {
   error: <ErrorIcon />,
@@ -12,19 +12,44 @@ const icons = {
   success: <SuccessIcon />,
 };
 
-type Props = {
-  use: string;
-};
+const styles = theme.css({
+  display: 'inline-block',
+  lineHeight: '$inline-feedback',
+  verticalAlign: 'top',
 
-const EzInlineFeedback: React.FC<Props> = ({use}) => {
+  // spinner
+  svg: {
+    marginRight: '$100',
+  },
+
+  variants: {
+    use: {
+      error: {color: '$negative', fill: '$negative'},
+      progress: {fill: '$deemphasisText'},
+      success: {fill: '$positiveText'},
+    },
+  },
+});
+
+type Ref = HTMLSpanElement;
+type Use = 'error' | 'progress' | 'success';
+interface Props extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'> {
+  use: Use;
+}
+
+const EzInlineFeedback = forwardRef<Ref, Props>(({use, ...additionalProps}, ref) => {
   const {t} = useTranslation(en);
 
+  const props = domProps(additionalProps, styles({use}));
+
   return (
-    <InlineFeedback use={use}>
-      {icons[use]}
-      {t(use)}
-    </InlineFeedback>
+    <Style ruleset={theme}>
+      <span {...props} ref={ref}>
+        {icons[use]}
+        {t(use)}
+      </span>
+    </Style>
   );
-};
+});
 
 export default EzInlineFeedback;
