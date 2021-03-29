@@ -40,4 +40,18 @@ describe('EzPage', () => {
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        childrenProp: (
+          <EzPage>
+            <div>recipe!</div>
+          </EzPage>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });

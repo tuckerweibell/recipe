@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import variant from 'styled-component-variant';
 import {mq} from '../../themes/styled';
 import {childStyles} from './styles';
+import './vars.css';
 
 const aside = () => mq('medium', {width: 'var(--recipe-page-section-aside-width)'});
 
