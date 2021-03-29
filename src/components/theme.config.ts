@@ -28,6 +28,7 @@ const stitches = createCss({
       blue900: '#2b608e',
       blue950: '#0f4879',
       gray200: '#f4f7f8',
+      gray300: '#e6e9eb',
       gray400: '#ced4d9',
       gray500: '#b2b3b3',
       gray600: '#8b99a6',
@@ -66,6 +67,7 @@ const stitches = createCss({
       text: '$gray700',
       deemphasisText: '$gray600',
       focusRing: '$blue600',
+      icon: '$gray600',
     },
     fonts: {
       sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
@@ -98,6 +100,10 @@ const stitches = createCss({
       pill: '9999px',
       round: '50%',
     },
+    sizes: {
+      750: '60px',
+      full: '100%',
+    },
     space: {
       50: '4px',
       75: '6px',
@@ -116,6 +122,13 @@ const stitches = createCss({
     },
   },
   utils: {
+    // util for https://developer.mozilla.org/en-US/docs/Web/CSS/inset
+    inset: () => (value: TokenValue<'space'>) => ({
+      top: value,
+      right: value,
+      bottom: value,
+      left: value,
+    }),
     py: () => (value: TokenValue<'space'>) => ({
       paddingTop: value,
       paddingBottom: value,
