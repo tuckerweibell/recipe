@@ -117,6 +117,7 @@ const stitches = createCss({
       250: '20px',
       300: '24px',
       400: '32px',
+      750: '60px',
     },
     shadows: {
       sm: '0 1px 1px 0 rgba(0, 0, 0, 0.12)',
