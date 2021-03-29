@@ -1,18 +1,57 @@
 import React, {useEffect, useRef, createRef, useState} from 'react';
+import Style from '@ezcater/snitches';
 import dayjs from 'dayjs';
-
-import {
-  CalendarTable,
-  Row,
-  MonthNavigation,
-  MonthName,
-  WeekdayName,
-  Day,
-} from './EzCalendar.styles';
-
-import en from './en';
+import theme from './EzCalendar.theme.config';
 import EzButton from '../EzButton';
+import EzHeading from '../EzHeading';
 import {useTranslation} from '../../utils/hooks';
+import en from './en';
+import EzTextStyle from '../EzTextStyle';
+
+const container = theme.css({
+  width: '$full',
+  textAlign: 'center',
+
+  button: {
+    fontSize: 'inherit',
+  },
+
+  '&& > * + *': {
+    marginTop: '$75',
+  },
+});
+
+const dayOfWeek = theme.css({
+  fontWeight: '$calendar-day-of-week',
+  textDecoration: 'none',
+});
+
+const row = theme.css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+const pagination = theme.css({
+  padding: '$100',
+});
+
+const cell = theme.css({
+  padding: '$100',
+
+  // normalize the sizes of the cells
+  flex: 1,
+
+  variants: {
+    selected: {
+      true: {
+        borderRadius: '$regular',
+        border: 'solid 1px $calendar-day-border-selected',
+        backgroundColor: '$calendar-day-bg-selected',
+      },
+    },
+  },
+});
 
 const weekDayCount = 7;
 const maxDaysInMonth = 31;
@@ -110,10 +149,10 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
   };
 
   return (
-    <div>
-      <CalendarTable ref={calendarRef}>
-        <Row>
-          <MonthNavigation>
+    <Style ruleset={theme}>
+      <section className={container()} ref={calendarRef}>
+        <div className={row()}>
+          <div className={pagination()}>
             <EzButton
               use="tertiary"
               ref={focusTarget}
@@ -121,57 +160,62 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
             >
               ← {t('Prev')}
             </EzButton>
-          </MonthNavigation>
-          <MonthName>{focusedDate.format('MMMM YYYY')}</MonthName>
-          <MonthNavigation>
+          </div>
+          <EzHeading size="5" as="h2">
+            {focusedDate.format('MMMM YYYY')}
+          </EzHeading>
+          <div className={pagination()}>
             <EzButton
               use="tertiary"
               onClick={() => setFocusedDate(focusedDate.add(1, 'month').set('date', 1))}
             >
               {t('Next')} →
             </EzButton>
-          </MonthNavigation>
-        </Row>
-        <Row>
-          {repeat(weekDayCount).map((_, dayIndex) => (
-            <WeekdayName key={dayIndex}>
-              {focusedDate.set('day', dayIndex).format('dd')}
-            </WeekdayName>
-          ))}
-        </Row>
+          </div>
+        </div>
+        <div className={row()}>
+          {repeat(weekDayCount).map((_, dayIndex) => {
+            const day = focusedDate.set('day', dayIndex);
+            return (
+              <div className={cell()} key={dayIndex}>
+                <abbr className={dayOfWeek()} title={day.format('dddd')}>
+                  {day.format('dd')}
+                </abbr>
+              </div>
+            );
+          })}
+        </div>
         <div>
           {populateMonth(focusedDate).map((week, weekIndex) => (
-            <Row key={weekIndex}>
+            <div key={weekIndex} className={row()}>
               {week.map((day, dayIndex) => {
                 const currentDay = focusedDate.set('date', day);
                 const selectDate = () => onChange(currentDay.format(t('DATE_FORMAT')));
                 const disabled = !isEnabled(currentDay);
-                const ifEnabled = fn => e => {
-                  if (!disabled) fn(e);
-                };
+                const selected = currentDay.isSame(selectedDate);
                 return (
-                  <Day key={dayIndex} isSelected={currentDay.isSame(selectedDate)}>
+                  <div className={cell({selected})} key={dayIndex}>
                     {day && (
-                      <button
+                      <EzButton
+                        use="tertiary"
                         ref={refs[day - 1]}
-                        type="button"
-                        onClick={ifEnabled(selectDate)}
-                        aria-disabled={disabled}
+                        onClick={selectDate}
+                        disabled={disabled}
                         onKeyDown={handleKeyInput(selectDate, disabled)}
                         aria-label={currentDay.format('dddd, MMMM D, YYYY').toString()}
                         tabIndex={day === focusedDate.date() ? 0 : -1}
                       >
-                        {day}
-                      </button>
+                        <EzTextStyle use={disabled ? 'subdued' : undefined}>{day}</EzTextStyle>
+                      </EzButton>
                     )}
-                  </Day>
+                  </div>
                 );
               })}
-            </Row>
+            </div>
           ))}
         </div>
-      </CalendarTable>
-    </div>
+      </section>
+    </Style>
   );
 };
 
