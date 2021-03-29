@@ -184,6 +184,18 @@ npm run start
 
 This command will start a server and open your browser to http://localhost:8000/ to see the doc-site. The server will watch your local file system and will hot reload the doc-site as you make changes.
 
+You can to run the doc-site with playroom locally:
+
+```term
+npm run start:with-playroom
+```
+
+You can also run the doc-site for IE11 locally. You'll have to kill and rerun the doc-site every time you make a change when running it for IE11 (this is a workaround for [a known issue](https://github.com/gatsbyjs/gatsby/issues/14502)):
+
+```term
+npm run start:with-ie11
+```
+
 ### Working on a component in a downstream application
 
 If you want to test your local component code from within your application, you'll need to setup a link.

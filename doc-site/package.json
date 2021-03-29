@@ -54,6 +54,7 @@
     "build:prod": "npm run clean && gatsby build --prefix-paths",
     "deploy": "gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
     "develop": "gatsby develop --open",
+    "develop:with-ie11": "gatsby build && gatsby serve --open",
     "clean": "rm -rf .cache && rm -rf public",
     "lint": "eslint . --rule '@ezcater/recipe/track-imports: [warn, trace]'"
   },
