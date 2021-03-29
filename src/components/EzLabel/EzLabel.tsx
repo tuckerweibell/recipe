@@ -1,7 +1,40 @@
-import React from 'react';
-import StyledLabel from './EzLabel.styles';
+import React, {forwardRef, LabelHTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzLabel.theme.config';
 
-type Props = React.LabelHTMLAttributes<any> & {
+const styles = theme.css({
+  display: 'block',
+  lineHeight: '$label',
+  fontWeight: '$label',
+  padding: 0,
+
+  variants: {
+    size: {
+      small: {
+        color: '$label-small',
+        fontSize: '$label-small',
+      },
+      normal: {
+        color: '$label',
+        fontSize: '$label',
+      },
+    },
+    position: {
+      hidden: {'sr-only': 'true'},
+      top: {marginBottom: '$label-my'},
+      bottom: {marginTop: '$label-my'},
+      left: {marginRight: '$label-mx', display: 'inline-block'},
+      right: {marginLeft: '$label-mx', display: 'inline-block'},
+    },
+    error: {true: {}},
+  },
+  compoundVariants: [{error: 'true', css: {color: '$negative'}}],
+});
+
+type Sizes = Pick<Parameters<typeof styles>[0], 'size'>['size'];
+type Positions = Pick<Parameters<typeof styles>[0], 'position'>['position'];
+type Ref = HTMLDivElement;
+interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   /**
    * changes the HTML element used to render the label
    */
@@ -9,21 +42,29 @@ type Props = React.LabelHTMLAttributes<any> & {
   /**
    * changes the position of the label
    */
-  position?: 'hidden' | 'top' | 'bottom' | 'left' | 'right';
+  position?: Positions;
   /**
    * changes the styles of the label for the selected size
    */
-  size?: 'normal' | 'small';
+  size?: Sizes;
   /**
    * changes the styles of the label to indicate an error state
    */
   error?: boolean;
-};
+}
 
 /**
  * A component to provide consistent styling for Primary and Secondary labels.
  */
-const EzLabel: React.FC<Props> = StyledLabel;
+const EzLabel = forwardRef<Ref, Props>((initialProps, ref) => {
+  const {props} = styles(initialProps);
+
+  return (
+    <Style ruleset={theme}>
+      <div {...props} ref={ref} />
+    </Style>
+  );
+});
 
 /**
  * defaultProps
