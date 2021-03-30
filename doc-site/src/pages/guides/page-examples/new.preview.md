@@ -135,7 +135,7 @@
     >
       <EzPage>
         <EzCard
-          imageSrc="https://via.placeholder.com/200+x+75/00b373/FFFFFF?text=+"
+          imageSrc="http://via.placeholder.com/200+x+75/00b373/FFFFFF?text=+"
           imagePosition={{base: 'top', medium: 'right'}}
         >
           <EzLayout layout="stack">

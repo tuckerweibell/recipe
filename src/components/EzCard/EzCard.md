@@ -322,7 +322,7 @@ Card images can be used to enhance the content of the card and are ideal for mar
 <EzPage>
   <EzCard
     title="Card with image at top"
-    imageSrc="https://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+    imageSrc="http://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
   >
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
@@ -331,7 +331,7 @@ Card images can be used to enhance the content of the card and are ideal for mar
   </EzCard>
   <EzCard
     title="Card with image on right"
-    imageSrc="https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+    imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
     imagePosition="right"
   >
     <p>

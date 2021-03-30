@@ -19,7 +19,7 @@ const scope = {
   Media,
   withPrefix(file) {
     // swap the provided images for placeholder values
-    return `https://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400${
+    return `http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400${
       file.includes('high') ? '+(high-res)' : ''
     }`;
   },
