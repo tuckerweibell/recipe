@@ -66,9 +66,11 @@ const stitches = createCss({
 
       // aliases
       text: '$gray700',
+      textDisabled: '$gray600',
       deemphasisText: '$gray600',
       focusRing: '$blue600',
       icon: '$gray600',
+      border: '$gray400',
     },
     fonts: {
       sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
@@ -102,6 +104,7 @@ const stitches = createCss({
       round: '50%',
     },
     sizes: {
+      200: '16px',
       750: '60px',
       full: '100%',
     },
