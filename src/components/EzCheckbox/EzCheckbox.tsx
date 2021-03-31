@@ -14,7 +14,7 @@ const focusRing = theme.css({
 const checkbox = theme.css({
   fill: '$checkbox-bg',
   stroke: '$checkbox-border',
-  ':hover + svg &': {
+  ':hover:not(:checked):not(:disabled) + svg &': {
     fill: '$checkbox-bg-hover',
     stroke: '$checkbox-border-hover',
   },

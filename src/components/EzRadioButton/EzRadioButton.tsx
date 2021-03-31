@@ -12,7 +12,7 @@ const focusRing = theme.css({
 const box = theme.css({
   fill: '$radiobutton-bg',
   stroke: '$radiobutton-border',
-  ':hover + svg &': {
+  ':hover:not(:checked):not(:disabled) + svg &': {
     fill: '$radiobutton-bg-hover',
     stroke: '$radiobutton-border-hover',
   },
