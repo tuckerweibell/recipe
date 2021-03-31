@@ -24,4 +24,33 @@ describe('EzFlashMessage', () => {
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        childrenProp: (
+          <EzFlashMessage use="success">
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+        headlineProp: (
+          <EzFlashMessage use="success" headline="headline">
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+        onDismissProp: (
+          <EzFlashMessage use="success" onDismiss={() => 'success!'}>
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+        use: (
+          <EzFlashMessage use="success">
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });
