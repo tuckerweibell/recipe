@@ -8,6 +8,7 @@ import {
   TStyledSheet,
   IConfig,
 } from '@stitches/core';
+import { PlaceItemsProperty } from 'csstype';
 
 type Globals = 'inherit' | 'initial' | 'revert' | 'unset';
 type FromTheme<T> = `$${Extract<keyof T, string | number>}`;
@@ -28,6 +29,7 @@ const stitches = createCss({
       blue800: '#316da1',
       blue900: '#2b608e',
       blue950: '#0f4879',
+      gray100: '#fafafb',
       gray200: '#f4f7f8',
       gray300: '#e6e9eb',
       gray400: '#ced4d9',
@@ -141,6 +143,11 @@ const stitches = createCss({
     px: () => (value: TokenValue<'space'>) => ({
       paddingLeft: value,
       paddingRight: value,
+    }),
+    // util for IE support for https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
+    placeItems: () => (value: PlaceItemsProperty) => ({
+      justifyContent: value,
+      alignItems: value,
     }),
     'sr-only': () => () => ({
       border: 'none',
