@@ -7,7 +7,7 @@ When items are misaligned, the content items aren't symmetric.
 <EzCard>
   <Global
     styles={css(`
-    .basic > * {
+    .basic > * > * {
       background-color: yellow;
     }
   `)}
@@ -30,7 +30,7 @@ When items are misaligned, the content items aren't symmetric.
   <EzCard>
     <Global
       styles={css(`
-    .tile > * {
+    .tile > *  > * {
       background-color: cadetblue;
       color: white;
     }

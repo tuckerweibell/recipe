@@ -11,7 +11,7 @@ function chain(...callbacks: any[]): (...args: any[]) => void {
   };
 }
 
-const clsx = (...args) => args.filter(Boolean).join(' ');
+export const clsx = (...args) => args.filter(Boolean).join(' ');
 
 function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
   const res: Props = {};

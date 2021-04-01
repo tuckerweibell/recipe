@@ -111,6 +111,7 @@ const stitches = createCss({
       round: '50%',
     },
     sizes: {
+      150: '12px',
       200: '16px',
       750: '60px',
       full: '100%',
@@ -169,7 +170,7 @@ const stitches = createCss({
     // currently Firefox is the only major browser that supports gap on flex items.
     gap: () => (value: TokenValue<'space'>) => ({
       margin: `calc(${value} / 2 * -1)`,
-      '& > *': {
+      '&& > *': {
         margin: `calc(${value} / 2)`,
       },
     }),
