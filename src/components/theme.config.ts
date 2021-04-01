@@ -166,6 +166,13 @@ const stitches = createCss({
       whiteSpace: 'nowrap',
       width: '1px',
     }),
+    // currently Firefox is the only major browser that supports gap on flex items.
+    gap: () => (value: TokenValue<'space'>) => ({
+      margin: `calc(${value} / 2 * -1)`,
+      '& > *': {
+        margin: `calc(${value} / 2)`,
+      },
+    }),
   },
   conditions: {
     base: '@media all',
