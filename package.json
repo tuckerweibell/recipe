@@ -122,7 +122,7 @@
     "@popperjs/core": "^2.1.1",
     "@react-types/provider": "^3.1.1",
     "@recipe-ui/legacy-theme": "^1.0.0",
-    "@stitches/core": "0.1.0-canary.12",
+    "@stitches/core": "0.1.0-canary.20",
     "dayjs": "^1.8.14",
     "react-highlight-words": "^0.16.0",
     "styled-component-variant": "^1.0.1"
