@@ -172,6 +172,7 @@ const stitches = createCss({
     medium: '@media (min-width: 768px)',
     large: '@media (min-width: 1061px)',
   },
+  insertMethod: () => () => {},
 });
 
 type BaseConfig = typeof stitches.config;
@@ -207,7 +208,12 @@ export function mergeCss<
 > {
   const utils = Object.assign({}, stitches.config.utils, extension.utils) as any;
   const conditions = Object.assign({}, stitches.config.conditions, extension.conditions) as any;
-  const merged = createCss({...extension, utils, conditions});
+  const merged = createCss({
+    ...extension, 
+    utils, 
+    conditions,
+    insertMethod: () => () => {},
+  });
 
   return {
     ...merged,
