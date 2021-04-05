@@ -120,10 +120,6 @@ const selectionColumn = ({selectable}) =>
         border-bottom: solid 1px var(--recipe-table-selection-summary-border-color);
         border-top: solid 1px var(--recipe-table-selection-summary-border-color);
         padding: var(--recipe-global-static-size-100);
-
-        > * {
-          justify-content: center;
-        }
       }
     }
   `;

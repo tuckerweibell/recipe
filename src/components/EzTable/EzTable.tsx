@@ -82,7 +82,7 @@ const SelectionStateBanner = () => {
   return (
     <tr>
       <td colSpan={columns.length + 1} style={{padding: '12px 20px'}}>
-        <EzLayout layout="cluster">
+        <EzLayout layout="cluster" alignX="center">
           {selection.allSelected || items.length === pagination.totalRows ? (
             <Fragment>
               <EzTextStyle align="center">
