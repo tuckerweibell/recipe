@@ -107,8 +107,8 @@ const Step = ({label, active, visited, complete, isHorizontal, isFirst, isLast, 
     />
     <EzLayout
       layout={isHorizontal ? 'stack' : 'basic'}
-      alignX={isHorizontal ? 'center' : 'left'}
-      alignY={isHorizontal ? 'top' : 'center'}
+      alignX={isHorizontal ? 'center' : undefined}
+      alignY={isHorizontal ? undefined : 'center'}
     >
       <StepIcon complete={complete} />
       <StepLabel label={label} visited={visited} isHorizontal={isHorizontal} link={link} />
