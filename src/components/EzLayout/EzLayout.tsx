@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {HTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzLayout.theme.config';
-import {breakpoints} from '../../themes/standard';
-import {RequireAtLeastOne} from '../../typings/utility';
 import {domProps, clsx} from '../../utils';
 
 const descendants = '& > *';
@@ -86,7 +84,7 @@ const styles = theme.css({
       stretch: {[self]: {alignItems: 'stretch'}},
     },
     alignX: {left: {}, center: {}, right: {}, stretch: {}},
-    columns: generateColumns(32),
+    columns: generateColumns(32) as Record<number, Record<string, unknown>>,
   },
 
   compoundVariants: [
@@ -121,56 +119,8 @@ const responsiveResets = theme.css({
   },
 });
 
-/**
- * Create a type that disallows values for any of the keys of T
- */
-type Without<T> = {[P in keyof T]?: never};
-
-type LayoutTypes = 'basic' | 'right' | 'equal' | 'split' | 'stack' | 'tile' | 'cluster';
-type Sizes = keyof typeof breakpoints;
-type AlignX = 'left' | 'right' | 'center';
-type AlignY = 'top' | 'bottom' | 'center' | 'stretch';
-
-/**
- * A type that describes how the layout will adapt to different breakpoints
-  @example
-  ```
-  const options: Responsive<LayoutTypes>  = {
-    base: 'stack';
-    medium: 'split';
-    large: 'tile';
-  };
-  ```
- */
-type Responsive<T> = Partial<Record<'base' | Sizes, T>> & RequireAtLeastOne<Record<Sizes, T>>;
-
-/**
- * The layout prop of the EzLayout component. Accepts either a simple key (one of the LayoutTypes),
- * or a Responsive<LayoutTypes> object describing how the layout will adapt to different
- * breakpoints.
-  @example
-  ```
-  const options: Responsive<LayoutTypes>  = {
-    base: 'stack';
-    medium: 'split';
-    large: 'tile';
-  };
-  ```
- */
-type Layout<T, Set = T> = {
-  layout: T | (Responsive<Set> & RequireAtLeastOne<Responsive<T>>);
-  alignX?: AlignX | (Responsive<AlignX> & RequireAtLeastOne<Responsive<AlignX>>);
-  alignY?: AlignY | (Responsive<AlignY> & RequireAtLeastOne<Responsive<AlignY>>);
-};
-
-/**
- *  The required props for the LayoutTypes["tile"] layout variation.
- */
-type TileProps = {columns: number | Responsive<number>};
-
-type Props =
-  | (TileProps & Layout<'tile', LayoutTypes>)
-  | (Partial<Layout<Exclude<LayoutTypes, 'tile'>>> & Without<TileProps>);
+type Props = Pick<Parameters<typeof styles>[0], 'layout' | 'alignX' | 'alignY' | 'columns'> &
+  Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
 
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
