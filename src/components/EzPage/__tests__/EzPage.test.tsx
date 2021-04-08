@@ -24,42 +24,6 @@ describe('EzPage', () => {
   visualSnapshots({markdown, scope});
   visualSnapshots({markdown: regressionTests, scope});
 
-  it('should retain the same layout on multiple renders', () => {
-    const Test = () => (
-      <EzPage>
-        <EzPageSection use="aside">
-          <EzCard title="Card (in aside)">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </EzCard>
-        </EzPageSection>
-        <EzPageSection use="main">
-          <EzCard title="Card (in main)">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </EzCard>
-        </EzPageSection>
-        <EzPageSection use="aside">
-          <EzCard title="Card (in aside)">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </EzCard>
-        </EzPageSection>
-        <EzPageSection use="main">
-          <EzCard title="Card (in main)">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </EzCard>
-        </EzPageSection>
-      </EzPage>
-    );
-
-    const {container, rerender} = render(<Test />);
-
-    const res = container.innerHTML;
-
-    rerender(<Test />);
-    rerender(<Test />);
-
-    expect(container.innerHTML).toEqual(res);
-  });
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzPage>
