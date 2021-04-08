@@ -63,11 +63,9 @@ const flashMessage = theme.css({
   },
 });
 
-const text = theme.css({
-  flex: 1,
-});
+const text = theme.css({'&&': {flex: 1}});
 
-const button = theme.css({
+const buttonAlignment = theme.css({
   alignSelf: 'start',
 });
 
@@ -95,7 +93,9 @@ const EzFlashMessage: React.FC<FlashMessageProps> = initProps => {
             </EzLayout>
           </div>
           {props.onDismiss && (
-            <CloseButton className={button()} label="Close" onClick={props.onDismiss} />
+            <div className={buttonAlignment()}>
+              <CloseButton label="Close" onClick={props.onDismiss} />
+            </div>
           )}
         </EzLayout>
       </EzCard>
