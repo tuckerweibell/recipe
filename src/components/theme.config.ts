@@ -176,7 +176,7 @@ const stitches = createCss({
     }),
   },
   conditions: {
-    base: '@media all',
+    base: '@media (min-width: 0px)',
     medium: '@media (min-width: 768px)',
     large: '@media (min-width: 1061px)',
   },
