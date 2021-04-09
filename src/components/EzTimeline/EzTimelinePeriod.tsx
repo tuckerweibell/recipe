@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
 import React from 'react';
+import './vars.css';
 
 const EzTimelinePeriod: React.FC<{label: string}> = ({label, children}) => (
   <section css={{':first-of-type > h3': {display: 'none'}}}>

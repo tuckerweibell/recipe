@@ -113,6 +113,7 @@ const stitches = createCss({
     sizes: {
       150: '12px',
       200: '16px',
+      400: '32px',
       750: '60px',
       full: '100%',
     },
@@ -149,6 +150,14 @@ const stitches = createCss({
     px: () => (value: TokenValue<'space'>) => ({
       paddingLeft: value,
       paddingRight: value,
+    }),
+    my: () => (value: TokenValue<'space'>) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+    mx: () => (value: TokenValue<'space'>) => ({
+      marginLeft: value,
+      marginRight: value,
     }),
     // util for IE support for https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
     placeItems: () => (value: PlaceItemsProperty) => ({
