@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import {jsx, Interpolation} from '@emotion/core';
 import React from 'react';
+import Style from '@ezcater/snitches';
 import {EzCard} from '../EzCard';
 import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
@@ -8,6 +7,34 @@ import EzTextStyle from '../EzTextStyle';
 import EzTimelineIcon from './EzTimelineIcon';
 import EzLink, {isLink} from '../EzLink';
 import {TimelineEventProps} from './EzTimeline.types';
+import theme from './EzTimeline.theme.config';
+
+const arrow = theme.css({
+  '&::before': {
+    content: "''",
+    position: 'absolute',
+    top: '8px',
+    right: '-14px',
+    height: '0',
+    width: '0',
+    border: '7px solid transparent',
+    borderRight: `7px solid $border`,
+  },
+  '&::after': {
+    content: "''",
+    position: 'absolute',
+    top: '9px',
+    right: '-14px',
+    height: '0',
+    width: '0',
+    border: '6px solid transparent',
+    borderRight: `6px solid white`,
+  },
+});
+
+const cardOverrides = theme.css({flex: 1, borderRadius: 6});
+const alignment = theme.css({alignItems: 'baseline'});
+const timestamp = theme.css({fontSize: '$100', lineHeight: '$snug'});
 
 const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   title,
@@ -19,55 +46,28 @@ const EzTimelineEvent: React.FC<TimelineEventProps> = ({
   as,
   href,
 }) => {
-  const arrow: Interpolation = {
-    '::before': {
-      content: "''",
-      position: 'absolute',
-      top: '8px',
-      right: '-14px',
-      height: '0',
-      width: '0',
-      border: '7px solid transparent',
-      borderRight: `7px solid var(--recipe-alias-border-color)`,
-    },
-    '::after': {
-      content: "''",
-      position: 'absolute',
-      top: '9px',
-      right: '-14px',
-      height: '0',
-      width: '0',
-      border: '6px solid transparent',
-      borderRight: `6px solid var(--recipe-global-color-static-white)`,
-    },
-  };
   return (
-    <EzLayout layout="basic">
-      <EzTimelineIcon icon={icon} css={arrow} />
-      <EzCard css={{flex: 1, borderRadius: 6}}>
-        <header>
-          <EzLayout layout="split" alignY="top">
-            <EzLayout layout="cluster" css={{alignItems: 'baseline'}}>
-              <EzHeading size="3">
-                {isLink({to, as, href}) ? <EzLink {...{to, as, href}}>{title}</EzLink> : title}
-              </EzHeading>
-              <EzTextStyle use="subdued">
-                <time
-                  css={{
-                    fontSize: 'var(--recipe-global-font-size-100)',
-                    lineHeight: 'var(--recipe-global-leading-snug)',
-                  }}
-                >
-                  {time}
-                </time>
-              </EzTextStyle>
+    <Style ruleset={theme}>
+      <EzLayout layout="basic">
+        <EzTimelineIcon icon={icon} className={arrow()} />
+        <EzCard className={cardOverrides()}>
+          <header>
+            <EzLayout layout="split" alignY="top">
+              <EzLayout layout="cluster" className={alignment()}>
+                <EzHeading size="3">
+                  {isLink({to, as, href}) ? <EzLink {...{to, as, href}}>{title}</EzLink> : title}
+                </EzHeading>
+                <EzTextStyle use="subdued">
+                  <time className={timestamp()}>{time}</time>
+                </EzTextStyle>
+              </EzLayout>
+              {status && React.cloneElement(status, {size: 'small'})}
             </EzLayout>
-            {status && React.cloneElement(status, {size: 'small'})}
-          </EzLayout>
-        </header>
-        {children}
-      </EzCard>
-    </EzLayout>
+          </header>
+          {children}
+        </EzCard>
+      </EzLayout>
+    </Style>
   );
 };
 
