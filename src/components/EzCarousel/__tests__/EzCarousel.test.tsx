@@ -50,7 +50,7 @@ const scope = {
   },
   useNextPage() {
     useEffect(() => {
-      const button = screen.getByRole('button', {name: /next/i});
+      const button = screen.getByLabelText(/next page/i);
       userEvent.click(button);
       // run through the debounce timer
       jest.runAllTimers();
