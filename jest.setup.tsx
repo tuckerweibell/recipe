@@ -1,5 +1,5 @@
 import React from 'react';
-import {Global, css, CacheProvider} from '@emotion/core';
+import {CacheProvider} from '@emotion/core';
 import createCache from '@emotion/cache';
 import {createSerializer, matchers} from 'jest-emotion';
 import {toHaveNoViolations} from 'jest-axe';
@@ -7,6 +7,7 @@ import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
 import Style from '@ezcater/snitches';
+import {Global, css} from './src/styles';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
 import themeGlobals from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
@@ -61,9 +62,11 @@ const GlobalStylesWrapper = ({children}) => (
             transition-property: none !important;
             animation: none !important;
           }
-          body {
-            /* restore user agent based margin for backward compatibility with existing snapshots */
-            margin: 8px;
+          /* restore user agent based margin for backward compatibility with existing snapshots */
+          @media (min-width: 768px) {
+            body {
+              margin: 8px;
+            }
           }
         `}
       />
