@@ -118,6 +118,7 @@ const stitches = createCss({
       full: '100%',
     },
     space: {
+      25: '2px',
       50: '4px',
       75: '6px',
       100: '8px',

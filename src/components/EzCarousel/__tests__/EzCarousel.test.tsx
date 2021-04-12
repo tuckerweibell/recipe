@@ -25,7 +25,7 @@ if (!('scrollTo' in Element.prototype)) {
         // to shift each li two positions to the left (plus button width to use that space)
         Object.assign(child, {
           style: `transform: translateX(${
-            lastItem ? `calc(-100% + var(--recipe-carousel-button-width))` : '-200%'
+            lastItem ? `calc(-100% + var(--sizes-carousel-button-width))` : '-200%'
           })`,
         });
       });
@@ -97,5 +97,42 @@ describe('EzCarousel', () => {
     );
 
     expect(mockAnimationFrame).toHaveBeenCalled();
+  });
+
+  it('should pass type checking', () => {
+    [
+      {
+        noProps: (
+          <EzCarousel>
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+          </EzCarousel>
+        ),
+        slidePerPageNumber: (
+          <EzCarousel slidesPerPage={3}>
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+          </EzCarousel>
+        ),
+        slidePerPageResponsive: (
+          <EzCarousel slidesPerPage={{base: 2, medium: 4}}>
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+          </EzCarousel>
+        ),
+        gapAndPeek: (
+          <EzCarousel gap peek>
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+          </EzCarousel>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
   });
 });
