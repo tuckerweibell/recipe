@@ -76,7 +76,10 @@ const Media = ({size, children}) => {
     // snitches would typically do this for us, but can't reach inside the iframe
     Array.from(frameStyles).forEach(tag => {
       head += tag.outerHTML;
-      tag.parentNode.removeChild(tag);
+
+      // remove inline style tags EXCEPT those added directly to the iframe (since react still references them)
+      if (tag.parentElement === frame) Object.assign(tag, {textContent: ''});
+      else tag.parentNode.removeChild(tag);
     });
 
     // join style tags together to reduce the payload size
