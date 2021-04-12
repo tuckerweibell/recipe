@@ -18,12 +18,7 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the input is clicked', () => {
     const spy = jest.fn();
 
-    render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={spy} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" onChange={spy} checked label="Toggle me" />);
 
     const toggle = screen.getByLabelText(/Toggle me/);
 
@@ -35,27 +30,17 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the stylized container is clicked', () => {
     const spy = jest.fn();
 
-    render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={spy} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" onChange={spy} checked />);
 
-    const toggle = screen.getByLabelText(/Toggle me/);
+    const toggle = screen.getByRole('presentation');
 
-    fireEvent.click(toggle.parentNode);
+    fireEvent.click(toggle);
 
     expect(spy).toHaveBeenCalled();
   });
 
   it('submits the correct input state when using uncontrolled input', () => {
-    render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" label="Toggle me" />);
 
     const toggle = screen.getByLabelText(/Toggle me/) as HTMLInputElement;
 
@@ -67,12 +52,7 @@ describe('EzToggle', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const {container} = render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={() => {}} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    const {container} = render(<EzToggle id="toggle" label="Toggle me" />);
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
