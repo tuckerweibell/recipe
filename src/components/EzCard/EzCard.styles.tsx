@@ -1,236 +1,223 @@
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
-import variant from 'styled-component-variant';
-import {responsive} from '../../styles';
-import {mq} from '../../themes/styled';
-import './vars.css';
+import theme from './EzCard.theme.config';
 
-const accentStyles = ({accent}) =>
-  accent &&
-  css`
-    border-left-width: var(--recipe-card-accent-border-size);
-    border-left-style: solid;
-    border-left-color: var(--recipe-card-accent-color);
-  `;
+export const container = theme.css({
+  backgroundColor: '$card-bg',
+  boxShadow: '$card',
 
-const rounded = Object.assign(
-  mq('medium', {
-    borderRadius: 'var(--recipe-card-border-radius)',
-    '--recipe-card-border-radius': 'inherit',
-  }),
-  {'--recipe-card-border-radius': 0}
-);
+  '--radii-card-rounded': 0,
 
-const size = variant('size', {
-  small: {'--recipe-card-padding': 'var(--recipe-card-padding-small)'},
-});
-
-const isQuiet = variant('isQuiet', {
-  true: {'--recipe-card-dropshadow': 'var(--recipe-card-dropshadow-quiet)'},
-});
-
-const clickable = variant('clickable', {
-  true: () => css`
-    position: relative;
-
-    /* 
-      semi-transparent overlay on top of the card
-      allowing varied opacity on hover
-    */
-    &:before {
-      content: ' ';
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow: hidden;
-      position: absolute;
-      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-      border-radius: inherit;
-      pointer-events: none;
-      background-color: var(--recipe-global-color-transparent);
-    }
-
-    &:hover {
-      /* double up the shadow on hover */
-      box-shadow: var(--recipe-card-dropshadow), var(--recipe-card-dropshadow);
-      cursor: pointer;
-
-      /*  make the mask darker on hover */
-      &:before {
-        background-color: var(--recipe-global-color-translucent-dark);
-      }
-    }
-
-    /* make the mask even darker still when active/clicking */
-    &:active:before {
-      background-color: var(--recipe-global-color-translucent-darker);
-    }
-
-    /* when the card content is in focus, promote the focus up to the card itself */
-    &:focus-within {
-      box-shadow: var(--recipe-card-dropshadow), rgb(0, 95, 204) 0 0px 0px 2px;
-    }
-
-    /*
-      for browsers that don't support :focus-within,
-      make sure links retain their focus style
-    */
-    & a:focus {
-      text-decoration: underline;
-    }
-
-    /*
-      remove decoration for focused links within the card
-      (since focus is promoted to the card itself)
-    */
-    &:focus-within a:focus {
-      text-decoration: none;
-      outline: none;
-    }
-  `,
-});
-
-export const CardHeadingContainer = styled.div`
-  position: relative;
-`;
-
-export const container = props => css`
-  background: var(--recipe-card-background-color);
-  box-shadow: var(--recipe-card-dropshadow);
-  ${accentStyles(props)};
-  ${rounded};
-  ${size({size: props.size || (props.isQuiet ? 'small' : undefined)})};
-  ${isQuiet(props)};
-  ${clickable(props)};
-`;
-
-const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value);
-
-const columns = responsive('imagePosition', {
-  top: {
-    msGridColumns: '0px minmax(0px, 100%)',
-    gridTemplateColumns: `
-      [left] 0
-      [header] minmax(0, 100%)
-      [right] 0
-    `,
+  when: {
+    medium: {
+      borderRadius: '$card-rounded',
+      '--radii-card-rounded': 'inherit',
+    },
   },
-  right: ({maxWidth}) => ({
-    msGridColumns: `0px minmax(0px, 100%) ${unitlessToPx(maxWidth) || '50%'}`,
-    gridTemplateColumns: `
-      [left] 0
-      [header] minmax(0, 100%)
-      [right] ${unitlessToPx(maxWidth) || '50%'}
-    `,
-  }),
-  left: ({maxWidth}) => ({
-    msGridColumns: `${unitlessToPx(maxWidth) || '50%'} minmax(0px, 100%) 0px`,
-    gridTemplateColumns: `
-      [left] ${unitlessToPx(maxWidth) || '50%'}
-      [header] minmax(0, 100%)
-      [right] 0
-    `,
-  }),
+
+  variants: {
+    accent: {
+      info: {
+        borderLeftWidth: '$card-accent',
+        borderLeftStyle: 'solid',
+        borderLeftColor: '$card-accent',
+      },
+    },
+    size: {
+      small: {
+        '--space-card-p': '$space$card-sm-p',
+      },
+      medium: {},
+    },
+    isQuiet: {
+      true: {
+        '--shadows-card': '$shadows$card-quiet',
+      },
+    },
+    clickable: {
+      true: {
+        position: 'relative',
+
+        // semi-transparent overlay on top of the card allowing varied opacity on hover
+        '&:before': {
+          content: "' '",
+          inset: 0,
+          overflow: 'hidden',
+          position: 'absolute',
+          transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          borderRadius: 'inherit',
+          pointerEvents: 'none',
+          backgroundColor: '$transparent',
+        },
+        // make the card overlay darker when hovering
+        '&:hover': {
+          boxShadow: '$card-hover',
+          cursor: 'pointer',
+          '&:before': {
+            backgroundColor: '$card-mask',
+          },
+        },
+        // and darker still when clicking
+        '&:active:before': {
+          backgroundColor: '$card-mask',
+        },
+        // when the card content is in focus, promote the focus up to the card itself
+        '&:focus-within': {
+          boxShadow: '$card-focus',
+        },
+        // for browsers that don't support :focus-within, make sure links retain their focus style
+        '& a:focus': {
+          textDecoration: 'underline',
+        },
+        // for browsers that do support :focus-within, we can remove decoration for focused links
+        // since focus is promoted to the card itself
+        '&:focus-within a:focus': {
+          textDecoration: 'none',
+          outline: 'none',
+        },
+      },
+    },
+  },
 });
 
-export const grid = props => css`
-  display: -ms-grid;
-  display: grid;
-  ${columns(props)};
-  -ms-grid-rows: 'auto auto 1fr auto';
-  grid-template-rows: auto auto auto 1fr auto;
-  grid-template-areas:
+// ${size({size: props.size || (props.isQuiet ? 'small' : undefined)})};
+
+export const grid = theme.css({
+  display: 'grid',
+  '-ms-grid-rows': 'auto auto 1fr auto',
+  gridTemplateRows: 'auto auto auto 1fr auto',
+  gridTemplateAreas: `
     '. top .'
     'left header right'
     'left content right'
     'left sections right'
-    'left footer right';
-  width: 100%;
-`;
+    'left footer right'
+  `,
+  width: '$full',
 
-const position = responsive('imagePosition', {
-  left: {
-    gridArea: 'left',
-    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
-    borderBottomLeftRadius: 'var(--recipe-card-border-radius)',
-    '> img': {height: '100%'},
-    ...{msGridColumn: '1', msGridRowSpan: '3', msGridRow: '1'},
-  },
-  right: {
-    gridArea: 'right',
-    borderTopRightRadius: 'var(--recipe-card-border-radius)',
-    borderBottomRightRadius: 'var(--recipe-card-border-radius)',
-    '> img': {height: '100%'},
-    ...{msGridColumn: '3', msGridRowSpan: '3', msGridRow: '1'},
-  },
-  top: {
-    gridArea: 'top',
-    borderTopLeftRadius: 'var(--recipe-card-border-radius)',
-    borderTopRightRadius: 'var(--recipe-card-border-radius)',
-    ...{msGridColumn: '1', msGridColumnSpan: '3', msGridRow: '1'},
-  },
-  reset: {
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-    ...{msGridRowSpan: '1', msGridColumnSpan: '1'},
+  variants: {
+    imagePosition: {
+      top: {
+        msGridColumns: '0px minmax(0px, 100%)',
+        gridTemplateColumns: `
+          [left] 0
+          [header] minmax(0, 100%)
+          [right] 0
+        `,
+      },
+      right: {
+        msGridColumns: '0px minmax(0px, 100%) var(--sizes-card-preview-max-w, 50%)',
+        gridTemplateColumns: `
+          [left] 0
+          [header] minmax(0, 100%)
+          [right] var(--sizes-card-preview-max-w, 50%)
+        `,
+      },
+      left: {
+        msGridColumns: 'var(--sizes-card-preview-max-w, 50%) 0px minmax(0px, 100%)',
+        gridTemplateColumns: `
+          [left] var(--sizes-card-preview-max-w, 50%)
+          [header] minmax(0, 100%)
+          [right] 0
+        `,
+      },
+    },
   },
 });
 
-export const preview = props =>
-  css`
-    margin: 0;
-    overflow: hidden;
-    ${position(props)};
-    > img {
-      width: 100%;
-      /* the default would be vertical-align: baseline, but we don't need
-      to align the image with text descenders */
-      vertical-align: top;
-    }
-  `;
-export const header = () =>
-  css`
-    ${{msGridColumn: '2', msGridRow: '2'}};
-    grid-area: header;
-    padding: var(--recipe-card-padding) var(--recipe-card-padding) 0;
-  `;
-export const content = () =>
-  css`
-    ${{msGridColumn: '2', msGridRow: '3'}};
-    grid-area: content;
-    padding: var(--recipe-card-padding);
-  `;
-export const sections = () =>
-  css`
-    ${{msGridColumn: '2', msGridRow: '3'}};
-    grid-area: sections;
-  `;
-export const footer = () =>
-  css`
-    ${{msGridColumn: '2', msGridRow: '4'}};
-    grid-area: footer;
-    padding: var(--recipe-global-static-size-150) var(--recipe-card-padding);
-    text-align: center;
-    border-top: 1px solid var(--recipe-card-border-color);
-    border-radius: 0 0 var(--recipe-card-border-radius) var(--recipe-card-border-radius);
-    background-color: var(--recipe-card-footer-background-color);
-    overflow: hidden;
-  `;
+const positionReset = {
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+  ...{msGridRowSpan: '1', msGridColumnSpan: '1'},
+};
 
-export const vertical = () => css`
-  && > * + * {
-    border-top: 1px solid var(--recipe-card-border-color);
-  }
-`;
+export const preview = theme.css({
+  margin: 0,
+  overflow: 'hidden',
 
-export const horizontal = () => css`
-  display: flex;
+  '& > img': {
+    width: '$full',
+    // the default would be vertical-align: baseline,
+    // but we don't need to align the image with text descenders
+    verticalAlign: 'top',
+  },
 
-  > * {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-`;
+  variants: {
+    position: {
+      left: {
+        ...positionReset,
+        gridArea: 'left',
+        borderTopLeftRadius: 'var(--radii-card-rounded)',
+        borderBottomLeftRadius: 'var(--radii-card-rounded)',
+        '& > img': {height: '$full'},
+        ...{msGridColumn: '1', msGridRowSpan: '3', msGridRow: '1'},
+      },
+      right: {
+        ...positionReset,
+        gridArea: 'right',
+        borderTopRightRadius: 'var(--radii-card-rounded)',
+        borderBottomRightRadius: 'var(--radii-card-rounded)',
+        '& > img': {height: '$full'},
+        ...{msGridColumn: '3', msGridRowSpan: '3', msGridRow: '1'},
+      },
+      top: {
+        ...positionReset,
+        gridArea: 'top',
+        borderTopLeftRadius: 'var(--radii-card-rounded)',
+        borderTopRightRadius: 'var(--radii-card-rounded)',
+        ...{msGridColumn: '1', msGridColumnSpan: '3', msGridRow: '1'},
+      },
+    },
+  },
+});
+
+export const header = theme.css({
+  msGridColumn: '2',
+  msGridRow: '2',
+  gridArea: 'header',
+  padding: '$card-p $card-p 0',
+});
+
+export const content = theme.css({
+  msGridColumn: '2',
+  msGridRow: '3',
+  gridArea: 'content',
+  padding: '$card-p',
+});
+
+export const sections = theme.css({
+  msGridColumn: '2',
+  msGridRow: '3',
+  gridArea: 'sections',
+});
+
+export const footer = theme.css({
+  msGridColumn: '2',
+  msGridRow: '4',
+  gridArea: 'footer',
+  padding: '$150 $card-p',
+  textAlign: 'center',
+  borderTop: '1px solid $card-border',
+  borderRadius: '0 0 var(--radii-card-rounded) var(--radii-card-rounded)',
+  backgroundColor: '$card-footer-bg',
+  overflow: 'hidden',
+});
+
+export const orientation = theme.css({
+  variants: {
+    layout: {
+      vertical: {
+        '&& > *:not(style) ~ *': {
+          borderTop: '1px solid $card-border',
+        },
+      },
+      horizontal: {
+        display: 'flex',
+        '& > *': {
+          flexBasis: 0,
+          flexGrow: 1,
+        },
+      },
+    },
+  },
+});
