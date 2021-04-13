@@ -56,12 +56,12 @@ interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
 /**
  * A component to provide consistent styling for Primary and Secondary labels.
  */
-const EzLabel = forwardRef<Ref, Props>((initialProps, ref) => {
+const EzLabel = forwardRef<Ref, Props>(({as: Element, ...initialProps}, ref) => {
   const {props} = styles(initialProps);
 
   return (
     <Style ruleset={theme}>
-      <div {...props} ref={ref} />
+      <Element {...props} ref={ref} />
     </Style>
   );
 });
