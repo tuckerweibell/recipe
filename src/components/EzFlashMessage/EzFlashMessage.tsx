@@ -3,7 +3,6 @@ import Style from '@ezcater/snitches';
 import theme from './EzFlashMessage.theme.config';
 import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
-import {EzCard} from '../EzCard';
 import CloseButton from '../CloseButton';
 import {InfoIcon, ErrorIcon, SuccessIcon} from '../Icons';
 
@@ -20,6 +19,13 @@ const flashMessage = theme.css({
   borderStyle: '$flash-message-border-style',
   borderWidth: '$flash-message-border-width',
   borderLeftWidth: '$flash-message-border-left-width',
+  padding: '$flash-message-p',
+
+  when: {
+    medium: {
+      borderRadius: '$flash-message-rounded',
+    },
+  },
 
   variants: {
     use: {
@@ -83,7 +89,7 @@ const EzFlashMessage: React.FC<FlashMessageProps> = initProps => {
   const {props} = flashMessage(initProps);
   return (
     <Style ruleset={theme}>
-      <EzCard className={flashMessage(initProps)}>
+      <div className={flashMessage(initProps)}>
         <EzLayout layout="basic" alignY="top">
           {icons[initProps.use]}
           <div className={text()}>
@@ -98,7 +104,7 @@ const EzFlashMessage: React.FC<FlashMessageProps> = initProps => {
             </div>
           )}
         </EzLayout>
-      </EzCard>
+      </div>
     </Style>
   );
 };

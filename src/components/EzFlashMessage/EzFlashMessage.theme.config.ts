@@ -16,11 +16,17 @@ export default mergeCss({
       'flash-message-border-info': '$blue500',
       'flash-message-accent-info': '$blue600',
     },
+    radii: {
+      'flash-message-rounded': '6px',
+    },
     shadows: {
       'flash-message-box-shadow-success': '0 0 0 0 $green600',
       'flash-message-box-shadow-error': '0 0 0 0 $red600',
       'flash-message-box-shadow-warning': '0 0 0 0 $yellow600',
       'flash-message-box-shadow-info': '0 0 0 0 $blue600',
+    },
+    space: {
+      'flash-message-p': '$250',
     },
     borderWidths: {
       'flash-message-border-width': '$thin',
