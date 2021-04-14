@@ -1,7 +1,5 @@
 import {css} from '@emotion/core';
 
-export {TextInputWrapper, OverlayFieldWrapper} from './Picker.styles';
-
 export const listbox = () => css`
   min-width: 230px;
   background: white;

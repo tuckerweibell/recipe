@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import {TextInputWrapper as BaseCombobox} from './Picker.styles';
 
-export {OverlayFieldWrapper} from './Picker.styles';
-
 export const TextInputWrapper = styled(BaseCombobox)`
   position: relative;
   width: 200px;

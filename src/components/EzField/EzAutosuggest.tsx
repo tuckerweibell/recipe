@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
+import {TextInputWrapper} from './Picker.styles';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -22,7 +22,7 @@ const EzAutosuggest = props => {
   );
 
   return (
-    <OverlayFieldWrapper hasError={props.touched && props.error} opened={state.isOpen}>
+    <div>
       <TextInputWrapper className={props.className} disabled={props.disabled}>
         <EzTextInput {...inputProps} ref={triggerRef} error={props.error} touched={props.touched} />
         <InsetIcon insetY0 right0 pr2>
@@ -48,7 +48,7 @@ const EzAutosuggest = props => {
           />
         </EzPopover>
       )}
-    </OverlayFieldWrapper>
+    </div>
   );
 };
 

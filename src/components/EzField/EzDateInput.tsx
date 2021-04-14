@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
 import EzTextInput from './EzTextInput';
-import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
+import {CalendarWrapper, TextInputWrapper} from './EzDateInput.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
@@ -23,11 +23,6 @@ const EzDateInput = ({
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
 
   const menuState = useMenuTriggerState();
-  const combobox = {
-    className: props.className,
-    disabled,
-    opened: menuState.isOpen,
-  };
 
   const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
@@ -66,9 +61,10 @@ const EzDateInput = ({
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <OverlayFieldWrapper hasError={props.touched && props.error} opened={isOpen}>
+    <div>
       <TextInputWrapper
-        {...combobox}
+        className={props.className}
+        disabled={disabled}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key !== 'Tab' || !isOpen) return;
           e.preventDefault();
@@ -114,7 +110,7 @@ const EzDateInput = ({
           </FocusScope>
         </EzPopover>
       )}
-    </OverlayFieldWrapper>
+    </div>
   );
 };
 

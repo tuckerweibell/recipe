@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
 import {useRef, useCallback} from 'react';
-import {TextInputWrapper, OverlayFieldWrapper} from './EzSelect.styles';
+import {TextInputWrapper} from './Picker.styles';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
@@ -52,11 +52,7 @@ const EzSelect = props => {
   );
 
   return (
-    <OverlayFieldWrapper
-      ref={containerRef}
-      hasError={props.touched && props.error}
-      opened={state.isOpen}
-    >
+    <div ref={containerRef}>
       <TextInputWrapper className={props.className} disabled={props.disabled}>
         <EzTextInput
           {...inputProps}
@@ -87,7 +83,7 @@ const EzSelect = props => {
           />
         </EzPopover>
       )}
-    </OverlayFieldWrapper>
+    </div>
   );
 };
 
