@@ -4,7 +4,9 @@ import {EzCardSection} from '../EzCard';
 import './vars.css';
 
 const fullBleed = () => css`
-  padding: 0;
+  && {
+    padding: 0;
+  }
   table {
     width: 100%;
   }

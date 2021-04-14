@@ -52,7 +52,9 @@ export const Total = styled.span`
 // left padding here is the fixed width of the first column of the previous table
 // plus the padding of the second column
 const totals = () => css`
-  padding-left: calc(var(--recipe-global-static-size-750) + var(--recipe-global-static-size-100));
+  && {
+    padding-left: calc(var(--recipe-global-static-size-750) + var(--recipe-global-static-size-100));
+  }
 
   table {
     width: auto;
