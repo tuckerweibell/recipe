@@ -1,40 +1,60 @@
 import React from 'react';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
+import Style from '@ezcater/snitches';
+import theme from './Icons.theme.config';
+import {clsx} from '../../utils';
 
-const alignBaseline = () => css`
-  height: 1em;
-  width: 1em;
-  min-width: 1em;
-  position: relative;
-  top: 0.125em;
-`;
+const alignBaseline = theme.css({
+  height: '$icon-size-baseline',
+  width: '$icon-size-baseline',
+  minWidth: '$icon-size-baseline',
+  position: 'relative',
+  top: '$icon-baseline-top',
+});
 
-const rotateAnimationStyles = () => css`
-  path {
-    animation: spin 1s linear infinite;
-    transform-style: preserve-3d;
-    transform-origin: center center;
-  }
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
+const rotateAnimationStyles = theme.css({
+  path: {
+    animation: 'spin 1s linear infinite',
+    transformStyle: 'preserve-3d',
+    transformOrigin: 'center center',
+  },
+  '@keyframes spin': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+});
 
-const Svg = ({children, title, className}: React.SVGProps<SVGSVGElement> & {title: string}) => (
+type SvgProps = {
+  children: React.SVGProps<SVGSVGElement>;
+  title: string;
+  className?: string;
+};
+
+const Svg = ({children, title, className}: SvgProps) => (
   <svg version="1.1" viewBox="0 0 14 14" height="1rem" width="1rem" className={className}>
     <title>{title}</title>
     {children}
   </svg>
 );
 
-const SvgIcon = styled(Svg)(alignBaseline);
-const RotatingSvgIcon = styled(SvgIcon)(rotateAnimationStyles);
+const SvgIcon = ({children, title, className}: SvgProps) => (
+  <Style ruleset={theme}>
+    <Svg title={title} className={clsx(alignBaseline(), className)}>
+      {children}
+    </Svg>
+  </Style>
+);
+
+const RotatingSvgIcon = ({children, title, className}: SvgProps) => (
+  <Style ruleset={theme}>
+    <SvgIcon title={title} className={clsx(rotateAnimationStyles(), className)}>
+      {children}
+    </SvgIcon>
+  </Style>
+);
 
 export const CloseIcon = () => (
   <SvgIcon title="close-button">
@@ -57,7 +77,11 @@ export const ErrorTriangle = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const ErrorIcon = styled(ErrorTriangle)(alignBaseline);
+export const ErrorIcon = (p: React.SVGProps<SVGSVGElement>) => (
+  <Style ruleset={theme}>
+    <ErrorTriangle {...p} className={alignBaseline()} />
+  </Style>
+);
 
 export const InfoIcon = () => (
   <SvgIcon title="info-icon">
@@ -144,11 +168,8 @@ export const ClockIcon = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const insetY0 = {top: 0, bottom: 0};
-const pr2 = {paddingRight: '0.5rem'};
-const pl3 = {paddingLeft: '0.75rem'};
-
-type Props = {
+type InsetIconProps = {
+  children: React.SVGProps<SVGSVGElement>;
   insetY0?: boolean;
   right0?: boolean;
   pr2?: boolean;
@@ -157,16 +178,51 @@ type Props = {
   z1?: boolean;
 };
 
-export const InsetIcon = styled.div<Props>`
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-  position: absolute;
+const insetIcon = theme.css({
+  display: 'flex',
+  alignItems: 'center',
+  pointerEvents: 'none',
+  position: 'absolute',
+});
 
-  ${p => p.insetY0 && insetY0};
-  ${p => p.right0 && {right: 0}};
-  ${p => p.left0 && {left: 0}};
-  ${p => p.pr2 && pr2};
-  ${p => p.pl3 && pl3};
-  ${p => p.z1 && {zIndex: 1}};
-`;
+const insetStyles = {
+  insetY0: {
+    top: 0,
+    bottom: 0,
+  },
+  right0: {
+    right: 0,
+  },
+  left0: {
+    left: 0,
+  },
+  pr2: {
+    paddingRight: '$icon-inset-pr',
+  },
+  pl3: {
+    paddingLeft: '$icon-inset-pl',
+  },
+  z1: {
+    zIndex: '$icon-inset-z1',
+  },
+};
+
+const insetStyle = style => theme.css(insetStyles[style]);
+
+export const InsetIcon = ({children, insetY0, right0, left0, pr2, pl3, z1}: InsetIconProps) => (
+  <Style ruleset={theme}>
+    <div
+      className={clsx(
+        insetIcon(),
+        insetY0 && insetStyle('insetY0'),
+        right0 && insetStyle('right0'),
+        left0 && insetStyle('left0'),
+        pr2 && insetStyle('pr2'),
+        pl3 && insetStyle('pl3'),
+        z1 && insetStyle('z1')
+      )}
+    >
+      {children}
+    </div>
+  </Style>
+);
