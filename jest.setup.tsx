@@ -144,4 +144,4 @@ configureSosia({
 });
 
 // extend jest timeout for snapshots running on CI
-jest.setTimeout(10000);
+jest.setTimeout(20000);
