@@ -1,11 +1,10 @@
 import React, {forwardRef, CSSProperties} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzField.theme.config';
-import {CustomInputWrapper} from './EzField.styles';
 import Label from '../EzLabel';
 import {InsetIcon, ErrorTriangle} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
-import {clsx, filterValidProps, wrapEvents} from '../../utils';
+import {clsx, domProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import EzTimeInput from './EzTimeInput';
@@ -13,7 +12,7 @@ import EzTextArea from './EzTextArea';
 import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
 import EzAutosuggest from './EzAutosuggest';
-import EzTextInput from './EzTextInput';
+import EzTextInput, {CustomInput} from './EzTextInput';
 
 const inputElements = ['text', 'number', 'password', 'email'];
 const choiceElements = ['radio', 'checkbox'];
@@ -28,9 +27,9 @@ const ErrorIcon = () => (
 );
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
-  <CustomInputWrapper {...props}>
-    <Input ref={ref} {...filterValidProps(props)} />
-  </CustomInputWrapper>
+  <CustomInput {...props}>
+    <Input ref={ref} {...domProps(props)} />
+  </CustomInput>
 ));
 
 const resolveInputFromType = type => {

@@ -20,7 +20,7 @@
 
 ```jsx
 <EzField
-  type={({value, onChange}) => <input value={value} onChange={onChange} />}
+  type={props => <input {...props} />}
   label="Character Name"
   helperText="Provide the name of your favorite Sesame Street character."
   touched
@@ -33,7 +33,7 @@
 ```jsx
 <Media size="small">
   <EzField
-    type={({value, onChange}) => <input value={value} onChange={onChange} />}
+    type={props => <input {...props} />}
     label="Character Name"
     helperText="Provide the name of your favorite Sesame Street character."
     touched

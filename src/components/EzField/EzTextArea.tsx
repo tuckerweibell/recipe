@@ -1,7 +1,7 @@
 import React from 'react';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
-import styles from './EzTextInput.styles';
+import Style from '@ezcater/snitches';
+import theme from './EzField.theme.config';
+import EzTextInput from './EzTextInput';
 
 const rows = size => {
   switch (size) {
@@ -15,17 +15,16 @@ const rows = size => {
   }
 };
 
-const overrides = () => css`
-  resize: vertical;
-
-  && {
-    line-height: 1.5rem;
-    padding: var(--recipe-global-static-size-100) var(--recipe-global-static-size-150);
-  }
-`;
-
-export const TextArea = styled.textarea(styles, overrides);
+const textArea = theme.css({
+  resize: 'vertical',
+  '&&': {
+    lineHeight: '1.5rem',
+    padding: '$100 $150',
+  },
+});
 
 export default React.forwardRef<HTMLTextAreaElement, {size}>(({size, ...rest}, ref) => (
-  <TextArea ref={ref} {...rest} rows={rows(size)} />
+  <Style ruleset={theme}>
+    <EzTextInput ref={ref} {...rest} multiLine rows={rows(size)} className={textArea()} />
+  </Style>
 ));

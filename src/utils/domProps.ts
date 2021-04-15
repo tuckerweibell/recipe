@@ -12,5 +12,12 @@ export const domProps = (
   props: unknown,
   ...styledExpressions: StyledExpression[]
 ): HTMLAttributes<any> => {
-  return filterValidProps((mergeProps as any)(props, ...styledExpressions.map(r => r.props)));
+  return filterValidProps(
+    (mergeProps as any)(
+      props,
+      ...styledExpressions.map(r => ({
+        className: r.className,
+      }))
+    )
+  );
 };
