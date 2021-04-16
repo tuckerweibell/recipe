@@ -68,36 +68,6 @@ const listItemOption = theme.css({
   ],
 });
 
-const Option = ({focusedKey, activeOptionRef, setFocusedKey, option, selectedKey, ...props}) => {
-  /* eslint-disable jsx-a11y/click-events-have-key-events */
-  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-  /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
-  const current = selectedKey === option.key;
-  const selected = focusedKey === option.key;
-  return (
-    <li
-      role="option"
-      className={clsx(listItem(), listItemOption({current, selected}))}
-      aria-current={current}
-      aria-selected={selected}
-      ref={selected ? activeOptionRef : undefined}
-      onMouseOver={() => setFocusedKey(option.key)}
-      onClick={() => props.replaceSelection(option.key)}
-      id={props.id}
-    >
-      <Highlighter
-        searchWords={props.searchWords}
-        textToHighlight={option.label}
-        highlightStyle={{
-          backgroundColor: 'inherit',
-          color: 'currentColor',
-          textDecoration: 'underline',
-        }}
-      />
-    </li>
-  );
-};
-
 const OptGroup = props => {
   const id = useUniqueId();
   return (
@@ -124,21 +94,41 @@ const EzListBox = (props, ref) => {
   // keep the focused list item visible within the scrollable listbox
   useScrollIntoView({containerRef: ref, targetRef: activeOptionRef}, [selectionManager.focusedKey]);
 
-  const renderItem = o => (
-    <Option
-      {...selectionManager}
-      id={getItemId(props.id, o.key)}
-      option={o}
-      key={o.label}
-      activeOptionRef={activeOptionRef}
-      searchWords={searchWords || []}
-    />
-  );
+  const renderItem = option => {
+    /* eslint-disable jsx-a11y/click-events-have-key-events */
+    /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+    /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
+    const current = selectionManager.selectedKey === option.key;
+    const selected = selectionManager.focusedKey === option.key;
+    return (
+      <li
+        role="option"
+        className={clsx(listItem(), listItemOption({current, selected}))}
+        aria-current={current}
+        aria-selected={selected}
+        ref={selected ? (activeOptionRef as any) : undefined}
+        onMouseOver={() => selectionManager.setFocusedKey(option.key)}
+        onClick={() => selectionManager.replaceSelection(option.key)}
+        id={getItemId(props.id, option.key)}
+        key={option.label}
+      >
+        <Highlighter
+          searchWords={searchWords || []}
+          textToHighlight={option.label}
+          highlightStyle={{
+            backgroundColor: 'inherit',
+            color: 'currentColor',
+            textDecoration: 'underline',
+          }}
+        />
+      </li>
+    );
+  };
 
   const renderGroup = ([name, options]) => (
-    <OptGroup group={name} key={name}>
-      {options.map(renderItem)}
-    </OptGroup>
+    <Style ruleset={theme} key={name}>
+      <OptGroup group={name}>{options.map(renderItem)}</OptGroup>
+    </Style>
   );
 
   return (
