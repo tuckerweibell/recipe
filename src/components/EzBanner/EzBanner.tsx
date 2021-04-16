@@ -77,7 +77,6 @@ const heading = theme.css({
 
 const linkButton = theme.css({
   backgroundColor: '$banner-button-bg',
-  color: '$banner-button-text',
   px: '$banner-button-px',
   py: '$banner-button-py',
   border: 'none',
@@ -88,9 +87,10 @@ const linkButton = theme.css({
   fontSize: '$text',
   cursor: 'pointer',
 
+  '&&': {color: '$banner-button-text'},
+
   '&:focus, &:hover, &:active': {
     backgroundColor: '$banner-button-bg',
-    textDecoration: 'none',
     outline: 'none',
   },
   '&:focus': {
