@@ -1,8 +1,9 @@
-import {ClassNames} from '@emotion/core';
 import React, {forwardRef, ReactElement, ReactNode} from 'react';
-import {primary, secondary, reset} from './EzLink.styles';
+import Style from '@ezcater/snitches';
+import theme from './EzLink.theme.config';
 import {Link as LinkProps} from './EzLink.types';
 import {isAnchor, isLink} from './utils';
+import {clsx} from '../../utils';
 
 type DeprecatedProps = LinkProps & {
   /** The content to display in the link. */
@@ -34,6 +35,54 @@ function getWrappedElement(children: string | ReactElement): ReactElement {
   );
 }
 
+const styles = theme.css({
+  variants: {
+    use: {
+      primary: {
+        fontWeight: 'bold',
+        textDecoration: 'none',
+        cursor: 'pointer',
+        color: '$link-text',
+        outlineOffset: '2px',
+        '&:focus': {
+          outline: 'none',
+          textDecoration: 'underline',
+          textDecorationStyle: 'double',
+        },
+        '&:hover': {
+          color: '$link-text-hover',
+          textDecoration: 'underline',
+        },
+        '&:active': {
+          color: '$link-text-down',
+        },
+      },
+      secondary: {
+        fontWeight: 'normal',
+        textDecoration: 'underline',
+        color: 'inherit',
+        cursor: 'pointer',
+        outlineOffset: '2px',
+        '&:focus': {
+          outline: 'none',
+          textDecoration: 'underline',
+          textDecorationStyle: 'double',
+        },
+        '&:hover': {
+          color: '$link-text-hover',
+        },
+        '&:active': {
+          color: '$link-text-down',
+        },
+      },
+      reset: {
+        color: 'inherit',
+        textDecoration: 'none',
+      },
+    },
+  },
+});
+
 /**
  * Links allow users to navigate to a different location.
  * They can be presented inline inside a paragraph or as standalone text.
@@ -49,23 +98,18 @@ const EzLink = forwardRef<HTMLElement, EzLinkProps>((props, ref) => {
     content = React.createElement(type, options, children);
   }
 
-  const styles = {primary, secondary, reset};
-  const style = styles[use];
-
   const el: any = getWrappedElement(content);
   // eslint-disable-next-line prefer-template
   const elClassName = '' + el.props.className;
 
   return (
-    <ClassNames>
-      {({css, cx}) => {
-        return React.cloneElement(el, {
-          ref: el.ref || ref,
-          className: cx(css(style?.()), className, elClassName),
-          ...passThroughProps,
-        });
-      }}
-    </ClassNames>
+    <Style ruleset={theme}>
+      {React.cloneElement(el, {
+        ref: el.ref || ref,
+        className: clsx(styles({use}), className, elClassName),
+        ...passThroughProps,
+      })}
+    </Style>
   );
 });
 
