@@ -1,8 +1,9 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import Style from '@ezcater/snitches';
+import theme from './EzField.theme.config';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
-import {TimeInput} from './EzTimeInput.styles';
 import EzSelect from './EzSelect';
 import {ClockIcon, InsetIcon} from '../Icons';
 
@@ -22,6 +23,12 @@ const useTimeRangeOptions = ({start, end, step}) => {
   return repeat(interval).map((_, i) => startTime.add(step * i, 'minute').format(t('TIME_FORMAT')));
 };
 
+const layout = theme.css({
+  position: 'relative',
+  width: '150px',
+  input: {paddingLeft: '2.5em'},
+});
+
 export default ({start, end, step = 60, value, ...rest}) => {
   const {t} = useTranslation(en);
 
@@ -32,24 +39,26 @@ export default ({start, end, step = 60, value, ...rest}) => {
 
   const options = useTimeRangeOptions({start, end, step});
   return (
-    <TimeInput>
-      <InsetIcon insetY0 left0 pl3>
-        <ClockIcon />
-      </InsetIcon>
-      <EzSelect
-        id={rest.id}
-        label={rest.label}
-        {...{error, touched}}
-        placeholder={rest.placeholder}
-        options={options.map(option => ({
-          label: option,
-          value: option,
-        }))}
-        value={valueTimeString}
-        onChange={rest.onChange}
-        aria-labelledby={rest['aria-labelledby']}
-        disabled={rest.disabled}
-      />
-    </TimeInput>
+    <Style ruleset={theme}>
+      <div className={layout()}>
+        <InsetIcon insetY0 left0 pl3>
+          <ClockIcon />
+        </InsetIcon>
+        <EzSelect
+          id={rest.id}
+          label={rest.label}
+          {...{error, touched}}
+          placeholder={rest.placeholder}
+          options={options.map(option => ({
+            label: option,
+            value: option,
+          }))}
+          value={valueTimeString}
+          onChange={rest.onChange}
+          aria-labelledby={rest['aria-labelledby']}
+          disabled={rest.disabled}
+        />
+      </div>
+    </Style>
   );
 };
