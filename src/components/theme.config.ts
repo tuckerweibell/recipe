@@ -186,6 +186,10 @@ const stitches = createCss({
         margin: `calc(${value} / 2)`,
       },
     }),
+    roundedTop: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderTopRightRadius: value}),
+    roundedBottom: () => (value: TokenValue<'radii'>) => ({borderBottomLeftRadius: value, borderBottomRightRadius: value}),
+    roundedLeft: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderBottomLeftRadius: value}),
+    roundedRight: () => (value: TokenValue<'radii'>) => ({borderTopRightRadius: value, borderBottomRightRadius: value}),
   },
   conditions: {
     base: '@media (min-width: 0px)',
