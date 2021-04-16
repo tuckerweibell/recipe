@@ -54,6 +54,7 @@ const stitches = createCss({
       teal200: '#effaf8',
       teal600: '#1bbc9b',
       teal700: '#008066',
+      white: '#fff',
       yellow200: '#fcf6e5',
       yellow500: '#f4d689',
       yellow600: '#e9a801',
