@@ -56,9 +56,18 @@ module.exports = {
       },
     },
     {
+      // polyfill.io
       resolve: 'gatsby-plugin-polyfill-io',
       options: {
-        features: ['default', 'NodeList.prototype.forEach'],
+        features: [
+          'es2015',
+          'es2016',
+          'es2017',
+          'default',
+          'NodeList.prototype.forEach',
+          'smoothscroll',
+          'Reflect.ownKeys',
+        ],
       },
     },
     {
