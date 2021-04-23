@@ -7,8 +7,8 @@ import {
   CSSPropertiesToTokenScale,
   TStyledSheet,
   IConfig,
-} from '@stitches/core';
-import { PlaceItemsProperty } from 'csstype';
+} from '@stitches/core-compat';
+import {PlaceItemsProperty} from 'csstype';
 
 type Globals = 'inherit' | 'initial' | 'revert' | 'unset';
 type FromTheme<T> = `$${Extract<keyof T, string | number>}`;

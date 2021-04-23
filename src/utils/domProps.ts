@@ -1,5 +1,5 @@
 import {HTMLAttributes} from 'react';
-import {StyledExpression} from '@stitches/core';
+import {StyledExpression} from '@stitches/core-compat';
 import filterValidProps from './filterValidProps';
 import {mergeProps} from './mergeProps';
 
