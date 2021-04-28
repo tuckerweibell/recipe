@@ -304,22 +304,20 @@
     }, [ref]);
 
     return (
-      <SetOverflow>
-        <div style={{width: '400px'}} ref={ref}>
-          <EzPage>
-            <EzTable
-              title="All Stores"
-              subtitle="Compared to the same period last year"
-              columns={[
-                {heading: 'Store name', key: 'store'},
-                {heading: 'Total sales', key: 'total', numeric: true},
-                {heading: 'Average order value', key: 'average', numeric: true},
-              ]}
-              items={items}
-            />
-          </EzPage>
-        </div>
-      </SetOverflow>
+      <div style={{width: '400px'}} ref={ref}>
+        <EzPage>
+          <EzTable
+            title="All Stores"
+            subtitle="Compared to the same period last year"
+            columns={[
+              {heading: 'Store name', key: 'store'},
+              {heading: 'Total sales', key: 'total', numeric: true},
+              {heading: 'Average order value', key: 'average', numeric: true},
+            ]}
+            items={items}
+          />
+        </EzPage>
+      </div>
     );
   };
 
@@ -348,27 +346,25 @@
     }, [ref]);
 
     return (
-      <SetOverflow>
-        <div style={{width: '400px'}} ref={ref}>
-          <EzPage>
-            <EzTable
-              title="All Stores"
-              subtitle="Compared to the same period last year"
-              selection={{
-                onRowSelectClick: () => {},
-                onBulkSelectClick: () => {},
-                isRowSelected: () => true,
-              }}
-              columns={[
-                {heading: 'Store name', key: 'store'},
-                {heading: 'Total sales', key: 'total', numeric: true},
-                {heading: 'Average order value', key: 'average', numeric: true},
-              ]}
-              items={items}
-            />
-          </EzPage>
-        </div>
-      </SetOverflow>
+      <div style={{width: '400px'}} ref={ref}>
+        <EzPage>
+          <EzTable
+            title="All Stores"
+            subtitle="Compared to the same period last year"
+            selection={{
+              onRowSelectClick: () => {},
+              onBulkSelectClick: () => {},
+              isRowSelected: () => true,
+            }}
+            columns={[
+              {heading: 'Store name', key: 'store'},
+              {heading: 'Total sales', key: 'total', numeric: true},
+              {heading: 'Average order value', key: 'average', numeric: true},
+            ]}
+            items={items}
+          />
+        </EzPage>
+      </div>
     );
   };
 

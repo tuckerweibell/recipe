@@ -1,20 +1,167 @@
-/** @jsx jsx */
-import {jsx, Interpolation, ClassNames} from '@emotion/core';
-import React, {createContext, createElement, useContext, useState, useEffect} from 'react';
+import React, {FC, createContext, createElement, useContext, useState, useEffect} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzTable.theme.config';
 import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
+import TableCardSection from './TableCardSection';
 import {TableProps} from './EzTable.types';
-import {Container, Table, Th, Td, ClickableTr, TableCardSection} from './EzTable.styles';
 import useSorting from './useSorting';
 import en from './en';
-import {wrapEvent} from '../../utils';
-import {useTranslation, useScrollPosition, useVirtualTouchable} from '../../utils/hooks';
-import useOverflowDetection from './useOverflowDetection';
+import {clsx, wrapEvent} from '../../utils';
+import {useTranslation} from '../../utils/hooks';
 import useExpandedClickTarget from './useExpandedClickTarget';
 import EzTextStyle from '../EzTextStyle';
 import {EzFooter} from '../EzContent';
+
+const cell = theme.css({
+  textAlign: 'left',
+  padding: '$150 $100',
+});
+
+/*
+  With table-layout: auto, widths of table cells only shrink to the size of their content,
+  so setting the width to a size smaller than the content size causes the cell to always fit
+  the content and not stretch to fill the available space.
+*/
+const selectionCell = theme.css({
+  'th:first-of-type, td:first-of-type': {
+    width: '1%',
+    whiteSpace: 'normal',
+  },
+  'tr + tr': {
+    td: {
+      backgroundColor: '$table-message-bg',
+      borderColor: '$table-message-border',
+      borderTopStyle: 'solid',
+      padding: '$100',
+      '> *': {
+        justifyContent: 'center',
+      },
+    },
+  },
+});
+
+const numericCell = theme.css({
+  textAlign: 'right',
+});
+
+const header = theme.css(cell, {
+  fontWeight: '$table-heading',
+  fontSize: '$table-heading',
+  lineHeight: '$table',
+  color: '$table-heading-text',
+});
+
+const sortableColumn = theme.css({
+  cursor: 'pointer',
+  userSelect: 'none',
+  span: {
+    display: 'inline-flex',
+    alignItems: 'center',
+  },
+  svg: {
+    fill: '$gray600',
+    marginLeft: '$100',
+    opacity: 0,
+  },
+});
+
+const sortedCell = theme.css({
+  svg: {
+    opacity: 1,
+  },
+});
+
+const rowHover = theme.css({
+  '&&:hover': {
+    td: {
+      userSelect: 'none',
+      cursor: 'pointer',
+    },
+  },
+});
+
+const base = theme.css({
+  margin: 0,
+  borderCollapse: 'collapse',
+  width: 'auto',
+  fontFamily: '$sans',
+  fontWeight: '$regular',
+  fontSize: '$100',
+  lineHeight: '$table',
+  color: '$table-text',
+  backgroundColor: 'white',
+  whiteSpace: 'nowrap',
+
+  variants: {
+    use: {
+      simple: {
+        'th, td': {
+          border: 'none',
+        },
+        'tr th:first-of-type, tr td:first-of-type': {
+          paddingLeft: '$150',
+        },
+        'tr th:last-of-type, tr td:last-of-type': {
+          paddingRight: '$150',
+        },
+        'tr th': {
+          paddingTop: 0,
+          paddingBottom: '6px',
+        },
+        'tr td': {
+          paddingTop: '$50',
+          paddingBottom: '$50',
+        },
+        'tr td:not(:last-of-type)': {
+          paddingRight: '$400',
+        },
+        'tr:nth-of-type(odd) td': {
+          backgroundColor: '$table-bg-alt',
+        },
+      },
+      card: {
+        borderRadius: '6px',
+        overflow: 'hidden',
+
+        // space the content of the table columns with "card" padding
+        'th, td': {
+          '&:first-of-type': {
+            paddingLeft: '$250',
+          },
+          '&:last-of-type': {
+            paddingRight: '$250',
+          },
+        },
+        // give the table some borders
+        'tbody tr:first-of-type td': {
+          borderTopStyle: 'solid',
+        },
+        td: {
+          borderBottomStyle: 'solid',
+          borderColor: '$gray300',
+          borderWidth: '$thin',
+        },
+        'tbody tr:last-of-type td': {
+          borderBottomStyle: 'none',
+        },
+
+        // and highlight hovered rows
+        'tbody tr:hover td': {
+          backgroundColor: '$table-bg-hover',
+        },
+      },
+    },
+  },
+});
+
+const responsive = theme.css({
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  '-webkit-overflow-scrolling': 'touch',
+});
 
 const {Fragment} = React;
 const TableContext = createContext(null);
@@ -32,13 +179,37 @@ const SortDirection = ({direction}) => (
   </svg>
 );
 
-const Thead = () => {
-  const {columns, items, sorting, selection} = React.useContext(TableContext);
+type ThProps = {
+  children: any;
+  numeric?: boolean;
+  isSortableColumn?: boolean;
+  sorted?: boolean;
+  onClick?: any;
+};
+
+const Th: FC<ThProps> = ({children, numeric, isSortableColumn, sorted, onClick}) => (
+  <Style ruleset={theme}>
+    <th
+      className={clsx(
+        numeric && numericCell(),
+        header(),
+        isSortableColumn && sortableColumn(),
+        sorted && sortedCell()
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </th>
+  </Style>
+);
+
+const Thead = ({selectable}) => {
+  const {columns, items, sorting, selection} = useContext(TableContext);
   const col = columns.find(c => c.defaultSort);
   const initialSort = col && {column: col, direction: col.defaultSort};
   const {direction, onClick, isSorted} = useSorting(initialSort);
   return (
-    <thead>
+    <thead className={clsx(selectable && selectionCell())}>
       <tr>
         {selection && (
           <Th>
@@ -55,7 +226,7 @@ const Thead = () => {
             <Th
               key={column.key || cellIndex}
               numeric={numeric}
-              sortable={sortable}
+              isSortableColumn={sortable}
               sorted={isSorted(column)}
               onClick={event => onClick(event, column, sorting.onSortClick)}
             >
@@ -71,6 +242,12 @@ const Thead = () => {
   );
 };
 
+const selectionStateCell = theme.css({
+  '&&': {
+    padding: '12px 20px',
+  },
+});
+
 const SelectionStateBanner = () => {
   const {t} = useTranslation(en);
   const {columns, items, selection, pagination} = useContext(TableContext);
@@ -80,42 +257,44 @@ const SelectionStateBanner = () => {
   if (selection.selected.length !== items.length && !selection.allSelected) return null;
 
   return (
-    <tr>
-      <td colSpan={columns.length + 1} style={{padding: '12px 20px'}}>
-        <EzLayout layout="cluster" alignX="center">
-          {selection.allSelected || items.length === pagination.totalRows ? (
-            <Fragment>
-              <EzTextStyle align="center">
-                {t('All {{totalRowCount}} rows are selected.', {
-                  totalRowCount: pagination.totalRows,
-                })}
-              </EzTextStyle>
-              <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
-                {t('Clear selection')}
-              </EzButton>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <EzTextStyle align="center">
-                {t('All {{selectedCount}} rows on this page are selected.', {
-                  selectedCount: selection.selected.length,
-                })}
-              </EzTextStyle>
-              <EzButton
-                use="tertiary"
-                onClick={wrapEvent(selection.onSelectAllClick, () =>
-                  selection.setAllSelected(true)
-                )}
-              >
-                {t('Select all {{totalRowCount}} rows', {
-                  totalRowCount: pagination.totalRows,
-                })}
-              </EzButton>
-            </Fragment>
-          )}
-        </EzLayout>
-      </td>
-    </tr>
+    <Style ruleset={theme}>
+      <tr>
+        <td colSpan={columns.length + 1} className={selectionStateCell()}>
+          <EzLayout layout="cluster" alignX="center">
+            {selection.allSelected || items.length === pagination.totalRows ? (
+              <Fragment>
+                <EzTextStyle align="center">
+                  {t('All {{totalRowCount}} rows are selected.', {
+                    totalRowCount: pagination.totalRows,
+                  })}
+                </EzTextStyle>
+                <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
+                  {t('Clear selection')}
+                </EzButton>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <EzTextStyle align="center">
+                  {t('All {{selectedCount}} rows on this page are selected.', {
+                    selectedCount: selection.selected.length,
+                  })}
+                </EzTextStyle>
+                <EzButton
+                  use="tertiary"
+                  onClick={wrapEvent(selection.onSelectAllClick, () =>
+                    selection.setAllSelected(true)
+                  )}
+                >
+                  {t('Select all {{totalRowCount}} rows', {
+                    totalRowCount: pagination.totalRows,
+                  })}
+                </EzButton>
+              </Fragment>
+            )}
+          </EzLayout>
+        </td>
+      </tr>
+    </Style>
   );
 };
 
@@ -124,57 +303,119 @@ const TRow = ({item}) => {
   const [targetRef, {ref, clickable, onClick, onMouseEnter}] = useExpandedClickTarget();
 
   return (
-    <ClickableTr {...{ref: ref as any, clickable, onClick, onMouseEnter}}>
-      {selection && (
-        <Td>
-          <EzCheckbox
-            label="Select row"
-            checked={selection.selected.includes(item)}
-            onChange={event => selection.onRowSelectClick(event, {item})}
-          />
-        </Td>
-      )}
-      {columns.map(({component, numeric}, cellIndex) => (
-        <Td key={cellIndex} numeric={numeric}>
-          {createElement(component, {item, linkRef: targetRef})}
-        </Td>
-      ))}
-    </ClickableTr>
+    <Style ruleset={theme}>
+      <tr
+        className={clsx(clickable && rowHover)}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        ref={ref as any}
+      >
+        {selection && (
+          <td className={cell()}>
+            <EzCheckbox
+              label="Select row"
+              checked={selection.selected.includes(item)}
+              onChange={event => selection.onRowSelectClick(event, {item})}
+            />
+          </td>
+        )}
+        {columns.map(({component, numeric}, cellIndex) => (
+          <td className={clsx(cell(), numeric && numericCell())} key={cellIndex}>
+            {createElement(component, {item, linkRef: targetRef})}
+          </td>
+        ))}
+      </tr>
+    </Style>
   );
 };
 
 const Tbody = () => {
   const {items} = useContext(TableContext);
   return (
-    <tbody>
-      {items.map((item, rowIndex) => (
-        <TRow key={rowIndex} item={item} />
-      ))}
-    </tbody>
+    <Style ruleset={theme}>
+      <tbody>
+        {items.map((item, rowIndex) => (
+          <TRow key={rowIndex} item={item} />
+        ))}
+      </tbody>
+    </Style>
   );
 };
 
-const iconSize: Interpolation = {
+const iconSize = theme.css({
   height: 24,
   width: 24,
-};
+});
 
-const iconStates: Interpolation = {
+const rangeWrapper = theme.css({
+  whiteSpace: 'nowrap',
+});
+
+const paginationNav = theme.css({
+  display: 'flex',
+  '> * + *': {
+    marginLeft: '16px',
+  },
+});
+
+const iconStates = theme.css({
   fill: '#8B99A6',
-  ':hover': {fill: '#212b36'},
-  ':active': {fill: '#637381'},
-};
+  ':hover': {
+    fill: '#212b36',
+  },
+  ':active': {
+    fill: '#637381',
+  },
+});
 
-const cx = (...args): Interpolation => Object.assign({}, ...args);
-const clsx = (...args) => args.filter(Boolean).join(' ');
+const virtualTouchable = theme.css({
+  position: 'relative',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: '-10px',
+    right: '-10px',
+    transform: 'translateY(-50%)',
+    minHeight: '44px',
+    minWidth: '44px',
+    height: '100%',
+    top: '50%',
+  },
+});
 
-// merging the virtualTouchable with button was causing emotion to balloon the number
-// of generated styles, so apply to a parent element instead
-const VirtualTouchable = ({children}) => {
-  const virtualTouchable = useVirtualTouchable();
-  const nested = {'> *': virtualTouchable};
-  return <div css={nested}>{children}</div>;
-};
+const rowsPerPageOpacity = theme.css({
+  // opacity 0 is ignored by some screen readers
+  opacity: 0.001,
+});
+
+const rowsPerPageSvg = theme.css({
+  pointerEvents: 'none',
+  fill: '#8B99A6',
+  'select:focus + &': {
+    borderRadius: '3px',
+    boxShadow: '#3e90d6 0px 0px 0px 2px',
+  },
+  'select:hover + &': {
+    fill: '#212b36',
+  },
+  'select:active + &': {
+    fill: '#637381',
+  },
+});
+
+const rowsPerPageWrapper = theme.css({
+  position: 'relative',
+  '& > *': {
+    position: 'absolute',
+    left: '-10px',
+    right: '-10px',
+    transform: 'translateY(-50%)',
+    minHeight: '44px',
+    minWidth: '44px',
+    height: '100%',
+    top: '50%',
+  },
+});
 
 const TablePagination = ({pagination}) => {
   const {t} = useTranslation(en);
@@ -184,94 +425,70 @@ const TablePagination = ({pagination}) => {
   const to = Math.min(count, page * rowsPerPage);
   const range = count === 1 ? 1 : `${from}-${to}`;
 
-  const virtualTouchable = useVirtualTouchable();
   return (
-    <ClassNames>
-      {({css: toClassName}) => (
-        <EzFooter>
-          <EzLayout layout="right">
-            <nav
-              aria-label={t('Pagination')}
-              css={{
-                display: 'flex',
-                '> * + *': {marginLeft: 16},
-              }}
+    <Style ruleset={theme}>
+      <EzFooter>
+        <EzLayout layout="right">
+          <nav aria-label={t('Pagination')} className={paginationNav()}>
+            <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
+            <EzButton
+              use="tertiary"
+              title={t('Previous Page')}
+              aria-label={t('Previous Page')}
+              onClick={pagination.onPrevPageClick}
+              disabled={pagination.currentPage === 1}
+              className={virtualTouchable()}
+              icon={
+                <svg
+                  viewBox="6 5 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={iconStates()}
+                >
+                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
+                </svg>
+              }
+            />
+            <EzButton
+              use="tertiary"
+              title={t('Next Page')}
+              aria-label={t('Next Page')}
+              onClick={pagination.onNextPageClick}
+              disabled={pagination.currentPage === pages}
+              className={virtualTouchable()}
+              icon={
+                <svg
+                  viewBox="6 5 14 14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={iconStates()}
+                >
+                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+                </svg>
+              }
+            />
+          </nav>
+          <div className={clsx(rowsPerPageWrapper(), iconSize())}>
+            <select
+              className={rowsPerPageOpacity()}
+              defaultValue={pagination.rowsPerPage}
+              onChange={pagination.onRowsPerPageChange}
+              title={t('Show rows per page options')}
+              aria-label={t('Show rows per page options')}
             >
-              <span css={{whiteSpace: 'nowrap'}}>
-                {t('{{range}} of {{count}}', {range, count})}
-              </span>
-              <VirtualTouchable>
-                <EzButton
-                  use="tertiary"
-                  title={t('Previous Page')}
-                  aria-label={t('Previous Page')}
-                  onClick={pagination.onPrevPageClick}
-                  disabled={pagination.currentPage === 1}
-                  icon={
-                    <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                      <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-                    </svg>
-                  }
-                />
-              </VirtualTouchable>
-              <VirtualTouchable>
-                <EzButton
-                  use="tertiary"
-                  title={t('Next Page')}
-                  aria-label={t('Next Page')}
-                  onClick={pagination.onNextPageClick}
-                  disabled={pagination.currentPage === pages}
-                  icon={
-                    <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" css={iconStates}>
-                      <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-                    </svg>
-                  }
-                />
-              </VirtualTouchable>
-            </nav>
-            <div css={cx({position: 'relative'}, iconSize)}>
-              <select
-                className={clsx(
-                  toClassName(virtualTouchable[':after']),
-                  // opacity 0 is ignored by some screen readers
-                  toClassName({opacity: 0.001})
-                )}
-                defaultValue={pagination.rowsPerPage}
-                onChange={pagination.onRowsPerPageChange}
-                title={t('Show rows per page options')}
-                aria-label={t('Show rows per page options')}
-              >
-                {pagination.rowsPerPageOptions.map(value => (
-                  <option key={value} value={value}>
-                    {t('{{num}} rows per page', {num: value})}
-                  </option>
-                ))}
-              </select>
-              <svg
-                className={clsx(
-                  toClassName(virtualTouchable[':after']),
-                  toClassName({
-                    pointerEvents: 'none',
-                    fill: iconStates.fill,
-                    'select:focus + &': {
-                      borderRadius: 3,
-                      boxShadow: '#3e90d6 0px 0px 0px 2px',
-                    },
-                    'select:hover + &': iconStates[':hover'],
-                    'select:active + &': iconStates[':active'],
-                  })
-                )}
-                focusable={false}
-                viewBox="-8 -8 40 40"
-                aria-hidden="true"
-              >
+              {pagination.rowsPerPageOptions.map(value => (
+                <option key={value} value={value}>
+                  {t('{{num}} rows per page', {num: value})}
+                </option>
+              ))}
+            </select>
+            <span className={rowsPerPageSvg()}>
+              <svg focusable={false} viewBox="-8 -8 40 40" aria-hidden="true">
                 <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
               </svg>
-            </div>
-          </EzLayout>
-        </EzFooter>
-      )}
-    </ClassNames>
+            </span>
+          </div>
+        </EzLayout>
+      </EzFooter>
+    </Style>
   );
 };
 
@@ -280,7 +497,7 @@ const TablePagination = ({pagination}) => {
  * so that users can look for patterns and insights.
  * They can be embedded in primary content, such as cards.
  */
-const EzTable: React.FC<TableProps> = ({
+const EzTable: FC<TableProps> = ({
   actions,
   title,
   subtitle,
@@ -294,9 +511,6 @@ const EzTable: React.FC<TableProps> = ({
   const selected = selection && items.filter(selection.isRowSelected);
   const numSelectedOnPage = selected && selected.length;
   const {currentPage, rowsPerPage} = pagination || ({} as any);
-  const [{x}, scrollEvents] = useScrollPosition();
-  const isScrolling = x > 0;
-  const [isOverflowing, overflowDetection] = useOverflowDetection<HTMLDivElement>();
 
   useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
 
@@ -320,43 +534,40 @@ const EzTable: React.FC<TableProps> = ({
   );
 
   const table = (
-    <TableContext.Provider
-      value={{
-        items,
-        selection: selection && {
-          ...selection,
-          selected,
-          allSelected,
-          setAllSelected,
-        },
-        columns: mappedColumns,
-        pagination,
-        sorting: {onSortClick},
-      }}
-    >
-      <Container
-        cols={columns.length}
-        selectable={!!selection}
-        overflowing={isOverflowing}
-        isScrolling={isScrolling}
-        {...scrollEvents}
-        ref={overflowDetection.ref}
+    <Style ruleset={theme}>
+      <TableContext.Provider
+        value={{
+          items,
+          selection: selection && {
+            ...selection,
+            selected,
+            allSelected,
+            setAllSelected,
+          },
+          columns: mappedColumns,
+          pagination,
+          sorting: {onSortClick},
+        }}
       >
-        <Table selectable={!!selection} use={!title ? 'simple' : 'full'}>
-          <Thead />
-          <Tbody />
-        </Table>
-      </Container>
-    </TableContext.Provider>
+        <div className={responsive()}>
+          <table className={base({use: title ? 'card' : 'simple'})}>
+            <Thead selectable={!!selection} />
+            <Tbody />
+          </table>
+        </div>
+      </TableContext.Provider>
+    </Style>
   );
 
   if (!title) return table;
 
   return (
-    <EzCard title={title} subtitle={subtitle} actions={actions}>
-      <TableCardSection>{table}</TableCardSection>
-      {pagination && <TablePagination pagination={pagination} />}
-    </EzCard>
+    <Style ruleset={theme}>
+      <EzCard title={title} subtitle={subtitle} actions={actions}>
+        <TableCardSection>{table}</TableCardSection>
+        {pagination && <TablePagination pagination={pagination} />}
+      </EzCard>
+    </Style>
   );
 };
 

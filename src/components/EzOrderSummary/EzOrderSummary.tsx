@@ -4,7 +4,7 @@ import {EzCard, EzTable, EzTextStyle, EzLayout, EzCardSection} from '..';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
 import theme from './EzOrderSummary.theme.config';
-import {TableCardSection} from '../EzTable/EzTable.styles';
+import TableCardSection from '../EzTable/TableCardSection';
 
 type LabelValuePair = {label: string; value: string};
 type Price = string;
@@ -59,6 +59,11 @@ const table = theme.css({
   '&& table tr th, && table tr td': {
     padding: '$order-summary-table-py $order-summary-table-px',
     backgroundColor: '$order-summary-table-bg',
+  },
+  'tbody tr:first-of-type td': {
+    borderTopStyle: 'solid',
+    borderColor: '$gray300',
+    borderWidth: '$thin',
   },
   '&& table tr th:first-of-type, && table tr td:first-of-type': {
     paddingLeft: '$order-summary-table-pl',

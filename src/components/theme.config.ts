@@ -22,6 +22,7 @@ const stitches = createCss({
     },
     colors: {
       blue200: '#ebf7ff',
+      blue300: '#c1def4',
       blue500: '#77b1e2',
       blue600: '#3e90d6',
       blue650: '#3a81be',
@@ -113,6 +114,7 @@ const stitches = createCss({
       round: '50%',
     },
     sizes: {
+      50: '4px',
       150: '12px',
       200: '16px',
       400: '32px',
