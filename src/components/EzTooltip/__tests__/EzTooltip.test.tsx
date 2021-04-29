@@ -1,9 +1,9 @@
 import React from 'react';
-import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
+import {Global, css} from '../../../styles';
 
 jest.unmock('../../../utils/hooks/usePopper');
 

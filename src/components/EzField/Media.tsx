@@ -1,8 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {createPortal} from 'react-dom';
-import {CacheProvider} from '@emotion/core';
-// eslint-disable-next-line
-import createCache from '@emotion/cache';
 import {EzGlobalStyles} from '../index';
 
 const sizes = {
@@ -12,16 +9,7 @@ const sizes = {
 };
 
 const IFrameContent = ({iframeEl, children}) => {
-  const cache = useRef(
-    createCache({container: iframeEl.ownerDocument.head, key: 'x', prefix: false})
-  );
-
-  // Remove any injected stylesheets from the page when the component is unmounted
-  React.useEffect(() => () => cache.current.sheet.flush());
-
-  return (
-    <>{createPortal(<CacheProvider value={cache.current}>{children}</CacheProvider>, iframeEl)}</>
-  );
+  return <>{createPortal(children, iframeEl)}</>;
 };
 
 // smaller output than encodeURIComponent...
@@ -33,8 +21,6 @@ const encodeHead = head =>
     .replace(/:\s/g, ':')
     // strip type="text/css" attr
     .replace(/\stype="text\/css"/g, '')
-    // strip data-emotion attr
-    .replace(/\sdata-emotion="[a-zA-Z0-9-_]+"/g, '')
     // strip comments
     .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*/g, '')
     // replace hex color symbol

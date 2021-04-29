@@ -1,5 +1,4 @@
 import React from 'react';
-import {Global, css} from '@emotion/core';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
@@ -7,6 +6,7 @@ import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
 import markdown from '../EzButton.md';
 import {EzLayout} from '../../index';
+import {Global, css} from '../../../styles';
 
 jest.unmock('../../../utils/hooks/usePopper');
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Global, css} from '@emotion/core';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import * as Components from '..';
 import Placeholder from '../../doc-site/src/components/Placeholder';
 import ezCaterLogoPath from '../../doc-site/src/ezcater-logo.svg';
+import {Global, css} from '../styles';
 
 // our markdown examples use images from the doc-site, so tell webpack how to find those images:
 const docSiteImages = require.context('../../doc-site/static', true);

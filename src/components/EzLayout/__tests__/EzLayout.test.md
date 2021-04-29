@@ -4,7 +4,7 @@ Note: the black background here is to highlight the alignment of the items.
 When items are misaligned, the content items aren't symmetric.
 
 ```jsx
-<EzCard>
+<div>
   <Global
     styles={css(`
     .basic > * > * {
@@ -12,39 +12,43 @@ When items are misaligned, the content items aren't symmetric.
     }
   `)}
   />
-  <EzLayout
-    layout={{base: 'stack', medium: 'split'}}
-    className="basic"
-    style={{backgroundColor: 'black'}}
-  >
-    <div>Content</div>
-    <div>Content</div>
-  </EzLayout>
-</EzCard>
+  <EzCard>
+    <EzLayout
+      layout={{base: 'stack', medium: 'split'}}
+      className="basic"
+      style={{backgroundColor: 'black'}}
+    >
+      <div>Content</div>
+      <div>Content</div>
+    </EzLayout>
+  </EzCard>
+</div>
 ```
 
 ### Collapse to single column on small screens
 
 ```jsx
-<Media size="small">
-  <EzCard>
-    <Global
-      styles={css(`
+<div>
+  <Global
+    styles={css(`
     .tile > *  > * {
       background-color: cadetblue;
       color: white;
     }
   `)}
-    />
-    <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-      <div>Content</div>
-    </EzLayout>
-  </EzCard>
-</Media>
+  />
+  <Media size="small">
+    <EzCard>
+      <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
+        <div>Content</div>
+        <div>Content</div>
+        <div>Content</div>
+        <div>Content</div>
+        <div>Content</div>
+      </EzLayout>
+    </EzCard>
+  </Media>
+</div>
 ```
 
 ### Resets margin correctly

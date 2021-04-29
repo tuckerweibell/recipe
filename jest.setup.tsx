@@ -1,7 +1,4 @@
 import React from 'react';
-import {CacheProvider} from '@emotion/core';
-import createCache from '@emotion/cache';
-import {createSerializer, matchers} from 'jest-emotion';
 import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
@@ -18,61 +15,32 @@ import '@testing-library/jest-dom/extend-expect';
 // Add custom matchers
 expect.extend(toHaveNoViolations);
 
-// Add a snapshot serializer that removes random hashes
-// from emotion class names.
-expect.addSnapshotSerializer(
-  createSerializer({
-    classNameReplacer(_className, index) {
-      return `recipe-${index}`;
-    },
-  })
-);
-
-expect.extend(matchers);
-
-const EmotionCacheProvider = ({children}) => {
-  const cache = React.useRef(
-    createCache({
-      prefix: false,
-      // default key prefix is 'css'. Changing it to 'r' (for recipe), to trim the size of the generated output by two chars per class.
-      key: 'r',
-    })
-  );
-
-  // Remove any injected stylesheets from the page when the component is unmounted
-  React.useEffect(() => () => cache.current.sheet.flush());
-
-  return <CacheProvider value={cache.current}>{children}</CacheProvider>;
-};
-
 const GlobalStylesWrapper = ({children}) => (
-  <EmotionCacheProvider>
-    <>
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-        rel="stylesheet"
-      />
-      <EzGlobalStyles />
-      <Global
-        styles={css`
-          /* disable animations in visual snapshots */
-          *,
-          ::before,
-          ::after {
-            transition-property: none !important;
-            animation: none !important;
+  <>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+    <EzGlobalStyles />
+    <Global
+      styles={css`
+        /* disable animations in visual snapshots */
+        *,
+        ::before,
+        ::after {
+          transition-property: none !important;
+          animation: none !important;
+        }
+        /* restore user agent based margin for backward compatibility with existing snapshots */
+        @media (min-width: 768px) {
+          body {
+            margin: 8px;
           }
-          /* restore user agent based margin for backward compatibility with existing snapshots */
-          @media (min-width: 768px) {
-            body {
-              margin: 8px;
-            }
-          }
-        `}
-      />
-      <Style ruleset={themeGlobals}>{children}</Style>
-    </>
-  </EmotionCacheProvider>
+        }
+      `}
+    />
+    <Style ruleset={themeGlobals}>{children}</Style>
+  </>
 );
 
 const markdownSource = new MarkdownSource();
