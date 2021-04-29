@@ -1,15 +1,17 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import {horizontal, vertical} from './EzContentGroup.styles';
+import EzLayout from '../EzLayout';
 
 type ContentGroupProps = {
   children: React.ReactNode;
   horizontal?: boolean;
 };
+
 /**
- * Content groups are used to organize sections of content within EzPageContent.
+ * @deprecated Please use EzPageSection or EzLayout instead.
  */
-const EzContentGroup = styled.div<ContentGroupProps>(horizontal, vertical);
+const EzContentGroup: React.FC<ContentGroupProps> = ({horizontal, children}) => {
+  return <EzLayout layout={horizontal ? 'basic' : 'stack'}>{children}</EzLayout>;
+};
 
 EzContentGroup.displayName = 'EzContentGroup';
 

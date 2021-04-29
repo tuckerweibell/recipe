@@ -1,16 +1,9 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import {base} from './EzPageContent.styles';
+import {EzPage} from '../EzPage';
 
-type PageContentProps = {
-  children: React.ReactNode;
-};
 /**
- * Page Content is the main content container for a page.
+ * @deprecated Please use EzPage instead.
  */
-const EzPageContent = styled.div<PageContentProps>(base);
-
-EzPageContent.displayName = 'EzPageContent';
+const EzPageContent = EzPage;
 
 /**
  * @component
