@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@stitches/core-compat",
+  "internal": true,
   "version": "0.1.0-canary.20",
   "description": "The @stitches CSS-in-JS library adapted to support IE",
   "source": "src/index.ts",
@@ -10,10 +10,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "npm run patch",
-    "build": "npm run clean && npm run build-to-dist && npm run build-es && npm run build-cjs",
+    "build": "npm run clean && npm run build-to-dist && npm run build-es && npm run build-cjs && npm run package",
     "build-to-dist": "microbundle -i src/index.ts -o dist/index.modern.js --no-pkg-main -f modern --tsconfig tsconfig.copy.json --external none",
     "build-es": "microbundle -i dist/index.modern.js -o dist/index.mjs.js --no-pkg-main -f es --tsconfig tsconfig.build.json",
     "build-cjs": "microbundle -i dist/index.modern.js -o dist/index.cjs.js --no-pkg-main -f cjs --tsconfig tsconfig.build.json",
+    "package": "cd ../../.. && mkdir -p dist/packages && cp -R packages/@stitches dist/packages",
     "patch": "patch-package"
   },
   "browserslist": [

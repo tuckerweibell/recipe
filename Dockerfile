@@ -8,6 +8,6 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node . /home/node/app
 
-RUN npm run build:dependencies --silent
+RUN npm run install:dependencies --silent
 RUN npm install --silent --production=false --frozen-lockfile
 RUN NODE_ENV=production npm run build

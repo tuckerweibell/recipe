@@ -8,8 +8,7 @@
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
-    "lib",
-    "packages/@stitches/core"
+    "lib"
   ],
   "repository": {
     "type": "git",
@@ -84,14 +83,15 @@
     "start:with-ie11": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop:with-ie11)\" --kill-others",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build": "npm run clean && npm run build:types && npm run build:cjs && npm run build:esm && cp .npmignore dist",
+    "build": "npm run clean && npm run build:dependencies && npm run build:types && npm run build:cjs && npm run build:esm && cp .npmignore dist",
     "build:types": "tsc --emitDeclarationOnly --rootDir src",
-    "build:dependencies": "cd packages/@stitches/core && npm install && npm run patch && npm run build",
+    "build:dependencies": "cd packages/@stitches/core && npm run build",
     "build:packages": "rm -rf .parcel-cache && parcel build packages/@recipe-ui/*/",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir dist/cjs --extensions \".ts,.tsx\" --source-maps inline --copy-files",
     "build:esm": "cross-env BABEL_ENV=esm babel src --out-dir dist/esm --extensions \".ts,.tsx\" --source-maps inline --copy-files",
     "build:watch": "npm run build:cjs && npm run build:esm -- --watch",
     "build:docs:prod": "cd doc-site && npm run build:prod",
+    "install:dependencies": "cd packages/@stitches/core && npm install && npm run patch",
     "push:docs": "cd doc-site && npm run deploy",
     "deploy": "npm run build:docs:prod && npm run playroom:build && npm run push:docs",
     "bundle-size": "cd tree-shaking-size/ && npm i && npm run build && node check-size.js",
@@ -114,7 +114,6 @@
     "@popperjs/core": "^2.1.1",
     "@react-types/provider": "^3.1.1",
     "@recipe-ui/legacy-theme": "^1.0.0",
-    "@stitches/core-compat": "file:./packages/@stitches/core",
     "dayjs": "^1.8.14",
     "react-highlight-words": "^0.16.0"
   },

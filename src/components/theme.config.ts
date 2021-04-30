@@ -1,13 +1,13 @@
 /* eslint-disable filenames/match-exported */
-import {
-  createCss,
+import {createCss} from '../../packages/@stitches/core';
+import type {
   TConditions,
   TTheme,
   TThemeMap,
   CSSPropertiesToTokenScale,
   TStyledSheet,
   IConfig,
-} from '@stitches/core-compat';
+} from '../../packages/@stitches/core';
 import {PlaceItemsProperty} from 'csstype';
 
 type Globals = 'inherit' | 'initial' | 'revert' | 'unset';
