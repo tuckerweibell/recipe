@@ -9,9 +9,9 @@ order: 10
 - [When to consider building something new](#when-to-consider-building-something-new)
 - [Design setup](#design-setup)
 - [Development setup](#development-setup)
-  - [Importing components in downstream projects](#importing-components-in-downstream-projects)
+  - [Importing components in your projects](#importing-components-in-your-projects)
   - [Including Recipe's default font](#including-recipes-default-font)
-  - [Using Recipe theme with emotion](#using-recipe-theme-with-emotion)
+  - [Updating to new releases](#updating-to-new-releases)
 - [Browser support](#browser-support)
 - [Contributing](#contributing)
 
@@ -68,15 +68,9 @@ The matching Sketch symbol library for Recipe is available through a tool called
 npm install @ezcater/recipe
 ```
 
-After installing recipe in your new application you may need to install some additional peer dependencies. When installing recipe, you may see warnings in your terminal prompting you to install these dependencies. There is a `peerDependencies` section in Recipe's `package.json` file which lists the dependencies that need to be installed by the parent application.
+Aside from React and React DOM, Recipe has no other `peerDependencies`.  Once `@ezcater/recipe` is installed, you're ready to start importing components!
 
-Aside from React and React DOM, Recipe requires the following `peerDependencies` to be provided by your project:
-
-```term
-npm install @emotion/core @emotion/styled
-```
-
-### Importing components in downstream projects
+### Importing components in your projects
 
 Import the Recipe package, just as you would any other package dependency:
 
