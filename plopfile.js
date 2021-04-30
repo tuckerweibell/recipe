@@ -49,7 +49,7 @@ module.exports = function(plop) {
     const fileNameMap = {
       [COMPONENT_FILES.COMPONENT]: `${name}.tsx`,
       [COMPONENT_FILES.COMPONENT_TEST]: `/__tests__/${name}.test.tsx`,
-      [COMPONENT_FILES.COMPONENT_STYLES]: `${name}.styles.tsx`,
+      [COMPONENT_FILES.COMPONENT_STYLES]: `${name}.theme.config.ts`,
       [COMPONENT_FILES.COMPONENT_MARKDOWN]: `${name}.md`,
     };
     return fileNameMap[file];
@@ -69,7 +69,7 @@ module.exports = function(plop) {
         message: 'What type of component do you need?',
         choices: [
           {
-            name: 'Styled',
+            name: 'Themed',
             value: COMPONENT_TYPES.STYLED,
           },
           {
@@ -105,7 +105,7 @@ module.exports = function(plop) {
             checked: true,
           },
           {
-            name: 'Component styles',
+            name: 'Component theme',
             value: COMPONENT_FILES.COMPONENT_STYLES,
             checked: true,
           },
