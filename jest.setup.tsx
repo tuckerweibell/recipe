@@ -4,44 +4,39 @@ import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
 import Style from '@ezcater/snitches';
-import {Global, css} from './src/styles';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
-import themeGlobals from './src/components/theme.config';
+import theme from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 import './src/styles/recipe-global.css';
 import '@testing-library/jest-dom/extend-expect';
 
+const globals = theme.global({
+  // disable animations in visual snapshots
+  '*, *::before, *::after': {
+    transitionProperty: 'none !important',
+    animation: 'none !important',
+  },
+  // restore user agent based margin for backward compatibility with existing snapshots
+  when: {medium: {body: {margin: '8px'}}},
+});
+
 // Add custom matchers
 expect.extend(toHaveNoViolations);
 
-const GlobalStylesWrapper = ({children}) => (
-  <>
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-      rel="stylesheet"
-    />
-    <EzGlobalStyles />
-    <Global
-      styles={css`
-        /* disable animations in visual snapshots */
-        *,
-        ::before,
-        ::after {
-          transition-property: none !important;
-          animation: none !important;
-        }
-        /* restore user agent based margin for backward compatibility with existing snapshots */
-        @media (min-width: 768px) {
-          body {
-            margin: 8px;
-          }
-        }
-      `}
-    />
-    <Style ruleset={themeGlobals}>{children}</Style>
-  </>
-);
+const GlobalStylesWrapper = ({children}) => {
+  globals();
+  return (
+    <>
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+        rel="stylesheet"
+      />
+      <EzGlobalStyles />
+      <Style ruleset={theme}>{children}</Style>
+    </>
+  );
+};
 
 const markdownSource = new MarkdownSource();
 const markdownSourceWithThemeWrapper = {
