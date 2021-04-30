@@ -10,11 +10,6 @@
     "lib",
     "packages/@stitches/core"
   ],
-  "sideEffects": [
-    "lib/index.js",
-    "lib/esm/index.js",
-    "*.css"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ezcater/recipe"
