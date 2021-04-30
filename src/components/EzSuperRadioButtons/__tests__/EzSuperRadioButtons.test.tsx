@@ -42,7 +42,7 @@ describe('EzSuperRadioButtons', () => {
       />
     );
 
-    screen.getByLabelText('third').click();
+    screen.getByLabelText(/third/).click();
 
     expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
   });
