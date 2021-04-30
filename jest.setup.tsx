@@ -8,7 +8,6 @@ import EzGlobalStyles from './src/components/EzGlobalStyles';
 import theme from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
-import './src/styles/recipe-global.css';
 import '@testing-library/jest-dom/extend-expect';
 
 const globals = theme.global({
