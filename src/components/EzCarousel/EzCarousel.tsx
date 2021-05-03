@@ -145,8 +145,8 @@ const listStyle = theme.css({
   padding: '$carousel-item-offset 0',
   // hide scroll bar
   scrollbarWidth: 'none',
-  msOverflowStyle: 'none',
-  '::-webkit-scrollbar': {display: 'none'},
+  '-ms-overflow-style': 'none',
+  '&::-webkit-scrollbar': {display: 'none'},
   outline: 'none',
   // '> *': slidesPerPageStyles(options),
 });
