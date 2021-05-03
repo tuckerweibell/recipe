@@ -1,0 +1,4 @@
+{
+  "internal": true,
+  "main": "../dist/cjs/index.js"
+}
