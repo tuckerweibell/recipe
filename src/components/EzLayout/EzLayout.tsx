@@ -36,7 +36,7 @@ const box = theme.css({display: 'flex'});
 const styles = theme.css({
   display: 'flex',
   gap: '$layout-gap',
-  flexGrow: 1,
+  flex: '1 1 0%',
 
   variants: {
     layout: {
