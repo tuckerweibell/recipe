@@ -80,6 +80,10 @@ export const container = theme.css({
 
 // ${size({size: props.size || (props.isQuiet ? 'small' : undefined)})};
 
+export const msGrid = theme.css({
+  display: '-ms-grid',
+});
+
 export const grid = theme.css({
   display: 'grid',
   '-ms-grid-rows': 'auto auto 1fr auto',
@@ -96,7 +100,7 @@ export const grid = theme.css({
   variants: {
     imagePosition: {
       top: {
-        msGridColumns: '0px minmax(0px, 100%)',
+        '-ms-grid-columns': '0px minmax(0px, 100%)',
         gridTemplateColumns: `
           [left] 0
           [header] minmax(0, 100%)
@@ -104,7 +108,7 @@ export const grid = theme.css({
         `,
       },
       right: {
-        msGridColumns: '0px minmax(0px, 100%) var(--sizes-card-preview-max-w, 50%)',
+        '-ms-grid-columns': '0px minmax(0px, 100%) var(--sizes-card-preview-max-w, 50%)',
         gridTemplateColumns: `
           [left] 0
           [header] minmax(0, 100%)
@@ -112,7 +116,7 @@ export const grid = theme.css({
         `,
       },
       left: {
-        msGridColumns: 'var(--sizes-card-preview-max-w, 50%) 0px minmax(0px, 100%)',
+        '-ms-grid-columns': 'var(--sizes-card-preview-max-w, 50%) 0px minmax(0px, 100%)',
         gridTemplateColumns: `
           [left] var(--sizes-card-preview-max-w, 50%)
           [header] minmax(0, 100%)
@@ -128,7 +132,7 @@ const positionReset = {
   borderBottomRightRadius: 0,
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
-  ...{msGridRowSpan: '1', msGridColumnSpan: '1'},
+  ...{'-ms-grid-row-span': '1', '-ms-grid-column-span': '1'},
 };
 
 export const preview = theme.css({
@@ -150,7 +154,7 @@ export const preview = theme.css({
         borderTopLeftRadius: 'var(--radii-card-rounded)',
         borderBottomLeftRadius: 'var(--radii-card-rounded)',
         '& > img': {height: '$full'},
-        ...{msGridColumn: '1', msGridRowSpan: '3', msGridRow: '1'},
+        ...{'-ms-grid-column': '1', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
       },
       right: {
         ...positionReset,
@@ -158,42 +162,42 @@ export const preview = theme.css({
         borderTopRightRadius: 'var(--radii-card-rounded)',
         borderBottomRightRadius: 'var(--radii-card-rounded)',
         '& > img': {height: '$full'},
-        ...{msGridColumn: '3', msGridRowSpan: '3', msGridRow: '1'},
+        ...{'-ms-grid-column': '3', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
       },
       top: {
         ...positionReset,
         gridArea: 'top',
         borderTopLeftRadius: 'var(--radii-card-rounded)',
         borderTopRightRadius: 'var(--radii-card-rounded)',
-        ...{msGridColumn: '1', msGridColumnSpan: '3', msGridRow: '1'},
+        ...{'-ms-grid-column': '1', '-ms-grid-column-span': '3', '-ms-grid-row': '1'},
       },
     },
   },
 });
 
 export const header = theme.css({
-  msGridColumn: '2',
-  msGridRow: '2',
+  '-ms-grid-column': '2',
+  '-ms-grid-row': '2',
   gridArea: 'header',
   padding: '$card-p $card-p 0',
 });
 
 export const content = theme.css({
-  msGridColumn: '2',
-  msGridRow: '3',
+  '-ms-grid-column': '2',
+  '-ms-grid-row': '3',
   gridArea: 'content',
   padding: '$card-p',
 });
 
 export const sections = theme.css({
-  msGridColumn: '2',
-  msGridRow: '3',
+  '-ms-grid-column': '2',
+  '-ms-grid-row': '3',
   gridArea: 'sections',
 });
 
 export const footer = theme.css({
-  msGridColumn: '2',
-  msGridRow: '4',
+  '-ms-grid-column': '2',
+  '-ms-grid-row': '4',
   gridArea: 'footer',
   padding: '$150 $card-p',
   textAlign: 'center',

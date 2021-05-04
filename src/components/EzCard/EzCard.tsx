@@ -4,6 +4,7 @@ import Style from '@ezcater/snitches';
 import theme from './EzCard.theme.config';
 import {
   grid,
+  msGrid,
   container,
   preview,
   header,
@@ -82,6 +83,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
       {...filterValidProps(props)}
       className={clsx(
         grid({imagePosition}),
+        msGrid(),
         container({
           accent,
           size: size || isQuiet ? 'small' : undefined,
