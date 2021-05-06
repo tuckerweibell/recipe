@@ -140,16 +140,21 @@ const contentContainer = theme.css({
 });
 
 const linksWrapper = theme.css({
-  display: 'none',
   '& a': {
     paddingLeft: 32,
     paddingTop: 12,
     paddingBottom: 12,
   },
-});
-
-const openLinksWrapper = theme.css({
-  display: 'block',
+  variants: {
+    isOpen: {
+      true: {
+        display: 'block',
+      },
+      false: {
+        display: 'none',
+      },
+    },
+  },
 });
 
 const openedContentContainer = theme.css({
@@ -176,12 +181,23 @@ const groupSvgWrapper = theme.css({
 });
 
 const groupSvg = theme.css({
-  transform: 'rotate(0deg)',
-  transition: 'transform 0.3s ease-in-out',
-});
-
-const openedGroupSvg = theme.css({
-  transform: 'rotate(180deg)',
+  svg: {
+    transition: 'transform 0.3s ease-in-out',
+  },
+  variants: {
+    isOpen: {
+      true: {
+        svg: {
+          transform: 'rotate(180deg)',
+        },
+      },
+      false: {
+        svg: {
+          transform: 'rotate(0deg)',
+        },
+      },
+    },
+  },
 });
 
 const notificationIcon = theme.css({
@@ -220,7 +236,7 @@ const Group = ({links, className, children}) => {
             setOpen(o => !o);
           }}
         >
-          <div className={clsx(groupSvgWrapper(), className)}>
+          <div className={clsx(groupSvgWrapper(), className, groupSvg({isOpen: open}))}>
             {children}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -232,13 +248,12 @@ const Group = ({links, className, children}) => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className={clsx(groupSvg(), open && openedGroupSvg())}
             >
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </div>
         </div>
-        <div className={clsx(linksWrapper(), open && openLinksWrapper())}>
+        <div className={clsx(linksWrapper({isOpen: open}))}>
           <Links links={links} />
         </div>
       </div>
