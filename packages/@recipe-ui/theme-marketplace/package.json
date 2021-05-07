@@ -21,7 +21,11 @@
   "dependencies": {
     "@react-types/provider": "^3.1.1"
   },
+  "devDependencies": {
+    "@ezcater/recipe": "file:../../.."
+  },
   "peerDependencies": {
+    "@ezcater/recipe": "^12.0.0",
     "react": "^16.8.0 || ^17.0.1"
   },
   "publishConfig": {
