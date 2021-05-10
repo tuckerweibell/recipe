@@ -11,19 +11,16 @@ const alignBaseline = theme.css({
   top: '$icon-baseline-top',
 });
 
+const spin = theme.keyframes({
+  from: {transform: 'rotate(0deg)'},
+  to: {transform: 'rotate(360deg)'},
+});
+
 const rotateAnimationStyles = theme.css({
   path: {
-    animation: 'spin 1s linear infinite',
+    animation: `${spin} 1s linear infinite`,
     transformStyle: 'preserve-3d',
     transformOrigin: 'center center',
-  },
-  '@keyframes spin': {
-    from: {
-      transform: 'rotate(0deg)',
-    },
-    to: {
-      transform: 'rotate(360deg)',
-    },
   },
 });
 
