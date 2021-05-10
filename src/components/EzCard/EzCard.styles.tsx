@@ -78,15 +78,27 @@ export const container = theme.css({
   },
 });
 
-// ${size({size: props.size || (props.isQuiet ? 'small' : undefined)})};
-
-export const msGrid = theme.css({
-  display: '-ms-grid',
-});
+export const msGrid = maxWidth =>
+  theme.css({
+    display: '-ms-grid',
+    '-ms-grid-rows': 'auto auto 1fr auto',
+    variants: {
+      imagePosition: {
+        top: {
+          '-ms-grid-columns': '0px minmax(0px, 100%)',
+        },
+        right: {
+          '-ms-grid-columns': `0px minmax(0px, 100%) ${maxWidth || '50%'})`,
+        },
+        left: {
+          '-ms-grid-columns': `${maxWidth || '50%'} minmax(0px, 100%) 0px`,
+        },
+      },
+    },
+  });
 
 export const grid = theme.css({
   display: 'grid',
-  '-ms-grid-rows': 'auto auto 1fr auto',
   gridTemplateRows: 'auto auto auto 1fr auto',
   gridTemplateAreas: `
     '. top .'
@@ -100,7 +112,6 @@ export const grid = theme.css({
   variants: {
     imagePosition: {
       top: {
-        '-ms-grid-columns': '0px minmax(0px, 100%)',
         gridTemplateColumns: `
           [left] 0
           [header] minmax(0, 100%)
@@ -108,7 +119,6 @@ export const grid = theme.css({
         `,
       },
       right: {
-        '-ms-grid-columns': '0px minmax(0px, 100%) var(--sizes-card-preview-max-w, 50%)',
         gridTemplateColumns: `
           [left] 0
           [header] minmax(0, 100%)
@@ -116,7 +126,6 @@ export const grid = theme.css({
         `,
       },
       left: {
-        '-ms-grid-columns': 'var(--sizes-card-preview-max-w, 50%) 0px minmax(0px, 100%)',
         gridTemplateColumns: `
           [left] var(--sizes-card-preview-max-w, 50%)
           [header] minmax(0, 100%)

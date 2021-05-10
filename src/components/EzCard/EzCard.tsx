@@ -83,7 +83,8 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
       {...filterValidProps(props)}
       className={clsx(
         grid({imagePosition}),
-        msGrid(),
+        // dynamically generate styles for IE (which doesn't support inline CSS vars)
+        msGrid(unitlessToPx(maxWidth))({imagePosition}),
         container({
           accent,
           size: size || isQuiet ? 'small' : undefined,
