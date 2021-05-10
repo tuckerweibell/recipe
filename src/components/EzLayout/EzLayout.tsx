@@ -63,6 +63,7 @@ const styles = theme.css({
       stack: {
         alignItems: 'normal',
         flexDirection: 'column',
+        flexBasis: 0,
       },
       tile: {
         flexWrap: 'wrap',
