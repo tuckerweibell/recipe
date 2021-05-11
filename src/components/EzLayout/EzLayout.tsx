@@ -24,6 +24,7 @@ const generateColumns = (length: number): any => {
 const reset: any = {
   flexDirection: 'row',
   flexWrap: 'nowrap',
+  width: 'auto',
   [descendants]: {
     flexBasis: 'auto',
     flexGrow: 0,
@@ -63,7 +64,7 @@ const styles = theme.css({
       stack: {
         alignItems: 'normal',
         flexDirection: 'column',
-        flexBasis: 0,
+        width: '$full',
       },
       tile: {
         flexWrap: 'wrap',
