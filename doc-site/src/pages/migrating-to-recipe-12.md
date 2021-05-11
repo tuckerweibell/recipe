@@ -96,6 +96,8 @@ We recommend using the following [polyfill bundle](https://polyfill.io/v3/url-bu
 - Reflect.ownKeys
 - NodeList.prototype.forEach
 
+If you're using the [`css-vars-ponyfill`](https://github.com/jhildenbiddle/css-vars-ponyfill) to provide support for CSS variables in IE, please ensure you're running an up-to-date release. Version [2.4.0](https://github.com/jhildenbiddle/css-vars-ponyfill/blob/master/CHANGELOG.md#240) or higher is needed for compatibility with Recipe.
+
 <br>
 
 ### Build tooling
