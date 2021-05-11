@@ -1,7 +1,6 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
   "plugins": [
-    ["emotion", {"sourceMap": false, "autoLabel": false}],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-private-methods",
     "@babel/plugin-transform-runtime",

@@ -1,13 +1,56 @@
 import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
+import Style from '@ezcater/snitches';
+import theme from './EzField.theme.config';
 import EzTextInput from './EzTextInput';
-import {CalendarWrapper, OverlayFieldWrapper, TextInputWrapper} from './EzDateInput.styles';
+import {TextInputWrapper} from './Picker.styles';
 import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
 import FocusScope from '../FocusScope';
+import {clsx} from '../../utils';
+
+const layout = theme.css({
+  position: 'relative',
+  width: '200px',
+  input: {paddingLeft: '2.5em'},
+});
+
+const calendarPopup = theme.css({
+  position: 'relative',
+  padding: '$150',
+  fontFamily: '$sans',
+  fontSize: '$100',
+  width: '320px',
+  marginTop: '$100',
+  borderRadius: 8,
+  border: '1px solid $border',
+  backgroundColor: 'white',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.12)',
+});
+
+const arrow = theme.css({
+  '&:after, &:before': {
+    content: "' '",
+    position: 'absolute',
+    left: '19px',
+    bottom: '100%',
+    height: '0',
+    width: '0',
+  },
+  '&:after': {
+    marginLeft: '-5px',
+    border: '5px solid transparent',
+    borderBottomColor: 'white',
+  },
+  '&:before': {
+    marginLeft: '-7px',
+    border: '7px solid transparent',
+    borderBottomColor: '$border',
+  },
+});
 
 const EzDateInput = ({
   id,
@@ -23,11 +66,6 @@ const EzDateInput = ({
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
 
   const menuState = useMenuTriggerState();
-  const combobox = {
-    className: props.className,
-    disabled,
-    opened: menuState.isOpen,
-  };
 
   const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
@@ -54,7 +92,7 @@ const EzDateInput = ({
     id,
     name,
     value,
-    'aria-haspopup': 'dialog' as 'dialog',
+    'aria-haspopup': 'dialog' as const,
     'aria-labelledby': ariaLabelledBy,
     onChange: e => setValue(e.target.value),
     disabled,
@@ -66,9 +104,10 @@ const EzDateInput = ({
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <OverlayFieldWrapper hasError={props.touched && props.error} opened={isOpen}>
+    <Style ruleset={theme}>
       <TextInputWrapper
-        {...combobox}
+        className={layout({className: props.className})}
+        disabled={disabled}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key !== 'Tab' || !isOpen) return;
           e.preventDefault();
@@ -91,8 +130,10 @@ const EzDateInput = ({
           onClose={close}
         >
           <FocusScope contain restoreFocus>
-            <CalendarWrapper
+            {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+            <div
               {...menuProps}
+              className={clsx(calendarPopup(), arrow())}
               role="dialog"
               aria-labelledby={id}
               onKeyDown={e => {
@@ -110,11 +151,11 @@ const EzDateInput = ({
                   close();
                 }}
               />
-            </CalendarWrapper>
+            </div>
           </FocusScope>
         </EzPopover>
       )}
-    </OverlayFieldWrapper>
+    </Style>
   );
 };
 

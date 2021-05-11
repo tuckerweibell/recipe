@@ -14,7 +14,7 @@ const propRe = /^((data|aria)-.*)$/;
  * @param props - The component props to be filtered.
  * @param opts - Props to override.
  */
-export function filterDOMProps<TElement, T extends object>(
+export function filterDOMProps<TElement, T extends Record<string, unknown>>(
   props: T,
   opts: Options
 ): HTMLAttributes<TElement> {

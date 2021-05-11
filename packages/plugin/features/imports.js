@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable camelcase */
 const {relative} = require('path');
 const {createRequireFromPath} = require('module');
 const logger = require('../logging');

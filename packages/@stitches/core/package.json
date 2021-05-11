@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "internal": true,
+  "version": "0.1.0-canary.20",
+  "description": "The @stitches CSS-in-JS library adapted to support IE",
+  "source": "src/index.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "dist/index.mjs.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "clean": "npm run patch",
+    "build": "npm run clean && npm run build-to-dist && npm run build-es && npm run build-cjs && npm run package",
+    "build-to-dist": "microbundle -i src/index.ts -o dist/index.modern.js --no-pkg-main -f modern --tsconfig tsconfig.copy.json --external none",
+    "build-es": "microbundle -i dist/index.modern.js -o dist/index.mjs.js --no-pkg-main -f es --tsconfig tsconfig.build.json",
+    "build-cjs": "microbundle -i dist/index.modern.js -o dist/index.cjs.js --no-pkg-main -f cjs --tsconfig tsconfig.build.json",
+    "package": "cd ../../.. && mkdir -p dist/packages && cp -R packages/@stitches dist/packages",
+    "patch": "patch-package"
+  },
+  "browserslist": [
+    "IE 11"
+  ],
+  "dependencies": {
+    "@stitches/core": "0.1.0-canary.20"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.10.4",
+    "@stitches/core": "0.1.0-canary.20",
+    "microbundle": "^0.13.0",
+    "patch-package": "^6.4.7"
+  }
+}

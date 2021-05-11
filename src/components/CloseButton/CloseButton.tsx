@@ -1,19 +1,70 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import {base} from './CloseButton.styles';
+import React, {forwardRef, HTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './CloseButton.theme.config';
 
-const CloseButton = styled.button<any>(base);
+const button = theme.css({
+  cursor: 'pointer',
+  appearance: 'none',
+  border: 'none',
+  borderRadius: '$round',
+  lineHeight: 1,
+  outline: 'none',
+  padding: '$dismiss-padding',
+  margin: '-$dismiss-padding',
+  backgroundColor: '$dismiss-background',
 
-export default ({label, ...props}) => {
-  return (
-    <CloseButton {...props} aria-label={label}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" version="1">
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d="M8 6l5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5-5-5 2-2 5 5z"
-        />
-      </svg>
-    </CloseButton>
-  );
-};
+  '&:hover, &:focus': {
+    backgroundColor: '$dismiss-translucent-dark',
+  },
+
+  '&:active': {
+    backgroundColor: '$dismiss-translucent-darker',
+  },
+});
+
+const visuallyHidden = theme.css({
+  border: 0,
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  margin: '0 -1px -1px 0',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  width: 1,
+  whiteSpace: 'nowrap',
+});
+
+export interface Props extends HTMLAttributes<HTMLElement> {
+  label?: string;
+}
+
+/**
+ * A cross icon button.
+ */
+const CloseButton = forwardRef<HTMLButtonElement, Props>(
+  ({label, className, children, ...props}, ref) => {
+    return (
+      <Style ruleset={theme}>
+        <button type="button" {...props} className={button({className})} ref={ref}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" aria-hidden="true">
+            <path
+              fill="currentColor"
+              fillRule="evenodd"
+              d="M8 6l5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5-5-5 2-2 5 5z"
+            />
+          </svg>
+          <span className={visuallyHidden()}>
+            {label}
+            {children}
+          </span>
+        </button>
+      </Style>
+    );
+  }
+);
+
+/**
+ * @component
+ */
+export default CloseButton;

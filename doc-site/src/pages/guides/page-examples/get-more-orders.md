@@ -43,7 +43,7 @@ tags: ['wide']
       >
         <EzPage>
           <EzCard
-            imageSrc="https://via.placeholder.com/500+x+225/00b373/FFFFFF?text=500+x+225"
+            imageSrc="http://via.placeholder.com/500+x+225/00b373/FFFFFF?text=500+x+225"
             imagePosition={{base: 'top', medium: 'right'}}
           >
             <EzLayout layout="stack">
@@ -208,7 +208,7 @@ tags: ['wide']
               </p>
             </EzCard>
             <img
-              src="https://via.placeholder.com/400+x+250/00b373/FFFFFF?text=400+x+250"
+              src="http://via.placeholder.com/400+x+250/00b373/FFFFFF?text=400+x+250"
               alt="marketing video"
               style={{objectFit: 'cover', width: '100%'}}
             />

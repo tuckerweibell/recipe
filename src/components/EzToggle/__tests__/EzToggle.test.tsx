@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import {axe} from 'jest-axe';
-import {Global, css} from '@emotion/core';
 import {visualSnapshots} from 'sosia';
-import {fireEvent, cleanup, render} from '@testing-library/react';
+import {fireEvent, cleanup, render, screen} from '@testing-library/react';
 import regressionTests from './EzToggle.test.md';
 import markdown from '../EzToggle.md';
 import EzToggle from '../EzToggle';
+import {Global, css} from '../../../styles';
 
 const scope = {EzToggle, Global, css};
 
@@ -18,14 +18,9 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the input is clicked', () => {
     const spy = jest.fn();
 
-    const {queryByLabelText} = render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={spy} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" onChange={spy} checked label="Toggle me" />);
 
-    const toggle = queryByLabelText('Toggle me');
+    const toggle = screen.getByLabelText(/Toggle me/);
 
     fireEvent.click(toggle);
 
@@ -35,29 +30,19 @@ describe('EzToggle', () => {
   it('calls the provided click handler when the stylized container is clicked', () => {
     const spy = jest.fn();
 
-    const {queryByLabelText} = render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={spy} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" onChange={spy} checked />);
 
-    const toggle = queryByLabelText('Toggle me');
+    const toggle = screen.getByRole('presentation');
 
-    fireEvent.click(toggle.parentNode);
+    fireEvent.click(toggle);
 
     expect(spy).toHaveBeenCalled();
   });
 
   it('submits the correct input state when using uncontrolled input', () => {
-    const {queryByLabelText} = render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" />
-        <span>Toggle me</span>
-      </label>
-    );
+    render(<EzToggle id="toggle" label="Toggle me" />);
 
-    const toggle = queryByLabelText('Toggle me') as HTMLInputElement;
+    const toggle = screen.getByLabelText(/Toggle me/) as HTMLInputElement;
 
     expect(toggle.checked).toBe(false);
 
@@ -67,12 +52,7 @@ describe('EzToggle', () => {
   });
 
   it('should meet accessibility guidelines', async () => {
-    const {container} = render(
-      <label htmlFor="toggle">
-        <EzToggle id="toggle" onChange={() => {}} checked />
-        <span>Toggle me</span>
-      </label>
-    );
+    const {container} = render(<EzToggle id="toggle" label="Toggle me" />);
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });

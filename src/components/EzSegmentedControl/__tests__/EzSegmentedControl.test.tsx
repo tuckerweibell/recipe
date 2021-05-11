@@ -4,6 +4,7 @@ import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import markdown from '../EzSegmentedControl.md';
 import EzSegmentedControl from '../EzSegmentedControl';
+import Label from '../../EzLabel/EzLabel';
 
 const scope = {EzSegmentedControl};
 
@@ -56,5 +57,93 @@ describe('EzSegmentedControl', () => {
     );
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
+  });
+
+  const active = true;
+  const className = 'string';
+  const label = (
+    <Label id="1" position="top">
+      Label
+    </Label>
+  );
+  const labelPosition = 'left';
+  const name = 'name';
+  const onChange = (value: string) => value;
+  const options = [
+    {value: '1', label: 'one', disabled: false},
+    {value: '2', label: 'two', disabled: true},
+  ];
+
+  it('should pass type checking', () => {
+    [
+      {
+        activeProp: (
+          <EzSegmentedControl
+            active={active}
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        classNameProp: (
+          <EzSegmentedControl
+            className={className}
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        labelProp: (
+          <EzSegmentedControl
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        labelPositionProp: (
+          <EzSegmentedControl
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        nameProp: (
+          <EzSegmentedControl
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        onChangeProp: (
+          <EzSegmentedControl
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+        optionsProp: (
+          <EzSegmentedControl
+            label={label}
+            labelPosition={labelPosition}
+            name={name}
+            onChange={onChange}
+            options={options}
+          />
+        ),
+      },
+    ].forEach(() => {});
+    expect.assertions(0);
   });
 });

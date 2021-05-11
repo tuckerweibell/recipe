@@ -1,6 +1,7 @@
-import React, {SFC} from 'react';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
+import React, {FC} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzNavigation.theme.config';
+import {clsx} from '../../utils';
 
 type OpenProps = {
   opened: boolean;
@@ -8,118 +9,108 @@ type OpenProps = {
 
 type HamburgerProps = OpenProps & {
   onClick: (ev: React.SyntheticEvent<any>) => void;
+  className: string;
 };
 
-const HamburgerBox = styled.span`
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 24px;
-`;
+const hamburgerBox = theme.css({
+  position: 'relative',
+  display: 'inline-block',
+  width: '40px',
+  height: '24px',
+});
 
-const active = ({active: isActive}) =>
-  isActive &&
-  css`
-    &,
-    &:after,
-    &:before {
-      background-color: #fff;
-    }
+const activeHamburger = theme.css({
+  '&, &:after, &:before': {
+    backgroundColor: '$white',
+  },
 
-    transform: translate3d(0, 10px, 0) rotate(135deg);
-    transition-delay: 0.075s;
+  transform: 'translate3d(0, 10px, 0) rotate(135deg)',
+  transitionDelay: '0.075s',
 
-    &::before {
-      transition-delay: 0s;
-      opacity: 0;
-    }
+  '&::before': {
+    transitionDelay: '0s',
+    opacity: '0',
+  },
 
-    &::after {
-      transform: translate3d(0, -20px, 0) rotate(-270deg);
-      transition-delay: 0.075s;
-    }
-  `;
+  '&::after': {
+    transform: 'translate3d(0, -20px, 0) rotate(-270deg)',
+    transitionDelay: '0.075s',
+  },
+});
 
-const HamburgerInner = styled.span`
-  display: block;
-  top: 2px;
-  margin-top: -2px;
+const hamburgerInner = theme.css({
+  display: 'block',
+  top: '2px',
+  marginTop: '-2px',
 
-  &,
-  &::before,
-  &::after {
-    width: 40px;
-    height: 4px;
-    background-color: #fff;
-    border-radius: 4px;
-    position: absolute;
-    transition-property: transform;
-  }
+  '&, &::before, &::after': {
+    width: '40px',
+    height: '4px',
+    backgroundColor: '$white',
+    borderRadius: '4px',
+    position: 'absolute',
+    transitionProperty: 'transform',
+  },
 
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    transition-duration: 0.15s;
-    transition-timing-function: ease;
-  }
+  '&::before, &::after': {
+    content: "''",
+    display: 'block',
+    transitionDuration: '0.15s',
+    transitionTimingFunction: 'ease',
+  },
 
-  &::before {
-    top: -10px;
-  }
+  transitionDuration: '0.275s',
+  transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 
-  &::after {
-    bottom: -10px;
-  }
+  '&::before': {
+    top: '10px',
+    transition: 'opacity 0.125s 0.275s ease',
+  },
 
-  transition-duration: 0.275s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  '&::after': {
+    top: '20px',
+    bottom: '-10px',
+    transition: 'transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+  },
+});
 
-  &::before {
-    top: 10px;
-    transition: opacity 0.125s 0.275s ease;
-  }
+const toggleButton = theme.css({
+  padding: '15px',
+  display: 'inline-block',
+  cursor: 'pointer',
+  height: '70px',
 
-  &::after {
-    top: 20px;
-    transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
+  transitionProperty: 'opacity, filter',
+  transitionDuration: '0.15s',
+  transitionTimingFunction: 'linear',
 
-  ${active}
-`;
+  font: 'inherit',
+  color: 'inherit',
+  textTransform: 'none',
+  backgroundColor: 'transparent',
+  border: 0,
+  margin: 0,
+  overflow: 'visible',
 
-const normalizeButton = () => css`
-  font: inherit;
-  color: inherit;
-  text-transform: none;
-  background-color: transparent;
-  border: 0;
-  margin: 0;
-  overflow: visible;
-`;
+  '&:hover': {
+    opacity: 0.7,
+  },
+});
 
-const ToggleButton = styled.button<OpenProps>`
-  padding: 15px;
-  display: inline-block;
-  cursor: pointer;
-
-  transition-property: opacity, filter;
-  transition-duration: 0.15s;
-  transition-timing-function: linear;
-
-  ${normalizeButton};
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-const Hamburger: SFC<HamburgerProps> = ({opened, onClick}) => (
-  <ToggleButton opened={opened} onClick={onClick} aria-label="Menu">
-    <HamburgerBox>
-      <HamburgerInner active={opened} />
-    </HamburgerBox>
-  </ToggleButton>
+const Hamburger: FC<HamburgerProps> = ({opened, onClick, className, children}) => (
+  <Style ruleset={theme}>
+    <button
+      type="button"
+      className={clsx(toggleButton(), className)}
+      onClick={onClick}
+      aria-label="Menu"
+    >
+      <span className={hamburgerBox()}>
+        <span className={clsx(hamburgerInner(), opened && activeHamburger())} />
+      </span>
+      {children}
+    </button>
+  </Style>
 );
 
 export default Hamburger;

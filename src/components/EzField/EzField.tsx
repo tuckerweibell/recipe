@@ -1,17 +1,10 @@
 import React, {forwardRef, CSSProperties} from 'react';
-import {
-  Field,
-  Helper,
-  InlineError,
-  CharacterLimit,
-  ErrorTriangle,
-  CustomInputWrapper,
-  ScreenReaderOnly,
-} from './EzField.styles';
+import Style from '@ezcater/snitches';
+import theme from './EzField.theme.config';
 import Label from '../EzLabel';
-import {InsetIcon} from '../Icons';
+import {InsetIcon, ErrorTriangle} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
-import {filterValidProps, wrapEvents} from '../../utils';
+import {clsx, domProps, wrapEvents} from '../../utils';
 import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import EzTimeInput from './EzTimeInput';
@@ -19,22 +12,24 @@ import EzTextArea from './EzTextArea';
 import {Props, CustomInputProps} from './EzField.types';
 import EzSelect from './EzSelect';
 import EzAutosuggest from './EzAutosuggest';
-import EzTextInput from './EzTextInput';
+import EzTextInput, {CustomInput} from './EzTextInput';
 
 const inputElements = ['text', 'number', 'password', 'email'];
 const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
+const errorColor = theme.css({color: '$negative', fill: '$negative'});
+
 const ErrorIcon = () => (
   <InsetIcon insetY0 right0 pr2>
-    <ErrorTriangle />
+    <ErrorTriangle className={errorColor()} />
   </InsetIcon>
 );
 
 const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, ...props}, ref) => (
-  <CustomInputWrapper {...props}>
-    <Input ref={ref} {...filterValidProps(props)} />
-  </CustomInputWrapper>
+  <CustomInput {...props}>
+    <Input ref={ref} {...domProps(props)} />
+  </CustomInput>
 ));
 
 const resolveInputFromType = type => {
@@ -47,6 +42,93 @@ const resolveInputFromType = type => {
   if (inputElements.includes(type)) return EzTextInput;
   return EzCustomInput;
 };
+
+const field = theme.css({
+  position: 'relative',
+  border: 'none',
+  padding: '0',
+
+  variants: {
+    labelSize: {
+      small: {'& > * + *': {marginTop: '$50'}},
+      normal: {'& > * + *': {marginTop: '$100'}},
+    },
+  },
+
+  defaultVariants: {labelSize: 'normal'},
+});
+
+const helper = theme.css({
+  fontSize: '$75',
+  color: '$deemphasisText',
+  marginTop: '$100',
+});
+
+const errorContainer = theme.css({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'relative',
+  pointerEvents: 'none',
+});
+
+const errorCallout = theme.css({
+  backgroundColor: '$negative',
+  color: 'white',
+  fontSize: '$75',
+  padding: '$100 $150',
+  position: 'relative',
+  flexGrow: 1,
+  right: 0,
+
+  when: {
+    medium: {
+      position: 'absolute',
+      userSelect: 'none',
+      zIndex: 1,
+      boxShadow: '0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15)',
+      borderRadius: 3,
+    },
+  },
+
+  variants: {
+    active: {false: {when: {medium: {'sr-only': 'true'}}}},
+    inline: {
+      true: {
+        borderBottomRightRadius: 3,
+        borderBottomLeftRadius: 3,
+        when: {medium: {transform: 'translate3d(0, -2px, 0)'}},
+      },
+      false: {
+        boxShadow: '0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15)',
+        borderRadius: 3,
+        marginBottom: '0.5rem',
+        transform: 'translate3d(0, 6px, 0)',
+      },
+    },
+  },
+});
+
+const arrow = theme.css({
+  '&::before': {
+    content: "''",
+    display: 'block',
+    width: '0px',
+    height: '0px',
+    borderLeft: '5px solid transparent',
+    borderRight: '5px solid transparent',
+    borderBottom: '5px solid $negative',
+    position: 'absolute',
+    top: '-5px',
+    right: '10px',
+  },
+});
+
+const characterLimit = theme.css({
+  fontSize: '$75',
+  marginTop: '$100',
+});
+
+const srOnly = theme.css({'sr-only': 'true'});
 
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
@@ -65,9 +147,11 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const showError = Boolean(touched && error);
   const labelType = isChoiceElement ? 'div' : 'label';
   const errorMessage = (
-    <InlineError active={active} showInlineError={showInlineError}>
-      <span>{error}</span>
-    </InlineError>
+    <div className={errorContainer()}>
+      <span className={clsx(errorCallout({active, inline: showInlineError}), arrow())}>
+        {error}
+      </span>
+    </div>
   );
   const relative: CSSProperties = {position: 'relative'};
 
@@ -76,49 +160,59 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
     : {};
 
   return (
-    <Field {...(mouseEvents as any)} labelSize={props.labelSize} {...roleAndLabel}>
-      {!labelHidden && (
+    <Style ruleset={theme}>
+      <div
+        className={field({labelSize: props.labelSize})}
+        {...(mouseEvents as any)}
+        {...roleAndLabel}
+      >
+        {!labelHidden && (
+          <div>
+            <div style={relative}>
+              <Label
+                id={labelId}
+                htmlFor={isChoiceElement ? undefined : id}
+                as={labelType}
+                error={showError}
+                size={props.labelSize}
+              >
+                {label}
+              </Label>
+              {!showInlineError && showError && <ErrorIcon />}
+            </div>
+            {!showInlineError && showError && errorMessage}
+          </div>
+        )}
+        {helperText && <div className={helper()}>{helperText}</div>}
         <div>
           <div style={relative}>
-            <Label
-              id={labelId}
-              htmlFor={isChoiceElement ? undefined : id}
-              as={labelType}
-              error={showError}
-              size={props.labelSize}
-            >
-              {label}
-            </Label>
-            {!showInlineError && showError && <ErrorIcon />}
+            <Input
+              {...{
+                ...props,
+                ...wrapEvents(props, {onBlur, onFocus, onChange}),
+                id,
+                name: props.name || id,
+                'aria-labelledby': labelId,
+                ref,
+                showInlineError: (showInlineError && showError) || undefined,
+              }}
+            />
+            {showInlineError && showError && <ErrorIcon />}
           </div>
-          {!showInlineError && showError && errorMessage}
+          {showInlineError && showError && errorMessage}
         </div>
-      )}
-      {helperText && <Helper>{helperText}</Helper>}
-      <div>
-        <div style={relative}>
-          <Input
-            {...{
-              ...props,
-              ...wrapEvents(props, {onBlur, onFocus, onChange}),
-              id,
-              name: props.name || id,
-              'aria-labelledby': labelId,
-              ref,
-              showInlineError: (showInlineError && showError) || undefined,
-            }}
-          />
-          {showInlineError && showError && <ErrorIcon />}
-        </div>
-        {showInlineError && showError && errorMessage}
+        {'maxLength' in props && typeof value === 'string' && (
+          <div className={characterLimit()}>
+            {value.length}/{maxLength}
+          </div>
+        )}
+        {labelHidden && (
+          <div className={srOnly()} id={labelId}>
+            {label}
+          </div>
+        )}
       </div>
-      {'maxLength' in props && typeof value === 'string' && (
-        <CharacterLimit>
-          {value.length}/{maxLength}
-        </CharacterLimit>
-      )}
-      {labelHidden && <ScreenReaderOnly id={labelId}>{label}</ScreenReaderOnly>}
-    </Field>
+    </Style>
   );
 });
 

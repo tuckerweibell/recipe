@@ -1,6 +1,10 @@
-import React, { Suspense } from 'react';
+import React, {Suspense} from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+// Make app load a different recipe component
+// to encourage the bundler to code split stitches/snitches into a shared vendor chunk
+import {EzTextStyle} from '@ezcater/recipe';
 
 // dynamic imports to trigger code-split point
 const ImportWithIndex = React.lazy(() =>
@@ -23,7 +27,7 @@ function App() {
         >
           Learn React
         </a>
-
+        <EzTextStyle>hello</EzTextStyle>
         <Suspense fallback={<div>Loading...</div>}>
           <br />
           <ImportWithIndex />

@@ -25,15 +25,6 @@ type FocusScopeProps = {
   autoFocus?: boolean;
 };
 
-interface FocusManagerOptions {
-  /** The element to start searching from. The currently focused element by default. */
-  from?: HTMLElement;
-  /** Whether to only include tabbable elements, or all focusable elements. */
-  tabbable?: boolean;
-  /** Whether focus should wrap around when it reaches the end of the scope. */
-  wrap?: boolean;
-}
-
 let activeScope: RefObject<HTMLElement[]> = null;
 const scopes: Set<RefObject<HTMLElement[]>> = new Set();
 

@@ -86,18 +86,15 @@ export default () => {
               <EzLayout
                 key={category}
                 layout={{base: 'stack', large: 'split'}}
+                alignY="top"
                 css={{
                   '& + &': {
                     marginTop: 25,
                     borderTop: '1px solid #e5e7eb',
                     paddingTop: 25,
                   },
-                  '&& > *': {
-                    alignSelf: 'start',
+                  '&& > * > *': {
                     overflow: 'visible',
-                  },
-                  '&& > * + *': {
-                    flex: '1 1 0px',
                   },
                 }}
               >
@@ -108,7 +105,7 @@ export default () => {
                 <EzLayout
                   layout="tile"
                   columns={{base: 2, medium: 3, xlarge: 4}}
-                  css={{'& + &': {marginTop: 25}}}
+                  css={{'& + &': {marginTop: 25}, '&&': {flex: '1 1 0px'}}}
                 >
                   {components.map(component => (
                     <ComponentLink {...component} key={component.path} />

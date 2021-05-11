@@ -1,9 +1,9 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, HTMLAttributes} from 'react';
+import Style from '@ezcater/snitches';
+import theme from './EzCarousel.theme.config';
 import {useUniqueId} from '../../utils/hooks';
-import {nextStyle, prevStyle, listStyle, listItemStyle} from './EzCarousel.styles';
-import './vars.css';
+import {clsx} from '../../utils';
+import {slidesPerPageStyles} from './EzCarousel.styles';
 
 const svgProps: React.ComponentProps<'svg'> = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -100,63 +100,159 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
   return data;
 }
 
+const containment = theme.css({
+  // pagination buttons are inset using absolute positioning
+  position: 'relative',
+  // prevent margin collapse on children
+  display: 'flex',
+});
+
+const paginationButton = theme.css({
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  border: 'none',
+  backgroundColor: '$carousel-button-bg',
+  color: '$carousel-button-text',
+  width: '$carousel-button-width',
+  '&:hover': {
+    background: '$carousel-button-bg-hover',
+  },
+  transition: 'opacity 0.3s, visibility 0.3s',
+  variants: {
+    position: {
+      before: {left: 0},
+      after: {right: 0},
+    },
+    hidden: {
+      true: {
+        opacity: 0,
+        visibility: 'hidden',
+        pointerEvents: 'none',
+      },
+    },
+  },
+});
+
+const listStyle = theme.css({
+  // flex to prevent margin collapse
+  display: 'flex',
+  flexGrow: 1,
+  overflowX: 'scroll',
+  scrollSnapType: 'x mandatory',
+  listStyle: 'none',
+  margin: '-$carousel-item-offset 0',
+  padding: '$carousel-item-offset 0',
+  // hide scroll bar
+  scrollbarWidth: 'none',
+  '-ms-overflow-style': 'none',
+  '&::-webkit-scrollbar': {display: 'none'},
+  outline: 'none',
+  // '> *': slidesPerPageStyles(options),
+});
+
+const listItemStyle = theme.css({
+  position: 'relative',
+  flexShrink: 0,
+  // ignore the intrinsic width of the carousel item content, so flex-basis takes precedence
+  width: 0,
+  variants: {
+    peek: {
+      true: {
+        '&:first-of-type': {marginLeft: 0},
+        '&:last-of-type': {marginRight: 0},
+      },
+    },
+    gap: {
+      true: {margin: '0 $carousel-item-gap'},
+    },
+  },
+});
+
+const dynamicStyles = theme.css({});
+
+type SlidesPerPage = {
+  slidesPerPage?:
+    | number
+    | {
+        [x: string]: number;
+        initial?: number;
+      };
+};
+
+type Props = Pick<Parameters<typeof listItemStyle>[0], 'gap' | 'peek'> &
+  SlidesPerPage &
+  Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
+
 /**
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
-const EzCarousel = ({children, ...options}) => {
+const EzCarousel: React.FC<Props> = ({children, gap, peek, slidesPerPage}) => {
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
   const {isFirst, isLast} = useCurrentPage(scroller);
   return (
-    <section
-      // display flex to prevent margin collapse, position relative to contain pagination buttons
-      css={{position: 'relative', display: 'flex'}}
-    >
-      <ul
-        id={id}
-        aria-roledescription="carousel"
-        // ensure that scrollable region has keyboard access
-        // see: https://dequeuniversity.com/rules/axe/3.5/scrollable-region-focusable
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-        tabIndex={0}
-        css={listStyle({...options, count: React.Children.count(children)})}
-        ref={scroller}
-      >
-        {React.Children.map(children, (child, index) => (
-          <li key={child.key || index} css={listItemStyle(options)}>
-            {child}
-          </li>
-        ))}
-      </ul>
-      <div>
-        <button
-          type="button"
-          tabIndex={-1}
-          aria-controls={id}
-          aria-label="Previous Page"
-          css={prevStyle(isFirst)}
-          onClick={nextPrevClick(-1, scroller)}
+    <Style ruleset={theme}>
+      <section className={containment()}>
+        <ul
+          id={id}
+          aria-roledescription="carousel"
+          // ensure that scrollable region has keyboard access
+          // see: https://dequeuniversity.com/rules/axe/3.5/scrollable-region-focusable
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex={0}
+          className={listStyle()}
+          ref={scroller}
         >
-          <svg {...svgProps}>
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
+          {React.Children.map(children, (child, index) => (
+            <li
+              key={typeof child === 'object' && 'key' in child ? child.key : index}
+              className={clsx(
+                listItemStyle({gap, peek}),
+                dynamicStyles({
+                  css: slidesPerPageStyles({
+                    gap,
+                    peek,
+                    slidesPerPage,
+                    count: React.Children.count(children),
+                  }),
+                })
+              )}
+            >
+              {child}
+            </li>
+          ))}
+        </ul>
+        <div>
+          <button
+            type="button"
+            tabIndex={-1}
+            aria-controls={id}
+            aria-label="Previous Page"
+            className={paginationButton({position: 'before', hidden: isFirst})}
+            onClick={nextPrevClick(-1, scroller)}
+          >
+            <svg {...svgProps}>
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
 
-        <button
-          type="button"
-          tabIndex={-1}
-          aria-controls={id}
-          aria-label="Next Page"
-          css={nextStyle(isLast)}
-          onClick={nextPrevClick(1, scroller)}
-        >
-          <svg {...svgProps}>
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-      </div>
-    </section>
+          <button
+            type="button"
+            tabIndex={-1}
+            aria-controls={id}
+            aria-label="Next Page"
+            className={paginationButton({position: 'after', hidden: isLast})}
+            onClick={nextPrevClick(1, scroller)}
+          >
+            <svg {...svgProps}>
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </Style>
   );
 };
 

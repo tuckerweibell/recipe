@@ -12,7 +12,7 @@
     "@recipe-ui/theme-marketplace": "file:../packages/@recipe-ui/theme-marketplace",
     "copy-to-clipboard": "^3.2.0",
     "create-emotion-server": "^10.0.27",
-    "css-vars-ponyfill": "^2.1.2",
+    "css-vars-ponyfill": "^2.4.5",
     "docz-theme-default": "^1.2.0",
     "emotion": "^10.0.9",
     "emotion-theming": "^10.0.10",

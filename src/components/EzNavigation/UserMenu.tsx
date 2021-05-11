@@ -1,10 +1,9 @@
 import React, {useRef} from 'react';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
+import Style from '@ezcater/snitches';
+import theme from './EzNavigation.theme.config';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
-import {menuStyles} from './Menu';
 import EzLink from '../EzLink';
-import {wrapEvents} from '../../utils';
+import {clsx, wrapEvents} from '../../utils';
 import EzPopover from '../EzPopover';
 
 type MenuProps = {
@@ -13,37 +12,71 @@ type MenuProps = {
   sidebarToggle: (ev: React.SyntheticEvent<any>) => void;
 };
 
-const buttonReset = () => css`
-  background: none;
-  border: none;
-  text-align: left;
+const menuStyles = theme.css({
+  color: '$nav-text',
+  fontWeight: '$regular',
+  display: 'flex',
+  alignItems: 'center',
+  paddingTop: '$200',
+  paddingRight: '$600',
+  paddingBottom: '$200',
+  paddingLeft: '$300',
+  width: '$full',
+  position: 'relative',
+  textDecoration: 'none',
+  border: 'none',
+  background: 'none',
+  fontSize: '1em',
+  textAlign: 'left',
+  fontFamily: '$sans',
+  ':hover': {
+    color: '$nav-text-hover',
+  },
+  ':focus': {
+    outline: 'none',
+    boxShadow: 'inset 0 0 0 2px #3e90d6',
+  },
+});
 
-  && {
-    appearance: none;
-  }
-`;
+const buttonReset = theme.css({
+  background: 'none',
+  border: 'none',
+  textAlign: 'left',
 
-const nestedStyles = () => css`
-  background-color: #373d43;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px 0 rgba(#1b2023, 0.6);
-  width: calc(100% - 8px);
-  margin-left: -4px;
-  outline: none;
-`;
+  '&&': {
+    appearance: 'none',
+  },
+});
 
-const nestedMenuItem = () => css`
-  color: #b8bdc2;
-  display: block;
-  font-weight: normal;
-  font-size: 14px;
-  padding: 12px 18px;
-  width: 100%;
-  :hover:enabled {
-    color: white;
-    text-decoration: none;
-  }
-`;
+const nestedStyles = theme.css({
+  backgroundClor: '#373d43',
+  borderRadius: '8px',
+  boxShadow: '0 3px 6px 0 rgba(#1b2023, 0.6)',
+  width: 'calc(100% - 8px)',
+  marginLeft: '-4px',
+  outline: 'none',
+});
+
+const nestedMenuItem = theme.css({
+  color: '$nav-text',
+  display: 'block',
+  fontWeight: '$regular',
+  fontSize: '14px',
+  padding: '12px 18px',
+  width: '100%',
+  ':hover:enabled': {
+    color: '$nav-text-hover',
+    textDecoration: 'none',
+  },
+});
+
+const iconMenuItem = theme.css({
+  display: 'flex',
+  alignItems: 'center',
+  svg: {
+    marginRight: '12px',
+  },
+});
 
 const ProfileIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
@@ -54,25 +87,13 @@ const ProfileIcon = () => (
   </svg>
 );
 
-const iconMenuItem = () => css`
-  display: flex;
-  align-items: center;
-  svg {
-    margin-right: 12px;
-  }
-`;
-
-const Trigger = styled.button(menuStyles, buttonReset, iconMenuItem) as any;
-const StyledMenu = styled.div(nestedStyles) as any;
-const StyledMenuItem = styled.button(nestedMenuItem, buttonReset) as any;
-
 const UserMenu: React.FC<MenuProps> = props => {
   const ref = useRef();
   const menuState = useMenuTriggerState();
   const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
 
   return (
-    <>
+    <Style ruleset={theme}>
       {menuState.isOpen && (
         <EzPopover
           targetRef={ref}
@@ -81,27 +102,34 @@ const UserMenu: React.FC<MenuProps> = props => {
           shouldCloseOnBlur
           onClose={menuState.close}
         >
-          <StyledMenu {...menuProps} aria-label="User options">
+          <div {...menuProps} aria-label="User options" className={nestedStyles()}>
             {props.links.map((link, i) => (
-              <StyledMenuItem
+              <button
+                type="button"
                 key={i}
                 {...link}
                 as={EzLink}
                 {...wrapEvents(link, {
                   onClick: props.sidebarToggle,
                 })}
+                className={clsx(nestedMenuItem(), buttonReset())}
               >
                 {link.label}
-              </StyledMenuItem>
+              </button>
             ))}
-          </StyledMenu>
+          </div>
         </EzPopover>
       )}
-      <Trigger ref={ref} {...menuTriggerProps}>
+      <button
+        type="button"
+        ref={ref}
+        {...menuTriggerProps}
+        className={clsx(menuStyles(), buttonReset(), iconMenuItem())}
+      >
         <ProfileIcon />
         {props.name}
-      </Trigger>
-    </>
+      </button>
+    </Style>
   );
 };
 

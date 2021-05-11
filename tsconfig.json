@@ -7,10 +7,11 @@
     // allows react jsx in tsx files
     "jsx": "react",
     "declaration": true,
-    "outDir": "lib",
+    "outDir": "dist/types",
     "strict": false,
     // Import non-ES modules as default imports.
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["**/node_modules"]

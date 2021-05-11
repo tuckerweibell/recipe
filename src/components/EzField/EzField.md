@@ -522,12 +522,14 @@ Dates in this component are displayed with the format `MM/DD/YYYY`.
 Allows the usage of application-specific input components while still providing standard field behaviors, such as validation. The custom component will have props forwarded from EzField.
 
 ```jsx
-<EzField
-  type={({value, onChange}) => <input value={value} onChange={onChange} />}
-  label="First name"
-  value="Big Bird"
-  onChange={() => null}
-/>
+() => {
+  const CustomComponent = ({value, onChange, className}) => (
+    <input className={className} value={value} onChange={onChange} />
+  );
+  return (
+    <EzField type={CustomComponent} label="First name" value="Big Bird" onChange={() => null} />
+  );
+};
 ```
 
 ### Text field with hidden label

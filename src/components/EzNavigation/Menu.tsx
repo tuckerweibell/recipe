@@ -1,36 +1,47 @@
 import React from 'react';
-import {css} from '@emotion/core';
-import styled from '@emotion/styled';
-import {Counter, Marketing} from './Notifications';
+import Style from '@ezcater/snitches';
+import theme from './EzNavigation.theme.config';
+import {Counter} from './Notifications';
+import {clsx} from '../../utils';
 
-export const menuStyles = () => css`
-  color: var(--recipe-navigation-text-color);
-  font-weight: normal;
-  display: flex;
-  align-items: center;
-  padding-top: var(--recipe-global-static-size-200);
-  padding-right: var(--recipe-global-static-size-600);
-  padding-bottom: var(--recipe-global-static-size-200);
-  padding-left: var(--recipe-global-static-size-300);
-  width: 100%;
-  position: relative;
-  text-decoration: none;
+const menuLink = theme.css({
+  color: '$nav-text',
+  fontWeight: '$regular',
+  display: 'flex',
+  alignItems: 'center',
+  paddingTop: '$200',
+  paddingRight: '$600',
+  paddingBottom: '$200',
+  paddingLeft: '$300',
+  width: '$full',
+  position: 'relative',
+  textDecoration: 'none',
 
-  border: none;
-  background: none;
-  font-size: 1em;
-  text-align: left;
-  font-family: var(--recipe-global-font-family-base);
+  border: 'none',
+  background: 'none',
+  fontSize: '1em',
+  textAlign: 'left',
+  fontFamily: '$sans',
 
-  :hover {
-    color: var(--recipe-navigation-text-color-hover);
-  }
+  '&:hover': {
+    color: '$nav-text-hover',
+  },
 
-  :focus {
-    outline: none;
-    box-shadow: inset 0 0 0 2px #3e90d6;
-  }
-`;
+  '&:focus': {
+    outline: 'none',
+    boxShadow: 'inset 0 0 0 2px #3e90d6',
+  },
+});
+
+const activeMenuLink = theme.css({
+  color: '$nav-text-selected',
+  backgroundColor: '$nav-bg-selected',
+});
+
+const iconPosition = theme.css({
+  position: 'absolute',
+  right: '$300',
+});
 
 const Link = React.forwardRef<HTMLElement, any>(
   ({href, as: component = href ? 'a' : 'button', ...props}, ref) => {
@@ -38,28 +49,23 @@ const Link = React.forwardRef<HTMLElement, any>(
   }
 );
 
-const MenuLink = styled(Link)`
-  ${menuStyles};
-
-  &.active {
-    color: var(--recipe-navigation-text-color-selected);
-    background-color: var(--recipe-navigation-background-color-selected);
-  }
-`;
-
 const Notification = ({value}) => {
-  return value === '★' ? <Marketing>★</Marketing> : <Counter>{value}</Counter>;
+  return <Counter use={value === '★' ? 'marketing' : 'default'}>{value}</Counter>;
 };
 
 const Menu = ({link: {active, label, notifications, ...link}}: any) => (
-  <MenuLink
-    {...link}
-    className={active ? 'active' : undefined}
-    {...(link.to ? {activeClassName: 'active'} : {})}
-  >
-    <span>{label}</span>
-    {Boolean(notifications) && <Notification value={notifications} />}
-  </MenuLink>
+  <Style ruleset={theme}>
+    <Link
+      {...link}
+      className={clsx(menuLink(), active && activeMenuLink())}
+      {...(link.to ? {activeClassName: 'active'} : {})}
+    >
+      <span>{label}</span>
+      <span className={iconPosition()}>
+        {Boolean(notifications) && <Notification value={notifications} />}
+      </span>
+    </Link>
+  </Style>
 );
 
 export default Menu;

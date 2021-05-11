@@ -54,8 +54,10 @@ describe('EzField', () => {
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
 
-      screen.getByText('1').focus();
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowLeft'});
+      screen.getByRole('button', {name: /January 1,/}, {exact: false}).focus();
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowLeft',
+      });
 
       expect(document.body).toHaveTextContent('December 2018');
     });
@@ -64,27 +66,39 @@ describe('EzField', () => {
 
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowRight',
+      });
 
-      expect(screen.getByText('2').getAttribute('tabindex')).toBe('0');
+      expect(
+        screen.getByRole('button', {name: /January 2,/}, {exact: false}).getAttribute('tabindex')
+      ).toBe('0');
     });
     it('should change dates by pressing the down arrow on calendar', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowDown'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowDown',
+      });
 
-      expect(screen.getByText('8').getAttribute('tabindex')).toBe('0');
+      expect(
+        screen.getByRole('button', {name: /January 8,/}, {exact: false}).getAttribute('tabindex')
+      ).toBe('0');
     });
     it('should change dates by pressing the up arrow on calendar', () => {
       render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
 
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowUp'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowUp',
+      });
 
-      expect(screen.getByText('25').getAttribute('tabindex')).toBe('0');
+      expect(
+        screen.getByRole('button', {name: /December 25,/}, {exact: false}).getAttribute('tabindex')
+      ).toBe('0');
       expect(document.body).toHaveTextContent('December 2018');
     });
     it('should select change dates by pressing the enter key on calendar', async () => {
@@ -95,15 +109,27 @@ describe('EzField', () => {
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
 
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('2'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('3'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('4'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('5'), {key: 'Enter'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 2,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 3,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 4,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 5,/}, {exact: false}), {
+        key: 'Enter',
+      });
 
       act(jest.runAllTimers);
       userEvent.click(screen.getByLabelText(inputLabel));
-      expect(screen.getByText('5').getAttribute('tabindex')).toBe('0');
+      expect(
+        screen.getByRole('button', {name: /January 5,/}, {exact: false}).getAttribute('tabindex')
+      ).toBe('0');
     });
     it('should select change dates by pressing the space key on calendar', async () => {
       jest.useFakeTimers();
@@ -112,15 +138,27 @@ describe('EzField', () => {
       userEvent.click(screen.getByLabelText(inputLabel));
       userEvent.tab();
 
-      fireEvent.keyDown(screen.getByText('1'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('2'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('3'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('4'), {key: 'ArrowRight'}); // Day
-      fireEvent.keyDown(screen.getByText('5'), {key: 'Space'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 1,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 2,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 3,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 4,/}, {exact: false}), {
+        key: 'ArrowRight',
+      }); // Day
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 5,/}, {exact: false}), {
+        key: 'Space',
+      });
 
       act(jest.runAllTimers);
       userEvent.click(screen.getByLabelText(inputLabel));
-      expect(screen.getByText('5').getAttribute('tabindex')).toBe('0');
+      expect(
+        screen.getByRole('button', {name: /January 5,/}, {exact: false}).getAttribute('tabindex')
+      ).toBe('0');
     });
     it('should fire onchange when day is typed', () => {
       const handleChange = jest.fn();
@@ -143,7 +181,7 @@ describe('EzField', () => {
       userEvent.click(screen.getByLabelText(inputLabel));
 
       act(() => {
-        fireEvent.click(screen.getByText('5'));
+        fireEvent.click(screen.getByRole('button', {name: /January 5,/}, {exact: false}));
       });
 
       expect(handleChange).toHaveBeenCalled();
@@ -155,7 +193,7 @@ describe('EzField', () => {
 
       expect(document.body).toHaveTextContent('January 2019');
 
-      fireEvent.click(screen.getByText('1'));
+      fireEvent.click(screen.getByRole('button', {name: /January 1,/}, {exact: false}));
 
       expect(document.body).not.toHaveTextContent('January 2019');
     });
@@ -216,7 +254,9 @@ describe('EzField', () => {
       expect(document.body).toHaveTextContent('January 2019');
 
       // press escape when focused on a day
-      fireEvent.keyDown(screen.getByText('3'), {key: 'Escape'});
+      fireEvent.keyDown(screen.getByRole('button', {name: /January 3,/}, {exact: false}), {
+        key: 'Escape',
+      });
 
       expect(document.body).not.toHaveTextContent('January 2019');
     });
@@ -229,7 +269,7 @@ describe('EzField', () => {
       userEvent.click(screen.getByLabelText(inputLabel));
 
       act(() => {
-        fireEvent.click(screen.getByText('5'));
+        fireEvent.click(screen.getByRole('button', {name: /January 5,/}, {exact: false}));
       });
 
       expect(handleChange).toHaveBeenCalledTimes(1);

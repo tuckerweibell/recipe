@@ -1,13 +1,8 @@
 import React from 'react';
-import {Global, css} from '@emotion/core';
+import Style from '@ezcater/snitches';
 
-export default () => (
-  <Global
-    styles={css`
-      :root {
-        --recipe-base-font-size: 14;
-        --recipe-compat-font-size: 14px;
-      }
-    `}
-  />
-);
+const EzBaseFontSizeCompatibility = () => {
+  return <Style ruleset={':root {--recipe-base-font-size: 14px;}'} />;
+};
+
+export default EzBaseFontSizeCompatibility;

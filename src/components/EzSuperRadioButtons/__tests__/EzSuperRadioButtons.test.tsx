@@ -1,7 +1,7 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {render, fireEvent, act} from '@testing-library/react';
+import {render, fireEvent, act, screen} from '@testing-library/react';
 import markdown from './EzSuperRadioButtons.test.md';
 import EzSuperRadioButtons from '../EzSuperRadioButtons';
 
@@ -17,7 +17,7 @@ describe('EzSuperRadioButtons', () => {
   it('triggers onChange when segment is clicked', () => {
     const onChangeSpy: (value: string) => void = jest.fn();
 
-    const {container} = render(
+    render(
       <EzSuperRadioButtons
         label="Delivery issues"
         options={[
@@ -42,9 +42,7 @@ describe('EzSuperRadioButtons', () => {
       />
     );
 
-    act(() => {
-      fireEvent.click(container.querySelector('input:last-of-type'));
-    });
+    screen.getByLabelText(/third/).click();
 
     expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
   });

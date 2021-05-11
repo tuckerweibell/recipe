@@ -1,85 +1,41 @@
 import React from 'react';
-import {Global, css, CacheProvider} from '@emotion/core';
-import createCache from '@emotion/cache';
-import {createSerializer, matchers} from 'jest-emotion';
 import {toHaveNoViolations} from 'jest-axe';
 import {configure as configureSosia} from 'sosia';
 import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
+import Style from '@ezcater/snitches';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
+import theme from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
-import './src/styles/recipe-global.css';
 import '@testing-library/jest-dom/extend-expect';
+
+const globals = theme.global({
+  // disable animations in visual snapshots
+  '*, *::before, *::after': {
+    transitionProperty: 'none !important',
+    animation: 'none !important',
+  },
+  // restore user agent based margin for backward compatibility with existing snapshots
+  when: {medium: {body: {margin: '8px'}}},
+});
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);
 
-// Add a snapshot serializer that removes random hashes
-// from emotion class names.
-expect.addSnapshotSerializer(
-  createSerializer({
-    classNameReplacer(_className, index) {
-      return `recipe-${index}`;
-    },
-  })
-);
-
-expect.extend(matchers);
-
-const EmotionCacheProvider = ({children}) => {
-  const cache = React.useRef(
-    createCache({
-      prefix: false,
-      // default key prefix is 'css'. Changing it to 'r' (for recipe), to trim the size of the generated output by two chars per class.
-      key: 'r',
-      stylisPlugins: [
-        // can't trigger :hover and :active pseudo classes with JS, so replace the pseudo classes with custom class,
-        // e.g. :hover => .__hover
-        // for plugin overview, see: https://github.com/thysultan/stylis.js#plugins
-        (context, content) => {
-          switch (context) {
-            case -2:
-              return content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
-          }
-        },
-      ],
-    })
-  );
-
-  // Remove any injected stylesheets from the page when the component is unmounted
-  React.useEffect(() => () => cache.current.sheet.flush());
-
-  return <CacheProvider value={cache.current}>{children}</CacheProvider>;
-};
-
-const GlobalStylesWrapper = ({children}) => (
-  <EmotionCacheProvider>
+const GlobalStylesWrapper = ({children}) => {
+  globals();
+  return (
     <>
       <link
         href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
         rel="stylesheet"
       />
       <EzGlobalStyles />
-      <Global
-        styles={css`
-          /* disable animations in visual snapshots */
-          *,
-          ::before,
-          ::after {
-            transition-property: none !important;
-            animation: none !important;
-          }
-          body {
-            /* restore user agent based margin for backward compatibility with existing snapshots */
-            margin: 8px;
-          }
-        `}
-      />
-      {children}
+      <Style ruleset={theme}>{children}</Style>
     </>
-  </EmotionCacheProvider>
-);
+  );
+};
 
 const markdownSource = new MarkdownSource();
 const markdownSourceWithThemeWrapper = {
@@ -98,10 +54,56 @@ const chromeDesktop = new RemotePuppeteerBrowserTarget({
   height: 768,
 });
 
+const replacePseudoClasses = target => ({
+  execute(pages: any) {
+    const replace = content => content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
+    return target.execute(
+      pages.map(({css, body, name}) => ({
+        css: replace(css),
+        body: replace(body),
+        name,
+      }))
+    );
+  },
+});
+
+// This works around an issue in Sosia whereby any inline style tags are
+// retained, but their content is also copied into the `css` block
+// rendered into the head of the page
+const removeServerRenderedStyleTags = target => ({
+  execute(pages: any) {
+    return target.execute(
+      pages.map(({css, body, name}) => {
+        // parse the body string as HTML, then nuke any inline styles
+        const container = document.createElement('body');
+        container.innerHTML = body;
+
+        container.querySelectorAll('style').forEach(el => {
+          el.parentElement.removeChild(el);
+        });
+
+        return {
+          css: css,
+          body: container.outerHTML,
+          name,
+        };
+      })
+    );
+  },
+});
+
+const target = [
+  // decorators effectively run in reverse order as they modify the
+  // page content *before* running executing the next target
+  minifyDecorator,
+  replacePseudoClasses,
+  removeServerRenderedStyleTags,
+].reduce((res, fn) => fn(res) as any, chromeDesktop);
+
 configureSosia({
-  targets: {'chrome-desktop': minifyDecorator(chromeDesktop)},
+  targets: {'chrome-desktop': target},
   sources: {documentation: markdownSourceWithThemeWrapper},
 });
 
 // extend jest timeout for snapshots running on CI
-jest.setTimeout(10000);
+jest.setTimeout(20000);

@@ -9,6 +9,6 @@ module.exports = {
     'no-console': 'off',
     'global-require': 'off',
     'filenames/match-regex': 'off',
-    '@typescript-eslint/camelcase': 'off',
+    camelcase: 'off',
   },
 };

@@ -73,4 +73,70 @@ describe('EzOrderSummary', () => {
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
+
+  const action = (
+    <EzButton use="primary" onClick={() => 'clicked!'}>
+      click!
+    </EzButton>
+  );
+  const name = 'name';
+  const labelPair = [
+    {label: 'one', value: '1'},
+    {label: 'two', value: '2'},
+  ];
+  const price = '$10';
+  const quantity = 3;
+  const specialInstructions = 'gluten free';
+
+  const item = {
+    name,
+    price,
+    quantity,
+    total: price,
+    options: labelPair,
+    specialInstructions,
+  };
+  const items = [item, item];
+  const subtitle = 'subtitle';
+  const tableware = {
+    options: labelPair,
+  };
+  const title = 'title';
+  const summary = {
+    lineItems: labelPair,
+    total: price,
+    perHead: price,
+  };
+
+  it('should pass type checking', () => {
+    [
+      {
+        actionsProp: (
+          <EzOrderSummary
+            actions={action}
+            title={title}
+            items={items}
+            tableware={tableware}
+            summary={summary}
+          />
+        ),
+        itemsProp: <EzOrderSummary items={items} tableware={tableware} summary={summary} />,
+        subtitleProp: (
+          <EzOrderSummary
+            subtitle={subtitle}
+            items={items}
+            tableware={tableware}
+            summary={summary}
+          />
+        ),
+        tablewareProp: <EzOrderSummary items={items} tableware={tableware} summary={summary} />,
+        titleProp: (
+          <EzOrderSummary title={title} items={items} tableware={tableware} summary={summary} />
+        ),
+        summaryProp: <EzOrderSummary items={items} tableware={tableware} summary={summary} />,
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });

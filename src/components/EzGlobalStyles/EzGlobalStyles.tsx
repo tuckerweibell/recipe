@@ -1,27 +1,28 @@
 import React from 'react';
-import {Global, css} from '@emotion/core';
+import Style from '@ezcater/snitches';
+import theme from './EzGlobalStyles.theme.config';
 
-const EzGlobalStyles = () => (
-  <Global
-    styles={css`
-      html {
-        box-sizing: border-box;
-        font-size: var(--recipe-alias-font-size-default);
-        font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-      }
-      body {
-        margin: 0;
-        color: var(--recipe-alias-text-color);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
-    `}
-  />
-);
+const styles = theme.global({
+  html: {
+    boxSizing: 'border-box',
+    fontSize: '$text',
+    fontFamily: '$sans',
+  },
+  body: {
+    margin: 0,
+    color: '$text',
+    '-webkit-font-smoothing': 'antialiased',
+    '-moz-osx-font-smoothing': 'grayscale',
+  },
+  '*, *:before, *:after': {
+    boxSizing: 'inherit',
+  },
+});
+
+const EzGlobalStyles = () => {
+  styles();
+
+  return <Style ruleset={theme} />;
+};
 
 export default EzGlobalStyles;

@@ -1,6 +1,6 @@
 {
   "name": "@recipe-ui/theme-marketplace",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "ezCater's React UI Component library",
   "license": "MIT",
   "main": "lib/main.js",
@@ -21,7 +21,11 @@
   "dependencies": {
     "@react-types/provider": "^3.1.1"
   },
+  "devDependencies": {
+    "@ezcater/recipe": "file:../../.."
+  },
   "peerDependencies": {
+    "@ezcater/recipe": "^12.0.0",
     "react": "^16.8.0 || ^17.0.1"
   },
   "publishConfig": {

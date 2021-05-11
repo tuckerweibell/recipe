@@ -2,13 +2,13 @@ import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
-import {Global, css} from '@emotion/core';
 import markdown from '../EzLayout.md';
 import regressionTests from './EzLayout.test.md';
 import alignmentTests from './EzLayout.alignment.test.md';
 import EzLayout from '../EzLayout';
 import {EzCard, EzCardSection, EzHeading, EzField, EzPage} from '../../index';
 import Media from '../../EzField/Media';
+import {Global, css} from '../../../styles';
 import Placeholder from '../../../../doc-site/src/components/Placeholder';
 
 const scope = {

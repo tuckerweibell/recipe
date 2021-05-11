@@ -15,6 +15,11 @@ module.exports = {
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
+    'no-unused-expressions': 'off',
+    // getting a handful of false positives on this with optional chaining (possibly as ez-scripts has out-of-date dependencies)
+    '@typescript-eslint/no-unused-expressions': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/indent': 'off',
   },
   settings: {
     parser: '@typescript-eslint/parser',

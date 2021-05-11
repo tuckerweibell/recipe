@@ -1,8 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {createPortal} from 'react-dom';
-import {CacheProvider} from '@emotion/core';
-// eslint-disable-next-line
-import createCache from '@emotion/cache';
 import {EzGlobalStyles} from '../index';
 
 const sizes = {
@@ -12,16 +9,7 @@ const sizes = {
 };
 
 const IFrameContent = ({iframeEl, children}) => {
-  const cache = useRef(
-    createCache({container: iframeEl.ownerDocument.head, key: 'frame', prefix: false})
-  );
-
-  // Remove any injected stylesheets from the page when the component is unmounted
-  React.useEffect(() => () => cache.current.sheet.flush());
-
-  return (
-    <>{createPortal(<CacheProvider value={cache.current}>{children}</CacheProvider>, iframeEl)}</>
-  );
+  return <>{createPortal(children, iframeEl)}</>;
 };
 
 // smaller output than encodeURIComponent...
@@ -31,6 +19,8 @@ const encodeHead = head =>
     .replace(/\n|\s\s/g, '')
     // strip whitespace between rules
     .replace(/:\s/g, ':')
+    // strip type="text/css" attr
+    .replace(/\stype="text\/css"/g, '')
     // strip comments
     .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*/g, '')
     // replace hex color symbol
@@ -54,12 +44,34 @@ const Media = ({size, children}) => {
 
   useEffect(() => {
     if (!linkRef.current) return;
-    setSrc(
-      toDataUri({
-        head: linkRef.current.ownerDocument.head.outerHTML,
-        body: iframeEl.current.innerHTML,
-      })
-    );
+
+    const ownerDocument = linkRef.current.ownerDocument as Document;
+    const frame = iframeEl.current as HTMLElement;
+
+    // copy inline stitches tags inside the iframe
+    const ssrStyles = ownerDocument.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+    const frameStyles = frame.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+
+    let head = ownerDocument.head.outerHTML;
+
+    // copy styles from parent into iframe
+    Array.from(ssrStyles).forEach(tag => {
+      head += tag.outerHTML;
+    });
+    // move inline styles from iframe into head
+    // snitches would typically do this for us, but can't reach inside the iframe
+    Array.from(frameStyles).forEach(tag => {
+      head += tag.outerHTML;
+
+      // remove inline style tags EXCEPT those added directly to the iframe (since react still references them)
+      if (tag.parentElement === frame) Object.assign(tag, {textContent: ''});
+      else tag.parentNode.removeChild(tag);
+    });
+
+    // join style tags together to reduce the payload size
+    head = head.replace(/<\/style><style\s?.*?>/g, '');
+
+    setSrc(toDataUri({head, body: iframeEl.current.innerHTML}));
   }, [container]);
 
   return (

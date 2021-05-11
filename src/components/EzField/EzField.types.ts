@@ -44,9 +44,9 @@ type HtmlInputProps = {
 
 type DateInputProps = {
   type: 'date';
-  value: string | number | object;
-  minDate?: string | number | object;
-  maxDate?: string | number | object;
+  value: string | number | Date | unknown;
+  minDate?: string | number | Date | unknown;
+  maxDate?: string | number | Date | unknown;
   filterDate?: (value: string) => boolean;
 };
 

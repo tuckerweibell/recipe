@@ -6,12 +6,12 @@ interface Props {
 
 function chain(...callbacks: any[]): (...args: any[]) => void {
   return (...args: any[]) => {
-    const fns = callbacks.filter(Boolean) as ((...args: any[]) => any)[];
+    const fns = callbacks.filter(Boolean);
     fns.forEach(callback => callback(...args));
   };
 }
 
-const clsx = (...args) => args.filter(Boolean).join(' ');
+export const clsx = (...args) => args.filter(Boolean).join(' ');
 
 function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
   const res: Props = {};
@@ -23,8 +23,10 @@ function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
       return;
     }
 
-    if (key === 'className' && typeof a.className === 'string' && typeof b.className === 'string') {
-      res[key] = clsx(a.className, b.className);
+    if (key === 'className') {
+      const left = a.className?.toString();
+      const right = b.className?.toString();
+      res[key] = clsx(left, right);
       return;
     }
 

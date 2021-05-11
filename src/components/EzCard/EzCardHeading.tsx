@@ -1,7 +1,9 @@
 import React from 'react';
-import {CardHeadingContainer} from './EzCard.styles';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
+import theme from './EzCard.theme.config';
+
+const box = theme.css({position: 'relative'});
 
 type PropsWithoutTitle = {
   subtitle?: never;
@@ -34,7 +36,7 @@ const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions}) => {
     </EzLayout>
   );
 
-  return <CardHeadingContainer>{actions ? layout : heading}</CardHeadingContainer>;
+  return <div className={box()}>{actions ? layout : heading}</div>;
 };
 
 EzCardHeading.displayName = 'EzCard';
