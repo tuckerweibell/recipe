@@ -10,6 +10,12 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 12
 
+## 12.0.1 - 2021-05-10
+
+#### Bug fixes
+
+- fix type error due to missing @stitches/code types in Recipe package
+
 ## 12.0.0 - 2021-05-11
 
 #### Breaking changes
