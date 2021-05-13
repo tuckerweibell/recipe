@@ -10,32 +10,31 @@ import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 import '@testing-library/jest-dom/extend-expect';
 
-const globals = theme.global({
-  // disable animations in visual snapshots
-  '*, *::before, *::after': {
-    transitionProperty: 'none !important',
-    animation: 'none !important',
-  },
-  // restore user agent based margin for backward compatibility with existing snapshots
-  when: {medium: {body: {margin: '8px'}}},
-});
+const VisualRegressionOverrides = () => (
+  <style>
+    {/* disable animations in visual snapshots */}
+    {`*, *::before, *::after{transition-property:none !important;animation:none !important;}`}
+    {/* restore user agent based margin for backward compatibility with existing snapshots */}
+    {`@media (min-width: 768px){body{margin:8px;}}`}
+  </style>
+);
 
 // Add custom matchers
 expect.extend(toHaveNoViolations);
 
-const GlobalStylesWrapper = ({children}) => {
-  globals();
-  return (
-    <>
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
-        rel="stylesheet"
-      />
+const GlobalStylesWrapper = ({children}) => (
+  <>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
+    <Style ruleset={theme}>
       <EzGlobalStyles />
-      <Style ruleset={theme}>{children}</Style>
-    </>
-  );
-};
+      <VisualRegressionOverrides />
+      {children}
+    </Style>
+  </>
+);
 
 const markdownSource = new MarkdownSource();
 const markdownSourceWithThemeWrapper = {
