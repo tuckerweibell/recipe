@@ -196,7 +196,10 @@ const stitches = createCss({
   },
   conditions: {
     base: '@media (min-width: 0px)',
+    baseToMedium: '@media (max-width: 767.9375px)',
+    baseToLarge: '@media (max-width: 1060.9375px)',
     medium: '@media (min-width: 768px)',
+    mediumToLarge: '@media (min-width: 768px) and (max-width: 1060.9375px)',
     large: '@media (min-width: 1061px)',
   },
   insertMethod: () => () => {},
