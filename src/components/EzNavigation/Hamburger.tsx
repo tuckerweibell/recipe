@@ -76,7 +76,6 @@ const hamburgerInner = theme.css({
 
 const toggleButton = theme.css({
   padding: '15px',
-  display: 'inline-block',
   cursor: 'pointer',
   height: '70px',
 
