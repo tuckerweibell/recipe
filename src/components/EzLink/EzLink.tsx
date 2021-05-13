@@ -99,14 +99,12 @@ const EzLink = forwardRef<HTMLElement, EzLinkProps>((props, ref) => {
   }
 
   const el: any = getWrappedElement(content);
-  // eslint-disable-next-line prefer-template
-  const elClassName = '' + el.props.className;
 
   return (
     <Style ruleset={theme}>
       {React.cloneElement(el, {
         ref: el.ref || ref,
-        className: clsx(styles({use}), className, elClassName),
+        className: clsx(styles({use}), className, el.props.className),
         ...passThroughProps,
       })}
     </Style>
