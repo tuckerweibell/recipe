@@ -1,5 +1,6 @@
 import React, {useContext, Ref, ReactNode} from 'react';
 import {Theme} from '@react-types/provider';
+import Style from '@ezcater/snitches';
 
 export interface ProviderProps {
   /** The content of the Provider. */
@@ -49,9 +50,11 @@ const ProviderWrapper = React.forwardRef(function ProviderWrapper(
   const className = theme.global ? Object.values(theme.global).join(' ') : null;
 
   return (
-    <div className={className} ref={ref}>
-      {children}
-    </div>
+    <Style>
+      <div className={className} ref={ref}>
+        {children}
+      </div>
+    </Style>
   );
 });
 
