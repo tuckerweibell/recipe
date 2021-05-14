@@ -32,17 +32,15 @@ const setFlexBasis = options => ({
  * Provisions enough space for all the slides alongside the next/previous slide preview
  */
 const resizeForPeek = options => {
-  const {n, next, count, reset} = options;
+  const {n, count} = options;
   const slideWidth = getSlideWidthCalc(options);
   const buttonWidth = getButtonWidthCalc(options);
 
-  if (!showPeek(options) && !reset) return false;
+  if (!showPeek(options)) return false;
 
   // grow the items on the first and last page to account for only having a single button
   const firstAndLast = {
-    flexBasis: reset
-      ? `calc(${getSlideWidthCalc({...options, n: next})})`
-      : `calc(${slideWidth} + (${buttonWidth} / ${n}))`,
+    flexBasis: `calc(${slideWidth} + (${buttonWidth} / ${n}))`,
   };
 
   // for the last page, we need to select only the items on the page (vs the slidesPerPage size)
@@ -77,16 +75,16 @@ const resizeForPeek = options => {
 
 const mid = n => `${n}n - ${Math.floor(n / 2)}`;
 
-const snapPoints = ({n, gap, reset}: {n: number; gap: boolean; reset?: boolean}): Interpolation => {
+const snapPoints = ({n, gap}: {n: number; gap: boolean}): Interpolation => {
   // when centering on the pseudo element, we need to offset for the gap between items (if one is applied)
   const right = gap ? '-$space$carousel-item-gap' : 0;
   const usePseudo = n % 2 === 0;
 
   return {
-    // target the mid-point of each page of carousel items, setting the scrollSnapAlign to center (or resetting to initial)
+    // target the mid-point of each page of carousel items, setting the scrollSnapAlign to center
     [`&:nth-of-type(${mid(n)})${usePseudo ? ':after' : ''}`]: {
-      ...(usePseudo ? {right, position: 'absolute', content: reset ? 'none' : "''"} : {}),
-      scrollSnapAlign: reset ? 'initial' : 'center',
+      ...(usePseudo ? {right, position: 'absolute', content: "''"} : {}),
+      scrollSnapAlign: 'center',
     },
     // for lists that aren't evenly divided, ensure the last item snaps to the end of the list
     '&:last-of-type': {scrollSnapAlign: 'start'},
@@ -96,37 +94,23 @@ const snapPoints = ({n, gap, reset}: {n: number; gap: boolean; reset?: boolean})
 export const slidesPerPageStyles = options => {
   const {slidesPerPage = 1, gap} = options;
 
-  const style = (n: number, prev?: number) =>
-    cx(
-      setFlexBasis({n, ...options}),
-      // reset the snap-points from the previous breakpoint.
-      prev && snapPoints({n: prev, gap, reset: true}),
-      snapPoints({n, gap}),
-      // reset the slide resizing from the previous breakpoint.
-      prev && resizeForPeek({n: prev, next: n, ...options, reset: true}),
-      resizeForPeek({n, ...options})
-    );
+  const style = (n: number) =>
+    cx(setFlexBasis({n, ...options}), snapPoints({n, gap}), resizeForPeek({n, ...options}));
 
   if (typeof slidesPerPage === 'number') return style(slidesPerPage);
 
-  return Object.keys(slidesPerPage).reduce(
-    (res: Record<string, any>, bp: string, i: number, arr: string[]) => {
-      const n = slidesPerPage[bp];
-      const prevBP = arr[i - 1];
-      const prevN = slidesPerPage[prevBP];
+  return Object.keys(slidesPerPage).reduce((res: Record<string, any>, bp: string) => {
+    const n = slidesPerPage[bp];
+    const styles = style(n);
 
-      const styles = style(n, i > 0 ? prevN : undefined);
+    if (bp === 'base') return {...res, ...styles};
 
-      if (bp === 'base') return {...res, ...styles};
-
-      return {
-        ...res,
-        when: {
-          ...res.when,
-          [bp]: styles,
-        },
-      };
-    },
-    {}
-  );
+    return {
+      ...res,
+      when: {
+        ...res.when,
+        [bp]: styles,
+      },
+    };
+  }, {});
 };

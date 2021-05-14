@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState, HTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzCarousel.theme.config';
 import {useUniqueId} from '../../utils/hooks';
-import {clsx} from '../../utils';
+import {clsx, responsiveProps} from '../../utils';
 import {slidesPerPageStyles} from './EzCarousel.styles';
 
 const svgProps: React.ComponentProps<'svg'> = {
@@ -188,7 +188,8 @@ type Props = Pick<Parameters<typeof listItemStyle>[0], 'gap' | 'peek'> &
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
-const EzCarousel: React.FC<Props> = ({children, gap, peek, slidesPerPage}) => {
+const EzCarousel: React.FC<Props> = ({children, gap, peek, ...initProps}) => {
+  const {slidesPerPage} = responsiveProps(initProps as any, 'slidesPerPage');
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
   const {isFirst, isLast} = useCurrentPage(scroller);
