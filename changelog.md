@@ -10,6 +10,24 @@ The format is based on [these versioning and changelog guidelines](/guides/versi
 
 ## Version 12
 
+## 12.0.2 - 2021-05-14
+
+#### Enhancements
+
+- added new media query range breakpoints (ranges _between_ existing breakpoints), for internal usage within Recipe.
+- added internal helper to map responsive prop values to media query ranges. For example, if a user provides `{base: 'cluster', medium: 'basic'}` to EzLayout's responsive layout prop, the actual media query applied for the "cluster" style would apply only up-to the `medium` breakpoint.
+- When server rendering, styles for components used within an `EzProvider` will now be de-duplicated.
+
+#### Bug fixes
+
+- fix: global css duplication in test suite
+- fix: `undefined` classname appearing on `EzLink` instances
+- fix: EzNavigation menu button incorrectly appearing at desktop breakpoint in some scenarios.
+
+#### Dependency upgrades
+
+- Updated internal dependency on @ezcater/snitches to 0.0.10.
+
 ## 12.0.1 - 2021-05-10
 
 #### Bug fixes
