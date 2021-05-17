@@ -15,6 +15,8 @@ title: 'Unreleased changes'
 
 #### Bug fixes
 
+- fix: EzLayout `columns` styles should only apply to `tile` layouts. Closes [#616](https://github.com/ezcater/recipe/issues/616).
+
 #### Documentation
 
 #### Dependency upgrades
