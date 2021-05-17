@@ -86,3 +86,17 @@ When items are misaligned, the content items aren't symmetric.
   </EzCard>
 </EzPage>
 ```
+
+### Only applies columns when using tile layout
+
+```jsx
+<EzPage>
+  <EzCard>
+    <EzLayout layout={{base: 'tile', medium: 'basic'}} columns={3}>
+      <div style={{backgroundColor: 'cadetblue'}}>Content</div>
+      <div style={{backgroundColor: 'cadetblue'}}>Content</div>
+      <div style={{backgroundColor: 'cadetblue'}}>Content</div>
+    </EzLayout>
+  </EzCard>
+</EzPage>
+```

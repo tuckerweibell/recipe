@@ -6,22 +6,27 @@ import {domProps, responsiveProps} from '../../utils';
 const descendants = '& > *';
 
 const generateColumns = (length: number): any => {
-  return Array.from({length}).reduce((columns: any, _next, i) => {
+  return Array.from({length}).map((_next, i) => {
     const numOfCols = i + 1;
     const colWidth = numOfCols === 1 ? 100 : (100 / numOfCols).toFixed(3);
     return {
-      ...columns,
-      [numOfCols]: {
+      layout: 'tile',
+      columns: numOfCols,
+      css: {
         [descendants]: {
           flexBasis: `calc(${colWidth}% - $layout-gap)`,
         },
       },
     };
-  }, {});
+  });
 };
 
 // making the parent wrapper element flex avoids margin collapse
 const box = theme.css({display: 'flex'});
+
+// prettier-ignore
+// eslint-disable-next-line
+type Columns = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
 
 const styles = theme.css({
   display: 'flex',
@@ -70,7 +75,7 @@ const styles = theme.css({
       stretch: {alignItems: 'stretch'},
     },
     alignX: {left: {}, center: {}, right: {}, stretch: {}},
-    columns: generateColumns(32) as Record<number, Record<string, unknown>>,
+    columns: {} as Record<Columns, any>,
   },
 
   compoundVariants: [
@@ -88,6 +93,8 @@ const styles = theme.css({
     {layout: 'cluster', alignX: 'left', css: {justifyContent: 'flex-start'}},
     {layout: 'cluster', alignX: 'center', css: {justifyContent: 'center'}},
     {layout: 'cluster', alignX: 'right', css: {justifyContent: 'flex-end'}},
+
+    ...generateColumns(32),
   ],
 });
 
