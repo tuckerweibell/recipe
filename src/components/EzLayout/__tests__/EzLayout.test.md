@@ -100,3 +100,19 @@ When items are misaligned, the content items aren't symmetric.
   </EzCard>
 </EzPage>
 ```
+
+### Items with width: 100% should be fully contained within layout
+
+```jsx
+<EzPage>
+  <EzLayout layout="basic">
+    <EzLayout layout="stack">
+      <EzHeading size="3" id="search-label">
+        Search
+      </EzHeading>
+      <EzSearchInput aria-labelledby="search-label" placeholder="Caterer, cuisine, etc." />
+    </EzLayout>
+    <p>hello world</p>
+  </EzLayout>
+</EzPage>
+```

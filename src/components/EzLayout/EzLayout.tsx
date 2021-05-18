@@ -8,13 +8,15 @@ const descendants = '& > *';
 const generateColumns = (length: number): any => {
   return Array.from({length}).map((_next, i) => {
     const numOfCols = i + 1;
-    const colWidth = numOfCols === 1 ? 100 : (100 / numOfCols).toFixed(3);
     return {
       layout: 'tile',
       columns: numOfCols,
       css: {
         [descendants]: {
-          flexBasis: `calc(${colWidth}% - $layout-gap)`,
+          flexBasis:
+            numOfCols === 1
+              ? '100%'
+              : `calc(100% / ${numOfCols} - $layout-gap / calc(${numOfCols} / ${i}))`,
         },
       },
     };

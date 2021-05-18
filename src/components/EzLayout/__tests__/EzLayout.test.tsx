@@ -6,7 +6,7 @@ import markdown from '../EzLayout.md';
 import regressionTests from './EzLayout.test.md';
 import alignmentTests from './EzLayout.alignment.test.md';
 import EzLayout from '../EzLayout';
-import {EzCard, EzCardSection, EzHeading, EzField, EzPage} from '../../index';
+import {EzCard, EzCardSection, EzHeading, EzField, EzPage, EzSearchInput} from '../../index';
 import Media from '../../EzField/Media';
 import {Global, css} from '../../../styles';
 import Placeholder from '../../../../doc-site/src/components/Placeholder';
@@ -22,6 +22,7 @@ const scope = {
   Global,
   Placeholder,
   EzField,
+  EzSearchInput,
 };
 
 describe('EzLayout', () => {

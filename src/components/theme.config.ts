@@ -182,12 +182,12 @@ const stitches = createCss({
       whiteSpace: 'nowrap',
       width: '1px',
     }),
-    // currently Firefox is the only major browser that supports gap on flex items.
     gap: () => (value: TokenValue<'space'>) => ({
-      margin: `calc(${value} / 2 * -1)`,
-      '&& > *': {
-        margin: `calc(${value} / 2)`,
+      gap: value,
+      '.no-flexgap &': {
+        margin: `calc(${value} / 2 * -1)`,
       },
+      '.no-flexgap && > *': { margin: `calc(${value} / 2)`},
     }),
     roundedTop: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderTopRightRadius: value}),
     roundedBottom: () => (value: TokenValue<'radii'>) => ({borderBottomLeftRadius: value, borderBottomRightRadius: value}),
