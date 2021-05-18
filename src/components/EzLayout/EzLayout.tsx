@@ -52,7 +52,7 @@ const styles = theme.css({
         justifyContent: 'space-between',
       },
       stack: {
-        alignItems: 'normal',
+        alignItems: 'stretch',
         flexDirection: 'column',
         width: '$full',
       },
