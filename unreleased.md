@@ -24,3 +24,5 @@ title: 'Unreleased changes'
 #### Dependency upgrades
 
 #### Development workflow
+
+- Updated visual regression environment for Chrome to use v91 (upgraded from v79).
