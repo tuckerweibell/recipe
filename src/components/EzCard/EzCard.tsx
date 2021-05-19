@@ -16,7 +16,7 @@ import {
 import EzButton from '../EzButton';
 import EzCardSection from './EzCardSection';
 import EzCardHeading from './EzCardHeading';
-import {clsx, filterValidProps} from '../../utils';
+import {clsx, filterValidProps, responsiveProps} from '../../utils';
 import {SlotProvider} from '../../utils/slots';
 import {EzFooter, EzHeader, EzPreview} from '../EzContent';
 
@@ -69,7 +69,6 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
   horizontal: isHorizontal,
   children,
   imageSrc,
-  imagePosition = 'top',
   imageMaxWidth: maxWidth,
   imageMaxHeight: maxHeight,
   size,
@@ -77,66 +76,69 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
   clickable,
   style = {},
   ...props
-}) => (
-  <Style ruleset={theme}>
-    <section
-      {...filterValidProps(props)}
-      className={clsx(
-        grid({imagePosition}),
-        // dynamically generate styles for IE (which doesn't support inline CSS vars)
-        msGrid(unitlessToPx(maxWidth))({imagePosition}),
-        container({
-          accent,
-          size: size || isQuiet ? 'small' : undefined,
-          isQuiet,
-          clickable,
-        })
-      )}
-      style={{...style, '--sizes-card-preview-max-w': unitlessToPx(maxWidth)} as any}
-    >
-      <SlotProvider
-        slots={{
-          preview: {className: preview({position: imagePosition})},
-          header: {className: header()},
-          content: {className: content()},
-          footer: {className: footer()},
-        }}
+}) => {
+  const {imagePosition = 'top'} = responsiveProps(props as any, 'imagePosition');
+  return (
+    <Style ruleset={theme}>
+      <section
+        {...filterValidProps(props)}
+        className={clsx(
+          grid({imagePosition}),
+          // dynamically generate styles for IE (which doesn't support inline CSS vars)
+          msGrid(unitlessToPx(maxWidth))({imagePosition}),
+          container({
+            accent,
+            size: size || isQuiet ? 'small' : undefined,
+            isQuiet,
+            clickable,
+          })
+        )}
+        style={{...style, '--sizes-card-preview-max-w': unitlessToPx(maxWidth)} as any}
       >
-        {imageSrc && (
-          <EzPreview>
-            <img src={imageSrc} alt="" style={{maxHeight, maxWidth, objectFit: 'cover'}} />
-          </EzPreview>
-        )}
-        {title && (
-          <EzHeader>
-            <EzCardHeading {...{actions, title, subtitle}} />
-          </EzHeader>
-        )}
-        {hasContentSlot(children) ? (
-          children
-        ) : (
-          <div
-            className={clsx(
-              sections(),
-              orientation({layout: isHorizontal ? 'horizontal' : 'vertical'})
-            )}
-          >
-            {hasCardSection(children) ? children : <EzCardSection>{children}</EzCardSection>}
-          </div>
-        )}
-        {expandable && (
-          <EzFooter>
-            <EzButton use="tertiary" onClick={expandable.onClick}>
-              {expandable.isExpanded && expandable.collapseLabel
-                ? expandable.collapseLabel
-                : expandable.expandLabel}
-            </EzButton>
-          </EzFooter>
-        )}
-      </SlotProvider>
-    </section>
-  </Style>
-);
+        <SlotProvider
+          slots={{
+            preview: {className: preview({position: imagePosition})},
+            header: {className: header()},
+            content: {className: content()},
+            footer: {className: footer()},
+          }}
+        >
+          {imageSrc && (
+            <EzPreview>
+              <img src={imageSrc} alt="" style={{maxHeight, maxWidth, objectFit: 'cover'}} />
+            </EzPreview>
+          )}
+          {title && (
+            <EzHeader>
+              <EzCardHeading {...{actions, title, subtitle}} />
+            </EzHeader>
+          )}
+          {hasContentSlot(children) ? (
+            children
+          ) : (
+            <div
+              className={clsx(
+                sections(),
+                orientation({layout: isHorizontal ? 'horizontal' : 'vertical'})
+              )}
+            >
+              {hasCardSection(children) ? children : <EzCardSection>{children}</EzCardSection>}
+            </div>
+          )}
+          {expandable && (
+            <EzFooter>
+              <EzButton use="tertiary" onClick={expandable.onClick}>
+                {expandable.isExpanded && expandable.collapseLabel
+                  ? expandable.collapseLabel
+                  : expandable.expandLabel}
+              </EzButton>
+            </EzFooter>
+          )}
+        </SlotProvider>
+      </section>
+    </Style>
+  );
+};
 
 EzCard.displayName = 'EzCard';
 

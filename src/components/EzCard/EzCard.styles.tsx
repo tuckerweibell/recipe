@@ -136,14 +136,6 @@ export const grid = theme.css({
   },
 });
 
-const positionReset = {
-  borderTopRightRadius: 0,
-  borderBottomRightRadius: 0,
-  borderTopLeftRadius: 0,
-  borderBottomLeftRadius: 0,
-  ...{'-ms-grid-row-span': '1', '-ms-grid-column-span': '1'},
-};
-
 export const preview = theme.css({
   margin: 0,
   overflow: 'hidden',
@@ -158,7 +150,6 @@ export const preview = theme.css({
   variants: {
     position: {
       left: {
-        ...positionReset,
         gridArea: 'left',
         borderTopLeftRadius: 'var(--radii-card-rounded)',
         borderBottomLeftRadius: 'var(--radii-card-rounded)',
@@ -166,7 +157,6 @@ export const preview = theme.css({
         ...{'-ms-grid-column': '1', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
       },
       right: {
-        ...positionReset,
         gridArea: 'right',
         borderTopRightRadius: 'var(--radii-card-rounded)',
         borderBottomRightRadius: 'var(--radii-card-rounded)',
@@ -174,7 +164,6 @@ export const preview = theme.css({
         ...{'-ms-grid-column': '3', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
       },
       top: {
-        ...positionReset,
         gridArea: 'top',
         borderTopLeftRadius: 'var(--radii-card-rounded)',
         borderTopRightRadius: 'var(--radii-card-rounded)',
