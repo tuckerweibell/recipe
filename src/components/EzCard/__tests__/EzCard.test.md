@@ -127,6 +127,7 @@
     title="Card with image on right"
     imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
     imagePosition={{base: 'right', medium: 'top'}}
+    imageMaxHeight={192}
   >
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
