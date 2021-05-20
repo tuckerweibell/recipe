@@ -30,3 +30,5 @@ title: 'Unreleased changes'
 #### Development workflow
 
 - Updated visual regression environment for Chrome to use v91 (upgraded from v79).
+- Updated @ezcater/snitches to 0.0.11.
+- Removes transitive dependency on `sort-css-media-queries` (which isn't built with es5 compatible syntax).
