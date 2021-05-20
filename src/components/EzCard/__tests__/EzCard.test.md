@@ -228,10 +228,10 @@
               d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
               fill="currentColor"
             />
-            <use width="535" height="110" xlink:href="#B" x="105" />
-            <use width="535" height="110" xlink:href="#B" x="211" />
-            <use width="535" height="110" xlink:href="#B" x="316" />
-            <use width="535" height="110" xlink:href="#B" x="421" />
+            <use width="535" height="110" xlinkHref="#B" x="105" />
+            <use width="535" height="110" xlinkHref="#B" x="211" />
+            <use width="535" height="110" xlinkHref="#B" x="316" />
+            <use width="535" height="110" xlinkHref="#B" x="421" />
           </svg>
           4.7 (467 reviews)
         </p>
