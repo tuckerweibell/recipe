@@ -1,8 +1,75 @@
-/** @jsx jsx */
-import {jsx} from '@emotion/core';
-import React from 'react';
+import React, {useState} from 'react';
 import * as buble from 'buble/dist/buble-browser-deps.umd.js';
+import {EzSegmentedControl, EzLayout, EzLink, EzCard} from '@ezcater/recipe';
+import {withPrefix} from 'gatsby';
+import {createUrl} from 'playroom/utils';
 import Code from '../Code';
+
+const codeIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="16"
+    width="16"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+    />
+  </svg>
+);
+
+const previewIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="16"
+    width="16"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+    />
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+    />
+  </svg>
+);
+
+const playIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="16"
+    width="16"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+    />
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+);
 
 const opts = {
   objectAssign: '_poly.assign',
@@ -59,6 +126,33 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+const createPlayroomLink = code => {
+  if (!code) return null;
+
+  /* remove the react-router-dom imports */
+  const reactRouterDomImportRegex = /(?=const)(.*?)(?<=require\('react-router-dom'\)\;)/;
+  const codeWithoutRouter = code.replace(reactRouterDomImportRegex, '');
+
+  /* make the stateful code work in the playground with IIFE
+    see: https://github.com/seek-oss/playroom/issues/66
+    and trim the last semicolon in the code string,
+    or else it throws a cross-origin error in playroom
+  */
+  const statefulPlayroomCode = `{(${codeWithoutRouter.replace(/;\s*$/, '')})()}`;
+
+  const playroomCode = codeWithoutRouter.startsWith('(') ? statefulPlayroomCode : codeWithoutRouter;
+
+  const baseUrl = withPrefix('/playroom/');
+  return createUrl({baseUrl, code: playroomCode, paramType: 'search'});
+};
+
+const TextWithIcon = ({children}) => (
+  // setting this css variable is cheating. Don't do this at home kids.
+  <EzLayout layout="cluster" alignX="center" style={{'--space-layout-gap': '4px'}}>
+    {children}
+  </EzLayout>
+);
+
 export const Eval = ({code = '', scope = {}}) => {
   // NOTE: Remove trailing semicolon to get an actual expression.
   const codeTrimmed = code.trim().replace(/;$/, '');
@@ -68,63 +162,34 @@ export const Eval = ({code = '', scope = {}}) => {
 };
 
 export default ({code, scope, language}) => {
-  const [showCode, setShowCode] = React.useState(false);
-  const border = '1px solid #ced4d9';
+  const [active, setActive] = useState('preview');
 
   return (
-    <div css={{border, marginBottom: 30, maxWidth: 950}}>
-      <ErrorBoundary>
-        <div css={{margin: 20}}>
-          <Eval code={code} scope={scope} />
-        </div>
-      </ErrorBoundary>
-
-      <div
-        css={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          padding: '0 5px',
-          background: '#f6f7f9',
-          borderTop: border,
-        }}
-      >
-        <button
-          title="Show editor"
-          css={{
-            padding: '3px 10px',
-            borderLeft: border,
-            outline: 'none',
-            borderTop: 'none',
-            borderBottom: 'none',
-            borderRight: 'none',
-            display: 'flex',
-            color: '#2d374766',
-            background: 'transparent',
-            fontSize: 12,
-          }}
-          onClick={() => setShowCode(!showCode)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </button>
-      </div>
-      {showCode && (
-        <div css={{margin: 0, borderTop: border, '& > pre[class*="language-"]': {margin: '0'}}}>
-          <Code code={code} language={language} />
-        </div>
-      )}
+    <div style={{marginTop: 24, marginBottom: 32}}>
+      <EzLayout layout="stack">
+        <EzLayout layout="right" columns={5}>
+          <EzSegmentedControl
+            name={`name-${code}`}
+            options={[
+              {label: <TextWithIcon>{previewIcon} Preview</TextWithIcon>, value: 'preview'},
+              {label: <TextWithIcon>{codeIcon} Code</TextWithIcon>, value: 'code'},
+            ]}
+            active={active}
+            onChange={value => setActive(value)}
+          />
+          <EzLink target="_blank" href={createPlayroomLink(code)}>
+            <TextWithIcon>{playIcon} Playroom</TextWithIcon>
+          </EzLink>
+        </EzLayout>
+        <EzCard isQuiet>
+          {active === 'preview' && (
+            <ErrorBoundary>
+              <Eval code={code} scope={scope} />
+            </ErrorBoundary>
+          )}
+          {active === 'code' && <Code code={code} language={language} />}
+        </EzCard>
+      </EzLayout>
     </div>
   );
 };
