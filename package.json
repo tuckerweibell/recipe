@@ -109,7 +109,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.3",
-    "@ezcater/snitches": "0.0.10",
+    "@ezcater/snitches": "^0.0.11",
     "@popperjs/core": "^2.1.1",
     "@react-types/provider": "^3.1.1",
     "@recipe-ui/legacy-theme": "^1.0.0",
