@@ -88,7 +88,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
           msGrid(unitlessToPx(maxWidth))({imagePosition}),
           container({
             accent,
-            size: size || isQuiet ? 'small' : undefined,
+            size: size || (isQuiet ? 'small' : undefined),
             isQuiet,
             clickable,
           })

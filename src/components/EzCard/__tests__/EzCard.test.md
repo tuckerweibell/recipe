@@ -304,3 +304,20 @@
   );
 };
 ```
+
+### Quiet card should honor size prop if provided
+
+```jsx
+<EzPage>
+  <EzCard isQuiet size="medium">
+    <EzLayout layout="stack">
+      <EzHeading size="5">Braised Beef Rice Bowl</EzHeading>
+      <small>$11.65</small>
+      <EzTextStyle use="subdued" as="small">
+        Topped with your choices of up to 5 vegetables and 3 sauces. Consider adding drinks. Please
+        limit your order to three bowl types.
+      </EzTextStyle>
+    </EzLayout>
+  </EzCard>
+</EzPage>
+```
