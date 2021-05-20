@@ -22,6 +22,7 @@ title: 'Unreleased changes'
 - fix: search input overflows bounds of the EzLayout container. Closes [#618](https://github.com/ezcater/recipe/issues/618).
 - fix: Issue causing `EzLayout[layout="stack"]` to horizontally collapse instead of filling the width of the parent element. Closes [#619](https://github.com/ezcater/recipe/issues/619).
 - fix: apply range media queries to `EzCard[imagePosition]` (instead of max-width queries), to avoid SSR order-of-insertion issues.
+- fix: Quiet cards should respect size prop if provided
 
 #### Documentation
 
