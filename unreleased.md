@@ -27,10 +27,21 @@ title: 'Unreleased changes'
 
 #### Documentation
 
+- Added playroom links to examples in docs.
+- Added a toggle to examples for toggling between example code and preview.
+- Removed `:with-playroom` instructions, since it's now part of `npm run start` command.
+- Moved doc-site svgs to sprites for carousel and timeline examples to reduce bloat.
+- Refactored carousel example to map over data to reduce bloat.
+- Converted svg examples using `xlink:href` to `xlinkHref`.
+
 #### Dependency upgrades
+
+- Removed docz playground.
+- Removed unused dependencies from doc-site.
 
 #### Development workflow
 
 - Updated visual regression environment for Chrome to use v91 (upgraded from v79).
 - Updated @ezcater/snitches to 0.0.11.
 - Removes transitive dependency on `sort-css-media-queries` (which isn't built with es5 compatible syntax).
+- Moved `playroom start` command to `npm start`.
