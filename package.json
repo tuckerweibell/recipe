@@ -78,8 +78,7 @@
     "typescript": "^4.2.2"
   },
   "scripts": {
-    "start": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop)\" --kill-others",
-    "start:with-playroom": "concurrently \"npm run playroom:start\" \"npm run start\"",
+    "start": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop)\" \"npm run playroom:start\" --kill-others",
     "start:with-ie11": "concurrently \"npm run build:watch\" \"(cd doc-site/ && npm run develop:with-ie11)\" --kill-others",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
