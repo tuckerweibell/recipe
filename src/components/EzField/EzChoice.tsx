@@ -5,6 +5,7 @@ import EzCheckbox from '../EzCheckbox';
 import EzRadioButton from '../EzRadioButton';
 import EzLayout from '../EzLayout';
 import {domProps} from '../../utils';
+import {useUniqueId} from '../../utils/hooks';
 
 const box = theme.css({
   display: 'flex',
@@ -46,6 +47,18 @@ const box = theme.css({
 });
 
 const inputStyles = theme.css({marginRight: '$100'});
+
+const Option = ({input, bordered, disabled, label}) => {
+  const id = useUniqueId();
+  return (
+    <Style ruleset={theme}>
+      <span className={box({bordered, disabled})}>
+        {React.cloneElement(input, {id})}
+        <label htmlFor={id}>{label}</label>
+      </span>
+    </Style>
+  );
+};
 
 export default props => {
   const {type, name: fieldName, value: selected = [], options, onChange, onFocus, onBlur} = props;
@@ -97,13 +110,7 @@ export default props => {
           );
           const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
-          return (
-            // eslint-disable-next-line jsx-a11y/label-has-associated-control
-            <label key={i} className={box({bordered: props.bordered, disabled})}>
-              {input}
-              {label}
-            </label>
-          );
+          return <Option key={i} bordered={props.bordered} {...{disabled, input, label}} />;
         })}
       </EzLayout>
     </Style>

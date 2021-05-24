@@ -89,5 +89,10 @@ describe('EzField', () => {
 
       expect(value).toEqual(['a']);
     });
+
+    it('can use react testing library to find options by label', () => {
+      const {container} = render(<EzField {...checkboxProps} value={['a', 'c']} />);
+      expect(getByLabelText(container, /Choice A/)).toEqual(getByLabelText(container, 'Choice A'));
+    });
   });
 });
