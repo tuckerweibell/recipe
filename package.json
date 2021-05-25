@@ -94,6 +94,7 @@
     "bundle-size": "cd tree-shaking-size/ && npm i && npm run build && node check-size.js",
     "clean": "rm -rf dist",
     "create-component": "plop component",
+    "changeset": "npx changeset",
     "release": "npm run build && npm changeset publish",
     "test": "cross-env NODE_OPTIONS=--max-http-header-size=512000 jest --coverage --no-cache",
     "test:watch": "npm test -- --watch",
