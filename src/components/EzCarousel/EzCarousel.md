@@ -99,142 +99,77 @@ Applies space between between slides.
 An example of how you might use the carousel in conjunction with other components to build a compelling experience for browsing products.
 
 ```jsx
-<EzPage>
-  <EzCarousel slidesPerPage={2} gap peek>
-    <EzCard
-      title="Splitz Wrap Boxed Lunch"
-      subtitle="Corporate Catering  |  3 mi  |  $$$$"
-      imageSrc={withPrefix('/images/wrap.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.7 (463 reviews)
-      </p>
-    </EzCard>
-    <EzCard
-      title="Flaming Pit Pizza"
-      subtitle="Globally Inspired Pizza  |  1 mi  |  $$$$"
-      imageSrc={withPrefix('/images/pizza.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.8 (671 reviews)
-      </p>
-    </EzCard>
-    <EzCard
-      title="Dakzen Thai"
-      subtitle="Modern Thai  |  10 mi  |  $$$$"
-      imageSrc={withPrefix('/images/thai.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.7 (467 reviews)
-      </p>
-    </EzCard>
-    <EzCard
-      title="Splitz Wrap Boxed Lunch"
-      subtitle="Corporate Catering  |  3 mi  |  $$$$"
-      imageSrc={withPrefix('/images/wrap.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.7 (463 reviews)
-      </p>
-    </EzCard>
-    <EzCard
-      title="Flaming Pit Pizza"
-      subtitle="Globally Inspired Pizza  |  1 mi  |  $$$$"
-      imageSrc={withPrefix('/images/pizza.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.8 (671 reviews)
-      </p>
-    </EzCard>
-    <EzCard
-      title="Dakzen Thai"
-      subtitle="Modern Thai  |  10 mi  |  $$$$"
-      imageSrc={withPrefix('/images/thai.jpg')}
-      imageMaxHeight={120}
-      size="small"
-    >
-      <p>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 100" height="16" width="80">
-          <path
-            id="B"
-            d="M57 5l12 38 40-.002-32 24 12 38-32-24-32 24 12-38-32-24L45 43 57 5z"
-            fill="currentColor"
-          />
-          <use width="535" height="110" xlinkHref="#B" x="105" />
-          <use width="535" height="110" xlinkHref="#B" x="211" />
-          <use width="535" height="110" xlinkHref="#B" x="316" />
-          <use width="535" height="110" xlinkHref="#B" x="421" />
-        </svg>
-        4.7 (467 reviews)
-      </p>
-    </EzCard>
-  </EzCarousel>
-</EzPage>
+() => {
+  const caterers = [
+    {
+      title: 'Splitz Wrap Boxed Lunch',
+      subtitle: 'Corporate Catering  |  3 mi  |  $$$$',
+      image: `${withPrefix('/images/wrap.jpg')}`,
+      reviews: '4.7 (463 reviews)',
+    },
+    {
+      title: 'Flaming Pit Pizza',
+      subtitle: 'Globally Inspired Pizza  |  1 mi  |  $$$$',
+      image: `${withPrefix('/images/pizza.jpg')}`,
+      reviews: '4.8 (671 reviews)',
+    },
+    {
+      title: 'Dakzen Thai',
+      subtitle: 'Modern Thai  |  10 mi  |  $$$$',
+      image: `${withPrefix('/images/thai.jpg')}`,
+      reviews: '4.7 (467 reviews)',
+    },
+    {
+      title: 'Splitz Wrap Boxed Lunch',
+      subtitle: 'Corporate Catering  |  3 mi  |  $$$$',
+      image: `${withPrefix('/images/wrap.jpg')}`,
+      reviews: '4.7 (463 reviews)',
+    },
+    {
+      title: 'Flaming Pit Pizza',
+      subtitle: 'Globally Inspired Pizza  |  1 mi  |  $$$$',
+      image: `${withPrefix('/images/pizza.jpg')}`,
+      reviews: '4.8 (671 reviews)',
+    },
+    {
+      title: 'Dakzen Thai',
+      subtitle: 'Modern Thai  |  10 mi  |  $$$$',
+      image: `${withPrefix('/images/thai.jpg')}`,
+      reviews: '4.7 (467 reviews)',
+    },
+  ];
+
+  return (
+    <EzPage>
+      <EzCarousel slidesPerPage={2} gap peek>
+        {caterers.map((card, index) => {
+          return (
+            <EzCard
+              key={index}
+              title={card.title}
+              subtitle={card.subtitle}
+              imageSrc={card.image}
+              imageMaxHeight={120}
+              size="small"
+            >
+              <p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 550 100"
+                  height="16"
+                  width="80"
+                >
+                  <use xlinkHref="#fiveStarRating" />
+                </svg>
+                {card.reviews}
+              </p>
+            </EzCard>
+          );
+        })}
+      </EzCarousel>
+    </EzPage>
+  );
+};
 ```
 
 ---

@@ -9,6 +9,7 @@ import theme from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
 import '@testing-library/jest-dom/extend-expect';
+import Sprites from './src/components/Sprites';
 
 const VisualRegressionOverrides = () => (
   <style>
@@ -29,6 +30,7 @@ const GlobalStylesWrapper = ({children}) => (
       rel="stylesheet"
     />
     <Style ruleset={theme}>
+      <Sprites />
       <EzGlobalStyles />
       <VisualRegressionOverrides />
       {children}
