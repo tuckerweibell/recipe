@@ -107,6 +107,7 @@
     "playroom:build": "playroom build"
   },
   "dependencies": {
+    "@changesets/cli": "^2.16.0",
     "@emotion/is-prop-valid": "^0.7.3",
     "@ezcater/snitches": "^0.0.11",
     "@popperjs/core": "^2.1.1",
