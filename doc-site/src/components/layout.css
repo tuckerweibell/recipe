@@ -80,6 +80,11 @@ h6 {
   position: relative;
 }
 
+/* space out changelog versions */
+.gatsby:not(h2) + h2.gatsby {
+  margin-top: 2.5rem;
+}
+
 .token-line:not(:last-child) {
   min-height: 1rem;
 }
