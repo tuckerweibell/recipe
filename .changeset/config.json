@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@1.6.0/schema.json",
-  "changelog": "@changesets/cli/changelog",
+  "changelog": ["./changelog-config.js", {"repo": "ezcater/recipe"}],
   "commit": false,
   "linked": [],
   "access": "restricted",
