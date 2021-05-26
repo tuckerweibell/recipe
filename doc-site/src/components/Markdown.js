@@ -112,8 +112,25 @@ const splitOnTagName = (list, tagName) => {
   return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
 };
 
-export default ({data: {markdownRemark: page}, location}) =>
-  page && (
+export default ({data: {page, changelog}, location}) => {
+  if (location.pathname.includes('changelog'))
+    return (
+      <Layout
+        path="/changelog"
+        title="Releases"
+        layout="centered"
+        location={location}
+        sections={splitOnTagName(changelog.childMarkdownRemark.htmlAst.children, 'hr').map(
+          section => (
+            <HtmlAst htmlAst={{children: section}} scope={scope} />
+          )
+        )}
+      />
+    );
+
+  if (!page) return null;
+
+  return (
     <Layout
       path={page.frontmatter.path}
       title={page.frontmatter.title}
@@ -125,17 +142,29 @@ export default ({data: {markdownRemark: page}, location}) =>
       ))}
     />
   );
+};
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String) {
-    markdownRemark(frontmatter: {path: {eq: $path}}) {
-      html
+    page: markdownRemark(frontmatter: {path: {eq: $path}}) {
+      parent {
+        ... on File {
+          id
+          name
+        }
+      }
       htmlAst
       frontmatter {
         path
         title
         name
         tags
+      }
+    }
+    changelog: file(name: {eq: "changelog"}) {
+      name
+      childMarkdownRemark {
+        htmlAst
       }
     }
   }

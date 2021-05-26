@@ -35,6 +35,12 @@ exports.createPages = ({actions, graphql}) => {
         context: {},
       })
     );
+
+    createPage({
+      path: '/changelog',
+      component: path.resolve('src/components/Markdown.js'),
+      context: {},
+    });
   });
 };
 

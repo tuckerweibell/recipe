@@ -1,13 +1,3 @@
----
-path: '/changelog'
-title: 'Releases'
-order: 70
----
-
-The format is based on [these versioning and changelog guidelines](/guides/versioning-and-changelog).
-
----
-
 ## Version 12
 
 ## 12.0.2 - 2021-05-14
