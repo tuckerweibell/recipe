@@ -24,6 +24,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/../src`,
+        ignore: [`**/__tests__/*`, `**/*\.preview\.md`],
         name: 'components',
       },
     },
