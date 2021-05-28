@@ -17,14 +17,29 @@ import {
   EzProvider,
   EzLayout,
   EzSearchInput,
+  EzHeader,
+  EzPageSection,
+  EzHeading,
+  EzContent,
 } from '@ezcater/recipe';
 import {theme as marketplaceTheme} from '@recipe-ui/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
 import ComponentGrid from './ComponentGrid';
 import {SearchProvider} from '../providers/SearchProvider';
+import TableOfContents from './TableOfContents';
 
-const Layout = ({name, title, path, children, sections, location, layout}) => (
+const Layout = ({
+  name,
+  title,
+  path,
+  children,
+  sections,
+  location,
+  layout,
+  headings,
+  tableOfContents,
+}) => (
   <StaticQuery
     query={graphql`
       query {
@@ -90,6 +105,11 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
       useEffect(() => {
         setSearchTerms('');
       }, [location.pathname]);
+
+      const hasHeadings = headings.length;
+      const isComponentGrid = path === '/components' || path === '/components/';
+      const hasSearchTerms = searchTerms.length;
+      const showTableOfContents = hasHeadings && !isComponentGrid && !hasSearchTerms;
 
       return (
         <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
@@ -161,16 +181,41 @@ const Layout = ({name, title, path, children, sections, location, layout}) => (
                   />
                   <EzPage>
                     <SearchProvider value={searchTerms}>
-                      <EzCard>
-                        {searchTerms ? (
-                          <ComponentGrid />
-                        ) : (
-                          children ||
-                          sections.map((section, i) => (
-                            <EzCardSection key={i}>{section}</EzCardSection>
-                          ))
-                        )}
-                      </EzCard>
+                      <EzPageSection use={showTableOfContents ? 'main' : undefined}>
+                        <EzCard>
+                          {searchTerms ? (
+                            <ComponentGrid />
+                          ) : (
+                            children ||
+                            sections.map((section, i) => (
+                              <EzCardSection key={i}>{section}</EzCardSection>
+                            ))
+                          )}
+                        </EzCard>
+                      </EzPageSection>
+                      {showTableOfContents && (
+                        <EzPageSection
+                          use="aside"
+                          css={{
+                            position: 'sticky',
+                            top: '10px',
+                            '@media (max-width: 768px)': {
+                              display: 'none',
+                            },
+                          }}
+                        >
+                          <EzCard style={{maxHeight: '70vh', overflow: 'auto'}}>
+                            <EzHeader>
+                              <EzHeading id="tableOfContents" size="3">
+                                Contents
+                              </EzHeading>
+                            </EzHeader>
+                            <EzContent>
+                              <TableOfContents>{tableOfContents}</TableOfContents>
+                            </EzContent>
+                          </EzCard>
+                        </EzPageSection>
+                      )}
                     </SearchProvider>
                   </EzPage>
                 </EzNavigation>

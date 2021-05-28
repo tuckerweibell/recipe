@@ -15,7 +15,7 @@ import CodeHighlighting from './Code';
 import Playground from './Playground';
 import CodePlaygroundHostNode from './ModalWrapper';
 
-const cleanProps = p =>
+const cleanProps = (p) =>
   Object.keys(p).reduce((previous, current) => {
     const key = current.startsWith('aria')
       ? current.toLowerCase().replace('aria', 'aria-')
@@ -26,13 +26,15 @@ const cleanProps = p =>
 
 const HtmlAst = ({htmlAst, scope}) => {
   // ignore the style tag, as HTML ast gives us a string, but react expects a style object
-  const heading = (size, as) => ({style, ...props}) =>
-    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+  const heading =
+    (size, as) =>
+    ({style, ...props}) =>
+      React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
-  const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
+  const wrapEl = (type) => (props) => React.createElement(type, {className: 'gatsby', ...props});
 
   const componentMap = {
-    code: props => {
+    code: (props) => {
       const {className} = props;
       const language = className?.replace('language-', '') || 'jsx';
 
@@ -44,8 +46,8 @@ const HtmlAst = ({htmlAst, scope}) => {
 
       return <CodeHighlighting code={props.children[0]} language={language} />;
     },
-    a: props => React.createElement(props.className ? 'a' : Components.EzLink, props),
-    p: props => {
+    a: (props) => React.createElement(props.className ? 'a' : Components.EzLink, props),
+    p: (props) => {
       const {children} = props;
       const type = children[0].type;
       const hasNestedComponent = children.length === 1 && type && type !== 'string';
@@ -105,7 +107,7 @@ const scope = {
 };
 
 const splitOnTagName = (list, tagName) => {
-  const i = list.findIndex(el => el.tagName === tagName);
+  const i = list.findIndex((el) => el.tagName === tagName);
 
   if (i === -1) return [list];
 
@@ -121,10 +123,12 @@ export default ({data: {page, changelog}, location}) => {
         layout="centered"
         location={location}
         sections={splitOnTagName(changelog.childMarkdownRemark.htmlAst.children, 'hr').map(
-          section => (
+          (section) => (
             <HtmlAst htmlAst={{children: section}} scope={scope} />
           )
         )}
+        headings={changelog.childMarkdownRemark.headings}
+        tableOfContents={changelog.childMarkdownRemark.tableOfContents}
       />
     );
 
@@ -137,9 +141,11 @@ export default ({data: {page, changelog}, location}) => {
       layout={page.frontmatter.tags?.includes('wide') ? 'wide' : 'centered'}
       location={location}
       name={page.frontmatter.name}
-      sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
+      sections={splitOnTagName(page.htmlAst.children, 'hr').map((section) => (
         <HtmlAst htmlAst={{children: section}} scope={scope} />
       ))}
+      headings={page.headings}
+      tableOfContents={page.tableOfContents}
     />
   );
 };
@@ -154,6 +160,10 @@ export const pageQuery = graphql`
         }
       }
       htmlAst
+      headings {
+        value
+      }
+      tableOfContents(maxDepth: 3, pathToSlugField: "frontmatter.path", absolute: true)
       frontmatter {
         path
         title
@@ -165,6 +175,10 @@ export const pageQuery = graphql`
       name
       childMarkdownRemark {
         htmlAst
+        headings {
+          value
+        }
+        tableOfContents(maxDepth: 3, pathToSlugField: "", absolute: false)
       }
     }
   }
