@@ -23,6 +23,7 @@ export default mergeCss({
     space: {
       'card-p': '$250',
       'card-sm-p': '$150',
+      'card-md-p': '$250',
       'card-content-gap': '$200',
     },
     radii: {

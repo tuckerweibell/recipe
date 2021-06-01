@@ -5,6 +5,7 @@ export const container = theme.css({
   boxShadow: '$card',
 
   '--radii-card-rounded': 0,
+  '--space-card-p': '$space$card-md-p',
 
   when: {
     medium: {
