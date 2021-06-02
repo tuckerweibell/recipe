@@ -32,3 +32,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish doc-site for the latest (published) semver release
+      - name: Publishing doc-site
+        if: steps.changesets.outputs.published == 'true'
+        run: npm run install:docs && npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
