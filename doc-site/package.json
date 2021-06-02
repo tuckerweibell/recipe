@@ -7,7 +7,7 @@
     "@emotion/styled": "^10.0.11",
     "@ezcater/babel-plugin-recipe": "file:../packages/plugin",
     "@ezcater/recipe": "file:..",
-    "@recipe-ui/theme-marketplace": "file:../packages/@recipe-ui/theme-marketplace",
+    "@recipe-ui/theme-marketplace": "^2.0.0",
     "create-emotion-server": "^10.0.27",
     "css-vars-ponyfill": "^2.4.5",
     "emotion-theming": "^10.0.10",
