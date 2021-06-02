@@ -95,7 +95,7 @@
     "clean": "rm -rf dist",
     "create-component": "plop component",
     "changeset": "npx changeset",
-    "release": "npm run build && npm changeset publish",
+    "release": "npm run build && npx changeset publish",
     "test": "cross-env NODE_OPTIONS=--max-http-header-size=512000 jest --coverage --no-cache",
     "test:watch": "npm test -- --watch",
     "test:ci": "cross-env NODE_OPTIONS=--max-http-header-size=512000 jest --ci --coverage --no-cache --maxWorkers=2 --reporters=jest-standard-reporter --reporters=jest-junit",
