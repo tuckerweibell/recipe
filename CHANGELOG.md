@@ -1,5 +1,11 @@
 ## Version 12
 
+## 12.0.5
+
+### Patch Changes
+
+- workflow: setup automated canary releases for pushes to main [[sha]](https://github.com/ezcater/recipe/commit/ba1a4809)
+
 ## 12.0.4
 
 ### Patch Changes
