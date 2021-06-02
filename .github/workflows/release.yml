@@ -45,6 +45,10 @@ jobs:
       - name: Publishing canary releases to npm registry
         if: steps.changesets.outputs.published != 'true'
         run: |
+          git checkout main
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
           npx changeset version --snapshot canary
           npx changeset publish --tag canary
         env:
