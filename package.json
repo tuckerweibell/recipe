@@ -26,6 +26,7 @@
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.10.0",
+    "@changesets/cli": "^2.16.0",
     "@ezcater/ez-scripts": "^1.0.2",
     "@storybook/addon-actions": "^6.1.6",
     "@storybook/addon-essentials": "^6.2.9",
@@ -107,7 +108,6 @@
     "playroom:build": "playroom build"
   },
   "dependencies": {
-    "@changesets/cli": "^2.16.0",
     "@emotion/is-prop-valid": "^0.7.3",
     "@ezcater/snitches": "^0.0.11",
     "@popperjs/core": "^2.1.1",
