@@ -3,7 +3,7 @@
   "changelog": ["./changelog-config.js", {"repo": "ezcater/recipe"}],
   "commit": false,
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
