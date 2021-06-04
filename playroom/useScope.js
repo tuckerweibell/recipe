@@ -8,10 +8,12 @@ export default () => ({
   withPrefix: path => `https://ezcater.github.io/recipe${path}`,
   Placeholder,
   ezCaterLogoPath,
-  Link,
-  NavLink,
-  BrowserRouter,
-  Router: StaticRouter,
-  Route,
+  require: moduleName => {
+    if (moduleName !== 'react-router-dom')
+      throw new Error('Cannot use require from a browser context.');
+
+    // fake out calls to `require('react-router-dom')` within our .md examples.
+    return {BrowserRouter, StaticRouter, NavLink, Link, Route};
+  },
   CodePlaygroundHostNode: ({children, openState}) => <div openState={openState}>{children}</div>,
 });

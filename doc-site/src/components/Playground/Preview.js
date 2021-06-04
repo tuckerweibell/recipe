@@ -130,18 +130,13 @@ class ErrorBoundary extends React.Component {
 const createPlayroomLink = code => {
   if (!code) return null;
 
-  /* remove the react-router-dom imports */
-  const reactRouterDomImportRegex = /(?=const)(.*?)(?<=require\('react-router-dom'\)\;)/;
-  const codeWithoutRouter = code.replace(reactRouterDomImportRegex, '');
-
   /* make the stateful code work in the playground with IIFE
     see: https://github.com/seek-oss/playroom/issues/66
     and trim the last semicolon in the code string,
     or else it throws a cross-origin error in playroom
   */
-  const statefulPlayroomCode = `{(${codeWithoutRouter.replace(/;\s*$/, '')})()}`;
-
-  const playroomCode = codeWithoutRouter.startsWith('(') ? statefulPlayroomCode : codeWithoutRouter;
+  const statefulPlayroomCode = `{(${code.replace(/;\s*$/, '')})()}`;
+  const playroomCode = code.startsWith('(') ? statefulPlayroomCode : code;
 
   const baseUrl = withPrefix('/playroom/');
   return createUrl({baseUrl, code: playroomCode, paramType: 'search'});
