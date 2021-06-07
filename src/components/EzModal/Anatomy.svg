@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 563" style="max-height: 500px; background: #f4f5f7; width: calc(100% - 64px); border-radius: 4px;">
+  <g id="Group_72711" data-name="Group 72711" transform="translate(-265 -12)">
+    <g transform="translate(356 48)" fill="#fff" stroke="#a2b6e1" stroke-width="1.5">
+      <rect width="480" height="492" rx="6" stroke="none"/>
+      <rect x="0.75" y="0.75" width="478.5" height="490.5" rx="5.25" fill="none"/>
+    </g>
+
+    <g id="Preview" transform="translate(356 48)">
+      <g fill="#ebeef4" stroke="#a2b6e1" stroke-width="1.5">
+        <rect width="480" height="175" rx="6" stroke="none"/>
+        <rect x="0.75" y="0.75" width="478.5" height="490.5" rx="5.25" fill="none"/>
+      </g>
+      <line x1="479" y1="174" x2="3" y2="2.6" stroke="#beccea"/>
+      <line x1="1" y1="174" x2="477" y2="2.4" stroke="#beccea"/>
+      <rect x="0" y="174" height="1" id="Bar" width="480" fill="#a2b6e1" rx="1"/>
+    </g>
+
+    <g id="Body_area_box" data-name="Rectangle 138301" transform="translate(396 290)" fill="rgba(74,111,195,0.05)" stroke="#a2b6e1" stroke-width="1" stroke-dasharray="4 2">
+      <rect width="400" height="168" stroke="none"/>
+      <rect x="0.5" y="0.5" width="399" height="167" fill="none"/>
+    </g>
+
+    <g id="header_area_box" data-name="Rectangle 138450" transform="translate(396 248)" fill="rgba(74,111,195,0.05)" stroke="#a2b6e1" stroke-width="1" stroke-dasharray="4 2">
+      <rect width="400" height="22" stroke="none"/>
+      <rect x="0.5" y="0.5" width="399" height="21" fill="none"/>
+    </g>
+    <g id="footer_area_box" data-name="Rectangle 138449" transform="translate(396 478)" fill="none" stroke="#a2b6e1" stroke-width="1" stroke-dasharray="4 2">
+      <rect width="400" height="32" stroke="none"/>
+      <rect x="0.5" y="0.5" width="399" height="31" fill="none"/>
+    </g>
+
+    <text id="Header_content_area" data-name="Header content area (optional)" transform="translate(540 263)" fill="#496ec2" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan>Header content area</tspan></text>
+    <text id="Body_content_area" data-name="Body area" transform="translate(545 379)" fill="#496ec2" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan>Body content area</tspan></text>
+    <text id="Footer_content_area" data-name="Footer content area (optional)" transform="translate(543 498)" fill="#496ec2" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan>Footer content area</tspan></text>
+
+    <text id="Header" transform="translate(865.999 263)" fill="#4a6fc3" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan x="2">Header</tspan></text>
+    <text id="Footer" transform="translate(865.999 498)" fill="#4a6fc3" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan x="2">Footer</tspan><tspan x="0" dy="1.2em">(optional)</tspan></text>
+    <text id="Body" transform="translate(865.999 378)" fill="#4a6fc3" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan>Content</tspan></text>
+    <rect id="Rectangle_138454" data-name="Rectangle 138454" width="8" height="1" transform="translate(853 259)" fill="#4a6fc3"/>
+    <rect id="Rectangle_138456" data-name="Rectangle 138456" width="8" height="1" transform="translate(853 494)" fill="#4a6fc3"/>
+    <rect id="Rectangle_138455" data-name="Rectangle 138455" width="8" height="1" transform="translate(853 374)" fill="#4a6fc3"/>
+    <g id="Group_72702" data-name="Group 72702" transform="translate(0 -584)">
+      <rect id="Rectangle_138451" data-name="Rectangle 138451" width="8" height="1" transform="translate(844 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138453" data-name="Rectangle 138453" width="1" height="22" transform="translate(852 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138452" data-name="Rectangle 138452" width="8" height="1" transform="translate(844 853)" fill="#4a6fc3"/>
+    </g>
+    <g id="Group_72704" data-name="Group 72704" transform="translate(0 -354)">
+      <rect id="Rectangle_138451-2" data-name="Rectangle 138451" width="8" height="1" transform="translate(844 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138453-2" data-name="Rectangle 138453" width="1" height="32" transform="translate(852 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138452-2" data-name="Rectangle 138452" width="8" height="1" transform="translate(844 863)" fill="#4a6fc3"/>
+    </g>
+    <g id="Group_72703" data-name="Group 72703" transform="translate(0 -542)">
+      <rect id="Rectangle_138451-3" data-name="Rectangle 138451" width="8" height="1" transform="translate(844 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138453-3" data-name="Rectangle 138453" width="1" height="168" transform="translate(852 832)" fill="#4a6fc3"/>
+      <rect id="Rectangle_138452-3" data-name="Rectangle 138452" width="8" height="1" transform="translate(844 999)" fill="#4a6fc3"/>
+    </g>
+    <text id="Divider" transform="translate(324 126)" fill="#4a6fc3" font-size="12" font-family="sans-serif" style="font-style: italic"><tspan x="-38.14" y="0">Preview</tspan><tspan x="-38.14" dy="1.2em">(optional)</tspan></text>
+    <path id="Union_58" data-name="Union 58" d="M-9114.949-372H-9168v-1h53.05a2.5,2.5,0,0,1,2.451-2,2.5,2.5,0,0,1,2.5,2.5,2.5,2.5,0,0,1-2.5,2.5A2.5,2.5,0,0,1-9114.949-372Z" transform="translate(9515 495.501)" fill="#718dcf"/>
+  </g>
+</svg>

@@ -18,21 +18,67 @@ Modals should:
 
 Modals should not:
 
-- Create a “wizard” flow with two or more steps.
+- Create a “wizard” flow with two or more steps. Instead, favor full-page layouts for “wizard” style flows.
 
 ---
 
-## Examples
+## Content
+
+A standard Modal has the following anatomy:
+
+|                                                                                                                                                                                 |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ![Image illustrating through labels the component parts of a standard-style modal, including a title and empty content areas for body content and dialog actions.](Anatomy.svg) |
+
+The areas within a modal can be populated either by providing the relevant props (`headerText`, `submitLabel`, `dismissLabel` etc), or by providing the following content components to your modal as **direct descendants** to the modal:
+
+- [EzPreview](/components/ez-preview) (image or illustration)
+- [EzHeader](/components/ez-header) (title and other header content e.g. card actions)
+- [EzContent](/components/ez-content) (body)
+- [Footer](/components/ez-footer).
+
+The `EzHeader`, `EzContent`, and `EzFooter` content elements accept any renderable node, not just strings, allowing you to create dialogs for more complex workflows.
+
+A modal can be shown or hidden using the `isOpen` prop.
+
+## Example
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const close = React.useCallback(() => setIsOpen(false), []);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal isOpen={isOpen} onDismiss={close}>
+        <EzHeader>
+          <EzHeading size="2">Submit Order</EzHeading>
+        </EzHeader>
+        <EzContent>Are you ready to submit this order?</EzContent>
+        <EzFooter>
+          <EzLayout layout="basic">
+            <EzButton use="primary" onClick={close}>
+              Confirm
+            </EzButton>
+            <EzButton onClick={close}>Cancel</EzButton>
+          </EzLayout>
+        </EzFooter>
+      </EzModal>
+    </>
+  );
+};
+```
+
+---
 
 ### Informational modal
 
-Informational modals are used to focus the user’s attention on specific information. Use when providing information about something that’s not essential to completing the actions on the page, especially if content formatting is needed or there’s too much content to display in a tooltip.
+Informational modals are used to focus the user’s attention on specific information.
 
-The `isOpen` prop controls whether or not the dialog is displayed to the user, and will only render the `children` content when `isOpen` is `true`.
+Use this variant when presenting information that is not essential to the completion of the actions on the page. This variant can be useful when there is otherwise too much content to display in a tooltip, or where content formatting is needed.
 
-A title for the modal should be provided by using the `headerText` prop.
-
-When the user clicks outside the modal, hits the escape key, or hits close, the `onDismiss` function will be called. The user may also trigger the `onDismiss` function by clicking the button labelled by the provided `dismissLabel`.
+Provide a both the `dismissLabel` prop and the `onDismiss` prop to present the user with a close button and enable the dialog to be automatically closed when clicking away or when pressing the escape key.
 
 ```jsx
 () => {
@@ -132,13 +178,14 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 
 Use a required action modal only when the user must accept or submit the modal information to move forward on the site.
 
-- Most use cases for this will involve the legal team, as the modal will block use of the site until submitted.
+- Use sparingly as the modal will block use of the site until submitted. Most use cases for required actions should original from our legal team.
 
-Omit the `dismissLabel` prop to hide the dismiss button and the close button.
+A required action modal will be presented when both of the following conditions are met:
 
-Omit the `onDismiss` action prop so that nothing happens when the user clicks outside the modal or hits the ESC button.
+- The `dismissLabel` prop is not provided
+- The `onDismiss` prop is not provided
 
-The `submitLabel` prop is required without a `dismissLabel` prop.
+The `submitLabel` prop and the corresponding `onSubmit` prop should be provided to handle the user's acknowledgement and close the dialog.
 
 ```jsx
 () => {
