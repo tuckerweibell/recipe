@@ -3,17 +3,7 @@ path: '/guides/versioning-and-changelog'
 title: 'Versioning and Changelog'
 ---
 
-The changelog is prepared manually immediately before a release. Each changelog entry should follow this structure:
-
-```md
-## 1.0.11 - 2018-05-07
-
-### Enhancements
-
-- New "stack" variant added for EzLayout
-```
-
-The possible groups in which to categorize changes are:
+The changelog is prepared manually immediately before a release. Each changelog entry should follow the [Angular commit message convention](https://css-tricks.com/how-to-automate-project-versioning-and-releases-with-continuous-deployment/#commit-format), using the following groups to categorize changes:
 
 - **BREAKING CHANGE**: Introduces a breaking API change (removal of a component/prop, type restrictions etc)
 - **feat**: New components, new variations, accessibility improvements, etc

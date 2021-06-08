@@ -45,8 +45,8 @@ Please start by [filing a GitHub issue against the Recipe project](https://githu
    - A code review from the Recipe team is not required for code to land in Recipe; any engineer with Senior+ frontend skills can review your code.
    - If the Recipe team did not review the PR, they may propose follow-up changes at a later time.
 1. **Publish the new changes.**
-   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. You can do this yourself by following our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme).
-   - Downstream applications may need to be updated to use the new version. [Step-by-step publishing instructions](#publishing-a-new-release) are provided below.
+   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the main Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the main branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
+   - Downstream applications should be updated to use the new version.
 
 ### Following semantic versioning
 
@@ -58,7 +58,7 @@ When a contributor is preparing a branch to submit as a pull request, we need to
 npm run changeset
 ```
 
-and answer the provided questions. The changeset command will be write a Markdown file that contains the summary and metadata to store data about the package(s) that will be released and the semver bump types for them. This file should then be committed to git. Committing the changeset file within the same commit the summarized change was applied is ideal, as it will associate the changeset with the commit sha of the actual change. We recommend following the [Angular commit message convention](https://css-tricks.com/how-to-automate-project-versioning-and-releases-with-continuous-deployment/#commit-format) for the format of the changeset message in order to help communicate what impact the changeset contents have on the next version.
+and answer the provided questions. The changeset command will be write a Markdown file that contains the summary and metadata to store data about the package(s) that will be released and the semver bump types for them. This file should then be committed to git. Committing the changeset file within the same commit the summarized change was applied is ideal, as it will associate the changeset with the commit sha of the actual change. We recommend following following our [versioning guidance](/guides/versioning-and-changelog) for the format of the changeset message in order to help communicate what impact the changeset contents have on the next version.
 
 When [a release is cut](#publishing-a-new-release), we use this changeset metadata to version bump Recipe to an appropriate number, combining multiple changesets into a single coordinated release.
 
@@ -87,13 +87,13 @@ When [a release is cut](#publishing-a-new-release), we use this changeset metada
    - [Create the component](#creating-components)
    - Consider how your component will be [accessible to all users](https://www.essentialaccessibility.com/blog/web-content-accessibility-guidelines). Recipe's default component template includes basic tests for common accessibility issues to help get you started.
    - Provide test coverage for the component. Recipe's default template for testing includes a visual snapshot for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
-   - Update `src/unreleased.md` with a summary of the changes made, following our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) to categorize changes into appropriate headings.
+   - Create a changeset [following semantic versioning](#following-semantic-versioning) to categorize your changes into appropriate headings for our changelog.
 1. **Code review**
    - A code review from the Recipe team is not required for code to land in Recipe; any engineer with Senior+ frontend skills can review your code.
    - If the Recipe team did not review the PR, they may propose follow-up changes at a later time.
 1. **Publish the new changes**
-   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. You can increment the version yourself by following our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme).
-   - Downstream applications may need to be updated to use the new version. [Step-by-step publishing instructions](#publishing-a-new-release) are provided below.
+   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the main Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the main branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
+   - Downstream applications should be updated to use the new version.
 
 ---
 
