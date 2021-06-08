@@ -30,8 +30,6 @@ const useIsSelected = () => {
     });
   }
 
-  updateToc();
-
   useEffect(() => {
     let tocLinks = document.querySelectorAll('#toc a');
     for (let link of tocLinks) {
@@ -39,6 +37,7 @@ const useIsSelected = () => {
       let header = document.getElementById(headerId);
       headers.push({link, header});
     }
+    updateToc();
     document.addEventListener('scroll', updateToc);
     return () => document.removeEventListener('scroll', updateToc);
   }, []);
