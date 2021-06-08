@@ -115,7 +115,7 @@ const splitOnTagName = (list, tagName) => {
 };
 
 export default ({data: {page, changelog}, location}) => {
-  if (location.pathname.includes('changelog'))
+  if (location.pathname.includes('/changelog'))
     return (
       <Layout
         path="/changelog"
