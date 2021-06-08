@@ -10,6 +10,11 @@ const wrapper = theme.css({
   flexDirection: 'column',
   placeItems: 'center',
 
+  '> * + *': {
+    // fix for IE: https://github.com/philipwalton/flexbugs#flexbug-2
+    maxWidth: '100%',
+  },
+
   '&& > * + *': {
     marginTop: '$blank-state-content-spacing',
   },
