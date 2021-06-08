@@ -9,14 +9,11 @@ const wrapper = theme.css({
   display: 'flex',
   flexDirection: 'column',
   placeItems: 'center',
+  gap: '$blank-state-content-spacing',
 
   '> * + *': {
     // fix for IE: https://github.com/philipwalton/flexbugs#flexbug-2
     maxWidth: '100%',
-  },
-
-  '&& > * + *': {
-    marginTop: '$blank-state-content-spacing',
   },
 });
 
