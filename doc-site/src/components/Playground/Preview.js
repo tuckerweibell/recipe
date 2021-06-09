@@ -171,7 +171,7 @@ export default ({code, scope, language}) => {
   const [active, setActive] = useState('preview');
 
   return (
-    <div style={{marginTop: 24, marginBottom: 32}}>
+    <div style={{marginTop: 32, marginBottom: 64}}>
       <Sprites />
       <EzLayout layout="stack">
         <EzLayout layout="right" columns={5}>
