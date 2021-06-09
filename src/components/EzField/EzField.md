@@ -206,6 +206,45 @@ Use the `options` prop to provide an array of options for selection. Each option
 };
 ```
 
+### Multiple choice input field with nested content
+
+A multiple choice field with nested content has the following anatomy:
+
+|                                                                                                                                                                           |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| ![Image illustrating through labels the component parts of a multiple choice field, including a field label, labelled selection options, and nested content](Anatomy.svg) |
+
+Allows for nested content within a multiple choice selection.
+
+Instead of using the `options` prop to provide an array of options to a radio or checkbox field, provide `EzItem` with a `key`, [EzLabel](/components/ez-label), and `EzContent` as **direct descendants** to the field.
+
+`EzContent` should contain the nested content for the selection. When a choice containing nested content is selected, the nested content will become visible, otherwise it will be hidden. Wrapping the `EzContent` in additional conditions can be added if necessary.
+
+```jsx
+() => {
+  const [selectedChoice, setSelectedChoice] = React.useState(null);
+  return (
+    <EzFormLayout>
+      <EzField
+        type="radio"
+        label="Single choice list with nested content"
+        value={selectedChoice}
+        onChange={e => setSelectedChoice(e.target.value)}
+      >
+        <EzItem key="a">
+          <EzLabel>Choice A</EzLabel>
+          <EzContent>Nested Content A</EzContent>
+        </EzItem>
+        <EzItem key="b">
+          <EzLabel>Choice B</EzLabel>
+          <EzContent>Nested Content B</EzContent>
+        </EzItem>
+      </EzField>
+    </EzFormLayout>
+  );
+};
+```
+
 ### Bordered multiple choice input
 
 Bordered multiple choice inputs should be used to present side-by-side options, typically used when a form requires the user to choose from a short list of options.

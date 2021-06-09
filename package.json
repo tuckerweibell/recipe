@@ -112,7 +112,10 @@
     "@emotion/is-prop-valid": "^0.7.3",
     "@ezcater/snitches": "^0.2.7",
     "@popperjs/core": "^2.1.1",
+    "@react-stately/collections": "^3.3.2",
+    "@react-stately/list": "^3.2.3",
     "@react-types/provider": "^3.1.1",
+    "@react-types/shared": "^3.7.0",
     "@recipe-ui/legacy-theme": "^1.0.0",
     "dayjs": "^1.8.14",
     "react-highlight-words": "^0.16.0"

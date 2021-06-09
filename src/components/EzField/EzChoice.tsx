@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {cloneElement} from 'react';
 import Style from '@ezcater/snitches';
+import {useListState} from '@react-stately/list';
 import theme from './EzChoice.theme.config';
 import EzCheckbox from '../EzCheckbox';
 import EzRadioButton from '../EzRadioButton';
@@ -46,24 +47,42 @@ const box = theme.css({
   ],
 });
 
+const nestedContent = theme.css({
+  marginLeft: '$300',
+});
+
 const inputStyles = theme.css({marginRight: '$100'});
 
-const Option = ({input, bordered, disabled, label}) => {
+const Option = ({input, bordered, disabled, label, labelFromChildren, contentFromChildren}) => {
   const id = useUniqueId();
+  const childLabelWithHtmlFor = React.cloneElement(labelFromChildren, {htmlFor: id});
   return (
     <Style ruleset={theme}>
       <span className={box({bordered, disabled})}>
         {React.cloneElement(input, {id})}
-        <label htmlFor={id}>{label}</label>
+        {(labelFromChildren && childLabelWithHtmlFor) || <label htmlFor={id}>{label}</label>}
       </span>
+      {contentFromChildren && <div className={nestedContent()}>{contentFromChildren}</div>}
     </Style>
   );
 };
 
 export default props => {
-  const {type, name: fieldName, value: selected = [], options, onChange, onFocus, onBlur} = props;
+  const {
+    type,
+    name: fieldName,
+    value: selected = [],
+    options,
+    onChange,
+    onFocus,
+    onBlur,
+    children,
+  } = props;
   const multiple = type === 'checkbox';
   const name = multiple ? `${fieldName}[]` : fieldName;
+
+  const state = useListState({children});
+  const choiceOptions = options || Array.from(state.collection);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const {value, checked} = e.currentTarget;
@@ -87,9 +106,18 @@ export default props => {
   return (
     <Style ruleset={theme}>
       <EzLayout layout={props.bordered ? 'cluster' : 'stack'}>
-        {options.map((choice, i) => {
-          const {label, value} = choice;
+        {choiceOptions.map((choice, i) => {
+          const optionChildren = choice.props?.children;
+          const optionHasChildren = Array.isArray(optionChildren);
+          const label = choice.label;
+          const labelFromChildren =
+            optionHasChildren && optionChildren.find(child => child.type.displayName === 'EzLabel');
+          const contentFromChildren =
+            optionHasChildren &&
+            optionChildren.find(child => child.type.displayName === 'EzContent');
+          const value = choice.value || choice.key;
           const disabled = props.disabled || choice.disabled;
+
           const inputProps = domProps(
             {
               checked:
@@ -110,7 +138,13 @@ export default props => {
           );
           const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
-          return <Option key={i} bordered={props.bordered} {...{disabled, input, label}} />;
+          return (
+            <Option
+              key={i}
+              bordered={props.bordered}
+              {...{disabled, input, label, labelFromChildren, contentFromChildren}}
+            />
+          );
         })}
       </EzLayout>
     </Style>
