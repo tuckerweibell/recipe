@@ -157,6 +157,16 @@ export const Eval = ({code = '', scope = {}}) => {
   return typeof result === 'function' ? React.createElement(result, null) : result;
 };
 
+const getUniqueId = (() => {
+  let index = 1;
+  return () => `control__${index++}`;
+})();
+
+const useUniqueId = () => {
+  const [id] = useState(getUniqueId());
+  return id;
+};
+
 export default ({code, scope, language}) => {
   const [active, setActive] = useState('preview');
 
@@ -166,7 +176,9 @@ export default ({code, scope, language}) => {
       <EzLayout layout="stack">
         <EzLayout layout="right" columns={5}>
           <EzSegmentedControl
-            name={`name-${code}`}
+            name={`name-${useUniqueId()}`}
+            label="Code example"
+            labelPosition="hidden"
             options={[
               {label: <TextWithIcon>{previewIcon} Preview</TextWithIcon>, value: 'preview'},
               {label: <TextWithIcon>{codeIcon} Code</TextWithIcon>, value: 'code'},
