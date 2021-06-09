@@ -24,9 +24,9 @@ Tooltips should not:
 
 ---
 
-### Examples
+## Examples
 
-#### Basic tooltip
+### Basic tooltip
 
 Allows a single component to become a trigger for a tooltip to provide additional information for the user.
 
@@ -40,7 +40,7 @@ When adding a tooltip to a custom react component, you may need to implement [`f
 </EzTooltip>
 ```
 
-#### Basic tooltip with newlines
+### Basic tooltip with newlines
 
 If the tooltip message contains newlines, they will cause a line break.
 
@@ -50,7 +50,7 @@ If the tooltip message contains newlines, they will cause a line break.
 </EzTooltip>
 ```
 
-#### Tooltip wrapping another Recipe component
+### Tooltip wrapping another Recipe component
 
 Allows a single Recipe component to become a trigger for a tooltip to provide additional information for the user.
 
@@ -65,11 +65,9 @@ Allows a single Recipe component to become a trigger for a tooltip to provide ad
 </EzFormLayout>
 ```
 
-## Positioning
+### Positioning
 
 A tooltip can be positioned either vertically or horizontally around an element by setting `position` to either `vertical` or `horizontal.` Usually, this will mean the tooltip will appear below or to the right of an element, but if there is not enough room, the tooltip will appear on the opposite side. The default position is `vertical`.
-
-### Examples
 
 #### Positioned Vertically
 
