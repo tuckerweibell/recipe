@@ -1,4 +1,3 @@
-import React from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import Placeholder from '../doc-site/src/components/Placeholder';
 
@@ -15,5 +14,4 @@ export default () => ({
     // fake out calls to `require('react-router-dom')` within our .md examples.
     return {BrowserRouter, StaticRouter, NavLink, Link, Route};
   },
-  CodePlaygroundHostNode: ({children, openState}) => <div openState={openState}>{children}</div>,
 });

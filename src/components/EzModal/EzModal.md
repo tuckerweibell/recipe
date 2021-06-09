@@ -82,10 +82,11 @@ Provide a both the `dismissLabel` prop and the `onDismiss` prop to present the u
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
         onDismiss={() => setIsOpen(false)}
@@ -94,7 +95,7 @@ Provide a both the `dismissLabel` prop and the `onDismiss` prop to present the u
       >
         Modal content goes here!
       </EzModal>
-    </CodePlaygroundHostNode>
+    </>
   );
 };
 ```
@@ -107,11 +108,12 @@ The `onSubmit` function will be called when the user clicking the button labelle
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(null);
 
   return (
-    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
         onSubmit={() => {
@@ -137,7 +139,7 @@ The `onSubmit` function will be called when the user clicking the button labelle
           )
         ) : null}
       </div>
-    </CodePlaygroundHostNode>
+    </>
   );
 };
 ```
@@ -154,10 +156,11 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         destructive
         isOpen={isOpen}
@@ -169,7 +172,7 @@ The `destructive` prop should be used to indicate that the `onSubmit` function i
       >
         Modal content goes here!
       </EzModal>
-    </CodePlaygroundHostNode>
+    </>
   );
 };
 ```
@@ -189,11 +192,12 @@ The `submitLabel` prop and the corresponding `onSubmit` prop should be provided 
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(null);
 
   return (
-    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
         submitLabel="Submit"
@@ -212,7 +216,7 @@ The `submitLabel` prop and the corresponding `onSubmit` prop should be provided 
           ) : null
         ) : null}
       </div>
-    </CodePlaygroundHostNode>
+    </>
   );
 };
 ```
@@ -225,11 +229,12 @@ You can set the `isSubmitting` prop to indicate that the modal is processing the
 
 ```jsx
 () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(null);
 
   return (
-    <CodePlaygroundHostNode openState={{isOpen, setIsOpen}}>
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isSubmitting={isSubmitting}
         isOpen={isOpen}
@@ -247,7 +252,7 @@ You can set the `isSubmitting` prop to indicate that the modal is processing the
       >
         Modal content goes here!
       </EzModal>
-    </CodePlaygroundHostNode>
+    </>
   );
 };
 ```
