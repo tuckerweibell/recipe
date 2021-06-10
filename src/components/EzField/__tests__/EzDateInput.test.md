@@ -146,6 +146,7 @@
       submitLabel="Submit"
       destructive
       dismissLabel="Dismiss"
+      onDismiss={() => {}}
       headerText="Header goes here"
     >
       <div ref={containerRef}>

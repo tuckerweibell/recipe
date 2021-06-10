@@ -5,10 +5,20 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
+import {EzLayout, EzButton, EzHeading} from '../..';
+import {EzContent, EzFooter, EzHeader} from '../../EzContent';
 
 afterEach(cleanup);
 
-const scope = {EzModal};
+const scope = {
+  EzModal,
+  EzLayout,
+  EzContent,
+  EzButton,
+  EzFooter,
+  EzHeader,
+  EzHeading,
+};
 
 describe('EzModal', () => {
   visualSnapshots({markdown: regressionTests, scope});
@@ -180,6 +190,32 @@ describe('EzModal', () => {
     rerender(<Test />);
 
     expect(document.body.style.overflow).toEqual('');
+  });
+
+  it('should pass type checking', () => {
+    [
+      {
+        defaultLayout: (
+          <EzModal isOpen headerText="header" onDismiss={() => {}}>
+            test
+          </EzModal>
+        ),
+        requiredAction: (
+          <EzModal isOpen headerText="header" onSubmit={() => {}}>
+            test
+          </EzModal>
+        ),
+        slots: (
+          <EzModal isOpen onSubmit={() => {}}>
+            <EzHeader>header</EzHeader>
+            <EzContent>content</EzContent>
+            <EzFooter>footer</EzFooter>
+          </EzModal>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
   });
 
   /**

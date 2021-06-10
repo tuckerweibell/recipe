@@ -17,11 +17,7 @@
 ### Informational modal
 
 ```jsx
-<EzModal
-  isOpen
-  dismissLabel="Dismiss"
-  headerText="Header goes here"
->
+<EzModal isOpen dismissLabel="Dismiss" onDismiss={() => {}} headerText="Header goes here">
   <p>Modal content goes here!</p>
 </EzModal>
 ```
@@ -34,6 +30,7 @@
   submitLabel="Submit"
   destructive
   dismissLabel="Dismiss"
+  onDismiss={() => {}}
   headerText="Header goes here"
 >
   <p>Modal content goes here!</p>
@@ -43,11 +40,63 @@
 ### Required action modals
 
 ```jsx
-<EzModal
-  isOpen
-  submitLabel="Submit"
-  headerText="Header goes here"
->
+<EzModal isOpen submitLabel="Submit" headerText="Header goes here">
   <p>Modal content goes here!</p>
+</EzModal>
+```
+
+### Modal with header content and footer
+
+```jsx
+<EzModal isOpen onDismiss={() => {}}>
+  <EzHeader>
+    <EzHeading size="2">Header goes here</EzHeading>
+  </EzHeader>
+  <EzContent>Modal content goes here!</EzContent>
+  <EzFooter>
+    <EzLayout layout="basic">
+      <EzButton use="primary" onClick={close}>
+        Confirm
+      </EzButton>
+      <EzButton onClick={close}>Cancel</EzButton>
+    </EzLayout>
+  </EzFooter>
+</EzModal>
+```
+
+### Modal with only content
+
+Note: this isn't an typical configuration (a header is usually expected).
+
+```jsx
+<EzModal isOpen onDismiss={() => {}}>
+  <EzContent>Modal content goes here!</EzContent>
+</EzModal>
+```
+
+### Modal with only content and header
+
+```jsx
+<EzModal isOpen onDismiss={() => {}}>
+  <EzHeader>
+    <EzHeading size="2">Header goes here</EzHeading>
+  </EzHeader>
+  <EzContent>Modal content goes here!</EzContent>
+</EzModal>
+```
+
+### Modal with only content and footer
+
+```jsx
+<EzModal isOpen onDismiss={() => {}}>
+  <EzContent>Modal content goes here!</EzContent>
+  <EzFooter>
+    <EzLayout layout="basic">
+      <EzButton use="primary" onClick={close}>
+        Confirm
+      </EzButton>
+      <EzButton onClick={close}>Cancel</EzButton>
+    </EzLayout>
+  </EzFooter>
 </EzModal>
 ```

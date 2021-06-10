@@ -86,13 +86,13 @@ export const msGrid = maxWidth =>
     variants: {
       imagePosition: {
         top: {
-          '-ms-grid-columns': '0px minmax(0px, 100%)',
+          '-ms-grid-columns': '0px minmax(0px, 1fr) min-content 0px',
         },
         right: {
-          '-ms-grid-columns': `0px minmax(0px, 100%) ${maxWidth || '50%'})`,
+          '-ms-grid-columns': `0px minmax(0px, 1fr) min-content ${maxWidth || '50%'})`,
         },
         left: {
-          '-ms-grid-columns': `${maxWidth || '50%'} minmax(0px, 100%) 0px`,
+          '-ms-grid-columns': `${maxWidth || '50%'} minmax(0px, 1fr) min-content 0px`,
         },
       },
     },
@@ -102,11 +102,11 @@ export const grid = theme.css({
   display: 'grid',
   gridTemplateRows: 'auto auto auto 1fr auto',
   gridTemplateAreas: `
-    '. top .'
-    'left header right'
-    'left content right'
-    'left sections right'
-    'left footer right'
+    '. top top .'
+    'left header close right'
+    'left content content right'
+    'left sections sections right'
+    'left footer footer right'
   `,
   width: '$full',
 
@@ -115,21 +115,24 @@ export const grid = theme.css({
       top: {
         gridTemplateColumns: `
           [left] 0
-          [header] minmax(0, 100%)
+          [header] minmax(0, 1fr)
+          [close] min-content
           [right] 0
         `,
       },
       right: {
         gridTemplateColumns: `
           [left] 0
-          [header] minmax(0, 100%)
+          [header] minmax(0, 1fr)
+          [close] min-content
           [right] var(--sizes-card-preview-max-w, 50%)
         `,
       },
       left: {
         gridTemplateColumns: `
           [left] var(--sizes-card-preview-max-w, 50%)
-          [header] minmax(0, 100%)
+          [header] minmax(0, 1fr)
+          [close] min-content
           [right] 0
         `,
       },
@@ -162,13 +165,13 @@ export const preview = theme.css({
         borderTopRightRadius: 'var(--radii-card-rounded)',
         borderBottomRightRadius: 'var(--radii-card-rounded)',
         '& > img': {height: '$full'},
-        ...{'-ms-grid-column': '3', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
+        ...{'-ms-grid-column': '4', '-ms-grid-row-span': '3', '-ms-grid-row': '1'},
       },
       top: {
         gridArea: 'top',
         borderTopLeftRadius: 'var(--radii-card-rounded)',
         borderTopRightRadius: 'var(--radii-card-rounded)',
-        ...{'-ms-grid-column': '1', '-ms-grid-column-span': '3', '-ms-grid-row': '1'},
+        ...{'-ms-grid-column': '1', '-ms-grid-column-span': '4', '-ms-grid-row': '1'},
       },
     },
   },
@@ -184,6 +187,7 @@ export const header = theme.css({
 export const content = theme.css({
   '-ms-grid-column': '2',
   '-ms-grid-row': '3',
+  '-ms-grid-column-span': '2',
   gridArea: 'content',
   padding: '$card-p',
 });
@@ -191,12 +195,14 @@ export const content = theme.css({
 export const sections = theme.css({
   '-ms-grid-column': '2',
   '-ms-grid-row': '3',
+  '-ms-grid-column-span': '2',
   gridArea: 'sections',
 });
 
 export const footer = theme.css({
   '-ms-grid-column': '2',
   '-ms-grid-row': '4',
+  '-ms-grid-column-span': '2',
   gridArea: 'footer',
   padding: '$150 $card-p',
   textAlign: 'center',

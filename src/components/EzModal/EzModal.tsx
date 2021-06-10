@@ -6,10 +6,13 @@ import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
 import FocusScope from '../FocusScope';
 import CloseButton from '../CloseButton';
-import {useUniqueId} from '../../utils/hooks';
+import {useUniqueId, useTranslation} from '../../utils/hooks';
 import EzPortal from '../EzPortal';
 import {ScrollLock} from './ScrollLock';
-import {RequireAtLeastOne} from '../../typings/utility';
+import en from './en';
+import {EzFooter, EzContent, EzHeader} from '../EzContent';
+import {SlotProvider, hasContentSlot} from '../../utils/slots';
+import {EzCard} from '../EzCard';
 
 const overlay = theme.css({
   position: 'fixed',
@@ -23,75 +26,67 @@ const overlay = theme.css({
 });
 
 const dialog = theme.css({
-  backgroundColor: '$modal-bg',
-  display: 'flex',
-  flexDirection: 'column',
   height: '$full',
   width: '$full',
   outline: 'none',
   overflowY: 'auto', // IE fix to prevent flex items overflowing. See: https://github.com/philipwalton/flexbugs#flexbug-3
 
-  ':focus': {
-    boxShadow: '$focus-ring',
-  },
+  // show when the modal has focus
+  '&:focus': {boxShadow: '$focus-ring'},
 
   when: {
     medium: {
-      borderRadius: '$modal',
       height: 'auto',
       maxHeight: '$modal-height',
-      width: '$modal-width',
+      '&&': {width: '$modal-width'},
     },
   },
 });
 
 const header = theme.css({
-  display: 'flex',
-  flex: 'none',
-  padding: '$modal-tray-py $modal-tray-px',
-  borderBottom: '1px solid $modal-border',
   justifyContent: 'space-between',
+  '& + *': {borderTop: '1px solid $modal-border'},
+  '&&': {padding: '$modal-tray-py $modal-tray-px'},
 
   when: {
     medium: {
-      borderBottomStyle: 'none',
-      padding: '$modal-py $modal-px',
+      '& + *': {borderStyle: 'none'},
+      '&&': {padding: '$modal-py $modal-px'},
     },
   },
 });
 const body = theme.css({
-  padding: '$modal-tray-py $modal-tray-px',
-  flex: 'auto',
+  flexGrow: 1,
   overflowY: 'auto',
-
-  '&& > * + *': {
-    marginTop: '$250',
-  },
+  '&&': {padding: '$modal-tray-py $modal-tray-px'},
 
   when: {
     medium: {
-      padding: '0 $modal-px $modal-py',
+      '&&': {padding: '0 $modal-px $modal-py'},
     },
   },
 });
-const icon = theme.css({color: '$icon', alignSelf: 'center'});
 const footer = theme.css({
-  backgroundColor: '$modal-footer-bg',
-  borderTop: '1px solid $modal-border',
-  flex: 'none',
-  padding: '$modal-tray-py $modal-tray-px',
+  '&&': {padding: '$modal-tray-py $modal-tray-px'},
 
   when: {
     medium: {
-      borderBottomLeftRadius: '$modal',
-      borderBottomRightRadius: '$modal',
-      padding: '$modal-py $modal-px',
+      '&&': {padding: '$modal-py $modal-px'},
     },
   },
+});
+const icon = theme.css({
+  '-ms-grid-column': '3',
+  '-ms-grid-row': '2',
+  color: '$icon',
+  gridArea: 'close',
+  alignSelf: 'center',
+  justifySelf: 'left',
+  '&&': {margin: '8px'},
 });
 
 type Props = {
-  headerText: string;
+  headerText?: string;
   destructive?: boolean;
   isOpen: boolean;
   isSubmitting?: boolean;
@@ -101,8 +96,6 @@ type Props = {
   submitLabel?: string;
   dismissLabel?: string;
 };
-
-type PropsWithRequiredLabels = Props & RequireAtLeastOne<'submitLabel' | 'dismissLabel'>;
 
 const useDialogBackdrop = ({onDismiss}) => ({
   onClick: e => e.target === e.currentTarget && onDismiss(),
@@ -120,20 +113,23 @@ const useDialog = ({onDismiss}) => ({
   },
 });
 
-const EzModal: React.FC<PropsWithRequiredLabels> = ({
+const EzModal: React.FC<Props> = ({
   children,
   headerText,
   destructive,
   dismissLabel,
   isOpen,
   isSubmitting,
-  onDismiss = () => {},
+  onDismiss: onDismissHandler,
   onSubmit,
   submitLabel,
 }) => {
   const labelId = useUniqueId();
+  const isDismissable = Boolean(onDismissHandler);
+  const onDismiss = isDismissable ? onDismissHandler : () => {};
   const backdrop = useDialogBackdrop({onDismiss});
   const dialogProps = useDialog({onDismiss});
+  const {t} = useTranslation(en);
 
   if (!isOpen) return null;
 
@@ -143,44 +139,54 @@ const EzModal: React.FC<PropsWithRequiredLabels> = ({
         <div className={overlay()} {...backdrop}>
           <ScrollLock />
           <FocusScope contain restoreFocus autoFocus>
-            <div {...dialogProps} className={dialog()} aria-labelledby={labelId}>
-              <div className={header()}>
-                <EzHeading size="2" id={labelId}>
-                  {headerText}
-                </EzHeading>
-                {dismissLabel && (
+            <SlotProvider
+              slots={{
+                header: {className: header()},
+                content: {className: body()},
+                footer: {className: footer()},
+              }}
+            >
+              <EzCard {...dialogProps} className={dialog()} aria-labelledby={labelId}>
+                {headerText && (
+                  <EzHeader>
+                    <EzHeading size="2" id={labelId}>
+                      {headerText}
+                    </EzHeading>
+                  </EzHeader>
+                )}
+                {hasContentSlot(children) ? children : <EzContent>{children}</EzContent>}
+                {(submitLabel || dismissLabel) && (
+                  <EzFooter>
+                    <EzLayout layout={{base: 'stack', medium: 'basic'}}>
+                      {submitLabel && (
+                        <EzButton
+                          use="primary"
+                          destructive={destructive}
+                          onClick={onSubmit}
+                          loading={isSubmitting}
+                        >
+                          {submitLabel}
+                        </EzButton>
+                      )}
+                      {dismissLabel && (
+                        <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                          {dismissLabel}
+                        </EzButton>
+                      )}
+                    </EzLayout>
+                  </EzFooter>
+                )}
+                {isDismissable && (
                   <CloseButton
                     className={icon()}
                     tabIndex={-1}
-                    label={dismissLabel}
+                    label={dismissLabel || t('dismiss')}
                     aria-hidden
                     onClick={onDismiss}
                   />
                 )}
-              </div>
-
-              <div className={body()}>{children}</div>
-
-              <div className={footer()}>
-                <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-                  {submitLabel && (
-                    <EzButton
-                      use="primary"
-                      destructive={destructive}
-                      onClick={onSubmit}
-                      loading={isSubmitting}
-                    >
-                      {submitLabel}
-                    </EzButton>
-                  )}
-                  {dismissLabel && (
-                    <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-                      {dismissLabel}
-                    </EzButton>
-                  )}
-                </EzLayout>
-              </div>
-            </div>
+              </EzCard>
+            </SlotProvider>
           </FocusScope>
         </div>
       </EzPortal>
