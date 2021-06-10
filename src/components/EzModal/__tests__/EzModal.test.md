@@ -100,3 +100,31 @@ Note: this isn't an typical configuration (a header is usually expected).
   </EzFooter>
 </EzModal>
 ```
+
+### Modal with preview
+
+```jsx
+<EzModal isOpen onDismiss={() => {}}>
+  <EzPreview>
+    <picture>
+      <img
+        src="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+        alt=""
+        style={{width: '100%', maxHeight: 300, objectFit: 'cover'}}
+      />
+    </picture>
+  </EzPreview>
+  <EzHeader>
+    <EzHeading size="2">Header goes here</EzHeading>
+  </EzHeader>
+  <EzContent>Modal content goes here!</EzContent>
+  <EzFooter>
+    <EzLayout layout="basic">
+      <EzButton use="primary" onClick={close}>
+        Confirm
+      </EzButton>
+      <EzButton onClick={close}>Cancel</EzButton>
+    </EzLayout>
+  </EzFooter>
+</EzModal>
+```

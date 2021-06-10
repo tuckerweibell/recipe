@@ -256,3 +256,56 @@ You can set the `isSubmitting` prop to indicate that the modal is processing the
   );
 };
 ```
+
+### Content preview image
+
+Images can be used to enhance the content of the dialog and are ideal for marketing content. Images will render full-bleed inside of a card (i.e. without padding between the image and the dialog container). Images will fill the width of the container while maintaining their aspect ratio.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const close = React.useCallback(() => setIsOpen(false), []);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal isOpen={isOpen} onDismiss={close}>
+        <EzPreview>
+          <picture>
+            <source media="(max-width: 799px)" srcSet={withPrefix('/images/tacos.jpg')} />
+            <source media="(min-width: 800px)" srcSet={withPrefix('/images/tacos-high.jpg')} />
+            <img
+              src={withPrefix('/images/tacos.jpg')}
+              alt="Selection of Baja Fish tacos and Beef Barbacoa Tacos"
+              style={{
+                width: '100%',
+                maxHeight: 300,
+                objectFit: 'cover',
+              }}
+            />
+          </picture>
+        </EzPreview>
+        <EzHeader>
+          <EzHeading size="2">Amuleto Mexican Table</EzHeading>
+        </EzHeader>
+        <EzContent>
+          <p>
+            We pride ourselves on serving the most authentic Mexican food outside of Mexico. But
+            we're warning you: once you try our food, you'll never be able to order from another
+            Mexican restaurant. It's that good! Indulge in our variety of tacos or our flavorful
+            house salsa. We can't wait for you to try it!
+          </p>
+        </EzContent>
+        <EzFooter>
+          <EzLayout layout="basic">
+            <EzButton use="primary" onClick={close}>
+              Order now
+            </EzButton>
+            <EzButton onClick={close}>Close</EzButton>
+          </EzLayout>
+        </EzFooter>
+      </EzModal>
+    </>
+  );
+};
+```

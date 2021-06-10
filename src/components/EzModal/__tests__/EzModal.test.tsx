@@ -6,7 +6,7 @@ import {visualSnapshots} from 'sosia';
 import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
 import {EzLayout, EzButton, EzHeading} from '../..';
-import {EzContent, EzFooter, EzHeader} from '../../EzContent';
+import {EzContent, EzFooter, EzHeader, EzPreview} from '../../EzContent';
 
 afterEach(cleanup);
 
@@ -18,6 +18,7 @@ const scope = {
   EzFooter,
   EzHeader,
   EzHeading,
+  EzPreview,
 };
 
 describe('EzModal', () => {
