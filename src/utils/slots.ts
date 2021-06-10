@@ -51,3 +51,8 @@ export function ClearSlots(props) {
 
   return React.createElement(SlotContext.Provider, {value: {}}, content);
 }
+
+export const containsChild = (children, type) =>
+  React.Children.toArray(children).some((child: any) => child.type?.displayName === type);
+
+export const hasContentSlot = children => containsChild(children, 'EzContent');

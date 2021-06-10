@@ -17,7 +17,7 @@ import EzButton from '../EzButton';
 import EzCardSection from './EzCardSection';
 import EzCardHeading from './EzCardHeading';
 import {clsx, filterValidProps, responsiveProps} from '../../utils';
-import {SlotProvider} from '../../utils/slots';
+import {SlotProvider, containsChild, hasContentSlot} from '../../utils/slots';
 import {EzFooter, EzHeader, EzPreview} from '../EzContent';
 
 type DOMProps = React.HTMLAttributes<HTMLElement>;
@@ -50,10 +50,6 @@ type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   clickable?: boolean;
 };
 
-const containsChild = (children, type) =>
-  React.Children.toArray(children).some((child: any) => child.type?.displayName === type);
-
-const hasContentSlot = children => containsChild(children, 'EzContent');
 const hasCardSection = children => containsChild(children, 'EzCardSection');
 
 const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value);
@@ -75,6 +71,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
   isQuiet,
   clickable,
   style = {},
+  className,
   ...props
 }) => {
   const {imagePosition = 'top'} = responsiveProps(props as any, 'imagePosition');
@@ -83,6 +80,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
       <section
         {...filterValidProps(props)}
         className={clsx(
+          className,
           grid({imagePosition}),
           // dynamically generate styles for IE (which doesn't support inline CSS vars)
           msGrid(unitlessToPx(maxWidth))({imagePosition}),
