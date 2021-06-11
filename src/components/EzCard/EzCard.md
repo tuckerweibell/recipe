@@ -37,6 +37,7 @@ A standard Card has the following anatomy:
 
 The areas within a card can be populated either by providing the relevant props (`title`, `subtitle`, `imageSrc` etc), or by providing the following content components to your Card as **direct descendants** to the card:
 
+- [EzPreview](/components/ez-preview) (image or illustration)
 - [EzHeader](/components/ez-header) (title and other header content e.g. card actions)
 - [EzContent](/components/ez-content) (body)
 - [Footer](/components/ez-footer).
