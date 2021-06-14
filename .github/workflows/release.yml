@@ -50,6 +50,7 @@ jobs:
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
           npx changeset version --snapshot canary
+          npm run build
           npx changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
