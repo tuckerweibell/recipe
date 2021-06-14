@@ -13,6 +13,11 @@ if (!('scrollTo' in Element.prototype)) {
     scrollTo({left}) {
       jest.spyOn(this, 'scrollLeft', 'get').mockReturnValue(left);
       const lastItem = left >= this.scrollWidth - this.offsetWidth;
+
+      // disable scroll-snapping to avoid flakiness
+      // caused by the browser *sometimes* scroll-snapping to the last page
+      Object.assign(this, {style: 'scroll-snap-type: none;'});
+
       fireEvent.scroll(this);
       // since scroll isn't declarative
       // it won't persist in the visual regression tests.
