@@ -1,7 +1,6 @@
 node_modules/
 coverage/
 doc-site
-tree-shaking-size/
 dist/
 build/
 lib/
