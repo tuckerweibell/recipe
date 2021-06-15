@@ -1,4 +1,5 @@
 {
+  "version": "2",
   "exclude_patterns": [
     "packages",
     "coverage",
@@ -8,6 +9,10 @@
     "lib",
     "templates",
     "plopfile.js",
+    "playroom",
     "**/__tests__/"
-  ]
+  ],
+  "similar-code": {
+    "enabled": false
+  }
 }
