@@ -3,8 +3,21 @@ name: Test
 on: pull_request
 
 jobs:
-  build: 
-    name: Build
+
+  validate:
+    name: Code quality validations
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@v2
+    - name: Setup Eslint Checks
+      uses: mrdivyansh/eslint-action@v1.0.7
+      with:
+        repo-token: ${{secrets.GITHUB_TOKEN}}
+        eslint-rc: .eslintrc.js
+
+  jest: 
+    name: Jest
     runs-on: ubuntu-latest
 
     steps:
@@ -27,9 +40,6 @@ jobs:
 
       - name: Build source
         run: npm run build
-
-      - name: Code quality validations
-        run: npm run lint
 
       - uses: amancevice/setup-code-climate@main
         with:
