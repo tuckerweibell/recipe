@@ -1,0 +1,53 @@
+name: Canary Release
+
+on: 
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  release:
+    name: Canary Release
+
+    # this job will only run if the PR has been merged
+    if: github.event.pull_request.merged == true
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+        run: npm ci && npm run install:dependencies
+
+      - name: Version
+        run: npx changeset version --snapshot canary
+
+      - name: Publishing canary releases to npm registry
+        id: changesets
+        uses: changesets/action@master
+        with:
+          publish: npm run release:canary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Get published package version
+        id: version
+        run: |
+          VERSION=$(echo $changeset_outputs_published_packages | jq '.[0].version')
+          echo "::set-output name=recipe::$VERSION"
+        env:
+          changeset_outputs_published_packages: ${{ steps.changesets.outputs.publishedPackages }}
+
+      - name: Notify contributors
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "👋  Thanks for contributing! This PR was published as ${{ steps.version.outputs.recipe }}"

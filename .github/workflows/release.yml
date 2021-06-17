@@ -40,19 +40,3 @@ jobs:
         run: npm run install:docs && npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Publish canary releases only if the packages weren't published already
-      - name: Publishing canary releases to npm registry
-        if: steps.changesets.outputs.published != 'true'
-        run: |
-          git checkout main
-          cat << EOF > "$HOME/.npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-          npx changeset version --snapshot canary
-          npm run build
-          npx changeset publish --tag canary
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
