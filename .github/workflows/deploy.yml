@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  release:
+    name: Deploy Labeled Prerelease
+
+    # this job will only run if the PR has been tagged with a label to deploy
+    if: ${{ github.event.label.name == 'deploy' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+        run: npm ci && npm run install:dependencies
+
+      - name: Version
+        run: npx changeset version --snapshot canary
+
+      - name: Publishing canary release to npm registry
+        id: changesets
+        uses: changesets/action@master
+        with:
+          publish: npm run release:canary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Get published package version
+        id: version
+        run: |
+          VERSION=$(echo $changeset_outputs_published_packages | jq -r '.[0].version')
+          echo "::set-output name=recipe::$VERSION"
+        env:
+          changeset_outputs_published_packages: ${{ steps.changesets.outputs.publishedPackages }}
+
+      - name: Notify contributors
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "A labeled prerelease of Recipe was published as version [${{ steps.version.outputs.recipe }}](https://github.com/ezcater/recipe/releases/tag/v${{ steps.version.outputs.recipe }})"
+
+
