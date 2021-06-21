@@ -15,7 +15,11 @@ type FromTheme<T> = `$${Extract<keyof T, string | number>}`;
 type Token<T> = FromTheme<T> | Globals | number | (string & {});
 type TokenValue<T extends keyof TTheme> = T;
 
+// disable stitches style insertion (forces SSR mode). Snitches is used to insert styles instead.
+const root = {root: null};
+
 const stitches = createCss({
+  ...root,
   theme: {
     borderWidths: {
       thin: '1px',
@@ -202,7 +206,6 @@ const stitches = createCss({
     mediumToLarge: '(min-width: 768px) and (max-width: 1060.9375px)',
     large: '(min-width: 1061px)',
   },
-  insertMethod: () => () => {},
 });
 
 type BaseConfig = typeof stitches.config;
