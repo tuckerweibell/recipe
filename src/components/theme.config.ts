@@ -217,6 +217,21 @@ type MapUtils<U, T extends TTheme> = {
     : never;
 };
 
+const getCustomProperties = theme => {
+  /** Object of custom property styles. */
+  const styles = {};
+
+  for (const scaleName in theme) {
+    for (const tokenName in theme[scaleName]) {
+      styles[`$${scaleName}-${tokenName}`] = String(
+        theme[scaleName][tokenName]
+      ).replace(/\$[$\w-]+/g, $1 => (/[^]\$/.test($1) ? $1 : `$${scaleName}${$1}`));
+    }
+  }
+
+  return styles;
+};
+
 /**
  * Extends the base stitches configuration with additional theme tokens.
  */
@@ -236,19 +251,9 @@ export function mergeCss<
   Prefix,
   ThemeMap & BaseConfig['themeMap']
 > {
-  const utils = Object.assign({}, stitches.config.utils, extension.utils) as any;
-  const conditions = Object.assign({}, stitches.config.conditions, extension.conditions) as any;
-  const merged = createCss({
-    ...extension, 
-    utils, 
-    conditions,
-    insertMethod: () => () => {},
-  });
+  const vars = getCustomProperties(extension.theme);
 
-  return {
-    ...merged,
-    toString() {
-      return [stitches.toString(), merged.toString()].join(' ');
-    },
-  } as any;
+  stitches.global({':root': vars})();
+
+  return stitches as any;
 }
