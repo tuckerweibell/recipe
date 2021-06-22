@@ -32,9 +32,9 @@ const GlobalStylesWrapper = ({children}) => (
     <Style ruleset={theme}>
       <Sprites />
       <EzGlobalStyles />
-      <VisualRegressionOverrides />
       {children}
     </Style>
+    <VisualRegressionOverrides />
   </>
 );
 
