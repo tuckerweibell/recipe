@@ -34,12 +34,10 @@ const dialog = theme.css({
   // show when the modal has focus
   '&:focus': {boxShadow: '$focus-ring'},
 
-  when: {
-    medium: {
-      height: 'auto',
-      maxHeight: '$modal-height',
-      '&&': {width: '$modal-width'},
-    },
+  '@medium': {
+    height: 'auto',
+    maxHeight: '$modal-height',
+    '&&': {width: '$modal-width'},
   },
 });
 
@@ -47,33 +45,20 @@ const header = theme.css({
   justifyContent: 'space-between',
   '& + *': {borderTop: '1px solid $modal-border'},
   '&&': {padding: '$modal-tray-py $modal-tray-px'},
-
-  when: {
-    medium: {
-      '& + *': {borderStyle: 'none'},
-      '&&': {padding: '$modal-py $modal-px'},
-    },
+  '@medium': {
+    '& + *': {borderStyle: 'none'},
+    '&&': {padding: '$modal-py $modal-px'},
   },
 });
 const body = theme.css({
   flexGrow: 1,
   overflowY: 'auto',
   '&&': {padding: '$modal-tray-py $modal-tray-px'},
-
-  when: {
-    medium: {
-      '&&': {padding: '0 $modal-px $modal-py'},
-    },
-  },
+  '@medium': {'&&': {padding: '0 $modal-px $modal-py'}},
 });
 const footer = theme.css({
   '&&': {padding: '$modal-tray-py $modal-tray-px'},
-
-  when: {
-    medium: {
-      '&&': {padding: '$modal-py $modal-px'},
-    },
-  },
+  '@medium': {'&&': {padding: '$modal-py $modal-px'}},
 });
 const icon = theme.css({
   '-ms-grid-column': '3',

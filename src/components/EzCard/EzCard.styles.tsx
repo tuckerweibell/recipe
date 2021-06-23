@@ -7,11 +7,9 @@ export const container = theme.css({
   '--radii-card-rounded': 0,
   '--space-card-p': '$space$card-md-p',
 
-  when: {
-    medium: {
-      borderRadius: '$card-rounded',
-      '--radii-card-rounded': 'inherit',
-    },
+  '@medium': {
+    borderRadius: '$card-rounded',
+    '--radii-card-rounded': 'inherit',
   },
 
   variants: {

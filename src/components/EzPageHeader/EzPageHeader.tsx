@@ -32,10 +32,8 @@ const pageHeader = theme.css({
   backgroundColor: '$page-header-bg',
   boxShadow: '$page-header-box-shadow',
   padding: '$page-header-py $page-header-px',
-  when: {
-    medium: {
-      padding: '$page-header-md-py $page-header-md-px',
-    },
+  '@medium': {
+    padding: '$page-header-md-py $page-header-md-px',
   },
 });
 
@@ -50,11 +48,9 @@ const subnavWrapper = theme.css({
 });
 
 const subheaderWrapper = theme.css({
-  when: {
-    medium: {
-      paddingTop: '$page-header-md-subheader-py',
-      paddingBottom: '$page-header-md-subheader-py',
-    },
+  '@medium': {
+    paddingTop: '$page-header-md-subheader-py',
+    paddingBottom: '$page-header-md-subheader-py',
   },
 });
 

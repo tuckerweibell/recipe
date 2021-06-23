@@ -80,23 +80,21 @@ const errorCallout = theme.css({
   flexGrow: 1,
   right: 0,
 
-  when: {
-    medium: {
-      position: 'absolute',
-      userSelect: 'none',
-      zIndex: 1,
-      boxShadow: '0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15)',
-      borderRadius: 3,
-    },
+  '@medium': {
+    position: 'absolute',
+    userSelect: 'none',
+    zIndex: 1,
+    boxShadow: '0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15)',
+    borderRadius: 3,
   },
 
   variants: {
-    active: {false: {when: {medium: {'sr-only': 'true'}}}},
+    active: {false: {'@medium': {'sr-only': 'true'}}},
     inline: {
       true: {
         borderBottomRightRadius: 3,
         borderBottomLeftRadius: 3,
-        when: {medium: {transform: 'translate3d(0, -2px, 0)'}},
+        '@medium': {transform: 'translate3d(0, -2px, 0)'},
       },
       false: {
         boxShadow: '0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15)',

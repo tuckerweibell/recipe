@@ -1,7 +1,7 @@
 /* eslint-disable filenames/match-exported */
 import {createCss} from '../../packages/@stitches/core';
 import type {
-  TConditions,
+  TMedias,
   TTheme,
   TThemeMap,
   CSSPropertiesToTokenScale,
@@ -194,13 +194,13 @@ const stitches = createCss({
     roundedLeft: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderBottomLeftRadius: value}),
     roundedRight: () => (value: TokenValue<'radii'>) => ({borderTopRightRadius: value, borderBottomRightRadius: value}),
   },
-  conditions: {
-    base: '@media (min-width: 0px)',
-    baseToMedium: '@media (max-width: 767.9375px)',
-    baseToLarge: '@media (max-width: 1060.9375px)',
-    medium: '@media (min-width: 768px)',
-    mediumToLarge: '@media (min-width: 768px) and (max-width: 1060.9375px)',
-    large: '@media (min-width: 1061px)',
+  media: {
+    base: '(min-width: 0px)',
+    baseToMedium: '(max-width: 767.9375px)',
+    baseToLarge: '(max-width: 1060.9375px)',
+    medium: '(min-width: 768px)',
+    mediumToLarge: '(min-width: 768px) and (max-width: 1060.9375px)',
+    large: '(min-width: 1061px)',
   },
   insertMethod: () => () => {},
 });
@@ -236,16 +236,16 @@ const getCustomProperties = theme => {
  * Extends the base stitches configuration with additional theme tokens.
  */
 export function mergeCss<
-  Conditions extends TConditions,
+  Medias extends TMedias,
   Theme extends TTheme = Record<string, unknown>,
   Utils = BaseConfig['utils'],
   Prefix = '',
   ThemeMap extends TThemeMap = CSSPropertiesToTokenScale,
   MergedTheme = Theme & BaseConfig['theme']
 >(
-  extension?: IConfig<Conditions, Theme, Utils, Prefix, ThemeMap>
+  extension?: IConfig<Medias, Theme, Utils, Prefix, ThemeMap>
 ): TStyledSheet<
-  BaseConfig['conditions'],
+  BaseConfig['media'],
   MergedTheme,
   MapUtils<Utils, MergedTheme>,
   Prefix,

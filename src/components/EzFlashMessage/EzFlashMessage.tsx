@@ -21,10 +21,8 @@ const flashMessage = theme.css({
   borderLeftWidth: '$flash-message-border-left-width',
   padding: '$flash-message-p',
 
-  when: {
-    medium: {
-      borderRadius: '$flash-message-rounded',
-    },
+  '@medium': {
+    borderRadius: '$flash-message-rounded',
   },
 
   variants: {

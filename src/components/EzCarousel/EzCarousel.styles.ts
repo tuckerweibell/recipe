@@ -107,10 +107,7 @@ export const slidesPerPageStyles = options => {
 
     return {
       ...res,
-      when: {
-        ...res.when,
-        [bp]: styles,
-      },
+      [bp]: styles,
     };
   }, {});
 };

@@ -53,17 +53,15 @@ const footerStem = theme.css({
 
     height: 'calc($full + $timeline-page-gutter-sm)',
 
-    when: {
-      medium: {
-        height: 'calc($full + $timeline-page-gutter-lg)',
-      },
+    '@medium': {
+      height: 'calc($full + $timeline-page-gutter-lg)',
     },
   },
 });
 
 const layout = theme.css({
   px: '$100',
-  when: {medium: {px: 0}},
+  '@medium': {px: 0},
 });
 
 const timelineStem = theme.css({

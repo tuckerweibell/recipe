@@ -48,11 +48,9 @@ const textInput = theme.css({
       true: {
         borderBottomRightRadius: '0',
         borderBottomLeftRadius: '0',
-        when: {
-          medium: {
-            borderBottomRightRadius: '$regular',
-            borderBottomLeftRadius: '$regular',
-          },
+        '@medium': {
+          borderBottomRightRadius: '$regular',
+          borderBottomLeftRadius: '$regular',
         },
       },
     },

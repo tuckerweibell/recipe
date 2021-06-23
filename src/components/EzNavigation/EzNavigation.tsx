@@ -51,10 +51,8 @@ const wrapper = theme.css({
   flex: '1 1 auto',
   flexDirection: 'column',
   height: '100%',
-  when: {
-    large: {
-      flexDirection: 'row',
-    },
+  '@large': {
+    flexDirection: 'row',
   },
 });
 
@@ -63,22 +61,18 @@ const navWrapper = theme.css({
   flexWrap: 'wrap',
   background: '$nav-bg',
 
-  when: {
-    large: {
-      position: 'sticky',
-      height: '100vh',
-      top: 0,
-      width: '$nav-sidebar-w',
-    },
+  '@large': {
+    position: 'sticky',
+    height: '100vh',
+    top: 0,
+    width: '$nav-sidebar-w',
   },
 });
 
 const menuButton = theme.css({
   display: 'block',
-  when: {
-    large: {
-      display: 'none',
-    },
+  '@large': {
+    display: 'none',
   },
 });
 
@@ -90,14 +84,12 @@ const menuContent = theme.css({
   flexDirection: 'column',
   overflow: 'hidden',
   width: '100%',
-  when: {
-    large: {
-      visibility: 'visible',
-      width: '$nav-sidebar-w',
-      transition: 'none',
-      height: '$nav-bar-menu-h',
-      overflowY: 'auto',
-    },
+  '@large': {
+    visibility: 'visible',
+    width: '$nav-sidebar-w',
+    transition: 'none',
+    height: '$nav-bar-menu-h',
+    overflowY: 'auto',
   },
 });
 
@@ -106,14 +98,12 @@ const openedMenuContent = theme.css({
   height: '$nav-bar-menu-h',
   overflowY: 'auto',
 
-  when: {
-    large: {
-      visibility: 'visible',
-      width: '$nav-sidebar-w',
-      transition: 'none',
-      height: '$nav-bar-menu-h',
-      overflowY: 'auto',
-    },
+  '@large': {
+    visibility: 'visible',
+    width: '$nav-sidebar-w',
+    transition: 'none',
+    height: '$nav-bar-menu-h',
+    overflowY: 'auto',
   },
 });
 
@@ -131,11 +121,9 @@ const contentContainer = theme.css({
   flex: '1 1 100%',
   minWidth: 0,
   maxWidth: '100%',
-  when: {
-    large: {
-      height: 'auto',
-      overflow: 'visible',
-    },
+  '@large': {
+    height: 'auto',
+    overflow: 'visible',
   },
 });
 
@@ -209,10 +197,8 @@ const notificationIcon = theme.css({
   cursor: 'pointer',
   pointerEvents: 'none',
   userSelect: 'none',
-  when: {
-    large: {
-      visibility: 'hidden',
-    },
+  '@large': {
+    visibility: 'hidden',
   },
 });
 
