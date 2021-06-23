@@ -1,33 +1,24 @@
 {
   "private": true,
   "internal": true,
-  "version": "0.1.0-canary.20",
+  "version": "0.2.2",
   "description": "The @stitches CSS-in-JS library adapted to support IE",
-  "source": "src/index.ts",
   "main": "./dist/index.cjs.js",
-  "module": "dist/index.mjs.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "clean": "npm run patch",
-    "build": "npm run clean && npm run build-to-dist && npm run copy:types && npm run build-es && npm run build-cjs && npm run package",
-    "build-to-dist": "microbundle -i src/index.ts -o dist/index.modern.js --no-pkg-main -f modern --tsconfig tsconfig.copy.json --external none",
-    "build-es": "microbundle -i dist/index.modern.js -o dist/index.mjs.js --no-pkg-main -f es --tsconfig tsconfig.build.json",
-    "build-cjs": "microbundle -i dist/index.modern.js -o dist/index.cjs.js --no-pkg-main -f cjs --tsconfig tsconfig.build.json",
+    "build": "npm run build-to-dist && npm run append-polyfills && npm run copy:types && npm run package",
+    "build-to-dist": "npm run build-esm && npm run build-cjs",
+    "build-esm": "npx babel node_modules/@stitches/core/dist/index.mjs --out-dir dist",
+    "build-cjs": "npx babel --plugins @babel/plugin-transform-modules-commonjs node_modules/@stitches/core/dist/index.mjs --out-dir dist --out-file-extension .cjs.js",
+    "append-polyfills": "cat src/polyfills.js dist/index.js > temp && mv temp dist/index.js",
     "copy:types": "cp node_modules/@stitches/core/types/*.ts dist",
-    "package": "cd ../../.. && mkdir -p dist/packages && cp -R packages/@stitches dist/packages",
-    "patch": "patch-package"
-  },
-  "browserslist": [
-    "IE 11"
-  ],
-  "dependencies": {
-    "@stitches/core": "0.1.0-canary.20"
+    "package": "cd ../../.. && mkdir -p dist/packages && cp -R packages/@stitches dist/packages"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.10.4",
-    "@stitches/core": "0.1.0-canary.20",
-    "microbundle": "^0.13.0",
-    "patch-package": "^6.4.7"
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@stitches/core": "0.2.2"
   }
 }

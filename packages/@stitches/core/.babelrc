@@ -1,5 +1,0 @@
-{
-  "presets": [["@babel/preset-env", {"corejs": 2}], "@babel/preset-typescript"],
-  "plugins": ["@babel/plugin-transform-classes"],
-  "comments": false
-}

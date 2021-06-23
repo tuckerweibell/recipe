@@ -3,6 +3,7 @@ coverage/
 doc-site
 dist/
 build/
+packages/
 lib/
 .next/
 .github/
