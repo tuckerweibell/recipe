@@ -2,7 +2,6 @@ import CleanCSS from 'clean-css';
 import lzString from 'lz-string';
 
 const customPropertyRegExp = /(--[A-z][\w-]*):/g;
-const vendorPrefixedRulesRegEx = /-(moz|o|webkit|ms|khtml)-(?!font-smoothing|osx|print|scrollbar|[A-z]*;).+?;/g;
 
 const rewriteCssCustomVars = ({css, body, name}) => {
   // rewrite css vars to shrink them as a work around for
@@ -38,15 +37,6 @@ const minifyCss = ({css, body, name}) => {
   return {
     css: minified,
     body,
-    name,
-  };
-};
-
-// remove extra bloat caused by vendor prefixing (since tests currently run in chromium only)
-const removeVendorPrefix = ({css, body, name}) => {
-  return {
-    css: css.replace(vendorPrefixedRulesRegEx, ''),
-    body: body.replace(vendorPrefixedRulesRegEx, ''),
     name,
   };
 };
@@ -125,7 +115,6 @@ export const decorate = target => ({
     return target.execute(
       pages
         .map(rewriteCssCustomVars)
-        .map(removeVendorPrefix)
         .map(groupRootStyles)
         .map(minifyCss)
         .map(skipCssWithIframeBody)
