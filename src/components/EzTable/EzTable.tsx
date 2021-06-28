@@ -47,7 +47,7 @@ const numericCell = theme.css({
   textAlign: 'right',
 });
 
-const header = theme.css(cell, {
+const header = theme.css({
   fontWeight: '$table-heading',
   fontSize: '$table-heading',
   lineHeight: '$table',
@@ -191,6 +191,7 @@ const Th: FC<ThProps> = ({children, numeric, isSortableColumn, sorted, onClick})
   <Style ruleset={theme}>
     <th
       className={clsx(
+        cell(),
         numeric && numericCell(),
         header(),
         isSortableColumn && sortableColumn(),
