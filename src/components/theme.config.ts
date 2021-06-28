@@ -255,5 +255,36 @@ export function mergeCss<
 
   stitches.global({':root': vars})();
 
-  return stitches as any;
+  const css = config => {
+    const definition = stitches.css(config);
+    const {variants} = config;
+
+    if (!variants) return definition;
+
+    return (props = {}) => {
+      const mappedProps = {...props};
+
+      Object.keys(variants).forEach(name => {
+        const value = props[name];
+
+        if (name in props && typeof value === 'object') {
+          mappedProps[name] = addAtPrefix(value || {});
+        }
+      });
+
+      return definition(mappedProps);
+    };
+  }
+
+  return {
+    ...stitches,
+    css,
+  } as any;
+}
+
+const addAtPrefix = (obj: Record<string, unknown>) => {
+  return Object.entries(obj).reduce((res, [key, value]) => ({
+    ...res,
+    [key.includes('@') ? key : `@${key}`]: value,
+  }), {});
 }

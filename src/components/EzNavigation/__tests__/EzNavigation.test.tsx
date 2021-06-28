@@ -15,17 +15,15 @@ const ezCaterLogoPath = `data:image/svg+xml;charset=UTF-8,%3c?xml version='1.0' 
 // switch out large breakpoint value in order to test mobile vs desktop layout
 jest.mock('../../theme.config', () => {
   const {default: stitches, mergeCss} = jest.requireActual('../../theme.config');
-  let currentValue = stitches.config.conditions.large;
-  Object.defineProperty(stitches.config.conditions, 'large', {
+  let currentValue = stitches.config.media.large;
+  Object.defineProperty(stitches.config.media, 'large', {
     get: () => currentValue,
     set: value => {
       currentValue = value;
     },
   });
   // for the duration of the test, mock the property to return 800px (i.e. lower than the visual regression screen size)
-  jest
-    .spyOn(stitches.config.conditions, 'large', 'get')
-    .mockReturnValue('@media (min-width: 800px)');
+  jest.spyOn(stitches.config.media, 'large', 'get').mockReturnValue('(min-width: 800px)');
   return {
     __esModule: true,
     default: stitches,

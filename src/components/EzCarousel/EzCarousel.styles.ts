@@ -107,7 +107,7 @@ export const slidesPerPageStyles = options => {
 
     return {
       ...res,
-      [bp]: styles,
+      [`@${bp}`]: styles,
     };
   }, {});
 };
