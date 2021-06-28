@@ -174,7 +174,7 @@ const stitches = createCss({
       justifyContent: value,
       alignItems: value,
     }),
-    'sr-only': () => () => ({
+    srOnly: () => () => ({
       border: 'none',
       clip: 'rect(0 0 0 0)',
       clipPath: 'inset(50%)',

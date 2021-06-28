@@ -15,7 +15,7 @@ const group = theme.css({
   flexDirection: 'row',
 });
 
-const srOnly = theme.css({'sr-only': 'true'});
+const srOnly = theme.css({srOnly: 'true'});
 const fullWidth = theme.css({width: '$full'});
 
 const radio = theme.css({

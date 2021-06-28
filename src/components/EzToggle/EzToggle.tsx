@@ -32,7 +32,7 @@ const toggle = theme.css({
   },
 });
 
-const visuallyHidden = theme.css({'sr-only': 'true'});
+const visuallyHidden = theme.css({srOnly: 'true'});
 
 const track = theme.css({
   position: 'relative',

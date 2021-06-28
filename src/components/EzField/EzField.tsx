@@ -89,7 +89,7 @@ const errorCallout = theme.css({
   },
 
   variants: {
-    active: {false: {'@medium': {'sr-only': 'true'}}},
+    active: {false: {'@medium': {srOnly: 'true'}}},
     inline: {
       true: {
         borderBottomRightRadius: 3,
@@ -126,7 +126,7 @@ const characterLimit = theme.css({
   marginTop: '$100',
 });
 
-const srOnly = theme.css({'sr-only': 'true'});
+const srOnly = theme.css({srOnly: 'true'});
 
 /**
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.

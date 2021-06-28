@@ -20,7 +20,7 @@ const styles = theme.css({
       },
     },
     position: {
-      hidden: {'sr-only': 'true'},
+      hidden: {srOnly: 'true'},
       top: {marginBottom: '$label-my'},
       bottom: {marginTop: '$label-my'},
       left: {marginRight: '$label-mx', display: 'inline-block'},
