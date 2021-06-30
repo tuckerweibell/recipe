@@ -13,6 +13,9 @@ type ItemProps = {
   htmlFor?: string;
 };
 
+/**
+ * @deprecated Please use EzLabel instead.
+ */
 const EzLabelledItem: React.FC<ItemProps> = ({
   children,
   position: labelPosition,

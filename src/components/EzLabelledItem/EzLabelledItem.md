@@ -1,10 +1,18 @@
 ---
 name: EzLabelledItem
 title: Labelling
-category: Inputs
 path: '/components/ez-labelled-item'
 tags: ['label']
 ---
+
+<EzAlert
+  headline="This component is deprecated"
+  tagline="EzLabelledItem is deprecated. Use EzLabel for labelling instead."
+  use="error"
+/>
+
+<br/>
+<br/>
 
 Provides a label that can appear in one of several positions relative to its associated content. Typically used to label an interactive element or a short string of text.
 
