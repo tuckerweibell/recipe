@@ -35,22 +35,16 @@ const pageHeader = theme.css({
   '@medium': {
     padding: '$page-header-md-py $page-header-md-px',
   },
-});
 
-const pageHeaderWrapper = theme.css({
-  backgroundColor: '$page-header-bg',
-});
-
-const subnavWrapper = theme.css({
-  '&&': {
-    paddingBottom: 0,
-  },
-});
-
-const subheaderWrapper = theme.css({
-  '@medium': {
-    paddingTop: '$page-header-md-subheader-py',
-    paddingBottom: '$page-header-md-subheader-py',
+  variants: {
+    subNav: {
+      true: {'&&': {paddingBottom: 0}},
+      false: {},
+    },
+    subHeader: {
+      true: {'@medium': {py: '$page-header-md-subheader-py'}},
+      false: {},
+    },
   },
 });
 
@@ -98,8 +92,8 @@ const EzPageHeader: React.FC<HeaderProps> = ({
   const selected = subnav && subnav.selected;
   return (
     <Style ruleset={theme}>
-      <div className={pageHeaderWrapper()}>
-        <div className={clsx(pageHeader(), subnav && subnavWrapper())}>
+      <div>
+        <div className={clsx(pageHeader({subNav: Boolean(subnav)}))}>
           <MaxWidth>
             <EzLayout layout="stack">
               <EzLayout
@@ -161,7 +155,7 @@ const EzPageHeader: React.FC<HeaderProps> = ({
           </MaxWidth>
         </div>
         {subheader && (
-          <div className={clsx(pageHeader(), subheaderWrapper())}>
+          <div className={clsx(pageHeader({subHeader: true}))}>
             <MaxWidth>{subheader}</MaxWidth>
           </div>
         )}
