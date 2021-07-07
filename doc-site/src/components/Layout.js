@@ -4,7 +4,6 @@ import {jsx} from '@emotion/core';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql, withPrefix} from 'gatsby';
 import Link from 'gatsby-link';
-import {ThemeProvider} from 'emotion-theming';
 import naturalSort from 'natural-sort';
 import {
   themes,
@@ -126,12 +125,7 @@ const Layout = ({
               rel="stylesheet"
             />
           </Helmet>
-          <ThemeProvider
-            theme={{
-              ...themes.standard,
-              breakpoints: {medium: '768px', large: '1061px', xlarge: '1280px'},
-            }}
-          >
+          <div>
             <div className={name}>
               <EzAppLayout layout={layout}>
                 <EzNavigation
@@ -221,7 +215,7 @@ const Layout = ({
                 </EzNavigation>
               </EzAppLayout>
             </div>
-          </ThemeProvider>
+          </div>
         </EzProvider>
       );
     }}
