@@ -1,6 +1,7 @@
 import React, {forwardRef, LabelHTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzLabel.theme.config';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const styles = theme.css({
   display: 'block',
@@ -33,8 +34,8 @@ const styles = theme.css({
   compoundVariants: [{error: 'true', css: {color: '$negative'}}],
 });
 
-type Uses = Pick<Parameters<typeof styles>[0], 'use'>['use'];
-type Positions = Pick<Parameters<typeof styles>[0], 'position'>['position'];
+type Uses = Pick<VariantProps<typeof styles>, 'use'>['use'];
+type Positions = Pick<VariantProps<typeof styles>, 'position'>['position'];
 type Ref = HTMLDivElement;
 interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   /**

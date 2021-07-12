@@ -2,6 +2,7 @@ import React, {HTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzLayout.theme.config';
 import {domProps, responsiveProps} from '../../utils';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const descendants = '& > *';
 
@@ -100,8 +101,7 @@ const styles = theme.css({
   ],
 });
 
-type Props = Pick<Parameters<typeof styles>[0], 'layout' | 'alignX' | 'alignY' | 'columns'> &
-  Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
+type Props = VariantProps<typeof styles> & Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
 
 /**
  * Layout provide common ways to arrange content in a single horizontal row.

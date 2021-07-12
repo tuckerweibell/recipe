@@ -2,8 +2,9 @@ import React, {createContext, useContext} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzAppLayout.theme.config';
 import EzGlobalStyles from '../EzGlobalStyles';
+import {VariantProps} from '../../utils/responsiveProps';
 
-type Props = Pick<Parameters<typeof style>[0], 'layout'>;
+type Props = VariantProps<typeof style>;
 type Layout = Props['layout'];
 
 export const EzAppLayoutContext = createContext<Layout>('full');

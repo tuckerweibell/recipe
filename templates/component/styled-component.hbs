@@ -1,10 +1,11 @@
 import React, {forwardRef} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './{{ name }}.theme.config';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const styles = theme.css({});
 
-type Props = Pick<Parameters<typeof styles>[0], 'keys' | 'of' | 'my' | 'props'>;
+type Props = VariantProps<typeof styles>;
 
 /**
  * Describe {{ name }} here.

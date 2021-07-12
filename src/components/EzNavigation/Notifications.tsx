@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzNavigation.theme.config';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const notification = theme.css({
   alignItems: 'center',
@@ -27,7 +28,7 @@ const notification = theme.css({
   defaultVariants: {use: 'default'},
 });
 
-type Props = Pick<Parameters<typeof notification>[0], 'use'>;
+type Props = VariantProps<typeof notification>;
 
 export const Counter: FC<Props> = ({children, ...props}) => (
   <Style ruleset={theme}>

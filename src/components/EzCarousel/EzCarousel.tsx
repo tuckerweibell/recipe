@@ -4,6 +4,7 @@ import theme from './EzCarousel.theme.config';
 import {useUniqueId} from '../../utils/hooks';
 import {clsx, responsiveProps} from '../../utils';
 import {slidesPerPageStyles} from './EzCarousel.styles';
+import {ResponsiveValue, VariantProps} from '../../utils/responsiveProps';
 
 const svgProps: React.ComponentProps<'svg'> = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -172,15 +173,10 @@ const listItemStyle = theme.css({
 const dynamicStyles = theme.css({});
 
 type SlidesPerPage = {
-  slidesPerPage?:
-    | number
-    | {
-        [x: string]: number;
-        initial?: number;
-      };
+  slidesPerPage?: ResponsiveValue<number>;
 };
 
-type Props = Pick<Parameters<typeof listItemStyle>[0], 'gap' | 'peek'> &
+type Props = VariantProps<typeof listItemStyle> &
   SlidesPerPage &
   Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
 

@@ -1,6 +1,7 @@
 import React, {forwardRef, AllHTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzTextStyle.theme.config';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const text = theme.css({
   display: 'inline-block',
@@ -23,7 +24,7 @@ const text = theme.css({
 });
 
 interface Props
-  extends Omit<Parameters<typeof text>[0], 'css'>,
+  extends VariantProps<typeof text>,
     Omit<AllHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   as?: keyof JSX.IntrinsicElements;
 }

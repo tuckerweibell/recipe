@@ -1,8 +1,10 @@
+/* eslint-disable quote-props */
 import React, {forwardRef, HTMLAttributes} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzHeading.theme.config';
 import {ClearSlots, useSlotProps} from '../../utils/slots';
 import {domProps, mergeProps} from '../../utils';
+import {VariantProps} from '../../utils/responsiveProps';
 
 const headingCss = theme.css({
   color: '$heading-text',
@@ -11,27 +13,27 @@ const headingCss = theme.css({
 
   variants: {
     size: {
-      1: {
+      '1': {
         fontSize: '$800',
         fontWeight: '$regular',
       },
-      2: {
+      '2': {
         fontSize: '$450',
         fontWeight: '$regular',
       },
-      3: {
+      '3': {
         fontSize: '$300',
         fontWeight: '$bold',
       },
-      4: {
+      '4': {
         fontSize: '$200',
         fontWeight: '$regular',
       },
-      5: {
+      '5': {
         fontSize: '$100',
         fontWeight: '$bold',
       },
-      6: {
+      '6': {
         fontSize: '$75',
         fontWeight: '$regular',
       },
@@ -57,8 +59,8 @@ const alignCss = theme.css({
   },
 });
 
-type Sizes = Pick<Parameters<typeof headingCss>[0], 'size'>;
-type Alignment = Pick<Parameters<typeof alignCss>[0], 'align'>;
+type Sizes = VariantProps<typeof headingCss>;
+type Alignment = VariantProps<typeof alignCss>;
 type Tag = React.ComponentType<any>;
 interface Props extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>, Alignment, Sizes {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

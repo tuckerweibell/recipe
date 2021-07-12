@@ -44,4 +44,23 @@ export const responsiveProps = (props: Record<string, unknown>, ...variantNames)
   return {...props, ...mapped};
 };
 
+export type ResponsiveValue<Values> =
+  | Values
+  | {
+      base: Values;
+      medium?: Values;
+      large?: Values;
+    };
+
+/**
+ * Allows boolean props to accept only boolean values (instead of 'true' | 'false').
+ */
+type MorphVariant<T> = T extends 'true' ? true : T extends 'false' ? false : T;
+
+type VariantValues<IStyleRule extends {variants: any}, Variants = IStyleRule['variants']> = {
+  [k in keyof Variants]?: ResponsiveValue<MorphVariant<keyof Variants[k]>>;
+};
+
+export type VariantProps<IStyleRule extends {variants: any}> = VariantValues<IStyleRule>;
+
 export default responsiveProps;
