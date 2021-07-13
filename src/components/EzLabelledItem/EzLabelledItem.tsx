@@ -25,7 +25,12 @@ const EzLabelledItem: React.FC<ItemProps> = ({
 }) => (
   <div>
     {labelPosition === 'bottom' && children}
-    <Label position={labelPosition} size={size} as={htmlFor ? 'label' : 'div'} htmlFor={htmlFor}>
+    <Label
+      position={labelPosition === 'left' ? 'side' : labelPosition}
+      use={size === 'normal' ? 'primary' : size === 'small' ? 'secondary' : size}
+      as={htmlFor ? 'label' : 'div'}
+      htmlFor={htmlFor}
+    >
       {title}
     </Label>
     {['top', 'left'].includes(labelPosition) && children}

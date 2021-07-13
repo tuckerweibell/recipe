@@ -172,7 +172,7 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
                 htmlFor={isChoiceElement ? undefined : id}
                 as={labelType}
                 error={showError}
-                size={props.labelSize}
+                use={props.labelSize === 'small' ? 'secondary' : 'primary'}
               >
                 {label}
               </Label>

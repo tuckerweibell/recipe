@@ -4,34 +4,36 @@ import theme from './EzLabel.theme.config';
 
 const styles = theme.css({
   display: 'block',
-  lineHeight: '$label',
-  fontWeight: '$label',
-  padding: 0,
 
   variants: {
-    size: {
-      small: {
-        color: '$label-small',
-        fontSize: '$label-small',
-      },
-      normal: {
+    use: {
+      primary: {
         color: '$label',
         fontSize: '$label',
+        lineHeight: '$label',
+        fontWeight: '$label',
+        padding: 0,
+      },
+      secondary: {
+        color: '$label-small',
+        fontSize: '$label-small',
+        lineHeight: '$label',
+        fontWeight: '$label',
+        padding: 0,
       },
     },
     position: {
       hidden: {srOnly: 'true'},
       top: {marginBottom: '$label-my'},
       bottom: {marginTop: '$label-my'},
-      left: {marginRight: '$label-mx', display: 'inline-block'},
-      right: {marginLeft: '$label-mx', display: 'inline-block'},
+      side: {marginRight: '$label-mx', display: 'inline-block'},
     },
     error: {true: {}},
   },
   compoundVariants: [{error: 'true', css: {color: '$negative'}}],
 });
 
-type Sizes = Pick<Parameters<typeof styles>[0], 'size'>['size'];
+type Uses = Pick<Parameters<typeof styles>[0], 'use'>['use'];
 type Positions = Pick<Parameters<typeof styles>[0], 'position'>['position'];
 type Ref = HTMLDivElement;
 interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
@@ -46,7 +48,7 @@ interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   /**
    * changes the styles of the label for the selected size
    */
-  size?: Sizes;
+  use?: Uses;
   /**
    * changes the styles of the label to indicate an error state
    */
@@ -68,14 +70,14 @@ const EzLabel = forwardRef<Ref, Props>(({as: Element, ...initialProps}, ref) => 
 
 /**
  * defaultProps
- * @property {'label' | 'legend' | 'div'} as - label renders as a div element by default
- * @property {'hidden' | 'top' | 'bottom' | 'left' | 'right'} position - label renders on top by default
- * @property {'normal' | 'small'} position - label renders with normal size by default
+ * @property {'label' | 'legend' | 'div'} as - label renders as a label element by default
+ * @property {'top' | 'bottom' | 'side' | 'hidden'} position - label renders on top by default
  */
 EzLabel.defaultProps = {
-  as: 'div',
   position: null,
-  size: 'normal',
+  as: 'label',
 };
+
+EzLabel.displayName = 'EzLabel';
 
 export default EzLabel;

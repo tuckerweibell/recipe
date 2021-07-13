@@ -61,11 +61,7 @@ describe('EzSegmentedControl', () => {
 
   const active = true;
   const className = 'string';
-  const label = (
-    <Label id="1" position="top">
-      Label
-    </Label>
-  );
+  const label = <div id="1">Label</div>;
   const labelPosition = 'left';
   const name = 'name';
   const onChange = (value: string) => value;

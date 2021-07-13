@@ -121,12 +121,16 @@ const EzToggle = forwardRef<HTMLInputElement, Props>(({id, label, status, ...pro
         >
           <input {...inputProps} id={idOrDefault} ref={inputRef} type="checkbox" />
           <div className={track()} />
-          {label && (
-            <EzLabel htmlFor={idOrDefault} position="right" as="label">
-              {label}
-            </EzLabel>
-          )}
         </div>
+        {label && (
+          <EzLabel
+            className={toggle({disabled: props.disabled})}
+            htmlFor={idOrDefault}
+            use="primary"
+          >
+            {label}
+          </EzLabel>
+        )}
         {status && <EzInlineFeedback use={status} />}
       </EzLayout>
     </Style>

@@ -113,7 +113,7 @@ const EzCheckbox = forwardRef<HTMLDivElement, Props>(
         <div className={acknowledgementWrapper()} ref={ref}>
           <Checkbox {...props} id={id} />
           <div>
-            <EzLabel htmlFor={id} as="label">
+            <EzLabel htmlFor={id} use="primary">
               {label}
             </EzLabel>
             <p className={acknowledgementText()}>{terms}</p>

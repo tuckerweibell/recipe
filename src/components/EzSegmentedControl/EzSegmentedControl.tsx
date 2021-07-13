@@ -109,7 +109,12 @@ const EzSegmentedControl: React.FC<Props> = ({
       role="radiogroup"
       aria-labelledby={`radiogroup-${name}`}
     >
-      <Label id={`radiogroup-${name}`} position={labelPosition}>
+      <Label
+        id={`radiogroup-${name}`}
+        position={labelPosition === 'left' ? 'side' : labelPosition}
+        use="primary"
+        as="div"
+      >
         {label}
       </Label>
       {options.map(option => (

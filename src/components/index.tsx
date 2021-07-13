@@ -13,6 +13,7 @@ export {default as EzFlashMessage} from './EzFlashMessage';
 export {default as EzFormLayout} from './EzFormLayout';
 export {default as EzGlobalStyles} from './EzGlobalStyles';
 export {default as EzHeading} from './EzHeading';
+export {default as EzLabel} from './EzLabel';
 export {default as EzLabelledItem} from './EzLabelledItem';
 export {default as EzLink} from './EzLink';
 export {default as EzModal} from './EzModal';
