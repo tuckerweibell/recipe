@@ -98,6 +98,7 @@
     "release": "npm run build && npx changeset publish",
     "release:canary": "npm run build && npx changeset publish --tag canary",
     "test": "cross-env NODE_OPTIONS=--max-http-header-size=512000 jest --coverage --no-cache",
+    "test:benchmark": "jest \"benchmark\" --testPathIgnorePatterns=\"/node_modules/\" --env=\"node\"",
     "test:watch": "npm test -- --watch",
     "test:ci": "cross-env NODE_OPTIONS=--max-http-header-size=512000 jest --ci --coverage --no-cache --maxWorkers=2 --reporters=jest-standard-reporter --reporters=jest-junit",
     "lint": "ez-scripts lint",

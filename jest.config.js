@@ -18,7 +18,7 @@ module.exports = {
     '^.+\\.md?$': 'jest-raw-loader',
     '^.+\\.css$': 'jest-transform-css',
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(j|t)sx?$',
+  testPathIgnorePatterns: ["/node_modules/", "benchmark"],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
   globals: {
     'ts-jest': {
