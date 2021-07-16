@@ -49,8 +49,8 @@ const Media = ({size, children}) => {
     const frame = iframeEl.current as HTMLElement;
 
     // copy inline stitches tags inside the iframe
-    const ssrStyles = ownerDocument.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
-    const frameStyles = frame.querySelectorAll<HTMLStyleElement>('style[data-s-ssr]');
+    const ssrStyles = ownerDocument.querySelectorAll<HTMLStyleElement>('style[data-snitches-ssr]');
+    const frameStyles = frame.querySelectorAll<HTMLStyleElement>('style[data-snitches-ssr]');
 
     let head = ownerDocument.head.outerHTML;
 

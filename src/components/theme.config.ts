@@ -8,6 +8,7 @@ import type {
   TStyledSheet,
   IConfig,
 } from '../../packages/@stitches/core';
+import {createRoot} from '@ezcater/snitches';
 import {PlaceItemsProperty} from 'csstype';
 
 type Globals = 'inherit' | 'initial' | 'revert' | 'unset';
@@ -15,8 +16,8 @@ type FromTheme<T> = `$${Extract<keyof T, string | number>}`;
 type Token<T> = FromTheme<T> | Globals | number | (string & {});
 type TokenValue<T extends keyof TTheme> = T;
 
-// disable stitches style insertion (forces SSR mode). Snitches is used to insert styles instead.
-const root = {root: null};
+// disable stitches style insertion, Snitches is used to insert styles instead.
+const root = {root: createRoot()};
 
 const stitches = createCss({
   ...root,
@@ -210,6 +211,18 @@ const stitches = createCss({
 
 type BaseConfig = typeof stitches.config;
 
+const resets = [stitches.theme as {toString(): string}];
+
+function reset() {
+  (stitches as any).sheet.reset();
+
+  // reinitialize each theme/global by calling toString
+  resets.forEach(c => c.toString());
+}
+
+// override stitches reset fn to allow for resetting of extended themes
+(stitches as any).reset = reset;
+
 export default stitches;
 
 type ExtractToken<P> = P extends TokenValue<infer T> ? T : never;
@@ -256,7 +269,11 @@ export function mergeCss<
 > {
   const vars = getCustomProperties(extension.theme);
 
-  stitches.global({':root': vars})();
+  const globals = stitches.global({':root': vars});
+
+  resets.push(globals);
+  
+  globals();
 
   const css = config => {
     const definition = stitches.css(config);
