@@ -32,10 +32,12 @@ const frame = theme.css({
 
 const EzAppLayout: React.FC<Props> = ({children, layout}) => {
   return (
-    <div className={frame()}>
-      <EzGlobalStyles />
-      <EzAppLayoutContext.Provider value={layout}>{children}</EzAppLayoutContext.Provider>
-    </div>
+    <Style ruleset={theme}>
+      <div className={frame()}>
+        <EzGlobalStyles />
+        <EzAppLayoutContext.Provider value={layout}>{children}</EzAppLayoutContext.Provider>
+      </div>
+    </Style>
   );
 };
 
