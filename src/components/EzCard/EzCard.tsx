@@ -19,6 +19,7 @@ import EzCardHeading from './EzCardHeading';
 import {clsx, filterValidProps, responsiveProps} from '../../utils';
 import {SlotProvider, containsChild, hasContentSlot} from '../../utils/slots';
 import {EzFooter, EzHeader, EzPreview} from '../EzContent';
+import {VariantProps} from '../../utils/responsiveProps';
 
 type DOMProps = React.HTMLAttributes<HTMLElement>;
 type HeadingProps = React.ComponentProps<typeof EzCardHeading>;
@@ -30,7 +31,7 @@ type ExpandableCardFooter = {
   isExpanded?: boolean;
 };
 
-type Position = 'top' | 'right' | 'left';
+type Position = Pick<VariantProps<typeof preview>, 'position'>['position'];
 type ImageProps =
   | {imageSrc: string; imagePosition?: Position}
   | {imageSrc?: never; imagePosition?: never};

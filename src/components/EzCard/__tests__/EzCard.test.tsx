@@ -62,6 +62,29 @@ describe('EzCard', () => {
     expect(actual).toHaveNoViolations();
   });
 
+  it('should pass type checking', () => {
+    [
+      {
+        defaultLayout: <EzCard>hello</EzCard>,
+        responsiveImagePosition: (
+          <EzCard
+            title="Card with image on right"
+            imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+            imagePosition={{base: 'right', medium: 'top'}}
+            imageMaxHeight={192}
+          >
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus
+              purus, in maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+            </p>
+          </EzCard>
+        ),
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
+
   describe('data-* props', () => {
     it('renders valid props for html elements', () => {
       const {container} = render(
