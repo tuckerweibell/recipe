@@ -173,6 +173,8 @@ Allows the user to choose between a fixed set of options by offering a list of g
 
 Use the `options` prop to provide an array of options for selection. Each option requires a `label` and a `value`. Options may optionally be `disabled` where necessary.
 
+Alternatively, instead of using the `options` prop, EzField also accepts `<EzItem>` elements as children. See the [next example](#multiple-choice-input-field-with-nested-content) for a complete demonstration of this API.
+
 ```jsx
 () => {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
@@ -215,14 +217,15 @@ A multiple choice field with nested content has the following anatomy:
 | ![Image illustrating through labels the component parts of a multiple choice field, including a field label, labelled selection options, and nested content](Anatomy.svg) |
 
 Allows for nested content within a multiple choice selection.
+EzField accepts `<EzItem>` elements as children, each with a `key` prop to denote the item value. Note, that `EzItem` must be a **direct descendant** of the field, and not wrapped in additional DOM nodes or React components.
 
-Instead of using the `options` prop to provide an array of options to a radio or checkbox field, provide `EzItem` with a `key`, [EzLabel](/components/ez-label), and `EzContent` as **direct descendants** to the field.
+Items provided should contain a `<EzLabel>` to describe each option. Each item can optionally accept a `<EzContent>` element to provide additional content alongside the label.
 
-`EzContent` should contain the nested content for the selection. When a choice containing nested content is selected, the nested content will become visible, otherwise it will be hidden. Wrapping the `EzContent` in additional conditions can be added if necessary.
+If presenting additional `<EzField>` elements to capture information about the users choice, it is recommended that `labelSize="small"` is used to ensure the nested content has the appropriate emphasis within the form.
 
 ```jsx
 () => {
-  const [selectedChoice, setSelectedChoice] = React.useState(null);
+  const [selectedChoice, setSelectedChoice] = React.useState('a');
   return (
     <EzFormLayout>
       <EzField
@@ -233,11 +236,31 @@ Instead of using the `options` prop to provide an array of options to a radio or
       >
         <EzItem key="a">
           <EzLabel>Choice A</EzLabel>
-          <EzContent>Nested Content A</EzContent>
+          {selectedChoice === 'a' && (
+            <EzContent>
+              <EzField
+                type="textarea"
+                label="Details about Choice A"
+                labelSize="small"
+                size="medium"
+                maxLength={120}
+              />
+            </EzContent>
+          )}
         </EzItem>
         <EzItem key="b">
           <EzLabel>Choice B</EzLabel>
-          <EzContent>Nested Content B</EzContent>
+          {selectedChoice === 'b' && (
+            <EzContent>
+              <EzField
+                type="textarea"
+                label="Details about Choice B"
+                labelSize="small"
+                size="medium"
+                maxLength={120}
+              />
+            </EzContent>
+          )}
         </EzItem>
       </EzField>
     </EzFormLayout>
