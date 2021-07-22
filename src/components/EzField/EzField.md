@@ -210,13 +210,8 @@ Alternatively, instead of using the `options` prop, EzField also accepts `<EzIte
 
 ### Multiple choice input field with nested content
 
-A multiple choice field with nested content has the following anatomy:
+Allows for additional content to be presented with each choice of a multiple choice selection.
 
-|                                                                                                                                                                           |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| ![Image illustrating through labels the component parts of a multiple choice field, including a field label, labelled selection options, and nested content](Anatomy.svg) |
-
-Allows for nested content within a multiple choice selection.
 EzField accepts `<EzItem>` elements as children, each with a `key` prop to denote the item value. Note, that `EzItem` must be a **direct descendant** of the field, and not wrapped in additional DOM nodes or React components.
 
 Items provided should contain a `<EzLabel>` to describe each option. Each item can optionally accept a `<EzContent>` element to provide additional content alongside the label.
