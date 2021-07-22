@@ -1,5 +1,69 @@
 ## Version 12
 
+## 12.1.0
+
+### Minor Changes
+
+- feat: Add slots API support for EzModal
+
+  - refactors EzModal to use EzCard internally; Modals are effectively floating cards.
+  - relaxed type definition for EzModal around required props so EzModal content can be composed via `children`. [[sha]](https://github.com/ezcater/recipe/commit/5709cae9)
+
+- feat: make ezlabel a first class component
+
+  - Render EzLabel as label element without styles by default
+  - Update the position and use props to use primary, secondary, and side naming
+  - Add docs, preview, and tests for EzLabel [[sha]](https://github.com/ezcater/recipe/commit/edd3b14d)
+
+- feat: deprecate ezlabelleditem [[sha]](https://github.com/ezcater/recipe/commit/52b0e5ad)
+- feat: add first class support for Images inside EzModal [[sha]](https://github.com/ezcater/recipe/commit/dfc95e46)
+- feat: support for nested content for multiple choice fields with ezitem [[sha]](https://github.com/ezcater/recipe/commit/0cd1ae17)
+
+### Patch Changes
+
+- fix: EzBlankState content doesn't wrap on IE
+
+  - Added `max-width: 100%` to `EzBlankState` content to workaround a [known IE flexbox issue](https://github.com/philipwalton/flexbugs#flexbug-2). [[sha]](https://github.com/ezcater/recipe/commit/f8ec793f)
+
+- perf: added benchmarks to monitor style-insertion performance [[sha]](https://github.com/ezcater/recipe/commit/1770bf67)
+- refactor: use latest snitches API to leverage perf improvements [[sha]](https://github.com/ezcater/recipe/commit/1dcef747)
+- test: fixed flakey spec caused by scroll-snapping
+
+  - removed scroll snapping from visual regression test runs to avoid an issue where the browser would _sometimes_ trigger a scroll-snap during the initial paint of the carousel, causing the carousel to jump to the last page instead of showing the first page. [[sha]](https://github.com/ezcater/recipe/commit/47e6f773)
+
+- refactor: reuse a single stitches theme for Recipe components
+
+  - Recipe previously created a theme per component in order to provide the capability to skin individual components. Stitches internally expects a single theme to be reused across the entire app and relies on this behavior for client-side hydration of styles. [[sha]](https://github.com/ezcater/recipe/commit/fcf222bf)
+
+- fix: support responsive image position prop in EzCard type definition [[sha]](https://github.com/ezcater/recipe/commit/9898c7f0)
+- deps: Update snitches to 0.2.7 for hydration warning fixes [[sha]](https://github.com/ezcater/recipe/commit/b2cfb159)
+- deps: update @ezcater/snitches for compatibility with latest stitches release [[sha]](https://github.com/ezcater/recipe/commit/730920c0)
+- refactor: normalize snitches usage in EzBaseFontSizeCompatibility
+
+  - Ensures that a stitches theme is always passed to snitches via the ruleset prop [[sha]](https://github.com/ezcater/recipe/commit/b108dd12)
+
+- fix: reduce SSR size of top-level EzAppLayout
+
+  - Fixed snitches usage inside EzAppLayout so snitches provider can de-duplicate root styles. [[sha]](https://github.com/ezcater/recipe/commit/6e35dabc)
+
+- fix: ensure EzProvider wraps children with snitches provider
+
+  - Allows apps that use EzProvider to reduce the amount of inline CSS during SSR. [[sha]](https://github.com/ezcater/recipe/commit/b33f9060)
+
+- fix: support for apps using TS3.0 and strictNullChecks
+
+  - Switched from exposing the `VariantsCall` type definition from Stitches for responsive props within Recipe in favor of using a custom `VariantProps` type derived from the stitches style definitions.
+    - Stitches relies on TypeScript features only available in TS 4+ (template literal types). Exposing these types in our public API causes issues for Recipe apps that are on older versions of Typescript.
+    - Recipe no longer relies on `"strictNullChecks": false` for generating lists of props; when strict null checks are enabled, calling `keyof` on a nullable type returns `unknown` instead of listing the keys of the Non-nullable version of the type. [[sha]](https://github.com/ezcater/recipe/commit/69ae80f5)
+
+- perf: update to @stitches/core v0.2.2
+
+  - See [stitches blog](https://stitches.dev/blog/stitches-0.2.0#performance-improvements) for details on performance improvements. [[sha]](https://github.com/ezcater/recipe/commit/b91da779)
+
+- fix: remove regex lookbehind from doc-site for IE11 support [[sha]](https://github.com/ezcater/recipe/commit/4e195983)
+- style: use flexgap instead of margin EzBlankState content [[sha]](https://github.com/ezcater/recipe/commit/83e5bb74)
+- deps: update @ezcater/snitches with latest perf updates [[sha]](https://github.com/ezcater/recipe/commit/d835e4bf)
+
 ## 12.0.5
 
 ### Patch Changes
