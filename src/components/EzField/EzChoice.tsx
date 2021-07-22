@@ -117,11 +117,12 @@ export default props => {
           const optionChildren = choice.props?.children;
           const optionHasChildren = Array.isArray(optionChildren);
           const label = choice.label;
-          const labelFromChildren =
-            optionHasChildren && optionChildren.find(child => child.type.displayName === 'EzLabel');
-          const contentFromChildren =
-            optionHasChildren &&
-            optionChildren.find(child => child.type.displayName === 'EzContent');
+          const labelFromChildren = optionHasChildren
+            ? optionChildren.find(child => child.type?.displayName === 'EzLabel')
+            : undefined;
+          const contentFromChildren = optionHasChildren
+            ? optionChildren.find(child => child.type?.displayName === 'EzContent')
+            : undefined;
           const value = choice.value || choice.key;
           const disabled = props.disabled || choice.disabled;
 
