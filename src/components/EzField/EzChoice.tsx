@@ -7,6 +7,8 @@ import EzRadioButton from '../EzRadioButton';
 import EzLayout from '../EzLayout';
 import {domProps} from '../../utils';
 import {useUniqueId} from '../../utils/hooks';
+import {SlotProvider} from '../../utils/slots';
+import Slot from '../EzContent/Slot';
 
 const box = theme.css({
   display: 'flex',
@@ -55,14 +57,19 @@ const inputStyles = theme.css({marginRight: '$100'});
 
 const Option = ({input, bordered, disabled, label, labelFromChildren, contentFromChildren}) => {
   const id = useUniqueId();
-  const childLabelWithHtmlFor = React.cloneElement(labelFromChildren, {htmlFor: id});
   return (
     <Style ruleset={theme}>
-      <span className={box({bordered, disabled})}>
-        {React.cloneElement(input, {id})}
-        {(labelFromChildren && childLabelWithHtmlFor) || <label htmlFor={id}>{label}</label>}
-      </span>
-      {contentFromChildren && <div className={nestedContent()}>{contentFromChildren}</div>}
+      <SlotProvider slots={{label: {htmlFor: id}, content: {className: nestedContent()}}}>
+        <span className={box({bordered, disabled})}>
+          {React.cloneElement(input, {id})}
+          {labelFromChildren || (
+            <Slot element="label" slot="label">
+              {label}
+            </Slot>
+          )}
+        </span>
+        {contentFromChildren}
+      </SlotProvider>
     </Style>
   );
 };
