@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import {withPrefix} from 'gatsby';
 import Helmet from 'react-helmet';
 import packageJson from '../../../package.json';
-import {EzLayout} from '@ezcater/recipe';
+import {EzLayout, EzAppLayout} from '@ezcater/recipe';
 import ezcaterLogo from '../ezcater-logo.svg';
 import {Global, css} from '@emotion/core';
 import styled from '@emotion/styled';
@@ -110,7 +110,6 @@ const Hero = ({className, imgSrc, children}) => (
         xl(min.w._4xl),
       ]}
     >
-      {children}
       <HeroDivider
         style={{transform: 'translate(50%)'}}
         css={[
@@ -126,6 +125,7 @@ const Hero = ({className, imgSrc, children}) => (
           lg(block),
         ]}
       />
+      {children}
     </div>
   </div>
 );
@@ -148,7 +148,7 @@ const LinkButton = styled(Link)(
 );
 
 export default () => (
-  <div>
+  <EzAppLayout>
     <Helmet
       title="Recipe UI"
       meta={[
@@ -212,7 +212,7 @@ export default () => (
     />
 
     <Hero imgSrc={withPrefix('/images/hero-pattern-xl.jpg')} css={font.display}>
-      <div>
+      <div css={[relative]}>
         <div
           css={[
             px._6,
@@ -329,5 +329,5 @@ export default () => (
         </div>
       </div>
     </Hero>
-  </div>
+  </EzAppLayout>
 );
