@@ -4,7 +4,7 @@ import {CacheProvider} from '@emotion/core';
 import createCache from '@emotion/cache';
 
 function onClientEntry() {
-  cssVars({watch: true});
+  cssVars({watch: true, exclude: 'body style'});
 }
 
 const isIE11 =
