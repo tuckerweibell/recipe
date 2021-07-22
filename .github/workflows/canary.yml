@@ -8,8 +8,8 @@ jobs:
   release:
     name: Canary Release
 
-    # this job will only run if the PR has been merged
-    if: github.event.pull_request.merged == true
+    # this job will only run if the PR has been merged and isn't already a part of a changeset release
+    if: startsWith(github.head_ref, 'changeset-release') == false && github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
 
