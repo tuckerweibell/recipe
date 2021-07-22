@@ -169,7 +169,7 @@ export const pageQuery = graphql`
         tags
       }
     }
-    changelog: file(name: {eq: "changelog"}) {
+    changelog: file(name: {regex: "/^changelog$/i"}) {
       name
       childMarkdownRemark {
         htmlAst
