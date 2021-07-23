@@ -122,6 +122,7 @@ const stitches = createCss({
       50: '4px',
       150: '12px',
       200: '16px',
+      300: '24px',
       400: '32px',
       750: '60px',
       full: '100%',

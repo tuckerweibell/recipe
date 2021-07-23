@@ -12,6 +12,7 @@ import Slot from '../EzContent/Slot';
 
 const box = theme.css({
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
 
   variants: {
@@ -49,26 +50,30 @@ const box = theme.css({
   ],
 });
 
+const label = theme.css({
+  maxWidth: 'calc($full - $300)',
+});
+
 const nestedContent = theme.css({
+  marginTop: '$150',
   marginLeft: '$300',
+  display: 'block',
+  flexBasis: '$full',
 });
 
 const inputStyles = theme.css({marginRight: '$100'});
 
-const Option = ({input, bordered, disabled, label, labelFromChildren, contentFromChildren}) => {
+const Option = ({input, bordered, disabled, rendered}) => {
   const id = useUniqueId();
   return (
     <Style ruleset={theme}>
-      <SlotProvider slots={{label: {htmlFor: id}, content: {className: nestedContent()}}}>
+      <SlotProvider
+        slots={{label: {htmlFor: id, className: label()}, content: {className: nestedContent()}}}
+      >
         <span className={box({bordered, disabled})}>
           {React.cloneElement(input, {id})}
-          {labelFromChildren || (
-            <Slot element="label" slot="label">
-              {label}
-            </Slot>
-          )}
+          {rendered}
         </span>
-        {contentFromChildren}
       </SlotProvider>
     </Style>
   );
@@ -114,15 +119,13 @@ export default props => {
     <Style ruleset={theme}>
       <EzLayout layout={props.bordered ? 'cluster' : 'stack'}>
         {choiceOptions.map((choice, i) => {
-          const optionChildren = choice.props?.children;
-          const optionHasChildren = Array.isArray(optionChildren);
-          const label = choice.label;
-          const labelFromChildren = optionHasChildren
-            ? optionChildren.find(child => child.type?.displayName === 'EzLabel')
-            : undefined;
-          const contentFromChildren = optionHasChildren
-            ? optionChildren.find(child => child.type?.displayName === 'EzContent')
-            : undefined;
+          const rendered = choice.label ? (
+            <Slot element="label" slot="label">
+              {choice.label}
+            </Slot>
+          ) : (
+            choice.rendered
+          );
           const value = choice.value || choice.textValue;
           const disabled = props.disabled || choice.disabled;
 
@@ -146,13 +149,7 @@ export default props => {
           );
           const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
-          return (
-            <Option
-              key={i}
-              bordered={props.bordered}
-              {...{disabled, input, label, labelFromChildren, contentFromChildren}}
-            />
-          );
+          return <Option key={i} bordered={props.bordered} {...{disabled, input, rendered}} />;
         })}
       </EzLayout>
     </Style>
