@@ -212,7 +212,7 @@ Alternatively, instead of using the `options` prop, EzField also accepts `<EzIte
 
 Allows for additional content to be presented with each choice of a multiple choice selection.
 
-EzField accepts `<EzItem>` elements as children, each with a `key` prop to denote the item value. Note, that `EzItem` must be a **direct descendant** of the field, and not wrapped in additional DOM nodes or React components.
+EzField accepts `<EzItem>` elements as children, each with a `textValue` prop to denote the item value. Note, that `EzItem` must be a **direct descendant** of the field, and not wrapped in additional DOM nodes or React components.
 
 Items provided should contain a `<EzLabel>` to describe each option. Each item can optionally accept a `<EzContent>` element to provide additional content alongside the label.
 
@@ -229,7 +229,7 @@ If presenting additional `<EzField>` elements to capture information about the u
         value={selectedChoice}
         onChange={e => setSelectedChoice(e.target.value)}
       >
-        <EzItem key="a">
+        <EzItem textValue="a">
           <EzLabel>Choice A</EzLabel>
           {selectedChoice === 'a' && (
             <EzContent>
@@ -243,7 +243,7 @@ If presenting additional `<EzField>` elements to capture information about the u
             </EzContent>
           )}
         </EzItem>
-        <EzItem key="b">
+        <EzItem textValue="b">
           <EzLabel>Choice B</EzLabel>
           {selectedChoice === 'b' && (
             <EzContent>

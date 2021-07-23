@@ -123,7 +123,7 @@ export default props => {
           const contentFromChildren = optionHasChildren
             ? optionChildren.find(child => child.type?.displayName === 'EzContent')
             : undefined;
-          const value = choice.value || choice.key;
+          const value = choice.value || choice.textValue;
           const disabled = props.disabled || choice.disabled;
 
           const inputProps = domProps(
