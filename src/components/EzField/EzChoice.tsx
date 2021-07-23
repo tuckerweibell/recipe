@@ -127,7 +127,7 @@ export default props => {
             choice.rendered
           );
           const value = choice.value || choice.textValue;
-          const disabled = props.disabled || choice.disabled;
+          const disabled = props.disabled || choice.disabled || choice.props?.disabled;
 
           const inputProps = domProps(
             {

@@ -4,8 +4,10 @@ import {render, getByLabelText, fireEvent} from '@testing-library/react';
 import regressionTests from './EzField.radio.test.md';
 import EzField from '../EzField';
 import Media from '../Media';
+import {EzItem} from '../../EzContent';
+import EzLabel from '../../EzLabel';
 
-const scope = {EzField, Media};
+const scope = {EzField, Media, EzItem, EzLabel};
 
 describe('EzField', () => {
   visualSnapshots({markdown: regressionTests, scope});

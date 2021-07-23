@@ -54,3 +54,19 @@
   />
 </Media>
 ```
+
+### Multiple choice options can be disabled via slots API
+
+```jsx
+<EzField type="radio" label="Single choice list" value="a">
+  <EzItem textValue="a">
+    <EzLabel>Choice A</EzLabel>
+  </EzItem>
+  <EzItem textValue="b" disabled>
+    <EzLabel>Choice B</EzLabel>
+  </EzItem>
+  <EzItem textValue="c">
+    <EzLabel>Choice C</EzLabel>
+  </EzItem>
+</EzField>
+```
