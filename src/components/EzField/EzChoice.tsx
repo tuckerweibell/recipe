@@ -1,4 +1,4 @@
-import React, {cloneElement} from 'react';
+import React from 'react';
 import Style from '@ezcater/snitches';
 import {useListState} from '@react-stately/list';
 import theme from './EzChoice.theme.config';
