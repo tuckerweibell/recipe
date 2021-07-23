@@ -1,7 +1,7 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
-import {render, getByLabelText, fireEvent, act} from '@testing-library/react';
+import {render, getByLabelText, fireEvent, act, screen} from '@testing-library/react';
 import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
@@ -40,6 +40,15 @@ describe('EzField', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
 
     expect(getByLabelText(container, 'Disabled input')).toHaveAttribute('disabled');
+  });
+
+  it('should apply the provided id and name attributes', () => {
+    render(<EzField label="Basic Text" name="foo" id="bar" />);
+
+    const input = screen.getByLabelText('Basic Text');
+
+    expect(input).toHaveAttribute('id', 'bar');
+    expect(input).toHaveAttribute('name', 'foo');
   });
 
   it('should update character count as the user enters text', () => {

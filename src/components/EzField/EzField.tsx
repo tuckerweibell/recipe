@@ -132,7 +132,8 @@ const srOnly = theme.css({srOnly: 'true'});
  * Form fields provide inputs for form data, such as text, dates, emails and other data types.
  */
 const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
-  const id = useUniqueId();
+  const generatedId = useUniqueId();
+  const id = props.id || generatedId;
   const labelId = useUniqueId();
   const Input = resolveInputFromType(props.type);
   const {helperText, label, touched, error, type, maxLength, labelHidden} = props;
