@@ -21,30 +21,12 @@ const capture = async (browser, viewport, html) => {
   });
 };
 
-const extractCss = () => {
-  return Array.from(document.querySelectorAll('style'))
-    .map(el => {
-      el.parentNode.removeChild(el);
-      if (el.innerHTML) return el.innerHTML;
-      if (!el.sheet) return '';
-
-      const sheet = el.sheet;
-      const rules = sheet.cssRules;
-
-      return Array.from(rules)
-        .map(r => r.cssText)
-        .join('\n');
-    })
-    .join('\n');
-};
-
 const getHtmlData = Component => {
   const {window} = new JSDOM(`<!DOCTYPE html>`, {
     pretendToBeVisual: true,
     runScripts: 'dangerously',
   });
   const {document} = window;
-  global.document = document;
   global.window = window;
   const container = document.body.appendChild(document.createElement('div'));
 
@@ -52,7 +34,6 @@ const getHtmlData = Component => {
     render(React.createElement(Component), container);
   });
 
-  const css = extractCss();
   const body = document.body.outerHTML;
 
   unmountComponentAtNode(container);
@@ -72,7 +53,6 @@ const getHtmlData = Component => {
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
       }
       body {margin: 0;}
-      ${css}
     </style>
     </head>
     <body>
