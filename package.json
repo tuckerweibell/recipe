@@ -94,6 +94,7 @@
     "deploy": "npm run build:docs:prod && npm run playroom:build && npm run push:docs",
     "clean": "npx rimraf './dist'",
     "create-component": "plop component",
+    "create-preview": "node packages/snapshot/index.js",
     "changeset": "npx changeset",
     "release": "npm run build && npx changeset publish",
     "release:canary": "npm run build && npx changeset publish --tag canary",
