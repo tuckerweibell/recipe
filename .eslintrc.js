@@ -12,6 +12,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     '@typescript-eslint/prefer-interface': 'off',
     'react/no-multi-comp': 'off',
+    'react/require-default-props': 'off',
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
