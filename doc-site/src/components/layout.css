@@ -92,6 +92,13 @@ h6 {
 [id='___gatsby'] pre[class*='language-'] {
   font-size: 14px;
   background: #fafafa;
+	padding: 0;
+	margin: 0;
+}
+
+[id='___gatsby'] section > pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
 }
 
 table {

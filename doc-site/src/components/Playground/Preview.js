@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import * as buble from 'buble/dist/buble-browser-deps.umd.js';
-import {EzSegmentedControl, EzLayout, EzLink, EzCard} from '@ezcater/recipe';
+import {EzSegmentedControl, EzLayout, EzLink, EzWell} from '@ezcater/recipe';
 import {withPrefix} from 'gatsby';
 import {createUrl} from 'playroom/utils';
 import Code from '../Code';
@@ -188,14 +188,14 @@ export default ({code, scope, language}) => {
             <TextWithIcon>{playIcon} Playroom</TextWithIcon>
           </EzLink>
         </EzLayout>
-        <EzCard isQuiet>
+        <EzWell>
           {active === 'preview' && (
             <ErrorBoundary>
               <Eval code={code} scope={scope} />
             </ErrorBoundary>
           )}
           {active === 'code' && <Code code={code} language={language} />}
-        </EzCard>
+        </EzWell>
       </EzLayout>
     </div>
   );
