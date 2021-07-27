@@ -4,7 +4,6 @@ import {EzSegmentedControl, EzLayout, EzLink, EzCard} from '@ezcater/recipe';
 import {withPrefix} from 'gatsby';
 import {createUrl} from 'playroom/utils';
 import Code from '../Code';
-import Sprites from '../Sprites';
 
 const codeIcon = (
   <svg
@@ -172,7 +171,6 @@ export default ({code, scope, language}) => {
 
   return (
     <div style={{marginTop: 32, marginBottom: 64}}>
-      <Sprites />
       <EzLayout layout="stack">
         <EzLayout layout="right" columns={5}>
           <EzSegmentedControl

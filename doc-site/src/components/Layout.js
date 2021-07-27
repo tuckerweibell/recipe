@@ -6,7 +6,6 @@ import {StaticQuery, graphql, withPrefix} from 'gatsby';
 import Link from 'gatsby-link';
 import naturalSort from 'natural-sort';
 import {
-  themes,
   EzAppLayout,
   EzPage,
   EzNavigation,
@@ -27,6 +26,7 @@ import logo from '../recipe-logo.svg';
 import ComponentGrid from './ComponentGrid';
 import {SearchProvider} from '../providers/SearchProvider';
 import TableOfContents from './TableOfContents';
+import Sprites from './Sprites';
 
 const Layout = ({
   name,
@@ -127,6 +127,7 @@ const Layout = ({
           </Helmet>
           <div>
             <div className={name}>
+              <Sprites />
               <EzAppLayout layout={layout}>
                 <EzNavigation
                   home={{
