@@ -2,8 +2,9 @@ import React from 'react';
 import {visualSnapshots} from 'sosia';
 import markdown from '../EzStatus.md';
 import {EzStatus} from '../../index';
+import EzLayout from '../../EzLayout';
 
-const scope = {EzStatus};
+const scope = {EzStatus, EzLayout};
 
 describe('EzStatus', () => {
   visualSnapshots({markdown, scope});

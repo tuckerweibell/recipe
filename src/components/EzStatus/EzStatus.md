@@ -18,17 +18,11 @@ Does not contain a dot to help these blend in with the background. Use when an a
 Success and informational statuses are to provide designers with a little flexibility in displaying statuses that don’t require action or need attention. Don’t use these in lists or collections of items where statuses will appear multiple times, since these statuses take attention away from the action required / needs attention statuses.
 
 ```jsx
-<>
-  <p>
-    <EzStatus text="Neutral" use="neutral" />
-  </p>
-  <p>
-    <EzStatus text="Success / completion" use="success" />
-  </p>
-  <p>
-    <EzStatus text="Informational" use="informational" />
-  </p>
-</>
+<EzLayout layout="stack" alignX="left">
+  <EzStatus text="Neutral" use="neutral" />
+  <EzStatus text="Success / completion" use="success" />
+  <EzStatus text="Informational" use="informational" />
+</EzLayout>
 ```
 
 ### Action Required - Needs Attention
@@ -36,28 +30,18 @@ Success and informational statuses are to provide designers with a little flexib
 These have a colored dot to help signify that they require an action from the user or command a user’s attention. For colorblind users, the text serves as a way for the meaning of the color to be conveyed, so no icon is necessary.
 
 ```jsx
-<>
-  <p>
-    <EzStatus text="Needs attention" use="attention" />
-  </p>
-  <p>
-    <EzStatus text="Warning / could be concerning" use="warning" />
-  </p>
-  <p>
-    <EzStatus text="Error / Destructive / Concerning" use="error" />
-  </p>
-</>
+<EzLayout layout="stack" alignX="left">
+  <EzStatus text="Needs attention" use="attention" />
+  <EzStatus text="Warning / could be concerning" use="warning" />
+  <EzStatus text="Error / Destructive / Concerning" use="error" />
+</EzLayout>
 ```
 
 ### Changing Size
 
 ```jsx
-<>
-  <p>
-    <EzStatus text="Error / Destructive / Concerning" use="error" size="normal" />
-  </p>
-  <p>
-    <EzStatus text="Error / Destructive / Concerning" use="error" size="small" />
-  </p>
-</>
+<EzLayout layout="stack" alignX="left">
+  <EzStatus text="Error / Destructive / Concerning" use="error" size="normal" />
+  <EzStatus text="Error / Destructive / Concerning" use="error" size="small" />
+</EzLayout>
 ```
