@@ -67,7 +67,7 @@ export default mergeCss({
       'button-border-secondary-destructive-focus': '$gray600',
 
       /* tertiary */
-      'button-bg-tertiary': 'initial',
+      'button-bg-tertiary': 'transparent',
       'button-bg-tertiary-hover': 'initial',
       'button-bg-tertiary-down': 'initial',
       'button-bg-tertiary-focus': 'initial',
