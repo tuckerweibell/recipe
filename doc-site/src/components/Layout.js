@@ -27,6 +27,7 @@ import ComponentGrid from './ComponentGrid';
 import {SearchProvider} from '../providers/SearchProvider';
 import TableOfContents from './TableOfContents';
 import Sprites from './Sprites';
+import EditDocsButton from './EditDocsButton';
 
 const Layout = ({
   name,
@@ -64,6 +65,10 @@ const Layout = ({
       const topLevel = pages
         .filter(p => Boolean(p.frontmatter.order))
         .sort((a, b) => a.frontmatter.order - b.frontmatter.order);
+
+      const absolutePath = pages.find(
+        page => page.frontmatter.path === path || page.frontmatter.path === `${path}/`
+      );
 
       const links = topLevel.map(page => ({
         to: page.frontmatter.path,
@@ -182,9 +187,17 @@ const Layout = ({
                             <ComponentGrid />
                           ) : (
                             children ||
-                            sections.map((section, i) => (
-                              <EzCardSection key={i}>{section}</EzCardSection>
-                            ))
+                            sections.map((section, i) => {
+                              const actions = {
+                                title: 'Overview',
+                                actions: <EditDocsButton path={absolutePath} />,
+                              };
+                              return (
+                                <EzCardSection key={i} {...(i === 0 ? actions : {})}>
+                                  {section}
+                                </EzCardSection>
+                              );
+                            })
                           )}
                         </EzCard>
                       </EzPageSection>
