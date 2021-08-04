@@ -316,11 +316,13 @@ The following properties are required when using selection:
 
 Use column sorting to help users find items quicker in larger data sets. Column sorting is switched off for all columns by default. Table data can only be sorted by a single column at a time.
 
-To turn on column sorting, set the `sortable` flag for each column where sorting is supported. Sorting columns with custom cell rendering is currently not supported.
+To turn on column sorting, set the `sortable` flag for each column where sorting is supported.
 
-The client code must also provide an `onSortClick` function as a prop to `EzTable`. When the column header for a sortable column is clicked, `EzTable` will notify the client that sorting is requested by calling the provided `onSortClick` function. The function is called with the click event as the first argument, and an object with the properties `column` and `direction` as the second argument. `column` is the object representing the column being sorted and `direction` is a string whose value represents the direction the sort should use, either `asc` or `desc`. When sorting an unsorted column, the initial sort direction is `asc`.
+When a column header is pressed, the `onSortClick` callback will be called and provided with `column` metadata and the `direction` in which to sort the data, either `asc` or `desc` for ascending or descending respectively. When sorting a column for the first time, the initial sort direction will be ascending.
 
 When providing pre-sorted data to EzTable, the relevant column should have a `defaultSort` value set to either `asc` or `desc` to indicate the sort order applied to the data.
+
+The following example performs client-side sorting, using the `key` metadata of a column to indicate which column to sort by.
 
 ```jsx
 () => {
