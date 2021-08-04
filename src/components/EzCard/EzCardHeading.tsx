@@ -39,6 +39,6 @@ const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions}) => {
   return <div className={box()}>{actions ? layout : heading}</div>;
 };
 
-EzCardHeading.displayName = 'EzCard';
+EzCardHeading.displayName = 'EzCardHeading';
 
 export default EzCardHeading;

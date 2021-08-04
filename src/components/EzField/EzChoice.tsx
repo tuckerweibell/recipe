@@ -79,7 +79,7 @@ const Option = ({input, bordered, disabled, rendered}) => {
   );
 };
 
-export default props => {
+const EzChoice = props => {
   const {
     type,
     name: fieldName,
@@ -155,3 +155,5 @@ export default props => {
     </Style>
   );
 };
+
+export default EzChoice;

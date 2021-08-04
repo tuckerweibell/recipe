@@ -23,8 +23,10 @@ const textArea = theme.css({
   },
 });
 
-export default React.forwardRef<HTMLTextAreaElement, {size}>(({size, ...rest}, ref) => (
+const EzTextArea = React.forwardRef<HTMLTextAreaElement, {size}>(({size, ...rest}, ref) => (
   <Style ruleset={theme}>
     <EzTextInput ref={ref} {...rest} multiLine rows={rows(size)} className={textArea()} />
   </Style>
 ));
+
+export default EzTextArea;

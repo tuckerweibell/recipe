@@ -29,7 +29,7 @@ const layout = theme.css({
   input: {paddingLeft: '2.5em'},
 });
 
-export default ({start, end, step = 60, value, ...rest}) => {
+const EzTimeInput = ({start, end, step = 60, value, ...rest}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
@@ -62,3 +62,5 @@ export default ({start, end, step = 60, value, ...rest}) => {
     </Style>
   );
 };
+
+export default EzTimeInput;
