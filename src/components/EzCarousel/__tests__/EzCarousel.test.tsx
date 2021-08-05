@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {screen, fireEvent, render} from '@testing-library/react';
+import {screen, fireEvent, render, act} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {visualSnapshots} from 'sosia';
 import regressionTests from './EzCarousel.test.md';
@@ -104,6 +104,42 @@ describe('EzCarousel', () => {
     expect(mockAnimationFrame).toHaveBeenCalled();
   });
 
+  it('calls the onPageChange handlers when interacting with carousel pages', () => {
+    jest.spyOn(console, 'log').mockImplementation();
+
+    render(
+      <EzCarousel
+        slidesPerPage={2}
+        // eslint-disable-next-line no-console
+        onPageChange={({previous, current}) => console.log(`${previous} to ${current}`)}
+      >
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+      </EzCarousel>
+    );
+
+    const nextButton = screen.getByLabelText(/next page/i);
+    userEvent.click(nextButton);
+
+    // run through the debounce timer
+    act(jest.runAllTimers);
+
+    const previousButton = screen.getByLabelText(/previous page/i);
+    userEvent.click(previousButton);
+
+    // run through the debounce timer
+    act(jest.runAllTimers);
+
+    // eslint-disable-next-line no-console
+    expect(console.log).toHaveBeenCalledTimes(2);
+    // eslint-disable-next-line no-console
+    expect(console.log).toHaveBeenCalledWith('0 to 1');
+    // eslint-disable-next-line no-console
+    expect(console.log).toHaveBeenLastCalledWith('1 to 0');
+  });
+
   it('should pass type checking', () => {
     [
       {
@@ -133,6 +169,17 @@ describe('EzCarousel', () => {
             <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
             <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
             <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+          </EzCarousel>
+        ),
+        pageChangeHandlers: (
+          <EzCarousel onPageChange={() => 'changed!'}>
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+            <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
           </EzCarousel>
         ),
       },
