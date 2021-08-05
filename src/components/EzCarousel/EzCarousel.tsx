@@ -64,7 +64,7 @@ function debounce(func, ms) {
   };
 }
 
-function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
+function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>, onPageChange) {
   const [data, setData] = useState({index: 0, isFirst: true, isLast: true});
   const requestAnimationFrameId = useRef(null);
 
@@ -80,6 +80,7 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
       }
 
       setData({index, isFirst: index === 0, isLast: index === numberOfPages - 1});
+      if (index !== data.index) onPageChange?.({previous: data.index, current: index});
     };
 
     const setCurrentPage = debounce(measure, 50);
@@ -96,7 +97,7 @@ function useCurrentPage(scrollerRef: React.MutableRefObject<HTMLUListElement>) {
       scroller.ownerDocument.defaultView.removeEventListener('resize', setCurrentPage);
       cancelAnimationFrame(requestAnimationFrameId.current);
     };
-  }, [scrollerRef]);
+  }, [scrollerRef, onPageChange, data.index]);
 
   return data;
 }
@@ -176,19 +177,27 @@ type SlidesPerPage = {
   slidesPerPage?: ResponsiveValue<number>;
 };
 
+type PageIndices = {
+  previous: number;
+  current: number;
+};
+
 type Props = VariantProps<typeof listItemStyle> &
   SlidesPerPage &
-  Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>;
+  Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'> & {
+    onPageChange?: (PageIndices) => void;
+  };
 
 /**
  * Carousels allow users to browse through a set of items,
  * to find items that may be of interest to them.
  */
-const EzCarousel: React.FC<Props> = ({children, gap, peek, ...initProps}) => {
+const EzCarousel: React.FC<Props> = ({children, gap, peek, onPageChange, ...initProps}) => {
   const {slidesPerPage} = responsiveProps(initProps as any, 'slidesPerPage');
   const id = useUniqueId();
   const scroller = React.useRef<HTMLUListElement>();
-  const {isFirst, isLast} = useCurrentPage(scroller);
+  const {isFirst, isLast} = useCurrentPage(scroller, onPageChange);
+
   return (
     <Style ruleset={theme}>
       <section className={containment()}>
