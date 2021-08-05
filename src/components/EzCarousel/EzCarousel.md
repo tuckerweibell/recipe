@@ -62,6 +62,24 @@ The `slidesPerPage` prop accents either an integer, or an object defining the nu
 </EzLayout>
 ```
 
+### Page change handler
+
+Providing a function to `onPageChange` creates the ability to take an action when the user clicks or scrolls through the carousel in either direction. This introduces a way to track user interaction with the carousel, if `onPageChange` is given a tracking event function. The index of the previous and current pages are available as arguments to the `onChangePage` function, if needed, starting at index 0.
+
+```jsx
+<EzCarousel
+  onPageChange={({previous, current}) => console.log('previous:', previous, 'current:', current)}
+>
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
+</EzCarousel>
+```
+
 ### Peek
 
 Offset the slide size to show a glimpse of the next and/or previous slides at the edge of the carousel.
