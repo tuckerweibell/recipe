@@ -2,6 +2,7 @@ import React from 'react';
 import {visualSnapshots} from 'sosia';
 import {axe} from 'jest-axe';
 import {render, getByLabelText, fireEvent, act, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
 import regressionTests from './EzField.test.md';
 import markdown from '../EzField.md';
 import EzField from '../EzField';
@@ -132,6 +133,32 @@ describe('EzField', () => {
     const {container} = render(<EzField label="Basic text" />);
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
+  });
+
+  it('should have correct aria-invalid and aria-describedby values with error state', async () => {
+    const helperText = 'Provide a name';
+    const errorMessage = 'Name too short';
+    const id = '1';
+    const labelText = 'Name';
+    const {container} = render(
+      <EzField label={labelText} id={id} touched error={errorMessage} helperText={helperText} />
+    );
+
+    const input = getByLabelText(container, labelText);
+    expect(input).toBeInvalid();
+    const accessibleDescription = `${errorMessage} ${helperText}`;
+    expect(input).toHaveAccessibleDescription(accessibleDescription);
+  });
+
+  it('should have correct aria-invalid and aria-describedby values without error state', async () => {
+    const helperText = 'Provide a name';
+    const id = '1';
+    const labelText = 'Name';
+    const {container} = render(<EzField label={labelText} id={id} helperText={helperText} />);
+
+    const input = getByLabelText(container, labelText);
+    expect(input).toBeValid();
+    expect(input).toHaveAccessibleDescription(helperText);
   });
 
   it('should pass type checking', () => {
