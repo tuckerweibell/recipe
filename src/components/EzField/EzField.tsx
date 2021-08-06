@@ -145,9 +145,14 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const active = focused || hovered;
   const showError = Boolean(touched && error);
   const labelType = isChoiceElement ? 'div' : 'label';
+  const errorMessageId = `errorMessage-${id}`;
+  const helperTextId = `helperText-${id}`;
   const errorMessage = (
     <div className={errorContainer()}>
-      <span className={clsx(errorCallout({active, inline: showInlineError}), arrow())}>
+      <span
+        id={errorMessageId}
+        className={clsx(errorCallout({active, inline: showInlineError}), arrow())}
+      >
         {error}
       </span>
     </div>
@@ -182,7 +187,11 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
             {!showInlineError && showError && errorMessage}
           </div>
         )}
-        {helperText && <div className={helper()}>{helperText}</div>}
+        {helperText && (
+          <div id={helperTextId} className={helper()}>
+            {helperText}
+          </div>
+        )}
         <div>
           <div style={relative}>
             <Input
@@ -192,6 +201,8 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
                 id,
                 name: props.name || id,
                 'aria-labelledby': labelId,
+                'aria-invalid': showError,
+                'aria-describedby': clsx(showError && errorMessageId, helperText && helperTextId),
                 ref,
                 showInlineError: (showInlineError && showError) || undefined,
               }}
