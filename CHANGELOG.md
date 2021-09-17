@@ -1,5 +1,33 @@
 ## Version 12
 
+## 12.2.0
+
+### Minor Changes
+
+- Add new component EzWell
+
+  - A Well is a content container used to visually group content on a page. Typically a Well displays non-editable content separate from other content on the screen. [[sha]](https://github.com/ezcater/recipe/commit/e1d14555)
+
+- feat: add onPageChange handler to EzCarousel [[sha]](https://github.com/ezcater/recipe/commit/e9110190)
+
+### Patch Changes
+
+- test: add tests for aria-invalid and aria-describedby on EzField [[sha]](https://github.com/ezcater/recipe/commit/a14cf7ee)
+- deps: update @testing-library/jest-dom [[sha]](https://github.com/ezcater/recipe/commit/b6cee744)
+- refactor: simplify logic for mapping between options and slots [[sha]](https://github.com/ezcater/recipe/commit/7111d4fd)
+- feat: add aria-invalid and aria-describedBy to EzField [[sha]](https://github.com/ezcater/recipe/commit/83896909)
+- style: fix tertiary button background color for ie11 [[sha]](https://github.com/ezcater/recipe/commit/203e27c5)
+- fix: disabled choices via slots API [[sha]](https://github.com/ezcater/recipe/commit/f8dfdb50)
+- fix: ignored id prop on EzField
+
+  - Closes #433 [[sha]](https://github.com/ezcater/recipe/commit/56e859b2)
+
+- docs: add docs for onPageChange handler to EzCarousel [[sha]](https://github.com/ezcater/recipe/commit/f2b3bc54)
+- test: add tests for ezcarousel onPageChange handler [[sha]](https://github.com/ezcater/recipe/commit/5a5189cb)
+- docs: update docs for eztable to sort columns with custom cell rendering [[sha]](https://github.com/ezcater/recipe/commit/c7fe4c91)
+- workflow: export default for anonymous functions to improve debugging [[sha]](https://github.com/ezcater/recipe/commit/95f41fba)
+- fix: missing `textValue` warning from Multiple choice inputs [[sha]](https://github.com/ezcater/recipe/commit/9ca34386)
+
 ## 12.1.0
 
 ### Minor Changes
