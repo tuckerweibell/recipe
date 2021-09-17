@@ -18,8 +18,4 @@ npm run develop
 
 ## Deploy
 
-To deploy to github pages (https://ezcater.github.io/recipe/), run from your CLI:
-
-```sh
-npm run deploy
-```
+To deploy to github pages (https://ezcater.github.io/recipe/), push up a PR and tag it with the label `ghpages`, and github actions will do the rest.

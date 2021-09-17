@@ -34,14 +34,12 @@
     "@ezcater/eslint-plugin-recipe": "file:../packages/eslint-plugin-recipe",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",
-    "eslint": "^6.8.0",
-    "gh-pages": "^2.2.0"
+    "eslint": "^6.8.0"
   },
   "scripts": {
     "build": "gatsby build",
     "gatsby:clean": "gatsby clean",
     "build:prod": "npm run clean && gatsby build --prefix-paths",
-    "deploy": "gh-pages -d public -r ssh://git@github.com/ezcater/recipe.git",
     "develop": "gatsby develop --open",
     "develop:with-ie11": "gatsby build && gatsby serve --open",
     "clean": "rm -rf .cache && rm -rf public",
