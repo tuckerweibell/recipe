@@ -50,7 +50,7 @@ const markdownSourceWithThemeWrapper = {
 };
 
 const chromeDesktop = new RemotePuppeteerBrowserTarget({
-  url: new URL('https://remote-screenshot-puppeteer-ebe66dw5l-craigcavalier.vercel.app/'),
+  url: new URL('https://remote-screenshot-puppeteer-danidewitt.vercel.app/'),
   width: 1024,
   height: 768,
 });
