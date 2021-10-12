@@ -34,6 +34,7 @@ These have a colored dot to help signify that they require an action from the us
   <EzStatus text="Needs attention" use="attention" />
   <EzStatus text="Warning / could be concerning" use="warning" />
   <EzStatus text="Error / Destructive / Concerning" use="error" />
+  <EzStatus text="Alert / Reconfirm" use="alert" />
 </EzLayout>
 ```
 
@@ -43,5 +44,24 @@ These have a colored dot to help signify that they require an action from the us
 <EzLayout layout="stack" alignX="left">
   <EzStatus text="Error / Destructive / Concerning" use="error" size="normal" />
   <EzStatus text="Error / Destructive / Concerning" use="error" size="small" />
+</EzLayout>
+```
+
+### Custom Icons
+
+In some cases, a custom icon may be appropriate to visually parse different types of action required more easily. Provide an svg icon to the `icon` prop.
+
+```jsx
+<EzLayout layout="stack" alignX="left">
+  <EzStatus
+    text="New"
+    use="success"
+    size="normal"
+    icon={
+      <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+        <use xlinkHref="#star" />
+      </svg>
+    }
+  />
 </EzLayout>
 ```

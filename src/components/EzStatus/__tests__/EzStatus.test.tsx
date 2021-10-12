@@ -9,12 +9,19 @@ const scope = {EzStatus, EzLayout};
 describe('EzStatus', () => {
   visualSnapshots({markdown, scope});
 
+  const icon = (
+    <svg>
+      <circle cx="50%" cy="50%" r="30%" fillRule="evenodd" />
+    </svg>
+  );
+
   it('should pass type checking', () => {
     [
       {
         textProp: <EzStatus text="status text" use="informational" />,
         useProp: <EzStatus text="success" use="success" />,
         sizeProp: <EzStatus text="error text" use="error" size="small" />,
+        iconProp: <EzStatus text="error text" use="error" size="small" icon={icon} />,
         domProps: (
           <EzStatus
             // required props

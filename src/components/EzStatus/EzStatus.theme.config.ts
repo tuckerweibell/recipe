@@ -15,10 +15,13 @@ export default mergeCss({
       'status-text-warning': '$yellow700',
       'status-bg-error': '$red200',
       'status-text-error': '$red700',
+      'status-bg-alert': '$purple200',
+      'status-text-alert': '$purple700',
     },
     space: {
       'status-px': '$150',
       'status-py': '$50',
+      'status-icon-top': '0.125em',
     },
     lineHeights: {
       'status-line-height': '$1',
@@ -29,6 +32,9 @@ export default mergeCss({
     },
     fontWeights: {
       'status-bold': '$bold',
+    },
+    sizes: {
+      'status-icon-size': '1em',
     },
   },
 });

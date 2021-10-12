@@ -39,6 +39,10 @@ const status = theme.css({
         backgroundColor: '$status-bg-error',
         color: '$status-text-error',
       },
+      alert: {
+        backgroundColor: '$status-bg-alert',
+        color: '$status-text-alert',
+      },
     },
     size: {
       normal: {
@@ -51,15 +55,27 @@ const status = theme.css({
   },
 });
 
+const customIcon = theme.css({
+  height: '$status-icon-size',
+  width: '$status-icon-size',
+  minWidth: '$status-icon-size',
+  position: 'relative',
+  top: '$status-icon-top',
+});
+
 /**
  * Status call attentions to an section or individual item in a set.
  */
 const EzStatus = forwardRef<HTMLElement, EzStatusProps>(({...initProps}, ref) => {
   const {props} = status(initProps);
+  const showDotIcon = ['attention', 'warning', 'error', 'alert'].includes(initProps.use);
+  const showCustomIcon = initProps.icon;
+  const showIcon = showDotIcon || showCustomIcon;
+  const icon = showCustomIcon ? <svg className={customIcon()}>{initProps.icon}</svg> : <DotIcon />;
   return (
     <Style ruleset={theme}>
       <span {...props} ref={ref}>
-        {['attention', 'warning', 'error'].includes(initProps.use) && <DotIcon />} {props.text}
+        {showIcon && icon} {props.text}
       </span>
     </Style>
   );
