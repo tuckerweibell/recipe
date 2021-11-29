@@ -50,6 +50,18 @@ describe('EzField', () => {
     expectHourlyOptionsFrom9to5(options);
   });
 
+  it('displayAsNoon prop should convert the 12:00 PM time option to noon', () => {
+    const {container} = render(
+      <EzField type="time" label={label} start="9:00AM" end="5:00PM" step={60} displayAsNoon />
+    );
+
+    typeArrowDownToOpenSelectList(container);
+
+    const options = getAllByRole(container, 'option');
+
+    expectHourlyOptionsFrom9to5ExceptNoon(options);
+  });
+
   it('should use default step of 60 minutes', async () => {
     const {container} = render(
       <EzField type="time" label={label} start="9:00 AM" end="5:00 PM" value="1:00 PM" />
@@ -112,6 +124,18 @@ describe('EzField', () => {
     expect(options[1]).toHaveTextContent('10:00 AM');
     expect(options[2]).toHaveTextContent('11:00 AM');
     expect(options[3]).toHaveTextContent('12:00 PM');
+    expect(options[4]).toHaveTextContent('1:00 PM');
+    expect(options[5]).toHaveTextContent('2:00 PM');
+    expect(options[6]).toHaveTextContent('3:00 PM');
+    expect(options[7]).toHaveTextContent('4:00 PM');
+    expect(options[8]).toHaveTextContent('5:00 PM');
+  };
+
+  const expectHourlyOptionsFrom9to5ExceptNoon = options => {
+    expect(options[0]).toHaveTextContent('9:00 AM');
+    expect(options[1]).toHaveTextContent('10:00 AM');
+    expect(options[2]).toHaveTextContent('11:00 AM');
+    expect(options[3]).toHaveTextContent('Noon');
     expect(options[4]).toHaveTextContent('1:00 PM');
     expect(options[5]).toHaveTextContent('2:00 PM');
     expect(options[6]).toHaveTextContent('3:00 PM');

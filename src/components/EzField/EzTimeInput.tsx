@@ -12,7 +12,7 @@ const repeat = n => new Array(n).fill(null);
 const formatTime = (time: string) =>
   time.toLocaleLowerCase().replace(/([0-9]{2})([a-z]{2})$/u, '$1 $2');
 
-const useTimeRangeOptions = ({start, end, step}) => {
+const useTimeRangeOptions = ({start, end, step, displayAsNoon}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
@@ -20,7 +20,12 @@ const useTimeRangeOptions = ({start, end, step}) => {
   const endTime = dayjs(`${date} ${formatTime(end)}`);
   const interval = Math.floor(endTime.diff(startTime, 'minute') / step) + 1;
 
-  return repeat(interval).map((_, i) => startTime.add(step * i, 'minute').format(t('TIME_FORMAT')));
+  const options = repeat(interval).map((_, i) => {
+    const formattedValue = startTime.add(step * i, 'minute').format(t('TIME_FORMAT'));
+    return formattedValue === '12:00 PM' && displayAsNoon ? 'Noon' : formattedValue;
+  });
+
+  return options;
 };
 
 const layout = theme.css({
@@ -29,15 +34,24 @@ const layout = theme.css({
   input: {paddingLeft: '2.5em'},
 });
 
-const EzTimeInput = ({start, end, step = 60, value, ...rest}) => {
+const EzTimeInput = ({start, end, step = 60, value, displayAsNoon = false, ...rest}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
   const valueTime = dayjs(`${date} ${value}`);
   const valueTimeString = valueTime.format(t('TIME_FORMAT'));
+
   const {error, touched} = rest;
 
-  const options = useTimeRangeOptions({start, end, step});
+  const options = useTimeRangeOptions({start, end, step, displayAsNoon});
+
+  const selectOptions = () =>
+    options.map(option =>
+      option === 'Noon' && displayAsNoon
+        ? {label: option, value: '12:00 PM'}
+        : {label: option, value: option}
+    );
+
   return (
     <Style ruleset={theme}>
       <div className={layout()}>
@@ -49,10 +63,7 @@ const EzTimeInput = ({start, end, step = 60, value, ...rest}) => {
           label={rest.label}
           {...{error, touched}}
           placeholder={rest.placeholder}
-          options={options.map(option => ({
-            label: option,
-            value: option,
-          }))}
+          options={selectOptions()}
           value={valueTimeString}
           onChange={rest.onChange}
           aria-labelledby={rest['aria-labelledby']}
