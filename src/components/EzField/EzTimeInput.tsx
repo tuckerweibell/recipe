@@ -34,7 +34,15 @@ const layout = theme.css({
   input: {paddingLeft: '2.5em'},
 });
 
-const EzTimeInput = ({start, end, step = 60, value, displayAsNoon = false, ...rest}) => {
+const EzTimeInput = ({
+  start,
+  end,
+  step = 60,
+  value,
+  displayAsNoon = false,
+  focusLabel = '',
+  ...rest
+}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
@@ -68,6 +76,7 @@ const EzTimeInput = ({start, end, step = 60, value, displayAsNoon = false, ...re
           onChange={rest.onChange}
           aria-labelledby={rest['aria-labelledby']}
           disabled={rest.disabled}
+          focusLabel={focusLabel}
         />
       </div>
     </Style>
