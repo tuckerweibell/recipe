@@ -547,9 +547,14 @@ Times in this component are displayed with the format h:mma, for example, `9:45a
 
 ### Time input field
 
-Allows the user to pick a time from a select dropdown. Use `type="time"` to enable the user to pick a time from a select dropdown. An optional range can be used to limit the number of options in the select dropdown. Use `start="9:00am"` to specify the start of the range, and `end="5:00pm"` to specify the end of the range. An optional step can change the interval in which the times are generated. By default the step is `60` minutes. You can change it by adding `step={15}`. If "Noon" is more clear as a label than "12:00 PM" for your particular scenario, you can pass the optional prop `displayAsNoon`. 
+Allows the user to pick a time from a select dropdown. Use `type="time"` to enable the user to pick a time from a select dropdown. An optional range can be used to limit the number of options in the select dropdown. Use `start="9:00am"` to specify the start of the range, and `end="5:00pm"` to specify the end of the range. An optional step can change the interval in which the times are generated. By default the step is `60` minutes. You can change it by adding `step={15}`.
 
 The steps that are supported are: `5`, `10`, `15`, `20`, `30`, `60`
+
+Optional Props:
+
+- `displayAsNoon: <boolean>`: Replaces the "12:00 PM" label with "Noon"
+- `focusLabel: <string>`: Determines which option is guaranteed to be within view when the dropdown opens
 
 ```jsx
 () => {
