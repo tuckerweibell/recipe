@@ -100,7 +100,8 @@ const EzListBox = (props, ref) => {
     /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
     const current = selectionManager.selectedKey === option.key;
     const selected = selectionManager.focusedKey === option.key;
-    const shouldReceiveFocus = props.focusLabel === option.label;
+    const shouldReceiveFocus =
+      props.focusLabel === option.label && selectionManager.selectedKey === null;
     return (
       <li
         role="option"
