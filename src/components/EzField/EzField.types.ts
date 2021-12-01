@@ -54,6 +54,7 @@ type TimeInputProps = {
   end: string;
   step?: number;
   displayAsNoon?: boolean;
+  focusLabel?: string;
 };
 
 type TextAreaInputProps = {
