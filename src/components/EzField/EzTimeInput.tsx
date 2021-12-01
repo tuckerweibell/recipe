@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
 import Style from '@ezcater/snitches';
 import theme from './EzField.theme.config';
@@ -48,12 +48,10 @@ const EzTimeInput = ({
 
   const options = useTimeRangeOptions({start, end, step});
 
-  const selectOptions = () => {
-    return options.map(option => ({
-      label: option === '12:00 PM' && displayAsNoon ? 'Noon' : option,
-      value: option,
-    }));
-  };
+  const selectOptions = options.map(option => ({
+    label: option === '12:00 PM' && displayAsNoon ? 'Noon' : option,
+    value: option,
+  }));
 
   return (
     <Style ruleset={theme}>
@@ -66,7 +64,7 @@ const EzTimeInput = ({
           label={rest.label}
           {...{error, touched}}
           placeholder={rest.placeholder}
-          options={selectOptions()}
+          options={selectOptions}
           value={valueTimeString}
           onChange={rest.onChange}
           aria-labelledby={rest['aria-labelledby']}
