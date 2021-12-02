@@ -49,7 +49,7 @@ const EzTimeInput = ({
   const options = useTimeRangeOptions({start, end, step});
 
   const selectOptions = options.map(option => ({
-    label: option === '12:00 PM' && displayAsNoon ? 'Noon' : option,
+    label: option === '12:00 PM' && displayAsNoon ? t('NOON') : option,
     value: option,
   }));
 
