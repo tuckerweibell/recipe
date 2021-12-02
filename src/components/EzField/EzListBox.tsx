@@ -100,13 +100,18 @@ const EzListBox = (props, ref) => {
     /* Note: lint doesn't detect the keyboard handler is on the input element, not the list */
     const current = selectionManager.selectedKey === option.key;
     const selected = selectionManager.focusedKey === option.key;
+
+    // We want the current option to receive focus when the dropdown is opened and the focusLabel matches. This should not occur after you have already selected an option.
+    const shouldReceiveFocus =
+      props.focusLabel === option.label && selectionManager.selectedKey === null;
+
     return (
       <li
         role="option"
         className={clsx(listItem(), listItemOption({current, selected}))}
         aria-current={current}
         aria-selected={selected}
-        ref={selected ? (activeOptionRef as any) : undefined}
+        ref={selected || shouldReceiveFocus ? (activeOptionRef as any) : undefined}
         onMouseOver={() => selectionManager.setFocusedKey(option.key)}
         onClick={() => selectionManager.replaceSelection(option.key)}
         id={getItemId(props.id, option.key)}

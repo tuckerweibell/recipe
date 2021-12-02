@@ -83,6 +83,7 @@ const EzSelect = props => {
               onClick={() => triggerRef.current.focus()}
               collection={state.collection}
               selectionManager={state.selectionManager}
+              focusLabel={props.focusLabel}
             />
           </EzPopover>
         )}

@@ -551,6 +551,11 @@ Allows the user to pick a time from a select dropdown. Use `type="time"` to enab
 
 The steps that are supported are: `5`, `10`, `15`, `20`, `30`, `60`
 
+Optional Props:
+
+- `displayAsNoon: <boolean>`: Replaces the "12:00 PM" label with "Noon"
+- `focusLabel: <string>`: Determines which option is guaranteed to be within view when the dropdown opens
+
 ```jsx
 () => {
   const [time, setTime] = React.useState('12:00 pm');

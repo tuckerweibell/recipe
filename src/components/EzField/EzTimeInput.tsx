@@ -29,15 +29,30 @@ const layout = theme.css({
   input: {paddingLeft: '2.5em'},
 });
 
-const EzTimeInput = ({start, end, step = 60, value, ...rest}) => {
+const EzTimeInput = ({
+  start,
+  end,
+  step = 60,
+  value,
+  displayAsNoon = false,
+  focusLabel = '',
+  ...rest
+}) => {
   const {t} = useTranslation(en);
 
   const date = dayjs().format(t('DATE_FORMAT'));
   const valueTime = dayjs(`${date} ${value}`);
   const valueTimeString = valueTime.format(t('TIME_FORMAT'));
+
   const {error, touched} = rest;
 
   const options = useTimeRangeOptions({start, end, step});
+
+  const selectOptions = options.map(option => ({
+    label: option === '12:00 PM' && displayAsNoon ? t('NOON') : option,
+    value: option,
+  }));
+
   return (
     <Style ruleset={theme}>
       <div className={layout()}>
@@ -49,14 +64,12 @@ const EzTimeInput = ({start, end, step = 60, value, ...rest}) => {
           label={rest.label}
           {...{error, touched}}
           placeholder={rest.placeholder}
-          options={options.map(option => ({
-            label: option,
-            value: option,
-          }))}
+          options={selectOptions}
           value={valueTimeString}
           onChange={rest.onChange}
           aria-labelledby={rest['aria-labelledby']}
           disabled={rest.disabled}
+          focusLabel={focusLabel}
         />
       </div>
     </Style>

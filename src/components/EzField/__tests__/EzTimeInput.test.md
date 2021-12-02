@@ -69,14 +69,42 @@
 ### EzField time input disabled
 
 ```jsx
+<EzField
+  type="time"
+  label="Select delivery time"
+  helperText="This is the time your food will be delivered."
+  start="9:00am"
+  end="5:00pm"
+  value="1:00 PM"
+  disabled
+/>
+```
 
-  <EzField
-    type="time"
-    label="Select delivery time"
-    helperText="This is the time your food will be delivered."
-    start="9:00am"
-    end="5:00pm"
-    value="1:00 PM"
-    disabled
-  />
+### EzField time display as noon
+
+```jsx
+<EzField
+  type="time"
+  label="Select delivery time"
+  helperText="This is the time your food will be delivered."
+  start="9:00am"
+  end="5:00pm"
+  value="12:00 PM"
+  displayAsNoon
+/>
+```
+
+### EzField time focus label
+
+```jsx
+<EzField
+  type="time"
+  label="Select delivery time"
+  helperText="This is the time your food will be delivered."
+  start="9:00am"
+  end="5:00pm"
+  placeholder="Choose..."
+  value=""
+  focusLabel="5:00pm"
+/>
 ```
