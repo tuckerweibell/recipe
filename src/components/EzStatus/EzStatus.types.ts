@@ -4,7 +4,7 @@ export type EzStatusSizes = 'normal' | 'small';
 
 export type EzStatusInformationalUses = 'neutral' | 'success' | 'informational';
 
-export type EzStatusActionUses = 'attention' | 'warning' | 'error';
+export type EzStatusActionUses = 'attention' | 'warning' | 'error' | 'alert';
 
 export type EzStatusUses = EzStatusInformationalUses | EzStatusActionUses;
 

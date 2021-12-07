@@ -88,7 +88,7 @@ const hasGroupedOptions = options => Array.isArray(options[0]);
 
 const EzListBox = (props, ref) => {
   const activeOptionRef = useRef<HTMLElement>();
-  const {collection, selectionManager, searchWords, ...domProps} = props;
+  const {collection, selectionManager, searchWords, focusLabel, ...domProps} = props;
   const {items} = collection;
 
   // keep the focused list item visible within the scrollable listbox
@@ -102,8 +102,7 @@ const EzListBox = (props, ref) => {
     const selected = selectionManager.focusedKey === option.key;
 
     // We want the current option to receive focus when the dropdown is opened and the focusLabel matches. This should not occur after you have already selected an option.
-    const shouldReceiveFocus =
-      props.focusLabel === option.label && selectionManager.selectedKey === null;
+    const shouldReceiveFocus = focusLabel === option.label && selectionManager.selectedKey === null;
 
     return (
       <li
