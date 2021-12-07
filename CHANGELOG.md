@@ -1,5 +1,11 @@
 ## Version 12
 
+## 12.4.1
+
+### Patch Changes
+
+- fix: prevent non-dom property from being passed to dom element and add type for ezalert [[sha]](https://github.com/ezcater/recipe/commit/e586d480)
+
 ## 12.4.0
 
 ### Minor Changes
