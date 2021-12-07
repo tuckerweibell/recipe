@@ -1,5 +1,18 @@
 ## Version 12
 
+## 12.4.0
+
+### Minor Changes
+
+- feat: Added optional props to EzField for time inputs
+
+  - displayAsNoon: <boolean>: Replaces the "12:00 PM" label with "Noon"
+  - focusLabel: <string>: Determines which option is guaranteed to be within view when the dropdown opens and an option isn't already selected [[sha]](https://github.com/ezcater/recipe/commit/0f1a8c6e)
+
+### Patch Changes
+
+- fix: fixes bug where overlay was not visible for EzNavigation [[sha]](https://github.com/ezcater/recipe/commit/b77de87b)
+
 ## 12.3.0
 
 ### Minor Changes
