@@ -31,7 +31,9 @@ const PopoverImpl: React.FC<Props> = ({
   children,
   ...rest
 }) => {
-  const modifiers: Array<Partial<Modifier<any>>> = [{name: 'offset', options: {offset: [0, 5]}}];
+  const modifiers: Array<Partial<Modifier<any, any>>> = [
+    {name: 'offset', options: {offset: [0, 5]}},
+  ];
 
   if (matchWidth) {
     modifiers.push({

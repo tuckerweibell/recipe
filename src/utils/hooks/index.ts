@@ -11,3 +11,5 @@ export {default as useTranslation} from './useTranslation';
 export {default as useScrollIntoView} from './useScrollIntoView';
 export {default as useUniqueId} from './useUniqueId';
 export {default as useUpdateEffect} from './useUpdateEffect';
+export {default as usePrevious} from './usePrevious';
+export {default as useOnChangeValue} from './useOnChangeValue';

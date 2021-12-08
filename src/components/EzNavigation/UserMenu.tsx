@@ -12,6 +12,7 @@ import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import EzLink from '../EzLink';
 import {clsx, wrapEvents} from '../../utils';
 import EzPopover from '../EzPopover';
+import {useOnChangeValue} from '../../utils/hooks';
 
 interface MenuProps {
   readonly name: string;
@@ -151,9 +152,11 @@ const UserMenu: React.FC<MenuProps> = ({name, links, isSidebarOpen, sidebarToggl
   const ref = useRef();
   const menuState = useMenuTriggerState();
   const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
-  useEffect(() => {
-    if (!isSidebarOpen) menuState.close();
-  }, [isSidebarOpen, menuState]);
+
+  useOnChangeValue(isSidebarOpen, isOpen => {
+    if (!isOpen) menuState.close();
+  });
+
   return (
     <Style ruleset={theme}>
       <UserMenuList
