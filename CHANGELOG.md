@@ -1,5 +1,11 @@
 ## Version 12
 
+## 12.4.2
+
+### Patch Changes
+
+- fix: makes sure the EzNavigation user menu closes on appropriate triggers [[sha]](https://github.com/ezcater/recipe/commit/a2b6bb4c)
+
 ## 12.4.1
 
 ### Patch Changes
