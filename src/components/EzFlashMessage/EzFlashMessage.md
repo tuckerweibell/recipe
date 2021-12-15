@@ -139,6 +139,8 @@ Use for:
 
 Adding an `onDismiss` event handler will display an icon button in the top right hand corner of the flash message that can be used to dismiss the flash message. This state is local to the component in which the flash message is displayed.
 
+Autohide flash messages should not be used with `onDismiss`.
+
 ```jsx
 () => {
   const [visible, setVisible] = React.useState(true);
@@ -165,6 +167,35 @@ Adding an `onDismiss` event handler will display an icon button in the top right
           </p>
         </EzFlashMessage>
       )}
+    </EzPage>
+  );
+};
+```
+
+### Autohide Flash Message
+
+Adding an `autohide` flag will automatically hide the flash message after 5000ms, or a specified `autohideDuration`. Provide a `onAutohide` event handler for custom event handling when the flash message disappears.
+
+For example, if an autohide flash message should only be viewed once (and not again on refresh), pass a custom function to `onAutohide` that handles persisting whether a message has been viewed or not.
+
+Autohide flash messages should not be used with `onDismiss`.
+
+```jsx
+() => {
+  return (
+    <EzPage>
+      <EzFlashMessage
+        use="success"
+        headline="We saved that for you."
+        autohide
+        autohideDuration={2000}
+        onAutohide={() => console.log('Flash message hidden.')}
+      >
+        <p>
+          No further action required, just letting you know! Your changes will take effect
+          immediately.
+        </p>
+      </EzFlashMessage>
     </EzPage>
   );
 };
