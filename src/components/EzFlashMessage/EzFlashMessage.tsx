@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzFlashMessage.theme.config';
 import EzLayout from '../EzLayout';
@@ -9,8 +9,11 @@ import {InfoIcon, ErrorIcon, SuccessIcon} from '../Icons';
 type EzFlashMessageUses = 'success' | 'error' | 'warning' | 'info';
 
 type FlashMessageProps = {
+  autohide?: boolean;
+  autohideDuration?: number;
   children: React.ReactNode;
   headline?: string;
+  onAutohide?: () => void;
   onDismiss?: () => void;
   use: EzFlashMessageUses;
 };
@@ -85,6 +88,23 @@ const icons = {
  */
 const EzFlashMessage: React.FC<FlashMessageProps> = initProps => {
   const {props} = flashMessage(initProps);
+
+  const [show, setShow] = React.useState(true);
+
+  useEffect(() => {
+    if (!props.autohide) return;
+
+    const autohideTimer = setTimeout(() => {
+      if (props.onAutohide) props.onAutohide();
+      setShow(false);
+    }, props.autohideDuration || 5000);
+
+    // eslint-disable-next-line consistent-return
+    return () => clearTimeout(autohideTimer);
+  }, []);
+
+  if (!show) return null;
+
   return (
     <Style ruleset={theme}>
       <div className={flashMessage(initProps)}>
