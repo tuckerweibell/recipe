@@ -48,6 +48,21 @@ describe('EzFlashMessage', () => {
             <div>recipe!</div>
           </EzFlashMessage>
         ),
+        autohide: (
+          <EzFlashMessage use="success" autohide>
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+        autohideDuration: (
+          <EzFlashMessage use="success" autohide autohideDuration={2000}>
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
+        autohideTimer: (
+          <EzFlashMessage use="success" autohide autohideDuration={2000} onAutohide={() => 'hide'}>
+            <div>recipe!</div>
+          </EzFlashMessage>
+        ),
       },
     ].forEach(() => {});
 
