@@ -11,7 +11,7 @@ const styles = theme.global({
   },
   body: {
     margin: 0,
-    color: '$text',
+    color: '$black100',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
   },
