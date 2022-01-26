@@ -62,6 +62,18 @@ You can provide an optional subheading. At this time you should only use subhead
 </EzCard>
 ```
 
+### Heading capitalization
+
+You can provide `uppercase` to `casing` to capitalize all the letters in a heading.
+
+```jsx
+<EzCard>
+  <EzHeading size="3" casing="uppercase">
+    Container headings
+  </EzHeading>
+</EzCard>
+```
+
 ### Heading elements
 
 Normally heading size numbers correspond directly to the same size `h` tag, but you can provide an optional `as` property to override the markup that is rendered for heading. You should only need to use this property sparingly and only for accessibility or SEM purposes. For example: an empty state might call for a visually larger heading, but it's position in the page hierarchy might make a lower level `h` tag the appropriate markup.

@@ -70,6 +70,11 @@ describe('EzHeading', () => {
             Container headings
           </EzHeading>
         ),
+        casing: (
+          <EzHeading size="3" casing="uppercase">
+            Container headings
+          </EzHeading>
+        ),
         alignProp: (
           <EzHeading size="3" align="center">
             Online ordering boosts sales through your site. ezOrdering boosts it further.
