@@ -95,3 +95,18 @@ By default, heading text will be left-aligned within the available space.
   Online ordering boosts sales through your site. ezOrdering boosts it further.
 </EzHeading>
 ```
+
+### Heading colors
+
+You can provide the prop `color` a Recipe color, we currently support `blue` and `green`.
+
+```jsx
+<EzCard>
+  <EzHeading size="3" color="green">
+    Container headings
+  </EzHeading>
+  <EzHeading size="3" color="blue">
+    Container headings
+  </EzHeading>
+</EzCard>
+```

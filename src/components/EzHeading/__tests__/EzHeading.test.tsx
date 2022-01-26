@@ -65,6 +65,11 @@ describe('EzHeading', () => {
             <EzHeading size="6">Small stuff</EzHeading>
           </React.Fragment>
         ),
+        color: (
+          <EzHeading size="3" color="blue">
+            Container headings
+          </EzHeading>
+        ),
         subheading: (
           <EzHeading size="3" subheading="I'm a subheading">
             Container headings

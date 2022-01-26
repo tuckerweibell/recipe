@@ -5,6 +5,8 @@ export default mergeCss({
     colors: {
       'heading-text': '$text',
       'subheading-text': '$deemphasisText',
+      'heading-blue': '$blue950',
+      'heading-green': '$green100',
     },
     fontSizes: {
       subheading: '$100',
