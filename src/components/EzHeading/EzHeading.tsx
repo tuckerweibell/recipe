@@ -19,7 +19,7 @@ const headingCss = theme.css({
       },
       '2': {
         fontSize: '$600',
-        fontWeight: '$regular',
+        fontWeight: '$bold',
       },
       '3': {
         fontSize: '$300',
