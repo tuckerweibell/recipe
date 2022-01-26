@@ -51,7 +51,7 @@ If the ReactNode provided to the link component is plain text, it will be styled
 
 ### Secondary links
 
-The `secondary` link variant matches the current color of the containing paragraph text. Its subdued appearance is suitable when the primary variant is too overwhelming, such as in blocks of text with several references linked throughout.
+The `secondary` link variant's subdued appearance is suitable when the primary variant is too overwhelming, such as in blocks of text with several references linked throughout.
 
 ```jsx
 <p>

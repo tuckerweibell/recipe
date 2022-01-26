@@ -47,7 +47,6 @@ const styles = theme.css({
         '&:focus': {
           outline: 'none',
           textDecoration: 'underline',
-          textDecorationStyle: 'double',
         },
         '&:hover': {
           color: '$link-text-hover',
@@ -60,13 +59,12 @@ const styles = theme.css({
       secondary: {
         fontWeight: 'normal',
         textDecoration: 'underline',
-        color: 'inherit',
+        color: '$link-text',
         cursor: 'pointer',
         outlineOffset: '2px',
         '&:focus': {
           outline: 'none',
           textDecoration: 'underline',
-          textDecorationStyle: 'double',
         },
         '&:hover': {
           color: '$link-text-hover',
