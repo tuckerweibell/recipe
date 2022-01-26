@@ -96,6 +96,7 @@ const stitches = createCss({
       200: '16px',
       300: '18px',
       450: '21px',
+      600: '24px',
       800: '32px',
       // aliases
       text: 'var(--recipe-base-font-size, $200)',

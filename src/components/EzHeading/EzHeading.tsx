@@ -18,7 +18,7 @@ const headingCss = theme.css({
         fontWeight: '$regular',
       },
       '2': {
-        fontSize: '$450',
+        fontSize: '$600',
         fontWeight: '$regular',
       },
       '3': {
