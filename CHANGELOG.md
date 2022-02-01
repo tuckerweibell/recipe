@@ -1,5 +1,19 @@
 ## Version 12
 
+## 12.5.0
+
+### Minor Changes
+
+- feat: add color variant to EzHeading [[sha]](https://github.com/ezcater/recipe/commit/ebc182b7)
+- feat: add uppercase variant to EzHeading [[sha]](https://github.com/ezcater/recipe/commit/6325ec27)
+
+### Patch Changes
+
+- style: change h2 EzHeading to bold [[sha]](https://github.com/ezcater/recipe/commit/c5a287d9)
+- style: remove EzLink double underline, update secondary link color and style docs [[sha]](https://github.com/ezcater/recipe/commit/59436246)
+- style: change body text to black100 [[sha]](https://github.com/ezcater/recipe/commit/bd2a9644)
+- style: change EzHeading size 2 from 21px to 24px [[sha]](https://github.com/ezcater/recipe/commit/0fec13ff)
+
 ## 12.4.2
 
 ### Patch Changes
