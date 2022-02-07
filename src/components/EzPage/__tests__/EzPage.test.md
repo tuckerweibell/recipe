@@ -97,3 +97,11 @@
   </EzPage>
 </Media>
 ```
+
+### Has white background when optional prop passed in
+
+```jsx
+<EzPage whiteBackground>
+  <EzCard title="Card">The background behind this card should be white</EzCard>
+</EzPage>
+```

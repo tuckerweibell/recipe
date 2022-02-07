@@ -5,7 +5,16 @@ import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import EzHeading from '../EzHeading';
 
 const pageContainer = theme.css({
-  backgroundColor: '$page-bg',
+  variants: {
+    backgroundColor: {
+      white: {
+        backgroundColor: '$page-bg-white',
+      },
+      gray: {
+        backgroundColor: '$page-bg',
+      },
+    },
+  },
   padding: '$page-py $page-px',
   flexGrow: 1,
   p: {
@@ -38,6 +47,7 @@ const pageWrapper = theme.css({
 });
 
 type Props = {
+  whiteBackground?: boolean;
   children: React.ReactNode;
 };
 
@@ -63,12 +73,13 @@ export const usePageSection = type => {
   return ref.current;
 };
 
-const EzPage: React.FC<Props> = ({children}) => {
+const EzPage: React.FC<Props> = ({children, whiteBackground = false}) => {
   const sectionsCounter = useRef(0);
+  const backgroundColor = whiteBackground ? 'white' : 'gray';
   return (
     <Style ruleset={theme}>
       <SectionContext.Provider value={sectionsCounter}>
-        <div className={pageContainer()}>
+        <div className={pageContainer({backgroundColor})}>
           <MaxWidth>
             <div className={pageWrapper()}>{children}</div>
           </MaxWidth>
