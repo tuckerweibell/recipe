@@ -55,6 +55,16 @@ Pages provide appropriate margin on Headings to indicate that a heading is relat
 </EzPage>
 ```
 
+### Option for white background
+
+Pages have gray backgrounds by default. You can give it a white background by passing in the optional `whiteBackground` prop.
+
+```jsx
+<EzPage whiteBackground>
+  <EzCard title="Card">Pass in the optional whiteBackground prop to give your page a white background.</EzCard>
+</EzPage>
+```
+
 ### Page Sections
 
 Page sections can be used on larger screens to create layouts that have a left or right sidebar. On small screens, page sections will stack content vertically.
