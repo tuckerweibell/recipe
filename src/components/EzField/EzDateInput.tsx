@@ -99,6 +99,8 @@ const EzDateInput = ({
     placeholder,
     error: props.error,
     touched: props.touched,
+    onFocus: props.onFocus,
+    onFocusCapture: props.onFocusCapture,
   };
 
   const {minDate, maxDate, filterDate} = props;

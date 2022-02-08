@@ -291,5 +291,23 @@ describe('EzField', () => {
 
       expect(screen.getByRole('dialog')).toContainElement(document.activeElement as HTMLElement);
     });
+    it('should call props onFocusCapture and onFocus', () => {
+      const onFocus = jest.fn();
+      const onFocusCapture = jest.fn();
+      render(
+        <EzField
+          type="date"
+          value="01/01/2019"
+          label={inputLabel}
+          onFocus={onFocus}
+          onFocusCapture={onFocusCapture}
+        />
+      );
+
+      userEvent.click(screen.getByLabelText(inputLabel));
+
+      expect(onFocusCapture).toHaveBeenCalledTimes(1);
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
   });
 });
