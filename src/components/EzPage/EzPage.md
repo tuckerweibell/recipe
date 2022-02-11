@@ -57,7 +57,7 @@ Pages provide appropriate margin on Headings to indicate that a heading is relat
 
 ### Option for white background
 
-Pages have gray backgrounds by default. You can give it a white background by passing in the optional `whiteBackground` prop.
+Pages have gray backgrounds by default. You can give them a white background by passing in the optional `whiteBackground` prop.
 
 ```jsx
 <EzPage whiteBackground>
