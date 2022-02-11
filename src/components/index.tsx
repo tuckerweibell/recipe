@@ -25,6 +25,7 @@ export {default as EzPageHeader} from './EzPageHeader';
 export {EzPageContent, EzContentGroup} from './EzPageContent';
 export {default as EzProgressTracker} from './EzProgressTracker';
 export {EzProvider, useProvider} from './EzProvider';
+export {default as EzRating} from './EzRating';
 export {default as EzSegmentedControl} from './EzSegmentedControl';
 export {default as EzSearchInput} from './EzSearchInput';
 export {default as EzStatus} from './EzStatus';

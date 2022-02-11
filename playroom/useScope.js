@@ -1,6 +1,9 @@
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {
   MOCK_ICON_FA_COFFEE,
+  MOCK_ICON_FA_FULL_STAR,
+  MOCK_ICON_FA_HALF_STAR,
+  MOCK_ICON_FA_EMPTY_STAR,
   MOCK_ICON_PIZZA,
   MOCK_ICON_FRIES,
   MOCK_ICON_RAMEN,
@@ -17,8 +20,16 @@ export default () => ({
     // fake out calls to `require('react-router-dom')` and icon libraries within our .md examples.
     if (moduleName === 'react-router-dom')
       return {BrowserRouter, StaticRouter, NavLink, Link, Route};
-    else if (moduleName === '@fortawesome/free-solid-svg-icons/faCoffee')
-      return {faCoffee: MOCK_ICON_FA_COFFEE};
+    else if (
+      moduleName.includes('@fortawesome/free-solid-svg-icons') ||
+      moduleName.includes('@fortawesome/free-regular-svg-icons')
+    )
+      return {
+        faCoffee: MOCK_ICON_FA_COFFEE,
+        fullStar: MOCK_ICON_FA_FULL_STAR,
+        halfStar: MOCK_ICON_FA_HALF_STAR,
+        emptyStar: MOCK_ICON_FA_EMPTY_STAR,
+      };
     else if (moduleName === '@ezcater/icons')
       return {
         Pizza: MOCK_ICON_PIZZA,

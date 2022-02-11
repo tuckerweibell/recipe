@@ -11,6 +11,9 @@ import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
+import {faStar as fullStar} from '@fortawesome/free-solid-svg-icons/faStar';
+import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/faStarHalfStroke';
+import {faStar as emptyStar} from '@fortawesome/free-regular-svg-icons/faStar';
 import {Pizza, Fries, Ramen} from '@ezcater/icons';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
@@ -91,6 +94,9 @@ const require = () => ({
       : BrowserRouter,
   Route,
   faCoffee,
+  emptyStar,
+  halfStar,
+  fullStar,
   Pizza,
   Fries,
   Ramen,
