@@ -4,6 +4,7 @@ import * as Components from '..';
 import Placeholder from '../../doc-site/src/components/Placeholder';
 import ezCaterLogoPath from '../../doc-site/src/ezcater-logo.svg';
 import {Global, css} from '../styles';
+import {MOCK_ICON_FA_COFFEE, MOCK_ICON_PIZZA, MOCK_ICON_FRIES, MOCK_ICON_RAMEN} from '../components/EzIcon/EzIconMocks';
 
 // our markdown examples use images from the doc-site, so tell webpack how to find those images:
 const docSiteImages = require.context('../../doc-site/static', true);
@@ -32,6 +33,10 @@ const scope: any = {
       NavLink,
       BrowserRouter: typeof window === 'undefined' ? StaticRouterWithProps : BrowserRouter,
       Route,
+      faCoffee: MOCK_ICON_FA_COFFEE,
+      Pizza: MOCK_ICON_PIZZA,
+      Fries: MOCK_ICON_FRIES,
+      Ramen: MOCK_ICON_RAMEN,
     };
   },
   ezCaterLogoPath,

@@ -10,11 +10,13 @@ import Layout from './Layout';
 import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
+import {Pizza, Fries, Ramen} from '@ezcater/icons';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
 import Playground from './Playground';
 
-const cleanProps = (p) =>
+const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
     const key = current.startsWith('aria')
       ? current.toLowerCase().replace('aria', 'aria-')
@@ -25,15 +27,13 @@ const cleanProps = (p) =>
 
 const HtmlAst = ({htmlAst, scope}) => {
   // ignore the style tag, as HTML ast gives us a string, but react expects a style object
-  const heading =
-    (size, as) =>
-    ({style, ...props}) =>
-      React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+  const heading = (size, as) => ({style, ...props}) =>
+    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
-  const wrapEl = (type) => (props) => React.createElement(type, {className: 'gatsby', ...props});
+  const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 
   const componentMap = {
-    code: (props) => {
+    code: props => {
       const {className} = props;
       const language = className?.replace('language-', '') || 'jsx';
 
@@ -45,8 +45,8 @@ const HtmlAst = ({htmlAst, scope}) => {
 
       return <CodeHighlighting code={props.children[0]} language={language} />;
     },
-    a: (props) => React.createElement(props.className ? 'a' : Components.EzLink, props),
-    p: (props) => {
+    a: props => React.createElement(props.className ? 'a' : Components.EzLink, props),
+    p: props => {
       const {children} = props;
       const type = children[0].type;
       const hasNestedComponent = children.length === 1 && type && type !== 'string';
@@ -90,6 +90,10 @@ const require = () => ({
       ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
       : BrowserRouter,
   Route,
+  faCoffee,
+  Pizza,
+  Fries,
+  Ramen,
 });
 
 const ezCaterLogoPath = logo;
@@ -105,7 +109,7 @@ const scope = {
 };
 
 const splitOnTagName = (list, tagName) => {
-  const i = list.findIndex((el) => el.tagName === tagName);
+  const i = list.findIndex(el => el.tagName === tagName);
 
   if (i === -1) return [list];
 
@@ -121,7 +125,7 @@ export default ({data: {page, changelog}, location}) => {
         layout="centered"
         location={location}
         sections={splitOnTagName(changelog.childMarkdownRemark.htmlAst.children, 'hr').map(
-          (section) => (
+          section => (
             <HtmlAst htmlAst={{children: section}} scope={scope} />
           )
         )}
@@ -139,7 +143,7 @@ export default ({data: {page, changelog}, location}) => {
       layout={page.frontmatter.tags?.includes('wide') ? 'wide' : 'centered'}
       location={location}
       name={page.frontmatter.name}
-      sections={splitOnTagName(page.htmlAst.children, 'hr').map((section) => (
+      sections={splitOnTagName(page.htmlAst.children, 'hr').map(section => (
         <HtmlAst htmlAst={{children: section}} scope={scope} />
       ))}
       headings={page.headings}
