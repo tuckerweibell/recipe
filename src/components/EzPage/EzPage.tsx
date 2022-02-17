@@ -15,6 +15,9 @@ const pageContainer = theme.css({
       },
     },
   },
+  defaultVariants: {
+    backgroundColor: 'gray',
+  },
   padding: '$page-py $page-px',
   flexGrow: 1,
   p: {
@@ -73,7 +76,7 @@ export const usePageSection = type => {
   return ref.current;
 };
 
-const EzPage: React.FC<Props> = ({children, backgroundColor = 'gray'}) => {
+const EzPage: React.FC<Props> = ({children, backgroundColor}) => {
   const sectionsCounter = useRef(0);
   return (
     <Style ruleset={theme}>
