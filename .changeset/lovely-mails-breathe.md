@@ -2,4 +2,4 @@
 "@ezcater/recipe": patch
 ---
 
-feat: Add whiteBackground variant to EzPage
+feat: Add backgroundColor variant to EzPage
