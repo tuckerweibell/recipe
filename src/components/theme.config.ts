@@ -26,6 +26,7 @@ const stitches = createCss({
       thin: '1px',
     },
     colors: {
+      blue100: '#3f61ff',
       blue200: '#ebf7ff',
       blue300: '#c1def4',
       blue500: '#77b1e2',
@@ -52,6 +53,7 @@ const stitches = createCss({
       purple200: '#f8f3fa',
       purple600: '#9b59b6',
       purple700: '#7f379c',
+      red100: '#ff585d',
       red200: '#fdefef',
       red500: '#f7c1c1',
       red600: '#ec5353',

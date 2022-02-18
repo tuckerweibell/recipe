@@ -23,6 +23,7 @@ export {default as EzOrderSummary} from './EzOrderSummary';
 export {EzPage, EzPageSection} from './EzPage';
 export {default as EzPageHeader} from './EzPageHeader';
 export {EzPageContent, EzContentGroup} from './EzPageContent';
+export {default as EzProgress} from './EzProgress';
 export {default as EzProgressTracker} from './EzProgressTracker';
 export {EzProvider, useProvider} from './EzProvider';
 export {default as EzRating} from './EzRating';
