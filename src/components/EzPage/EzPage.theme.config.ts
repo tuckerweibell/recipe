@@ -4,7 +4,7 @@ export default mergeCss({
   theme: {
     colors: {
       'page-bg': '$gray200',
-      'page-bg-white': 'white',
+      'page-bg-white': '$white',
     },
     space: {
       'page-content-gap': '$150',
