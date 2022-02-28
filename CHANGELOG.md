@@ -1,5 +1,28 @@
 ## Version 12
 
+## 13.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: An upgrade to dependencies, like `react` (>= `16.14.0`) may be required with the addition of new dependencies (`mui/material`, `@emotion/react`, `@emotion/styled`, `@fortawesome/fontawesome-svg-core` and `@fortawesome/react-fontawesome`). [[sha]](https://github.com/ezcater/recipe/commit/dfdb666f)
+
+### Minor Changes
+
+- feat: EzRating component [[sha]](https://github.com/ezcater/recipe/commit/744b70a1)
+- test: Add tests and a snapshot for `autohide`, `autohideDuration`, and `onAutohide` for EzFlashMessage [[sha]](https://github.com/ezcater/recipe/commit/603b8048)
+- allow EzField type date to take onFocusCapture and onFocus props [[sha]](https://github.com/ezcater/recipe/commit/1709b108)
+- feat: add EzIcon component [[sha]](https://github.com/ezcater/recipe/commit/dfdb666f)
+- feat: Add `autohide`, `autohideDuration`, and `onAutohide` to EzFlashMesssage to allow flash messages to disappear after a certain amount of time [[sha]](https://github.com/ezcater/recipe/commit/21cdb019)
+- feat: add EzProgress component [[sha]](https://github.com/ezcater/recipe/commit/cf62fc9b)
+- docs: Add documentation for `autohide`, `autohideDuration`, and `onAutohide` for EzFlashMessage [[sha]](https://github.com/ezcater/recipe/commit/abd15012)
+
+### Patch Changes
+
+- deps: upgrade to react 17.0.2 [[sha]](https://github.com/ezcater/recipe/commit/4612b832)
+- feat: Add backgroundColor variant to EzPage [[sha]](https://github.com/ezcater/recipe/commit/bca9bbf1)
+- workflow: downgrade storybook dependencies and remove custom story [[sha]](https://github.com/ezcater/recipe/commit/483c4057)
+- Add .tool-versions with working node version [[sha]](https://github.com/ezcater/recipe/commit/0e637426)
+
 ## 12.5.0
 
 ### Minor Changes
