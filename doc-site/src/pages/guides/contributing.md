@@ -244,6 +244,8 @@ npm run build:watch
 
 NOTE: When using `npm link`, a common issue is having multiple instances of React, which results in the error `hooks can only be called inside the body of a function component`. This isn't a Recipe specific issue, but rather specific to React hooks and npm link. See the following link for [help with this issue](https://github.com/facebook/react/issues/13991#issuecomment-435587809).
 
+Alternatively, you can open a draft PR with your changes, then add the `deploy` label to your PR on github. A github action will build a canary release of your branch and add a comment to the PR with the version info. Update your application to use this version and you can test your changes. If you push more changes to your recipe branch and need a new canary build, just remove and add the `deploy` label to get a new release.
+
 ### Testing
 
 Testing in recipe is extremely important to ensure the quality of our downstream products. We therefore expect components to have 100% code coverage.
