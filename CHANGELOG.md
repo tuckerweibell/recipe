@@ -1,5 +1,11 @@
 ## Version 13
 
+## 13.0.1
+
+### Patch Changes
+
+- docs: pin ghpages npm version, update related lock files and gatsby, update changelog [[sha]](https://github.com/ezcater/recipe/commit/ad459f30)
+
 ## 13.0.0
 
 ### Major Changes
