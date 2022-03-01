@@ -1,4 +1,4 @@
-## Version 12
+## Version 13
 
 ## 13.0.0
 
@@ -22,6 +22,8 @@
 - feat: Add backgroundColor variant to EzPage [[sha]](https://github.com/ezcater/recipe/commit/bca9bbf1)
 - workflow: downgrade storybook dependencies and remove custom story [[sha]](https://github.com/ezcater/recipe/commit/483c4057)
 - Add .tool-versions with working node version [[sha]](https://github.com/ezcater/recipe/commit/0e637426)
+
+## Version 12
 
 ## 12.5.0
 
