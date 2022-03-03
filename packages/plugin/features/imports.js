@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const {relative} = require('path');
-const {createRequireFromPath} = require('module');
+const {createRequire} = require('module');
 const logger = require('../logging');
 
 const envMeta = {};
@@ -39,7 +39,7 @@ module.exports = {
 
     const {filename} = file.opts;
     const source = relative(process.cwd(), filename);
-    const req = createRequireFromPath(filename);
+    const req = createRequire(filename);
     const api_version = req('@ezcater/recipe/package.json').version;
     const log = state.opts.trace ? logger.trace : logger.info;
 
