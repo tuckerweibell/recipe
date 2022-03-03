@@ -11,7 +11,7 @@ interface EzProgressMuiProps {
 }
 
 const CIRCULAR_PROGRESS_SIZE = 110;
-const CIRCULAR_PROGRESS_THICKNESS = 3;
+const CIRCULAR_PROGRESS_THICKNESS = 2;
 const CIRCULAR_PROGRESS_FULL_VALUE = 100;
 
 const EzProgressMui: React.FC<EzProgressMuiProps> = ({
