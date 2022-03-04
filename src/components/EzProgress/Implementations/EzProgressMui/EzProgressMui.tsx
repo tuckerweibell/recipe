@@ -23,7 +23,7 @@ const EzProgressMui: React.FC<EzProgressMuiProps> = ({
   const displayValue = hasNumericValue ? `${Math.round(value)}%` : '--%';
 
   return (
-    <Stack alignItems="center" justifyContent="center" p="20% 0">
+    <Stack alignItems="center" justifyContent="center" p="20% 0" position="relative">
       <CircularProgress
         variant="determinate"
         sx={{
