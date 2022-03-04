@@ -30,8 +30,10 @@ const cleanProps = p =>
 
 const HtmlAst = ({htmlAst, scope}) => {
   // ignore the style tag, as HTML ast gives us a string, but react expects a style object
-  const heading = (size, as) => ({style, ...props}) =>
-    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+  const heading =
+    (size, as) =>
+    ({style, ...props}) =>
+      React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
   const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 
@@ -85,30 +87,28 @@ const HtmlAst = ({htmlAst, scope}) => {
   return htmlAst.children.map(renderTag);
 };
 
-const require = () => ({
-  Link,
-  NavLink,
-  BrowserRouter:
-    typeof window === 'undefined'
-      ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
-      : BrowserRouter,
-  Route,
-  faCoffee,
-  emptyStar,
-  halfStar,
-  fullStar,
-  Pizza,
-  Fries,
-  Ramen,
-});
-
 const ezCaterLogoPath = logo;
 const scope = {
   ...Components,
   styled,
   css,
   Global,
-  require,
+  require: () => ({
+    Link,
+    NavLink,
+    BrowserRouter:
+      typeof window === 'undefined'
+        ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
+        : BrowserRouter,
+    Route,
+    faCoffee,
+    emptyStar,
+    halfStar,
+    fullStar,
+    Pizza,
+    Fries,
+    Ramen,
+  }),
   ezCaterLogoPath,
   withPrefix,
   Placeholder,
