@@ -5,7 +5,7 @@ import stitches from '../theme.config';
 
 const PROGRESS_COLORS = {
   green: stitches.theme.colors.green100.value,
-  yellow: stitches.theme.colors.yellow600.value,
+  yellow: stitches.theme.colors.yellow100.value,
   red: stitches.theme.colors.red100.value,
   blue: stitches.theme.colors.blue100.value,
   gray: stitches.theme.colors.gray200.value,
