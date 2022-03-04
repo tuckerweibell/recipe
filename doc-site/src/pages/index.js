@@ -300,27 +300,27 @@ export default () => (
           <HeroSubheading as="p">Designed and developed by</HeroSubheading>
           <div css={mt._4}>
             <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-              <a href="https://github.com/CraigCav">
-                <MediaObject imgSrc="https://avatars0.githubusercontent.com/u/109814?s=160&v=4">
-                  <p css={[font.semibold, text.white]}>Craig Cavalier</p>
-                  <p css={[text.sm, text.gray._500]}>Recipe Developer</p>
-                </MediaObject>
-              </a>
               <a href="https://github.com/danidewitt">
-                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/3790037?s=160&v=4">
+                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/3790037?v=4">
                   <p css={[font.semibold, text.white]}>Dani Dewitt</p>
                   <p css={[text.sm, text.gray._500]}>Recipe Developer</p>
                 </MediaObject>
               </a>
-              <a href="https://github.com/johnhemminger">
-                <MediaObject imgSrc="https://ca.slack-edge.com/T032QEDCF-UC3DFULSE-275c0445daa9-512">
-                  <p css={[font.semibold, text.white]}>John Hemminger</p>
+              <a href="https://github.com/noranda">
+                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/5418735?v=4">
+                  <p css={[font.semibold, text.white]}>Noranda Brown</p>
+                  <p css={[text.sm, text.gray._500]}>Recipe Developer</p>
+                </MediaObject>
+              </a>
+              <a href="https://www.linkedin.com/in/joanhojberg/">
+                <MediaObject imgSrc="https://media-exp1.licdn.com/dms/image/C4D03AQFzyE8otopbVw/profile-displayphoto-shrink_800_800/0/1578497166645?e=1651708800&v=beta&t=OZkQ6SBE3nRWEtB-lB-a6qJa2Oa8AF28_Hq1pBHwn5M">
+                  <p css={[font.semibold, text.white]}>Joan Højberg</p>
                   <p css={[text.sm, text.gray._500]}>Recipe Designer</p>
                 </MediaObject>
               </a>
-              <a href="https://github.com/sambrocc">
-                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/10697937?s=160&v=4">
-                  <p css={[font.semibold, text.white]}>Samantha Broccoli</p>
+              <a href="https://github.com/ktlnux">
+                <MediaObject imgSrc="https://avatars.githubusercontent.com/u/41025836?v=4">
+                  <p css={[font.semibold, text.white]}>Kaitlyn Brown</p>
                   <p css={[text.sm, text.gray._500]}>Recipe Designer</p>
                 </MediaObject>
               </a>
