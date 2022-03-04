@@ -1,5 +1,5 @@
 const {relative} = require('path');
-const {createRequireFromPath} = require('module');
+const {createRequire} = require('module');
 const logger = require('../logging');
 
 const envMeta = {};
@@ -12,7 +12,7 @@ if (process.env.JENKINS_URL) {
 const track = (context, node) => {
   const filename = context.getFilename();
   const source = relative(process.cwd(), filename);
-  const req = createRequireFromPath(filename);
+  const req = createRequire(filename);
   const api_version = req('@ezcater/recipe/package.json').version;
   const [logLevel] = context.options;
   const log = logLevel === 'trace' ? logger.trace : logger.info;
