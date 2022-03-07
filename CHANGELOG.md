@@ -1,5 +1,17 @@
 ## Version 13
 
+## 13.0.2
+
+### Patch Changes
+
+- docs: update contributors list on front page and meet the team page [[sha]](https://github.com/ezcater/recipe/commit/acad91db)
+- Upgraded Github Action versions to latest [[sha]](https://github.com/ezcater/recipe/commit/6e93a0b7)
+- fix: removed "require" function, a webpack protected word which was preventing loading of the doc site [[sha]](https://github.com/ezcater/recipe/commit/a880afe2)
+- style: update EzProgress yellow [[sha]](https://github.com/ezcater/recipe/commit/66903924)
+- style: decrease EzProgress chart thickness from 3 to 2 [[sha]](https://github.com/ezcater/recipe/commit/dec99cef)
+- fix: add relative position to EzProgressMui container to prevent scrolling progress circles [[sha]](https://github.com/ezcater/recipe/commit/e8a753a3)
+- Mark top-level import with [sideEffects](https://webpack.js.org/guides/tree-shaking/#clarifying-tree-shaking-and-sideeffects) to enable tree shaking in consuming applications [[sha]](https://github.com/ezcater/recipe/commit/390917de)
+
 ## 13.0.1
 
 ### Patch Changes
