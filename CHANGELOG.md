@@ -1,5 +1,12 @@
 ## Version 13
 
+## 13.0.3
+
+### Patch Changes
+
+- fix: options and children types for EzChoice [[sha]](https://github.com/ezcater/recipe/commit/8e95ab8d)
+- fix: removed duplicate snapshot test [[sha]](https://github.com/ezcater/recipe/commit/2ace68b3)
+
 ## 13.0.2
 
 ### Patch Changes
