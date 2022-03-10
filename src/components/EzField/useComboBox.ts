@@ -89,8 +89,8 @@ export function useComboBox(props, state): ComboBoxAria {
     // call the user defined onBlur (if provided)
     props.onBlur?.(e);
 
-    // clear the input if no value was selected
-    if (selectionManager.selectedKey === null) state.setInputValue('');
+    // clear the input if no value was selected, and the popover is closing
+    if (selectionManager.selectedKey === null && props.popoverRef.current === null) state.setInputValue('');
   };
 
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
