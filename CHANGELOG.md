@@ -1,5 +1,15 @@
 ## Version 13
 
+## 13.1.0
+
+### Minor Changes
+
+- feat: allow EzChoice labels to accept jsx elements [[sha]](https://github.com/ezcater/recipe/commit/01e516da)
+
+### Patch Changes
+
+- Fix: AutoSuggest onBlur bug when clicking item within filtered collection [[sha]](https://github.com/ezcater/recipe/commit/a91bc783)
+
 ## 13.0.3
 
 ### Patch Changes
