@@ -3,7 +3,7 @@ import React, {Key, ReactNode} from 'react';
 type ChoiceValue = string | number | boolean;
 
 type Choice = {
-  label: string;
+  label: string | JSX.Element;
   value: ChoiceValue;
   disabled?: boolean;
 };
