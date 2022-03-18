@@ -63,11 +63,15 @@ export {default as EzButton} from './components/EzButton';
 
 ## Developing
 
-Use the `npm start` command when making edits to `recipe` to accomplish the following:
+The [recipe contributions docs](https://ezcater.github.io/recipe/guides/contributing) have a more thorough breakdown of the contribution guidelines.
 
-- Run `npm run build:watch`; this will recompile any changes made to `recipe` components
-- Automatically link the local recipe directory to the documentation site
-- Run `gatsby develop`; this will start up the documentation website and recompile when there are changes to either the `recipe` or documentation codebase
+To begin developing locally, use the following commands:
+
+- Run `npm i` in both the root dir, and `/doc-site`
+- Run `npm run start` in the root dir
+  - This will also open up the recipe-playroom: `http://localhost:9000`
+  - This will also allow you to view the recipe-doc-site in the browser at `http://localhost:8000/`
+    - Changes made to the component markdown as well as the components used in the markdown should be visible here.
 
 ## Publishing
 
