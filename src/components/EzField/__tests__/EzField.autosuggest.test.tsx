@@ -60,6 +60,15 @@ describe('EzField', () => {
       expect(input).toHaveAttribute('aria-haspopup', 'listbox');
     });
 
+    it('has the browser autocomplete turned off', () => {
+      render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
+
+      const input = screen.getByRole('combobox', {name: /Select dropdown/i});
+
+      // The browser's autocomplete should be turned off so as not to interfere with the component
+      expect(input).toHaveAttribute('autocomplete', 'off');
+    });
+
     it('stays closed on focus', () => {
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 

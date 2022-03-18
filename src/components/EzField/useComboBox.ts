@@ -79,6 +79,7 @@ export function useComboBox(props, state): ComboBoxAria {
     },
     value: state.inputValue,
     onChange,
+    autoComplete: 'off',
   };
 
   const domProps = filterDOMProps(props, {
@@ -90,7 +91,8 @@ export function useComboBox(props, state): ComboBoxAria {
     props.onBlur?.(e);
 
     // clear the input if no value was selected, and the popover is closing
-    if (selectionManager.selectedKey === null && props.popoverRef.current === null) state.setInputValue('');
+    if (selectionManager.selectedKey === null && props.popoverRef.current === null)
+      state.setInputValue('');
   };
 
   const focusedKeyId = getItemId(menuProps.id, selectionManager.focusedKey);
