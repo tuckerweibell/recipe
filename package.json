@@ -28,7 +28,7 @@
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.10.0",
     "@changesets/cli": "^2.16.0",
-    "@ezcater/ez-scripts": "^1.0.2",
+    "@ezcater/ez-scripts": "^2.0.1",
     "@storybook/addon-actions": "^6.1.6",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.1.6",
