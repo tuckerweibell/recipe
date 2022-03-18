@@ -1,5 +1,15 @@
 ## Version 13
 
+## 13.1.1
+
+### Patch Changes
+
+- deps: bump ez-scripts to 2.0.1 [[sha]](https://github.com/ezcater/recipe/commit/b20d02e6)
+- fix: removed autocomplete from autosuggest inputs [[sha]](https://github.com/ezcater/recipe/commit/12485853)
+- deps: bump snitches from 0.2.7 to 0.2.9 [[sha]](https://github.com/ezcater/recipe/commit/1a83ef79)
+- fix: added margin to text inputs to fix safari bug [[sha]](https://github.com/ezcater/recipe/commit/5dfd9b78)
+- docs: Update readme to include proper startup instructions for local dev [[sha]](https://github.com/ezcater/recipe/commit/ec3b248b)
+
 ## 13.1.0
 
 ### Minor Changes
