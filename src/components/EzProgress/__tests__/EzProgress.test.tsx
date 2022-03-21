@@ -7,7 +7,7 @@ import {EzProgress, EzPage, EzCard} from '../../index';
 
 const scope = {EzProgress, EzPage, EzCard};
 
-describe('EzIcon logic', () => {
+describe('EzProgress logic', () => {
   it('Passing a goal, subgoal, value, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {
     const value = 88;
     const label = `Q1 on-time delivery goal progress - ${value}%`;
@@ -57,9 +57,57 @@ describe('EzIcon logic', () => {
     expect((await chart).firstChild.childNodes[1]).toHaveAttribute('aria-valuenow', '0');
     expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`--%`);
   });
+
+  it('Passing a label, goal, metricOnly flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', async () => {
+    const label = `Q1 cancelled orders - 12% of 10% goal`;
+    const {findByLabelText, queryAllByLabelText} = render(
+      <EzProgress label={label} value={12} goal={10} metricOnly />
+    );
+
+    expect(queryAllByLabelText(label).length).toEqual(1);
+    const metric = findByLabelText(label);
+
+    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('12%');
+  });
+
+  it('Passing a label, goal, and metricOnly flag without a value should show a square, an aria-label matching the label, and empty text --%', async () => {
+    const label = `Q1 cancelled orders - --% of 10% goal`;
+    const {findByLabelText, queryAllByLabelText} = render(
+      <EzProgress label={label} goal={10} metricOnly />
+    );
+
+    expect(queryAllByLabelText(label).length).toEqual(1);
+    const metric = findByLabelText(label);
+
+    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('--%');
+  });
+
+  it('Passing a label, goal, metricOnly flag, inverted flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', async () => {
+    const label = `Q1 cancelled orders - 3% of 0% goal`;
+    const {findByLabelText, queryAllByLabelText} = render(
+      <EzProgress label={label} value={3} goal={0} metricOnly inverted />
+    );
+
+    expect(queryAllByLabelText(label).length).toEqual(1);
+    const metric = findByLabelText(label);
+
+    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('3%');
+  });
+
+  it('Passing a label, goal, metricOnly flag, and inverted flag without a value should show a square, an aria-label matching the label, and empty text --%', async () => {
+    const label = `Q1 cancelled orders - --% of 0% goal`;
+    const {findByLabelText, queryAllByLabelText} = render(
+      <EzProgress label={label} goal={0} metricOnly inverted />
+    );
+
+    expect(queryAllByLabelText(label).length).toEqual(1);
+    const metric = findByLabelText(label);
+
+    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('--%');
+  });
 });
 
-describe('EzIcon', () => {
+describe('EzProgress', () => {
   visualSnapshots({markdown, scope});
 
   it('should meet accessibility guidelines', async () => {
@@ -95,6 +143,23 @@ describe('EzIcon', () => {
         ),
         colorProp: (
           <EzProgress value={44} color="blue" label="Q1 on-time delivery goal progress - 44%" />
+        ),
+        metricOnlyProp: (
+          <EzProgress
+            label="Q1 rejected orders goal - 3% of 10% goal"
+            value={3}
+            goal={10}
+            metricOnly
+          />
+        ),
+        invertedProp: (
+          <EzProgress
+            label="Q1 rejected orders goal - 3% of 0% goal"
+            value={3}
+            goal={0}
+            metricOnly
+            inverted
+          />
         ),
       },
     ].forEach(() => {});

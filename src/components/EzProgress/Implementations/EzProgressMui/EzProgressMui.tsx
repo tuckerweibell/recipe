@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import Stack from '@mui/material/Stack';
 import CircularProgress, {circularProgressClasses} from '@mui/material/CircularProgress';
 import stitches from '../../../theme.config';
@@ -6,22 +6,14 @@ import stitches from '../../../theme.config';
 interface EzProgressMuiProps {
   value?: number;
   color: string;
-  boldDisplayValue: boolean;
-  hasNumericValue: boolean;
+  children: ReactNode;
 }
 
 const CIRCULAR_PROGRESS_SIZE = 110;
 const CIRCULAR_PROGRESS_THICKNESS = 2;
 const CIRCULAR_PROGRESS_FULL_VALUE = 100;
 
-const EzProgressMui: React.FC<EzProgressMuiProps> = ({
-  value,
-  color,
-  boldDisplayValue,
-  hasNumericValue,
-}) => {
-  const displayValue = hasNumericValue ? `${Math.round(value)}%` : '--%';
-
+const EzProgressMui: React.FC<EzProgressMuiProps> = ({value, color, children}) => {
   return (
     <Stack alignItems="center" justifyContent="center" p="20% 0" position="relative">
       <CircularProgress
@@ -47,9 +39,7 @@ const EzProgressMui: React.FC<EzProgressMuiProps> = ({
         thickness={CIRCULAR_PROGRESS_THICKNESS}
         value={value || 0}
       />
-      <Stack fontSize="30px" fontWeight={`${boldDisplayValue ? '500' : '300'}`}>
-        {displayValue}
-      </Stack>
+      {children}
     </Stack>
   );
 };
