@@ -1,5 +1,15 @@
 ## Version 13
 
+## 13.2.0
+
+### Minor Changes
+
+- feat: add metricOnly and inverted implementation of EzProgress [[sha]](https://github.com/ezcater/recipe/commit/e5ce0a5f)
+
+### Patch Changes
+
+- workflow: updated lint config, fixed lint errors, moved lint to its own github action [[sha]](https://github.com/ezcater/recipe/commit/1e0d4d22)
+
 ## 13.1.1
 
 ### Patch Changes
