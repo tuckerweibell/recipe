@@ -20,22 +20,24 @@ export default () => ({
     // fake out calls to `require('react-router-dom')` and icon libraries within our .md examples.
     if (moduleName === 'react-router-dom')
       return {BrowserRouter, StaticRouter, NavLink, Link, Route};
-    else if (
+    if (
       moduleName.includes('@fortawesome/free-solid-svg-icons') ||
       moduleName.includes('@fortawesome/free-regular-svg-icons')
-    )
+    ) {
       return {
         faCoffee: MOCK_ICON_FA_COFFEE,
         fullStar: MOCK_ICON_FA_FULL_STAR,
         halfStar: MOCK_ICON_FA_HALF_STAR,
         emptyStar: MOCK_ICON_FA_EMPTY_STAR,
       };
-    else if (moduleName === '@ezcater/icons')
+    }
+    if (moduleName === '@ezcater/icons') {
       return {
         Pizza: MOCK_ICON_PIZZA,
         Fries: MOCK_ICON_FRIES,
         Ramen: MOCK_ICON_RAMEN,
       };
-    else throw new Error('Cannot use require from a browser context.');
+    }
+    throw new Error('Cannot use require from a browser context.');
   },
 });

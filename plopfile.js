@@ -1,7 +1,6 @@
-/* eslint-disable */
 const path = require('path');
 
-module.exports = function(plop) {
+module.exports = function plopfile(plop) {
   const pascalCase = plop.getHelper('pascalCase');
   const ERRORS = {
     INVALID_COMPONENT_TYPE: (type, supportedTypes) => [
@@ -146,4 +145,3 @@ module.exports = function(plop) {
     },
   });
 };
-/* eslint-enable */

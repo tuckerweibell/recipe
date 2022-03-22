@@ -7,6 +7,5 @@ packages/
 lib/
 .next/
 .github/
-jest*
 # avoid parsing error on template literal type
 src/components/theme.config.ts

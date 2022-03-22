@@ -1,5 +1,5 @@
 import React from 'react';
-import * as CSS from 'csstype';
+import {MaxHeightProperty, MaxWidthProperty} from 'csstype'; // eslint-disable-line import/no-extraneous-dependencies
 import Style from '@ezcater/snitches';
 import theme from './EzCard.theme.config';
 import {
@@ -36,8 +36,8 @@ type ImageProps =
   | {imageSrc: string; imagePosition?: Position}
   | {imageSrc?: never; imagePosition?: never};
 type ImageSizeProps = {
-  imageMaxHeight?: CSS.MaxHeightProperty<string | number>;
-  imageMaxWidth?: CSS.MaxWidthProperty<string | number>;
+  imageMaxHeight?: MaxHeightProperty<string | number>;
+  imageMaxWidth?: MaxWidthProperty<string | number>;
 };
 
 type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
-import {render, fireEvent, act, screen} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import markdown from './EzSuperRadioButtons.test.md';
 import EzSuperRadioButtons from '../EzSuperRadioButtons';
 

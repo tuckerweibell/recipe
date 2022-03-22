@@ -1,33 +1,56 @@
 module.exports = {
-  extends: [require.resolve('@ezcater/ez-scripts/eslint')],
+  parser: '@typescript-eslint/parser',
+  extends: [require.resolve('@ezcater/ez-scripts/eslint'), 'plugin:prettier/recommended'],
   rules: {
     'no-nested-ternary': 'off',
-    'prefer-destructuring': 'off',
     'import/no-namespace': 'off',
     'import/no-extraneous-dependencies': [
       'error',
-      {devDependencies: true, optionalDependencies: true, peerDependencies: true},
+      {
+        devDependencies: [
+          'MinifiedBrowserTarget.ts',
+          'jest.setup.tsx',
+          'playroom/**/*.js',
+          'src/stories/**/*.tsx',
+          'src/**/*.test.ts',
+          'src/**/*.test.tsx',
+          'src/components/EzField/Open.tsx',
+        ],
+      },
     ],
     'import/prefer-default-export': 'off',
     'react/destructuring-assignment': 'off',
-    '@typescript-eslint/prefer-interface': 'off',
-    'react/no-multi-comp': 'off',
     'react/require-default-props': 'off',
-    'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
     'no-unused-expressions': 'off',
-    // getting a handful of false positives on this with optional chaining (possibly as ez-scripts has out-of-date dependencies)
-    '@typescript-eslint/no-unused-expressions': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/indent': 'off',
   },
   settings: {
-    parser: '@typescript-eslint/parser',
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
       },
     },
   },
+  overrides: [
+    {
+      files: [
+        '.eslintrc.js',
+        '.prettierrc.js',
+        'jest.config.js',
+        'jest.fileTransformer.js',
+        'jest.setup.tsx',
+        'playroom.config.js',
+        'plopfile.js',
+      ],
+      env: {
+        node: true,
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        'import/no-commonjs': 'off',
+        'no-console': 'off',
+      },
+    },
+  ],
 };

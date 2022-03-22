@@ -17,7 +17,7 @@ type Button = {
 type Props = Omit<React.FieldsetHTMLAttributes<any>, 'onChange'> & {
   active?: any;
   label: React.ReactNode;
-  labelPosition: 'left' | 'hidden';
+  labelPosition?: 'left' | 'hidden';
   name: string;
   options: Button[];
   onChange: (value: string) => void;

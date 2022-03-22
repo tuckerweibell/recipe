@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react';
+import {useState, useLayoutEffect} from 'react';
 
 export default function useRect<T extends HTMLElement = HTMLElement>(
   nodeRef: React.RefObject<T>

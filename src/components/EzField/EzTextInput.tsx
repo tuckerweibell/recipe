@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzField.theme.config';
-import {domProps, filterValidProps} from '../../utils';
+import {domProps} from '../../utils';
 
 type ErrorOrMessage = string | boolean;
 

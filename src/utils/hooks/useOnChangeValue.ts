@@ -42,5 +42,5 @@ export default function useOnChangeValue<T>(value: T, watcher: Watch<T>) {
 
   useEffect(() => {
     if (isSet && previous !== value) observer(value, previous);
-  }, [previous, value, observer]);
+  }, [isSet, previous, value, observer]);
 }

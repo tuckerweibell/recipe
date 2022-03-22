@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-commonjs
 module.exports = {
   typeScriptFiles: ['src/components/**/*.{ts,tsx}', '!**/node_modules'],
   scope: './playroom/useScope.js',

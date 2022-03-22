@@ -4,7 +4,11 @@ import {visualSnapshots} from 'sosia';
 import {render as reactTestingRender} from '@testing-library/react';
 import markdown from '../EzRating.md';
 import {EzPage, EzRating} from '../../../index';
-import {MOCK_ICON_FA_FULL_STAR, MOCK_ICON_FA_HALF_STAR, MOCK_ICON_FA_EMPTY_STAR} from '../../EzIcon/EzIconMocks';
+import {
+  MOCK_ICON_FA_FULL_STAR,
+  MOCK_ICON_FA_HALF_STAR,
+  MOCK_ICON_FA_EMPTY_STAR,
+} from '../../EzIcon/EzIconMocks';
 
 const mockRequire = () => ({
   emptyStar: MOCK_ICON_FA_EMPTY_STAR,
@@ -15,24 +19,24 @@ const mockRequire = () => ({
 const scope = {EzPage, EzRating, require: mockRequire};
 
 const render = ({
-    max = 5,
-    value,
-    label = `${value} stars`,
-    emptyIcon = MOCK_ICON_FA_EMPTY_STAR,
-    halfIcon = MOCK_ICON_FA_HALF_STAR,
-    fullIcon = MOCK_ICON_FA_FULL_STAR,
-  }) => {
-    return reactTestingRender(
-      <EzRating
-          max={max}
-          value={value}
-          label={label}
-          emptyIcon={emptyIcon}
-          halfIcon={halfIcon}
-          fullIcon={fullIcon}
-        />
-    );
-  };
+  max = 5,
+  value,
+  label = `${value} stars`,
+  emptyIcon = MOCK_ICON_FA_EMPTY_STAR,
+  halfIcon = MOCK_ICON_FA_HALF_STAR,
+  fullIcon = MOCK_ICON_FA_FULL_STAR,
+}) => {
+  return reactTestingRender(
+    <EzRating
+      max={max}
+      value={value}
+      label={label}
+      emptyIcon={emptyIcon}
+      halfIcon={halfIcon}
+      fullIcon={fullIcon}
+    />
+  );
+};
 
 describe('EzRating logic', () => {
   it('A value less than 0 shows 0 full icons, 0 half icons, and 5 empty icons', async () => {
@@ -71,7 +75,7 @@ describe('EzRating logic', () => {
     expect(queryAllByTestId('faEmptyStarIcon').length).toEqual(3);
   });
 
-   it('A value of 2.25 shows 2 full icons, 1 half icon, and 2 empty icons', async () => {
+  it('A value of 2.25 shows 2 full icons, 1 half icon, and 2 empty icons', async () => {
     const value = 2.25; // round to 2.5
     const {queryAllByTestId} = render({value});
 

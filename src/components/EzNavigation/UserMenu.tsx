@@ -1,11 +1,4 @@
-import React, {
-  useRef,
-  forwardRef,
-  HTMLProps,
-  ComponentProps,
-  MouseEventHandler,
-  useEffect,
-} from 'react';
+import React, {useRef, forwardRef, HTMLProps, ComponentProps, MouseEventHandler} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzNavigation.theme.config';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';

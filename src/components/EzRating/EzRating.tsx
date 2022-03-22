@@ -4,10 +4,9 @@ import EzRatingCustom from './Implementations/EzRatingCustom/EzRatingCustom';
 
 const EzRating = forwardRef<Ref, EzRatingProps>(
   ({max, value, label, emptyIcon, halfIcon, fullIcon, color, size}, ref) => {
-    
     let ratingValue;
-    if(value > max) ratingValue = max;
-    else if(value < 0 ) ratingValue = 0;
+    if (value > max) ratingValue = max;
+    else if (value < 0) ratingValue = 0;
     else ratingValue = value;
 
     return (

@@ -122,7 +122,7 @@ const splitOnTagName = (list, tagName) => {
   return [list.slice(0, i), ...splitOnTagName(list.slice(i + 1), tagName)];
 };
 
-export default ({data: {page, changelog}, location}) => {
+const Markdown = ({data: {page, changelog}, location}) => {
   if (location.pathname.includes('/changelog'))
     return (
       <Layout
@@ -157,6 +157,8 @@ export default ({data: {page, changelog}, location}) => {
     />
   );
 };
+
+export default Markdown;
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String) {

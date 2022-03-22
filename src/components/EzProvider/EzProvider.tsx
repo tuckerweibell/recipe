@@ -22,19 +22,14 @@ export function useProvider(): ProviderContext {
   return useContext(Context);
 }
 
-function Provider(props: ProviderProps, ref: Ref<HTMLDivElement>) {
-  const {children} = props;
+function Provider({children, theme}: ProviderProps, ref: Ref<HTMLDivElement>) {
   const prevContext = useProvider();
-  const {theme = prevContext?.theme} = props;
-
-  const context = {...prevContext, theme};
+  const context = {...prevContext, theme: theme || prevContext?.theme};
 
   // Only wrap in a DOM node if the theme changed
   const contents =
     theme !== prevContext?.theme ? (
-      <ProviderWrapper {...props} ref={ref}>
-        {children}
-      </ProviderWrapper>
+      <ProviderWrapper ref={ref}>{children}</ProviderWrapper>
     ) : (
       children
     );
@@ -46,19 +41,17 @@ function Provider(props: ProviderProps, ref: Ref<HTMLDivElement>) {
   );
 }
 
-const ProviderWrapper = React.forwardRef(function ProviderWrapper(
-  props: ProviderProps,
-  ref: Ref<HTMLDivElement>
-) {
-  const {children} = props;
-  const {theme} = useProvider();
-  const className = theme.global ? Object.values(theme.global).join(' ') : null;
+const ProviderWrapper = React.forwardRef<HTMLDivElement, {children: React.ReactNode}>(
+  function ProviderWrapper({children}, ref) {
+    const {theme} = useProvider();
+    const className = theme.global ? Object.values(theme.global).join(' ') : null;
 
-  return (
-    <div className={className} ref={ref}>
-      {children}
-    </div>
-  );
-});
+    return (
+      <div className={className} ref={ref}>
+        {children}
+      </div>
+    );
+  }
+);
 
 export const EzProvider = React.forwardRef(Provider);

@@ -4,7 +4,12 @@ import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import markdown from '../EzIcon.md';
 import {EzPage, EzIcon, EzLayout, EzTextStyle} from '../../index';
-import {MOCK_ICON_FA_COFFEE, MOCK_ICON_PIZZA, MOCK_ICON_FRIES, MOCK_ICON_RAMEN} from '../EzIconMocks';
+import {
+  MOCK_ICON_FA_COFFEE,
+  MOCK_ICON_PIZZA,
+  MOCK_ICON_FRIES,
+  MOCK_ICON_RAMEN,
+} from '../EzIconMocks';
 
 const mockRequire = () => ({
   faCoffee: MOCK_ICON_FA_COFFEE,

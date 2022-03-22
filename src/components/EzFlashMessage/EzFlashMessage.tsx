@@ -11,7 +11,6 @@ type EzFlashMessageUses = 'success' | 'error' | 'warning' | 'info';
 type FlashMessageProps = {
   autohide?: boolean;
   autohideDuration?: number;
-  children: React.ReactNode;
   headline?: string;
   onAutohide?: () => void;
   onDismiss?: () => void;
@@ -86,39 +85,44 @@ const icons = {
 /**
  * Describe EzFlashMessage here.
  */
-const EzFlashMessage: React.FC<FlashMessageProps> = initProps => {
-  const {props} = flashMessage(initProps);
-
+const EzFlashMessage: React.FC<FlashMessageProps> = ({
+  autohide,
+  autohideDuration,
+  children,
+  headline,
+  onAutohide,
+  onDismiss,
+  use,
+}) => {
   const [show, setShow] = React.useState(true);
 
   useEffect(() => {
-    if (!props.autohide) return;
+    if (!autohide) return undefined;
 
     const autohideTimer = setTimeout(() => {
-      if (props.onAutohide) props.onAutohide();
+      if (onAutohide) onAutohide();
       setShow(false);
-    }, props.autohideDuration || 5000);
+    }, autohideDuration || 5000);
 
-    // eslint-disable-next-line consistent-return
     return () => clearTimeout(autohideTimer);
-  }, []);
+  }, [autohide, onAutohide, autohideDuration]);
 
   if (!show) return null;
 
   return (
     <Style ruleset={theme}>
-      <div className={flashMessage(initProps)}>
+      <div className={flashMessage({use})}>
         <EzLayout layout="basic" alignY="top">
-          {icons[initProps.use]}
+          {icons[use]}
           <div className={text()}>
             <EzLayout layout="stack">
-              {props.headline && <EzHeading size="3">{props.headline}</EzHeading>}
-              <div>{props.children}</div>
+              {headline && <EzHeading size="3">{headline}</EzHeading>}
+              <div>{children}</div>
             </EzLayout>
           </div>
-          {props.onDismiss && (
+          {onDismiss && (
             <div className={buttonAlignment()}>
-              <CloseButton label="Close" onClick={props.onDismiss} />
+              <CloseButton label="Close" onClick={onDismiss} />
             </div>
           )}
         </EzLayout>

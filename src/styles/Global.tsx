@@ -11,7 +11,7 @@ export default function Global({styles}) {
   // use layout effect here to ensure styles will be flushed synchronously, before the browser has a chance to paint.
   useLayoutEffect(() => {
     const el = ref.current;
-    const head = el.ownerDocument.head;
+    const {head} = el.ownerDocument;
     setContainer(head);
   }, []);
 

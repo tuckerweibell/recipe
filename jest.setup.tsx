@@ -57,7 +57,7 @@ const chromeDesktop = new RemotePuppeteerBrowserTarget({
 
 const replacePseudoClasses = target => ({
   execute(pages: any) {
-    const replace = content => content.replace(/(\:)(hover|active)/g, (...args) => `.__${args[2]}`);
+    const replace = content => content.replace(/(:)(hover|active)/g, (...args) => `.__${args[2]}`);
     return target.execute(
       pages.map(({css, body, name}) => ({
         css: replace(css),
@@ -84,7 +84,7 @@ const removeServerRenderedStyleTags = target => ({
         });
 
         return {
-          css: css,
+          css,
           body: container.outerHTML,
           name,
         };

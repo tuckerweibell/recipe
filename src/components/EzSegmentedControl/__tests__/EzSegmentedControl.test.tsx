@@ -4,7 +4,6 @@ import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import markdown from '../EzSegmentedControl.md';
 import EzSegmentedControl from '../EzSegmentedControl';
-import Label from '../../EzLabel/EzLabel';
 
 const scope = {EzSegmentedControl};
 

@@ -185,7 +185,7 @@ type PageIndices = {
 type Props = VariantProps<typeof listItemStyle> &
   SlidesPerPage &
   Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'> & {
-    onPageChange?: (PageIndices) => void;
+    onPageChange?: (indices: PageIndices) => void;
   };
 
 /**

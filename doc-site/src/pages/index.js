@@ -147,7 +147,7 @@ const LinkButton = styled(Link)(
   xl([text.lg, py._4])
 );
 
-export default () => (
+const Index = () => (
   <EzAppLayout>
     <Helmet
       title="Recipe UI"
@@ -331,3 +331,5 @@ export default () => (
     </Hero>
   </EzAppLayout>
 );
+
+export default Index;
