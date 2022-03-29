@@ -1,4 +1,5 @@
 import React, {forwardRef} from 'react';
+import Box from '@mui/material/Box';
 import {Ref, EzProgressProps} from './EzProgress.types';
 import EzProgressMui from './Implementations/EzProgressMui/EzProgressMui';
 import EzProgressMuiMetricOnly from './Implementations/EzProgressMui/EzProgressMuiMetricOnly';
@@ -24,7 +25,7 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
 
     if (metricOnly) {
       return (
-        <span ref={ref} aria-label={label}>
+        <Box component="span" ref={ref} aria-label={label} margin="auto">
           <EzProgressMuiMetricOnly>
             <EzProgressMuiDisplayValue
               value={value}
@@ -34,7 +35,7 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
               hasNumericValue={hasNumericValue}
             />
           </EzProgressMuiMetricOnly>
-        </span>
+        </Box>
       );
     }
 
@@ -56,7 +57,7 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
     else progressValue = value;
 
     return (
-      <span ref={ref} aria-label={label}>
+      <Box component="span" ref={ref} aria-label={label} margin="auto">
         <EzProgressMui value={progressValue} color={progressColor}>
           <EzProgressMuiDisplayValue
             boldDisplayValue={goal && subgoal && !meetsSubGoal}
@@ -64,7 +65,7 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
             hasNumericValue={hasNumericValue}
           />
         </EzProgressMui>
-      </span>
+      </Box>
     );
   }
 );
