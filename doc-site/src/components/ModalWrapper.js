@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx} from '@emotion/react';
 import {useRef, useState, useEffect} from 'react';
 import {EzButton} from '@ezcater/recipe';
 

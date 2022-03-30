@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx} from '@emotion/react';
 import {useStaticQuery, graphql, withPrefix} from 'gatsby';
 import {EzLayout, EzHeading, EzBlankState} from '@ezcater/recipe';
 import PreviewCard from './PreviewCard';

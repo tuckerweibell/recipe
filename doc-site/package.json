@@ -3,8 +3,8 @@
   "description": "Documentation for Recipe, ezCater's design system library",
   "version": "1.0.0",
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.11",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
     "@ezcater/babel-plugin-recipe": "file:../packages/plugin",
     "@ezcater/icons": "^1.0.0",
     "@ezcater/recipe": "file:..",
@@ -14,7 +14,6 @@
     "@recipe-ui/theme-marketplace": "^2.0.0",
     "create-emotion-server": "^10.0.27",
     "css-vars-ponyfill": "^2.4.5",
-    "emotion-theming": "^10.0.10",
     "gatsby": "^2.32.3",
     "gatsby-link": "^2.2.28",
     "gatsby-plugin-emotion": "^4.0.7",

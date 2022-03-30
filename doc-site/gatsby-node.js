@@ -67,7 +67,7 @@ exports.onCreateWebpackConfig = ({actions, plugins, stage, loaders}) => {
       alias: {
         react: path.resolve(path.join(__dirname, './node_modules/react')),
         '@emotion/styled': path.resolve(path.join(__dirname, './node_modules/@emotion/styled')),
-        '@emotion/core': path.resolve(path.join(__dirname, './node_modules/@emotion/core')),
+        '@emotion/react': path.resolve(path.join(__dirname, './node_modules/@emotion/react')),
       },
     },
     plugins: [

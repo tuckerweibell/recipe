@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, {useEffect, useState} from 'react';
-import {jsx} from '@emotion/core';
+import {jsx} from '@emotion/react';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql, withPrefix} from 'gatsby';
 import Link from 'gatsby-link';

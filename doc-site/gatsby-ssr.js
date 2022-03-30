@@ -1,5 +1,5 @@
 import React from 'react';
-import {CacheProvider} from '@emotion/core';
+import {CacheProvider} from '@emotion/react';
 import createEmotionServer from 'create-emotion-server';
 import createCache from '@emotion/cache';
 

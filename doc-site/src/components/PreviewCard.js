@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from '@emotion/core';
+import {jsx} from '@emotion/react';
 import {Link, withPrefix} from 'gatsby';
 import {EzHeading, EzTextStyle} from '@ezcater/recipe';
 

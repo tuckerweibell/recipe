@@ -264,12 +264,12 @@ const disabledButtonWrapper = theme.css({display: 'inline-block'});
  * Buttons represent actions on a page that can be triggered with one click.
  * Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
  */
-const EzButton = forwardRef<Ref, Props>((initProps: any, ref) => {
-  const props = {...initProps, disabled: initProps.disabled || initProps.loading};
+const EzButton = forwardRef<Ref, Props>(({loading, ...initProps}: any, ref) => {
+  const props = {...initProps, disabled: initProps.disabled || loading};
   const additionalProps = domProps(props);
 
   let buttonElement = (
-    <button type="button" {...additionalProps} className={button(props)} ref={ref}>
+    <button type="button" {...additionalProps} className={button({...props, loading})} ref={ref}>
       {props.use === 'tertiary' && props.icon ? (
         <span className={icon()}>
           {React.cloneElement(props.icon, {

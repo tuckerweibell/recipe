@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import packageJson from '../../../package.json';
 import {EzLayout, EzAppLayout} from '@ezcater/recipe';
 import ezcaterLogo from '../ezcater-logo.svg';
-import {Global, css} from '@emotion/core';
+import {Global, css} from '@emotion/react';
 import styled from '@emotion/styled';
 
 import {bg} from '../css/background';
