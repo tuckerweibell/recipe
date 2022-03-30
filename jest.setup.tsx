@@ -5,6 +5,8 @@ import {MarkdownSource} from 'sosia-markdown';
 import {RemotePuppeteerBrowserTarget} from 'sosia-remote-puppeteer';
 import Style from '@ezcater/snitches';
 import EzGlobalStyles from './src/components/EzGlobalStyles';
+import EzThemeProvider from './src/components/EzThemeProvider';
+import {ezTheme} from './src/themes';
 import theme from './src/components/theme.config';
 import {decorate as minifyDecorator} from './MinifiedBrowserTarget';
 import './mocks';
@@ -24,7 +26,7 @@ const VisualRegressionOverrides = () => (
 expect.extend(toHaveNoViolations);
 
 const GlobalStylesWrapper = ({children}) => (
-  <>
+  <EzThemeProvider theme={ezTheme}>
     <link
       href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap"
       rel="stylesheet"
@@ -35,7 +37,7 @@ const GlobalStylesWrapper = ({children}) => (
       {children}
     </Style>
     <VisualRegressionOverrides />
-  </>
+  </EzThemeProvider>
 );
 
 const markdownSource = new MarkdownSource();

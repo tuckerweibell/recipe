@@ -3,14 +3,13 @@ import {Ref, EzProgressProps} from './EzProgress.types';
 import EzProgressMui from './Implementations/EzProgressMui/EzProgressMui';
 import EzProgressMuiMetricOnly from './Implementations/EzProgressMui/EzProgressMuiMetricOnly';
 import EzProgressMuiDisplayValue from './Implementations/EzProgressMui/components/EzProgressMuiDisplayValue';
-import stitches from '../theme.config';
 
 const PROGRESS_COLORS = {
-  green: stitches.theme.colors.green100.value,
-  yellow: stitches.theme.colors.yellow100.value,
-  red: stitches.theme.colors.red100.value,
-  blue: stitches.theme.colors.blue100.value,
-  gray: stitches.theme.colors.gray200.value,
+  green: 'common.primary100',
+  yellow: 'common.yellow110',
+  red: 'common.red100',
+  blue: 'common.blue100',
+  gray: 'common.neutral120',
 };
 
 const isMetricNumeric = metric => (metric && typeof metric === 'number') || metric === 0;

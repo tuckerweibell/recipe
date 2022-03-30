@@ -1,6 +1,5 @@
 import React from 'react';
-import {EzGlobalStyles} from '../src/components';
-import {EzProvider} from '../src/components/EzProvider/EzProvider';
+import {EzGlobalStyles, EzThemeProvider} from '../src/components';
 import Sprites from '../src/components/Sprites';
 
 export default function FrameComponent({theme, children}) {
@@ -8,7 +7,7 @@ export default function FrameComponent({theme, children}) {
     <>
       <Sprites />
       <EzGlobalStyles />
-      <EzProvider theme={theme}>{children}</EzProvider>
+      <EzThemeProvider theme={theme}>{children}</EzThemeProvider>
     </>
   );
 }

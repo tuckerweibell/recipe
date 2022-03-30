@@ -3,9 +3,10 @@ import {axe} from 'jest-axe';
 import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import markdown from '../EzProgress.md';
-import {EzProgress, EzPage, EzCard} from '../../index';
+import {EzProgress, EzPage, EzCard, EzThemeProvider} from '../../index';
+import {ezTheme} from '../../../themes';
 
-const scope = {EzProgress, EzPage, EzCard};
+const scope = {EzProgress, EzPage, EzCard, EzThemeProvider, ezTheme};
 
 describe('EzProgress logic', () => {
   it('Passing a goal, subgoal, value, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {

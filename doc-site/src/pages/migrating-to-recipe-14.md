@@ -1,0 +1,93 @@
+---
+path: '/support/migrating-to-recipe-14'
+title: 'Migrating to Recipe 14'
+---
+
+Version 14 of Recipe introduces [Material UI](https://mui.com/) which reintroduces [emotion](https://emotion.sh/docs/introduction), a css-in-js library that was removed in Version 12 in favor of [stitches](https://stitches.dev/) to support IE11, static extraction, and dependency management. This had some drawbacks related to exposing and extending themes, the ease of contributing, and ability to use third-party component implementations. Additionally, we no longer support IE11 or the future possibility of Recipe in Rails.
+
+With the decisions to deprecate IE11 and Recipe in Rails support and to integrate third-party component implementations (like Material UI), new and existing components are being converted to emotion. During this process, current stitches-styled components will be supported until all components have been converted, at which point all stitches-related themes and styles will be deprecated.
+
+As part of the emotion conversion, we are introducing the following emotion themes:
+
+- `ezTheme`
+- `ezMarketplaceTheme` - extends `ezTheme`
+- `ezFulfillmentTheme` - extends `ezTheme`
+
+You will now be able to extend themes, when there is a legitimate use case to do so, as well as import theme properties for use in other parts of your app, having access to supported colors, fonts, spacing, and other theme-related styles.
+
+This release is a **major version release** and as such, **will require migration steps** for applications that currently use Recipe Version 13.x or below.
+
+## Breaking changes
+
+The following changes are considered breaking changes:
+
+1. IE11 is not compatible with current versions of Material UI and emotion, and is therefore no longer supported as of Recipe v14.
+
+2. In order for emotion theme extensions to work correctly, your app and Recipe need to be using the same major version of emotion. Currently Recipe is using Version 11. If you are using Version 10 of emotion or below, you will need to [upgrade emotion to Version 11](https://emotion.sh/docs/emotion-11) as part of this migration.
+
+3. In order for Recipe components to access the new themes, they will need to be wrapped in the `EzThemeProvider` component and passed the appropriate theme. This is usually done at the app level, but can be nested if needed.
+
+```js
+import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
+
+const App = () => (
+  <EzThemeProvider theme={themes.ezMarketplaceTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+## Extending themes
+
+<EzAlert headline="Warning" tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team." use="warning" ></EzAlert>
+
+We recognize there may be instances where extending a theme is necessary. For example, your app may require context-specific styles that are not supported by Recipe. In these cases, you can create a new customized emotion theme by extending a supported theme.
+
+```tsx
+import {EzThemeProvider, EzButton, themes} from '@ezcater/recipe';
+
+const customTheme = themes.createTheme(themes.ezTheme, {
+  // theme overrides here
+});
+
+const App = () => (
+  <EzThemeProvider theme={customTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+## Importing theme properties
+
+Recipe themes act as a source of truth for all supported theme properties, such as color, fonts, spacing, and other theme-related styles. You can import these theme properties for use in other parts of your app.
+
+```tsx
+import {themes} from '@ezcater/recipe';
+import {styled} from '@emotion/react';
+
+const {ezTheme} = themes;
+
+const MyComponent = styled.div`
+  color: ${ezTheme.palette.primary100};
+`;
+
+// Also available as an emotion theme prop
+
+const MyOtherComponent = styled.div`
+  color: ${({theme}) => theme.palette.primary100};
+`;
+```
+
+## Migration steps
+
+### Installation
+
+You can update your Recipe installation using a package manager like [npm](https://docs.npmjs.com/cli/v6/commands/npm) or [yarn](https://classic.yarnpkg.com/lang/en/).
+
+```term
+npm install @ezcater/recipe@latest
+```
+or
+```term
+yarn upgrade @ezcater/recipe@latest
+```

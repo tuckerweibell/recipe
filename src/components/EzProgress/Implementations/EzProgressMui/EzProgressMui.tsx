@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import Stack from '@mui/material/Stack';
 import CircularProgress, {circularProgressClasses} from '@mui/material/CircularProgress';
-import stitches from '../../../theme.config';
 
 interface EzProgressMuiProps {
   value?: number;
@@ -20,7 +19,7 @@ const EzProgressMui: React.FC<EzProgressMuiProps> = ({value, color, children}) =
         variant="determinate"
         sx={{
           position: 'absolute',
-          color: `${stitches.theme.colors.gray200.value}`,
+          color: 'common.neutral120',
         }}
         size={CIRCULAR_PROGRESS_SIZE}
         thickness={CIRCULAR_PROGRESS_THICKNESS}

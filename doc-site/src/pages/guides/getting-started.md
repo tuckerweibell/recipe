@@ -4,19 +4,6 @@ title: 'Getting Started'
 order: 10
 ---
 
-- [Why Recipe](#why-recipe)
-- [Components overview](#components-overview)
-- [When to consider building something new](#when-to-consider-building-something-new)
-- [Design setup](#design-setup)
-- [Development setup](#development-setup)
-  - [Importing components in your projects](#importing-components-in-your-projects)
-  - [Including Recipe's default font](#including-recipes-default-font)
-  - [Updating to new releases](#updating-to-new-releases)
-- [Browser support](#browser-support)
-- [Contributing](#contributing)
-
----
-
 ## Why Recipe?
 
 - Recipe is ezCater's homegrown design system. It provides shared React components accompanied by documentation and design resources.
@@ -31,12 +18,11 @@ order: 10
 
 ## Components overview
 
-- A good place to start is by reading the overview of how to do [high level screen layout](/components/ez-app-layout) with Recipe
+- A good place to start is by reading the overview of how to do [high level screen layout](/components/ez-app-layout) with Recipe.
 - Most Recipe components are opinionated about how to layout their child content. However in some cases you may need to use [Layout](/components/ez-layout) to control the horizontal layout of individual components across multiple breakpoints.
-- If you want to see what's available in Recipe, you can [browse all componets](/components/).
-- We have a [Styles](/styles) page that documents available values for color, spacing, and typography. However, you shouldn't need to refer to these unless you are authoring new components. When Recipe components can be configured with multiple appearances, we typically design them to take semantic property names that reflect the usage. For example, the `use` property on [Alert](/components/ez-alert) takes values like `info` and `error`, which happen to render as blue and red respectively.
+- If you want to see what's available in Recipe, you can [browse all components](/components/).
 - Recipe components use consistent patterns for properties; you'll find various components use similarly named properties like `title` or `value` when the usage is equivalent across the components. Certain properties will also have a consistent shape wherever they are found. For example, the `breadcrumb` and `tabs` properties on [Page Header](/components/ez-page-header) and the `home` and `links` properties on [Navigation](/components/ez-navigation) accept a common "link" shaped object that accepts a url as an `href` or a [Router compatible Link](https://reacttraining.com/react-router/web/api/Link).
-- [Principles for using recipe](/guides/principles#principles-for-using-recipe)
+- [Principles for using Recipe](/guides/principles#principles-for-using-recipe)
 
 ---
 
@@ -56,6 +42,84 @@ Here are some things to consider when proposing a change to Recipe:
 
 ---
 
+## Recipe themes
+
+[Recipe v14](/support/migrating-to-recipe-14) introduces extendable [Material UI](https://mui.com/) themes using [emotion](https://emotion.sh/docs/introduction). As new components are introduced and current components are updated, they will use these supported themes. A future version of Recipe will remove all legacy themes once all components have migrated to using these themes.
+
+### Supported themes
+
+- `ezTheme`
+- `ezMarketplaceTheme` - extends `ezTheme`
+- `ezFulfillmentTheme` - extends `ezTheme`
+
+### Theme provider
+
+To use, wrap your Recipe components in the `EzThemeProvider` component and pass in the appropriate theme. This is usually done at the app level, but can be nested if needed.
+
+```tsx
+import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
+
+const App = () => (
+  <EzThemeProvider theme={themes.ezMarketplaceTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+### Extending themes
+
+<EzAlert headline="Warning" tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team." use="warning" ></EzAlert>
+
+We recognize there may be instances where extending a theme is necessary. For example, your app may require context-specific styles that are not supported by Recipe. In these cases, you can create a new customized emotion theme by extending a supported theme.
+
+```tsx
+import {EzThemeProvider, EzButton, themes} from '@ezcater/recipe';
+
+const customTheme = themes.createTheme(themes.ezTheme, {
+  // theme overrides here
+});
+
+const App = () => (
+  <EzThemeProvider theme={customTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+### Importing theme properties
+
+Recipe themes act as a source of truth for all supported theme properties, such as color, fonts, spacing, and other theme-related styles. You can import these theme properties for use in other parts of your app.
+
+```tsx
+import {themes} from '@ezcater/recipe';
+import {styled} from '@emotion/react';
+
+const {ezTheme} = themes;
+
+const MyComponent = styled.div`
+  color: ${ezTheme.palette.primary100};
+`;
+
+// Also available as an emotion theme prop
+
+const MyOtherComponent = styled.div`
+  color: ${({theme}) => theme.palette.primary100};
+`;
+```
+
+### Including Recipe's default font
+
+To ensure Recipe's default font is available in a webpage, copy this code into the `<head>` of your HTML document.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i"
+  rel="stylesheet"
+/>
+```
+
+---
+
 ## Design setup
 
 The matching Sketch symbol library for Recipe is available through a tool called [Abstract](https://www.abstract.com/). Contact [the Recipe design team](/meet-the-team#recipe-design-team) if you have any questions about accessing it.
@@ -66,6 +130,10 @@ The matching Sketch symbol library for Recipe is available through a tool called
 
 ```term
 npm install @ezcater/recipe
+```
+or
+```term
+yarn add @ezcater/recipe
 ```
 
 Aside from React and React DOM, Recipe has no other `peerDependencies`.  Once `@ezcater/recipe` is installed, you're ready to start importing components!
@@ -86,29 +154,27 @@ export const MyComponent = () => (
 );
 ```
 
-### Including Recipe's default font
-
-To ensure Recipe's default font is available in a webpage, copy this code into the <head> of your HTML document.
-
-```html
-<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet" />
-```
+---
 
 ### Updating to new releases
 
-To install or update to the [latest version of Recipe](/changelog) in your application, you can run the following npm command:
+To install or update to the [latest version of Recipe](/changelog) in your application, run the following command:
 
 ```term
 npm install @ezcater/recipe@latest
+```
+or
+```term
+yarn add @ezcater/recipe@latest
 ```
 
 ---
 
 ## Browser support
 
-We strive for Recipe to have feature parity across all modern browsers as well as IE11.
+We strive for Recipe to have feature parity across all modern browsers.
 
-For applications that wish to run Recipe in IE11, Recipe requires polyfills for the following browser features:
+**IE11 is no longer supported as of Recipe v14**. For applications that wish to run Recipe v13 or earlier in IE11, polyfills are required for the following browser features:
 
 - [`Object.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
 - [`Element.prototype.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)
@@ -118,7 +184,7 @@ For applications that wish to run Recipe in IE11, Recipe requires polyfills for 
 
 We recommend using [Polyfill.io](https://polyfill.io/) in your application to apply necessary polyfills only when they are needed for the requesting browser.
 
-### Polyfill.​io Example:
+### Polyfill.​io Example
 
 ```html
 <script

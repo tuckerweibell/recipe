@@ -1,10 +1,8 @@
 import React, {ReactNode} from 'react';
 import Stack from '@mui/material/Stack';
-import stitches from '../../../theme.config';
 
-// todo: remove when converted to emotion themes, see below, and use brand neutral 120 instead
 const COLORS = {
-  gray: stitches.theme.colors.gray200.value,
+  gray: 'common.neutral120',
 };
 
 interface EzProgressMuiMetricOnly {
@@ -13,12 +11,12 @@ interface EzProgressMuiMetricOnly {
 
 const EzProgressMuiMetricOnly: React.FC<EzProgressMuiMetricOnly> = ({children}) => {
   return (
-    // todo: convert to emotion theme when the emotion themes are merged
     <Stack
       alignItems="center"
       justifyContent="center"
       position="relative"
-      border={`4px solid ${COLORS.gray}`}
+      border="4px solid"
+      borderColor={COLORS.gray}
       borderRadius="8px"
       height={112}
       width={112}

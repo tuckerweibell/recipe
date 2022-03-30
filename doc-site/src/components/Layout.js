@@ -19,6 +19,8 @@ import {
   EzPageSection,
   EzHeading,
   EzContent,
+  EzThemeProvider,
+  themes,
 } from '@ezcater/recipe';
 import {theme as marketplaceTheme} from '@recipe-ui/theme-marketplace';
 import './layout.css';
@@ -117,119 +119,121 @@ const Layout = ({
 
       return (
         <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
-          <Helmet
-            title={`Recipe - ${title}`}
-            meta={[
-              {name: 'description', content: 'Recipe Design System'},
-              {name: 'keywords', content: 'Recipe Design System EzCater'},
-            ]}
-          >
-            <html lang="en" />
-            <link
-              href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i"
-              rel="stylesheet"
-            />
-          </Helmet>
-          <div>
-            <div className={name}>
-              <Sprites />
-              <EzAppLayout layout={layout}>
-                <EzNavigation
-                  home={{
-                    to: '/',
-                    as: Link,
-                    label: 'Recipe',
-                    logo: {src: logo, width: 120},
-                  }}
-                  links={links}
-                  utilityLinks={[
-                    {
-                      label: `Use ${isMarketPlace ? 'fulfillment' : 'marketplace'} theme`,
-                      onClick: () => setTheme(theme => !theme),
-                    },
-                  ]}
-                >
-                  <EzPageHeader
-                    title={title}
-                    breadcrumb={
-                      path.includes('/components/')
-                        ? {
-                            as: Link,
-                            to: '/components',
-                            label: 'Back to Components',
-                          }
-                        : undefined
-                    }
-                    subnav={
-                      tabs && {tabs, selected: tabs.find(tab => tab.to === location.pathname)}
-                    }
-                    actions={
-                      <EzLayout
-                        layout={{
-                          base: 'stack',
-                          medium: 'basic',
-                        }}
-                      >
-                        <EzSearchInput
-                          placeholder="Search components"
-                          aria-label="Search components"
-                          value={searchTerms}
-                          onChange={e => setSearchTerms(e.target.value.toLowerCase())}
-                        />
-                      </EzLayout>
-                    }
-                  />
-                  <EzPage>
-                    <SearchProvider value={searchTerms}>
-                      <EzPageSection use={showTableOfContents ? 'main' : undefined}>
-                        <EzCard>
-                          {searchTerms ? (
-                            <ComponentGrid />
-                          ) : (
-                            children ||
-                            sections.map((section, i) => {
-                              const actions = {
-                                title: 'Overview',
-                                actions: <EditDocsButton path={absolutePath} />,
-                              };
-                              return (
-                                <EzCardSection key={i} {...(i === 0 ? actions : {})}>
-                                  {section}
-                                </EzCardSection>
-                              );
-                            })
-                          )}
-                        </EzCard>
-                      </EzPageSection>
-                      {showTableOfContents && (
-                        <EzPageSection
-                          use="aside"
-                          css={{
-                            position: 'sticky',
-                            top: '10px',
-                            '@media (max-width: 768px)': {
-                              display: 'none',
-                            },
+          <EzThemeProvider theme={isMarketPlace ? themes.ezMarketplaceTheme : themes.ezFulfillmentTheme}>
+            <Helmet
+              title={`Recipe - ${title}`}
+              meta={[
+                {name: 'description', content: 'Recipe Design System'},
+                {name: 'keywords', content: 'Recipe Design System EzCater'},
+              ]}
+            >
+              <html lang="en" />
+              <link
+                href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i"
+                rel="stylesheet"
+              />
+            </Helmet>
+            <div>
+              <div className={name}>
+                <Sprites />
+                <EzAppLayout layout={layout}>
+                  <EzNavigation
+                    home={{
+                      to: '/',
+                      as: Link,
+                      label: 'Recipe',
+                      logo: {src: logo, width: 120},
+                    }}
+                    links={links}
+                    utilityLinks={[
+                      {
+                        label: `Use ${isMarketPlace ? 'fulfillment' : 'marketplace'} theme`,
+                        onClick: () => setTheme(theme => !theme),
+                      },
+                    ]}
+                  >
+                    <EzPageHeader
+                      title={title}
+                      breadcrumb={
+                        path.includes('/components/')
+                          ? {
+                              as: Link,
+                              to: '/components',
+                              label: 'Back to Components',
+                            }
+                          : undefined
+                      }
+                      subnav={
+                        tabs && {tabs, selected: tabs.find(tab => tab.to === location.pathname)}
+                      }
+                      actions={
+                        <EzLayout
+                          layout={{
+                            base: 'stack',
+                            medium: 'basic',
                           }}
                         >
-                          <EzCard style={{maxHeight: '70vh', overflow: 'auto'}}>
-                            <EzHeader>
-                              <EzHeading id="tableOfContents" size="3">
-                                Contents
-                              </EzHeading>
-                            </EzHeader>
-                            <EzContent>
-                              <TableOfContents>{tableOfContents}</TableOfContents>
-                            </EzContent>
+                          <EzSearchInput
+                            placeholder="Search components"
+                            aria-label="Search components"
+                            value={searchTerms}
+                            onChange={e => setSearchTerms(e.target.value.toLowerCase())}
+                          />
+                        </EzLayout>
+                      }
+                    />
+                    <EzPage>
+                      <SearchProvider value={searchTerms}>
+                        <EzPageSection use={showTableOfContents ? 'main' : undefined}>
+                          <EzCard>
+                            {searchTerms ? (
+                              <ComponentGrid />
+                            ) : (
+                              children ||
+                              sections.map((section, i) => {
+                                const actions = {
+                                  title: 'Overview',
+                                  actions: <EditDocsButton path={absolutePath} />,
+                                };
+                                return (
+                                  <EzCardSection key={i} {...(i === 0 ? actions : {})}>
+                                    {section}
+                                  </EzCardSection>
+                                );
+                              })
+                            )}
                           </EzCard>
                         </EzPageSection>
-                      )}
-                    </SearchProvider>
-                  </EzPage>
-                </EzNavigation>
-              </EzAppLayout>
+                        {showTableOfContents && (
+                          <EzPageSection
+                            use="aside"
+                            css={{
+                              position: 'sticky',
+                              top: '10px',
+                              '@media (max-width: 768px)': {
+                                display: 'none',
+                              },
+                            }}
+                          >
+                            <EzCard style={{maxHeight: '70vh', overflow: 'auto'}}>
+                              <EzHeader>
+                                <EzHeading id="tableOfContents" size="3">
+                                  Contents
+                                </EzHeading>
+                              </EzHeader>
+                              <EzContent>
+                                <TableOfContents>{tableOfContents}</TableOfContents>
+                              </EzContent>
+                            </EzCard>
+                          </EzPageSection>
+                        )}
+                      </SearchProvider>
+                    </EzPage>
+                  </EzNavigation>
+                </EzAppLayout>
+              </div>
             </div>
-          </div>
+          </EzThemeProvider>
         </EzProvider>
       );
     }}

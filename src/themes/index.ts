@@ -11,3 +11,6 @@ import * as legacyTheme from './standard';
  * See: https://github.com/ezcater/recipe/releases/tag/11.0.0 for more information.
  */
 export const standard = legacyTheme;
+
+export {ezTheme, ezMarketplaceTheme, ezFulfillmentTheme} from './mui';
+export {createTheme} from '@mui/material/styles';
