@@ -25,17 +25,22 @@ The following changes are considered breaking changes:
 
 2. In order for emotion theme extensions to work correctly, your app and Recipe need to be using the same major version of emotion. Currently Recipe is using Version 11. If you are using Version 10 of emotion or below, you will need to [upgrade emotion to Version 11](https://emotion.sh/docs/emotion-11) as part of this migration.
 
-3. In order for Recipe components to access the new themes, they will need to be wrapped in the `EzThemeProvider` component and passed the appropriate theme. This is usually done at the app level, but can be nested if needed.
+3. In order for Recipe components to access the new themes, they will need to be wrapped in the `EzThemeProvider` component and passed the appropriate theme. This is usually done at the app level, but can be nested if needed. <br /> <br />
 
-```js
-import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
+    ```js
+    import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
 
-const App = () => (
-  <EzThemeProvider theme={themes.ezMarketplaceTheme}>
-    <EzButton use="primary">Click me</EzButton>
-  </EzProvider>
-);
-```
+    const App = () => (
+      <EzThemeProvider theme={themes.ezMarketplaceTheme}>
+        <EzButton use="primary">Click me</EzButton>
+      </EzProvider>
+    );
+    ```
+
+4. Deprecated legacy themes in Recipe have been removed. This includes the `standard` theme, which has been deprecated since Recipe v11, and was pulling in styles from the deprecated `@recipe-ui/legacy-theme` package. If you use these themes, you will need to do one of the following as part of this migration:
+    - Update all affected themes to use one of the new supported themes: `ezTheme`, `ezMarketplaceTheme`, or `ezFulfillmentTheme`.
+    - Update all affected themes to use the provided, but deprecated, `ezLegacyTheme`, which includes all legacy colors. It is recommended to use this theme if you still need to support using these legacy colors.
+    - If you must continue to use legacy themes other than colors, you will need to use the legacy themes directly from the deprecated packages `@recipe-ui/legacy-theme` or `@recipe-ui/theme-marketplace`. While these packages will not be removed, they are deprecated and not supported by Recipe. We recommend you move all your themes over to use the new supported themes as soon as possible.
 
 ## Extending themes
 
