@@ -21,6 +21,7 @@ import {
   EzContent,
   EzThemeProvider,
   themes,
+  EzSegmentedControl,
 } from '@ezcater/recipe';
 import {theme as marketplaceTheme} from '@recipe-ui/theme-marketplace';
 import './layout.css';
@@ -103,9 +104,6 @@ const Layout = ({
       const relatedPages = activeLink ? activeLink.links.map(l => ({...l, as: Link})) : [];
       const tabs = relatedPages.length && relatedPages.length < 5 ? relatedPages : undefined;
 
-      const [theme, setTheme] = React.useState(false);
-      const isMarketPlace = theme === true;
-
       const [searchTerms, setSearchTerms] = useState('');
 
       useEffect(() => {
@@ -117,9 +115,21 @@ const Layout = ({
       const hasSearchTerms = searchTerms.length;
       const showTableOfContents = hasHeadings && !isComponentGrid && !hasSearchTerms;
 
+      const [activeTheme, setActiveTheme] = useState(
+        () => localStorage.getItem('recipeTheme') || 'fulfillment'
+      );
+      const handleThemeChange = value => {
+        localStorage.setItem('recipeTheme', value);
+        setActiveTheme(value);
+      };
+
+      const isMarketPlace = activeTheme === 'marketplace';
+
       return (
         <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
-          <EzThemeProvider theme={isMarketPlace ? themes.ezMarketplaceTheme : themes.ezFulfillmentTheme}>
+          <EzThemeProvider
+            theme={isMarketPlace ? themes.ezMarketplaceTheme : themes.ezFulfillmentTheme}
+          >
             <Helmet
               title={`Recipe - ${title}`}
               meta={[
@@ -215,6 +225,22 @@ const Layout = ({
                               },
                             }}
                           >
+                            <EzCard>
+                              <EzHeading id="themeControl" size="3">
+                                Current theme
+                              </EzHeading>
+                              <EzSegmentedControl
+                                name="theme"
+                                label="Theme"
+                                labelPosition="hidden"
+                                options={[
+                                  {label: 'Marketplace', value: 'marketplace'},
+                                  {label: 'Fulfillment', value: 'fulfillment'},
+                                ]}
+                                active={activeTheme}
+                                onChange={handleThemeChange}
+                              />
+                            </EzCard>
                             <EzCard style={{maxHeight: '70vh', overflow: 'auto'}}>
                               <EzHeader>
                                 <EzHeading id="tableOfContents" size="3">
