@@ -13,4 +13,5 @@ import * as legacyTheme from './standard';
 export const standard = legacyTheme;
 
 export {ezTheme, ezMarketplaceTheme, ezFulfillmentTheme} from './mui';
+export {EzPalette} from './ezColors';
 export {createTheme} from '@mui/material/styles';

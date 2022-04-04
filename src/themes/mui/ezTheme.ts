@@ -1,4 +1,5 @@
-import {createTheme, PaletteOptions} from '@mui/material';
+import {createTheme, PaletteOptions, responsiveFontSizes} from '@mui/material';
+import {ezPalette} from '../ezColors';
 
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
@@ -7,21 +8,74 @@ declare module '@mui/material/styles/createPalette' {
   interface CommonColors extends EzPalette {}
 }
 
-const ezPalette = {
-  primary100: '#00b373', // ezGreen
-  yellow110: '#f9d055',
-  red100: '#ff585d', // guava
-  blue100: '#3f61ff',
-  neutral120: '#f5f7f7',
-  // additional supported colors to follow
-} as const;
-
 const palette: PaletteOptions = {
-  common: ezPalette,
+  primary: {
+    main: ezPalette.primary100,
+    light: ezPalette.primary90,
+    dark: ezPalette.primary110,
+    contrastText: ezPalette.neutral100,
+  },
+  secondary: {
+    main: ezPalette.yellow110,
+    light: ezPalette.yellow100,
+  },
+  error: {
+    main: ezPalette.alert100,
+    light: ezPalette.alert90,
+    dark: ezPalette.alert110,
+    contrastText: ezPalette.neutral100,
+  },
+  warning: {
+    main: ezPalette.warning100,
+    light: ezPalette.warning90,
+    dark: ezPalette.warning110,
+    contrastText: ezPalette.neutral100,
+  },
+  info: {
+    main: ezPalette.blue100,
+    light: ezPalette.blue90,
+  },
+  success: {
+    main: ezPalette.success100,
+    light: ezPalette.success90,
+  },
+  text: {
+    primary: ezPalette.neutral170,
+    secondary: ezPalette.neutral150,
+    disabled: ezPalette.neutral120,
+  },
+  grey: {
+    100: ezPalette.neutral110,
+    200: ezPalette.neutral120,
+    300: ezPalette.neutral130,
+    500: ezPalette.neutral140,
+    700: ezPalette.neutral150,
+    800: ezPalette.neutral160,
+    900: ezPalette.neutral170,
+  },
+  common: {
+    ...ezPalette,
+    black: ezPalette.neutral170,
+    white: ezPalette.neutral100,
+  },
 };
 
-const ezTheme = createTheme({
-  palette,
-});
+const ezTheme = responsiveFontSizes(
+  createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 768,
+        md: 900,
+        lg: 1061,
+        xl: 1536,
+      },
+    },
+    palette,
+    typography: {
+      fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+    },
+  })
+);
 
 export default ezTheme;

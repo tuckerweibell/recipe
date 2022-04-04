@@ -96,7 +96,7 @@ const Layout = ({
         as: Link,
       }));
 
-      links.splice(3, 0, {href: withPrefix('/playroom'), label: 'Playroom'});
+      links.splice(4, 0, {href: withPrefix('/playroom'), label: 'Playroom'});
       links.splice(7, 0, {href: withPrefix('/changelog'), label: 'Releases'});
 
       const activeLink = links.find(link => location.pathname.includes(link.to));

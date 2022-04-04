@@ -50,12 +50,12 @@ import {styled} from '@emotion/react';
 const {ezTheme} = themes;
 
 const MyComponent = styled.div`
-  color: ${ezTheme.palette.primary100};
+  color: ${ezTheme.palette.common.primary100};
 `;
 
 // Also available as an emotion theme prop
 
 const MyOtherComponent = styled.div`
-  color: ${({theme}) => theme.palette.primary100};
+  color: ${({theme}) => theme.palette.common.primary100};
 `;
 ```

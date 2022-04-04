@@ -30,10 +30,8 @@ const cleanProps = p =>
 
 const HtmlAst = ({htmlAst, scope}) => {
   // ignore the style tag, as HTML ast gives us a string, but react expects a style object
-  const heading =
-    (size, as) =>
-    ({style, ...props}) =>
-      React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+  const heading = (size, as) => ({style, ...props}) =>
+    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
   const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 
@@ -42,8 +40,15 @@ const HtmlAst = ({htmlAst, scope}) => {
       const {className} = props;
       const language = className?.replace('language-', '') || 'jsx';
 
-      if (className && className.includes('language-jsx')) {
-        return <Playground code={props.children[0]} scope={scope} language={language} />;
+      if (className?.includes('language-jsx')) {
+        return (
+          <Playground
+            code={props.children[0]}
+            scope={scope}
+            language={language}
+            hideControls={className.includes('hide-controls')}
+          />
+        );
       }
 
       if (!className) return <code {...props} />;

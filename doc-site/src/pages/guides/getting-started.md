@@ -88,7 +88,6 @@ const App = () => (
 
 ### Importing theme properties
 
-Recipe themes act as a source of truth for all supported theme properties, such as color, fonts, spacing, and other theme-related styles. You can import these theme properties for use in other parts of your app.
 
 ```tsx
 import {themes} from '@ezcater/recipe';
@@ -97,13 +96,13 @@ import {styled} from '@emotion/react';
 const {ezTheme} = themes;
 
 const MyComponent = styled.div`
-  color: ${ezTheme.palette.primary100};
+  color: ${ezTheme.palette.common.primary100};
 `;
 
 // Also available as an emotion theme prop
 
 const MyOtherComponent = styled.div`
-  color: ${({theme}) => theme.palette.primary100};
+  color: ${({theme}) => theme.palette.common.primary100};
 `;
 ```
 

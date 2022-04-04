@@ -40,3 +40,4 @@ export {default as EzTooltip} from './EzTooltip';
 export {default as EzLayout} from './EzLayout';
 export {default as EzPopover} from './EzPopover';
 export {default as EzWell} from './EzWell';
+export {default as ColorTokens} from './ColorTokens';

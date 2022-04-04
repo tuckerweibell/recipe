@@ -166,27 +166,31 @@ const useUniqueId = () => {
   return id;
 };
 
-export default ({code, scope, language}) => {
+export default ({code, scope, language, hideControls}) => {
   const [active, setActive] = useState('preview');
 
   return (
     <div style={{marginTop: 32, marginBottom: 64}}>
       <EzLayout layout="stack">
         <EzLayout layout="right" columns={5}>
-          <EzSegmentedControl
-            name={`name-${useUniqueId()}`}
-            label="Code example"
-            labelPosition="hidden"
-            options={[
-              {label: <TextWithIcon>{previewIcon} Preview</TextWithIcon>, value: 'preview'},
-              {label: <TextWithIcon>{codeIcon} Code</TextWithIcon>, value: 'code'},
-            ]}
-            active={active}
-            onChange={value => setActive(value)}
-          />
-          <EzLink target="_blank" href={createPlayroomLink(code)}>
-            <TextWithIcon>{playIcon} Playroom</TextWithIcon>
-          </EzLink>
+          {!hideControls && (
+            <>
+              <EzSegmentedControl
+                name={`name-${useUniqueId()}`}
+                label="Code example"
+                labelPosition="hidden"
+                options={[
+                  {label: <TextWithIcon>{previewIcon} Preview</TextWithIcon>, value: 'preview'},
+                  {label: <TextWithIcon>{codeIcon} Code</TextWithIcon>, value: 'code'},
+                ]}
+                active={active}
+                onChange={value => setActive(value)}
+              />
+              <EzLink target="_blank" href={createPlayroomLink(code)}>
+                <TextWithIcon>{playIcon} Playroom</TextWithIcon>
+              </EzLink>
+            </>
+          )}
         </EzLayout>
         <EzWell>
           {active === 'preview' && (
