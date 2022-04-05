@@ -30,8 +30,10 @@ const cleanProps = p =>
 
 const HtmlAst = ({htmlAst, scope}) => {
   // ignore the style tag, as HTML ast gives us a string, but react expects a style object
-  const heading = (size, as) => ({style, ...props}) =>
-    React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
+  const heading =
+    (size, as) =>
+    ({style, ...props}) =>
+      React.createElement(Components.EzHeading, {size, as, className: 'gatsby', ...props});
 
   const wrapEl = type => props => React.createElement(type, {className: 'gatsby', ...props});
 

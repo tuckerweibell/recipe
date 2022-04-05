@@ -48,34 +48,36 @@ const pageHeader = theme.css({
   },
 });
 
-const handleKeyDown = (refs: React.RefObject<HTMLElement>[], {tabs, selected}: SubNav) => event => {
-  const selectedIndex = selected ? tabs.findIndex(link => link === selected) : 0;
+const handleKeyDown =
+  (refs: React.RefObject<HTMLElement>[], {tabs, selected}: SubNav) =>
+  event => {
+    const selectedIndex = selected ? tabs.findIndex(link => link === selected) : 0;
 
-  const count = tabs.length;
-  let nextIndex;
+    const count = tabs.length;
+    let nextIndex;
 
-  switch (event.key) {
-    case 'ArrowDown':
-    case 'ArrowRight': {
-      nextIndex = (selectedIndex + 1) % count;
-      break;
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight': {
+        nextIndex = (selectedIndex + 1) % count;
+        break;
+      }
+      case 'ArrowUp':
+      case 'ArrowLeft': {
+        nextIndex = (selectedIndex - 1 + count) % count;
+        break;
+      }
+      default:
+        break;
     }
-    case 'ArrowUp':
-    case 'ArrowLeft': {
-      nextIndex = (selectedIndex - 1 + count) % count;
-      break;
-    }
-    default:
-      break;
-  }
 
-  if (nextIndex === undefined) return;
+    if (nextIndex === undefined) return;
 
-  const el = refs[nextIndex];
+    const el = refs[nextIndex];
 
-  el.current.click();
-  el.current.focus();
-};
+    el.current.click();
+    el.current.focus();
+  };
 
 /**
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.

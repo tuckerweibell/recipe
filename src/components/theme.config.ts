@@ -200,12 +200,24 @@ const stitches = createCss({
       '.no-flexgap &': {
         margin: `calc(${value} / 2 * -1)`,
       },
-      '.no-flexgap && > *': { margin: `calc(${value} / 2)`},
+      '.no-flexgap && > *': {margin: `calc(${value} / 2)`},
     }),
-    roundedTop: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderTopRightRadius: value}),
-    roundedBottom: () => (value: TokenValue<'radii'>) => ({borderBottomLeftRadius: value, borderBottomRightRadius: value}),
-    roundedLeft: () => (value: TokenValue<'radii'>) => ({borderTopLeftRadius: value, borderBottomLeftRadius: value}),
-    roundedRight: () => (value: TokenValue<'radii'>) => ({borderTopRightRadius: value, borderBottomRightRadius: value}),
+    roundedTop: () => (value: TokenValue<'radii'>) => ({
+      borderTopLeftRadius: value,
+      borderTopRightRadius: value,
+    }),
+    roundedBottom: () => (value: TokenValue<'radii'>) => ({
+      borderBottomLeftRadius: value,
+      borderBottomRightRadius: value,
+    }),
+    roundedLeft: () => (value: TokenValue<'radii'>) => ({
+      borderTopLeftRadius: value,
+      borderBottomLeftRadius: value,
+    }),
+    roundedRight: () => (value: TokenValue<'radii'>) => ({
+      borderTopRightRadius: value,
+      borderBottomRightRadius: value,
+    }),
   },
   media: {
     base: '(min-width: 0px)',
@@ -247,9 +259,10 @@ const getCustomProperties = theme => {
 
   for (const scaleName in theme) {
     for (const tokenName in theme[scaleName]) {
-      styles[`$${scaleName}-${tokenName}`] = String(
-        theme[scaleName][tokenName]
-      ).replace(/\$[$\w-]+/g, $1 => (/[^]\$/.test($1) ? $1 : `$${scaleName}${$1}`));
+      styles[`$${scaleName}-${tokenName}`] = String(theme[scaleName][tokenName]).replace(
+        /\$[$\w-]+/g,
+        $1 => (/[^]\$/.test($1) ? $1 : `$${scaleName}${$1}`)
+      );
     }
   }
 
@@ -280,7 +293,7 @@ export function mergeCss<
   const globals = stitches.global({':root': vars});
 
   resets.push(globals);
-  
+
   globals();
 
   const css = config => {
@@ -302,7 +315,7 @@ export function mergeCss<
 
       return definition(mappedProps);
     };
-  }
+  };
 
   return {
     ...stitches,
@@ -311,8 +324,11 @@ export function mergeCss<
 }
 
 const addAtPrefix = (obj: Record<string, unknown>) => {
-  return Object.entries(obj).reduce((res, [key, value]) => ({
-    ...res,
-    [key.includes('@') ? key : `@${key}`]: value,
-  }), {});
-}
+  return Object.entries(obj).reduce(
+    (res, [key, value]) => ({
+      ...res,
+      [key.includes('@') ? key : `@${key}`]: value,
+    }),
+    {}
+  );
+};

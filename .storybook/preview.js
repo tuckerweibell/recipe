@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { addDecorator } from '@storybook/react';
+import {addDecorator} from '@storybook/react';
 import EzGlobalStyles from '../src/components/EzGlobalStyles';
 
 addDecorator(story => (
@@ -11,5 +10,5 @@ addDecorator(story => (
 ));
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
+  actions: {argTypesRegex: '^on[A-Z].*'},
+};

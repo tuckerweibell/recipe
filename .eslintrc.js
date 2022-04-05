@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   extends: [require.resolve('@ezcater/ez-scripts/eslint'), 'plugin:prettier/recommended'],
   rules: {
@@ -24,13 +25,6 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 'error',
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
     'no-unused-expressions': 'off',
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
   },
   overrides: [
     {

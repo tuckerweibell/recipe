@@ -38,20 +38,19 @@ const measureCarouselPosition = scroller => {
   return {index, numberOfPages, isAwaitingPaint: itemWidths === 0};
 };
 
-const nextPrevClick = (
-  pageOffset: number,
-  scrollerRef: React.MutableRefObject<HTMLUListElement>
-) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  e.preventDefault();
-  e.stopPropagation();
-  const {current: scroller} = scrollerRef;
-  const {scrollWidth} = scroller;
-  const {index, numberOfPages} = measureCarouselPosition(scroller);
-  scroller.scrollTo({
-    left: Math.floor(scrollWidth * ((index + pageOffset) / numberOfPages)),
-    behavior: 'smooth',
-  });
-};
+const nextPrevClick =
+  (pageOffset: number, scrollerRef: React.MutableRefObject<HTMLUListElement>) =>
+  (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const {current: scroller} = scrollerRef;
+    const {scrollWidth} = scroller;
+    const {index, numberOfPages} = measureCarouselPosition(scroller);
+    scroller.scrollTo({
+      left: Math.floor(scrollWidth * ((index + pageOffset) / numberOfPages)),
+      behavior: 'smooth',
+    });
+  };
 
 function debounce(func, ms) {
   let timeout;

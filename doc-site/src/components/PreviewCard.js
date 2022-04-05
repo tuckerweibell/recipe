@@ -4,7 +4,7 @@ import {Link, withPrefix} from 'gatsby';
 import {EzHeading, EzTextStyle} from '@ezcater/recipe';
 
 const LinkOrPlaceholder = ({path, tags, children}) =>
-  (tags && tags.includes('coming-soon')) ? (
+  tags && tags.includes('coming-soon') ? (
     <div css={{opacity: 0.5}}>{children}</div>
   ) : (
     <Link to={path} css={{textDecoration: 'none'}}>

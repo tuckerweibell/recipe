@@ -11,8 +11,9 @@ export const ScrollLock = () => {
     const document = documentRef.current.ownerDocument;
     const {paddingRight, overflow} = document.body.style;
 
-    document.body.style.paddingRight = `${document.defaultView.innerWidth -
-      document.documentElement.clientWidth}px`;
+    document.body.style.paddingRight = `${
+      document.defaultView.innerWidth - document.documentElement.clientWidth
+    }px`;
     document.body.style.overflow = 'hidden';
 
     return () => {

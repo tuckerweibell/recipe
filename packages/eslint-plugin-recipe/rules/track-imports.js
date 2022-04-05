@@ -31,8 +31,7 @@ module.exports = {
     type: 'suggestion',
     docs: {
       description: 'tracks usage of Recipe via static analysis of Recipe imports',
-      url:
-        'https://github.com/ezcater/recipe/tree/master/packages/eslint-plugin-recipe/rules/track-imports',
+      url: 'https://github.com/ezcater/recipe/tree/master/packages/eslint-plugin-recipe/rules/track-imports',
     },
   },
   create: context => {

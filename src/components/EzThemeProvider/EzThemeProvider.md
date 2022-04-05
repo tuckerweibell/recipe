@@ -8,7 +8,6 @@ To use Recipe's emotion themes, wrap your Recipe components in the `EzThemeProvi
 
 ### Example
 
-
 ```tsx
 import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
 

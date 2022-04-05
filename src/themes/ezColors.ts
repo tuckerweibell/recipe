@@ -2,23 +2,23 @@ const CONTRAST_LIGHT = '#fff';
 const CONTRAST_DARK = '#151515';
 
 type EzColors = typeof ezColors;
-type EzColorsCategories = keyof EzColors;
+export type EzColorsCategories = keyof EzColors;
 
-type EzPalette = Record<
+export type EzPalette = Record<
   {
     [K in EzColorsCategories]-?: keyof EzColors[K];
   }[EzColorsCategories],
   string
 >;
 
-type EzColor = {
+export type EzColor = {
   name: string;
   alternateName?: string;
   color: string;
   contrastColor: string;
 };
 
-const ezColors = {
+export const ezColors = {
   neutral: {
     neutral170: {
       name: 'Neutral 170',
@@ -194,6 +194,4 @@ const createPalette = (colorProps: EzColors): EzPalette =>
     return colorPalette;
   }, {} as EzPalette);
 
-const ezPalette = createPalette(ezColors);
-
-export {ezColors, ezPalette, EzPalette, EzColor, EzColorsCategories};
+export const ezPalette = createPalette(ezColors);

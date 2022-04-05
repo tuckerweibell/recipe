@@ -67,8 +67,9 @@ const usage = Math.trunc((100 / total) * recipeCount);
 
 window
   .Toastify({
-    text: `<div><div>Recipe: ${version ||
-      'unknown version'}</div><div>Recipe usage: ${usage}%</div><div>Recipe instances: ${recipeCount}</div><div>Other styled instances: ${nonRecipeCount}</div></div>`,
+    text: `<div><div>Recipe: ${
+      version || 'unknown version'
+    }</div><div>Recipe usage: ${usage}%</div><div>Recipe instances: ${recipeCount}</div><div>Other styled instances: ${nonRecipeCount}</div></div>`,
     duration: 100000,
     gravity: 'bottom',
     position: 'right',

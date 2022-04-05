@@ -297,15 +297,18 @@ describe('EzTable', () => {
       {first: 'Mitchell', last: 'Hoffman'},
     ];
 
-    const link = onclick => ({item: {first, last}, linkRef}) => (
-      <div>
-        <div>
-          <a href="/" ref={linkRef} onClick={onclick}>
-            {first} {last}
-          </a>
-        </div>
-      </div>
-    );
+    const link =
+      onclick =>
+      ({item: {first, last}, linkRef}) =>
+        (
+          <div>
+            <div>
+              <a href="/" ref={linkRef} onClick={onclick}>
+                {first} {last}
+              </a>
+            </div>
+          </div>
+        );
 
     it('calls the onClick of the link target when clicking inside a table row', () => {
       const spy = jest.fn();
