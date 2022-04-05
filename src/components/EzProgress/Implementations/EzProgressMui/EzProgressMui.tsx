@@ -8,7 +8,7 @@ interface EzProgressMuiProps {
   children: ReactNode;
 }
 
-const CIRCULAR_PROGRESS_SIZE = 110;
+const CIRCULAR_PROGRESS_SIZE = 112;
 const CIRCULAR_PROGRESS_THICKNESS = 2;
 const CIRCULAR_PROGRESS_FULL_VALUE = 100;
 

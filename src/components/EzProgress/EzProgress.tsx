@@ -56,9 +56,12 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
     else if (value < 0) progressValue = 0;
     else progressValue = value;
 
+    // the minimum value is 1, so that a small amount of the chart is red and not just a grey circle
+    const progressValueChart = value < 1 ? 1 : value;
+
     return (
       <Box component="span" ref={ref} aria-label={label} margin="auto">
-        <EzProgressMui value={progressValue} color={progressColor}>
+        <EzProgressMui value={progressValueChart} color={progressColor}>
           <EzProgressMuiDisplayValue
             boldDisplayValue={goal && subgoal && !meetsSubGoal}
             value={progressValue}

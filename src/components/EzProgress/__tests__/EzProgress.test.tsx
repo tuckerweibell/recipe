@@ -27,6 +27,21 @@ describe('EzProgress logic', () => {
     expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`${value}%`);
   });
 
+  it('Passing a goal, subgoal, value less than 1, and label should show a full circle, a percentage circle matching the minimum value (1%), an aria-label matching the label, and text matching the value percentage', async () => {
+    const value = 1;
+    const label = `Q1 on-time delivery goal progress - ${value}%`;
+    const {findByLabelText, queryAllByLabelText} = render(
+      <EzProgress value={value} goal={75} subgoal={25} label={label} />
+    );
+
+    expect(queryAllByLabelText(label).length).toEqual(1);
+    const chart = findByLabelText(label);
+
+    expect((await chart).firstChild.childNodes[0]).toHaveAttribute('aria-valuenow', '100');
+    expect((await chart).firstChild.childNodes[1]).toHaveAttribute('aria-valuenow', '1');
+    expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`${value}%`);
+  });
+
   it('Passing a value, color, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {
     const value = 44;
     const label = `Q1 on-time delivery goal progress - ${value}%`;
