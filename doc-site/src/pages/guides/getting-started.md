@@ -86,6 +86,10 @@ const App = () => (
 );
 ```
 
+Note: Recipe's supported themes extend MUI's [default theme](https://mui.com/customization/default-theme/), which uses the following theme configuration variables: `breakpoints`, `direction`, `components`, `palette`, `spacing`, `mixins`, `shadows`, `typography`, `transitions`, `zIndex`.
+
+<EzAlert headline="Warning" tagline="Overwriting these configuration variables may result in unexpected behavior or change how the theme functions." use="warning" ></EzAlert>
+
 ### Importing theme properties
 
 
