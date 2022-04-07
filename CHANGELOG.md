@@ -1,5 +1,11 @@
 ## Version 13
 
+## 14.0.2
+
+### Patch Changes
+
+- fix: handle theme toggle for gatsby SSR [[sha]](https://github.com/ezcater/recipe/commit/0f2f39e1)
+
 ## 14.0.1
 
 ### Patch Changes
