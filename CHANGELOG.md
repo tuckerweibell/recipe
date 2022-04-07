@@ -1,5 +1,32 @@
 ## Version 13
 
+## 14.0.0
+
+### Major Changes
+
+- feat: add mui themes, convert EzProgress to use new theme [[sha]](https://github.com/ezcater/recipe/commit/92ee4845)
+- feat: added ezLegacyTheme, removed deprecated standard theme [[sha]](https://github.com/ezcater/recipe/commit/ef6be465)
+
+### Minor Changes
+
+- feat: expand emotion themes and add new theming page to doc site [[sha]](https://github.com/ezcater/recipe/commit/6a6e1039)
+
+### Patch Changes
+
+- refactor: EzButton loading prop separated to prevent erroneously passing to isPropValid [[sha]](https://github.com/ezcater/recipe/commit/6e3c23a1)
+- fix: removed undefined exports from the new MUI theme files [[sha]](https://github.com/ezcater/recipe/commit/191966cd)
+- deps: upgraded typescript, prettier, @typescript-eslint/parser, and @typescript-eslint/eslint-plugin to the latest versions [[sha]](https://github.com/ezcater/recipe/commit/191966cd)
+- style: change minimum for EzProgress circle chart to 5% to always show a sliver of a color [[sha]](https://github.com/ezcater/recipe/commit/17112537)
+- deps: upgrade fontawesome-svg-core and react-fontawesome [[sha]](https://github.com/ezcater/recipe/commit/95e7ef83)
+- build: removed test files from final build output [[sha]](https://github.com/ezcater/recipe/commit/191966cd)
+- style: change EzProgress circle chart size to 112 to match metricOnly square chart [[sha]](https://github.com/ezcater/recipe/commit/17112537)
+- test: add a test for the EzProgress circle chart minimum value of 5% [[sha]](https://github.com/ezcater/recipe/commit/17112537)
+- style: update margin on EzProgress [[sha]](https://github.com/ezcater/recipe/commit/239fbd17)
+- docs: update export theme guides to include warning about overwriting theme configuration variables [[sha]](https://github.com/ezcater/recipe/commit/04c17b91)
+- deps: upgraded emotion in recipe and doc site [[sha]](https://github.com/ezcater/recipe/commit/6e3c23a1)
+- docs: upgrade doc-site font awesome libraries [[sha]](https://github.com/ezcater/recipe/commit/95e7ef83)
+- docs: convert doc-site theme toggle from nav bar link to segmented control in right sticky page section, persist selection in local storage [[sha]](https://github.com/ezcater/recipe/commit/31e35241)
+
 ## 13.2.0
 
 ### Minor Changes
