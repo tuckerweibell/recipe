@@ -1,4 +1,4 @@
-## Version 13
+## Version 14
 
 ## 14.0.2
 
@@ -38,6 +38,8 @@
 - deps: upgraded emotion in recipe and doc site [[sha]](https://github.com/ezcater/recipe/commit/6e3c23a1)
 - docs: upgrade doc-site font awesome libraries [[sha]](https://github.com/ezcater/recipe/commit/95e7ef83)
 - docs: convert doc-site theme toggle from nav bar link to segmented control in right sticky page section, persist selection in local storage [[sha]](https://github.com/ezcater/recipe/commit/31e35241)
+
+## Version 13
 
 ## 13.2.0
 
