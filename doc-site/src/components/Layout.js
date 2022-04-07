@@ -116,7 +116,9 @@ const Layout = ({
       const showTableOfContents = hasHeadings && !isComponentGrid && !hasSearchTerms;
 
       const [activeTheme, setActiveTheme] = useState(
-        () => localStorage.getItem('recipeTheme') || 'fulfillment'
+        () =>
+          (typeof localStorage !== 'undefined' ? localStorage.getItem('recipeTheme') : null) ||
+          'fulfillment'
       );
       const handleThemeChange = value => {
         localStorage.setItem('recipeTheme', value);
