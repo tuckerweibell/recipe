@@ -1,5 +1,11 @@
 ## Version 14
 
+## 14.0.3
+
+### Patch Changes
+
+- docs: update changelog header [[sha]](https://github.com/ezcater/recipe/commit/a77bd60f)
+
 ## 14.0.2
 
 ### Patch Changes
