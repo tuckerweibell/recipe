@@ -11,5 +11,3 @@ reports
 .eslintcache
 *.cache
 .parcel-cache
-
-!packages/@stitches/core/dist

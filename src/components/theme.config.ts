@@ -1,5 +1,4 @@
-/* eslint-disable filenames/match-exported */
-import {createCss} from '../../packages/@stitches/core';
+import {createCss} from '@stitches/core';
 import type {
   TMedias,
   TTheme,
@@ -7,7 +6,7 @@ import type {
   CSSPropertiesToTokenScale,
   TStyledSheet,
   IConfig,
-} from '../../packages/@stitches/core';
+} from '@stitches/core';
 import {createRoot} from '@ezcater/snitches';
 import {PlaceItemsProperty} from 'csstype';
 

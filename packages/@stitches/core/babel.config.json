@@ -1,3 +1,0 @@
-{
-  "presets": [["@babel/env", {"targets": "defaults, ie 11", "modules": false}]]
-}
