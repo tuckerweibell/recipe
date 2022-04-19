@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import {withPrefix} from 'gatsby';
 import Helmet from 'react-helmet';
-import packageJson from '../../../package.json';
+import packageJson from '../../../packages/recipe/package.json';
 import {EzLayout, EzAppLayout} from '@ezcater/recipe';
 import ezcaterLogo from '../ezcater-logo.svg';
 import {Global, css} from '@emotion/react';
