@@ -1,3 +1,4 @@
+/* eslint-disable filenames/match-regex */
 const {relative} = require('path');
 const {createRequire} = require('module');
 const logger = require('../logging');
@@ -13,12 +14,12 @@ const track = (context, node) => {
   const filename = context.getFilename();
   const source = relative(process.cwd(), filename);
   const req = createRequire(filename);
-  const api_version = req('@ezcater/recipe/package.json').version;
+  const apiVersion = req('@ezcater/recipe/package.json').version;
   const [logLevel] = context.options;
   const log = logLevel === 'trace' ? logger.trace : logger.info;
 
   log('imported', {
-    api_version,
+    api_version: apiVersion,
     app_name: process.env.npm_package_name,
     source,
     ...envMeta,

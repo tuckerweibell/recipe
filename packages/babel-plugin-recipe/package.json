@@ -1,0 +1,17 @@
+{
+  "name": "@ezcater/babel-plugin-recipe",
+  "version": "1.1.0",
+  "description": "Static analysis tools for ezCater's Recipe design system ",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezcater/recipe.git",
+    "directory": "packages/babel-plugin-recipe"
+  },
+  "bugs": {
+    "url": "https://github.com/ezcater/recipe/issues"
+  },
+  "author": "Craig Cavalier",
+  "license": "MIT",
+  "dependencies": {}
+}

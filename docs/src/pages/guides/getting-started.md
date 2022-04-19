@@ -1,0 +1,205 @@
+---
+path: '/guides/getting-started'
+title: 'Getting Started'
+order: 10
+---
+
+## Why Recipe?
+
+- Recipe is ezCater's homegrown design system. It provides shared React components accompanied by documentation and design resources.
+- A design system makes it easier to create a consistent and high-quality experience for our users. People trust interfaces that are easy to use and understand and have a polished and refined visual design. An interface with confusing or inconsistent elements or one that looks generic or unfinished reduces trust and credibility.
+- A design system helps teams go faster by promoting reuse and minimizing the need for custom styling.
+- A design system helps with brand recognition. People should be able to immediately recognize that an interface belongs to the ezCater brand or to a specific product in ezCater's product suite.
+- If you want to learn more about the rationale for building a design system, here's a link to the [original proposal deck](https://docs.google.com/presentation/d/1F2g0puThyfdYNwKYHGFNFiBNN3Lh7RHWxSfECG9MrUg/edit?usp=sharing).
+
+> "Now that I’ve worked with Recipe, I don’t want to go back to working without Recipe." -Jesse Belanger
+
+---
+
+## Components overview
+
+- A good place to start is by reading the overview of how to do [high level screen layout](/components/ez-app-layout) with Recipe.
+- Most Recipe components are opinionated about how to layout their child content. However in some cases you may need to use [Layout](/components/ez-layout) to control the horizontal layout of individual components across multiple breakpoints.
+- If you want to see what's available in Recipe, you can [browse all components](/components/).
+- Recipe components use consistent patterns for properties; you'll find various components use similarly named properties like `title` or `value` when the usage is equivalent across the components. Certain properties will also have a consistent shape wherever they are found. For example, the `breadcrumb` and `tabs` properties on [Page Header](/components/ez-page-header) and the `home` and `links` properties on [Navigation](/components/ez-navigation) accept a common "link" shaped object that accepts a url as an `href` or a [Router compatible Link](https://reacttraining.com/react-router/web/api/Link).
+- [Principles for using Recipe](/guides/principles#principles-for-using-recipe)
+
+---
+
+## When to consider building something new
+
+Squads should challenge themselves to use the design system as much as possible. Designers should seek feedback on consistency and emerging patterns as a core aspect of design reviews. Engineers and PMs should ask questions if they see a proposed design that is not using Recipe.
+
+However, Recipe is still a young design system and has plenty of room to evolve. We welcome ideas for new components and extensions of existing ones. We want to evolve the system in a thoughtful way so that we can main consistency.
+
+Here are some things to consider when proposing a change to Recipe:
+
+- Is this pattern general enough to apply to applications other than the one you are currently working on?
+- Have you identified three or more situations where your proposed component could be used? These don't have to be all new cases, they could include situations where Recipe already has a solution but you think your proposed one is better for the user.
+- Have you thought about the "distance" between this pattern and related patterns that are already in Recipe?
+  - Can you provide clear guidance to designers and developers about when to choose this variation vs. the ones that are already available?
+  - Will it be predictable to the user when they will see this variation vs. the ones that are already available?
+
+---
+
+## Recipe themes
+
+[Recipe v14](/support/migrating-to-recipe-14) introduces extendable [Material UI](https://mui.com/) themes using [emotion](https://emotion.sh/docs/introduction). As new components are introduced and current components are updated, they will use these supported themes. A future version of Recipe will remove all legacy themes once all components have migrated to using these themes.
+
+### Supported themes
+
+- `ezTheme`
+- `ezMarketplaceTheme` - extends `ezTheme`
+- `ezFulfillmentTheme` - extends `ezTheme`
+
+### Theme provider
+
+To use, wrap your Recipe components in the `EzThemeProvider` component and pass in the appropriate theme. This is usually done at the app level, but can be nested if needed.
+
+```tsx
+import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
+
+const App = () => (
+  <EzThemeProvider theme={themes.ezMarketplaceTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+### Extending themes
+
+<EzAlert headline="Warning" tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team." use="warning" ></EzAlert>
+
+We recognize there may be instances where extending a theme is necessary. For example, your app may require context-specific styles that are not supported by Recipe. In these cases, you can create a new customized emotion theme by extending a supported theme.
+
+```tsx
+import {EzThemeProvider, EzButton, themes} from '@ezcater/recipe';
+
+const customTheme = themes.createTheme(themes.ezTheme, {
+  // theme overrides here
+});
+
+const App = () => (
+  <EzThemeProvider theme={customTheme}>
+    <EzButton use="primary">Click me</EzButton>
+  </EzProvider>
+);
+```
+
+Note: Recipe's supported themes extend MUI's [default theme](https://mui.com/customization/default-theme/), which uses the following theme configuration variables: `breakpoints`, `direction`, `components`, `palette`, `spacing`, `mixins`, `shadows`, `typography`, `transitions`, `zIndex`.
+
+<EzAlert headline="Warning" tagline="Overwriting these configuration variables may result in unexpected behavior or change how the theme functions." use="warning" ></EzAlert>
+
+### Importing theme properties
+
+
+```tsx
+import {themes} from '@ezcater/recipe';
+import {styled} from '@emotion/react';
+
+const {ezTheme} = themes;
+
+const MyComponent = styled.div`
+  color: ${ezTheme.palette.common.primary100};
+`;
+
+// Also available as an emotion theme prop
+
+const MyOtherComponent = styled.div`
+  color: ${({theme}) => theme.palette.common.primary100};
+`;
+```
+
+### Including Recipe's default font
+
+To ensure Recipe's default font is available in a webpage, copy this code into the `<head>` of your HTML document.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+---
+
+## Design setup
+
+The matching Sketch symbol library for Recipe is available through a tool called [Abstract](https://www.abstract.com/). Contact [the Recipe design team](/meet-the-team#recipe-design-team) if you have any questions about accessing it.
+
+---
+
+## Development setup
+
+```term
+npm install @ezcater/recipe
+```
+or
+```term
+yarn add @ezcater/recipe
+```
+
+Aside from React and React DOM, Recipe has no other `peerDependencies`.  Once `@ezcater/recipe` is installed, you're ready to start importing components!
+
+### Importing components in your projects
+
+Import the Recipe package, just as you would any other package dependency:
+
+```js
+import {EzButton} from '@ezcater/recipe';
+
+export const MyComponent = () => (
+  <div>
+    <EzButton use="primary" onClick={() => alert('You clicked me!')}>
+      Click Me!
+    </EzButton>
+  </div>
+);
+```
+
+---
+
+### Updating to new releases
+
+To install or update to the [latest version of Recipe](/changelog) in your application, run the following command:
+
+```term
+npm install @ezcater/recipe@latest
+```
+or
+```term
+yarn add @ezcater/recipe@latest
+```
+
+---
+
+## Browser support
+
+We strive for Recipe to have feature parity across all modern browsers.
+
+**IE11 is no longer supported as of Recipe v14**. For applications that wish to run Recipe v13 or earlier in IE11, polyfills are required for the following browser features:
+
+- [`Object.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+- [`Element.prototype.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)
+- [`Element.prototype.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo)
+- [`CSS custom properties`](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- [`Array.prototype.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+
+We recommend using [Polyfill.io](https://polyfill.io/) in your application to apply necessary polyfills only when they are needed for the requesting browser.
+
+### Polyfill.​io Example
+
+```html
+<script
+  src="https://polyfill.io/v3/polyfill.min.js?features=es2016%2Cdefault%2Ces2017%2Ces2015%2Csmoothscroll"
+  type="text/javascript"
+>
+```
+
+For IE11 support for CSS custom properties, we recommend also using the [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill).
+
+---
+
+## Contributing
+
+If you're interested in contributing, check out our [contributing guidelines](/guides/contributing) to get started.

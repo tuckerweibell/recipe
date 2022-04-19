@@ -5,11 +5,23 @@ jobs:
     name: Code quality validations
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 
-      uses: actions/checkout@v3
+      - name: Checkout 
+        uses: actions/checkout@v3
 
-    - name: Setup Eslint Checks
-      uses: mrdivyansh/eslint-action@v1.0.7
-      with:
-        repo-token: ${{secrets.GITHUB_TOKEN}}
-        eslint-rc: .eslintrc.js
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build source
+        run: yarn build --ignore @ezcater/recipe-analytics-bookmarklet --ignore @ezcater/recipe-doc-site --ignore @ezcater/recipe-playroom
+
+      - name: Run linters
+        run: yarn lint
+      
+      - name: Typecheck
+        run: yarn type-check

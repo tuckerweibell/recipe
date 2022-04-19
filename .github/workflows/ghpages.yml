@@ -19,25 +19,19 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js 14.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-
-      - name: Install NPM
-        run: npm i -g npm@^6
+          node-version: '14'
+          cache: 'yarn'
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install
 
-      - name: Build
-        run: npm run build
-
-      # Publish doc-site for the latest (published) semver release
-      - name: Build doc-site
-        run: npm run install:docs && npm run build:docs:prod && npm run playroom:build
+      - name: Build source
+        run: yarn build
 
       - name: Publish doc-site
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./doc-site/public
+          publish_dir: ./docs/public

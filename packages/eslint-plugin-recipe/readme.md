@@ -9,6 +9,10 @@ Install `@ezcater/eslint-plugin-recipe` from npm:
 ```term
 npm install @ezcater/eslint-plugin-recipe
 ```
+or from yarn:
+```term
+yarn add @ezcater/eslint-plugin-recipe
+```
 
 ### Usage
 

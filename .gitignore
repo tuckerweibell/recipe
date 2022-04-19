@@ -6,8 +6,8 @@ npm-debug.log*
 coverage
 node_modules
 dist
-packages/**/lib
+packages/**/dist
 reports
 .eslintcache
 *.cache
-.parcel-cache
+__diff_output__

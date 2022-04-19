@@ -1,11 +1,5 @@
 node_modules/
 coverage/
-doc-site
+docs/
 dist/
-build/
-packages/
-lib/
-.next/
 .github/
-# avoid parsing error on template literal type
-src/components/theme.config.ts

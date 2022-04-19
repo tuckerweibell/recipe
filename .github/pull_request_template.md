@@ -7,6 +7,6 @@
 ## Checklist
 
 - [ ] Provide test coverage for the changes made
-- [ ] Create a changeset (`npm run changeset`) with a summary of the changes
+- [ ] Create a changeset (`yarn changeset`) with a summary of the changes
 
 [Contributing guidelines](https://ezcater.github.io/recipe/guides/contributing/)

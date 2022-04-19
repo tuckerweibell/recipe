@@ -15,24 +15,28 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js 14.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: '14'
+          cache: 'yarn'
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install
+      
+      - name: Build source
+        run: yarn build
 
       - name: Version
-        run: npx changeset version --snapshot canary
+        run: yarn changeset version --snapshot canary
 
       - name: Publishing canary release to npm registry
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm run release:canary
+          publish: yarn changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

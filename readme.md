@@ -25,7 +25,7 @@
 # Installation
 
 ```
-npm install @ezcater/recipe --save
+yarn add @ezcater/recipe
 ```
 
 ## Importing components in downstream projects
@@ -52,7 +52,7 @@ This project uses [plop](https://www.npmjs.com/package/plop) to generate new Rea
 - rename all files to match your component's name
 - replace all occurrences of `Component` inside the component's files with your component's name.
 
-To create a new component, run `npm run create-component` inside the project. You'll see a CLI that guides you through the process.
+To create a new component, run `yarn create-component` inside `packages/recipe`. You'll see a CLI that guides you through the process.
 
 After the CLI has finished, all files will have been created in the location you specified. You'll need to add an export for your component to `src/index.tsx`. For example:
 
@@ -67,11 +67,19 @@ The [recipe contributions docs](https://ezcater.github.io/recipe/guides/contribu
 
 To begin developing locally, use the following commands:
 
-- Run `npm i` in both the root dir, and `/doc-site`
-- Run `npm run start` in the root dir
+- Run `yarn install` in the root dir
+- Run `yarn develop` in the root dir
   - This will also open up the recipe-playroom: `http://localhost:9000`
   - This will also allow you to view the recipe-doc-site in the browser at `http://localhost:8000/`
     - Changes made to the component markdown as well as the components used in the markdown should be visible here.
+
+Recipe uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lerna.js.org/) internally to manage packages. The above commands can be executed individually using the `yarn workspaces` command, passing in the name of the package and the command to execute.
+
+To run the `develop` script in only recipe's source, you can use:
+
+```term
+yarn workspace @ezcater/recipe develop
+```
 
 ## Publishing
 

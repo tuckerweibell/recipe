@@ -1,0 +1,43 @@
+{
+  "name": "@recipe-ui/theme-marketplace",
+  "version": "2.0.0",
+  "description": "ezCater's React UI Component library",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezcater/recipe.git",
+    "directory": "packages/recipe-ui-theme-marketplace"
+  },
+  "bugs": {
+    "url": "https://github.com/ezcater/recipe/issues"
+  },
+  "dependencies": {
+    "@react-types/provider": "^3.1.1"
+  },
+  "devDependencies": {
+    "@ezcater/recipe": "^14.0.3",
+    "@types/react": "^17.0.44",
+    "tsup": "^5.12.5",
+    "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "@ezcater/recipe": "^12.0.0",
+    "react": "^16.8.0 || ^17.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist/",
+    "develop": "tsup --watch",
+    "type-check": "tsc --noEmit"
+  }
+}

@@ -1,8 +1,0 @@
-.recipe-marketplace {
-  --recipe-page-background-color: var(--recipe-global-color-static-white);
-  --recipe-card-border-radius: 0;
-  --recipe-card-dropshadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.1);
-  --recipe-carousel-item-offset: var(--recipe-global-static-size-250);
-  --recipe-flash-message-accent-border-size: 0;
-  --recipe-flash-message-accent-box-shadow-size: -4px;
-}

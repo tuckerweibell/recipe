@@ -1,16 +1,14 @@
 {
   "version": "2",
   "exclude_patterns": [
-    "packages",
-    "coverage",
-    "node_modules",
-    "dist",
-    "doc-site",
-    "lib",
-    "templates",
-    "plopfile.js",
-    "playroom",
-    "**/__tests__/"
+    "**/__tests__/",
+    "**/node_modules",
+    "docs",
+    "packages/**/coverage",
+    "packages/**/dist",
+    "packages/**/plopfile.js",
+    "packages/**/templates",
+    "packages/playroom"
   ],
   "similar-code": {
     "enabled": false
