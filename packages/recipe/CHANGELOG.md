@@ -1,5 +1,12 @@
 ## Version 14
 
+## 14.0.4
+
+### Patch Changes
+
+- refactor: remove stitches package and import directly from npm [[sha]](https://github.com/ezcater/recipe/commit/a5318a6a)
+- refactor: switch to `yarn` and `yarn workspaces` with `lerna` [[sha]](https://github.com/ezcater/recipe/commit/aaf30090)
+
 ## 14.0.3
 
 ### Patch Changes

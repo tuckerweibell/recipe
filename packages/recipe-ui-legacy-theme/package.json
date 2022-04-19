@@ -1,6 +1,6 @@
 {
   "name": "@recipe-ui/legacy-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ezCater's React UI Component library - the 'standard' theme from releases prior to Recipe v11",
   "license": "MIT",
   "main": "dist/index.js",
