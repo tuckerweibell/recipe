@@ -17,11 +17,9 @@ const scope = {
   ...Components,
   Open,
   Media,
-  withPrefix(file) {
+  withPrefix() {
     // swap the provided images for placeholder values
-    return `http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400${
-      file.includes('high') ? '+(high-res)' : ''
-    }`;
+    return `https://dummyimage.com/800x400/00b373/fff`;
   },
 };
 
@@ -69,7 +67,7 @@ describe('EzCard', () => {
         responsiveImagePosition: (
           <EzCard
             title="Card with image on right"
-            imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+            imageSrc="https://dummyimage.com/800x400/00b373/fff"
             imagePosition={{base: 'right', medium: 'top'}}
             imageMaxHeight={192}
           >

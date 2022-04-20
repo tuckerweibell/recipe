@@ -108,7 +108,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   <EzPreview>
     <picture>
       <img
-        src="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+        src="https://dummyimage.com/800x400/00b373/fff"
         alt=""
         style={{width: '100%', maxHeight: 300, objectFit: 'cover'}}
       />

@@ -2,15 +2,21 @@ import {Theme} from '@react-types/provider';
 import {createTheme} from '@ezcater/recipe';
 
 const marketplace = createTheme({
+  borderStyles: {
+    'card-border': 'solid',
+  },
+  borderWidths: {
+    'card-border': '$thin',
+  },
   colors: {
     'page-bg': 'white',
+    'card-border': '$colors$gray150',
   },
   radii: {
-    'card-rounded': 0,
     'flash-message-rounded': 0,
   },
   shadows: {
-    card: '0px 2px 20px 5px rgba(0, 0, 0, 0.1)',
+    card: 'none',
   },
   space: {
     'carousel-item-offset': '$250',

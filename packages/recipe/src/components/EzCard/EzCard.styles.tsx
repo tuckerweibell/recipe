@@ -3,6 +3,9 @@ import theme from './EzCard.theme.config';
 export const container = theme.css({
   backgroundColor: '$card-bg',
   boxShadow: '$card',
+  borderStyle: '$card-border',
+  borderWidth: '$card-border',
+  borderColor: '$card-border',
 
   '--radii-card-rounded': 0,
   '--space-card-p': '$space$card-md-p',

@@ -125,7 +125,7 @@
 <Media size="small">
   <EzCard
     title="Card with image on right"
-    imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+    imageSrc="https://dummyimage.com/800x400/00b373/fff"
     imagePosition={{base: 'right', medium: 'top'}}
     imageMaxHeight={192}
   >
@@ -143,7 +143,7 @@
 <Media size="small">
   <EzCard
     title="Card with image at top"
-    imageSrc="http://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+    imageSrc="https://dummyimage.com/900x200/00b373/fff"
     imagePosition={{base: 'top', medium: 'left'}}
   >
     <p>
@@ -159,7 +159,7 @@
 ```jsx
 <EzCard
   title="Card with image on right"
-  imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+  imageSrc="https://dummyimage.com/800x400/00b373/fff"
   imagePosition={{base: 'top', medium: 'right'}}
 >
   <p>
@@ -174,7 +174,7 @@
 ```jsx
 <EzCard
   title="Card with image at top"
-  imageSrc="http://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
+  imageSrc="https://dummyimage.com/900x200/00b373/fff"
   imagePosition={{base: 'left', medium: 'top'}}
 >
   <p>

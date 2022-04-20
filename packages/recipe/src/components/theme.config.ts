@@ -37,6 +37,7 @@ const stitches = createCss({
       blue900: '#2b608e',
       blue950: '#0f4879',
       gray100: '#fafafb',
+      gray150: '#cccfd5',
       gray200: '#f4f7f8',
       gray300: '#e6e9eb',
       gray400: '#ced4d9',

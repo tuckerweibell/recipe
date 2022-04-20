@@ -5,11 +5,9 @@ import {renderToString} from 'react-dom/server';
 import {performance} from 'perf_hooks';
 import {EzPage, EzCard, EzLink, EzHeader, EzHeading, EzContent} from '../../index';
 
-const withPrefix = file => {
+const withPrefix = () => {
   // swap the provided images for placeholder values
-  return `http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400${
-    file.includes('high') ? '+(high-res)' : ''
-  }`;
+  return `https://dummyimage.com/800x400/00b373/fff`;
 };
 
 function median(sequence) {
@@ -50,7 +48,7 @@ function measureRender(Component) {
 
 const Sample = props => (
   <EzPage>
-    <EzCard imageSrc={withPrefix(props.image)} imagePosition="left" imageMaxWidth={200} clickable>
+    <EzCard imageSrc={withPrefix()} imagePosition="left" imageMaxWidth={200} clickable>
       <EzHeader>
         <EzHeading size="3" subheading={props.subtitle}>
           <EzLink href="/orders" use="reset" onClick={() => {}}>

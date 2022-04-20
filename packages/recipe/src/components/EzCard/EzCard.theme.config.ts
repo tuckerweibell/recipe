@@ -2,7 +2,11 @@ import {mergeCss} from '../theme.config';
 
 export default mergeCss({
   theme: {
+    borderStyles: {
+      'card-border': 'none',
+    },
     borderWidths: {
+      'card-border': '0px',
       'card-accent': '5px',
     },
     colors: {

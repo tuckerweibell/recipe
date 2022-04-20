@@ -321,10 +321,7 @@ Card images can be used to enhance the content of the card and are ideal for mar
 
 ```jsx
 <EzPage>
-  <EzCard
-    title="Card with image at top"
-    imageSrc="http://via.placeholder.com/900+x+200/00b373/FFFFFF?text=900+x+200"
-  >
+  <EzCard title="Card with image at top" imageSrc="https://dummyimage.com/900x200/00b373/fff">
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
       maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
@@ -332,7 +329,7 @@ Card images can be used to enhance the content of the card and are ideal for mar
   </EzCard>
   <EzCard
     title="Card with image on right"
-    imageSrc="http://via.placeholder.com/800+x+400/00b373/FFFFFF?text=800+x+400"
+    imageSrc="https://dummyimage.com/800x400/00b373/fff"
     imagePosition="right"
   >
     <p>
