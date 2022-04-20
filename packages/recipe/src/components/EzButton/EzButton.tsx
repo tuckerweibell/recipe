@@ -64,7 +64,7 @@ const button = theme.css({
         boxShadow: '$button-primary',
         padding: '$button-py $button-px',
         '&:focus': {
-          boxShadow: '$focus-ring',
+          boxShadow: '$button-primary-focus-ring',
           backgroundColor: '$button-bg-primary-focus',
           borderColor: '$button-bg-primary-focus',
         },
@@ -89,9 +89,10 @@ const button = theme.css({
         boxShadow: '$button-secondary',
         padding: '$button-py $button-px',
         '&:focus': {
-          boxShadow: '$focus-ring',
+          boxShadow: '$button-secondary-focus-ring',
           backgroundColor: '$button-bg-secondary-focus',
           borderColor: '$button-border-secondary-focus',
+          borderWidth: '$button-secondary',
         },
         '&:hover': {
           color: '$button-text-secondary-hover',
@@ -102,6 +103,10 @@ const button = theme.css({
           color: '$button-text-secondary-down',
           backgroundColor: '$button-bg-secondary-down',
           borderColor: '$button-border-secondary-down',
+        },
+        '&:hover&:focus': {
+          borderColor: '$button-border-secondary-focus',
+          borderWidth: '$button-secondary-focus',
         },
       },
       tertiary: {

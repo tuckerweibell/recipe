@@ -5,6 +5,7 @@ export default mergeCss({
     borderWidths: {
       'button-primary': '$thin',
       'button-secondary': '$thin',
+      'button-secondary-focus': '$thin',
       'button-tertiary': 0,
       'button-spinner': '0.2rem',
     },
@@ -48,6 +49,7 @@ export default mergeCss({
       'button-text-secondary': '$blue600',
       'button-text-secondary-hover': '$blue800',
       'button-text-secondary-down': '$blue900',
+      'button-text-secondary-focus': '$blue600',
       'button-border-secondary': '$gray400',
       'button-border-secondary-hover': '$gray500',
       'button-border-secondary-down': '$gray400',
@@ -115,8 +117,13 @@ export default mergeCss({
     shadows: {
       'button-primary': '$sm',
       'button-secondary': '$sm',
+      'button-secondary-hover': '$sm',
+      'button-secondary-down': '$sm',
+      'button-secondary-focus': '$sm',
       'button-tertiary': 'none',
       'button-spinner': '0 0 0 1px transparent',
+      'button-primary-focus-ring': '$focus-ring',
+      'button-secondary-focus-ring': '$focus-ring',
     },
     sizes: {
       'button-spinner': '1.28571429rem',
