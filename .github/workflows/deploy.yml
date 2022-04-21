@@ -9,7 +9,7 @@ jobs:
     name: Deploy Labeled Prerelease
 
     # this job will only run if the PR has been tagged with a label to deploy
-    if: ${{ github.event.label.name == 'deploy' }}
+    if: ${{ startsWith(github.head_ref, 'changeset-release') == false && github.event.label.name == 'deploy' && github.event.pull_request.merged == false }}
 
     runs-on: ubuntu-latest
 
