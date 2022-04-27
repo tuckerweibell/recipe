@@ -1,5 +1,3 @@
-## Version 14
-
 ## 14.0.4
 
 ### Patch Changes
@@ -51,8 +49,6 @@
 - deps: upgraded emotion in recipe and doc site [[sha]](https://github.com/ezcater/recipe/commit/6e3c23a1)
 - docs: upgrade doc-site font awesome libraries [[sha]](https://github.com/ezcater/recipe/commit/95e7ef83)
 - docs: convert doc-site theme toggle from nav bar link to segmented control in right sticky page section, persist selection in local storage [[sha]](https://github.com/ezcater/recipe/commit/31e35241)
-
-## Version 13
 
 ## 13.2.0
 
@@ -131,8 +127,6 @@
 - feat: Add backgroundColor variant to EzPage [[sha]](https://github.com/ezcater/recipe/commit/bca9bbf1)
 - workflow: downgrade storybook dependencies and remove custom story [[sha]](https://github.com/ezcater/recipe/commit/483c4057)
 - Add .tool-versions with working node version [[sha]](https://github.com/ezcater/recipe/commit/0e637426)
-
-## Version 12
 
 ## 12.5.0
 
@@ -370,9 +364,6 @@
 - Updated latest babel build tooling (to support TS template literals)
 - Added compression and other techniques to reduce the payload size of visual regression test input
 
----
-
-## Version 11
 
 ## 11.4.3 - 2021-03-19
 
@@ -655,10 +646,6 @@
 - removed `jest.globals` in favor of using `@testing-library/react` directly (we no longer need to wrap components in a theme provider).
 - created private css-module-types package to allow provide TypeScript definitions for CSS imports.
 - added top-level `repository` and `types` fields to Recipe's package.json.
-
----
-
-## Version 10
 
 ## 10.7.3 - 2020-09-24
 
@@ -1111,10 +1098,6 @@
 - split up tests for EzField by type (i.e. checkbox, radio, select, date, time etc)
 - updated EzField[type=time] tests to use public API, rather than internal/private methods
 
----
-
-## Version 8
-
 ## 8.0.2 - 2020-01-16
 
 #### Breaking changes
@@ -1179,10 +1162,6 @@
 - Updated Spacing and Typography documentation to no longer perform "rem to pixel" math on theme values.
 - Added guidance on base font size compatibility to support applications that use a 14px base font size instead of Recipe's recommended size of 16px.
 - Added CSS Custom Variable Polyfill recommendation for applications that need to support IE.
-
----
-
-## Version 7
 
 ## 7.1.3 - 2019-12-16
 
@@ -1258,10 +1237,6 @@
 
 - updated ez-scripts (linting) version
 - Dependency bumps for security vulnerability warning from npm audit.
-
----
-
-## Version 6
 
 ## 6.1.3 - 2019-08-28
 
@@ -1377,10 +1352,6 @@
 - Fixed an issue with emotion css-in-js leaking state across visual regression test runs
 - Replace manual style reset from `jest.config` in favor of using `EzGlobalStyles` component.
 
----
-
-## Version 5
-
 ## 5.2.0 - 2019-06-24
 
 #### New components
@@ -1491,10 +1462,6 @@
 #### Development workflow
 
 - Added the `--open` flag to `gatsby develop` NPM target. This will launch the doc site during development similar to how create-react-app auto launches when running.
-
----
-
-## Version 4
 
 ## 4.5.0 - 2019-05-06
 
@@ -1621,10 +1588,6 @@
   - Remove unneeded `Component` wrapper from example that didn't use state
   - Use reference equality for bulk selection example to simplify selection logic
 
----
-
-## Version 3
-
 ## 3.0.1
 
 #### Enhancements
@@ -1636,10 +1599,6 @@
 #### Breaking changes
 
 - Updated internals of EzField to use React hooks, which required a peerDependency bump of React to a >16.8 version.
-
----
-
-## Version 2
 
 ## 2.4.1
 
@@ -1739,10 +1698,6 @@
 
 - Upgraded Recipe to Typescript
 - Removed internal `withTheme` wrapper around components; Recipe components must now be used inside a `ThemeProvider`
-
----
-
-## Version 1
 
 ## 1.13.0 - 2018-11-28
 
