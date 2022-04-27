@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "^5.18.0"
   },
   "scripts": {
-    "build": "lerna run build --include-dependencies --stream",
+    "build": "lerna run build --include-dependencies --stream --concurrency=1",
     "clean": "lerna run --parallel clean",
     "develop": "lerna run --parallel develop",
     "lint": "ez-scripts lint --no-cache",
