@@ -30,7 +30,7 @@ jobs:
         run: yarn changeset version --snapshot canary
 
       - name: Build
-        run: yarn build --ignore @ezcater/recipe-analytics-bookmarklet --ignore @ezcater/recipe-doc-site --ignore @ezcater/recipe-playroom
+        run: yarn build '--filter=!@ezcater/recipe-analytics-bookmarklet' '--filter=!@ezcater/recipe-doc-site' '--filter=!@ezcater/recipe-playroom'
 
       - name: Publishing canary releases to npm registry
         id: changesets

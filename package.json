@@ -7,8 +7,8 @@
     "@ezcater/ez-scripts": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
-    "lerna": "^4.0.0",
     "prettier": "^2.6.2",
+    "turbo": "^1.2.5",
     "typescript": "^4.6.3"
   },
   "resolutions": {
@@ -22,15 +22,15 @@
     "@typescript-eslint/parser": "^5.18.0"
   },
   "scripts": {
-    "build": "lerna run build --include-dependencies --stream --concurrency=1",
-    "clean": "lerna run --parallel clean",
-    "develop": "lerna run --parallel develop",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "develop": "turbo run develop --parallel",
     "lint": "ez-scripts lint --no-cache",
     "lint:fix": "yarn lint --fix",
-    "test": "lerna run --stream test",
-    "test:ci": "lerna run --stream test:ci",
-    "test:watch": "lerna run --stream test -- --watch",
-    "type-check": "lerna run --stream type-check"
+    "test": "turbo run test --parallel",
+    "test:ci": "turbo run test:ci --parallel",
+    "test:watch": "turbo run test --parallel -- --watch",
+    "type-check": "turbo run type-check"
   },
   "workspaces": [
     "docs",

@@ -16,12 +16,9 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-
-      - name: Build source
-        run: yarn build --ignore @ezcater/recipe-analytics-bookmarklet --ignore @ezcater/recipe-doc-site --ignore @ezcater/recipe-playroom
-
-      - name: Run linters
-        run: yarn lint
       
       - name: Typecheck
         run: yarn type-check
+
+      - name: Run linters
+        run: yarn lint
