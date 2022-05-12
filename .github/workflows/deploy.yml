@@ -25,12 +25,15 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-      
-      - name: Build source
-        run: yarn build
 
       - name: Version
         run: yarn changeset version --snapshot canary
+
+      - name: Sync Package Versions
+        run: bin/sync-package-versions
+
+      - name: Build source
+        run: yarn build
 
       - name: Publishing canary release to npm registry
         id: changesets

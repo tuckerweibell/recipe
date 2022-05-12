@@ -16,12 +16,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/.eslintrc.js', '**/.prettierrc.js'],
+      files: ['bin/**', '**/.eslintrc.js', '**/.prettierrc.js'],
       env: {
         node: true,
       },
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
+        'filenames/match-regex': 'off',
         'import/no-commonjs': 'off',
         'no-console': 'off',
       },

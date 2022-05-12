@@ -29,6 +29,9 @@ jobs:
       - name: Version
         run: yarn changeset version --snapshot canary
 
+      - name: Sync Package Versions
+        run: bin/sync-package-versions
+
       - name: Build
         run: yarn build '--filter=!@ezcater/recipe-analytics-bookmarklet' '--filter=!@ezcater/recipe-doc-site' '--filter=!@ezcater/recipe-playroom'
 
