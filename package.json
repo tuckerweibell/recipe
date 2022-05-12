@@ -23,6 +23,7 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "changeset-sync-version": "changeset version && bin/sync-package-versions",
     "clean": "turbo run clean",
     "develop": "turbo run develop --parallel",
     "lint": "ez-scripts lint --no-cache",
