@@ -33,7 +33,7 @@
     "@react-types/shared": "^3.7.0",
     "@stitches/core": "0.2.2",
     "dayjs": "^1.8.14",
-    "react-highlight-words": "^0.16.0"
+    "react-highlight-words": "^0.18.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
