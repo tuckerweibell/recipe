@@ -151,7 +151,6 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain: boolea
     };
 
     const onBlur = e => {
-      e.stopPropagation();
       // bail if the blur event was triggered from outside the current document
       if (!e.relatedTarget) return;
 
