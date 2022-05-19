@@ -5,7 +5,6 @@ import snapshot from './snapshot';
 
 const inputPathOrGlob = process.argv[2];
 const outputPath = process.argv[3] || '../../docs/static/images/preview/';
-const styles = [];
 
 glob(inputPathOrGlob, (err, files) => {
   if (err) {
@@ -28,7 +27,7 @@ glob(inputPathOrGlob, (err, files) => {
 
       const outputFilename = path.join(__dirname, outputPath, outFile);
 
-      return snapshot({content, outputFilename, globalStyles: styles});
+      return snapshot({content, outputFilename});
     })
   );
 });

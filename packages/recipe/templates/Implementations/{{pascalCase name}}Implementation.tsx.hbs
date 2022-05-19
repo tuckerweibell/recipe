@@ -1,0 +1,22 @@
+import React, {forwardRef} from 'react';
+import { {{~pascalCase name~}}Props, Ref} from '../{{pascalCase name}}.types';
+
+const {{pascalCase name}}Implementation = forwardRef<Ref, {{pascalCase name}}Props>(({propA, propB, propC}, ref) => {
+  return (
+    <div ref={ref}>
+      {{pascalCase name}}
+      {propA}
+      {propB}
+      {propC}
+    </div>
+  );
+});
+
+{{pascalCase name}}Implementation.defaultProps = {
+  propB: '',
+  propC: '',
+};
+
+{{pascalCase name}}Implementation.displayName = '{{pascalCase name}}Implementation';
+
+export default {{pascalCase name}}Implementation;

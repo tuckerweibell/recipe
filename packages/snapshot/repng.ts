@@ -8,7 +8,7 @@ const capture = async (
   browser: puppeteer.Browser,
   viewport: Pick<puppeteer.BoundingBox, 'width' | 'height'>,
   html: string
-): Promise<Buffer> => {
+): Promise<Buffer | string> => {
   const page = await browser.newPage();
 
   await page.setViewport(viewport);
@@ -59,16 +59,14 @@ const getHtmlData = (Component: React.ClassType<unknown, any, any>): string => {
       body {margin: 0;}
     </style>
     </head>
-    <body>
-      ${body}
-    </body>
+    ${body}
   `;
 };
 
 const repng = async (
   Component: React.ClassType<unknown, any, any>,
   opts: {width?: number; height?: number; puppeteer?: puppeteer.LaunchOptions} = {}
-): Promise<Buffer> => {
+): Promise<Buffer | string> => {
   const {width = 1024, height = 512} = opts;
   const browser = await puppeteer.launch(opts.puppeteer);
   const html = getHtmlData(Component);

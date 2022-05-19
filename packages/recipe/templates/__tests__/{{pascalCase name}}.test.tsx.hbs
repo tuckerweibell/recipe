@@ -1,0 +1,43 @@
+import React, {ComponentProps, FC} from 'react';
+import {visualSnapshots} from 'sosia';
+import {axe, render} from '../../../../test-utils';
+import markdown from '../{{pascalCase name}}.md';
+import {{pascalCase name}} from '../index';
+
+const scope = { {{~pascalCase name~}} };
+
+const Component: FC<Partial<ComponentProps<typeof {{pascalCase name}}>>> = props => (
+  <{{pascalCase name}} propA="test" {...props} />
+);
+
+describe('{{pascalCase name}} logic', () => {
+  /**
+   * Insert your unit tests here to validate your component
+   */
+  it('should have tests', () => {});
+});
+
+describe('{{pascalCase name}}', () => {
+  visualSnapshots({markdown, scope});
+
+  it('should meet accessibility guidelines', async () => {
+    const {container} = render(<Component />);
+    const actual = await axe(container.outerHTML);
+    expect(actual).toHaveNoViolations();
+  });
+
+  it('should pass type checking', () => {
+    /**
+     * Check all combinations of prop types for type errors
+     */
+    [
+      {
+        propA: <{{pascalCase name}} propA="test" />,
+        optionalPropB: <{{pascalCase name}} propA="test" propB="test" />,
+        optionalPropC: <{{pascalCase name}} propA="test" propB="test" propC="test" />,
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
+});

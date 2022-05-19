@@ -9,7 +9,7 @@ module.exports = {
     '!**/src/components/index.tsx',
   ],
   scope: './playroom/useScope.js',
-  components: '../recipe/src/components/index.tsx',
+  components: '../recipe/src/components/index.ts',
   outputPath: '../../docs/public/playroom',
   title: 'ezCater Recipe',
   themes: './playroom/themes.js',

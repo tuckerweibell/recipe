@@ -89,8 +89,7 @@ When [a release is cut](#publishing-a-new-release), we use this changeset metada
    - Provide test coverage for the component. Recipe's default template for testing includes a visual snapshot for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
    - Create a changeset [following semantic versioning](#following-semantic-versioning) to categorize your changes into appropriate headings for our changelog.
 1. **Code review**
-   - A code review from the Recipe team is not required for code to land in Recipe; any engineer with Senior+ frontend skills can review your code.
-   - If the Recipe team did not review the PR, they may propose follow-up changes at a later time.
+   - A code review from the Recipe team is required.
 1. **Publish the new changes**
    - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the main Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the main branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
    - Downstream applications should be updated to use the new version.
@@ -105,52 +104,44 @@ All components belong in `src/components` within their own folder.
 
 Component names should be in the singular form and should be prefixed with `Ez`.
 
-In order to keep files focused and file sizes small, functional logic is separated from stylistic logic, with a naming convention to ensure files are still colocated.
-
 Example:
 
 ```text
-recipe
-  - src
-    - components
-      - EzButton
-        - EzButton.js
-        - EzButton.styles.js
-        - index.js
+📦 recipe
+ ┗ 📂 src
+   ┗ 📂 components
+     ┗ 📂 EzExample
+       ┣ 📂 __tests__
+       ┃ ┗ 📜 EzExample.test.tsx
+       ┣ 📂 Implementations
+       ┃ ┣ 📜 EzExampleImplementation.tsx
+       ┃ ┗ 📜 index.ts
+       ┣ 📜 EzExample.tsx
+       ┣ 📜 EzExample.md
+       ┣ 📜 EzExample.preview.md
+       ┣ 📜 EzExample.types.ts
+       ┗ 📜 index.ts
 ```
 
 Index files should NOT contain any logic and should only be used to provide exports of named components.
 
-In order to create a consistent directory structure, Recipe provides [tooling to help you get started creating components](#creating-components).
+In order to create a consistent directory structure, Recipe provides [tooling](#creating-components) to help you get started creating components.
 
 ### Creating components
 
-Recipe uses [plop](https://www.npmjs.com/package/plop) to quickly generate new React components with a common structure. The functionality is exposed as the `create-component` yarn script from recipe's package.json. This will:
+Recipe uses [plop](https://www.npmjs.com/package/plop) to quickly generate boiler plate code for a new React component that follows our [folder structure and naming scheme](#files-and-folders).
 
-- copy the component template files from `templates/component` to `src/components/YOUR_COMPONENT_NAME`,
-- rename all files to match your component's name
-- replace all occurrences of `Component` inside the component's files with your component's name.
+To generate a new component, run `yarn create-component` inside `packages/recipe` or use the workspace command via `yarn workspace @ezcater/recipe create-component`. You'll see a CLI that guides you through the process. Alternatively, you can simply run `yarn create-component EzExample`, where EzExample is the name of your new component.
 
-The `create-component` command will allow you to quickly get up-and-running with a component that follows our [folder structure and naming scheme](#files-and-folders).
+If your component needs a preview image for the doc site, you will also need to run `yarn create-preview ../recipe/src/components/EzExample/EzExample.preview.md` from `packages/snapshot`. A test visual snapshot will also be created the first time you run your newly generated test.
 
-To create a new component, run `yarn create-component` inside `packages/recipe` or use the workspace command via `yarn workspace @ezcater/recipe create-component`. You'll see a CLI that guides you through the process.
+New component requirements:
 
-After the CLI has finished, all files will have been created in the location you specified.
-
-Finally, you'll need to add an export for your component to `src/index.js`. For example:
-
-```js
-// inside src/index.js
-export {default as EzButton} from './components/EzButton';
-```
-
-New components must:
-
-- be [proposed](#proposing-new-components-to-the-design-system) to the Recipe team for consideration and guidance
-- have comprehensive documentation describing the possible variations supported for this component.
-- have comprehensive tests demonstrating what a component looks like in each supported variation, and tests for every component interaction.
-- follow our code conventions and conform to the supported [colors](/styles/colors), [spacing](/styles/spacing) and [typography](/styles/typography) combinations.
-- have designs reviewed and approved by the Recipe team, and code reviewed by a senior+ frontend developer
+- Must be [proposed](#proposing-new-components-to-the-design-system) to the Recipe team for consideration and guidance.
+- Must have comprehensive documentation describing all supported variations.
+- Must have comprehensive tests demonstrating what a component looks like in each supported variation and interaction.
+- Must follow Recipe's code and [theming](/guides/theming) conventions.
+- Designs and code must be reviewed and approved by the Recipe team.
 
 ### Documentation and live examples
 

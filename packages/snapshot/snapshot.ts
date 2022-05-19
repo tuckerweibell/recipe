@@ -3,27 +3,18 @@ import React from 'react';
 import * as Components from '@ezcater/recipe';
 import styled from '@emotion/styled';
 import {Global, css, ThemeProvider} from '@emotion/react';
-import buble from 'buble/dist/buble-browser-deps.umd';
+import {transform} from 'buble';
 import MDX from '@mdx-js/runtime';
 import repng from './repng';
 
 const globalScope = {...Components, Global, css, ThemeProvider};
 
-const snapshot = ({content, outputFilename, globalStyles}): Promise<void> => {
+const snapshot = ({content, outputFilename}): Promise<void> => {
   const components = {
     code: props => {
       return React.createElement(Preview, {code: props.children, scope: globalScope});
     },
     pre: 'div',
-    wrapper: ({children}) => {
-      // tried include these global styles with Emotion's Global component, but it didn't seem to work 🤷
-      return React.createElement(
-        'div',
-        {},
-        React.createElement('style', {dangerouslySetInnerHTML: {__html: globalStyles.join('\n')}}),
-        children
-      );
-    },
   };
 
   const Component = () => React.createElement(MDX, {components, scope: globalScope}, content);
@@ -123,7 +114,7 @@ class ErrorBoundary extends React.Component<{children?: React.ReactNode}, {hasEr
 const Eval = ({code = '', scope = {}}) => {
   // NOTE: Remove trailing semicolon to get an actual expression.
   const codeTrimmed = code.trim().replace(/;$/, '');
-  const transformed = buble.transform(`return (${codeTrimmed})`, opts).code.trim();
+  const transformed = transform(`return (${codeTrimmed})`, opts).code.trim();
   const result = evalCode(transformed, scope);
   return typeof result === 'function' ? React.createElement(result, null) : result;
 };
@@ -184,9 +175,13 @@ const jsx = React.createElement;
 
 const Preview = ({code, scope}) => {
   return jsx(
-    Container,
-    null,
-    jsx(AspectRatio, null, jsx(Content, null, jsx(ErrorBoundary, null, jsx(Eval, {code, scope}))))
+    Components.EzThemeProvider,
+    {theme: Components.themes.ezTheme},
+    jsx(
+      Container,
+      null,
+      jsx(AspectRatio, null, jsx(Content, null, jsx(ErrorBoundary, null, jsx(Eval, {code, scope}))))
+    )
   );
 };
 
