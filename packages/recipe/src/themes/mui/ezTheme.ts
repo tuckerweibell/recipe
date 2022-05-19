@@ -4,8 +4,9 @@ import {ezPalette} from '../ezColors';
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface CommonColors extends EzPalette {}
+  interface CommonColors extends EzPalette {
+    green?: string;
+  }
 }
 
 const palette: PaletteOptions = {
@@ -56,7 +57,31 @@ const palette: PaletteOptions = {
   common: {
     ...ezPalette,
     black: ezPalette.neutral170,
+    green: ezPalette.primary100,
     white: ezPalette.neutral100,
+  },
+};
+
+declare module '@mui/material/styles/createTypography' {
+  type IconSizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'; // xsmall and xlarge deprecated
+
+  interface FontStyle {
+    icon: {
+      size: Record<IconSizes, number>;
+    };
+  }
+}
+
+const typography = {
+  fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+  icon: {
+    size: {
+      xsmall: 12, // deprecated
+      small: 16,
+      medium: 24,
+      large: 32,
+      xlarge: 42, // deprecated
+    },
   },
 };
 
@@ -72,9 +97,7 @@ const ezTheme = responsiveFontSizes(
       },
     },
     palette,
-    typography: {
-      fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
-    },
+    typography,
   })
 );
 

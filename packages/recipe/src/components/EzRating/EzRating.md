@@ -16,12 +16,12 @@ The rating component is used to indicate how something has been assessed based o
 
 For a rating, you must minimally provide:
 
-- Maximum rating value `max`
-- The rating value `value`
-- Accessible label `label`
-- Empty icon `emptyIcon`
-- Half-filled icon `halfIcon`
-- Fully-filled icon `fullIcon`
+- `emptyIcon`: empty icon 
+- `fullIcon`: fully-filled icon
+- `halfIcon`: half-filled icon
+- `label`: accessible label
+- `max`: naximum rating value
+- `value`: the rating value
 
 The rating component uses `EzIcon`. For more information about how to provide an icon to Recipe from your application, see [EzIcon](https://ezcater.github.io/recipe/components/ez-icon).
 
@@ -36,12 +36,12 @@ For accessibility purposes, Recipe provides the rating component `role="img"` an
   return (
     <EzPage>
       <EzRating
+        emptyIcon={emptyStar}
+        fullIcon={fullStar}
+        halfIcon={halfStar}
+        label={`${value} stars`}
         max={5}
         value={value}
-        label={`${value} stars`}
-        emptyIcon={emptyStar}
-        halfIcon={halfStar}
-        fullIcon={fullStar}
       />
     </EzPage>
   );
@@ -50,7 +50,7 @@ For accessibility purposes, Recipe provides the rating component `role="img"` an
 
 ### Color
 
-The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon) `color` can be provided as an optional prop.
+The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon/#icon-color) `color` can be provided as an optional prop.
 
 ```jsx
 () => {
@@ -60,15 +60,35 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
   const value = 3.76;
   return (
     <EzPage>
-      <EzRating
-        max={5}
-        value={value}
-        label={`${value} stars`}
-        color="green"
-        emptyIcon={emptyStar}
-        halfIcon={halfStar}
-        fullIcon={fullStar}
-      />
+      <EzLayout layout="stack">
+        <EzRating
+          color="primary"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+        <EzRating
+          color="secondary"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+        <EzRating
+          color="common.purple100"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+      </EzLayout>
     </EzPage>
   );
 };
@@ -76,7 +96,7 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
 
 ### Size
 
-The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon) `size` can be provided as an optional prop.
+The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon/#icon-size) `size` can be provided as an optional prop.
 
 ```jsx
 () => {
@@ -86,15 +106,35 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
   const value = 2.74;
   return (
     <EzPage>
-      <EzRating
-        max={5}
-        value={value}
-        label={`${value} stars`}
-        size="xlarge"
-        emptyIcon={emptyStar}
-        halfIcon={halfStar}
-        fullIcon={fullStar}
-      />
+      <EzLayout layout="stack">
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="small"
+          value={value}
+        />
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="medium"
+          value={value}
+        />
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="large"
+          value={value}
+        />
+      </EzLayout>
     </EzPage>
   );
 };

@@ -1,15 +1,33 @@
-import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {FontAwesomeIconProps} from '../../EzIcon.types';
+import React, {forwardRef} from 'react';
+import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import EzIconMui from '../EzIconMui/EzIconMui';
+import {EzIconMuiProps, Ref} from '../../EzIcon.types';
 
-export interface EzIconFontAwesomeProps {
-  icon: FontAwesomeIconProps;
-  title?: string;
+interface EzIconFontAwesomeProps extends EzIconMuiProps {
+  icon: IconDefinition;
 }
 
-const EzIconFontAwesome: React.FC<EzIconFontAwesomeProps> = ({icon, title}) => (
-  <FontAwesomeIcon icon={icon} title={title} />
-);
+/**
+ * @see https://mui.com/material-ui/icons/#font-awesome
+ */
+const EzIconFontAwesome = forwardRef<Ref, EzIconFontAwesomeProps>(({icon, ...props}, ref) => {
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    icon: [width, height, _ligatures, _unicode, svgPathData],
+  } = icon;
+
+  return (
+    <EzIconMui ref={ref} viewBox={`0 0 ${width} ${height}`} {...props}>
+      {typeof svgPathData === 'string' ? (
+        <path d={svgPathData} />
+      ) : (
+        svgPathData.map((d: string, i: number) => (
+          <path key={d} style={{opacity: i === 0 ? 0.4 : 1}} d={d} />
+        ))
+      )}
+    </EzIconMui>
+  );
+});
 
 EzIconFontAwesome.displayName = 'EzIconFontAwesome';
 

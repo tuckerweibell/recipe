@@ -1,19 +1,25 @@
-import React from 'react';
-import SvgIcon from '@mui/material/SvgIcon';
-import {SvgIconProps} from '../../EzIcon.types';
+import React, {forwardRef} from 'react';
+import {SvgIcon} from '@mui/material';
+import {EzIconMuiProps, Ref, SvgIconColorType} from '../../EzIcon.types';
+import {deprecatedColors} from '../../../../themes/deprecated';
 
-interface EzIconMuiProps {
-  icon: SvgIconProps;
-  title?: string;
-}
+const EzIconMui = forwardRef<Ref, EzIconMuiProps>(
+  ({color, fontSize, children, title, ...props}, ref) => {
+    const isCommonColor = color?.startsWith('common.') || deprecatedColors.set.has(color);
 
-const EzIconMui: React.FC<EzIconMuiProps> = ({icon, title}) => {
-  return (
-    <SvgIcon color="inherit" fontSize="inherit" titleAccess={title}>
-      {icon}
-    </SvgIcon>
-  );
-};
+    return (
+      <SvgIcon
+        color={isCommonColor ? undefined : (color as SvgIconColorType)}
+        ref={ref}
+        sx={{color: isCommonColor ? color : undefined, fontSize}}
+        titleAccess={title}
+        {...props}
+      >
+        {children}
+      </SvgIcon>
+    );
+  }
+);
 
 EzIconMui.displayName = 'EzIconMui';
 

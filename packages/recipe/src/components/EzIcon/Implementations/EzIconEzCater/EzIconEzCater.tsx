@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {createElement, forwardRef} from 'react';
 import EzIconMui from '../EzIconMui/EzIconMui';
-import {EzCaterIconProps} from '../../EzIcon.types';
+import {EzCaterIconProps, EzIconMuiProps, Ref} from '../../EzIcon.types';
 
-interface EzIconEzCaterProps {
+interface EzIconEzCaterProps extends EzIconMuiProps {
   icon: EzCaterIconProps;
-  title?: string;
 }
 
-const EzIconEzCater: React.FC<EzIconEzCaterProps> = ({icon, title}) => {
-  const ezcaterIcon = React.createElement(icon);
-  return <EzIconMui icon={ezcaterIcon} title={title} />;
-};
+const EzIconEzCater = forwardRef<Ref, EzIconEzCaterProps>(({icon, ...props}, ref) => (
+  <EzIconMui ref={ref} {...props}>
+    {createElement(icon)}
+  </EzIconMui>
+));
 
 EzIconEzCater.displayName = 'EzIconEzCater';
 

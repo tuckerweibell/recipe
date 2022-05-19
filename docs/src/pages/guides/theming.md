@@ -83,3 +83,17 @@ Recipe supports the following set of design tokens for typography:
 ```jsx-hide-controls
   <pre>fontFamily: 'Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';</pre>
 ```
+
+### Icons
+
+`ezTheme` icons support the following sizes:
+
+<EzAlert headline="Deprecation Warning" tagline="Previously supported 'xsmall' and 'xlarge' sizes are deprecated and will be removed in v15." use="warning"></EzAlert>
+
+```jsx-hide-controls
+  <>
+    <pre>small: 16px</pre>
+    <pre>medium: 24px</pre>
+    <pre>large: 32px</pre>
+  </>
+```

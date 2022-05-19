@@ -11,7 +11,7 @@ module.exports = {
           '**/src/**/*.test.tsx',
           '**/src/components/EzField/Open.tsx',
           '**/src/components/theme.config.ts',
-          '**/test-utils.ts',
+          '**/test-utils.tsx',
         ],
       },
     ],
@@ -25,6 +25,12 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         'import/no-commonjs': 'off',
+        'no-console': 'off',
+      },
+    },
+    {
+      files: ['src/**/__tests__/*.ts', 'src/**/__tests__/*.tsx'],
+      rules: {
         'no-console': 'off',
       },
     },

@@ -33,7 +33,7 @@ const ColorToken: React.FC<ColorTokenProps> = ({colorKey, colorProps}) => (
         justifyContent="space-around"
       >
         <Box color={colorProps.contrastColor}>
-          <EzIcon icon={faCircleCheck} />
+          <EzIcon icon={faCircleCheck} size="small" />
         </Box>
       </Stack>
 

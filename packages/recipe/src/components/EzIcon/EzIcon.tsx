@@ -1,63 +1,39 @@
 import React, {forwardRef, isValidElement} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzIcon.theme.config';
+import {useTheme} from '@mui/material';
+import warning from 'tiny-warning';
+import {EzIconEzCater, EzIconFontAwesome, EzIconReactElement} from './Implementations';
 import {
-  Ref,
-  EzIconProps,
-  FontAwesomeIconProps,
   EzCaterIconProps,
+  EzIconProps,
+  EzIconTypes,
+  FontAwesomeIconProps,
+  Ref,
   SvgIconProps,
 } from './EzIcon.types';
-import EzIconMui from './Implementations/EzIconMui/EzIconMui';
-import EzIconFontAwesome from './Implementations/EzIconFontAwesome/EzIconFontAwesome';
-import EzIconEzCater from './Implementations/EzIconEzCater/EzIconEzCater';
+import {deprecatedColors, deprecatedIconSizes} from '../../themes/deprecated';
 
-const iconStyles = theme.css({
-  variants: {
-    color: {
-      green: {color: '$icon-color-green', fill: '$icon-color-green'},
-      white: {color: '$icon-color-white', fill: '$icon-color-white'},
-      inherit: {color: 'inherit', fill: 'inherit'},
-    },
-    size: {
-      xsmall: {fonSize: '$icon-size-xsmall'},
-      small: {fontSize: '$icon-size-small'},
-      medium: {fontSize: '$icon-size-medium'},
-      large: {fontSize: '$icon-size-large'},
-      xlarge: {fontSize: '$icon-size-xlarge'},
-      inherit: {fontSize: 'inherit'},
-    },
-  },
-});
+const isFontAwesomeIcon = (object: EzIconTypes): object is FontAwesomeIconProps =>
+  Object.prototype.hasOwnProperty.call(object, 'icon');
+const isEzcaterIcon = (object: EzIconTypes): object is EzCaterIconProps =>
+  typeof object === 'function';
+const isSvgIcon = (object: EzIconTypes): object is SvgIconProps => isValidElement(object);
 
-const isFontAwesomeIcon = (object: any): object is FontAwesomeIconProps => {
-  return 'icon' in object;
-};
+const EzIcon = forwardRef<Ref, EzIconProps>(({color, icon, size, ...props}, ref) => {
+  const theme = useTheme();
+  const iconProps = {
+    color,
+    fontSize: theme.typography.icon.size[size],
+    ref,
+    ...props,
+  };
+  warning(!deprecatedColors.set.has(color), deprecatedColors.warning);
+  warning(!deprecatedIconSizes.set.has(size), deprecatedIconSizes.warning);
 
-const isEzcaterIcon = (object: any): object is EzCaterIconProps => {
-  return typeof object === 'function';
-};
+  if (isFontAwesomeIcon(icon)) return <EzIconFontAwesome icon={icon} {...iconProps} />;
+  if (isEzcaterIcon(icon)) return <EzIconEzCater icon={icon} {...iconProps} />;
+  if (isSvgIcon(icon)) return <EzIconReactElement icon={icon} {...iconProps} />;
 
-const isSvgIcon = (object: any): object is SvgIconProps => {
-  return isValidElement(object);
-};
-
-const EzIcon = forwardRef<Ref, EzIconProps>(({icon, title, ...initProps}, ref) => {
-  const {props} = iconStyles(initProps);
-
-  let iconComponent;
-  if (isEzcaterIcon(icon)) iconComponent = <EzIconEzCater title={title} icon={icon} />;
-  else if (isFontAwesomeIcon(icon)) iconComponent = <EzIconFontAwesome title={title} icon={icon} />;
-  else if (isSvgIcon(icon)) iconComponent = <EzIconMui title={title} icon={icon} />;
-  else return null;
-
-  return (
-    <Style ruleset={theme}>
-      <span {...props} ref={ref}>
-        {iconComponent}
-      </span>
-    </Style>
-  );
+  return null;
 });
 
 EzIcon.defaultProps = {

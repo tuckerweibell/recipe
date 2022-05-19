@@ -25,7 +25,11 @@ const CopyButton = ({textToCopy}: CopyButtonProps) => {
 
   return (
     <IconButton aria-label="copy to clipboard" onClick={handleOnClick} size="small" disableRipple>
-      <EzIcon icon={showCopied ? faCircleCheck : faCopy} color={showCopied ? 'green' : null} />
+      <EzIcon
+        icon={showCopied ? faCircleCheck : faCopy}
+        color={showCopied ? 'common.green' : 'inherit'}
+        size="small"
+      />
     </IconButton>
   );
 };

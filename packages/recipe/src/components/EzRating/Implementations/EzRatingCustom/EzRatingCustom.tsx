@@ -1,5 +1,5 @@
 import React from 'react';
-import EzIcon from '../../../EzIcon/EzIcon';
+import EzIcon from '../../../EzIcon';
 import {EzRatingProps} from '../../EzRating.types';
 
 const EzRatingCustom: React.FC<EzRatingProps> = ({
