@@ -263,6 +263,7 @@ const EzNavigation: FC<Props> = ({
   const [hidden, setHidden] = useState(true);
 
   const toggle = () => setHidden(s => !s);
+  const close = () => setHidden(true);
 
   const notificationSummary = countNotifications(links) + countNotifications(utilityLinks || []);
 
@@ -282,12 +283,12 @@ const EzNavigation: FC<Props> = ({
             <nav
               className={clsx(menus(), primaryMenus())}
               aria-label={t('Primary navigation')}
-              onClick={toggle}
+              onClick={close}
             >
               <Links links={links} />
             </nav>
             {utilityLinks && (
-              <nav className={menus()} aria-label={t('Utility navigation')} onClick={toggle}>
+              <nav className={menus()} aria-label={t('Utility navigation')} onClick={close}>
                 <Links links={utilityLinks} />
               </nav>
             )}
