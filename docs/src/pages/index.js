@@ -315,7 +315,7 @@ const Index = () => (
                 </MediaObject>
               </a>
               <a href="https://www.linkedin.com/in/joanhojberg/">
-                <MediaObject imgSrc="https://media-exp1.licdn.com/dms/image/C4D03AQFzyE8otopbVw/profile-displayphoto-shrink_800_800/0/1578497166645?e=1651708800&v=beta&t=OZkQ6SBE3nRWEtB-lB-a6qJa2Oa8AF28_Hq1pBHwn5M">
+                <MediaObject imgSrc="https://media-exp1.licdn.com/dms/image/C4D03AQFzyE8otopbVw/profile-displayphoto-shrink_400_400/0/1578497166645?e=1658361600&v=beta&t=SzUVicl08k2RtPD4rFb5a6OJ6dEaBjbhl1X0rNI-3hA">
                   <p css={[font.semibold, text.white]}>Joan Højberg</p>
                   <p css={[text.sm, text.gray._500]}>Recipe Designer</p>
                 </MediaObject>
