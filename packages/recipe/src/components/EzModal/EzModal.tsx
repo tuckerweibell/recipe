@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import Style from '@ezcater/snitches';
 import theme from './EzModal.theme.config';
 import EzButton from '../EzButton';
@@ -75,8 +75,8 @@ type Props = {
   destructive?: boolean;
   isOpen: boolean;
   isSubmitting?: boolean;
-  onDismiss?: () => void;
-  onSubmit?: () => void;
+  onDismiss?: (e?: MouseEvent<HTMLButtonElement>) => void;
+  onSubmit?: (e?: MouseEvent<HTMLButtonElement>) => void;
   appElement?: string;
   submitLabel?: string;
   dismissLabel?: string;
