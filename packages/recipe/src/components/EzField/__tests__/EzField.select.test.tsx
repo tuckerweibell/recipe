@@ -28,6 +28,24 @@ describe('EzField', () => {
       {label: 'This Month', value: 'month'},
     ];
 
+    it('should open by pressing the enter key', () => {
+      const {container} = render(
+        <EzField type="select" label={inputLabel} options={options} value="upcoming" />
+      );
+
+      const input = getByLabelText(container, inputLabel) as HTMLInputElement;
+
+      fireEvent.keyDown(input, {key: 'Enter'});
+
+      const option1 = screen.getByRole('option', {name: /All Upcoming/i});
+      const option2 = screen.getByRole('option', {name: /Today/i});
+      const lastOption = screen.getByRole('option', {name: /This Month/i});
+
+      expect(option1).toBeInTheDocument();
+      expect(option2).toBeInTheDocument();
+      expect(lastOption).toBeInTheDocument();
+    });
+
     it('should suppress default browser behavior to select input text when tab focused', () => {
       const {container} = render(
         <EzField type="select" label={inputLabel} options={options} value="upcoming" />

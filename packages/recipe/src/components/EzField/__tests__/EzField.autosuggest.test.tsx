@@ -89,6 +89,16 @@ describe('EzField', () => {
       expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
 
+    it('opens by pressing the enter key', () => {
+      render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
+
+      const input = screen.getByRole('combobox', {name: /Select dropdown/i});
+
+      fireEvent.keyDown(input, {key: 'Enter'});
+
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+    });
+
     it('opens on down arrow', () => {
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 

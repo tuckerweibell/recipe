@@ -74,8 +74,10 @@ export function useComboBox(props, state): ComboBoxAria {
 
       collectionProps.onKeyDown(e);
 
-      if (e.key === 'Enter' && selectionManager.focusedKey !== null)
+      if (e.key === 'Enter' && selectionManager.focusedKey !== null) {
+        e.preventDefault();
         selectionManager.replaceSelection(selectionManager.focusedKey);
+      }
     },
     value: state.inputValue,
     onChange,

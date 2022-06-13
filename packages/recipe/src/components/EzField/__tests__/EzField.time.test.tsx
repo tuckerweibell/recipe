@@ -14,6 +14,20 @@ describe('EzField', () => {
 
   visualSnapshots({markdown: ezTimeInputTests, scope});
 
+  it('should open dropdown by pressing the enter key', () => {
+    const {container} = render(
+      <EzField type="time" label={label} start="9:00 am" end="5:00 pm" step={60} />
+    );
+
+    const input = getByLabelText(container, label) as HTMLInputElement;
+
+    fireEvent.keyDown(input, {key: 'Enter'});
+
+    const options = getAllByRole(container, 'option');
+
+    expectHourlyOptionsFrom9to5(options);
+  });
+
   it('should generate the correct time range options', () => {
     const {container} = render(
       <EzField type="time" label={label} start="9:00 am" end="5:00 pm" step={60} />

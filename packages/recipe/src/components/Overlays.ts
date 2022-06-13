@@ -9,6 +9,7 @@ export const useMenuTrigger = (state: OverlayTriggerState) => {
     Escape: state.close,
     ArrowUp: state.open,
     ArrowDown: state.open,
+    Enter: state.open,
     ' ': state.open,
   };
 

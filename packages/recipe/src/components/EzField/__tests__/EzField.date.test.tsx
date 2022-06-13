@@ -25,6 +25,15 @@ describe('EzField', () => {
 
       expect(document.body).toHaveTextContent('January 2019');
     });
+    it('should show calendar by pressing the enter key', () => {
+      render(<EzField type="date" value="01/01/2019" label={inputLabel} />);
+
+      const container = screen.getByLabelText(inputLabel);
+
+      fireEvent.keyDown(container, {key: 'Enter'});
+
+      expect(document.body).toHaveTextContent('January 2019');
+    });
     it('should show calendar on current date if value is empty', () => {
       render(<EzField type="date" value="" label={inputLabel} />);
 
