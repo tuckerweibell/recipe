@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzFlashMessage.theme.config';
+import theme from '../theme.config';
 import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
 import CloseButton from '../CloseButton';
@@ -113,33 +112,31 @@ const EzFlashMessage: React.FC<FlashMessageProps> = ({
 
   const role = use === 'info' ? 'status' : 'alert';
   return (
-    <Style ruleset={theme}>
-      <div
-        role={role}
-        aria-labelledby={labelId}
-        aria-live={use === 'error' ? 'assertive' : 'polite'}
-        className={flashMessage({use})}
-      >
-        <EzLayout layout="basic" alignY="top">
-          {icons[use]}
-          <div className={text()}>
-            <EzLayout layout="stack">
-              {headline && (
-                <EzHeading id={labelId} size="3">
-                  {headline}
-                </EzHeading>
-              )}
-              <div>{children}</div>
-            </EzLayout>
+    <div
+      role={role}
+      aria-labelledby={labelId}
+      aria-live={use === 'error' ? 'assertive' : 'polite'}
+      className={flashMessage({use})}
+    >
+      <EzLayout layout="basic" alignY="top">
+        {icons[use]}
+        <div className={text()}>
+          <EzLayout layout="stack">
+            {headline && (
+              <EzHeading id={labelId} size="3">
+                {headline}
+              </EzHeading>
+            )}
+            <div>{children}</div>
+          </EzLayout>
+        </div>
+        {onDismiss && (
+          <div className={buttonAlignment()}>
+            <CloseButton label="Close" onClick={onDismiss} />
           </div>
-          {onDismiss && (
-            <div className={buttonAlignment()}>
-              <CloseButton label="Close" onClick={onDismiss} />
-            </div>
-          )}
-        </EzLayout>
-      </div>
-    </Style>
+        )}
+      </EzLayout>
+    </div>
   );
 };
 

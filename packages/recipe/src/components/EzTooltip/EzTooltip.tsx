@@ -1,6 +1,5 @@
 import React, {useState, useRef, ReactElement} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTooltip.theme.config';
+import theme from '../theme.config';
 import {useUniqueId} from '../../utils/hooks';
 import EzPopover from '../EzPopover';
 import {domProps} from '../../utils';
@@ -75,7 +74,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
   const props = domProps(rest, tooltip());
 
   return (
-    <Style ruleset={theme}>
+    <>
       {React.cloneElement(child, childProps)}
 
       {showTooltip && (
@@ -95,7 +94,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
           </div>
         </EzPopover>
       )}
-    </Style>
+    </>
   );
 };
 

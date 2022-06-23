@@ -1,32 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {axe} from '../../../../test-utils';
-import {EzCard, EzCardSection, EzCardExpandable} from '..';
-import regressionTests from './EzCard.test.md';
-import markdown from '../EzCard.md';
-import * as Components from '../../index';
-import Media from '../../EzField/Media';
-import Open from '../../EzField/Open';
-
-const scope = {
-  EzCard,
-  EzCardSection,
-  EzCardExpandable,
-  ...Components,
-  Open,
-  Media,
-  withPrefix() {
-    // swap the provided images for placeholder values
-    return `https://dummyimage.com/800x400/00b373/fff`;
-  },
-};
+import {EzCard, EzCardSection} from '..';
 
 describe('EzCard', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should NOT throw if no ThemeProvider is configured', () => {
     const actual = renderToStaticMarkup(
       <EzCard>

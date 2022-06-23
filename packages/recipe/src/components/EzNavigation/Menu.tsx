@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzNavigation.theme.config';
+import theme from '../theme.config';
 import {Counter} from './Notifications';
 import {clsx} from '../../utils';
 
@@ -54,18 +53,16 @@ const Notification = ({value}) => {
 };
 
 const Menu = ({link: {active, label, notifications, ...link}}: any) => (
-  <Style ruleset={theme}>
-    <Link
-      {...link}
-      className={clsx(menuLink(), active && activeMenuLink())}
-      {...(link.to ? {activeClassName: 'active'} : {})}
-    >
-      <span>{label}</span>
-      <span className={iconPosition()}>
-        {Boolean(notifications) && <Notification value={notifications} />}
-      </span>
-    </Link>
-  </Style>
+  <Link
+    {...link}
+    className={clsx(menuLink(), active && activeMenuLink())}
+    {...(link.to ? {activeClassName: 'active'} : {})}
+  >
+    <span>{label}</span>
+    <span className={iconPosition()}>
+      {Boolean(notifications) && <Notification value={notifications} />}
+    </span>
+  </Link>
 );
 
 export default Menu;

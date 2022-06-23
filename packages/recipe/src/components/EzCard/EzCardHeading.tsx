@@ -1,7 +1,7 @@
 import React from 'react';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
-import theme from './EzCard.theme.config';
+import theme from '../theme.config';
 
 const box = theme.css({position: 'relative'});
 

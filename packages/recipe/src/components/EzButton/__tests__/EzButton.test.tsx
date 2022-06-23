@@ -1,21 +1,11 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzButton.test.md';
 import EzButton from '../EzButton';
-import markdown from '../EzButton.md';
-import {EzLayout} from '../../index';
-import {Global, css} from '../../../styles';
 
 jest.unmock('../../../utils/hooks/usePopper');
 
-const scope = {EzButton, EzLayout, Global, css};
-
 describe('EzButton', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
-
   it('renders a button element by default', () => {
     const {getByText} = render(<EzButton use="primary">Click Me</EzButton>);
     expect(getByText('Click Me').tagName).toEqual('BUTTON');

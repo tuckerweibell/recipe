@@ -1,6 +1,5 @@
 import React, {forwardRef, Fragment} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzSuperRadioButtons.theme.config';
+import theme from '../theme.config';
 import EzRadioButton from '../EzRadioButton';
 import {EzSuperRadioButtonsProps} from './EzSuperRadioButtons.types';
 import EzTextStyle from '../EzTextStyle';
@@ -105,51 +104,49 @@ const EzSuperRadioButtons = forwardRef<HTMLDivElement, EzSuperRadioButtonsProps>
   ({options, label, value, onChange}, ref) => {
     const id = useUniqueId();
     return (
-      <Style ruleset={theme}>
-        <div className={group()} ref={ref} role="radiogroup" aria-labelledby={`radiogroup-${id}`}>
-          <span className={srOnly()} id={`radiogroup-${id}`}>
-            {label}
-          </span>
-          <EzLayout layout="cluster" alignY="stretch" {...{className: fullWidth()}}>
-            {options.map(option => (
-              <Fragment key={option.value}>
-                <label
-                  key={option.value}
-                  htmlFor={getId(id, option)}
-                  className={button({
-                    checked: option.value === value,
-                    disabled: option.disabled,
-                  })}
-                >
-                  <span className={radio()}>
-                    <EzRadioButton
-                      width="24"
-                      height="24"
-                      checked={option.value === value}
-                      id={getId(id, option)}
-                      name={id}
-                      onChange={() => onChange && onChange(option.value)}
-                      disabled={option.disabled}
+      <div className={group()} ref={ref} role="radiogroup" aria-labelledby={`radiogroup-${id}`}>
+        <span className={srOnly()} id={`radiogroup-${id}`}>
+          {label}
+        </span>
+        <EzLayout layout="cluster" alignY="stretch" {...{className: fullWidth()}}>
+          {options.map(option => (
+            <Fragment key={option.value}>
+              <label
+                key={option.value}
+                htmlFor={getId(id, option)}
+                className={button({
+                  checked: option.value === value,
+                  disabled: option.disabled,
+                })}
+              >
+                <span className={radio()}>
+                  <EzRadioButton
+                    width="24"
+                    height="24"
+                    checked={option.value === value}
+                    id={getId(id, option)}
+                    name={id}
+                    onChange={() => onChange && onChange(option.value)}
+                    disabled={option.disabled}
+                  />
+                </span>
+                {option.imageSrc && (
+                  <div className={imageWrapper()}>
+                    <img
+                      className={image({disabled: option.disabled})}
+                      src={option.imageSrc}
+                      alt=""
                     />
-                  </span>
-                  {option.imageSrc && (
-                    <div className={imageWrapper()}>
-                      <img
-                        className={image({disabled: option.disabled})}
-                        src={option.imageSrc}
-                        alt=""
-                      />
-                    </div>
-                  )}
-                  <EzTextStyle align="center" use={option.disabled ? 'subdued' : undefined}>
-                    {option.label}
-                  </EzTextStyle>
-                </label>
-              </Fragment>
-            ))}
-          </EzLayout>
-        </div>
-      </Style>
+                  </div>
+                )}
+                <EzTextStyle align="center" use={option.disabled ? 'subdued' : undefined}>
+                  {option.label}
+                </EzTextStyle>
+              </label>
+            </Fragment>
+          ))}
+        </EzLayout>
+      </div>
     );
   }
 );

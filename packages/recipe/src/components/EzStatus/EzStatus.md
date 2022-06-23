@@ -49,19 +49,21 @@ These have a colored dot to help signify that they require an action from the us
 
 ### Custom Icons
 
-In some cases, a custom icon may be appropriate to visually parse different types of action required more easily. Provide an svg icon to the `icon` prop.
+In some cases, a custom icon may be appropriate to visually parse different types of required actions more easily. Provide an icon to the `icon` prop using `EzIcon`.
 
 ```jsx
-<EzLayout layout="stack" alignX="left">
-  <EzStatus
-    text="New"
-    use="success"
-    size="normal"
-    icon={
-      <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-        <use xlinkHref="#star" />
-      </svg>
-    }
-  />
-</EzLayout>
+() => {
+  const {fullStar} = require('@fortawesome/free-solid-svg-icons/faStar');
+
+  return (
+    <EzLayout layout="stack" alignX="left">
+      <EzStatus
+        text="New"
+        use="success"
+        size="normal"
+        icon={<EzIcon icon={fullStar} />}
+      />
+    </EzLayout>
+  );
+};
 ```

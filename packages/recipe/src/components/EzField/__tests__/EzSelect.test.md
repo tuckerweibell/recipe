@@ -263,19 +263,17 @@
 ### Select list with error on small screen size
 
 ```jsx
-<Media size="small">
-  <EzField
-    type="select"
-    label="Select dropdown"
-    placeholder="Choose..."
-    options={[{label: 'All Upcoming', value: 'upcoming'}]}
-    value="upcoming"
-    onChange={() => {}}
-    helperText="This is a hint about how this field works"
-    touched
-    error="First name is required"
-  />
-</Media>
+<EzField
+  type="select"
+  label="Select dropdown"
+  placeholder="Choose..."
+  options={[{label: 'All Upcoming', value: 'upcoming'}]}
+  value="upcoming"
+  onChange={() => {}}
+  helperText="This is a hint about how this field works"
+  touched
+  error="First name is required"
+/>
 ```
 
 ### Select list with long content

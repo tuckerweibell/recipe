@@ -6,22 +6,6 @@ order: 50
 
 Welcome and thank you for contributing! The Recipe team is committed to maintaining consistent, quality components and guidelines. We welcome all feedback, designs, or ideas to produce the best possible experience for our users. Below are the contribution guidelines for contributing.
 
-- [Bug fixes](#bug-fixes)
-  - [Filing bugs](#filing-bugs)
-  - [Fixing bugs](#fixing-bugs)
-  - [Following semantic versioning](#following-semantic-versioning)
-- [Proposing new components](#proposing-new-components-to-the-design-system)
-- [Development](#development)
-  - [Files and Folders](#files-and-folders)
-  - [Creating Components](#creating-components)
-  - [Documentation and live examples](#documentation-and-live-examples)
-- [Start Contributing](#start-contributing)
-  - [Setup](#setup)
-  - [Working on a component using the doc site](#working-on-a-component-using-the-doc-site)
-  - [Working on a component in a downstream application](##working-on-a-component-in-a-downstream-application)
-  - [Testing](#testing)
-  - [Publishing a new release](#publishing-a-new-release)
-
 ---
 
 ## Bug fixes
@@ -160,6 +144,72 @@ Secondary buttons are used for action on a page that are important, but aren't t
 <EzButton use="secondary">Edit</EzButton>
 ```
 ````
+
+### Deprecations
+
+When a change to a property, feature, or component in Recipe requires a [breaking change](/guides/versioning-and-changelog/), we can give users more time to react to these changes by deprecating these features before entirely removing or overhauling them at a later time.<br /><br />
+
+**Deprecation Warnings**
+
+Add a deprecation warning alert to the appropriate doc site page to let users know the feature has been deprecated. Also note what major version we expect to remove the deprecated feature to minimize confusion and encourage action.
+
+```jsx
+<EzAlert
+   headline="Deprecation Warning"
+   tagline="Previously supported colors 'green' and 'white' are deprecated and will be removed in v15. Instead, use 'common.green' and 'common.white'."
+   use="warning"
+/>
+```
+
+**Deprecation Console Logs**
+
+If the deprecation is related to a theming change, add a reference to it in `src/themes/deprecated.ts`.
+
+```js
+export const deprecatedColors = {
+   set: new Set(['green', 'white']),
+   warning: `*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead.`,
+};
+```
+
+Then add a console log warning in the affected component if it detects a deprecated property was used. This will help developers become aware of new deprecations so they can address them.
+
+```js
+import warning from 'tiny-warning';
+import {deprecatedColors} from '../../../../themes/deprecated';
+
+...
+  warning(!deprecatedColors.set.has(color), deprecatedColors.warning);
+...
+```
+
+Finally, you can add a test for the affected component to verify the warning is being output correctly.
+
+```js
+import warning from 'tiny-warning';
+
+jest.mock('tiny-warning');
+const warningMock = warning as jest.Mock<typeof warning>;
+
+describe('EzIcon', () => {
+   beforeEach(() => {
+      warningMock.mockReset();
+   });
+
+   it('should log a warning if a deprecated color is used', () => {
+      render(<EzIcon icon={SVG_ICON_BURGER} color="green" />);
+      expect(warningMock).toHaveBeenCalledWith(
+      false,
+      "*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead."
+      );
+   });
+});
+```
+<br />
+
+**Removing Deprecations**
+
+When the deprecated feature is ready to be removed, remove the feature along with all associated alerts and warnings. Be sure to note the breaking change in the migration guide for the major version release.
 
 ---
 

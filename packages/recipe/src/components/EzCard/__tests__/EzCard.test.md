@@ -119,42 +119,38 @@
 };
 ```
 
-### Card image responsive small screen image-right
+### Card image responsive using base right and medium top
 
 ```jsx
-<Media size="small">
-  <EzCard
-    title="Card with image on right"
-    imageSrc="https://dummyimage.com/800x400/00b373/fff"
-    imagePosition={{base: 'right', medium: 'top'}}
-    imageMaxHeight={192}
-  >
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-    </p>
-  </EzCard>
-</Media>
+<EzCard
+  title="Card with image on right"
+  imageSrc="https://dummyimage.com/800x400/00b373/fff"
+  imagePosition={{base: 'right', medium: 'top'}}
+  imageMaxHeight={192}
+>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </p>
+</EzCard>
 ```
 
-### Card image responsive small screen image-top
+### Card image responsive using base top and medium left
 
 ```jsx
-<Media size="small">
-  <EzCard
-    title="Card with image at top"
-    imageSrc="https://dummyimage.com/900x200/00b373/fff"
-    imagePosition={{base: 'top', medium: 'left'}}
-  >
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
-      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
-    </p>
-  </EzCard>
-</Media>
+<EzCard
+  title="Card with image at top"
+  imageSrc="https://dummyimage.com/900x200/00b373/fff"
+  imagePosition={{base: 'top', medium: 'left'}}
+>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+    maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+  </p>
+</EzCard>
 ```
 
-### Card image responsive medium screen image-right
+### Card image responsive using base top and medium right
 
 ```jsx
 <EzCard
@@ -169,7 +165,7 @@
 </EzCard>
 ```
 
-### Card image responsive medium screen image-top
+### Card image responsive using base left and medium top
 
 ```jsx
 <EzCard

@@ -1,9 +1,9 @@
 import responsiveProps from '../responsiveProps';
 
 describe('responsiveProps', () => {
-  it('should maps responsive props to media queries that apply *between* breakpoints', () => {
+  it('should map responsive props to media queries that apply *between* breakpoints', () => {
     expect(
-      responsiveProps({layout: {base: 'cluster', medium: 'basic', large: 'split'}}, 'layout')
+      responsiveProps({layout: {base: 'cluster', medium: 'basic', large: 'split'}}, false, 'layout')
     ).toEqual({
       layout: {
         baseToMedium: 'cluster',
@@ -12,14 +12,14 @@ describe('responsiveProps', () => {
       },
     });
 
-    expect(responsiveProps({layout: {base: 'cluster', large: 'split'}}, 'layout')).toEqual({
+    expect(responsiveProps({layout: {base: 'cluster', large: 'split'}}, false, 'layout')).toEqual({
       layout: {
         baseToLarge: 'cluster',
         large: 'split',
       },
     });
 
-    expect(responsiveProps({layout: {base: 'cluster', medium: 'basic'}}, 'layout')).toEqual({
+    expect(responsiveProps({layout: {base: 'cluster', medium: 'basic'}}, false, 'layout')).toEqual({
       layout: {
         baseToMedium: 'cluster',
         medium: 'basic',
@@ -35,6 +35,7 @@ describe('responsiveProps', () => {
           alignX: {base: 'center', medium: 'right'},
           alignY: {base: 'top', large: 'bottom'},
         },
+        false,
         'layout',
         'alignX',
         'alignY'
@@ -57,6 +58,7 @@ describe('responsiveProps', () => {
           alignX: {base: 'center', medium: 'right'},
           alignY: {base: 'top', large: 'bottom'},
         },
+        false,
         'layout'
       )
     ).toEqual({
@@ -77,6 +79,7 @@ describe('responsiveProps', () => {
           alignX: 'center',
           alignY: {base: 'top', large: 'bottom'},
         },
+        false,
         'layout',
         'alignX',
         'alignY'
@@ -85,6 +88,18 @@ describe('responsiveProps', () => {
       layout: 'cluster',
       alignX: 'center',
       alignY: {baseToLarge: 'top', large: 'bottom'},
+    });
+  });
+
+  it('should prefix an @ symbol if required by stitches', () => {
+    expect(
+      responsiveProps({layout: {base: 'cluster', medium: 'basic', large: 'split'}}, true, 'layout')
+    ).toEqual({
+      layout: {
+        '@baseToMedium': 'cluster',
+        '@mediumToLarge': 'basic',
+        '@large': 'split',
+      },
     });
   });
 });

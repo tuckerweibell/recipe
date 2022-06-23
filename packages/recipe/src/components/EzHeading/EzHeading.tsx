@@ -1,10 +1,9 @@
 /* eslint-disable quote-props */
 import React, {forwardRef, HTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzHeading.theme.config';
+import {VariantProps} from '@stitches/core';
+import theme from '../theme.config';
 import {ClearSlots, useSlotProps} from '../../utils/slots';
 import {domProps, mergeProps} from '../../utils';
-import {VariantProps} from '../../utils/responsiveProps';
 
 const headingCss = theme.css({
   color: '$heading-text',
@@ -109,7 +108,7 @@ const EzHeading = forwardRef<HTMLElement, Props>(
     const el = subheadingElement ? wrapperElement : headingElement;
     const props = domProps(slotProps, alignCss({align}));
 
-    const children = React.cloneElement(
+    return React.cloneElement(
       el,
       mergeProps(
         props,
@@ -119,8 +118,6 @@ const EzHeading = forwardRef<HTMLElement, Props>(
         {className: el.props.className?.toString()}
       )
     );
-
-    return <Style ruleset={theme}>{children}</Style>;
   }
 );
 

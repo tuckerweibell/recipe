@@ -1,6 +1,5 @@
 import React, {forwardRef, CSSProperties} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import Label from '../EzLabel';
 import {InsetIcon, ErrorTriangle} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
@@ -164,65 +163,63 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
     : {};
 
   return (
-    <Style ruleset={theme}>
-      <div
-        className={field({labelSize: props.labelSize})}
-        {...(mouseEvents as any)}
-        {...roleAndLabel}
-      >
-        {!labelHidden && (
-          <div>
-            <div style={relative}>
-              <Label
-                id={labelId}
-                htmlFor={isChoiceElement ? undefined : id}
-                as={labelType}
-                error={showError}
-                use={props.labelSize === 'small' ? 'secondary' : 'primary'}
-              >
-                {label}
-              </Label>
-              {!showInlineError && showError && <ErrorIcon />}
-            </div>
-            {!showInlineError && showError && errorMessage}
-          </div>
-        )}
-        {helperText && (
-          <div id={helperTextId} className={helper()}>
-            {helperText}
-          </div>
-        )}
+    <div
+      className={field({labelSize: props.labelSize})}
+      {...(mouseEvents as any)}
+      {...roleAndLabel}
+    >
+      {!labelHidden && (
         <div>
           <div style={relative}>
-            <Input
-              {...{
-                ...props,
-                ...wrapEvents(props, {onBlur, onFocus, onChange}),
-                id,
-                name: props.name || id,
-                'aria-labelledby': labelId,
-                'aria-invalid': showError,
-                'aria-describedby': clsx(showError && errorMessageId, helperText && helperTextId),
-                ref,
-                showInlineError: (showInlineError && showError) || undefined,
-              }}
-            />
-            {showInlineError && showError && <ErrorIcon />}
+            <Label
+              id={labelId}
+              htmlFor={isChoiceElement ? undefined : id}
+              as={labelType}
+              error={showError}
+              use={props.labelSize === 'small' ? 'secondary' : 'primary'}
+            >
+              {label}
+            </Label>
+            {!showInlineError && showError && <ErrorIcon />}
           </div>
-          {showInlineError && showError && errorMessage}
+          {!showInlineError && showError && errorMessage}
         </div>
-        {'maxLength' in props && typeof value === 'string' && (
-          <div className={characterLimit()}>
-            {value.length}/{maxLength}
-          </div>
-        )}
-        {labelHidden && (
-          <div className={srOnly()} id={labelId}>
-            {label}
-          </div>
-        )}
+      )}
+      {helperText && (
+        <div id={helperTextId} className={helper()}>
+          {helperText}
+        </div>
+      )}
+      <div>
+        <div style={relative}>
+          <Input
+            {...{
+              ...props,
+              ...wrapEvents(props, {onBlur, onFocus, onChange}),
+              id,
+              name: props.name || id,
+              'aria-labelledby': labelId,
+              'aria-invalid': showError,
+              'aria-describedby': clsx(showError && errorMessageId, helperText && helperTextId),
+              ref,
+              showInlineError: (showInlineError && showError) || undefined,
+            }}
+          />
+          {showInlineError && showError && <ErrorIcon />}
+        </div>
+        {showInlineError && showError && errorMessage}
       </div>
-    </Style>
+      {'maxLength' in props && typeof value === 'string' && (
+        <div className={characterLimit()}>
+          {value.length}/{maxLength}
+        </div>
+      )}
+      {labelHidden && (
+        <div className={srOnly()} id={labelId}>
+          {label}
+        </div>
+      )}
+    </div>
   );
 });
 

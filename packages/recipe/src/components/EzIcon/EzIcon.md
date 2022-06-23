@@ -110,8 +110,6 @@ In the case that you cannot find what you need from Font Awesome or ezCater icon
 
 By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.primary100`).
 
-<EzAlert headline="Deprecation Warning" tagline="Previously supported colors 'green' and 'white' are deprecated and will be removed in v15. Instead, use 'common.green' and 'common.white'." use="warning"></EzAlert>
-
 
 ```jsx
 () => {
@@ -133,8 +131,6 @@ By default, the icon color is the same as the body text. If you want to specifiy
 ### Icon size
 
 By default, the icon size is inherited from the parent container. If you want to specify a size, use the `size` prop. We currently support `small`, `medium`, and `large`, (in addition to `inherit`). Font sizes for each icon size are specified in the [theme](/guides/theming/#icons).
-
-<EzAlert headline="Deprecation Warning" tagline="Previously supported 'xsmall' and 'xlarge' sizes are deprecated and will be removed in v15. Instead, use 'small', 'large', or 'inherit'." use="warning"></EzAlert>
 
 ```jsx
 () => {

@@ -1,0 +1,1 @@
+export {EzCarouselCustom} from './EzCarouselCustom';

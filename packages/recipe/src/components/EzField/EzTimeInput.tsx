@@ -1,7 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
 import EzSelect from './EzSelect';
@@ -54,25 +53,23 @@ const EzTimeInput = ({
   }));
 
   return (
-    <Style ruleset={theme}>
-      <div className={layout()}>
-        <InsetIcon insetY0 left0 pl3>
-          <ClockIcon />
-        </InsetIcon>
-        <EzSelect
-          id={rest.id}
-          label={rest.label}
-          {...{error, touched}}
-          placeholder={rest.placeholder}
-          options={selectOptions}
-          value={valueTimeString}
-          onChange={rest.onChange}
-          aria-labelledby={rest['aria-labelledby']}
-          disabled={rest.disabled}
-          focusLabel={focusLabel}
-        />
-      </div>
-    </Style>
+    <div className={layout()}>
+      <InsetIcon insetY0 left0 pl3>
+        <ClockIcon />
+      </InsetIcon>
+      <EzSelect
+        id={rest.id}
+        label={rest.label}
+        {...{error, touched}}
+        placeholder={rest.placeholder}
+        options={selectOptions}
+        value={valueTimeString}
+        onChange={rest.onChange}
+        aria-labelledby={rest['aria-labelledby']}
+        disabled={rest.disabled}
+        focusLabel={focusLabel}
+      />
+    </div>
   );
 };
 

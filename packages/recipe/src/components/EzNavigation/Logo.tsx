@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzNavigation.theme.config';
+import theme from '../theme.config';
 import {Link} from '../EzLink/EzLink';
 import {LabelledLink, Link as LinkType} from '../EzLink/EzLink.types';
 
@@ -36,17 +35,15 @@ interface LogoProps {
 }
 
 const Logo: FC<LogoProps> = ({link: {label, ...link}, logo}) => (
-  <Style ruleset={theme}>
-    <div className={logoWrapper()}>
-      <Link {...link} aria-label={label}>
-        {logo ? (
-          <img className={logoImage()} src={logo.src} width={logo.width} alt="" />
-        ) : (
-          <h1 className={logoText()}>{label}</h1>
-        )}
-      </Link>
-    </div>
-  </Style>
+  <div className={logoWrapper()}>
+    <Link {...link} aria-label={label}>
+      {logo ? (
+        <img className={logoImage()} src={logo.src} width={logo.width} alt="" />
+      ) : (
+        <h1 className={logoText()}>{label}</h1>
+      )}
+    </Link>
+  </div>
 );
 
 export type LogoType = {

@@ -4,7 +4,7 @@ import {ClearSlots, useSlotProps} from '../../utils/slots';
 type SlotProps = {
   element: keyof JSX.IntrinsicElements;
   slot: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const Slot = forwardRef<HTMLElement, SlotProps>(function Slot(props, ref) {

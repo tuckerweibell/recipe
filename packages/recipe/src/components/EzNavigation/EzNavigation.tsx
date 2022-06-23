@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {FC, useState} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzNavigation.theme.config';
+import theme from '../theme.config';
 import en from './en';
 import Logo, {LogoType} from './Logo';
 import Menu from './Menu';
@@ -207,43 +206,41 @@ const Group = ({links, className, children}) => {
   const [open, setOpen] = useState(active);
 
   return (
-    <Style ruleset={theme}>
-      <div className={groupContainer()}>
-        <div
-          onClick={e => {
-            e.stopPropagation();
-            setOpen(o => !o);
-          }}
-          className={groupButton()}
-          role="button"
-          tabIndex={0}
-          onKeyDown={e => {
-            if (e.key !== ' ' && e.key !== 'Enter') return;
-            setOpen(o => !o);
-          }}
-        >
-          <div className={clsx(groupSvgWrapper(), className, groupSvg({isOpen: open}))}>
-            {children}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </div>
-        </div>
-        <div className={clsx(linksWrapper({isOpen: open}))}>
-          <Links links={links} />
+    <div className={groupContainer()}>
+      <div
+        onClick={e => {
+          e.stopPropagation();
+          setOpen(o => !o);
+        }}
+        className={groupButton()}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.key !== ' ' && e.key !== 'Enter') return;
+          setOpen(o => !o);
+        }}
+      >
+        <div className={clsx(groupSvgWrapper(), className, groupSvg({isOpen: open}))}>
+          {children}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
         </div>
       </div>
-    </Style>
+      <div className={clsx(linksWrapper({isOpen: open}))}>
+        <Links links={links} />
+      </div>
+    </div>
   );
 };
 
@@ -268,47 +265,45 @@ const EzNavigation: FC<Props> = ({
   const notificationSummary = countNotifications(links) + countNotifications(utilityLinks || []);
 
   return (
-    <Style ruleset={theme}>
-      <div className={wrapper()}>
-        <div className={navWrapper()}>
-          <Logo link={homeLink} logo={logo} />
-          <Hamburger opened={!hidden} onClick={toggle} className={menuButton()}>
-            {notificationSummary > 0 && hidden && (
-              <span className={notificationIcon()}>
-                <Counter>{notificationSummary}</Counter>
-              </span>
-            )}
-          </Hamburger>
-          <div className={clsx(menuContent(), !hidden && openedMenuContent())}>
-            <nav
-              className={clsx(menus(), primaryMenus())}
-              aria-label={t('Primary navigation')}
-              onClick={close}
-            >
-              <Links links={links} />
+    <div className={wrapper()}>
+      <div className={navWrapper()}>
+        <Logo link={homeLink} logo={logo} />
+        <Hamburger opened={!hidden} onClick={toggle} className={menuButton()}>
+          {notificationSummary > 0 && hidden && (
+            <span className={notificationIcon()}>
+              <Counter>{notificationSummary}</Counter>
+            </span>
+          )}
+        </Hamburger>
+        <div className={clsx(menuContent(), !hidden && openedMenuContent())}>
+          <nav
+            className={clsx(menus(), primaryMenus())}
+            aria-label={t('Primary navigation')}
+            onClick={close}
+          >
+            <Links links={links} />
+          </nav>
+          {utilityLinks && (
+            <nav className={menus()} aria-label={t('Utility navigation')} onClick={close}>
+              <Links links={utilityLinks} />
             </nav>
-            {utilityLinks && (
-              <nav className={menus()} aria-label={t('Utility navigation')} onClick={close}>
-                <Links links={utilityLinks} />
-              </nav>
-            )}
-            {userMenu && (
-              <nav className={menus()} aria-label={t('User menu')}>
-                <UserMenu
-                  name={userMenu.name}
-                  links={userMenu.links}
-                  isSidebarOpen={!hidden}
-                  sidebarToggle={toggle}
-                />
-              </nav>
-            )}
-          </div>
-        </div>
-        <div className={clsx(contentContainer(), !hidden && openedContentContainer())}>
-          {children}
+          )}
+          {userMenu && (
+            <nav className={menus()} aria-label={t('User menu')}>
+              <UserMenu
+                name={userMenu.name}
+                links={userMenu.links}
+                isSidebarOpen={!hidden}
+                sidebarToggle={toggle}
+              />
+            </nav>
+          )}
         </div>
       </div>
-    </Style>
+      <div className={clsx(contentContainer(), !hidden && openedContentContainer())}>
+        {children}
+      </div>
+    </div>
   );
 };
 

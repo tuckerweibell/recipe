@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import {fireEvent} from '@storybook/testing-library';
 import * as Components from '../src';
+import Open from '../src/components/EzField/Open';
 import ezCaterLogoPath from '../../../docs/src/ezcater-logo.svg';
 import {Global, css} from '../src/styles';
 import {
@@ -33,6 +35,8 @@ const StaticRouterWithProps = ({children}) => (
 // if and when migrate our docs to MDX format instead of standard markdown
 const scope: any = {
   ...Components,
+  Open,
+  fireEvent,
   css,
   Global,
   require() {

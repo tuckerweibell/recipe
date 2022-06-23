@@ -131,6 +131,8 @@ The matching Sketch symbol library for Recipe is available through a tool called
 
 ## Development setup
 
+### Installation
+
 ```term
 npm install @ezcater/recipe
 ```
@@ -140,6 +142,34 @@ yarn add @ezcater/recipe
 ```
 
 Aside from React and React DOM, Recipe has no other `peerDependencies`.  Once `@ezcater/recipe` is installed, you're ready to start importing components!
+
+### Server-side rendering (SSR)
+
+If your app uses server-side rendering (SSR), you will need to add some additional configuration to support hydration by passing in the CSS string from [stitches](https://stitches.dev/docs/server-side-rendering) using a `<style />` tag.
+
+Here's an example of SSR with Next.js:
+
+```js
+import React from 'react';
+import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
+import {stitches} from '@ezcater/recipe';
+
+export default class Document extends NextDocument {
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <style id="stitches" dangerouslySetInnerHTML={{__html: stitches.getCssText()}} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+```
 
 ### Importing components in your projects
 

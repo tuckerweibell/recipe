@@ -1,18 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzOrderSummary.md';
-import regressionTests from './EzOrderSummary.test.md';
 import EzOrderSummary from '../EzOrderSummary';
-import {EzButton, EzPage} from '../../index';
-
-const scope = {EzButton, EzPage, EzOrderSummary};
+import {EzButton} from '../../index';
 
 describe('EzOrderSummary', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzOrderSummary

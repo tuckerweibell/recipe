@@ -1,51 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
-import {Link, StaticRouter, Route} from 'react-router-dom';
 import {render, fireEvent} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzPageHeader.md';
-import regressionTests from './EzPageHeader.test.md';
 import EzPageHeader from '../EzPageHeader';
-import {
-  EzStatus,
-  EzButton,
-  EzCard,
-  EzLayout,
-  EzPage,
-  EzLabelledItem,
-  EzField,
-  EzSearchInput,
-} from '../../index';
-import Media from '../../EzField/Media';
-
-const mockRequire = () => ({
-  Link,
-  BrowserRouter: ({children}) => (
-    <StaticRouter context={{}} location="/components/ez-page-header/">
-      {children}
-    </StaticRouter>
-  ),
-  Route,
-});
-
-const scope = {
-  EzPageHeader,
-  EzStatus,
-  EzButton,
-  EzCard,
-  EzLayout,
-  EzPage,
-  EzLabelledItem,
-  EzField,
-  EzSearchInput,
-  require: mockRequire,
-  Media,
-};
+import {EzStatus, EzButton} from '../../index';
 
 describe('EzPageHeader', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should cycle through the tabs', () => {
     const tabs = [{label: 'All'}, {label: 'Accepted'}, {label: 'Draft'}];
     const onChange = jest.fn();

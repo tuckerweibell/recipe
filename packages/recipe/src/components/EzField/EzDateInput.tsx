@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 import dayjs from 'dayjs';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import EzTextInput from './EzTextInput';
 import {TextInputWrapper} from './Picker.styles';
 import EzPopover from '../EzPopover';
@@ -106,7 +105,7 @@ const EzDateInput = ({
   const {minDate, maxDate, filterDate} = props;
 
   return (
-    <Style ruleset={theme}>
+    <>
       <TextInputWrapper
         className={layout({className: props.className})}
         disabled={disabled}
@@ -157,7 +156,7 @@ const EzDateInput = ({
           </FocusScope>
         </EzPopover>
       )}
-    </Style>
+    </>
   );
 };
 

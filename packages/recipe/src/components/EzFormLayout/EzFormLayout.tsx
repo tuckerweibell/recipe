@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzFormLayout.theme.config';
+import theme from '../theme.config';
 import {domProps} from '../../utils';
 
 const layout = theme.css({
@@ -16,11 +15,7 @@ type Props = React.ComponentPropsWithRef<'div'>;
  */
 const EzFormLayout = forwardRef<HTMLDivElement, Props>((initProps, ref) => {
   const props = domProps(initProps, layout());
-  return (
-    <Style ruleset={theme}>
-      <div {...props} ref={ref} />
-    </Style>
-  );
+  return <div {...props} ref={ref} />;
 });
 
 /**

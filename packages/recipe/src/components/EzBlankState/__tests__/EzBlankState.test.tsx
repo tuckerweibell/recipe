@@ -1,15 +1,8 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import EzBlankState from '../EzBlankState';
-import markdown from './EzBlankState.test.md';
-import {EzButton, EzCard, EzPage} from '../../index';
-import Media from '../../EzField/Media';
-
-const scope = {EzBlankState, EzButton, EzCard, EzPage, Media};
+import {EzButton} from '../../index';
 
 describe('EzBlankState', () => {
-  visualSnapshots({markdown, scope});
-
   it('should pass type checking', () => {
     [
       {

@@ -1,16 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
-import regressionTests from './EzTooltip.test.md';
 import EzTooltip from '../EzTooltip';
-import {Global, css} from '../../../styles';
 
 jest.unmock('../../../utils/hooks/usePopper');
 
-const scope = {EzTooltip, Global, css};
-
 describe('EzTooltip', () => {
-  visualSnapshots({markdown: regressionTests, scope: {...scope, fireEvent}});
   describe('interactions', () => {
     it('should show tooltip on focus', () => {
       const {container, getByRole} = render(

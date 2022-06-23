@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzProgressTracker.theme.config';
+import theme from '../theme.config';
 import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
 import LinkButton from '../LinkButton';
@@ -61,42 +60,40 @@ const EzProgressTracker: React.FC<ProgressTrackerProps> = ({
   const isHorizontal = orientation === 'horizontal';
   const progress = steps.findIndex(step => step === selected);
   return (
-    <Style ruleset={theme}>
-      <nav className={layout({orientation})}>
-        <ol
-          className={list({orientation})}
-          style={isHorizontal ? {} : {minHeight: `${steps.length * 3.5}rem`}}
-        >
-          {steps.map((step, i) => (
-            <Fragment key={i}>
-              {i !== 0 && <Spacer orientation={orientation} visited={i <= progress} />}
-              <li className={listItem()}>
-                <Track
-                  active={i === progress}
+    <nav className={layout({orientation})}>
+      <ol
+        className={list({orientation})}
+        style={isHorizontal ? {} : {minHeight: `${steps.length * 3.5}rem`}}
+      >
+        {steps.map((step, i) => (
+          <Fragment key={i}>
+            {i !== 0 && <Spacer orientation={orientation} visited={i <= progress} />}
+            <li className={listItem()}>
+              <Track
+                active={i === progress}
+                visited={i <= progress}
+                isFirst={i === 0}
+                isLast={i === steps.length - 1}
+                orientation={orientation}
+              />
+              <EzLayout
+                layout={isHorizontal ? 'stack' : 'basic'}
+                alignX={isHorizontal ? 'center' : undefined}
+                alignY={isHorizontal ? undefined : 'center'}
+              >
+                <StepIcon complete={step.complete} />
+                <StepLabel
+                  label={step.label}
                   visited={i <= progress}
-                  isFirst={i === 0}
-                  isLast={i === steps.length - 1}
                   orientation={orientation}
+                  link={step.onClick || isLink(step) ? step : undefined}
                 />
-                <EzLayout
-                  layout={isHorizontal ? 'stack' : 'basic'}
-                  alignX={isHorizontal ? 'center' : undefined}
-                  alignY={isHorizontal ? undefined : 'center'}
-                >
-                  <StepIcon complete={step.complete} />
-                  <StepLabel
-                    label={step.label}
-                    visited={i <= progress}
-                    orientation={orientation}
-                    link={step.onClick || isLink(step) ? step : undefined}
-                  />
-                </EzLayout>
-              </li>
-            </Fragment>
-          ))}
-        </ol>
-      </nav>
-    </Style>
+              </EzLayout>
+            </li>
+          </Fragment>
+        ))}
+      </ol>
+    </nav>
   );
 };
 
@@ -106,21 +103,19 @@ const icon = theme.css({
 });
 
 const StepIcon = ({complete}) => (
-  <Style ruleset={theme}>
-    <span className={icon()}>
-      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-        {complete ? (
-          <path
-            d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"
-            transform="scale(0.5)"
-            style={{transformOrigin: 'center'}}
-          />
-        ) : (
-          <circle cx="12" cy="12" r="4" />
-        )}
-      </svg>
-    </span>
-  </Style>
+  <span className={icon()}>
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      {complete ? (
+        <path
+          d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"
+          transform="scale(0.5)"
+          style={{transformOrigin: 'center'}}
+        />
+      ) : (
+        <circle cx="12" cy="12" r="4" />
+      )}
+    </svg>
+  </span>
 );
 
 const track = theme.css({
@@ -155,7 +150,7 @@ const trackPosition = theme.css({
 
 const Track = ({active, visited, isFirst, isLast, orientation}) => {
   return (
-    <Style ruleset={theme}>
+    <>
       {/* the background (dark green) of the track */}
       <span
         className={clsx(
@@ -172,7 +167,7 @@ const Track = ({active, visited, isFirst, isLast, orientation}) => {
           )}
         />
       )}
-    </Style>
+    </>
   );
 };
 
@@ -201,7 +196,7 @@ const labelStyles = theme.css({
 });
 
 const StepLabel = ({label, visited, orientation, link}) => (
-  <Style ruleset={theme}>
+  <>
     {link ? (
       <LinkButton
         label={label}
@@ -213,7 +208,7 @@ const StepLabel = ({label, visited, orientation, link}) => (
         {label}
       </EzTextStyle>
     )}
-  </Style>
+  </>
 );
 
 const spacer = theme.css({flex: '1 0 12px'});

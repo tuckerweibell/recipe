@@ -1,7 +1,7 @@
 ### Header is aligned with content on small screens
 
 ```jsx
-<Media size="small">
+<>
   <EzPageHeader
     title="Order # XYZ-123"
     breadcrumb={{
@@ -14,7 +14,7 @@
       <div>Order content</div>
     </EzCard>
   </EzPage>
-</Media>
+</>
 ```
 
 ### Title uses available space before wrapping
@@ -45,7 +45,7 @@
 ### Wraps status before wrapping title
 
 ```jsx
-<Media size="small">
+<>
   <EzPageHeader
     title="Michelangelo Wolfeschlegelsteinhausen"
     breadcrumb={{
@@ -64,7 +64,7 @@
       <div>Order content</div>
     </EzCard>
   </EzPage>
-</Media>
+</>
 ```
 
 ### Subheader padding on small screens
@@ -73,7 +73,7 @@
 () => {
   const tabs = [{label: 'Customers'}, {label: 'Leads'}];
   return (
-    <Media size="small">
+    <>
       <EzPageHeader
         title="Customers"
         subnav={{tabs, selected: tabs[0]}}
@@ -98,7 +98,7 @@
           <div>List content</div>
         </EzCard>
       </EzPage>
-    </Media>
+    </>
   );
 };
 ```
@@ -106,8 +106,8 @@
 ### Buttons are automatically responsive on small screens
 
 ```jsx
-<Media size="small">
+<>
   <EzPageHeader title="Order # XYZ-123" actions={<EzButton use="primary">Accept Order</EzButton>} />
   <EzPage />
-</Media>
+</>
 ```

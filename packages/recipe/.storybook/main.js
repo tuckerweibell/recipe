@@ -13,4 +13,6 @@ module.exports = {
       },
     },
   ],
+  // allows use of the emotion version Recipe is using (can be removed once Storybook upgrades to Emotion 11)
+  features: {emotionAlias: false},
 };

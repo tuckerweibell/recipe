@@ -1,5 +1,5 @@
 import {HTMLAttributes} from 'react';
-import type {StyledExpression} from '@stitches/core';
+import stitches from '../components/theme.config';
 import filterValidProps from './filterValidProps';
 import {mergeProps} from './mergeProps';
 
@@ -10,7 +10,7 @@ import {mergeProps} from './mergeProps';
  */
 export const domProps = (
   props: unknown,
-  ...styledExpressions: StyledExpression[]
+  ...styledExpressions: ReturnType<typeof stitches['createTheme']>[]
 ): HTMLAttributes<any> => {
   return filterValidProps(
     (mergeProps as any)(

@@ -1,8 +1,7 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
 import EzHeading from '../EzHeading';
 import EzTextStyle from '../EzTextStyle';
-import theme from './EzBlankState.theme.config';
+import theme from '../theme.config';
 
 const wrapper = theme.css({
   padding: '$blank-state-py $blank-state-px',
@@ -39,18 +38,16 @@ type BlankStateProps = {
 
 const EzBlankState = forwardRef<HTMLDivElement, BlankStateProps>(
   ({imageSrc, title, message, action}, ref) => (
-    <Style ruleset={theme}>
-      <div className={wrapper()} ref={ref}>
-        {imageSrc && (
-          <div className={image()}>
-            <img src={imageSrc} alt="" />
-          </div>
-        )}
-        <EzHeading size="2">{title}</EzHeading>
-        <EzTextStyle align="center">{message}</EzTextStyle>
-        {action}
-      </div>
-    </Style>
+    <div className={wrapper()} ref={ref}>
+      {imageSrc && (
+        <div className={image()}>
+          <img src={imageSrc} alt="" />
+        </div>
+      )}
+      <EzHeading size="2">{title}</EzHeading>
+      <EzTextStyle align="center">{message}</EzTextStyle>
+      {action}
+    </div>
   )
 );
 

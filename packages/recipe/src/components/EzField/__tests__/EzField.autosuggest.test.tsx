@@ -1,20 +1,12 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, getByLabelText, fireEvent, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import markdown from './EzField.autosuggest.test.md';
 import EzField from '../EzField';
-import {EzFormLayout, EzButton, EzLayout} from '../../index';
-import Open from '../Open';
-import Media from '../Media';
-
-const scope = {EzField, EzButton, EzLayout, EzFormLayout, Open, Media};
 
 describe('EzField', () => {
-  visualSnapshots({markdown, scope: {...scope, fireEvent}});
-
   describe('autosuggest list', () => {
     jest.useFakeTimers();
+
     const inputLabel = 'Select dropdown';
     const options = [
       {label: 'All Upcoming', value: 'upcoming'},
@@ -41,7 +33,8 @@ describe('EzField', () => {
     }
 
     // see: https://www.digitala11y.com/aria-autocomplete-properties/
-    it('behaves like aria-autocomplete=list', () => {
+    it('behaves like aria-autocomplete=list', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
@@ -50,7 +43,7 @@ describe('EzField', () => {
       expect(input).not.toHaveAttribute('aria-activedescendant');
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       // The element has a value specified for aria-controls that refers to the element that contains the collection of suggested values.
       expect(input).toHaveAttribute('aria-controls', screen.getByRole('listbox').id);
@@ -79,12 +72,13 @@ describe('EzField', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('opens on click', () => {
+    it('opens on click', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
@@ -109,17 +103,19 @@ describe('EzField', () => {
       expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
 
-    it('opens on text entered', () => {
+    it('opens on text entered', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.type(input, 'Today');
+      await user.type(input, 'Today');
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
 
-    it('closes on blur', () => {
+    it('closes on blur', async () => {
+      const user = userEvent.setup({delay: null});
       render(
         <>
           <EzField type="autosuggest" label={inputLabel} options={options} value={null} />
@@ -130,23 +126,24 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
       // cause blur by changing focus away from combobox
-      userEvent.click(screen.getByRole('button', {name: /click me/i}));
+      await user.click(screen.getByRole('button', {name: /click me/i}));
 
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('closes on escape', () => {
+    it('closes on escape', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
@@ -155,13 +152,14 @@ describe('EzField', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('closes when a value is selected', () => {
+    it('closes when a value is selected', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
@@ -171,7 +169,8 @@ describe('EzField', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('does not commit the focused item when closing', () => {
+    it('does not commit the focused item when closing', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       render(
@@ -187,7 +186,7 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
@@ -197,29 +196,32 @@ describe('EzField', () => {
       expect(onSelectionChange).not.toHaveBeenCalled();
     });
 
-    it('places virtual focus on the first item', () => {
+    it('places virtual focus on the first item', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value={null} />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(input).toHaveAttribute('aria-activedescendant', screen.queryAllByRole('option')[0].id);
     });
 
-    it('places virtual focus on the selected item', () => {
+    it('places virtual focus on the selected item', async () => {
+      const user = userEvent.setup({delay: null});
       render(<EzField type="autosuggest" label={inputLabel} options={options} value="tomorrow" />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(input).toHaveAttribute('aria-activedescendant', screen.queryAllByRole('option')[2].id);
     });
 
-    it('allows the user to select an item via Enter', () => {
+    it('allows the user to select an item via Enter', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       render(
@@ -235,7 +237,7 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       // select the currently focused item
       fireEvent.keyDown(input, {key: 'Enter'});
@@ -243,7 +245,8 @@ describe('EzField', () => {
       expect(onSelectionChange).toHaveBeenCalledWith('upcoming');
     });
 
-    it('allows the user to select an item via Mouse', () => {
+    it('allows the user to select an item via Mouse', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       render(
@@ -259,14 +262,15 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
-      userEvent.click(screen.queryAllByRole('option')[0]);
+      await user.click(screen.queryAllByRole('option')[0]);
 
       expect(onSelectionChange).toHaveBeenCalledWith('upcoming');
     });
 
-    it('clears the current selection if the input text is deleted', () => {
+    it('clears the current selection if the input text is deleted', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       render(
@@ -282,7 +286,7 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       // delete text from current input
       fireEvent.change(input, {target: {value: ''}});
@@ -291,7 +295,8 @@ describe('EzField', () => {
       expect(onSelectionChange).toHaveBeenCalledWith(null);
     });
 
-    it('clears the current input on blur if no value has been selected', () => {
+    it('clears the current input on blur if no value has been selected', async () => {
+      const user = userEvent.setup({delay: null});
       render(
         <>
           <EzField type="autosuggest" label={inputLabel} options={options} value={null} />
@@ -302,17 +307,18 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
-      userEvent.type(input, 'today');
+      await user.type(input, 'today');
 
       // cause blur by changing focus away from combobox
-      userEvent.click(screen.getByRole('button', {name: /click me/i}));
+      await user.click(screen.getByRole('button', {name: /click me/i}));
 
       expect(input).toHaveValue('');
     });
 
-    it('should trigger blur when no longer focused', () => {
+    it('should trigger blur when no longer focused', async () => {
+      const user = userEvent.setup({delay: null});
       const onBlur = jest.fn();
 
       const {container} = render(
@@ -331,17 +337,18 @@ describe('EzField', () => {
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       expect(onBlur).not.toHaveBeenCalled();
 
       // cause blur by changing focus away from combobox
-      userEvent.click(screen.getByRole('button', {name: /click me/i}));
+      await user.click(screen.getByRole('button', {name: /click me/i}));
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('filters using the onFilter function', () => {
+    it('filters using the onFilter function', async () => {
+      const user = userEvent.setup({delay: null});
       const onFilter = jest.fn();
 
       render(
@@ -357,56 +364,59 @@ describe('EzField', () => {
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
-      userEvent.type(input, 'text');
+      await user.type(input, 'text');
 
       expect(onFilter).toHaveBeenCalled();
     });
 
-    it('closes the menu if there are no matching items', () => {
+    it('closes the menu if there are no matching items', async () => {
+      const user = userEvent.setup({delay: null});
       render(<LiveFilterExample />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
-      userEvent.type(input, 'mismatch');
+      await user.type(input, 'mismatch');
 
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('keeps the menu open if the user clears the input field', () => {
+    it('keeps the menu open if the user clears the input field', async () => {
+      const user = userEvent.setup({delay: null});
       render(<LiveFilterExample />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
-      userEvent.type(input, 'mismatch');
+      await user.type(input, 'mismatch');
 
       fireEvent.change(input, {target: {value: ''}});
 
       expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
 
-    it('focuses the first item if the previously focused item is filtered out of the list', () => {
+    it('focuses the first item if the previously focused item is filtered out of the list', async () => {
+      const user = userEvent.setup({delay: null});
       render(<LiveFilterExample />);
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       expect(input).toHaveAttribute(
         'aria-activedescendant',
         screen.getByRole('option', {name: /upcoming/i}).id
       );
 
-      userEvent.type(input, 'to');
+      await user.type(input, 'to');
 
       expect(input).toHaveAttribute('aria-activedescendant', screen.queryAllByRole('option')[0].id);
     });

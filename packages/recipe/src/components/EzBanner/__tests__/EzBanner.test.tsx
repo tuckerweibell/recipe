@@ -1,18 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzBanner.test.md';
-import markdown from '../EzBanner.md';
 import EzBanner from '../EzBanner';
-import {EzPage} from '../../index';
-
-const scope = {EzBanner, EzPage};
 
 describe('EzBanner', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzBanner

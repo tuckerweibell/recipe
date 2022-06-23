@@ -1,21 +1,11 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {axe, render} from '../../../../test-utils';
-import markdown from '../EzRating.md';
-import {EzLayout, EzPage, EzRating} from '../../../index';
+import {EzRating} from '../../../index';
 import {
   MOCK_ICON_FA_FULL_STAR,
   MOCK_ICON_FA_HALF_STAR,
   MOCK_ICON_FA_EMPTY_STAR,
 } from '../../EzIcon/EzIconMocks';
-
-const mockRequire = () => ({
-  emptyStar: MOCK_ICON_FA_EMPTY_STAR,
-  halfStar: MOCK_ICON_FA_HALF_STAR,
-  fullStar: MOCK_ICON_FA_FULL_STAR,
-});
-
-const scope = {EzLayout, EzPage, EzRating, require: mockRequire};
 
 const renderComponent = ({
   max = 5,
@@ -166,8 +156,6 @@ describe('EzRating logic', () => {
 });
 
 describe('EzRating', () => {
-  visualSnapshots({markdown, scope});
-
   it('should meet accessibility guidelines', async () => {
     const value = 2.4;
     const {container} = renderComponent({value});

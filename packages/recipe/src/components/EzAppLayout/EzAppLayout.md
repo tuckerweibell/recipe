@@ -29,11 +29,11 @@ The application layout:
 
 |                  Full width layout, narrow screen                   |                 Full width layout, wide screen                  |
 | :-----------------------------------------------------------------: | :-------------------------------------------------------------: |
-| ![full width layout, narrow screen](/recipe/images/full-narrow.png) | ![full width layout, wide screen](/recipe/images/full-wide.png) |
+| ![full width layout, narrow screen](/images/full-narrow.png) | ![full width layout, wide screen](/images/full-wide.png) |
 
 |                    Centered layout, narrow screen                     |                   Centered layout, wide screen                    |
 | :-------------------------------------------------------------------: | :---------------------------------------------------------------: |
-| ![centered layout, narrow screen](/recipe/images/centered-narrow.png) | ![centered layout, wide screen](/recipe/images/centered-wide.png) |
+| ![centered layout, narrow screen](/images/centered-narrow.png) | ![centered layout, wide screen](/images/centered-wide.png) |
 
 ## Best Practices
 

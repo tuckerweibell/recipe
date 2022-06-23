@@ -1,19 +1,9 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {fireEvent, render, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzToggle.test.md';
-import markdown from '../EzToggle.md';
 import EzToggle from '../EzToggle';
-import {Global, css} from '../../../styles';
-
-const scope = {EzToggle, Global, css};
 
 describe('EzToggle', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('calls the provided click handler when the input is clicked', () => {
     const spy = jest.fn();
 

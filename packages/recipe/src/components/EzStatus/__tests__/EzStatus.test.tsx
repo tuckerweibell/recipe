@@ -1,14 +1,7 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
-import markdown from '../EzStatus.md';
 import {EzStatus} from '../../index';
-import EzLayout from '../../EzLayout';
-
-const scope = {EzStatus, EzLayout};
 
 describe('EzStatus', () => {
-  visualSnapshots({markdown, scope});
-
   const icon = (
     <svg>
       <circle cx="50%" cy="50%" r="30%" fillRule="evenodd" />

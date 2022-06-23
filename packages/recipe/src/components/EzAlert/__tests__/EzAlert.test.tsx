@@ -1,18 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
 import EzAlert from '../EzAlert';
-import markdown from '../EzAlert.md';
-import regressionTests from './EzAlert.test.md';
-import {EzCard} from '../../index';
-
-const scope = {EzAlert, EzCard};
 
 describe('EzAlert', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should meet accessibility guidelines for status messages', async () => {
     render(<EzAlert headline="A11y" use="info" />);
     expect(await axe(await screen.findByRole('status'))).toHaveNoViolations();

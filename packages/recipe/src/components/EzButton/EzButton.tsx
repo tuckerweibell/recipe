@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzButton.theme.config';
+import theme from '../theme.config';
 import EzTooltip from '../EzTooltip';
 import {domProps} from '../../utils';
 
@@ -297,7 +296,7 @@ const EzButton = forwardRef<Ref, Props>(({loading, ...initProps}: any, ref) => {
     );
   }
 
-  return <Style ruleset={theme}>{buttonElement}</Style>;
+  return <>{buttonElement}</>;
 });
 
 /**

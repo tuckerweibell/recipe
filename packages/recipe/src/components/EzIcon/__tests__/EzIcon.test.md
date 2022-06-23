@@ -13,16 +13,12 @@
       <EzIcon icon={faCoffee} color="warning" />
       <EzIcon icon={faCoffee} color="info" />
       <EzIcon icon={faCoffee} color="success" />
-      <EzIcon icon={faCoffee} color="white" />
-      <EzIcon icon={faCoffee} color="green" />
       <EzIcon icon={faCoffee} color="common.white" />
       <EzIcon icon={faCoffee} color="common.green" />
       <EzIcon icon={faCoffee} color="common.purple100" />
-      <EzIcon icon={faCoffee} size="xsmall" />
       <EzIcon icon={faCoffee} size="small" />
       <EzIcon icon={faCoffee} size="medium" />
       <EzIcon icon={faCoffee} size="large" />
-      <EzIcon icon={faCoffee} size="xlarge" />
     </EzLayout>
   );
 };
@@ -43,16 +39,12 @@
       <EzIcon icon={Pizza} color="warning" />
       <EzIcon icon={Pizza} color="info" />
       <EzIcon icon={Pizza} color="success" />
-      <EzIcon icon={Pizza} color="white" />
-      <EzIcon icon={Pizza} color="green" />
       <EzIcon icon={Pizza} color="common.white" />
       <EzIcon icon={Pizza} color="common.green" />
       <EzIcon icon={Pizza} color="common.purple100" />
-      <EzIcon icon={Pizza} size="xsmall" />
       <EzIcon icon={Pizza} size="small" />
       <EzIcon icon={Pizza} size="medium" />
       <EzIcon icon={Pizza} size="large" />
-      <EzIcon icon={Pizza} size="xlarge" />
     </EzLayout>
   );
 };
@@ -77,16 +69,12 @@
       <EzIcon icon={burgerIcon} color="warning" />
       <EzIcon icon={burgerIcon} color="info" />
       <EzIcon icon={burgerIcon} color="success" />
-      <EzIcon icon={burgerIcon} color="white" />
-      <EzIcon icon={burgerIcon} color="green" />
       <EzIcon icon={burgerIcon} color="common.white" />
       <EzIcon icon={burgerIcon} color="common.green" />
       <EzIcon icon={burgerIcon} color="common.purple100" />
-      <EzIcon icon={burgerIcon} size="xsmall" />
       <EzIcon icon={burgerIcon} size="small" />
       <EzIcon icon={burgerIcon} size="medium" />
       <EzIcon icon={burgerIcon} size="large" />
-      <EzIcon icon={burgerIcon} size="xlarge" />
     </EzLayout>
   );
 };

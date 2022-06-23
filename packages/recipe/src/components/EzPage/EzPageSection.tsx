@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzPageSection.theme.config';
+import theme from '../theme.config';
 import {usePageSection} from './EzPage';
 import {clsx} from '../../utils';
 
@@ -64,11 +63,7 @@ type Props = {
 const EzPageSection: React.FC<Props> = props => {
   const id = usePageSection(props.use);
 
-  return (
-    <Style ruleset={theme}>
-      <div {...props} className={clsx(pageSection(props), !(id % 2) && sibling())} />
-    </Style>
-  );
+  return <div {...props} className={clsx(pageSection(props), !(id % 2) && sibling())} />;
 };
 
 EzPageSection.displayName = 'EzPageSection';

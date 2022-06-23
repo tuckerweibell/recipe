@@ -5,7 +5,7 @@ category: Navigation
 path: '/components/ez-carousel'
 ---
 
-Carousels allow users to browse through a set of items, to find items that may be of interest to them.
+Carousels allow users to browse through a set of items to find items that may be of interest to them.
 
 ---
 
@@ -13,108 +13,98 @@ Carousels allow users to browse through a set of items, to find items that may b
 
 Carousels should:
 
-- Highlight a small number of items from an otherwise large set.
-- Be used to preview items and indicate that more items may be available, other than what is currently shown.
+- Highlight a small number of items from an otherwise large set (no more than 16 items).
 - Be used when there is not enough space to show the complete set of items.
 - Contain highly visual content, typically caterer or menu images.
+- Be used with an [EzCard](/components/ez-card) for each item.
 
 ---
 
 ## Examples
 
-### Basic carousel
+### Basic Carousel
 
-A carousel with default props. The carousel will show a single item per page, with no gap between items.
+A carousel with required props `title` and `description`. The description is used for the `aria-description` of the carousel.
 
-```jsx
-<EzCarousel>
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
-</EzCarousel>
-```
+The carousel will automatically determine how many slides to show per page as follows:
 
-### Slides per page
+- Desktop viewports (`>= 768px`) will show a number of cards per page depending on the container width:
+  - container width `> 1024px` will show 4 cards per page
+  - container width `650px` to `1023px` will show 3 cards per page
+  - container width `< 650px` will show 2 cards per page
+- Mobile viewports (`< 768px`) regardless of container width will show all cards with horizontal scroll
 
-Varies the number of items visible at the same time.
-
-The `slidesPerPage` prop accents either an integer, or an object defining the number of visible items at different breakpoints. The `base` value will be applied from the smallest devices up, until reaching the next breakpoint.
+To view the behavior on a wider page, see the [responsive example](/cookbook/responsive-carousel) in the Cookbook.
 
 ```jsx
-<EzLayout layout="stack">
-  <EzHeading size="3">Show two slides on small screens, 4 slides on larger screens</EzHeading>
-  <EzCarousel slidesPerPage={{base: 2, medium: 4}}>
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 24%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 14%)'}} />
-    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 4%)'}} />
+<EzPage>
+  <EzCarousel title="Basic carousel" description="basic carousel description">
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
   </EzCarousel>
-</EzLayout>
+</EzPage>
 ```
 
-### Page change handler
+### Link
 
-Providing a function to `onPageChange` creates the ability to take an action when the user clicks or scrolls through the carousel in either direction. This introduces a way to track user interaction with the carousel, if `onPageChange` is given a tracking event function. The index of the previous and current pages are available as arguments to the `onChangePage` function, if needed, starting at index 0.
+A carousel with an optional navigational link. You must provide `link` an [EzLink](/components/ez-link#text-link).
 
 ```jsx
-<EzCarousel
-  onPageChange={({previous, current}) => console.log('previous:', previous, 'current:', current)}
->
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
-</EzCarousel>
+<EzPage>
+  <EzCarousel
+    title="Carousel with link"
+    description="carousel with link description"
+    link={
+      <EzLink>
+        <a href="https://ezcater.com" target="_blank">
+          View All
+        </a>
+      </EzLink>
+    }
+  >
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
+  </EzCarousel>
+</EzPage>
 ```
 
-### Peek
+### Page Change Handler
 
-Offset the slide size to show a glimpse of the next and/or previous slides at the edge of the carousel.
-
-```jsx
-<EzCarousel slidesPerPage={2} peek>
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
-</EzCarousel>
-```
-
-### Gap
-
-Applies space between between slides.
+Providing an optional function to `onPageChange` will call that action when the user clicks a page change button in the carousel for desktop viewports, providing a method of tracking user interaction. If needed, the previous and current page numbers are available as arguments, starting at page 1.
 
 ```jsx
-<EzCarousel slidesPerPage={2} gap peek>
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
-  <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
-</EzCarousel>
+<EzPage>
+  <EzCarousel
+    title="Carousel with page change handler"
+    description="carousel with page change handler description"
+    onPageChange={(previous, current) => console.log('previous:', previous, 'current:', current)}
+  >
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 54%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 44%)'}} />
+    <Placeholder style={{width: '100%', backgroundColor: 'hsl(230deg, 44%, 34%)'}} />
+  </EzCarousel>
+</EzPage>
 ```
 
 ### Practical Example
 
 An example of how you might use the carousel in conjunction with other components to build a compelling experience for browsing products.
+
+To view the behavior on a wider page, see the [responsive example](/cookbook/responsive-carousel).
 
 ```jsx
 () => {
@@ -138,28 +128,34 @@ An example of how you might use the carousel in conjunction with other component
       reviews: '4.7 (467 reviews)',
     },
     {
-      title: 'Splitz Wrap Boxed Lunch',
-      subtitle: 'Corporate Catering  |  3 mi  |  $$$$',
-      image: `${withPrefix('/images/wrap.jpg')}`,
-      reviews: '4.7 (463 reviews)',
+      title: 'Tacos Supreme',
+      subtitle: 'Mexican From Scratch |  2 mi  |  $$',
+      image: `${withPrefix('/images/tacos.jpg')}`,
+      reviews: '4.2 (39 reviews)',
     },
     {
-      title: 'Flaming Pit Pizza',
-      subtitle: 'Globally Inspired Pizza  |  1 mi  |  $$$$',
-      image: `${withPrefix('/images/pizza.jpg')}`,
-      reviews: '4.8 (671 reviews)',
+      title: 'California Bagel',
+      subtitle: 'Voted Best Bagels!  |  1 mi  |  $$$',
+      image: `${withPrefix('/images/bagels.jpg')}`,
+      reviews: '4.8 (836 reviews)',
     },
     {
-      title: 'Dakzen Thai',
-      subtitle: 'Modern Thai  |  10 mi  |  $$$$',
-      image: `${withPrefix('/images/thai.jpg')}`,
-      reviews: '4.7 (467 reviews)',
+      title: 'Mamas Italian Kitchen',
+      subtitle: 'True Italian  |  10 mi  |  $$$$',
+      image: `${withPrefix('/images/pasta.jpg')}`,
+      reviews: '4.9 (18 reviews)',
+    },
+    {
+      title: 'Main Street Cafe',
+      subtitle: 'American Dining On The Go  |  3 mi  |  $$',
+      image: `${withPrefix('/images/sandwiches.jpg')}`,
+      reviews: '4.3 (274 reviews)',
     },
   ];
 
   return (
     <EzPage>
-      <EzCarousel slidesPerPage={2} gap peek>
+      <EzCarousel title="Practical example" description="practical example description">
         {caterers.map((card, index) => {
           return (
             <EzCard
@@ -192,16 +188,8 @@ An example of how you might use the carousel in conjunction with other component
 
 ---
 
-## Browser support
-
-The Carousel component internally uses [`Element.prototype.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) and may require a polyfill to provide [browser support](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo#Browser_compatibility) depending on the specific requirements for your application.
-
-We recommend using [Polyfill.io](https://polyfill.io/v3/) in your application to apply necessary polyfills only when they are needed for the requesting browser:
-
-<br>`https://polyfill.io/v3/polyfill.min.js?features=smoothscroll`
-
----
-
 ## Related components
 
 - [Cards](/components/ez-card)
+- [Links](/components/ez-link)
+- [Buttons](/components/ez-button)

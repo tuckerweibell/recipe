@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import Highlighter from 'react-highlight-words';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
 import {clsx} from '../../utils';
 
@@ -130,17 +129,15 @@ const EzListBox = (props, ref) => {
   };
 
   const renderGroup = ([name, options]) => (
-    <Style ruleset={theme} key={name}>
-      <OptGroup group={name}>{options.map(renderItem)}</OptGroup>
-    </Style>
+    <OptGroup group={name} key={name}>
+      {options.map(renderItem)}
+    </OptGroup>
   );
 
   return (
-    <Style ruleset={theme}>
-      <ul className={clsx(popup(), list())} role="listbox" ref={ref} {...domProps}>
-        {hasGroupedOptions(items) ? items.map(renderGroup) : items.map(renderItem)}
-      </ul>
-    </Style>
+    <ul className={clsx(popup(), list())} role="listbox" ref={ref} {...domProps}>
+      {hasGroupedOptions(items) ? items.map(renderGroup) : items.map(renderItem)}
+    </ul>
   );
 };
 

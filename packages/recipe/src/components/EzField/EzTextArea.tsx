@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import EzTextInput from './EzTextInput';
 
 const rows = size => {
@@ -24,9 +23,7 @@ const textArea = theme.css({
 });
 
 const EzTextArea = React.forwardRef<HTMLTextAreaElement, {size}>(({size, ...rest}, ref) => (
-  <Style ruleset={theme}>
-    <EzTextInput ref={ref} {...rest} multiLine rows={rows(size)} className={textArea()} />
-  </Style>
+  <EzTextInput ref={ref} {...rest} multiLine rows={rows(size)} className={textArea()} />
 ));
 
 export default EzTextArea;

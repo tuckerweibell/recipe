@@ -88,8 +88,6 @@ Recipe supports the following set of design tokens for typography:
 
 `ezTheme` icons support the following sizes:
 
-<EzAlert headline="Deprecation Warning" tagline="Previously supported 'xsmall' and 'xlarge' sizes are deprecated and will be removed in v15." use="warning"></EzAlert>
-
 ```jsx-hide-controls
   <>
     <pre>small: 16px</pre>

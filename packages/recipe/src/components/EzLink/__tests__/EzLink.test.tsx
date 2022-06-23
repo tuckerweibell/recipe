@@ -1,18 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzLink.md';
 import EzLink from '../EzLink';
-import Placeholder from '../../Placeholder';
-import {EzLayout} from '../../index';
-
-const scope = {EzLink, EzLayout, Placeholder};
 
 describe('EzLink', () => {
-  visualSnapshots({markdown, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzLink>

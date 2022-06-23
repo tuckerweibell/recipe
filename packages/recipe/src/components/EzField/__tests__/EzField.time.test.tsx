@@ -1,18 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, getByLabelText, fireEvent, getAllByRole, act} from '@testing-library/react';
-import ezTimeInputTests from './EzTimeInput.test.md';
 import EzField from '../EzField';
-import {EzFormLayout} from '../../index';
-import Open from '../Open';
-import Media from '../Media';
-
-const scope = {EzField, EzFormLayout, Open, Media};
 
 describe('EzField', () => {
   const label = 'Select time';
-
-  visualSnapshots({markdown: ezTimeInputTests, scope});
 
   it('should open dropdown by pressing the enter key', () => {
     const {container} = render(

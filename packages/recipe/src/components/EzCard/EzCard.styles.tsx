@@ -1,4 +1,4 @@
-import theme from './EzCard.theme.config';
+import theme from '../theme.config';
 
 export const container = theme.css({
   backgroundColor: '$card-bg',
@@ -6,14 +6,9 @@ export const container = theme.css({
   borderStyle: '$card-border',
   borderWidth: '$card-border',
   borderColor: '$card-border',
+  borderRadius: '$card-rounded',
 
-  '--radii-card-rounded': 0,
   '--space-card-p': '$space$card-md-p',
-
-  '@medium': {
-    borderRadius: '$card-rounded',
-    '--radii-card-rounded': 'inherit',
-  },
 
   variants: {
     accent: {
@@ -41,7 +36,10 @@ export const container = theme.css({
         // semi-transparent overlay on top of the card allowing varied opacity on hover
         '&:before': {
           content: "' '",
-          inset: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
           overflow: 'hidden',
           position: 'absolute',
           transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

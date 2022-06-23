@@ -1,35 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzLayout.md';
-import regressionTests from './EzLayout.test.md';
-import alignmentTests from './EzLayout.alignment.test.md';
 import EzLayout from '../EzLayout';
-import {EzCard, EzCardSection, EzHeading, EzField, EzPage, EzSearchInput} from '../../index';
-import Media from '../../EzField/Media';
-import Placeholder from '../../Placeholder';
-import {Global, css} from '../../../styles';
-
-const scope = {
-  EzPage,
-  EzLayout,
-  EzCard,
-  EzCardSection,
-  EzHeading,
-  Media,
-  css,
-  Global,
-  Placeholder,
-  EzField,
-  EzSearchInput,
-};
 
 describe('EzLayout', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: alignmentTests, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzLayout layout="basic">

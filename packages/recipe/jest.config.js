@@ -17,6 +17,7 @@ module.exports = {
     '^.+\\.svg$': '<rootDir>/jest.fileTransformer.js',
     '^.+\\.md?$': 'jest-raw-loader',
   },
+  transformIgnorePatterns: ['node_modules/(?!(@react-hook)/)'],
   testMatch: ['<rootDir>/src/**/__tests__/**/*.(spec|test).(js|ts)?(x)'],
   testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],

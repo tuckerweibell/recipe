@@ -1,27 +1,11 @@
 import React from 'react';
 import {render, fireEvent, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {visualSnapshots} from 'sosia';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzModal.test.md';
 import EzModal from '../EzModal';
-import {EzLayout, EzButton, EzHeading} from '../..';
-import {EzContent, EzFooter, EzHeader, EzPreview} from '../../EzContent';
-
-const scope = {
-  EzModal,
-  EzLayout,
-  EzContent,
-  EzButton,
-  EzFooter,
-  EzHeader,
-  EzHeading,
-  EzPreview,
-};
+import {EzContent, EzFooter, EzHeader} from '../../EzContent';
 
 describe('EzModal', () => {
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('does not render the children if not open', () => {
     const {queryByText} = render(
       <EzModal isOpen={false} dismissLabel="dismiss" headerText="header">
@@ -90,7 +74,8 @@ describe('EzModal', () => {
     expect(dismiss).toHaveBeenCalled();
   });
 
-  it('calls dismiss when Escape is pressed', () => {
+  it('calls dismiss when Escape is pressed', async () => {
+    const user = userEvent.setup();
     const dismiss = jest.fn();
     const dismissLabel = 'dismiss';
     render(
@@ -105,14 +90,13 @@ describe('EzModal', () => {
       </EzModal>
     );
 
-    const dialog = screen.getByRole('dialog');
-
-    userEvent.type(dialog, '{esc}');
+    await user.keyboard('{Escape}');
 
     expect(dismiss).toHaveBeenCalled();
   });
 
-  it('does NOT call dismiss when Escape is pressed but is already handled by a descendant component', () => {
+  it('does NOT call dismiss when Escape is pressed but is already handled by a descendant component', async () => {
+    const user = userEvent.setup();
     const dismiss = jest.fn();
     const dismissLabel = 'dismiss';
 
@@ -134,9 +118,7 @@ describe('EzModal', () => {
 
     const child = screen.getByTestId('child');
 
-    userEvent.type(child, 'sample text');
-
-    userEvent.type(child, '{esc}');
+    await user.type(child, 'sample text{Escape}');
 
     expect(dismiss).not.toHaveBeenCalled();
   });
@@ -247,6 +229,8 @@ describe('EzModal', () => {
       // NOTE: reaktit uses getClientRects to check it tabbable elements are visible before setting focus
       jest.spyOn(window.Element.prototype, 'getClientRects').mockImplementation(() => [{}] as any);
 
+      const user = userEvent.setup();
+
       const FocusExample = () => {
         const [isOpen, setOpen] = React.useState(false);
         return (
@@ -269,7 +253,7 @@ describe('EzModal', () => {
 
       expect(document.activeElement).toBe(trigger);
 
-      userEvent.click(trigger);
+      await user.click(trigger);
 
       const firstFocusable = await screen.findByRole('button', {name: /inside/i});
 

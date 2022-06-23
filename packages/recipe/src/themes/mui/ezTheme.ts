@@ -63,7 +63,7 @@ const palette: PaletteOptions = {
 };
 
 declare module '@mui/material/styles/createTypography' {
-  type IconSizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'; // xsmall and xlarge deprecated
+  type IconSizes = 'small' | 'medium' | 'large';
 
   interface FontStyle {
     icon: {
@@ -76,11 +76,9 @@ const typography = {
   fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
   icon: {
     size: {
-      xsmall: 12, // deprecated
       small: 16,
       medium: 24,
       large: 32,
-      xlarge: 42, // deprecated
     },
   },
 };

@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzBanner.theme.config';
+import theme from '../theme.config';
 import CloseButton from '../CloseButton';
 import EzHeading from '../EzHeading';
 import LinkButton from '../LinkButton';
@@ -110,16 +109,14 @@ const linkButton = theme.css({
  */
 const EzBanner = forwardRef<Ref, Props>(({title, link, use, message, onDismiss}, ref) => {
   return (
-    <Style ruleset={theme}>
-      <div className={banner({use})} ref={ref}>
-        <EzHeading size="3" className={heading()}>
-          {title}
-        </EzHeading>
-        <CloseButton label="Close" onClick={onDismiss} className={closeButton()} />
-        <p>{message}</p>
-        <LinkButton {...link} className={linkButton()} />
-      </div>
-    </Style>
+    <div className={banner({use})} ref={ref}>
+      <EzHeading size="3" className={heading()}>
+        {title}
+      </EzHeading>
+      <CloseButton label="Close" onClick={onDismiss} className={closeButton()} />
+      <p>{message}</p>
+      <LinkButton {...link} className={linkButton()} />
+    </div>
   );
 });
 

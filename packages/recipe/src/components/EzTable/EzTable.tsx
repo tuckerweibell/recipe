@@ -1,6 +1,5 @@
 import React, {FC, createContext, createElement, useContext, useState, useEffect} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTable.theme.config';
+import theme from '../theme.config';
 import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
@@ -188,20 +187,18 @@ type ThProps = {
 };
 
 const Th: FC<ThProps> = ({children, numeric, isSortableColumn, sorted, onClick}) => (
-  <Style ruleset={theme}>
-    <th
-      className={clsx(
-        cell(),
-        numeric && numericCell(),
-        header(),
-        isSortableColumn && sortableColumn(),
-        sorted && sortedCell()
-      )}
-      onClick={onClick}
-    >
-      {children}
-    </th>
-  </Style>
+  <th
+    className={clsx(
+      cell(),
+      numeric && numericCell(),
+      header(),
+      isSortableColumn && sortableColumn(),
+      sorted && sortedCell()
+    )}
+    onClick={onClick}
+  >
+    {children}
+  </th>
 );
 
 const Thead = ({selectable}) => {
@@ -258,44 +255,42 @@ const SelectionStateBanner = () => {
   if (selection.selected.length !== items.length && !selection.allSelected) return null;
 
   return (
-    <Style ruleset={theme}>
-      <tr>
-        <td colSpan={columns.length + 1} className={selectionStateCell()}>
-          <EzLayout layout="cluster" alignX="center">
-            {selection.allSelected || items.length === pagination.totalRows ? (
-              <Fragment>
-                <EzTextStyle align="center">
-                  {t('All {{totalRowCount}} rows are selected.', {
-                    totalRowCount: pagination.totalRows,
-                  })}
-                </EzTextStyle>
-                <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
-                  {t('Clear selection')}
-                </EzButton>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <EzTextStyle align="center">
-                  {t('All {{selectedCount}} rows on this page are selected.', {
-                    selectedCount: selection.selected.length,
-                  })}
-                </EzTextStyle>
-                <EzButton
-                  use="tertiary"
-                  onClick={wrapEvent(selection.onSelectAllClick, () =>
-                    selection.setAllSelected(true)
-                  )}
-                >
-                  {t('Select all {{totalRowCount}} rows', {
-                    totalRowCount: pagination.totalRows,
-                  })}
-                </EzButton>
-              </Fragment>
-            )}
-          </EzLayout>
-        </td>
-      </tr>
-    </Style>
+    <tr>
+      <td colSpan={columns.length + 1} className={selectionStateCell()}>
+        <EzLayout layout="cluster" alignX="center">
+          {selection.allSelected || items.length === pagination.totalRows ? (
+            <Fragment>
+              <EzTextStyle align="center">
+                {t('All {{totalRowCount}} rows are selected.', {
+                  totalRowCount: pagination.totalRows,
+                })}
+              </EzTextStyle>
+              <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
+                {t('Clear selection')}
+              </EzButton>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <EzTextStyle align="center">
+                {t('All {{selectedCount}} rows on this page are selected.', {
+                  selectedCount: selection.selected.length,
+                })}
+              </EzTextStyle>
+              <EzButton
+                use="tertiary"
+                onClick={wrapEvent(selection.onSelectAllClick, () =>
+                  selection.setAllSelected(true)
+                )}
+              >
+                {t('Select all {{totalRowCount}} rows', {
+                  totalRowCount: pagination.totalRows,
+                })}
+              </EzButton>
+            </Fragment>
+          )}
+        </EzLayout>
+      </td>
+    </tr>
   );
 };
 
@@ -304,42 +299,38 @@ const TRow = ({item}) => {
   const [targetRef, {ref, clickable, onClick, onMouseEnter}] = useExpandedClickTarget();
 
   return (
-    <Style ruleset={theme}>
-      <tr
-        className={clsx(clickable && rowHover)}
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-        ref={ref as any}
-      >
-        {selection && (
-          <td className={cell()}>
-            <EzCheckbox
-              label="Select row"
-              checked={selection.selected.includes(item)}
-              onChange={event => selection.onRowSelectClick(event, {item})}
-            />
-          </td>
-        )}
-        {columns.map(({component, numeric}, cellIndex) => (
-          <td className={clsx(cell(), numeric && numericCell())} key={cellIndex}>
-            {createElement(component, {item, linkRef: targetRef})}
-          </td>
-        ))}
-      </tr>
-    </Style>
+    <tr
+      className={clsx(clickable && rowHover)}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      ref={ref as any}
+    >
+      {selection && (
+        <td className={cell()}>
+          <EzCheckbox
+            label="Select row"
+            checked={selection.selected.includes(item)}
+            onChange={event => selection.onRowSelectClick(event, {item})}
+          />
+        </td>
+      )}
+      {columns.map(({component, numeric}, cellIndex) => (
+        <td className={clsx(cell(), numeric && numericCell())} key={cellIndex}>
+          {createElement(component, {item, linkRef: targetRef})}
+        </td>
+      ))}
+    </tr>
   );
 };
 
 const Tbody = () => {
   const {items} = useContext(TableContext);
   return (
-    <Style ruleset={theme}>
-      <tbody>
-        {items.map((item, rowIndex) => (
-          <TRow key={rowIndex} item={item} />
-        ))}
-      </tbody>
-    </Style>
+    <tbody>
+      {items.map((item, rowIndex) => (
+        <TRow key={rowIndex} item={item} />
+      ))}
+    </tbody>
   );
 };
 
@@ -427,69 +418,59 @@ const TablePagination = ({pagination}) => {
   const range = count === 1 ? 1 : `${from}-${to}`;
 
   return (
-    <Style ruleset={theme}>
-      <EzFooter>
-        <EzLayout layout="right">
-          <nav aria-label={t('Pagination')} className={paginationNav()}>
-            <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
-            <EzButton
-              use="tertiary"
-              title={t('Previous Page')}
-              aria-label={t('Previous Page')}
-              onClick={pagination.onPrevPageClick}
-              disabled={pagination.currentPage === 1}
-              className={virtualTouchable()}
-              icon={
-                <svg
-                  viewBox="6 5 14 14"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={iconStates()}
-                >
-                  <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-                </svg>
-              }
-            />
-            <EzButton
-              use="tertiary"
-              title={t('Next Page')}
-              aria-label={t('Next Page')}
-              onClick={pagination.onNextPageClick}
-              disabled={pagination.currentPage === pages}
-              className={virtualTouchable()}
-              icon={
-                <svg
-                  viewBox="6 5 14 14"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={iconStates()}
-                >
-                  <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-                </svg>
-              }
-            />
-          </nav>
-          <div className={clsx(rowsPerPageWrapper(), iconSize())}>
-            <select
-              className={rowsPerPageOpacity()}
-              defaultValue={pagination.rowsPerPage}
-              onChange={pagination.onRowsPerPageChange}
-              title={t('Show rows per page options')}
-              aria-label={t('Show rows per page options')}
-            >
-              {pagination.rowsPerPageOptions.map(value => (
-                <option key={value} value={value}>
-                  {t('{{num}} rows per page', {num: value})}
-                </option>
-              ))}
-            </select>
-            <span className={rowsPerPageSvg()}>
-              <svg focusable={false} viewBox="-8 -8 40 40" aria-hidden="true">
-                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+    <EzFooter>
+      <EzLayout layout="right">
+        <nav aria-label={t('Pagination')} className={paginationNav()}>
+          <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
+          <EzButton
+            use="tertiary"
+            title={t('Previous Page')}
+            aria-label={t('Previous Page')}
+            onClick={pagination.onPrevPageClick}
+            disabled={pagination.currentPage === 1}
+            className={virtualTouchable()}
+            icon={
+              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" className={iconStates()}>
+                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
               </svg>
-            </span>
-          </div>
-        </EzLayout>
-      </EzFooter>
-    </Style>
+            }
+          />
+          <EzButton
+            use="tertiary"
+            title={t('Next Page')}
+            aria-label={t('Next Page')}
+            onClick={pagination.onNextPageClick}
+            disabled={pagination.currentPage === pages}
+            className={virtualTouchable()}
+            icon={
+              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" className={iconStates()}>
+                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
+              </svg>
+            }
+          />
+        </nav>
+        <div className={clsx(rowsPerPageWrapper(), iconSize())}>
+          <select
+            className={rowsPerPageOpacity()}
+            defaultValue={pagination.rowsPerPage}
+            onChange={pagination.onRowsPerPageChange}
+            title={t('Show rows per page options')}
+            aria-label={t('Show rows per page options')}
+          >
+            {pagination.rowsPerPageOptions.map(value => (
+              <option key={value} value={value}>
+                {t('{{num}} rows per page', {num: value})}
+              </option>
+            ))}
+          </select>
+          <span className={rowsPerPageSvg()}>
+            <svg focusable={false} viewBox="-8 -8 40 40" aria-hidden="true">
+              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          </span>
+        </div>
+      </EzLayout>
+    </EzFooter>
   );
 };
 
@@ -535,40 +516,36 @@ const EzTable: FC<TableProps> = ({
   );
 
   const table = (
-    <Style ruleset={theme}>
-      <TableContext.Provider
-        value={{
-          items,
-          selection: selection && {
-            ...selection,
-            selected,
-            allSelected,
-            setAllSelected,
-          },
-          columns: mappedColumns,
-          pagination,
-          sorting: {onSortClick},
-        }}
-      >
-        <div className={responsive()}>
-          <table className={base({use: title ? 'card' : 'simple'})}>
-            <Thead selectable={!!selection} />
-            <Tbody />
-          </table>
-        </div>
-      </TableContext.Provider>
-    </Style>
+    <TableContext.Provider
+      value={{
+        items,
+        selection: selection && {
+          ...selection,
+          selected,
+          allSelected,
+          setAllSelected,
+        },
+        columns: mappedColumns,
+        pagination,
+        sorting: {onSortClick},
+      }}
+    >
+      <div className={responsive()}>
+        <table className={base({use: title ? 'card' : 'simple'})}>
+          <Thead selectable={!!selection} />
+          <Tbody />
+        </table>
+      </div>
+    </TableContext.Provider>
   );
 
   if (!title) return table;
 
   return (
-    <Style ruleset={theme}>
-      <EzCard title={title} subtitle={subtitle} actions={actions}>
-        <TableCardSection>{table}</TableCardSection>
-        {pagination && <TablePagination pagination={pagination} />}
-      </EzCard>
-    </Style>
+    <EzCard title={title} subtitle={subtitle} actions={actions}>
+      <TableCardSection>{table}</TableCardSection>
+      {pagination && <TablePagination pagination={pagination} />}
+    </EzCard>
   );
 };
 

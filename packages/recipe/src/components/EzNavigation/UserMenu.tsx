@@ -1,6 +1,5 @@
 import React, {useRef, forwardRef, HTMLProps, ComponentProps, MouseEventHandler} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzNavigation.theme.config';
+import theme from '../theme.config';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import EzLink from '../EzLink';
 import {clsx, wrapEvents} from '../../utils';
@@ -151,7 +150,7 @@ const UserMenu: React.FC<MenuProps> = ({name, links, isSidebarOpen, sidebarToggl
   });
 
   return (
-    <Style ruleset={theme}>
+    <>
       <UserMenuList
         {...menuProps}
         targetRef={ref}
@@ -161,7 +160,7 @@ const UserMenu: React.FC<MenuProps> = ({name, links, isSidebarOpen, sidebarToggl
         close={menuState.close}
       />
       <UserMenuTrigger {...menuTriggerProps} ref={ref} name={name} />
-    </Style>
+    </>
   );
 };
 

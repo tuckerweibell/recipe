@@ -1,8 +1,7 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
 import {AnchorProps, LinkProps} from '../EzLink/EzLink.types';
 import LinkButton from './LinkButton';
-import theme from './Tabs.theme.config';
+import theme from '../theme.config';
 import {clsx} from '../../utils';
 
 type Clickable = {
@@ -61,18 +60,14 @@ export const Tab = forwardRef<HTMLElement, TabProps>((props, ref) => {
   const tabProps = {...rest, ref, role: 'tab'} as any;
 
   return (
-    <Style ruleset={theme}>
-      <li className={clsx(tabBase(), active && activeTab())} role="presentation">
-        <LinkButton {...tabProps} />
-      </li>
-    </Style>
+    <li className={clsx(tabBase(), active && activeTab())} role="presentation">
+      <LinkButton {...tabProps} />
+    </li>
   );
 });
 
 export const TabList: React.FC<TabListProps> = ({onKeyDown, children}) => (
-  <Style ruleset={theme}>
-    <ul className={listBase()} role="tablist" onKeyDown={onKeyDown}>
-      {children}
-    </ul>
-  </Style>
+  <ul className={listBase()} role="tablist" onKeyDown={onKeyDown}>
+    {children}
+  </ul>
 );

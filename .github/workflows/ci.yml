@@ -1,0 +1,36 @@
+name: CI
+on: push
+jobs:
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: [1, 2]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Dependencies
+        uses: ./.github/actions/dependencies
+
+      - name: Run tests
+        run: yarn test:ci --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        timeout-minutes: 10
+        working-directory: ./packages/recipe
+
+  validate:
+    name: Code quality validations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Dependencies
+        uses: ./.github/actions/dependencies
+
+      - name: Typecheck
+        run: yarn type-check
+
+      - name: Run linters
+        run: yarn lint

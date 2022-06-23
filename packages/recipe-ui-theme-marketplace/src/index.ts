@@ -1,13 +1,12 @@
-import {Theme} from '@react-types/provider';
-import {createTheme} from '@ezcater/recipe';
+import {stitches} from '@ezcater/recipe';
 
-const marketplace = createTheme({
+export const theme = stitches.createTheme({
   borderStyles: {
     'card-border': 'solid',
   },
   borderWidths: {
-    'card-border': '$thin',
     'button-secondary': '$thin',
+    'card-border': '$thin',
   },
   colors: {
     'page-bg': 'white',
@@ -46,10 +45,4 @@ const marketplace = createTheme({
   space: {
     'carousel-item-offset': '$250',
   },
-} as any);
-
-export const theme: Theme = {
-  global: {
-    'recipe-marketplace': marketplace.toString(),
-  },
-};
+});

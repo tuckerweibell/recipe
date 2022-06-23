@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzNavigation.theme.config';
+import theme from '../theme.config';
 import {clsx} from '../../utils';
 
 type OpenProps = {
@@ -97,19 +96,17 @@ const toggleButton = theme.css({
 });
 
 const Hamburger: FC<HamburgerProps> = ({opened, onClick, className, children}) => (
-  <Style ruleset={theme}>
-    <button
-      type="button"
-      className={clsx(toggleButton(), className)}
-      onClick={onClick}
-      aria-label="Menu"
-    >
-      <span className={hamburgerBox()}>
-        <span className={clsx(hamburgerInner(), opened && activeHamburger())} />
-      </span>
-      {children}
-    </button>
-  </Style>
+  <button
+    type="button"
+    className={clsx(toggleButton(), className)}
+    onClick={onClick}
+    aria-label="Menu"
+  >
+    <span className={hamburgerBox()}>
+      <span className={clsx(hamburgerInner(), opened && activeHamburger())} />
+    </span>
+    {children}
+  </button>
 );
 
 export default Hamburger;

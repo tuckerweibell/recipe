@@ -47,7 +47,8 @@ describe('EzPopover', () => {
       expect(onClose).toHaveBeenCalled();
     });
 
-    it('should not call onClose only when clicking within select options inside of the popover', () => {
+    it('should not call onClose only when clicking within select options inside of the popover', async () => {
+      const user = userEvent.setup();
       const onClose = jest.fn();
       const onChange = jest.fn();
 
@@ -88,15 +89,15 @@ describe('EzPopover', () => {
       render(<PopoverExample />);
 
       // open the popover
-      userEvent.click(screen.getByRole('button', {name: /Open popover/i}));
+      await user.click(screen.getByRole('button', {name: /Open popover/i}));
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       const option = screen.getByRole('option', {name: /Today/i});
 
-      userEvent.click(option);
+      await user.click(option);
 
       expect(onChange).toHaveBeenCalled();
 
@@ -105,6 +106,7 @@ describe('EzPopover', () => {
   });
 
   it('should move focus from trigger to popover and back', async () => {
+    const user = userEvent.setup();
     const PopoverExample = () => {
       const ref = React.useRef(null);
       const [visible, setVisible] = React.useState(false);
@@ -140,37 +142,37 @@ describe('EzPopover', () => {
     expect(document.activeElement).toBe(inputBefore);
 
     // switch over to the button
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toBe(trigger);
 
     // open the popover
     fireEvent.click(trigger);
 
     // tab into the popover
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toBe(getByTestId('inside'));
 
     // tab out of the popover
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toBe(inputAfter);
 
     // tab back to the trigger button
-    userEvent.tab({shift: true});
+    await user.tab({shift: true});
     expect(document.activeElement).toBe(trigger);
 
     // open the popover again
     fireEvent.click(trigger);
 
     // tab into the popover
-    userEvent.tab();
+    await user.tab();
     expect(document.activeElement).toBe(getByTestId('inside'));
 
     // tab back out of the popover to the trigger button
-    userEvent.tab({shift: true});
+    await user.tab({shift: true});
     expect(document.activeElement).toBe(trigger);
 
     // tab back up to the original input
-    userEvent.tab({shift: true});
+    await user.tab({shift: true});
     expect(document.activeElement).toBe(inputBefore);
   });
 

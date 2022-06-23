@@ -298,7 +298,8 @@ describe('FocusScope', () => {
       expect(document.activeElement).toBe(outside);
     });
 
-    it('should move focus to the next element after the previously focused node on Tab', () => {
+    it('should move focus to the next element after the previously focused node on Tab', async () => {
+      const user = userEvent.setup();
       function Test({show = false}) {
         return (
           <div>
@@ -328,8 +329,8 @@ describe('FocusScope', () => {
       const input1 = getByTestId('input1');
       expect(document.activeElement).toBe(input1);
 
-      userEvent.tab();
-      userEvent.tab();
+      await user.tab();
+      await user.tab();
 
       const input3 = getByTestId('input3');
       expect(document.activeElement).toBe(input3);
@@ -481,7 +482,8 @@ describe('FocusScope', () => {
       expect(document.activeElement).toBe(input3);
     });
 
-    it('should follow document tab sequence tabbing into focus scope', () => {
+    it('should follow document tab sequence tabbing into focus scope', async () => {
+      const user = userEvent.setup();
       function Test() {
         return (
           <div>
@@ -500,7 +502,7 @@ describe('FocusScope', () => {
       trigger.focus();
       expect(document.activeElement).toBe(trigger);
 
-      userEvent.tab();
+      await user.tab();
 
       const input1 = getByTestId('input1');
       expect(document.activeElement).toBe(input1);

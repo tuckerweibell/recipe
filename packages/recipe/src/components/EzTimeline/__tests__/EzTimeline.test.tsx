@@ -1,18 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzTimeline.md';
 import {EzTimeline, EzTimelinePeriod, EzTimelineEvent} from '..';
-import {EzPage, EzButton, EzStatus} from '../..';
-import regressionTests from './EzTimeline.test.md';
-
-const scope = {EzTimeline, EzTimelinePeriod, EzTimelineEvent, EzPage, EzButton, EzStatus};
+import {EzPage} from '../..';
 
 describe('EzTimeline', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzPage>

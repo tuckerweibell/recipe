@@ -1,22 +1,14 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, getByLabelText, getByText, fireEvent, act, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ReactTestUtils from 'react-dom/test-utils';
-import ezSelectTests from './EzSelect.test.md';
 import EzField from '../EzField';
-import {EzFormLayout, EzButton, EzLayout} from '../../index';
-import Open from '../Open';
-import Media from '../Media';
 import EzModal from '../../EzModal';
 
-const scope = {EzField, EzButton, EzLayout, EzFormLayout, Open, Media};
-
 describe('EzField', () => {
-  visualSnapshots({markdown: ezSelectTests, scope: {...scope, fireEvent}});
-
   describe('select list', () => {
     jest.useFakeTimers();
+
     const inputLabel = 'Select dropdown';
     const options = [
       {label: 'All Upcoming', value: 'upcoming'},
@@ -151,7 +143,8 @@ describe('EzField', () => {
       expect(optionAllTime).toHaveAttribute('aria-selected', 'true');
     });
 
-    it('should close the dropdown when escape is pressed', () => {
+    it('should close the dropdown when escape is pressed', async () => {
+      const user = userEvent.setup({delay: null});
       const {container, queryByText} = render(
         <EzField type="select" label={inputLabel} options={options} value="upcoming" />
       );
@@ -160,7 +153,7 @@ describe('EzField', () => {
 
       const keyDown = key => fireEvent.keyDown(input, {key});
 
-      userEvent.click(input);
+      await user.click(input);
 
       expect(queryByText('Today')).not.toBeNull();
 
@@ -268,7 +261,8 @@ describe('EzField', () => {
       expect(lastCall[0]).toEqual('today');
     });
 
-    it('should trigger onSelectionChange for the current item when clicked', () => {
+    it('should trigger onSelectionChange for the current item when clicked', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       const {container} = render(
@@ -284,7 +278,7 @@ describe('EzField', () => {
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       const option2 = getByText(container, 'Today');
 
@@ -299,7 +293,8 @@ describe('EzField', () => {
       expect(lastCall[0]).toEqual('today');
     });
 
-    it('bubbling focus event does NOT cause the dialog to close before a value is set', () => {
+    it('bubbling focus event does NOT cause the dialog to close before a value is set', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       const {container} = render(
@@ -317,11 +312,11 @@ describe('EzField', () => {
       const input = getByLabelText(container, inputLabel) as HTMLInputElement;
 
       // open the menu
-      userEvent.click(input);
+      await user.click(input);
 
       const option2 = getByText(container, 'Today');
 
-      userEvent.click(option2);
+      await user.click(option2);
 
       expect(onSelectionChange).toHaveBeenCalled();
     });
@@ -443,7 +438,8 @@ describe('EzField', () => {
       expect(lastCall[0]).toEqual(10);
     });
 
-    it('should trigger blur when no longer focused', () => {
+    it('should trigger blur when no longer focused', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
       const onBlur = jest.fn();
 
@@ -472,12 +468,13 @@ describe('EzField', () => {
       expect(onBlur).not.toHaveBeenCalled();
 
       // mouse down on a different button to trigger focus change
-      userEvent.click(getByText(container, 'click me'));
+      await user.click(getByText(container, 'click me'));
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('should trigger onSelectionChange for the current item when clicked, when inside a modal', () => {
+    it('should trigger onSelectionChange for the current item when clicked, when inside a modal', async () => {
+      const user = userEvent.setup({delay: null});
       const onSelectionChange = jest.fn();
 
       render(
@@ -494,11 +491,11 @@ describe('EzField', () => {
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      userEvent.click(input);
+      await user.click(input);
 
       const option2 = screen.getByRole('option', {name: /Today/i});
 
-      userEvent.click(option2);
+      await user.click(option2);
 
       expect(onSelectionChange).toHaveBeenCalled();
 

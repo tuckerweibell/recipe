@@ -1,16 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzFormLayout.md';
 import EzFormLayout from '../EzFormLayout';
-import {EzField, EzLayout} from '../..';
-
-const scope = {EzField, EzLayout, EzFormLayout};
+import {EzField} from '../..';
 
 describe('EzFormLayout', () => {
-  visualSnapshots({markdown, scope});
-
   const SampleLayout = () => (
     <EzFormLayout>
       <EzField label="First field" />

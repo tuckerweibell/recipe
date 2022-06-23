@@ -23,17 +23,9 @@ export type EzIconColors =
   | PaletteOptions
   | `common.${keyof EzPalette}`
   | `common.${keyof CommonColors}`
-  | 'green' // deprecated - use 'common.green'
-  | 'white' // deprecated - use 'common.white'
   | 'inherit';
 
-export type EzIconSizes =
-  | 'xsmall' // deprecated - use 'small' or 'inherit'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'xlarge' // deprecated - use 'large' or 'inherit'
-  | 'inherit';
+export type EzIconSizes = 'small' | 'medium' | 'large' | 'inherit';
 
 export interface EzIconProps {
   color?: EzIconColors;

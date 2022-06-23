@@ -1,9 +1,8 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
 import {EzCard, EzTable, EzTextStyle, EzLayout, EzCardSection} from '..';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
-import theme from './EzOrderSummary.theme.config';
+import theme from '../theme.config';
 import TableCardSection from '../EzTable/TableCardSection';
 
 type LabelValuePair = {label: string; value: string};
@@ -122,35 +121,33 @@ const instructions = theme.css({
 const Item = ({item}) => {
   const {t} = useTranslation(en);
   return (
-    <Style ruleset={theme}>
+    <div>
       <div>
-        <div>
-          {item.name ? (
-            <span>
-              {item.name} @ {item.price}
-            </span>
-          ) : (
-            <span>{t('Tableware')}</span>
-          )}
-        </div>
-        {item.options &&
-          item.options.map((option, index) => (
-            <div key={index}>
-              <EzTextStyle use="subdued">
-                {option.label}: {option.value}
-              </EzTextStyle>
-            </div>
-          ))}
-        {item.specialInstructions && (
-          <div className={instructions()}>
-            <div>
-              <EzTextStyle use="strong">{t('Special Instructions:')}</EzTextStyle>
-            </div>
-            {item.specialInstructions}
-          </div>
+        {item.name ? (
+          <span>
+            {item.name} @ {item.price}
+          </span>
+        ) : (
+          <span>{t('Tableware')}</span>
         )}
       </div>
-    </Style>
+      {item.options &&
+        item.options.map((option, index) => (
+          <div key={index}>
+            <EzTextStyle use="subdued">
+              {option.label}: {option.value}
+            </EzTextStyle>
+          </div>
+        ))}
+      {item.specialInstructions && (
+        <div className={instructions()}>
+          <div>
+            <EzTextStyle use="strong">{t('Special Instructions:')}</EzTextStyle>
+          </div>
+          {item.specialInstructions}
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -160,46 +157,44 @@ const Item = ({item}) => {
 const EzOrderSummary: React.FC<Props> = ({actions, items, subtitle, tableware, title, summary}) => {
   const {t} = useTranslation(en);
   return (
-    <Style ruleset={theme}>
-      <EzCard actions={actions} title={title} subtitle={subtitle}>
-        <TableCardSection className={table()}>
-          <EzTable
-            columns={[
-              {heading: t('Qty'), accessor: 'quantity', numeric: true},
-              {heading: t('Item'), accessor: Item},
-              {heading: t('Price'), accessor: 'total', numeric: true},
-            ]}
-            items={[...items, tableware]}
-          />
-        </TableCardSection>
-        <EzCardSection className={totals()}>
-          <table>
-            <tbody>
-              {summary.lineItems.map(subtotal => (
-                <tr key={subtotal.label}>
-                  <th>{subtotal.label}</th>
-                  <td>{subtotal.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div>
+    <EzCard actions={actions} title={title} subtitle={subtitle}>
+      <TableCardSection className={table()}>
+        <EzTable
+          columns={[
+            {heading: t('Qty'), accessor: 'quantity', numeric: true},
+            {heading: t('Item'), accessor: Item},
+            {heading: t('Price'), accessor: 'total', numeric: true},
+          ]}
+          items={[...items, tableware]}
+        />
+      </TableCardSection>
+      <EzCardSection className={totals()}>
+        <table>
+          <tbody>
+            {summary.lineItems.map(subtotal => (
+              <tr key={subtotal.label}>
+                <th>{subtotal.label}</th>
+                <td>{subtotal.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div>
+          <EzLayout layout="split">
+            <span className={card()}>{t('Total')}</span>
+            <span className={card()}>{summary.total}</span>
+          </EzLayout>
+          {summary.perHead && (
             <EzLayout layout="split">
-              <span className={card()}>{t('Total')}</span>
-              <span className={card()}>{summary.total}</span>
+              <EzTextStyle use="subdued">{t('Price per head')}</EzTextStyle>
+              <EzTextStyle use="subdued">
+                {t('{{perHead}}/person', {perHead: summary.perHead})}
+              </EzTextStyle>
             </EzLayout>
-            {summary.perHead && (
-              <EzLayout layout="split">
-                <EzTextStyle use="subdued">{t('Price per head')}</EzTextStyle>
-                <EzTextStyle use="subdued">
-                  {t('{{perHead}}/person', {perHead: summary.perHead})}
-                </EzTextStyle>
-              </EzLayout>
-            )}
-          </div>
-        </EzCardSection>
-      </EzCard>
-    </Style>
+          )}
+        </div>
+      </EzCardSection>
+    </EzCard>
   );
 };
 

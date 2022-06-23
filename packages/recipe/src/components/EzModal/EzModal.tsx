@@ -1,6 +1,5 @@
 import React, {MouseEvent} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzModal.theme.config';
+import theme from '../theme.config';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
@@ -119,63 +118,61 @@ const EzModal: React.FC<Props> = ({
   if (!isOpen) return null;
 
   return (
-    <Style ruleset={theme}>
-      <EzPortal>
-        <div className={overlay()} {...backdrop}>
-          <ScrollLock />
-          <FocusScope contain restoreFocus autoFocus>
-            <SlotProvider
-              slots={{
-                header: {className: header()},
-                content: {className: body()},
-                footer: {className: footer()},
-              }}
-            >
-              <EzCard {...dialogProps} className={dialog()} aria-labelledby={labelId}>
-                {headerText && (
-                  <EzHeader>
-                    <EzHeading size="2" id={labelId}>
-                      {headerText}
-                    </EzHeading>
-                  </EzHeader>
-                )}
-                {hasContentSlot(children) ? children : <EzContent>{children}</EzContent>}
-                {(submitLabel || dismissLabel) && (
-                  <EzFooter>
-                    <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-                      {submitLabel && (
-                        <EzButton
-                          use="primary"
-                          destructive={destructive}
-                          onClick={onSubmit}
-                          loading={isSubmitting}
-                        >
-                          {submitLabel}
-                        </EzButton>
-                      )}
-                      {dismissLabel && (
-                        <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
-                          {dismissLabel}
-                        </EzButton>
-                      )}
-                    </EzLayout>
-                  </EzFooter>
-                )}
-                {isDismissable && (
-                  <CloseButton
-                    className={icon()}
-                    tabIndex={-1}
-                    label={dismissLabel || t('dismiss')}
-                    aria-hidden
-                    onClick={onDismiss}
-                  />
-                )}
-              </EzCard>
-            </SlotProvider>
-          </FocusScope>
-        </div>
-      </EzPortal>
-    </Style>
+    <EzPortal>
+      <div className={overlay()} {...backdrop}>
+        <ScrollLock />
+        <FocusScope contain restoreFocus autoFocus>
+          <SlotProvider
+            slots={{
+              header: {className: header()},
+              content: {className: body()},
+              footer: {className: footer()},
+            }}
+          >
+            <EzCard {...dialogProps} className={dialog()} aria-labelledby={labelId}>
+              {headerText && (
+                <EzHeader>
+                  <EzHeading size="2" id={labelId}>
+                    {headerText}
+                  </EzHeading>
+                </EzHeader>
+              )}
+              {hasContentSlot(children) ? children : <EzContent>{children}</EzContent>}
+              {(submitLabel || dismissLabel) && (
+                <EzFooter>
+                  <EzLayout layout={{base: 'stack', medium: 'basic'}}>
+                    {submitLabel && (
+                      <EzButton
+                        use="primary"
+                        destructive={destructive}
+                        onClick={onSubmit}
+                        loading={isSubmitting}
+                      >
+                        {submitLabel}
+                      </EzButton>
+                    )}
+                    {dismissLabel && (
+                      <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                        {dismissLabel}
+                      </EzButton>
+                    )}
+                  </EzLayout>
+                </EzFooter>
+              )}
+              {isDismissable && (
+                <CloseButton
+                  className={icon()}
+                  tabIndex={-1}
+                  label={dismissLabel || t('dismiss')}
+                  aria-hidden
+                  onClick={onDismiss}
+                />
+              )}
+            </EzCard>
+          </SlotProvider>
+        </FocusScope>
+      </div>
+    </EzPortal>
   );
 };
 

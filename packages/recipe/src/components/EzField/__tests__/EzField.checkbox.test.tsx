@@ -1,14 +1,8 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, getByLabelText, fireEvent, screen} from '@testing-library/react';
-import regressionTests from './EzField.checkbox.test.md';
 import EzField from '../EzField';
 
-const scope = {EzField};
-
 describe('EzField', () => {
-  visualSnapshots({markdown: regressionTests, scope});
-
   describe('check box list', () => {
     const checkboxProps = {
       label: 'Multiple choice list',

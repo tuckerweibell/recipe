@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
-import Style from '@ezcater/snitches';
 import Label from '../EzLabel';
-import theme from './EzSegmentedControl.theme.config';
+import theme from '../theme.config';
 import {clsx} from '../../utils';
 
 const getId = (name, {value}) => `${name}-${value}`;
@@ -103,39 +102,37 @@ const EzSegmentedControl: React.FC<Props> = ({
   onChange,
   options,
 }) => (
-  <Style ruleset={theme}>
-    <div
-      className={clsx(fieldset(), className)}
-      role="radiogroup"
-      aria-labelledby={`radiogroup-${name}`}
+  <div
+    className={clsx(fieldset(), className)}
+    role="radiogroup"
+    aria-labelledby={`radiogroup-${name}`}
+  >
+    <Label
+      id={`radiogroup-${name}`}
+      position={labelPosition === 'left' ? 'side' : labelPosition}
+      use="primary"
+      as="div"
     >
-      <Label
-        id={`radiogroup-${name}`}
-        position={labelPosition === 'left' ? 'side' : labelPosition}
-        use="primary"
-        as="div"
-      >
-        {label}
-      </Label>
-      {options.map(option => (
-        <Fragment key={option.value}>
-          <input
-            id={getId(name, option)}
-            type="radio"
-            name={name}
-            {...(onChange
-              ? {checked: option.value === active}
-              : {defaultChecked: option.value === active})}
-            onChange={() => onChange && onChange(option.value)}
-            disabled={option.disabled}
-          />
-          <label className={optionLabel()} key={option.value} htmlFor={getId(name, option)}>
-            {option.label}
-          </label>
-        </Fragment>
-      ))}
-    </div>
-  </Style>
+      {label}
+    </Label>
+    {options.map(option => (
+      <Fragment key={option.value}>
+        <input
+          id={getId(name, option)}
+          type="radio"
+          name={name}
+          {...(onChange
+            ? {checked: option.value === active}
+            : {defaultChecked: option.value === active})}
+          onChange={() => onChange && onChange(option.value)}
+          disabled={option.disabled}
+        />
+        <label className={optionLabel()} key={option.value} htmlFor={getId(name, option)}>
+          {option.label}
+        </label>
+      </Fragment>
+    ))}
+  </div>
 );
 
 /**

@@ -1,16 +1,10 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzWell.md';
 import EzWell from '../EzWell';
 import EzLink from '../../EzLink';
 
-const scope = {EzWell, EzLink};
-
 describe('EzWell', () => {
-  visualSnapshots({markdown, scope});
-
   it('supports aria-label with a role', () => {
     const {getByText} = render(
       <EzWell role="region" aria-label="well">

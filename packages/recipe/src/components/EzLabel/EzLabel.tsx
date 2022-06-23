@@ -1,8 +1,7 @@
 import React, {forwardRef, LabelHTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzLabel.theme.config';
+import {VariantProps} from '@stitches/core';
+import theme from '../theme.config';
 import Slot from '../EzContent/Slot';
-import {VariantProps} from '../../utils/responsiveProps';
 
 const styles = theme.css({
   display: 'block',
@@ -55,6 +54,7 @@ interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
    * changes the styles of the label to indicate an error state
    */
   error?: boolean;
+  children?: React.ReactNode;
 }
 
 /**
@@ -63,11 +63,7 @@ interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
 const EzLabel = forwardRef<Ref, Props>(({as: element, ...initialProps}, ref) => {
   const {props} = styles(initialProps);
 
-  return (
-    <Style ruleset={theme}>
-      <Slot element={element} slot="label" {...props} ref={ref} />
-    </Style>
-  );
+  return <Slot element={element} slot="label" {...props} ref={ref} />;
 });
 
 /**

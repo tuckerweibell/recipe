@@ -25,17 +25,16 @@ const getReleaseLine = async (
 };
 
 const getDependencyReleaseLine = async (changesets, dependenciesUpdated) => {
-  if (dependenciesUpdated.length === 0) return '';
+  const nonRecipeDependenciesUpdated = dependenciesUpdated.filter(({name}) => name !== '@ezcater/recipe');
+  if (nonRecipeDependenciesUpdated.length === 0) return '';
 
-  const changesetLinks = changesets.map(
-    changeset => `- Updated dependencies [${changeset.commit}]`
-  );
-
-  const updatedDepenenciesList = dependenciesUpdated.map(
+  const commits = changesets.map(({commit}) => commit).filter(Boolean);
+  const changesetLink = `- Updated dependencies [${commits.join('] [')}]`;
+  const updatedDepenenciesList = nonRecipeDependenciesUpdated.map(
     dependency => `  - ${dependency.name}@${dependency.newVersion}`
   );
 
-  return [...changesetLinks, ...updatedDepenenciesList].join('\n');
+  return [changesetLink, ...updatedDepenenciesList].join('\n');
 };
 
 module.exports = {

@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzField.theme.config';
+import theme from '../theme.config';
 import {domProps} from '../../utils';
 
 type ErrorOrMessage = string | boolean;
@@ -73,19 +72,13 @@ const textInput = theme.css({
 export const CustomInput = ({children, ...props}) => {
   const el = React.Children.only(children);
   const options: any = {...props, error: Boolean(props.error)};
-  return (
-    <Style ruleset={theme}>{React.cloneElement(el, domProps(el.props, textInput(options)))}</Style>
-  );
+  return <>{React.cloneElement(el, domProps(el.props, textInput(options)))}</>;
 };
 
 const EzTextInput = forwardRef<any, Props>(({error, ...props}, ref) => {
   const ElementType: React.ElementType = props.multiLine ? 'textarea' : 'input';
   const options: any = {...props, error: Boolean(error)};
-  return (
-    <Style ruleset={theme}>
-      <ElementType ref={ref} {...domProps(props, textInput(options))} />
-    </Style>
-  );
+  return <ElementType ref={ref} {...domProps(props, textInput(options))} />;
 });
 
 export default EzTextInput;

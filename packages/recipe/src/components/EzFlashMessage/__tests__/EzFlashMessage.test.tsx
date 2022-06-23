@@ -1,16 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzFlashMessage.md';
 import EzFlashMessage from '../EzFlashMessage';
-import {EzPage} from '../../EzPage';
-
-const scope = {EzFlashMessage, EzPage};
 
 describe('EzFlashMessage', () => {
-  visualSnapshots({markdown, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzFlashMessage use="error" headline="Oh Crumbs!">

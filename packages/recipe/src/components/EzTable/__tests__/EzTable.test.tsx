@@ -1,18 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzTable.test.md';
-import markdown from '../EzTable.md';
 import EzTable from '../EzTable';
-import {EzButton, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle} from '../../index';
-
-const scope = {EzButton, EzTable, EzPage, EzCard, EzHeading, EzAlert, EzTextStyle};
 
 describe('EzTable', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope: {...scope}});
-
   const columns = [
     {heading: 'Store name', component: ({item}) => item.store, key: 'store'},
     {heading: 'Total sales', numeric: true, key: 'total'},

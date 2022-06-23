@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzCard.theme.config';
+import theme from '../theme.config';
 import EzCardHeading from './EzCardHeading';
 import {EzContent, EzHeader} from '../EzContent';
 
@@ -19,7 +18,7 @@ const EzCardSection: React.FC<HeadingProps> = ({title, subtitle, actions, childr
   const content = <EzContent {...spacing(props as any).props}>{children}</EzContent>;
 
   return (
-    <Style ruleset={theme}>
+    <>
       {!title ? (
         content
       ) : (
@@ -28,7 +27,7 @@ const EzCardSection: React.FC<HeadingProps> = ({title, subtitle, actions, childr
           {content}
         </section>
       )}
-    </Style>
+    </>
   );
 };
 

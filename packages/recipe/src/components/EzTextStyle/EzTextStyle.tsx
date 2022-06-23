@@ -1,7 +1,6 @@
 import React, {forwardRef, AllHTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTextStyle.theme.config';
-import {VariantProps} from '../../utils/responsiveProps';
+import {VariantProps} from '@stitches/core';
+import theme from '../theme.config';
 
 const text = theme.css({
   display: 'inline-block',
@@ -34,12 +33,17 @@ interface Props
  */
 const EzTextStyle = forwardRef<HTMLElement, Props>(
   ({as: Text = 'span' as any, ...initProps}, ref) => {
-    const {props} = text(initProps);
-    return (
-      <Style ruleset={theme}>
-        <Text {...props} ref={ref} />
-      </Style>
-    );
+    const {props} = text({
+      ...initProps,
+      align:
+        typeof initProps.align === 'object'
+          ? Object.fromEntries(
+              Object.entries(initProps.align).map(([key, value]) => [`@${key}`, value])
+            )
+          : initProps.align,
+    });
+
+    return <Text {...props} ref={ref} />;
   }
 );
 

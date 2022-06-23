@@ -31,7 +31,7 @@ const getHtmlData = (Component: React.ClassType<unknown, any, any>): string => {
     runScripts: 'dangerously',
   });
   const {document} = window;
-  global.window = window;
+  (global as any).window = window;
   const container = document.body.appendChild(document.createElement('div'));
 
   act(() => {

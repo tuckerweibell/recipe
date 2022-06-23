@@ -1,12 +1,7 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzProgress.md';
-import {EzProgress, EzPage, EzCard, EzThemeProvider} from '../../index';
-import {ezTheme} from '../../../themes';
-
-const scope = {EzProgress, EzPage, EzCard, EzThemeProvider, ezTheme};
+import {EzProgress} from '../../index';
 
 describe('EzProgress logic', () => {
   it('Passing a goal, subgoal, value, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {
@@ -124,8 +119,6 @@ describe('EzProgress logic', () => {
 });
 
 describe('EzProgress', () => {
-  visualSnapshots({markdown, scope});
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzProgress value={44} color="blue" label="Q1 on-time delivery goal progress - 44%" />

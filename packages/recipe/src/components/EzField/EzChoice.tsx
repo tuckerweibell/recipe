@@ -1,7 +1,6 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
 import {useListState} from '@react-stately/list';
-import theme from './EzChoice.theme.config';
+import theme from '../theme.config';
 import EzCheckbox from '../EzCheckbox';
 import EzRadioButton from '../EzRadioButton';
 import EzLayout from '../EzLayout';
@@ -66,16 +65,14 @@ const inputStyles = theme.css({marginRight: '$100'});
 const Option = ({input, bordered, disabled, rendered}) => {
   const id = useUniqueId();
   return (
-    <Style ruleset={theme}>
-      <SlotProvider
-        slots={{label: {htmlFor: id, className: label()}, content: {className: nestedContent()}}}
-      >
-        <span className={box({bordered, disabled})}>
-          {React.cloneElement(input, {id})}
-          {rendered}
-        </span>
-      </SlotProvider>
-    </Style>
+    <SlotProvider
+      slots={{label: {htmlFor: id, className: label()}, content: {className: nestedContent()}}}
+    >
+      <span className={box({bordered, disabled})}>
+        {React.cloneElement(input, {id})}
+        {rendered}
+      </span>
+    </SlotProvider>
   );
 };
 
@@ -116,43 +113,41 @@ const EzChoice = props => {
   }
 
   return (
-    <Style ruleset={theme}>
-      <EzLayout layout={props.bordered ? 'cluster' : 'stack'}>
-        {choiceOptions.map((choice, i) => {
-          const rendered = choice.label ? (
-            <Slot element="label" slot="label">
-              {choice.label}
-            </Slot>
-          ) : (
-            choice.rendered
-          );
-          const value = choice.value || choice.textValue;
-          const disabled = props.disabled || choice.disabled || choice.props?.disabled;
+    <EzLayout layout={props.bordered ? 'cluster' : 'stack'}>
+      {choiceOptions.map((choice, i) => {
+        const rendered = choice.label ? (
+          <Slot element="label" slot="label">
+            {choice.label}
+          </Slot>
+        ) : (
+          choice.rendered
+        );
+        const value = choice.value || choice.textValue;
+        const disabled = props.disabled || choice.disabled || choice.props?.disabled;
 
-          const inputProps = domProps(
-            {
-              checked:
-                'value' in props
-                  ? multiple
-                    ? selected.indexOf(value) >= 0
-                    : value === selected
-                  : undefined,
-              disabled,
-              name,
-              onChange: handleChange,
-              onFocus,
-              onBlur,
-              type,
-              value,
-            },
-            inputStyles()
-          );
-          const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
+        const inputProps = domProps(
+          {
+            checked:
+              'value' in props
+                ? multiple
+                  ? selected.indexOf(value) >= 0
+                  : value === selected
+                : undefined,
+            disabled,
+            name,
+            onChange: handleChange,
+            onFocus,
+            onBlur,
+            type,
+            value,
+          },
+          inputStyles()
+        );
+        const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
 
-          return <Option key={i} bordered={props.bordered} {...{disabled, input, rendered}} />;
-        })}
-      </EzLayout>
-    </Style>
+        return <Option key={i} bordered={props.bordered} {...{disabled, input, rendered}} />;
+      })}
+    </EzLayout>
   );
 };
 

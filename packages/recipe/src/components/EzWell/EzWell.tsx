@@ -1,6 +1,5 @@
 import React, {forwardRef, Ref, ReactNode, HTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzWell.theme.config';
+import theme from '../theme.config';
 import {filterDOMProps} from '../EzField/filterDOMProps';
 
 const styles = theme.css({
@@ -37,18 +36,16 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
     console.warn('A labelled Well must have a role.');
 
   return (
-    <Style ruleset={theme}>
-      <div
-        {...filterDOMProps(otherProps, {
-          propNames: new Set(['id', 'className']),
-        })}
-        role={role}
-        ref={ref}
-        className={styles()}
-      >
-        {children}
-      </div>
-    </Style>
+    <div
+      {...filterDOMProps(otherProps, {
+        propNames: new Set(['id', 'className']),
+      })}
+      role={role}
+      ref={ref}
+      className={styles()}
+    >
+      {children}
+    </div>
   );
 }
 

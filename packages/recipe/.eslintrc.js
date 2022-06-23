@@ -4,7 +4,6 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/MinifiedBrowserTarget.ts',
           '**/jest.setup.tsx',
           '**/stories/**/*.tsx',
           '**/src/**/*.test.ts',

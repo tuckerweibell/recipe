@@ -1,27 +1,8 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
-import warning from 'tiny-warning';
 import {axe, render} from '../../../../test-utils';
-import markdown from '../EzIcon.md';
-import regressionTests from './EzIcon.test.md';
-import {EzPage, EzIcon, EzLayout, EzTextStyle} from '../../index';
-import {
-  MOCK_ICON_FA_COFFEE,
-  MOCK_ICON_PIZZA,
-  MOCK_ICON_FRIES,
-  MOCK_ICON_RAMEN,
-} from '../EzIconMocks';
+import {EzIcon} from '../../index';
 
 jest.mock('tiny-warning');
-
-const mockRequire = () => ({
-  faCoffee: MOCK_ICON_FA_COFFEE,
-  Pizza: MOCK_ICON_PIZZA,
-  Fries: MOCK_ICON_FRIES,
-  Ramen: MOCK_ICON_RAMEN,
-});
-
-const scope = {EzPage, EzIcon, EzLayout, EzTextStyle, require: mockRequire};
 
 const SVG_ICON_BURGER = (
   <svg viewBox="0 0 100 100">
@@ -29,32 +10,7 @@ const SVG_ICON_BURGER = (
   </svg>
 );
 
-const warningMock = warning as jest.Mock<typeof warning>;
-
 describe('EzIcon', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
-  beforeEach(() => {
-    warningMock.mockReset();
-  });
-
-  it('should log a warning if a deprecated color is used', () => {
-    render(<EzIcon icon={SVG_ICON_BURGER} color="green" />);
-    expect(warningMock).toHaveBeenCalledWith(
-      false,
-      "*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead."
-    );
-  });
-
-  it('should log a warning if a deprecated size is used', () => {
-    render(<EzIcon icon={SVG_ICON_BURGER} size="xsmall" />);
-    expect(warningMock).toHaveBeenCalledWith(
-      false,
-      "*Deprecated*. The sizes 'xsmall' and 'xlarge' are deprecated and will be removed in a future version of Recipe. Use 'small', 'large', or 'inherit' instead."
-    );
-  });
-
   it('should meet accessibility guidelines', async () => {
     const {container} = render(<EzIcon title="burger icon" icon={SVG_ICON_BURGER} />);
     const actual = await axe(container.outerHTML);
@@ -66,7 +22,7 @@ describe('EzIcon', () => {
       {
         iconProp: <EzIcon icon={SVG_ICON_BURGER} />,
         titleProp: <EzIcon icon={SVG_ICON_BURGER} title="burger icon" />,
-        colorProp: <EzIcon icon={SVG_ICON_BURGER} color="green" />,
+        colorProp: <EzIcon icon={SVG_ICON_BURGER} color="common.green" />,
         sizeProp: <EzIcon icon={SVG_ICON_BURGER} size="large" />,
       },
     ].forEach(() => {});

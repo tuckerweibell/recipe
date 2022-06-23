@@ -37,17 +37,15 @@ When items are misaligned, the content items aren't symmetric.
     }
   `)}
   />
-  <Media size="small">
-    <EzCard>
-      <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
-        <div>Content</div>
-        <div>Content</div>
-        <div>Content</div>
-        <div>Content</div>
-        <div>Content</div>
-      </EzLayout>
-    </EzCard>
-  </Media>
+  <EzCard>
+    <EzLayout layout="tile" className="tile" columns={{base: 1, medium: 3}}>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+      <div>Content</div>
+    </EzLayout>
+  </EzCard>
 </div>
 ```
 

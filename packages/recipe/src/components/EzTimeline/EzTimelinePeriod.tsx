@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTimeline.theme.config';
+import theme from '../theme.config';
 
 const heading = theme.css({
   position: 'relative',
@@ -47,16 +46,14 @@ const list = theme.css({
 });
 
 const EzTimelinePeriod: React.FC<{label: string}> = ({label, children}) => (
-  <Style ruleset={theme}>
-    <section>
-      <h3 className={heading()}>{label}</h3>
-      <ol className={list()}>
-        {React.Children.map(children, (child, i) => (
-          <li key={i}>{child}</li>
-        ))}
-      </ol>
-    </section>
-  </Style>
+  <section>
+    <h3 className={heading()}>{label}</h3>
+    <ol className={list()}>
+      {React.Children.map(children, (child, i) => (
+        <li key={i}>{child}</li>
+      ))}
+    </ol>
+  </section>
 );
 
 export default EzTimelinePeriod;

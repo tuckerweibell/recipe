@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTable.theme.config';
+import theme from '../theme.config';
 import {EzCardSection} from '../EzCard';
 import {clsx} from '../../utils';
 
@@ -18,9 +17,7 @@ type TableCardSectionProps = {
 };
 
 const TableCardSection: FC<TableCardSectionProps> = ({children, className}) => (
-  <Style ruleset={theme}>
-    <EzCardSection className={clsx(fullBleed(), className)}>{children}</EzCardSection>
-  </Style>
+  <EzCardSection className={clsx(fullBleed(), className)}>{children}</EzCardSection>
 );
 
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one

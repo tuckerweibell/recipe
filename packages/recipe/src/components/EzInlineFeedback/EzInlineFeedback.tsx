@@ -1,6 +1,5 @@
 import React, {forwardRef, HTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzInlineFeedback.theme.config';
+import theme from '../theme.config';
 import {ErrorIcon, ProgressIcon, SuccessIcon} from '../Icons';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
@@ -43,12 +42,10 @@ const EzInlineFeedback = forwardRef<Ref, Props>(({use, ...additionalProps}, ref)
   const props = domProps(additionalProps, styles({use}));
 
   return (
-    <Style ruleset={theme}>
-      <span {...props} ref={ref}>
-        {icons[use]}
-        {t(use)}
-      </span>
-    </Style>
+    <span {...props} ref={ref}>
+      {icons[use]}
+      {t(use)}
+    </span>
   );
 });
 

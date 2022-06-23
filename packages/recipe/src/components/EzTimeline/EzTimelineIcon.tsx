@@ -1,6 +1,5 @@
 import React from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzTimeline.theme.config';
+import theme from '../theme.config';
 
 const styles = theme.css({
   position: 'relative',
@@ -28,18 +27,16 @@ const EzTimelineIcon: React.FC<{icon?: React.ReactElement; className?: string}> 
   icon = <PlaceholderIcon />,
   className,
 }) => (
-  <Style ruleset={theme}>
-    <span className={alignment()}>
-      <span {...styles({className}).props}>
-        {React.cloneElement(icon, {
-          'aria-hidden': true,
-          focusable: false,
-          width: 30,
-          height: 16,
-        })}
-      </span>
+  <span className={alignment()}>
+    <span {...styles({className}).props}>
+      {React.cloneElement(icon, {
+        'aria-hidden': true,
+        focusable: false,
+        width: 30,
+        height: 16,
+      })}
     </span>
-  </Style>
+  </span>
 );
 
 export default EzTimelineIcon;

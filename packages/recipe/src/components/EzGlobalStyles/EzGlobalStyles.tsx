@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzGlobalStyles.theme.config';
+import {useEffect} from 'react';
+import theme from '../theme.config';
 import features from './features';
 
-const styles = theme.global({
+const styles = theme.globalCss({
   html: {
     boxSizing: 'border-box',
     fontSize: '$text',
@@ -29,7 +28,7 @@ const EzGlobalStyles = () => {
     });
   }, []);
 
-  return <Style ruleset={theme} />;
+  return null;
 };
 
 export default EzGlobalStyles;

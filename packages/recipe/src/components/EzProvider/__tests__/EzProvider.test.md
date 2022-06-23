@@ -6,9 +6,6 @@ This test asserts that the provided theme is applied to the descendant content.
 
 ```jsx
 <>
-  {/*
-    
-  */}
   <style
     dangerouslySetInnerHTML={{
       __html: `
@@ -16,7 +13,7 @@ This test asserts that the provided theme is applied to the descendant content.
     `,
     }}
   />
-  <EzProvider theme={{global: {'blue-theme': 'blue-theme-xyz'}}}>
+  <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
     <div>blue text</div>
   </EzProvider>
   <div>body text (default)</div>
@@ -27,9 +24,6 @@ This test asserts that the provided theme is applied to the descendant content.
 
 ```jsx
 <>
-  {/*
-    
-  */}
   <style
     dangerouslySetInnerHTML={{
       __html: `
@@ -37,9 +31,9 @@ This test asserts that the provided theme is applied to the descendant content.
     `,
     }}
   />
-  <EzProvider theme={{global: {'blue-theme': 'blue-theme-xyz'}}}>
+  <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
     <div>blue text</div>
-    <EzProvider>
+    <EzProvider theme={{toString: () => 'other-theme-xyz'}}>
       <div>blue text</div>
     </EzProvider>
   </EzProvider>
@@ -50,8 +44,8 @@ This test asserts that the provided theme is applied to the descendant content.
 
 ```jsx
 () => {
-  const blueTheme = {global: {'blue-theme': 'blue-theme-xyz'}};
-  const greenTheme = {global: {'green-theme': 'green-theme-abc'}};
+  const blueTheme = {toString: () => 'blue-theme-xyz'};
+  const greenTheme = {toString: () => 'green-theme-abc'};
   const [theme, setTheme] = React.useState(blueTheme);
 
   React.useEffect(() => {
@@ -61,9 +55,6 @@ This test asserts that the provided theme is applied to the descendant content.
 
   return (
     <>
-      {/*
-        
-      */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -74,7 +65,7 @@ This test asserts that the provided theme is applied to the descendant content.
       />
       <EzProvider theme={theme}>
         <div>green text</div>
-        <EzProvider>
+        <EzProvider theme={{toString: () => 'other-theme-xyz'}}>
           <div>green text</div>
         </EzProvider>
       </EzProvider>
@@ -87,9 +78,6 @@ This test asserts that the provided theme is applied to the descendant content.
 
 ```jsx
 <>
-  {/*
-    
-  */}
   <style
     dangerouslySetInnerHTML={{
       __html: `
@@ -98,9 +86,9 @@ This test asserts that the provided theme is applied to the descendant content.
     `,
     }}
   />
-  <EzProvider theme={{global: {'blue-theme': 'blue-theme-xyz'}}}>
+  <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
     <div>blue text</div>
-    <EzProvider theme={{global: {'green-theme': 'green-theme-abc'}}}>
+    <EzProvider theme={{toString: () => 'green-theme-abc'}}>
       <div>green text</div>
     </EzProvider>
   </EzProvider>

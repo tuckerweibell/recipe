@@ -1,17 +1,16 @@
 import React, {HTMLAttributes} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzLayout.theme.config';
+import {VariantProps} from '@stitches/core';
+import theme from '../theme.config';
 import {domProps, responsiveProps} from '../../utils';
-import {VariantProps} from '../../utils/responsiveProps';
 
 const descendants = '& > *';
 
-const generateColumns = (length: number): any => {
+const generateColumns = (length: number) => {
   return Array.from({length}).map((_next, i) => {
     const numOfCols = i + 1;
     return {
-      layout: 'tile',
-      columns: numOfCols,
+      layout: 'tile' as const,
+      columns: numOfCols as Columns,
       css: {
         [descendants]: {
           flexBasis:
@@ -110,17 +109,15 @@ type Props = Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'> &
  * Layout provide common ways to arrange content in a single horizontal row.
  */
 const EzLayout: React.FC<Props> = ({children, className, ...initialProps}: any) => {
-  const props = responsiveProps(initialProps, 'layout', 'alignX', 'alignY', 'columns');
+  const props = responsiveProps(initialProps, true, 'layout', 'alignX', 'alignY', 'columns');
 
   // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
   // A wrapper element is included here to insulate content from the applied negative margin.
-  const el = (
+  return (
     <div {...domProps({...props, className}, box())}>
       <div className={styles(props)}>{children}</div>
     </div>
   );
-
-  return <Style ruleset={theme}>{el}</Style>;
 };
 
 /**

@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzSearchInput.theme.config';
+import theme from '../theme.config';
 import EzTextInput from '../EzField/EzTextInput';
 
 const searchInput = theme.css({
@@ -15,9 +14,7 @@ const searchInput = theme.css({
 type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
 const EzSearchInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <Style ruleset={theme}>
-    <EzTextInput ref={ref} {...props} className={searchInput()} />
-  </Style>
+  <EzTextInput ref={ref} {...props} className={searchInput()} />
 ));
 
 export default EzSearchInput;

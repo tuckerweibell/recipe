@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzAlert.theme.config';
+import theme from '../theme.config';
 import EzTextStyle from '../EzTextStyle';
 import {ErrorIcon, InfoIcon, MarketingIcon, SuccessIcon, TipIcon, WarningIcon} from '../Icons';
 
@@ -109,15 +108,13 @@ const EzAlert = forwardRef<Ref, Props>(({arrow, tagline, headline, use}, ref) =>
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#preferring_specialized_live_region_roles
   const live = use === 'error' ? 'assertive' : 'polite';
   return (
-    <Style ruleset={theme}>
-      <div role={role} aria-live={live} className={container({arrow, use})} ref={ref}>
-        {icons[use]}
-        <div className={content()}>
-          <EzTextStyle use="strong">{headline}</EzTextStyle>
-          <div>{tagline}</div>
-        </div>
+    <div role={role} aria-live={live} className={container({arrow, use})} ref={ref}>
+      {icons[use]}
+      <div className={content()}>
+        <EzTextStyle use="strong">{headline}</EzTextStyle>
+        <div>{tagline}</div>
       </div>
-    </Style>
+    </div>
   );
 });
 

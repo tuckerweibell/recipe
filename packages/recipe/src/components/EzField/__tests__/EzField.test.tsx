@@ -1,41 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, getByLabelText, fireEvent, act, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import regressionTests from './EzField.test.md';
-import markdown from '../EzField.md';
 import EzField from '../EzField';
-import {
-  EzButton,
-  EzContent,
-  EzFormLayout,
-  EzItem,
-  EzLabel,
-  EzLayout,
-  EzLabelledItem,
-  EzSearchInput,
-} from '../../index';
-import Open from '../Open';
-import Media from '../Media';
-
-const scope = {
-  EzButton,
-  EzContent,
-  EzField,
-  EzItem,
-  EzLabel,
-  EzLayout,
-  EzFormLayout,
-  Open,
-  Media,
-  EzLabelledItem,
-  EzSearchInput,
-};
 
 describe('EzField', () => {
-  visualSnapshots({markdown, scope});
-  visualSnapshots({markdown: regressionTests, scope});
-
   it('should render with disabled input', () => {
     const {container} = render(<EzField label="Disabled input" disabled />);
 

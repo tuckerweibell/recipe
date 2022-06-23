@@ -1,15 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, fireEvent} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzSegmentedControl.md';
 import EzSegmentedControl from '../EzSegmentedControl';
 
-const scope = {EzSegmentedControl};
-
 describe('EzSegmentedControl', () => {
-  visualSnapshots({markdown, scope});
-
   describe('onChange', () => {
     it('triggers onChange when segment is clicked', () => {
       const onChangeSpy: (value: string) => void = jest.fn();

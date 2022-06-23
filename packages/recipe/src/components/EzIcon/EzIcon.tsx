@@ -1,6 +1,5 @@
 import React, {forwardRef, isValidElement} from 'react';
 import {useTheme} from '@mui/material';
-import warning from 'tiny-warning';
 import {EzIconEzCater, EzIconFontAwesome, EzIconReactElement} from './Implementations';
 import {
   EzCaterIconProps,
@@ -10,7 +9,6 @@ import {
   Ref,
   SvgIconProps,
 } from './EzIcon.types';
-import {deprecatedColors, deprecatedIconSizes} from '../../themes/deprecated';
 
 const isFontAwesomeIcon = (object: EzIconTypes): object is FontAwesomeIconProps =>
   Object.prototype.hasOwnProperty.call(object, 'icon');
@@ -22,12 +20,10 @@ const EzIcon = forwardRef<Ref, EzIconProps>(({color, icon, size, ...props}, ref)
   const theme = useTheme();
   const iconProps = {
     color,
-    fontSize: theme.typography.icon.size[size],
+    fontSize: theme.typography.icon?.size[size],
     ref,
     ...props,
   };
-  warning(!deprecatedColors.set.has(color), deprecatedColors.warning);
-  warning(!deprecatedIconSizes.set.has(size), deprecatedIconSizes.warning);
 
   if (isFontAwesomeIcon(icon)) return <EzIconFontAwesome icon={icon} {...iconProps} />;
   if (isEzcaterIcon(icon)) return <EzIconEzCater icon={icon} {...iconProps} />;

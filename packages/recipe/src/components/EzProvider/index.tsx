@@ -1,1 +1,1 @@
-export {EzProvider, useProvider} from './EzProvider';
+export {default} from './EzProvider';

@@ -1,16 +1,9 @@
 import React from 'react';
-import {visualSnapshots} from 'sosia';
 import {render, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import markdown from '../EzHeading.md';
 import EzHeading from '../EzHeading';
-import {EzCard} from '../../index';
-
-const scope = {EzHeading, EzCard, React};
 
 describe('EzHeading', () => {
-  visualSnapshots({markdown, scope});
-
   it('should render with the specified tag', () => {
     const {container} = render(
       <EzHeading as="h1" size="6">

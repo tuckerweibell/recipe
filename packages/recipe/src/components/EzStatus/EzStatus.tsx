@@ -1,6 +1,5 @@
 import React, {forwardRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzStatus.theme.config';
+import theme from '../theme.config';
 import {EzStatusProps} from './EzStatus.types';
 import {DotIcon} from '../Icons';
 
@@ -73,11 +72,9 @@ const EzStatus = forwardRef<HTMLElement, EzStatusProps>(({...initProps}, ref) =>
   const showIcon = showDotIcon || showCustomIcon;
   const icon = showCustomIcon ? <svg className={customIcon()}>{initProps.icon}</svg> : <DotIcon />;
   return (
-    <Style ruleset={theme}>
-      <span {...props} ref={ref}>
-        {showIcon && icon} {props.text}
-      </span>
-    </Style>
+    <span {...props} ref={ref}>
+      {showIcon && icon} {initProps.text}
+    </span>
   );
 });
 

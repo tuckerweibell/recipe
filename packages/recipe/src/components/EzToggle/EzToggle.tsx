@@ -1,6 +1,5 @@
 import React, {forwardRef, useRef} from 'react';
-import Style from '@ezcater/snitches';
-import theme from './EzToggle.theme.config';
+import theme from '../theme.config';
 import EzLabel from '../EzLabel';
 import EzInlineFeedback from '../EzInlineFeedback';
 import EzLayout from '../EzLayout';
@@ -111,29 +110,23 @@ const EzToggle = forwardRef<HTMLInputElement, Props>(({id, label, status, ...pro
   const inputProps = visuallyHidden(props as any).props;
 
   return (
-    <Style ruleset={theme}>
-      <EzLayout layout="basic">
-        <div
-          role="presentation"
-          onClick={handleClick}
-          className={toggle({disabled: props.disabled})}
-          ref={ref}
-        >
-          <input {...inputProps} id={idOrDefault} ref={inputRef} type="checkbox" />
-          <div className={track()} />
-        </div>
-        {label && (
-          <EzLabel
-            className={toggle({disabled: props.disabled})}
-            htmlFor={idOrDefault}
-            use="primary"
-          >
-            {label}
-          </EzLabel>
-        )}
-        {status && <EzInlineFeedback use={status} />}
-      </EzLayout>
-    </Style>
+    <EzLayout layout="basic">
+      <div
+        role="presentation"
+        onClick={handleClick}
+        className={toggle({disabled: props.disabled})}
+        ref={ref}
+      >
+        <input {...inputProps} id={idOrDefault} ref={inputRef} type="checkbox" />
+        <div className={track()} />
+      </div>
+      {label && (
+        <EzLabel className={toggle({disabled: props.disabled})} htmlFor={idOrDefault} use="primary">
+          {label}
+        </EzLabel>
+      )}
+      {status && <EzInlineFeedback use={status} />}
+    </EzLayout>
   );
 });
 
