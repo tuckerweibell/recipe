@@ -5,6 +5,7 @@ import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
 import CloseButton from '../CloseButton';
 import {InfoIcon, ErrorIcon, SuccessIcon} from '../Icons';
+import {useUniqueId} from '../../utils/hooks';
 
 type EzFlashMessageUses = 'success' | 'error' | 'warning' | 'info';
 
@@ -94,6 +95,7 @@ const EzFlashMessage: React.FC<FlashMessageProps> = ({
   onDismiss,
   use,
 }) => {
+  const labelId = useUniqueId();
   const [show, setShow] = React.useState(true);
 
   useEffect(() => {
@@ -109,14 +111,24 @@ const EzFlashMessage: React.FC<FlashMessageProps> = ({
 
   if (!show) return null;
 
+  const role = use === 'info' ? 'status' : 'alert';
   return (
     <Style ruleset={theme}>
-      <div className={flashMessage({use})}>
+      <div
+        role={role}
+        aria-labelledby={labelId}
+        aria-live={use === 'error' ? 'assertive' : 'polite'}
+        className={flashMessage({use})}
+      >
         <EzLayout layout="basic" alignY="top">
           {icons[use]}
           <div className={text()}>
             <EzLayout layout="stack">
-              {headline && <EzHeading size="3">{headline}</EzHeading>}
+              {headline && (
+                <EzHeading id={labelId} size="3">
+                  {headline}
+                </EzHeading>
+              )}
               <div>{children}</div>
             </EzLayout>
           </div>

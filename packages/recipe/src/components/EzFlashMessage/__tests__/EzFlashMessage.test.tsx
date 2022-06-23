@@ -1,6 +1,6 @@
 import React from 'react';
 import {visualSnapshots} from 'sosia';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
 import markdown from '../EzFlashMessage.md';
 import EzFlashMessage from '../EzFlashMessage';
@@ -23,6 +23,34 @@ describe('EzFlashMessage', () => {
     );
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
+  });
+
+  describe('a11y', () => {
+    it('should have an status role if the type is info', async () => {
+      render(<EzFlashMessage use="info" headline="oh no" />);
+      expect(await screen.findByRole('status', {name: /oh no/i})).toBeInTheDocument();
+    });
+
+    it('should have an alert role for all other types', async () => {
+      render(<EzFlashMessage use="error" headline="oh no" />);
+      expect(await screen.findByRole('alert', {name: /oh no/i})).toBeInTheDocument();
+    });
+
+    it('should announce presence assertively if type is error', async () => {
+      render(<EzFlashMessage use="error" headline="oh no" />);
+      expect(await screen.findByRole('alert', {name: /oh no/i})).toHaveAttribute(
+        'aria-live',
+        'assertive'
+      );
+    });
+
+    it('should announce presence politely if not an error', async () => {
+      render(<EzFlashMessage use="info" headline="oh no" />);
+      expect(await screen.findByRole('status', {name: /oh no/i})).toHaveAttribute(
+        'aria-live',
+        'polite'
+      );
+    });
   });
 
   it('should pass type checking', () => {
