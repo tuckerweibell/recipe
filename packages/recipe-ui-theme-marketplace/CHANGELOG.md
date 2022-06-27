@@ -1,5 +1,12 @@
 # Version 1
 
+## 3.0.0
+
+### Patch Changes
+
+- style: update EzCard styling for marketplace theme [[sha]](https://github.com/ezcater/recipe/commit/96bf5dfd)
+- style: update EzButton secondary styling for marketplace theme [[sha]](https://github.com/ezcater/recipe/commit/9603236e)
+
 ## 2.0.1
 
 ### Patch Changes

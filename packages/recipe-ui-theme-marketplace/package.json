@@ -1,6 +1,6 @@
 {
   "name": "@recipe-ui/theme-marketplace",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "ezCater's React UI Component library",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,13 +22,13 @@
     "@react-types/provider": "^3.1.1"
   },
   "devDependencies": {
-    "@ezcater/recipe": "^14.0.5",
+    "@ezcater/recipe": "^15.0.0",
     "@types/react": "^17.0.44",
     "tsup": "^5.12.5",
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "@ezcater/recipe": "^14.0.5",
+    "@ezcater/recipe": "^15.0.0",
     "react": "^16.8.0 || ^17.0.1"
   },
   "publishConfig": {

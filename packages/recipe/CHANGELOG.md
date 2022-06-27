@@ -1,6 +1,54 @@
+## 15.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: remove `slidesPerPage`, `gap`, and `peek`, require `title` and `description` for `EzCarousel` [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- fix: add 'Enter' keypress to open EzField inputs (date, time, select, autosuggest) for better accessibility [[sha]](https://github.com/ezcater/recipe/commit/ecd37cf4)
+- BREAKING CHANGE: remove deprecated theme properties for EzIcon (colors and sizes) [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- BREAKING CHANGE: remove snitches and reconfigure stitches to work without it [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+
+### Minor Changes
+
+- feat: add support for theme colors and sizes in EzIcon and EzRating [[sha]](https://github.com/ezcater/recipe/commit/7e34bc97)
+- workflow: update create-component CLI to generate new component files that follow current file and folder structure conventions [[sha]](https://github.com/ezcater/recipe/commit/708532df)
+
+### Patch Changes
+
+- fix: fix issue with FocusScope blur elements not propagating correctly [[sha]](https://github.com/ezcater/recipe/commit/8d497e63)
+- deps: upgraded react-highlight-words to 0.18.0 [[sha]](https://github.com/ezcater/recipe/commit/9f5463e6)
+- workflow: fix changeset output to filter out recipe deps and collapse commits [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- tests: update EzCarousel tests and snapshots [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- deps: upgrade jest, testing-library, and ts-jest to their latest versions. remove jest-junit and jest-standard-reporter packages [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- fix: update placeholder urls [[sha]](https://github.com/ezcater/recipe/commit/96bf5dfd)
+- fix: change EzNavigation nav onClick to close instead of toggle [[sha]](https://github.com/ezcater/recipe/commit/d2522259)
+- deps: upgrade storybook to 6.5.6 [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- Adds type annotations for button click events in EzModal [[sha]](https://github.com/ezcater/recipe/commit/ea1884a2)
+- workflow: add chromatic and configure [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- Sets the role of an `EzFlashMessage` to "alert" with appropriate aria-live attribute [[sha]](https://github.com/ezcater/recipe/commit/ffaae224)
+- style: update EzCarousel styles [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- workflow: update version PR so that it also syncs package versions across the monorepo [[sha]](https://github.com/ezcater/recipe/commit/4319c900)
+- workflow: remove sosia and all visual snapshots which have been replaced by chromatic [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- docs: update EzCarousel snippets [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- workflow: add tiny-warning and babel-plugin-dev-expression to handle deprecation console warnings in development [[sha]](https://github.com/ezcater/recipe/commit/7e34bc97)
+- workflow: remove **diff_output** from .gitignore to easily view changed snapshots before commits and in PRs [[sha]](https://github.com/ezcater/recipe/commit/96bf5dfd)
+- deps: update plop to v3.1.0 [[sha]](https://github.com/ezcater/recipe/commit/708532df)
+- workflow: update eslint config to turn off console warnings for use with deprecations [[sha]](https://github.com/ezcater/recipe/commit/7e34bc97)
+- docs: update EzCarousel documentation for new props `title` and `description` and removed props `slidesPerPage`, `gap`, `peek` [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- workflow: add threshold for chromatic stories [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- style: update EzButton secondary styling for marketplace theme [[sha]](https://github.com/ezcater/recipe/commit/9603236e)
+- deps: upgrade stitches to 1.2.8 [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- workflow: updated release script to not run the version command so as not to cause a release to go out prematurely [[sha]](https://github.com/ezcater/recipe/commit/4319c900)
+- workflow: moved node and npm setup into a shared action, refactored and re-enabled the CI workflow [[sha]](https://github.com/ezcater/recipe/commit/18a094a4)
+- style: update EzCard styling for marketplace theme [[sha]](https://github.com/ezcater/recipe/commit/96bf5dfd)
+- test: update test snapshots using placeholder urls [[sha]](https://github.com/ezcater/recipe/commit/96bf5dfd)
+
 ## 14.0.5
 
-Release skipped due to build pipeline issue
+### Patch Changes
+
+- workflow: ensure package versions are synched in the monorepo when performing a canary or regular release [[sha]](https://github.com/ezcater/recipe/commit/7f08e01b)
+- refactor: remove version headers in recipe changelog [[sha]](https://github.com/ezcater/recipe/commit/ea2b385d)
+- workflow: replaced lerna with turborepo and updated scripts to fix build order [[sha]](https://github.com/ezcater/recipe/commit/040bb1d7)
 
 ## 14.0.4
 
@@ -367,7 +415,6 @@ Release skipped due to build pipeline issue
 - Add npm script to simplify locally running the doc-site for IE11.
 - Updated latest babel build tooling (to support TS template literals)
 - Added compression and other techniques to reduce the payload size of visual regression test input
-
 
 ## 11.4.3 - 2021-03-19
 
