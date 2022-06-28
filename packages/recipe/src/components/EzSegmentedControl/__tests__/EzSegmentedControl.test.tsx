@@ -30,6 +30,34 @@ describe('EzSegmentedControl', () => {
     });
   });
 
+  describe('onClick', () => {
+    it('triggers onClick when option with onClick is clicked and triggers onChange when option is clicked', () => {
+      const onChangeSpy: (value: string) => void = jest.fn();
+      const onClickSpy: () => void = jest.fn();
+
+      const {getByText} = render(
+        <EzSegmentedControl
+          name="test-segment"
+          label="test segment"
+          active="firstValue"
+          className="test"
+          labelPosition="left"
+          onChange={onChangeSpy}
+          options={[
+            {label: 'first', value: 'firstValue'},
+            {label: 'second', value: 'secondValue'},
+            {label: 'third', value: 'thirdValue', onClick: onClickSpy},
+          ]}
+        />
+      );
+
+      fireEvent.click(getByText('third'));
+
+      expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
+      expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
   it('should meet accessibility guidelines', async () => {
     const onChangeSpy: (value: string) => void = jest.fn();
 

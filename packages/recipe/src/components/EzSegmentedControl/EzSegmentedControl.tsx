@@ -11,6 +11,7 @@ type Button = {
   value: string;
   label: string;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 type Props = Omit<React.FieldsetHTMLAttributes<any>, 'onChange'> & {
@@ -126,6 +127,7 @@ const EzSegmentedControl: React.FC<Props> = ({
             : {defaultChecked: option.value === active})}
           onChange={() => onChange && onChange(option.value)}
           disabled={option.disabled}
+          onClick={() => option.onClick && option.onClick()}
         />
         <label className={optionLabel()} key={option.value} htmlFor={getId(name, option)}>
           {option.label}

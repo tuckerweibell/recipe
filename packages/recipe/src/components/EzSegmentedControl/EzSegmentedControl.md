@@ -101,6 +101,40 @@ Used to indicate to the user that an action is not currently available. Disabled
 />
 ```
 
+### Option with onClick handler
+
+Used to trigger an `onClick` handler when an option is clicked. Does not conflict with `onChange`.
+
+
+```jsx
+() => {
+  const [active, setActive] = React.useState('map');
+
+  const handleChange = (value) => {
+    console.log('option changed!', 'new value:', value)
+    setActive(value);
+  }
+
+  const handleOnClick = () => {
+    console.log('onClick option clicked!');
+  }
+
+  return (
+    <EzSegmentedControl
+      name="view-map-options-with-onclick-option"
+      label="Map View"
+      options={[
+        {label: 'Map', value: 'map'},
+        {label: 'Transit', value: 'transit'},
+        {label: 'Satellite', value: 'satellite', onClick: handleOnClick},
+      ]}
+      active={active}
+      onChange={value => handleChange(value)}
+    />
+  );
+};
+```
+
 ---
 
 ## Related components
