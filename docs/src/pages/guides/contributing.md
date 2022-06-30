@@ -23,7 +23,7 @@ Please start by [filing a GitHub issue against the Recipe project](https://githu
 1. **Clearly identify the situation(s) where you are encountering an issue.**
 1. **Review your issue and proposed solution (if you have one) with [the Recipe team](/meet-the-team).**
 1. **Implement your fix.**
-   - Provide test coverage for the changes made; this will help catch future regressions. Recipe's default template for testing includes a visual snapshot for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
+   - Provide test coverage for the changes made; this will help catch future regressions. Recipe's default template for testing includes visual UI tests with [Chromatic](https://www.chromatic.com/) for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
    - Update `src/unreleased.md` with a summary of the changes made, following our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) to categorize changes into appropriate headings.
 1. **Code review.**
    - A code review from the Recipe team is not required for code to land in Recipe; any engineer with Senior+ frontend skills can review your code.
@@ -70,7 +70,7 @@ When [a release is cut](#publishing-a-new-release), we use this changeset metada
 1. **Implement the component.**
    - [Create the component](#creating-components)
    - Consider how your component will be [accessible to all users](https://www.essentialaccessibility.com/blog/web-content-accessibility-guidelines). Recipe's default component template includes basic tests for common accessibility issues to help get you started.
-   - Provide test coverage for the component. Recipe's default template for testing includes a visual snapshot for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
+   - Provide test coverage for the component. Recipe's default template for testing includes visual UI tests with [Chromatic](https://www.chromatic.com/) for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
    - Create a changeset [following semantic versioning](#following-semantic-versioning) to categorize your changes into appropriate headings for our changelog.
 1. **Code review**
    - A code review from the Recipe team is required.
@@ -117,7 +117,7 @@ Recipe uses [plop](https://www.npmjs.com/package/plop) to quickly generate boile
 
 To generate a new component, run `yarn create-component` inside `packages/recipe` or use the workspace command via `yarn workspace @ezcater/recipe create-component`. You'll see a CLI that guides you through the process. Alternatively, you can simply run `yarn create-component EzExample`, where EzExample is the name of your new component.
 
-If your component needs a preview image for the doc site, you will also need to run `yarn create-preview ../recipe/src/components/EzExample/EzExample.preview.md` from `packages/snapshot`. A test visual snapshot will also be created the first time you run your newly generated test.
+If your component needs a preview image for the doc site, you will also need to run `yarn create-preview ../recipe/src/components/EzExample/EzExample.preview.md` from `packages/snapshot`.
 
 New component requirements:
 
