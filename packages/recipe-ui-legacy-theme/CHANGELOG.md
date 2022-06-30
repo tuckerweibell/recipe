@@ -1,4 +1,4 @@
-# Version 1
+# @recipe-ui/legacy-theme
 
 ## 1.0.1
 

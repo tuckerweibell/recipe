@@ -1,4 +1,4 @@
-# Version 1
+# @recipe-ui/theme-marketplace
 
 ## 3.0.0
 

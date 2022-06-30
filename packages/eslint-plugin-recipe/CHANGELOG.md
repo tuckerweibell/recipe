@@ -1,2 +1,1 @@
-# Version 1
-
+# @ezcater/eslint-plugin-recipe
