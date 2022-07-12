@@ -3,13 +3,16 @@ import {Global, css} from '@emotion/react';
 import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
 import * as Components from '@ezcater/recipe';
+import PropsTable from '../../../packages/recipe/src/components/utils/PropsTable'
 import {withPrefix} from 'gatsby-link';
+import {SvgIcon} from '@mui/material';
 import ComponentGrid from './ComponentGrid';
 import Cookbook from './Cookbook';
 import Layout from './Layout';
 import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import {faCircle} from '@fortawesome/free-solid-svg-icons/faCircle';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
 import {faStar as fullStar} from '@fortawesome/free-solid-svg-icons/faStar';
 import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/faStarHalfStroke';
@@ -68,6 +71,7 @@ const HtmlAst = ({htmlAst, scope}) => {
     componentgrid: ComponentGrid,
     cookbook: Cookbook,
     ezalert: Components.EzAlert,
+    propstable: PropsTable,
     ul: wrapEl('ul'),
     ol: wrapEl('ol'),
     li: wrapEl('li'),
@@ -97,6 +101,7 @@ const HtmlAst = ({htmlAst, scope}) => {
 const ezCaterLogoPath = logo;
 const scope = {
   ...Components,
+  PropsTable,
   styled,
   css,
   Global,
@@ -108,6 +113,7 @@ const scope = {
         ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
         : BrowserRouter,
     Route,
+    faCircle,
     faCoffee,
     emptyStar,
     halfStar,
@@ -115,6 +121,7 @@ const scope = {
     Pizza,
     Fries,
     Ramen,
+    SvgIcon,
   }),
   ezCaterLogoPath,
   withPrefix,

@@ -1,9 +1,9 @@
 import React from 'react';
-import {screen, render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {screen, render} from '../../../../test-utils';
 import EzCarousel from '../EzCarousel';
 import EzLink from '../../EzLink/EzLink';
-import Placeholder from '../../Placeholder';
+import Placeholder from '../../utils/Placeholder';
 
 describe('EzCarousel', () => {
   it('calls the onPageChange handler when interacting with carousel pages', async () => {

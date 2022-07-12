@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Stack} from '@mui/material';
-import EzIcon from '../EzIcon';
-import {ezColors, EzColor, EzColorsCategories} from '../../themes/ezColors';
+import EzIcon from '../../EzIcon';
+import {ezColors, EzColor, EzColorsCategories} from '../../../themes/ezColors';
 import CopyButton from './CopyButton';
 import {faCircleCheck} from './ColorTokenIcons';
 

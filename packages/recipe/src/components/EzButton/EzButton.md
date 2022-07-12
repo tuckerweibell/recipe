@@ -133,3 +133,7 @@ Used to indicate to the user that an action is currently being processed. The bu
   </EzButton>
 </div>
 ```
+
+## Related components
+
+- [Chip](/components/ez-chip)

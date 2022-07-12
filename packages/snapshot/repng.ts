@@ -55,6 +55,7 @@ const getHtmlData = (Component: React.ClassType<unknown, any, any>): string => {
       html {
         box-sizing: border-box;
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-size: 16px;
       }
       body {margin: 0;}
     </style>

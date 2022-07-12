@@ -130,7 +130,7 @@ By default, the icon color is the same as the body text. If you want to specifiy
 
 ### Icon size
 
-By default, the icon size is inherited from the parent container. If you want to specify a size, use the `size` prop. We currently support `small`, `medium`, and `large`, (in addition to `inherit`). Font sizes for each icon size are specified in the [theme](/guides/theming/#icons).
+By default, the icon size is inherited from the parent container. If you want to specify a size, use the `size` prop. We currently support `small`, `medium` (default), `large`, and `inherit`. Font sizes for each icon size are specified in the [theme](/guides/theming/#icons).
 
 ```jsx
 () => {

@@ -1,5 +1,5 @@
 import React, {forwardRef, HTMLAttributes} from 'react';
-import theme from '../theme.config';
+import theme from '../../theme.config';
 
 const button = theme.css({
   cursor: 'pointer',

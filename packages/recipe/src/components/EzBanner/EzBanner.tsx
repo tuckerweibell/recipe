@@ -1,8 +1,8 @@
 import React, {forwardRef} from 'react';
 import theme from '../theme.config';
-import CloseButton from '../CloseButton';
+import CloseButton from '../utils/CloseButton';
+import LinkButton from '../utils/LinkButton';
 import EzHeading from '../EzHeading';
-import LinkButton from '../LinkButton';
 
 type Ref = HTMLDivElement;
 type Props = {

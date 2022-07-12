@@ -8,10 +8,8 @@ import {
 } from 'react';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {SvgIcon} from '@mui/material';
-import {CommonColors} from '@mui/material/styles/createPalette';
-import {EzPalette} from '../../themes';
+import {EzThemeColors, EzThemeSizes} from '../../themes/themes.types';
 
-type PaletteOptions = 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
 export type EzCaterIconProps = string | FunctionComponent | ComponentClass;
 export type SvgIconProps = SVGProps<SVGSVGElement> | ReactElement;
 export type FontAwesomeIconProps = IconDefinition;
@@ -19,24 +17,16 @@ export type EzIconTypes = EzCaterIconProps | FontAwesomeIconProps | SvgIconProps
 export type SvgIconColorType = ComponentProps<typeof SvgIcon>['color'];
 export type Ref = SVGSVGElement;
 
-export type EzIconColors =
-  | PaletteOptions
-  | `common.${keyof EzPalette}`
-  | `common.${keyof CommonColors}`
-  | 'inherit';
-
-export type EzIconSizes = 'small' | 'medium' | 'large' | 'inherit';
-
 export interface EzIconProps {
-  color?: EzIconColors;
+  color?: EzThemeColors;
   icon: EzIconTypes;
-  size?: EzIconSizes;
+  size?: EzThemeSizes;
   title?: string;
 }
 
 export interface EzIconMuiProps extends Omit<ComponentProps<typeof SvgIcon>, 'color' | 'fontSize'> {
   children?: ReactNode;
-  color?: EzIconColors;
-  fontSize?: number;
+  color?: EzThemeColors;
+  fontSize?: number | 'inherit';
   title?: string;
 }

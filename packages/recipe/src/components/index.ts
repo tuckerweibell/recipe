@@ -1,4 +1,3 @@
-export {default as ColorTokens} from './ColorTokens';
 export {default as EzAlert} from './EzAlert';
 export {default as EzAppLayout} from './EzAppLayout';
 export {default as EzBanner} from './EzBanner';
@@ -7,6 +6,7 @@ export {default as EzBlankState} from './EzBlankState';
 export {default as EzButton} from './EzButton';
 export {default as EzCarousel} from './EzCarousel';
 export {default as EzCheckbox} from './EzCheckbox';
+export {default as EzChip} from './EzChip';
 export {default as EzField} from './EzField';
 export {default as EzFlashMessage} from './EzFlashMessage';
 export {default as EzFormLayout} from './EzFormLayout';
@@ -42,3 +42,4 @@ export {EzContent, EzHeader, EzItem, EzFooter, EzPreview} from './EzContent';
 export {EzPage, EzPageSection} from './EzPage';
 export {EzPageContent, EzContentGroup} from './EzPageContent';
 export {EzTimeline, EzTimelineEvent, EzTimelinePeriod} from './EzTimeline';
+export {default as ColorTokens} from './utils/ColorTokens';

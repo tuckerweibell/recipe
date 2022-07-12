@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react';
-import {domProps} from '../../utils';
-import EzLink, {isLink} from '../EzLink';
-import {LabelledLink} from '../EzLink/EzLink.types';
+import {domProps} from '../../../utils';
+import EzLink, {isLink} from '../../EzLink';
+import {LabelledLink} from '../../EzLink/EzLink.types';
 
 const useLinkButtonProps = ({label, accessibilityLabel, children, ...props}: any) => {
   return domProps({

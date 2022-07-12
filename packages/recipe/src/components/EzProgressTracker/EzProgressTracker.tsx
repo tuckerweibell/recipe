@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import theme from '../theme.config';
 import EzLayout from '../EzLayout';
 import EzTextStyle from '../EzTextStyle';
-import LinkButton from '../LinkButton';
+import LinkButton from '../utils/LinkButton';
 import {LabelledOptionalLink} from '../EzLink/EzLink.types';
 import {isLink} from '../EzLink';
 import {clsx} from '../../utils';

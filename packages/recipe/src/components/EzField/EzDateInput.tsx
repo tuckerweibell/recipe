@@ -8,7 +8,7 @@ import EzCalendar from '../EzCalendar/EzCalendar';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
 import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
-import FocusScope from '../FocusScope';
+import FocusScope from '../utils/FocusScope';
 import {clsx} from '../../utils';
 
 const layout = theme.css({

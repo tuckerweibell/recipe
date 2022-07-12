@@ -27,7 +27,7 @@ const EzRating = forwardRef<Ref, EzRatingProps>(
 );
 
 EzRating.defaultProps = {
-  size: 'inherit',
+  size: 'medium',
   color: 'inherit',
 };
 

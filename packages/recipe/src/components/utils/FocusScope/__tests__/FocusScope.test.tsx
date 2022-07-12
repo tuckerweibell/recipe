@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {fireEvent, render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FocusScope from '..';
+import FocusScope from '../FocusScope';
 
 describe('FocusScope', () => {
   beforeEach(() => {

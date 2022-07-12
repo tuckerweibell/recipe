@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {IconButton} from '@mui/material';
-import EzIcon from '../EzIcon';
+import EzIcon from '../../EzIcon';
 import {faCircleCheck, faCopy} from './ColorTokenIcons';
 
 interface CopyButtonProps {

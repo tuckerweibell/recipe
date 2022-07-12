@@ -1,9 +1,10 @@
-import {EzIconTypes, EzIconSizes, EzIconColors} from '../EzIcon/EzIcon.types';
+import {EzIconTypes} from '../EzIcon/EzIcon.types';
+import {EzThemeColors, EzThemeSizes} from '../../themes/themes.types';
 
 export type Ref = HTMLDivElement;
 
-export type EzRatingColors = EzIconColors;
-export type EzRatingSizes = EzIconSizes;
+export type EzRatingColors = EzThemeColors;
+export type EzRatingSizes = EzThemeSizes;
 
 export interface EzRatingProps {
   max: number;

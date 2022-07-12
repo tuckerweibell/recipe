@@ -5,6 +5,16 @@ category: Feedback
 path: '/components/ez-status'
 ---
 
+<EzAlert
+  headline="Deprecation Warning"
+  tagline="EzStatus is deprecated as of v15 and will be removed in v16. Status variants can be used with EzChip."
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-chip/#status">EzChip Status</a></EzLink>
+
+---
+
 Use a status when you need to call attention to an individual item in a set. Sometimes (like with a list of orders) you need to show a status for each item. In those cases, use a neutral status for as many items as possible so the items that need more attention stand out.
 
 ---
@@ -57,13 +67,12 @@ In some cases, a custom icon may be appropriate to visually parse different type
 
   return (
     <EzLayout layout="stack" alignX="left">
-      <EzStatus
-        text="New"
-        use="success"
-        size="normal"
-        icon={<EzIcon icon={fullStar} />}
-      />
+      <EzStatus text="New" use="success" size="normal" icon={<EzIcon icon={fullStar} />} />
     </EzLayout>
   );
 };
 ```
+
+## Related components
+
+- [Chip](/components/ez-chip)

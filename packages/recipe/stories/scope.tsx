@@ -14,7 +14,7 @@ import {
   MOCK_ICON_FRIES,
   MOCK_ICON_RAMEN,
 } from '../src/components/EzIcon/EzIconMocks';
-import Placeholder from '../src/components/Placeholder';
+import Placeholder from '../src/components/utils/Placeholder';
 
 // our markdown examples use images from the doc-site, so tell webpack how to find those images:
 const docSiteImages = require.context('../../../docs/static', true);

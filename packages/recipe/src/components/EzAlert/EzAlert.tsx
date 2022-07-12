@@ -15,7 +15,7 @@ const icons = {
 type Props = {
   arrow?: 'top' | 'bottom';
   headline: string;
-  tagline?: string;
+  tagline?: string | Element;
   use?: 'success' | 'error' | 'warning' | 'tip' | 'info' | 'marketing';
 };
 

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import theme from '../theme.config';
 import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
-import CloseButton from '../CloseButton';
+import CloseButton from '../utils/CloseButton';
 import {InfoIcon, ErrorIcon, SuccessIcon} from '../Icons';
 import {useUniqueId} from '../../utils/hooks';
 

@@ -4,7 +4,7 @@ import {Placement, Modifier} from '@popperjs/core';
 import EzPortal, {PortalContext} from '../EzPortal';
 import {usePopper} from '../../utils/hooks';
 import {useCloseOnBlur} from './useCloseOnBlur';
-import FocusScope from '../FocusScope';
+import FocusScope from '../utils/FocusScope';
 
 type Props = {
   targetRef: React.RefObject<HTMLElement>;
