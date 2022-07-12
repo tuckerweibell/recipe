@@ -1,5 +1,11 @@
 # @recipe-ui/theme-marketplace
 
+## 4.0.0
+
+### Patch Changes
+
+- docs: bump recipe [[sha]](https://github.com/ezcater/recipe/commit/c7f0b772)
+
 ## 3.0.0
 
 ### Patch Changes

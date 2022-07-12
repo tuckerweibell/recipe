@@ -1,5 +1,24 @@
 # @ezcater/recipe
 
+## 15.1.0
+
+### Minor Changes
+
+- style: update ezTheme component style overrides for MuiChip and MuiButtonBase [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- style: update ezTheme palette adding/updating theme colors for secondary, error, warning, info, success, alert, and neutral [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- style: move theme types into themes folder [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- feat: add EzChip component [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- feat: add PropsTable component to display component props [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+
+### Patch Changes
+
+- feat: add onClick handler to EzSegmentedControl options [[sha]](https://github.com/ezcater/recipe/commit/4b247abb)
+- workflow: remove all deprecated snapshot images and update contributor guide to reference chromatic [[sha]](https://github.com/ezcater/recipe/commit/bbb62979)
+- workflow: update changelogs to have a title at the top so the changeset tool correctly inserts the version headers when updating the changelogs [[sha]](https://github.com/ezcater/recipe/commit/08ecb24c)
+- deps: add @fortawesome/free-solid-svg-icons [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- fix: EzIcon inherit size [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+- workflow: move util components into their own folder [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+
 ## 15.0.0
 
 ### Major Changes

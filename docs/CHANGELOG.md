@@ -1,5 +1,15 @@
 # @ezcater/recipe-doc-site
 
+## 1.1.0
+
+### Minor Changes
+
+- docs: add EzChip documentation and deprecate EzStatus [[sha]](https://github.com/ezcater/recipe/commit/cded0a5a)
+
+### Patch Changes
+
+- feat: add onClick handler to EzSegmentedControl options [[sha]](https://github.com/ezcater/recipe/commit/4b247abb)
+
 ## 1.0.1
 
 ### Patch Changes
