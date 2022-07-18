@@ -32,9 +32,6 @@ const stitches = createStitches({
       // EzFlashMessage
       'flash-message-border-width': '$thin',
       'flash-message-border-left-width': '5px',
-
-      // EzWell
-      well: '$thin',
     },
     colors: {
       blue100: '#3f61ff',
@@ -400,10 +397,6 @@ const stitches = createStitches({
       'tooltip-text': 'white',
       'tooltip-bg': '$gray800',
       'tooltip-border': '$gray800',
-
-      // EzWell
-      'well-bg': 'rgba(75,75,75,0.02)',
-      'well-border': 'rgba(44,44,44,0.05)',
     },
     fonts: {
       sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
@@ -644,9 +637,6 @@ const stitches = createStitches({
       'timeline-page-gutter-sm': '$200',
       'timeline-page-gutter-lg': '$400',
 
-      // EzWell
-      'well-min-w': '160px',
-
       // Icons
       'icon-size-baseline': '1em',
     },
@@ -781,9 +771,6 @@ const stitches = createStitches({
 
       // EzTooltip
       'tooltip-padding': '$100',
-
-      // EzWell
-      'well-p': '$250',
 
       // Icons
       'icon-baseline-top': '0.125em',

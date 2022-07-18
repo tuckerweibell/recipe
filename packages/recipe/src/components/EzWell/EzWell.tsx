@@ -1,18 +1,6 @@
 import React, {forwardRef, Ref, ReactNode, HTMLAttributes} from 'react';
-import theme from '../theme.config';
+import {Stack} from '@mui/material';
 import {filterDOMProps} from '../EzField/filterDOMProps';
-
-const styles = theme.css({
-  textAlign: 'start',
-  display: 'block',
-  minWidth: '$well-min-w',
-  padding: '$well-p',
-  borderWidth: '$well',
-  borderStyle: 'solid',
-  borderRadius: '$regular',
-  backgroundColor: '$well-bg',
-  borderColor: '$well-border',
-});
 
 type ariaKeys = 'aria-label' | 'aria-labelledby';
 type domProps = 'className' | 'id';
@@ -36,16 +24,23 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
     console.warn('A labelled Well must have a role.');
 
   return (
-    <div
+    <Stack
       {...filterDOMProps(otherProps, {
         propNames: new Set(['id', 'className']),
       })}
       role={role}
       ref={ref}
-      className={styles()}
+      p="20px"
+      sx={{
+        bgcolor: 'rgba(75, 75, 75, 0.02)',
+        border: '1px solid rgba(44,44,44,0.05)',
+        borderRadius: '4px',
+        textAlign: 'start',
+        width: '100%',
+      }}
     >
       {children}
-    </div>
+    </Stack>
   );
 }
 
