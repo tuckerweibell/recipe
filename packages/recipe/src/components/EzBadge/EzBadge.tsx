@@ -46,8 +46,10 @@ EzBadge.defaultProps = {
   fontColor: 'common.neutral100',
   hide: false,
   showZero: false,
+  minimize: false,
   alignX: 'right',
   alignY: 'top',
+  overlap: 'rectangular',
 };
 
 EzBadge.displayName = 'EzBadge';
