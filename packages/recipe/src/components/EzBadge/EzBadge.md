@@ -96,8 +96,8 @@ To show a badge when the value is zero, use `showZero`. The default is `false`.
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="0">
-      <EzIcon icon={shoppingCart} showZero />
+    <EzBadge value="0" showZero>
+      <EzIcon icon={shoppingCart} />
     </EzBadge>
   );
 };
@@ -157,11 +157,23 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
 
 ```jsx
 () => {
-  const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
+  const {fullCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
     <EzBadge value="3" overlap="circular">
-      <EzIcon icon={shoppingCart} />
+      <EzIcon icon={fullCircle} />
+    </EzBadge>
+  );
+};
+```
+
+```jsx
+() => {
+  const {fullCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
+
+  return (
+    <EzBadge value="3" overlap="circular" minimize>
+      <EzIcon icon={fullCircle} />
     </EzBadge>
   );
 };
@@ -175,6 +187,18 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
 
   return (
     <EzBadge value="3" overlap="rectangular">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
+  );
+};
+```
+
+```jsx
+() => {
+  const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
+
+  return (
+    <EzBadge value="3" overlap="rectangular" minimize>
       <EzIcon icon={shoppingCart} />
     </EzBadge>
   );
