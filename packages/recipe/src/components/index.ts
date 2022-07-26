@@ -1,6 +1,7 @@
 export {default as ColorTokens} from './utils/ColorTokens';
 export {default as EzAlert} from './EzAlert';
 export {default as EzAppLayout} from './EzAppLayout';
+export {default as EzBadge} from './EzBadge';
 export {default as EzBanner} from './EzBanner';
 export {default as EzBaseFontSizeCompatibility} from './EzBaseFontSizeCompatibility';
 export {default as EzBlankState} from './EzBlankState';
