@@ -3,7 +3,6 @@ import {Badge} from '@mui/material';
 import {EzBadgeProps, Ref} from '../EzBadge.types';
 
 const COLOR_MAP = {
-  default: 'neutral',
   primary: 'primary',
   secondary: 'secondary',
   error: 'error',

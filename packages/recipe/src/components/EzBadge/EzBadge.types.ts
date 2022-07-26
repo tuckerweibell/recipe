@@ -3,18 +3,11 @@ import {EzThemeColors} from '../../themes';
 
 export type Ref = HTMLDivElement;
 
-export type BadgeVariants =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'error'
-  | 'info'
-  | 'success'
-  | 'warning';
+export type EzBadgeVariants = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 
 export interface EzBadgeProps {
   value: ReactNode;
-  variant?: BadgeVariants;
+  variant?: EzBadgeVariants;
   backgroundColor?: EzThemeColors;
   fontColor?: EzThemeColors;
   hide?: boolean;
