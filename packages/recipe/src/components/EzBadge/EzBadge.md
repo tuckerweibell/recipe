@@ -1,9 +1,9 @@
 ---
 name: EzBadge
-title: Title
-category: Category
+title: Badge
+category: Feedback
 path: '/components/ez-badge'
-tags: ['tag']
+tags: ['badge', 'notification', 'dot']
 ---
 
 Badges indicate notifications or events that are relevant and relatively close to or overlapping another element, like a button or an icon.
