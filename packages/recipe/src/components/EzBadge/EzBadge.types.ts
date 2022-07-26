@@ -3,7 +3,14 @@ import {EzThemeColors} from '../../themes';
 
 export type Ref = HTMLDivElement;
 
-export type EzBadgeVariants = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+export type EzBadgeVariants =
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'default';
 
 export interface EzBadgeProps {
   value: ReactNode;

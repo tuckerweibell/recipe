@@ -25,7 +25,7 @@ Badges indicate notifications or events that are relevant and relatively close t
 
 Badges always require a `value`.
 
-Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Available theme variants: `primary`, `secondary`, `error`, `info`, `success`, and `warning`.
+Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Available theme variants: `default`, `primary`, `secondary`, `error`, `info`, `success`, and `warning`.
 
 ```jsx
 () => {
@@ -233,7 +233,7 @@ Standalone badges can be used next to other elements, instead of wrapping them. 
     },
     {
       name: 'variant',
-      types: ['primary', 'secondary', 'error', 'info', 'success', 'warning'],
+      types: ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'],
       description: 'The background and font color variant of the component. Supports theme palette properties. Do not use with backgroundColor or fontColor.',
     },
     {

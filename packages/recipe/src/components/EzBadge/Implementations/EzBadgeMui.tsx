@@ -2,15 +2,6 @@ import React, {forwardRef} from 'react';
 import {Badge} from '@mui/material';
 import {EzBadgeProps, Ref} from '../EzBadge.types';
 
-const COLOR_MAP = {
-  primary: 'primary',
-  secondary: 'secondary',
-  error: 'error',
-  info: 'info',
-  success: 'success',
-  warning: 'warning',
-};
-
 const isCommonColor = color => color?.startsWith('common.');
 
 const EzBadgeMui = forwardRef<Ref, EzBadgeProps>(
@@ -34,7 +25,7 @@ const EzBadgeMui = forwardRef<Ref, EzBadgeProps>(
     return (
       <Badge
         ref={ref}
-        color={COLOR_MAP[variant]}
+        color={variant}
         badgeContent={value}
         invisible={hide}
         showZero={showZero}
