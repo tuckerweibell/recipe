@@ -32,11 +32,9 @@ Out of the box, badges have a background color of `common.alert100` and font col
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" variant="primary">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" variant="primary">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -50,11 +48,9 @@ To use colors outside the variant options, provide a theme color to `backgroundC
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" backgroundColor="common.blue100" fontColor="common.neutral100">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" backgroundColor="common.blue100" fontColor="common.neutral100">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -68,11 +64,9 @@ Badges can optionally be hidden with `hide`. The default is `false`.
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" hide>
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" hide>
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -86,11 +80,9 @@ Badges can optionally be minimized with `minimize`, and will appear as a dot. Th
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" minimize>
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" minimize>
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -104,11 +96,9 @@ To show a badge when the value is zero, use `showZero`. The default is `false`.
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="0" showZero>
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="0" showZero>
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -122,11 +112,9 @@ To cap the value of a badge, provide a numerical `max` value. The default is `99
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="100">
-        <EzIcon icon={shoppingCart} max={99} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="100">
+      <EzIcon icon={shoppingCart} max={99} />
+    </EzBadge>
   );
 };
 ```
@@ -144,11 +132,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" alignX="left">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" alignX="left">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -160,11 +146,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" alignY="bottom">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" alignY="bottom">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -176,11 +160,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
-    <EzPage>
-      <EzBadge value="3" overlap="circular">
-        <EzIcon icon={faCircle} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" overlap="circular">
+      <EzIcon icon={faCircle} />
+    </EzBadge>
   );
 };
 ```
@@ -190,11 +172,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
-    <EzPage>
-      <EzBadge value="3" overlap="circular" minimize>
-        <EzIcon icon={faCircle} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" overlap="circular" minimize>
+      <EzIcon icon={faCircle} />
+    </EzBadge>
   );
 };
 ```
@@ -206,11 +186,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" overlap="rectangular">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" overlap="rectangular">
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -220,11 +198,9 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <EzBadge value="3" overlap="rectangular" minimize>
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </EzPage>
+    <EzBadge value="3" overlap="rectangular" minimize>
+      <EzIcon icon={shoppingCart} />
+    </EzBadge>
   );
 };
 ```
@@ -238,13 +214,11 @@ Badges should be wrapped in accessible element with a proper `aria-label` to be 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <span aria-label="3 items in cart">
-        <EzBadge value="3">
-          <EzIcon icon={shoppingCart} />
-        </EzBadge>
-      </span>
-    </EzPage>
+    <span aria-label="3 items in cart">
+      <EzBadge value="3">
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </span>
   );
 };
 ```
@@ -258,16 +232,14 @@ Standalone badges can be used next to other elements, instead of wrapping them. 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzPage>
-      <div aria-label="View orders - 3 items in cart">
-        <EzLayout layout="split">
-          <EzLink>
-            <a href="/orders">View Orders</a>
-          </EzLink>
-          <EzBadge value="3" color="primary" />
-        </EzLayout>
-      </div>
-    </EzPage>
+    <div aria-label="View orders - 3 items in cart">
+      <EzLayout layout="split">
+        <EzLink>
+          <a href="/orders">View Orders</a>
+        </EzLink>
+        <EzBadge value="3" color="primary" />
+      </EzLayout>
+    </div>
   );
 };
 ```
