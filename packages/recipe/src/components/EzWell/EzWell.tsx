@@ -37,6 +37,7 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
         borderRadius: '4px',
         textAlign: 'start',
         width: '100%',
+        minWidth: '160px',
       }}
     >
       {children}
