@@ -54,7 +54,7 @@ To use colors outside the variant options, provide a theme color to `backgroundC
       <EzBadge value="3" backgroundColor="common.blue100" fontColor="common.neutral100">
         <EzIcon icon={shoppingCart} />
       </EzBadge>
-    <EzPage>
+    </EzPage>
   );
 };
 ```
