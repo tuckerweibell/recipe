@@ -173,12 +173,12 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
 
 ```jsx
 () => {
-  const {fullCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
+  const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
     <EzPage>
       <EzBadge value="3" overlap="circular">
-        <EzIcon icon={fullCircle} />
+        <EzIcon icon={faCircle} />
       </EzBadge>
     </EzPage>
   );
@@ -187,12 +187,12 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
 
 ```jsx
 () => {
-  const {fullCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
+  const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
     <EzPage>
       <EzBadge value="3" overlap="circular" minimize>
-        <EzIcon icon={fullCircle} />
+        <EzIcon icon={faCircle} />
       </EzBadge>
     </EzPage>
   );

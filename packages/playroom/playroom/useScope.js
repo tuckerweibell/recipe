@@ -1,6 +1,7 @@
 import {useRef, useEffect, useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {
+  MOCK_ICON_FA_CART_SHOPPING,
   MOCK_ICON_FA_CIRCLE,
   MOCK_ICON_FA_COFFEE,
   MOCK_ICON_FA_EMPTY_STAR,
@@ -38,6 +39,7 @@ export default () => ({
         faCoffee: MOCK_ICON_FA_COFFEE,
         fullStar: MOCK_ICON_FA_FULL_STAR,
         halfStar: MOCK_ICON_FA_HALF_STAR,
+        shoppingCart: MOCK_ICON_FA_CART_SHOPPING,
       };
     }
     if (moduleName === '@ezcater/icons') {

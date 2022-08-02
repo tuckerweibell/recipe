@@ -19,7 +19,6 @@ import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/fa
 import {faStar as emptyStar} from '@fortawesome/free-regular-svg-icons/faStar';
 import {Coffee, Fries, Pizza, Ramen, WaterGlass, WineGlass} from '@ezcater/icons';
 import {faCartShopping as shoppingCart} from '@fortawesome/free-solid-svg-icons/faCartShopping';
-import {faCircle as fullCircle} from '@fortawesome/free-solid-svg-icons/faCircle';
 import {Pizza, Fries, Ramen} from '@ezcater/icons';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';

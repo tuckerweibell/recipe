@@ -6,6 +6,8 @@ import Open from '../src/components/EzField/Open';
 import ezCaterLogoPath from '../../../docs/src/ezcater-logo.svg';
 import {Global, css} from '../src/styles';
 import {
+  MOCK_ICON_FA_CART_SHOPPING,
+  MOCK_ICON_FA_CIRCLE,
   MOCK_ICON_FA_COFFEE,
   MOCK_ICON_FA_EMPTY_STAR,
   MOCK_ICON_FA_FULL_STAR,
@@ -50,9 +52,11 @@ const scope: any = {
       BrowserRouter: typeof window === 'undefined' ? StaticRouterWithProps : BrowserRouter,
       Route,
       emptyStar: MOCK_ICON_FA_EMPTY_STAR,
+      faCircle: MOCK_ICON_FA_CIRCLE,
       faCoffee: MOCK_ICON_FA_COFFEE,
       fullStar: MOCK_ICON_FA_FULL_STAR,
       halfStar: MOCK_ICON_FA_HALF_STAR,
+      shoppingCart: MOCK_ICON_FA_CART_SHOPPING,
       Coffee: MOCK_ICON_COFFEE,
       Fries: MOCK_ICON_FRIES,
       Pizza: MOCK_ICON_PIZZA,
