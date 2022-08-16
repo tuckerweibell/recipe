@@ -9,6 +9,7 @@ export {default as EzCheckbox} from './EzCheckbox';
 export {default as EzChip} from './EzChip';
 export {default as EzField} from './EzField';
 export {default as EzFlashMessage} from './EzFlashMessage';
+export {default as EzFormControl, useFormControl} from './EzFormControl';
 export {default as EzFormLayout} from './EzFormLayout';
 export {default as EzGlobalStyles} from './EzGlobalStyles';
 export {default as EzHeading} from './EzHeading';
