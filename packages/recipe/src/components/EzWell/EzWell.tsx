@@ -1,5 +1,5 @@
 import React, {forwardRef, Ref, ReactNode, HTMLAttributes} from 'react';
-import {Stack} from '@mui/material';
+import {Box} from '@mui/material';
 import {filterDOMProps} from '../EzField/filterDOMProps';
 
 type ariaKeys = 'aria-label' | 'aria-labelledby';
@@ -24,7 +24,7 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
     console.warn('A labelled Well must have a role.');
 
   return (
-    <Stack
+    <Box
       {...filterDOMProps(otherProps, {
         propNames: new Set(['id', 'className']),
       })}
@@ -37,11 +37,10 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
         borderRadius: '4px',
         textAlign: 'start',
         minWidth: '160px',
-        display: 'block',
       }}
     >
       {children}
-    </Stack>
+    </Box>
   );
 }
 
