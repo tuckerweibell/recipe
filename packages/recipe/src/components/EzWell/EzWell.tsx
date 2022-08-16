@@ -33,7 +33,7 @@ function Well(props: Props, ref: Ref<HTMLDivElement>) {
       p="20px"
       sx={{
         bgcolor: 'rgba(75, 75, 75, 0.02)',
-        border: '1px solid rgba(44,44,44,0.05)',
+        border: '1px solid rgba(44, 44, 44, 0.05)',
         borderRadius: '4px',
         textAlign: 'start',
         minWidth: '160px',
