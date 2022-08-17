@@ -11,6 +11,7 @@ export {default as EzChip} from './EzChip';
 export {default as EzField} from './EzField';
 export {default as EzFlashMessage} from './EzFlashMessage';
 export {default as EzFormControl, useFormControl} from './EzFormControl';
+export {default as EzFormControlLabel} from './EzFormControlLabel';
 export {default as EzFormLabel} from './EzFormLabel';
 export {default as EzFormLayout} from './EzFormLayout';
 export {default as EzGlobalStyles} from './EzGlobalStyles';
