@@ -733,7 +733,7 @@ const stitches = createStitches({
       'page-content-gap': '$150',
       'page-heading-mb': '$150',
       'page-heading-ml': '$150',
-      'page-px': '0',
+      'page-px': '$200',
       'page-py': '$200',
       'page-md-content-gap': '$300',
       'page-md-px': '$400',
