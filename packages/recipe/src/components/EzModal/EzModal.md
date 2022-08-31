@@ -19,6 +19,7 @@ Modals should:
 Modals should not:
 
 - Create a “wizard” flow with two or more steps. Instead, favor full-page layouts for “wizard” style flows.
+- Use custom z-indices. See more about layering in our [theming guide](/guides/theming/#layering).
 
 ---
 

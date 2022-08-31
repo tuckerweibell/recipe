@@ -108,8 +108,7 @@ In the case that you cannot find what you need from Font Awesome or ezCater icon
 
 ### Icon color
 
-By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.primary100`).
-
+By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.primary100`).
 
 ```jsx
 () => {

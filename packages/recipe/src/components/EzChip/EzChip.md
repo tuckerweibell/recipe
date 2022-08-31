@@ -74,7 +74,7 @@ Chips with an `onDelete` prop defined will display a delete icon which changes a
 
 ### Chip Colors
 
-EzChip supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.neutral130`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+EzChip supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.neutral130`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 ```jsx
 <EzLayout>

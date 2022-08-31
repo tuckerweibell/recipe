@@ -22,6 +22,7 @@ const overlay = theme.css({
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '$modal-overlay-bg',
+  zIndex: '$modal-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
 });
 
 const dialog = theme.css({

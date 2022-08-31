@@ -20,7 +20,7 @@ Recipe defines and makes accessible the following supported themes:
 - `ezMarketplaceTheme` - extends `ezTheme`
 - `ezFulfillmentTheme` - extends `ezTheme`
 
-To learn more about how to use and extend these themes, read our Getting Started section on [Recipe Themes](http://localhost:8000/guides/getting-started/#recipe-themes).
+To learn more about how to use and extend these themes, read our Getting Started section on [Recipe Themes](/guides/getting-started/#recipe-themes).
 
 ---
 
@@ -93,5 +93,17 @@ Recipe supports the following set of design tokens for typography:
     <pre>small: 16px</pre>
     <pre>medium: 24px</pre>
     <pre>large: 32px</pre>
+  </>
+```
+
+## Layering
+
+Recipe uses z-indices sparingly, as this can cause maintenance issues with [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) within Recipe and in downstream applications. In some cases, we carefully use z-index values to properly layer components like modals. Recipe mirrors the [MUI z-index values](https://mui.com/material-ui/customization/z-index/) to avoid conflicts with components that were implemented with MUI. While you can override the z-indices, it is discouraged because it will likely have cascading effects.
+
+Our currently specified z-indices:
+
+```jsx-hide-controls
+  <>
+    <pre>EzModal: 1300</pre>
   </>
 ```

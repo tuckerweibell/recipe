@@ -283,6 +283,7 @@ const stitches = createStitches({
       'modal-footer-bg': '$gray200',
       'modal-overlay-bg': 'rgba(0, 0, 0, 0.6)',
       'modal-border': '$gray300',
+      'modal-z-index': '$modal-z',
 
       // EzNavigation
       'nav-bg': 'linear-gradient(60deg, #1b2023 0%, #373d43 100%)',
@@ -838,6 +839,7 @@ const stitches = createStitches({
     zIndices: {
       // Icons
       'icon-inset-z1': 1,
+      'modal-z': 1300, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
     },
   },
   utils: {
