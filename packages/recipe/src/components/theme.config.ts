@@ -245,6 +245,9 @@ const stitches = createStitches({
       'checkbox-bg-down': '$gray300',
       'checkbox-bg-disabled': '$gray200',
 
+      // EzDateInput
+      'date-input-z-index': '$date-input-z',
+
       // EzFlashMessage
       'flash-message-bg-success': '$green200',
       'flash-message-border-success': '$green500',
@@ -840,6 +843,7 @@ const stitches = createStitches({
       // Icons
       'icon-inset-z1': 1,
       'modal-z': 1300, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+      'date-input-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
     },
   },
   utils: {

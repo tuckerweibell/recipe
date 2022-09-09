@@ -17,6 +17,10 @@ const layout = theme.css({
   input: {paddingLeft: '2.5em'},
 });
 
+const popper = theme.css({
+  zIndex: '$date-input-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+});
+
 const calendarPopup = theme.css({
   position: 'relative',
   padding: '$150',
@@ -129,6 +133,7 @@ const EzDateInput = ({
           placement="bottom-start"
           shouldCloseOnBlur
           onClose={close}
+          className={popper()}
         >
           <FocusScope contain restoreFocus>
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}

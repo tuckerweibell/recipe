@@ -50,6 +50,10 @@ Form fields should:
 - Be clearly labelled. When the field's purpose is clear from context, a label should be visually hidden to ensure the label is available for screen readers.
 - Validate input as soon as possible, usually when users have finished interacting with the field. For validation that may take some time to evaluate, defer validation until form submission.
 
+Form fields should not:
+
+- Use custom z-indices. See more about layering in our [theming guide](/guides/theming/#layering).
+
 ---
 
 ## Content guidelines

@@ -105,5 +105,6 @@ Our currently specified z-indices:
 ```jsx-hide-controls
   <>
     <pre>EzModal: 1300</pre>
+    <pre>EzDateInput: 1350</pre>
   </>
 ```
