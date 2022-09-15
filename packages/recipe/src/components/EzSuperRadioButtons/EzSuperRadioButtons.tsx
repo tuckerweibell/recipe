@@ -1,4 +1,5 @@
 import React, {forwardRef, Fragment} from 'react';
+import warning from 'tiny-warning';
 import theme from '../theme.config';
 import EzRadioButton from '../EzRadioButton';
 import {EzSuperRadioButtonsProps} from './EzSuperRadioButtons.types';
@@ -102,6 +103,10 @@ const button = theme.css({
 
 const EzSuperRadioButtons = forwardRef<HTMLDivElement, EzSuperRadioButtonsProps>(
   ({options, label, value, onChange}, ref) => {
+    warning(
+      false,
+      '*Deprecated*. EzSuperRadioButtons has been deprecated and will be removed in a future version of Recipe. Use EzRadio instead.'
+    );
     const id = useUniqueId();
     return (
       <div className={group()} ref={ref} role="radiogroup" aria-labelledby={`radiogroup-${id}`}>

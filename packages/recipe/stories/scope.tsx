@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {fireEvent} from '@storybook/testing-library';
 import * as Components from '../src';
@@ -7,12 +7,15 @@ import ezCaterLogoPath from '../../../docs/src/ezcater-logo.svg';
 import {Global, css} from '../src/styles';
 import {
   MOCK_ICON_FA_COFFEE,
+  MOCK_ICON_FA_EMPTY_STAR,
   MOCK_ICON_FA_FULL_STAR,
   MOCK_ICON_FA_HALF_STAR,
-  MOCK_ICON_FA_EMPTY_STAR,
-  MOCK_ICON_PIZZA,
+  MOCK_ICON_COFFEE,
   MOCK_ICON_FRIES,
+  MOCK_ICON_PIZZA,
   MOCK_ICON_RAMEN,
+  MOCK_ICON_WATER_GLASS,
+  MOCK_ICON_WINE_GLASS,
 } from '../src/components/EzIcon/EzIconMocks';
 import Placeholder from '../src/components/utils/Placeholder';
 
@@ -35,6 +38,7 @@ const StaticRouterWithProps = ({children}) => (
 // if and when migrate our docs to MDX format instead of standard markdown
 const scope: any = {
   ...Components,
+  useState,
   Open,
   fireEvent,
   css,
@@ -45,13 +49,16 @@ const scope: any = {
       NavLink,
       BrowserRouter: typeof window === 'undefined' ? StaticRouterWithProps : BrowserRouter,
       Route,
+      emptyStar: MOCK_ICON_FA_EMPTY_STAR,
       faCoffee: MOCK_ICON_FA_COFFEE,
       fullStar: MOCK_ICON_FA_FULL_STAR,
       halfStar: MOCK_ICON_FA_HALF_STAR,
-      emptyStar: MOCK_ICON_FA_EMPTY_STAR,
-      Pizza: MOCK_ICON_PIZZA,
+      Coffee: MOCK_ICON_COFFEE,
       Fries: MOCK_ICON_FRIES,
+      Pizza: MOCK_ICON_PIZZA,
       Ramen: MOCK_ICON_RAMEN,
+      WaterGlass: MOCK_ICON_WATER_GLASS,
+      WineGlass: MOCK_ICON_WINE_GLASS,
     };
   },
   ezCaterLogoPath,

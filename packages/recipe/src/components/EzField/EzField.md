@@ -169,6 +169,14 @@ Allows the user to input email values.
 
 ### Multiple choice input field
 
+<EzAlert
+  headline="Deprecation Warning"
+  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v16. You can create radio buttons and radio groups with EzRadio.'
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
+
 Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.
 
 Use the `options` prop to provide an array of options for selection. Each option requires a `label` and a `value`. Options may optionally be `disabled` where necessary.
@@ -264,6 +272,14 @@ If presenting additional `<EzField>` elements to capture information about the u
 ```
 
 ### Bordered multiple choice input
+
+<EzAlert
+  headline="Deprecation Warning"
+  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v16. You can create radio buttons and radio groups with EzRadio.'
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
 
 Bordered multiple choice inputs should be used to present side-by-side options, typically used when a form requires the user to choose from a short list of options.
 

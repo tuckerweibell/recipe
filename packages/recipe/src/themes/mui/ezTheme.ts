@@ -35,6 +35,13 @@ declare module '@mui/material/styles/createTypography' {
   }
 }
 
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
+    alert: true;
+    neutral: true;
+  }
+}
+
 declare module '@mui/material/Chip' {
   interface ChipPropsColorOverrides {
     alert: true;

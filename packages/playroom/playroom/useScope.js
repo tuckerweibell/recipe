@@ -1,14 +1,17 @@
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {
   MOCK_ICON_FA_CIRCLE,
   MOCK_ICON_FA_COFFEE,
+  MOCK_ICON_FA_EMPTY_STAR,
   MOCK_ICON_FA_FULL_STAR,
   MOCK_ICON_FA_HALF_STAR,
-  MOCK_ICON_FA_EMPTY_STAR,
-  MOCK_ICON_PIZZA,
+  MOCK_ICON_COFFEE,
   MOCK_ICON_FRIES,
+  MOCK_ICON_PIZZA,
   MOCK_ICON_RAMEN,
+  MOCK_ICON_WATER_GLASS,
+  MOCK_ICON_WINE_GLASS,
 } from '../../recipe/src/components/EzIcon/EzIconMocks';
 import Placeholder from '../../recipe/src/components/utils/Placeholder';
 
@@ -20,6 +23,7 @@ export default () => ({
   ezCaterLogoPath,
   useRef,
   useEffect,
+  useState,
   require: moduleName => {
     // fake out calls to `require('react-router-dom')` and icon libraries within our .md examples.
     if (moduleName === 'react-router-dom')
@@ -29,18 +33,21 @@ export default () => ({
       moduleName.includes('@fortawesome/free-regular-svg-icons')
     ) {
       return {
+        emptyStar: MOCK_ICON_FA_EMPTY_STAR,
         faCircle: MOCK_ICON_FA_CIRCLE,
         faCoffee: MOCK_ICON_FA_COFFEE,
         fullStar: MOCK_ICON_FA_FULL_STAR,
         halfStar: MOCK_ICON_FA_HALF_STAR,
-        emptyStar: MOCK_ICON_FA_EMPTY_STAR,
       };
     }
     if (moduleName === '@ezcater/icons') {
       return {
-        Pizza: MOCK_ICON_PIZZA,
+        Coffee: MOCK_ICON_COFFEE,
         Fries: MOCK_ICON_FRIES,
+        Pizza: MOCK_ICON_PIZZA,
         Ramen: MOCK_ICON_RAMEN,
+        WaterGlass: MOCK_ICON_WATER_GLASS,
+        WineGlass: MOCK_ICON_WINE_GLASS,
       };
     }
     throw new Error('Cannot use require from a browser context.');

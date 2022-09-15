@@ -1,10 +1,10 @@
-import {Radio} from '@mui/material';
 import React, {ComponentProps, FC} from 'react';
 import {axe, render} from '../../../../test-utils';
+import EzRadio from '../../EzRadio';
 import EzFormControlLabel from '../index';
 
 const Component: FC<Partial<ComponentProps<typeof EzFormControlLabel>>> = props => (
-  <EzFormControlLabel label="test" control={<Radio />} {...props} />
+  <EzFormControlLabel control={<EzRadio />} disabled={false} label="test" value="" {...props} />
 );
 
 describe('EzFormControlLabel', () => {

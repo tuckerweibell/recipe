@@ -3,12 +3,10 @@ import {EzIconTypes} from '../EzIcon/EzIcon.types';
 
 export type Ref = HTMLDivElement;
 
-export interface EzFormControlLabelProps {
+export interface EzSuperFormControlLabelProps {
   control: ReactElement<any, any>;
   disabled?: boolean;
-  helperText?: string;
   icon?: EzIconTypes;
   label: ReactNode;
-  labelIcons?: EzIconTypes[];
   value: any;
 }

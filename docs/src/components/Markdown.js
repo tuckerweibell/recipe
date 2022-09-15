@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Global, css} from '@emotion/react';
 import styled from '@emotion/styled';
 import {graphql} from 'gatsby';
 import * as Components from '@ezcater/recipe';
-import PropsTable from '../../../packages/recipe/src/components/utils/PropsTable'
+import PropsTable from '../../../packages/recipe/src/components/utils/PropsTable';
 import {withPrefix} from 'gatsby-link';
 import {SvgIcon} from '@mui/material';
 import ComponentGrid from './ComponentGrid';
@@ -17,7 +17,7 @@ import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
 import {faStar as fullStar} from '@fortawesome/free-solid-svg-icons/faStar';
 import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/faStarHalfStroke';
 import {faStar as emptyStar} from '@fortawesome/free-regular-svg-icons/faStar';
-import {Pizza, Fries, Ramen} from '@ezcater/icons';
+import {Coffee, Fries, Pizza, Ramen, WaterGlass, WineGlass} from '@ezcater/icons';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
 import Playground from './Playground';
@@ -113,19 +113,26 @@ const scope = {
         ? ({children}) => React.createElement(StaticRouter, {context: {}, location: '/', children})
         : BrowserRouter,
     Route,
+    // font awesome icons
     faCircle,
     faCoffee,
     emptyStar,
     halfStar,
     fullStar,
-    Pizza,
+    // ezCater icons
+    Coffee,
     Fries,
+    Pizza,
     Ramen,
+    WaterGlass,
+    WineGlass,
+    // svg icons
     SvgIcon,
   }),
   ezCaterLogoPath,
   withPrefix,
   Placeholder,
+  useState,
 };
 
 const splitOnTagName = (list, tagName) => {

@@ -6,6 +6,16 @@ path: '/components/ez-super-radio-buttons'
 tags: ['radio']
 ---
 
+<EzAlert
+  headline="Deprecation Warning"
+  tagline="EzSuperRadioButtons is deprecated as of v15 and will be removed in v16. Super Radio Buttons can be used with EzRadio."
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-radio/#super-radio-buttons">EzRadio Super Radio Buttons</a></EzLink>
+
+---
+
 Super radio buttons can be used to highlight an important choice between multiple options that the user needs to make. This control lives outside of a form
 
 ---

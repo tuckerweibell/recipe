@@ -1,15 +1,16 @@
 import {CommonColors} from '@mui/material/styles/createPalette';
 import {EzPalette} from './ezColors';
 
-type PaletteOptions =
+export type PaletteOptions =
+  | 'alert'
   | 'default'
+  | 'error'
+  | 'info'
+  | 'neutral'
   | 'primary'
   | 'secondary'
-  | 'error'
-  | 'warning'
-  | 'info'
   | 'success'
-  | 'alert';
+  | 'warning';
 
 export type EzThemeCommonColors = `common.${keyof EzPalette}` | `common.${keyof CommonColors}`;
 export type EzThemeColors = PaletteOptions | EzThemeCommonColors | 'inherit';

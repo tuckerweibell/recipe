@@ -3,7 +3,7 @@ import {axe, render} from '../../../../test-utils';
 import EzFormLabel from '../index';
 
 const Component: FC<Partial<ComponentProps<typeof EzFormLabel>>> = ({children}) => (
-  <EzFormLabel>{children}</EzFormLabel>
+  <EzFormLabel id="test">{children}</EzFormLabel>
 );
 
 describe('EzFormLabel', () => {

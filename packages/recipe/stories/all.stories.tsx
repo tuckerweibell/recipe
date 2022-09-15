@@ -27,6 +27,9 @@ const filenameIgnore = [
   './EzThemeProvider/EzThemeProvider.md',
 ];
 
+// list story names here that should be ignored
+const storiesIgnore = ['Props'];
+
 // @see https://www.chromatic.com/docs/threshold
 const getThreshold = storyName => {
   switch (storyName) {
@@ -67,6 +70,7 @@ Object.keys(allStories)
     docs.examples.forEach(
       example =>
         example.name &&
+        !storiesIgnore.includes(example.name) &&
         stories.add(example.name, () => example.component(), {
           parameters: {
             chromatic: {

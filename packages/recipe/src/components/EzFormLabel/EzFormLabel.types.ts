@@ -4,4 +4,5 @@ export type Ref = HTMLLabelElement;
 
 export interface EzFormLabelProps {
   children: ReactNode;
+  id: string;
 }

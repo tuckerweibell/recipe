@@ -2,11 +2,13 @@ import React, {forwardRef} from 'react';
 import {RadioGroup} from '@mui/material';
 import type {EzRadioGroupProps, Ref} from '../EzRadioGroup.types';
 
-const EzRadioGroupMui = forwardRef<Ref, EzRadioGroupProps>(({children, ...props}, ref) => (
-  <RadioGroup {...props} ref={ref}>
-    {children}
-  </RadioGroup>
-));
+const EzRadioGroupMui = forwardRef<Ref, EzRadioGroupProps>(
+  ({ariaLabel, children, ...props}, ref) => (
+    <RadioGroup ref={ref} aria-label={ariaLabel} {...props}>
+      {children}
+    </RadioGroup>
+  )
+);
 
 EzRadioGroupMui.displayName = 'EzRadioGroupMui';
 
