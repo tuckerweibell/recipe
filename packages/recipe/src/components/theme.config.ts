@@ -840,7 +840,6 @@ const stitches = createStitches({
       'footer-button': '$sm',
     },
     zIndices: {
-      // Icons
       'icon-inset-z1': 1,
       'modal-z': 1300, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
       'date-input-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui

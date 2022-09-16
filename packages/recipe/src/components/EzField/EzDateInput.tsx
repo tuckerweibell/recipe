@@ -18,7 +18,7 @@ const layout = theme.css({
 });
 
 const popper = theme.css({
-  zIndex: '$date-input-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+  zIndex: '$date-input-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert date inputs to mui
 });
 
 const calendarPopup = theme.css({
