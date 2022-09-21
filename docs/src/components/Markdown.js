@@ -119,7 +119,6 @@ const scope = {
     faCoffee,
     emptyStar,
     halfStar,
-    fullCircle,
     fullStar,
     shoppingCart,
     // ezCater icons
