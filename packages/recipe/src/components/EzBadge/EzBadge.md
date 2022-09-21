@@ -12,10 +12,10 @@ Badges indicate notifications or events that are relevant and relatively close t
 
 ## Best Practices
 
-- Badges convey information about notifications or events
-- Badges appear very close to, often overlapping, the element that they are describing
-- Badges should make it easy to understand the presence of notifications or events, encouraging action to be taken on the element the badge describes
-- Badges should always be wrapped in accessible element with a proper `aria-label` to be read by screenreaders, the wrapping element will depend on the context with which you use the badge (see below for examples)
+- Badges convey information about notifications or events.
+- Badges appear very close to, often overlapping, the element that they are describing.
+- Badges should make it easy to understand the presence of notifications or events, encouraging action to be taken on the element the badge describes.
+- Badges should always be wrapped in an accessible element with a proper `aria-label` to be read by screenreaders. The wrapping element will depend on the context with which you use the badge (see below for examples).
 
 ---
 
@@ -25,32 +25,59 @@ Badges indicate notifications or events that are relevant and relatively close t
 
 Badges always require a `value`.
 
-Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Available theme variants: `default`, `primary`, `secondary`, `error`, `info`, `success`, and `warning`.
-
 ```jsx
 () => {
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" variant="primary">
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={3}>
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
 
 ### Badge Colors
 
-To use colors outside the variant options, provide a theme color to `backgroundColor` and `fontColor`. Ensure the contrast between the two is appropriate, consult with a designer if needed. Do not provide `variant` with `backgroundColor` and `fontColor`.
+EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.red100`).
+
+Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 ```jsx
 () => {
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" backgroundColor="common.blue100" fontColor="common.neutral100">
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzLayout>
+        <EzBadge value={3} color="primary">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="secondary">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="error">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="warning">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="alert">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="info">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="success">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} color="common.red100">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+      </EzLayout>
+    </EzPage>
   );
 };
 ```
@@ -64,9 +91,11 @@ Badges can optionally be hidden with `hide`. The default is `false`.
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" hide>
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={3} hide>
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
@@ -80,25 +109,29 @@ Badges can optionally be minimized with `minimize`, and will appear as a dot. Th
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" minimize>
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={3} minimize>
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
 
 ### Zero-value Badges
 
-To show a badge when the value is zero, use `showZero`. The default is `false`.
+By default, badges will automatically hide when the value is `0`. You can override this with the `showZero` prop, which defaults to `false`.
 
 ```jsx
 () => {
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="0" showZero>
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={0} showZero>
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
@@ -112,9 +145,11 @@ To cap the value of a badge, provide a numerical `max` value. The default is `99
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="100">
-      <EzIcon icon={shoppingCart} max={99} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={100} max={99}>
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
@@ -132,9 +167,11 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" alignX="left">
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={3} alignX="left">
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
@@ -146,9 +183,11 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" alignY="bottom">
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
+    <EzPage>
+      <EzBadge value={3} alignY="bottom">
+        <EzIcon icon={shoppingCart} />
+      </EzBadge>
+    </EzPage>
   );
 };
 ```
@@ -160,21 +199,16 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
 
   return (
-    <EzBadge value="3" overlap="circular">
-      <EzIcon icon={faCircle} />
-    </EzBadge>
-  );
-};
-```
-
-```jsx
-() => {
-  const {faCircle} = require('@fortawesome/free-solid-svg-icons/faCircle');
-
-  return (
-    <EzBadge value="3" overlap="circular" minimize>
-      <EzIcon icon={faCircle} />
-    </EzBadge>
+    <EzPage>
+      <EzLayout>
+        <EzBadge value={3} overlap="circular">
+          <EzIcon icon={faCircle} />
+        </EzBadge>
+        <EzBadge value={3} overlap="circular" minimize>
+          <EzIcon icon={faCircle} />
+        </EzBadge>
+      </EzLayout>
+    </EzPage>
   );
 };
 ```
@@ -186,39 +220,16 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <EzBadge value="3" overlap="rectangular">
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
-  );
-};
-```
-
-```jsx
-() => {
-  const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
-
-  return (
-    <EzBadge value="3" overlap="rectangular" minimize>
-      <EzIcon icon={shoppingCart} />
-    </EzBadge>
-  );
-};
-```
-
-### Accessibility
-
-Badges should be wrapped in accessible element with a proper `aria-label` to be read by screenreaders, the wrapping element will depend on the context with which you use the badge.
-
-```jsx
-() => {
-  const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
-
-  return (
-    <span aria-label="3 items in cart">
-      <EzBadge value="3">
-        <EzIcon icon={shoppingCart} />
-      </EzBadge>
-    </span>
+    <EzPage>
+      <EzLayout>
+        <EzBadge value={3} overlap="rectangular">
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+        <EzBadge value={3} overlap="rectangular" minimize>
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+      </EzLayout>
+    </EzPage>
   );
 };
 ```
@@ -232,17 +243,45 @@ Standalone badges can be used next to other elements, instead of wrapping them. 
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
 
   return (
-    <div aria-label="View orders - 3 items in cart">
-      <EzLayout layout="split">
-        <EzLink>
-          <a href="/orders">View Orders</a>
-        </EzLink>
-        <EzBadge value="3" color="primary" />
-      </EzLayout>
-    </div>
+    <EzPage>
+      <div aria-label="View orders - 3 items in cart">
+        <EzLayout layout="split">
+          <EzLink>
+            <a href="/orders">View Orders</a>
+          </EzLink>
+          <EzBadge value={3} />
+        </EzLayout>
+      </div>
+    </EzPage>
   );
 };
 ```
+
+### Accessibility
+
+Badges should be wrapped in an accessible element with a proper `aria-label` to be read by screenreaders. The wrapping element will depend on the context with which you use the badge.
+
+```jsx
+() => {
+  const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');
+
+  return (
+    <EzPage>
+      <span aria-label="3 items in cart">
+        <EzBadge value={3}>
+          <EzIcon icon={shoppingCart} />
+        </EzBadge>
+      </span>
+    </EzPage>
+  );
+};
+```
+
+---
+
+## Custom Styles
+
+Supported styles should be used, but if you need to overwrite styles for the badge or dot, you can do so using provided class names (`EzBadge`, `EzBadge-badge`, and `EzBadge-dot`).
 
 ---
 
@@ -254,47 +293,6 @@ Standalone badges can be used next to other elements, instead of wrapping them. 
       name: 'value*',
       types: ['node'],
       description: 'The content inside the badge.',
-    },
-    {
-      name: 'variant',
-      types: ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'],
-      description: 'The background and font color variant of the component. Supports theme palette properties. Do not use with backgroundColor or fontColor.',
-    },
-    {
-      name: 'backgroundColor',
-      types: ['EzThemeColors'],
-      defaultValue: 'common.alert100',
-      description: 'The background of the component. Supports theme palette colors. Do not use with variant',
-    },
-    {
-      name: 'fontColor',
-      types: ['EzThemeColors'],
-      defaultValue: 'common.neutral100',
-      description: 'The font color of the component. Supports theme palette colors. Do not use with variant.',
-    },
-    {
-      name: 'hide',
-      types: ['boolean'],
-      defaultValue: 'false',
-      description: 'Optionally hide the badge.',
-    },
-    {
-      name: 'showZero',
-      types: ['boolean'],
-      defaultValue: 'false',
-      description: 'Optionally show the badge when value is 0.',
-    },
-    {
-      name: 'max',
-      types: ['number'],
-      defaultValue: '99',
-      description: 'Cap the badge content value at the max value. For example, if the value is 100 and the max is 99, the display value will be 99+.',
-    },
-    {
-      name: 'minimize',
-      types: ['boolean'],
-      defaultValue: 'false',
-      description: 'Minimize the badge. The badge will appear as a smaller dot, without interior content.',
     },
     {
       name: 'alignX',
@@ -309,15 +307,45 @@ Standalone badges can be used next to other elements, instead of wrapping them. 
       description: 'Vertical alignment of the badge relative to its wrapped element.',
     },
     {
+      name: 'children',
+      types: ['node'],
+      description: 'The content that the badge wraps.',
+    },
+    {
+      name: 'color',
+      types: ['EzThemeColors'],
+      defaultValue: 'error',
+      description: 'The color of the component. Supports theme palette properties and colors.',
+    },
+    {
+      name: 'hide',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'Optionally hide the badge.',
+    },
+    {
+      name: 'max',
+      types: ['number'],
+      defaultValue: '99',
+      description: 'Cap the badge content value at the max value. For example, if the value is 100 and the max is 99, the display value will be 99+.',
+    },
+    {
+      name: 'minimize',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'Minimize the badge. The badge will appear as a smaller dot, without interior content.',
+    },
+    {
       name: 'overlap',
       types: ['circular', 'rectangular'],
       defaultValue: 'rectangular',
       description: 'The wrapped shape the badge overlaps.',
     },
-     {
-      name: 'children',
-      types: ['node'],
-      description: 'The content that the badge wraps.',
+    {
+      name: 'showZero',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'Optionally show the badge when value is 0.',
     },
   ]}>
   </PropsTable>

@@ -34,9 +34,8 @@ declare module '@mui/material/styles/createTypography' {
     };
   }
 }
-
-declare module '@mui/material/Radio' {
-  interface RadioPropsColorOverrides {
+declare module '@mui/material/Badge' {
+  interface BadgePropsColorOverrides {
     alert: true;
     neutral: true;
   }
@@ -44,6 +43,13 @@ declare module '@mui/material/Radio' {
 
 declare module '@mui/material/Chip' {
   interface ChipPropsColorOverrides {
+    alert: true;
+    neutral: true;
+  }
+}
+
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
     alert: true;
     neutral: true;
   }
@@ -83,10 +89,10 @@ const palette: EzPaletteOptions = {
     contrastText: ezPalette.neutral100,
   },
   warning: {
-    main: ezPalette.warning110,
+    main: ezPalette.warning100,
     light: ezPalette.warning90,
     dark: darken(ezPalette.warning110, 0.1),
-    contrastText: ezPalette.neutral100,
+    contrastText: ezPalette.neutral170,
   },
   info: {
     main: ezPalette.blue100,
@@ -157,7 +163,7 @@ const getStatusChipStyles = themeProp => {
       },
     },
     '& .MuiChip-deleteIcon': {
-      color: palette[themeProp].main,
+      color: themeProp === 'warning' ? palette[themeProp].dark : palette[themeProp].main,
       '&:hover': {
         color: palette.common.black,
       },

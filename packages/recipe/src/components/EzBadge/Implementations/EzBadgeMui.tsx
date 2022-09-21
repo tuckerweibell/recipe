@@ -1,47 +1,37 @@
 import React, {forwardRef} from 'react';
 import {Badge} from '@mui/material';
 import {EzBadgeProps, Ref} from '../EzBadge.types';
-
-const isCommonColor = color => color?.startsWith('common.');
+import {PaletteOptions} from '../../../themes/themes.types';
 
 const EzBadgeMui = forwardRef<Ref, EzBadgeProps>(
-  (
-    {
-      value,
-      variant,
-      backgroundColor,
-      fontColor,
-      hide,
-      showZero,
-      max,
-      minimize,
-      alignX,
-      alignY,
-      overlap,
-      children,
-    },
-    ref
-  ) => {
+  ({alignX, alignY, children, color, hide, max, minimize, overlap, showZero, value}, ref) => {
+    const isCommonColor = color?.startsWith('common.');
+
     return (
       <Badge
         ref={ref}
-        color={variant}
-        badgeContent={value}
-        invisible={hide}
-        showZero={showZero}
-        max={max}
-        variant={minimize ? 'dot' : 'standard'}
         anchorOrigin={{
           vertical: alignY,
           horizontal: alignX,
         }}
+        badgeContent={value}
+        classes={{
+          root: 'EzBadge',
+          badge: 'EzBadge-badge',
+          dot: 'EzBadge-dot',
+        }}
+        color={isCommonColor ? undefined : (color as PaletteOptions)}
+        invisible={hide}
+        max={max}
         overlap={overlap}
+        showZero={showZero}
         sx={{
           '& .MuiBadge-badge': {
-            color: isCommonColor(fontColor) && fontColor,
-            backgroundColor: isCommonColor(backgroundColor) && backgroundColor,
+            bgcolor: isCommonColor ? color : undefined,
+            color: isCommonColor ? 'common.neutral100' : undefined,
           },
         }}
+        variant={minimize ? 'dot' : 'standard'}
       >
         {children}
       </Badge>

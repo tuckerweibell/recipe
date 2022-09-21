@@ -3,53 +3,32 @@ import {EzBadgeMui} from './Implementations';
 import {EzBadgeProps, Ref} from './EzBadge.types';
 
 const EzBadge = forwardRef<Ref, EzBadgeProps>(
-  (
-    {
-      value,
-      variant,
-      backgroundColor,
-      fontColor,
-      hide,
-      showZero,
-      max,
-      minimize,
-      alignX,
-      alignY,
-      overlap,
-      children,
-    },
-    ref
-  ) => {
-    return (
-      <EzBadgeMui
-        ref={ref}
-        value={value}
-        variant={variant}
-        backgroundColor={backgroundColor}
-        fontColor={fontColor}
-        hide={hide}
-        showZero={showZero}
-        max={max}
-        minimize={minimize}
-        alignX={alignX}
-        alignY={alignY}
-        overlap={overlap}
-      >
-        {children}
-      </EzBadgeMui>
-    );
-  }
+  ({alignX, alignY, children, color, hide, max, minimize, overlap, showZero, value}, ref) => (
+    <EzBadgeMui
+      ref={ref}
+      alignX={alignX}
+      alignY={alignY}
+      color={color}
+      hide={hide}
+      max={max}
+      minimize={minimize}
+      overlap={overlap}
+      showZero={showZero}
+      value={value}
+    >
+      {children}
+    </EzBadgeMui>
+  )
 );
 
 EzBadge.defaultProps = {
-  backgroundColor: 'common.alert100',
-  fontColor: 'common.neutral100',
-  hide: false,
-  showZero: false,
-  minimize: false,
   alignX: 'right',
   alignY: 'top',
+  color: 'error',
+  hide: false,
+  minimize: false,
   overlap: 'rectangular',
+  showZero: false,
 };
 
 EzBadge.displayName = 'EzBadge';
