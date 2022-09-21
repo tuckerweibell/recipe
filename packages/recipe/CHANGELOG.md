@@ -1,5 +1,24 @@
 # @ezcater/recipe
 
+## 15.2.0
+
+### Minor Changes
+
+- feat: adds RadioGroup component [[sha]](https://github.com/ezcater/recipe/commit/ad074804)
+- feat: adds EzFormControlLabel component [[sha]](https://github.com/ezcater/recipe/commit/a467f078)
+- feat: adds EzFormControl component [[sha]](https://github.com/ezcater/recipe/commit/00761d8e)
+- feat: Add EzBadge component [[sha]](https://github.com/ezcater/recipe/commit/d96a3ffc)
+- feat: add EzRadio component [[sha]](https://github.com/ezcater/recipe/commit/5ab89d4b)
+- feat: adds EzFormLabel component [[sha]](https://github.com/ezcater/recipe/commit/f2718616)
+
+### Patch Changes
+
+- refactor: convert EzWell from stitches to mui [[sha]](https://github.com/ezcater/recipe/commit/4dbefb5d)
+- style: add z-indices to EzModal and EzDateInput
+  docs: add theming documentation about z-indices and layering
+  docs: remove all localhost:8000 references from docs [[sha]](https://github.com/ezcater/recipe/commit/4969290a)
+- style: fix EzPage mobile vertical margins [[sha]](https://github.com/ezcater/recipe/commit/dec85ba9)
+
 ## 15.1.0
 
 ### Minor Changes

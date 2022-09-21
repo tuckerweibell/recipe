@@ -1,5 +1,17 @@
 # @ezcater/recipe-doc-site
 
+## 1.2.0
+
+### Minor Changes
+
+- docs: add EzRadio documentation and deprecate EzSuperRadioButtons and EzField with type="radio" [[sha]](https://github.com/ezcater/recipe/commit/5ab89d4b)
+
+### Patch Changes
+
+- style: add z-indices to EzModal and EzDateInput
+  docs: add theming documentation about z-indices and layering
+  docs: remove all localhost:8000 references from docs [[sha]](https://github.com/ezcater/recipe/commit/4969290a)
+
 ## 1.1.0
 
 ### Minor Changes
