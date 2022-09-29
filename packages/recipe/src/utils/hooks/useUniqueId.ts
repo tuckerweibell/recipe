@@ -1,43 +1,16 @@
-import {useState, useEffect} from 'react';
-
-const map: Map<string, (v: string) => void> = new Map();
+import * as React from 'react';
 
 const getUniqueId = (() => {
   let index = 1;
   return () => `control__${index++}`;
 })();
 
-const useUniqueId = (): string => {
-  const [id, setId] = useState(getUniqueId());
-
-  map.set(id, setId);
-
-  useEffect(
-    () => () => {
-      map.delete(id);
-    },
-    [id]
-  );
-
-  return id;
+const useCustomUniqueId = (): string => {
+  return React.useMemo(getUniqueId, []);
 };
 
-export function mergeIds(a: string, b: string): string {
-  if (a === b) return a;
+const react18UseId = (React as {useId?: () => string}).useId;
 
-  const setA = map.get(a);
-  if (setA) {
-    setA(b);
-    return b;
-  }
-
-  const setB = map.get(b);
-  if (setB) {
-    setB(a);
-    return a;
-  }
-
-  return b;
-}
+const useUniqueId = typeof react18UseId === 'function' ? react18UseId : useCustomUniqueId;
 
 export default useUniqueId;

@@ -168,6 +168,7 @@ const useUniqueId = () => {
 
 export default ({code, scope, language, hideControls}) => {
   const [active, setActive] = useState('preview');
+  const segmentedControlId = `name-${useUniqueId()}`;
 
   return (
     <div style={{marginTop: 32, marginBottom: 64}}>
@@ -176,7 +177,7 @@ export default ({code, scope, language, hideControls}) => {
           {!hideControls && (
             <>
               <EzSegmentedControl
-                name={`name-${useUniqueId()}`}
+                name={segmentedControlId}
                 label="Code example"
                 labelPosition="hidden"
                 options={[

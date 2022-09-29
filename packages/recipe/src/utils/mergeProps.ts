@@ -1,5 +1,3 @@
-import {mergeIds} from './hooks/useUniqueId';
-
 interface Props {
   [key: string]: any;
 }
@@ -30,11 +28,6 @@ function mergePropsInner<T extends Props, U extends Props>(a: T, b: U): T & U {
       return;
     }
 
-    // If props both have an ID, we need to merge them (in order to use the same ID everywhere)
-    if (key === 'id' && a.id && b.id) {
-      res.id = mergeIds(a.id, b.id);
-      return;
-    }
     // Override others
     res[key] = b[key] ?? a[key];
   });
