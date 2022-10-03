@@ -328,7 +328,7 @@ const Tbody = () => {
   return (
     <tbody>
       {items.map((item, rowIndex) => (
-        <TRow key={rowIndex} item={item} />
+        <TRow key={item.key || rowIndex} item={item} />
       ))}
     </tbody>
   );
