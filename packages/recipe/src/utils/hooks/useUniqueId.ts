@@ -6,7 +6,8 @@ const getUniqueId = (() => {
 })();
 
 // eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseId: undefined | (() => string) = (React as any)['useId' + ''];
+const useId = 'useId';
+const maybeReactUseId: undefined | (() => string) = (React as any)[`${useId}`];
 
 const useCustomUniqueId = (): string => React.useMemo(getUniqueId, []);
 
