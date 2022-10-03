@@ -20,6 +20,10 @@ const createChangeEvent = () => {
   return evt;
 };
 
+const popper = theme.css({
+  zIndex: '$select-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert select to mui
+});
+
 const EzSelect = props => {
   const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
@@ -73,6 +77,7 @@ const EzSelect = props => {
           targetRef={triggerRef}
           placement="bottom-start"
           matchWidth
+          className={popper()}
         >
           <EzListBox
             {...listBoxProps}

@@ -21,6 +21,10 @@ const tooltip = theme.css({
   backgroundColor: '$tooltip-border',
 });
 
+const popper = theme.css({
+  zIndex: '$tooltip-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert tooltips to mui
+});
+
 const arrow = theme.css({
   position: 'absolute',
   pointerEvents: 'none',
@@ -82,6 +86,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
           targetRef={targetRef}
           placement={position === 'horizontal' ? 'right' : 'bottom'}
           showArrow
+          className={popper()}
         >
           <div data-popper-arrow className={arrowPosition()}>
             <svg width="10" height="10" className={arrow()}>

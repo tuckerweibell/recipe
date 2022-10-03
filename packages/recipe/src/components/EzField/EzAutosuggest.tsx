@@ -1,10 +1,15 @@
 import React, {useRef} from 'react';
 import {TextInputWrapper} from './Picker.styles';
+import theme from '../theme.config';
 import EzTextInput from './EzTextInput';
 import EzPopover from '../EzPopover';
 import {ChevronIcon, InsetIcon} from '../Icons';
 import EzListBox from './EzListBox';
 import {useComboBoxState, useComboBox} from './useComboBox';
+
+const popper = theme.css({
+  zIndex: '$autosuggest-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert autosuggest to mui
+});
 
 const EzAutosuggest = props => {
   const triggerRef = useRef<HTMLInputElement>();
@@ -36,6 +41,7 @@ const EzAutosuggest = props => {
           targetRef={triggerRef}
           placement="bottom-start"
           matchWidth
+          className={popper()}
         >
           <EzListBox
             {...listBoxProps}

@@ -21,6 +21,7 @@ Tooltips should not:
 - Contain important information, or information vital to task completion. Use a [`EzFlashMessage`](/components/ez-flash-message) for important contextual information.
 - Be used sparingly, and should contain minimal content.
 - For interactive content, use [`EzModal`](/components/ez-modal) instead.
+- Use custom z-indices. See more about layering in our [theming guide](/guides/theming/#layering).
 
 ---
 

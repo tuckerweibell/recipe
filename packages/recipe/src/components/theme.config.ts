@@ -397,6 +397,7 @@ const stitches = createStitches({
       'tooltip-text': 'white',
       'tooltip-bg': '$gray800',
       'tooltip-border': '$gray800',
+      'tooltip-z-index': '$tooltip-z',
     },
     fonts: {
       sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
@@ -661,6 +662,9 @@ const stitches = createStitches({
       'alert-px': '$250',
       'alert-py': '$150',
 
+      // EzAutosuggest
+      'autosuggest-z-index': '$autosuggest-z',
+
       // EzBanner
       'banner-body-px': '$400',
       'banner-body-py': '$300',
@@ -760,6 +764,9 @@ const stitches = createStitches({
       'segmented-control-ml': '-1px',
       'segmented-control-fieldset-m': '-1px',
 
+      // EzSelect
+      'select-z-index': '$select-z',
+
       // EzStatus
       'status-px': '$150',
       'status-py': '$50',
@@ -829,7 +836,10 @@ const stitches = createStitches({
     zIndices: {
       'icon-inset-z1': 1,
       'modal-z': 1300, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+      'autosuggest-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert autosuggest to mui
       'date-input-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+      'select-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert select to mui
+      'tooltip-z': 1500, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert tooltips to mui
     },
   },
   utils: {
