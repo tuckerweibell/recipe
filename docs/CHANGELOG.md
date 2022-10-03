@@ -1,5 +1,16 @@
 # @ezcater/recipe-doc-site
 
+## 1.2.1
+
+### Patch Changes
+
+- style: add z-index to EzSelect
+  style: add z-index to EzTooltip
+  style: add z-index to EzAutosuggest
+  docs: update docs for z-indices
+  docs: update docs for EzTooltip [[sha]](https://github.com/ezcater/recipe/commit/80302c73)
+- fix: Fixed a bug where a hook was conditionally called [[sha]](https://github.com/ezcater/recipe/commit/dc253df7)
+
 ## 1.2.0
 
 ### Minor Changes

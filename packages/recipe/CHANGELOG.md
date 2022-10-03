@@ -1,5 +1,19 @@
 # @ezcater/recipe
 
+## 15.2.1
+
+### Patch Changes
+
+- feat: Use React 18's `useId` hook for unique IDs if present, falling back to our custom unique ID implementation when using React 17 [[sha]](https://github.com/ezcater/recipe/commit/dc253df7)
+- feat: Allow React 18 as a peer dependency [[sha]](https://github.com/ezcater/recipe/commit/dc253df7)
+- fix: Fixed a memory leak when using Recipe with an SSR framework [[sha]](https://github.com/ezcater/recipe/commit/dc253df7)
+- fix: EzTable row keys should be based on item keys if present, not index [[sha]](https://github.com/ezcater/recipe/commit/bf780c06)
+- style: add z-index to EzSelect
+  style: add z-index to EzTooltip
+  style: add z-index to EzAutosuggest
+  docs: update docs for z-indices
+  docs: update docs for EzTooltip [[sha]](https://github.com/ezcater/recipe/commit/80302c73)
+
 ## 15.2.0
 
 ### Minor Changes

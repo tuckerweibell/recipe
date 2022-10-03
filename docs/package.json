@@ -1,7 +1,7 @@
 {
   "name": "@ezcater/recipe-doc-site",
   "description": "Documentation for Recipe, ezCater's design system library",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "devDependencies": {
     "@emotion/react": "^11.8.1",
@@ -9,7 +9,7 @@
     "@emotion/styled": "^11.8.1",
     "@ezcater/babel-plugin-recipe": "^1.1.0",
     "@ezcater/icons": "^1.0.0",
-    "@ezcater/recipe": "^15.2.0",
+    "@ezcater/recipe": "^15.2.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
