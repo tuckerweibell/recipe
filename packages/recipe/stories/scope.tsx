@@ -3,6 +3,7 @@ import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-do
 import {fireEvent} from '@storybook/testing-library';
 import * as Components from '../src';
 import Open from '../src/components/EzField/Open';
+import Focus from '../src/components/EzField/Focus';
 import ezCaterLogoPath from '../../../docs/src/ezcater-logo.svg';
 import {Global, css} from '../src/styles';
 import {
@@ -42,6 +43,7 @@ const scope: any = {
   ...Components,
   useState,
   Open,
+  Focus,
   fireEvent,
   css,
   Global,
