@@ -29,6 +29,7 @@ Popovers should:
 Popovers should not:
 
 - Be used when a more specific overlay component is available, such as [modal dialogs](/components/ez-modal) or [Tooltips](/components/components/ez-tooltip).
+- Use custom z-indices. See more about layering in our [theming guide](/guides/theming/#layering).
 
 ### Popover
 

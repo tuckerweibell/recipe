@@ -107,6 +107,7 @@ Our currently specified z-indices:
     <pre>EzModal: 1300</pre>
     <pre>EzAutosuggest: 1350</pre>
     <pre>EzDateInput: 1350</pre>
+    <pre>EzPopover: 1350</pre>
     <pre>EzSelect: 1350</pre>
     <pre>EzTimeInput: 1350</pre>
     <pre>EzTooltip: 1500</pre>

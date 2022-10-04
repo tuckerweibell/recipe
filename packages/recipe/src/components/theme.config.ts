@@ -822,6 +822,9 @@ const stitches = createStitches({
       // EzPageHeader
       'page-header-box-shadow': 'inset 0 -1px 0 0 $colors$gray400',
 
+      // EzPopover
+      'popover-z-index': '$popover-z',
+
       // Tabs
       'tabs-active-box-shadow': 'inset 0 -2px 0 0 $colors$blue600',
       'tabs-hover-box-shadow': 'inset 0 -2px 0 0 $colors$gray400',
@@ -838,6 +841,7 @@ const stitches = createStitches({
       'modal-z': 1300, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
       'autosuggest-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert autosuggest to mui
       'date-input-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert modals to mui
+      'popover-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert popovers to mui
       'select-z': 1350, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert select to mui
       'tooltip-z': 1500, // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert tooltips to mui
     },

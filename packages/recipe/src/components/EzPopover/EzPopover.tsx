@@ -2,6 +2,7 @@
 import React from 'react';
 import {Placement, Modifier} from '@popperjs/core';
 import EzPortal, {PortalContext} from '../EzPortal';
+import theme from '../theme.config';
 import {usePopper} from '../../utils/hooks';
 import {useCloseOnBlur} from './useCloseOnBlur';
 import FocusScope from '../utils/FocusScope';
@@ -14,6 +15,10 @@ type Props = {
   shouldCloseOnBlur?: boolean;
   onClose?: () => void;
 } & React.HTMLAttributes<any>;
+
+const popperStyle = theme.css({
+  zIndex: '$popover-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert popovers to mui
+});
 
 const EzPopover: React.FC<Props> = props => (
   <EzPortal>
@@ -77,7 +82,7 @@ const PopoverImpl: React.FC<Props> = ({
   }, [targetRef]);
 
   return (
-    <div data-popper-placement ref={popper as any} {...rest}>
+    <div data-popper-placement ref={popper as any} {...rest} className={popperStyle()}>
       <PortalContext.Provider value={popper}>
         <FocusScope restoreFocus ref={scopeRef}>
           {children}
