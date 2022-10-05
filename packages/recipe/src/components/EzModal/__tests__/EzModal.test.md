@@ -156,7 +156,7 @@ Note: this isn't an typical configuration (a header is usually expected).
       </div>
 
       <EzModal
-        isOpen
+        isOpen={isOpen}
         dismissLabel="Dismiss"
         onDismiss={() => setIsOpen(false)}
         headerText="Header goes here"
