@@ -155,7 +155,12 @@ Note: this isn't an typical configuration (a header is usually expected).
         A sticky container that should appear behind the modal
       </div>
 
-      <EzModal isOpen dismissLabel="Dismiss" onDismiss={() => {}} headerText="Header goes here">
+      <EzModal
+        isOpen
+        dismissLabel="Dismiss"
+        onDismiss={() => setIsOpen(false)}
+        headerText="Header goes here"
+      >
         <p>Modal content goes here!</p>
       </EzModal>
     </div>
