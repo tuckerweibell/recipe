@@ -1,5 +1,15 @@
 # @ezcater/recipe-doc-site
 
+## 1.2.2
+
+### Patch Changes
+
+- style: add z-index to EzPopover
+  docs: update documentation for EzPopover for z-indices
+  docs: update documenation for theme layering with EzPopover
+  test: add regression tests to EzModal and EzPopover for z-index changes
+  test: add Focus handler to EzField with proper scope [[sha]](https://github.com/ezcater/recipe/commit/89294727)
+
 ## 1.2.1
 
 ### Patch Changes
