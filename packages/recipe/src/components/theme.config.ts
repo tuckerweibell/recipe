@@ -261,7 +261,7 @@ const stitches = createStitches({
 
       // EzHeading
       'heading-text': '$text',
-      'subheading-text': '$deemphasisText',
+      'subheading-text': '$black100',
       'heading-blue': '$blue950',
       'heading-green': '$green100',
 
