@@ -261,7 +261,7 @@ const stitches = createStitches({
 
       // EzHeading
       'heading-text': '$text',
-      'subheading-text': '$black100',
+      'subheading-text': '#787878', // this is neutral 150 in our new ezTheme, until we convert headings to mui
       'heading-blue': '$blue950',
       'heading-green': '$green100',
 
