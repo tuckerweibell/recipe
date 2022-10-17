@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 15.2.3
+
+### Patch Changes
+
+- style: update subheading color [[sha]](https://github.com/ezcater/recipe/commit/cc66dd01)
+
 ## 15.2.2
 
 ### Patch Changes

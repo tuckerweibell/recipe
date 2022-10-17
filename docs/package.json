@@ -9,7 +9,7 @@
     "@emotion/styled": "^11.8.1",
     "@ezcater/babel-plugin-recipe": "^1.1.0",
     "@ezcater/icons": "^1.0.0",
-    "@ezcater/recipe": "^15.2.2",
+    "@ezcater/recipe": "^15.2.3",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
