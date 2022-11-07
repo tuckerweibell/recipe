@@ -8,6 +8,7 @@ module.exports = {
           '**/stories/**/*.tsx',
           '**/src/**/*.test.ts',
           '**/src/**/*.test.tsx',
+          '**/src/**/*.stories.tsx',
           '**/src/components/EzField/Open.tsx',
           '**/src/components/theme.config.ts',
           '**/test-utils.tsx',

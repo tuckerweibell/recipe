@@ -1,0 +1,162 @@
+import {ColorItem, ColorPalette, Meta, Story, Source, Typeset} from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import TableOfContents from '../components/TableOfContents';
+import metaParameters from '../utils/metaParameters';
+
+<Meta title="Guides/Theming" parameters={{...metaParameters, viewMode: 'docs'}} />
+
+export const Template = args => <Theming {...args} />;
+
+<Story name="Theming">{Template.bind({})}</Story>
+
+<TableOfContents
+  links={[
+    {label: 'Supported Themes', href: '#supported-themes'},
+    {label: 'Colors', href: '#colors'},
+    {label: 'Typography', href: '#typography'},
+  ]}
+/>
+
+# Theming
+
+As of [Recipe v14](/support/migrating-to-recipe-14/), emotion themes are now supported, making Recipe more flexible and adaptable, allowing downstream apps to use themes to utilize Recipe components more effectively.
+
+Recipe themes are extended from the [MUI default theme](https://mui.com/customization/default-theme/) and represent a single source of truth for supported theme properties. If there is a specific use case for doing so, these themes can be further extended.
+
+<EzAlert
+  headline="Warning"
+  tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
+  use="warning"
+></EzAlert>
+
+---
+
+## Supported Themes <a id="supported-themes" />
+
+Recipe defines and makes accessible the following supported themes:
+
+- `ezTheme`
+- `ezMarketplaceTheme` - extends `ezTheme`
+- `ezFulfillmentTheme` - extends `ezTheme`
+
+To learn more about how to use and extend these themes, read our Getting Started section on [Recipe Themes](http://localhost:8000/guides/getting-started/#recipe-themes).
+
+---
+
+## Colors <a id="colors" />
+
+Recipe supports the following set of design tokens for colors (accessible using `theme.palette.common.[color]`):
+
+<ColorPalette>
+  <ColorItem
+    title="Neutral"
+    colors={{
+      'neutral170': '#151515',
+      'neutral160': '#565a5c',
+      'neutral150': '#787878',
+      'neutral140': '#b2b3b3',
+      'neutral130': '#e5e6e6',
+      'neutral120': '#f5f7f7',
+      'neutral110': '#fafbfc',
+      'neutral100': '#fff',
+    }}
+  />
+
+  <ColorItem
+    title="Primary"
+    colors={{
+      'primary120 (Kale)': '#1d3c34',
+      'primary110 (Cilantro)': '#034a34',
+      'primary100 (ezGreen)': '#00b373',
+      'primary90': '#f0faf7',
+    }}
+  />
+
+  <ColorItem
+    title="Alternative"
+    colors={{
+      'yellow110': '#f9d055',
+      'yellow100': '#f9fae4',
+      'red100': '#ff585d',
+      'purple100': '#7f379c',
+      'purple90': '#f8f3fa',
+      'blue100': '#3f61ff',
+      'blue90': '#f2f4ff',
+    }}
+  />
+
+  <ColorItem
+    title="Success"
+    colors={{
+      'success100': '#00a40f',
+      'success90': '#f0fae4',
+    }}
+  />
+
+  <ColorItem
+    title="Alert"
+    colors={{
+      'alert110': '#972f2f',
+      'alert100': '#d3302f',
+      'alert90': '#f7c1c1',
+      'alert80': '#fdefef',
+    }}
+  />
+
+  <ColorItem
+    title="Warning"
+    colors={{
+      'warning110': '#926a00',
+      'warning100': '#e9a801',
+      'warning90': '#fff3ce',
+      'warning80': '#fcf6e5',
+    }}
+  />
+</ColorPalette>
+
+---
+
+## Typography <a id="typography" />
+
+### Fonts
+
+`ezTheme` uses the Lato font, which also extends to `ezMarketplaceTheme`.
+
+<Source
+  language='jsx'
+  code="font-family: 'Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';"
+/>
+
+<Typeset
+  fontSizes={[16, 24, 32]}
+  fontWeight={400}
+  sampleText="Recipe: Delicious UI components from ezCater."
+  fontFamily="Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif"
+/>
+
+`ezFulfillmentTheme` uses the Montserrat font.
+
+<Source
+  language='jsx'
+  code="font-family: 'Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';"
+/>
+
+<Typeset
+  fontSizes={[16, 24, 32]}
+  fontWeight={400}
+  sampleText="Recipe: Delicious UI components from ezCater."
+  fontFamily="Montserrat, 'Helvetica Neue', Arial, Helvetica, sans-serif"
+/>
+
+### Icons
+
+`ezTheme` icons support the following sizes:
+
+<Source
+  language='jsx'
+  code={dedent`
+    small: 16px;
+    medium: 24px;
+    large: 32px;
+  `}
+/>

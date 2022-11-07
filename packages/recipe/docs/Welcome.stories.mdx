@@ -1,0 +1,9 @@
+import {Meta, Story} from '@storybook/addon-docs';
+import Intro from './components/Intro/Intro';
+import metaParameters from './utils/metaParameters';
+
+<Meta title="Welcome" component={Intro} parameters={metaParameters} />
+
+export const Template = args => <Intro {...args} />;
+
+<Story name="Welcome">{Template.bind({})}</Story>

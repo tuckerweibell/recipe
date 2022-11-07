@@ -1,0 +1,135 @@
+import {ArgsTable, Canvas, Source, Story, Title} from '@storybook/addon-docs';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
+import dedent from 'ts-dedent';
+import EzChip from '../EzChip';
+import EzIcon from '../../EzIcon';
+import EzAlert from '../../EzAlert';
+import EzThemeProvider from '../../EzThemeProvider';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import {ezTheme} from '../../../themes';
+
+<Title />
+<TableOfContents
+  links={[
+    {label: 'Basic Chips', href: '#basic-chips'},
+    {label: 'Status Chips', href: '#status-chips'},
+    {label: 'Action Chips', href: '#action-chips'},
+    {label: 'Chip Colors', href: '#chip-colors'},
+    {label: 'Chip Sizes', href: '#chip-sizes'},
+    {label: 'Chip Icons', href: '#chip-icons'},
+    {label: 'Custom Styles', href: '#custom-styles'},
+    {label: 'Props', href: '#props'},
+  ]}
+/>
+
+Chips are compact elements that represent an input, attribute, or action. They allow users to enter information, make selections, filter content, or trigger actions.
+
+---
+
+## Best Practices
+
+- Chips are handy components that quickly convey information. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
+- Chips are compact components that represent discrete information.
+- Chips should have a clear and helpful relationship to the content or task they represent.
+- Chips should make tasks easier to complete, or content easier to sort.
+
+---
+
+## Basic Chips
+
+EzChip supports `filled` (default) and `outlined` variants.
+
+<Canvas>
+  <Story id="data-display-ezchip--basic" />
+  <EzChip label="Outlined" variant="outlined" color="common.black" />
+</Canvas>
+
+## Status Chips
+
+EzChip also support status variants, which are used to call attention to an individual item in a set.
+
+<EzAlert
+  use="info"
+  headline="Status variant colors are defined in ezTheme and should not be used with the color or icon props."
+/>
+
+Use a basic status (`neutral`, `success`, or `informational`) when an action is not required of the user or there’s not a compelling reason to draw their attention to an item.
+
+Use an action status (`attention`, `warning`, `error`, or `alert`) when an action is required, or it needs attention. A dot icon is displayed.
+
+<Canvas>
+  <Story id="data-display-ezchip--status" />
+  <EzChip label="Success/Complete" variant="success" />
+  <EzChip label="Informational" variant="informational" />
+  <EzChip label="Needs Attention" variant="attention" />
+  <EzChip label="Warning/Concern" variant="warning" />
+  <EzChip label="Error/Destructive" variant="error" />
+  <EzChip label="Alert/Reconfirm" variant="alert" />
+</Canvas>
+
+## Action Chips
+
+Chips with an `onClick` prop defined will change appearance on focus, hover, and click.
+
+Chips with an `onDelete` prop defined will display a delete icon which changes appearance on hover.
+
+<Canvas>
+  <Story id="data-display-ezchip--clickable" />
+  <Story id="data-display-ezchip--deletable" />
+  <EzChip
+    label="Clickable and Deletable"
+    onClick={() => {}}
+    onDelete={() => {}}
+  />
+</Canvas>
+
+## Chip Colors
+
+EzChip supports theme palette properties (`primary`, `secondary`, `neutral`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.neutral130`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Canvas>
+  <Story id="data-display-ezchip--colors" />
+  <EzChip label="Secondary Color" color="secondary" />
+  <EzChip label="common.neutral130" color="common.neutral130" />
+  <EzChip label="Outlined Error Color" color="error" variant="outlined" />
+  <EzChip label="Outlined common.purple100" color="common.purple100" variant="outlined" />
+</Canvas>
+
+## Chip Sizes
+
+If you want to specify a size, use the `size` property. We currently support `small`, and `medium` (default).
+
+<Canvas>
+  <Story id="data-display-ezchip--sizes" />
+  <EzChip label="Medium" />
+</Canvas>
+
+## Chip Icons
+
+You can add an icon to the beginning of a chip by passing an `EzIcon` to the optional `icon` property.
+
+Icon sizes will default to the font size of the text. If you need a different icon size, use `size="inherit"` on the `EzIcon` and wrap it in an element with the desired size.
+
+<Canvas>
+  <Story id="data-display-ezchip--icons" />
+  <EzChip
+    label="Inherited Icon Size"
+    icon={
+      <div style={{fontSize: '10px', display: 'flex'}}>
+        <EzIcon icon={faStar} size="inherit" />
+      </div>
+    }
+  />
+</Canvas>
+
+## Custom Styles
+
+Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names.
+
+`EzChip`, `EzChip-[variant]`, `EzChip-clickable`, `EzChip-deletable`, `EzChip-deleteIcon`, `EzChip-disabled`, `EzChip-icon`, `EzChip-label`
+
+---
+
+## Props
+
+<ArgsTable of={EzChip} />

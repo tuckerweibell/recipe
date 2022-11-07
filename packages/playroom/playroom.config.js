@@ -18,7 +18,6 @@ module.exports = {
   widths: [280, 320, 768, 1024], // 280px is for testing galaxy fold, not an official recipe breakpoint
   port: 9000,
   openBrowser: true,
-  paramType: 'search', // default is 'hash'
   baseUrl: '/recipe/playroom/',
   webpackConfig: () => ({
     module: {

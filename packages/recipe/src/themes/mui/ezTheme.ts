@@ -40,6 +40,7 @@ declare module '@mui/material/styles/createTypography' {
     };
   }
 }
+
 declare module '@mui/material/Badge' {
   interface BadgePropsColorOverrides {
     alert: true;
