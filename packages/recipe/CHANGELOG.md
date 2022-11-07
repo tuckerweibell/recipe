@@ -1,5 +1,16 @@
 # @ezcater/recipe
 
+## 16.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: removed deprecated EzLabelledItem from Recipe and docs [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+- BREAKING CHANGE: removed deprecated EzStatus from Recipe and docs [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+- BREAKING CHANGE: removed deprecated EzContentGroup from Recipe and docs [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+- BREAKING CHANGE: removed deprecated EzSuperRadioButtons from Recipe and docs [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+- BREAKING CHANGE: update EzCheckbox component to new design [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+- BREAKING CHANGE: removed deprecated EzPageContent from Recipe and docs [[sha]](https://github.com/ezcater/recipe/commit/8718364a)
+
 ## 15.2.3
 
 ### Patch Changes
