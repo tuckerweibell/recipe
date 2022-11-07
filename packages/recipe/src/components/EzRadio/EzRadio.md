@@ -511,4 +511,3 @@ All radio button form controls should have corresponding labels using `ariaLabel
 ## Related components
 
 - [EzField](/components/ez-field)
-- [EzSuperRadioButtons](/components/ez-super-radio-buttons) (deprecated)

@@ -212,6 +212,7 @@ const Thead = ({selectable}) => {
         {selection && (
           <Th>
             <EzCheckbox
+              legacy
               label="Select all"
               onChange={selection.onBulkSelectClick}
               checked={items.length === selection.selected.length}
@@ -308,6 +309,7 @@ const TRow = ({item}) => {
       {selection && (
         <td className={cell()}>
           <EzCheckbox
+            legacy
             label="Select row"
             checked={selection.selected.includes(item)}
             onChange={event => selection.onRowSelectClick(event, {item})}

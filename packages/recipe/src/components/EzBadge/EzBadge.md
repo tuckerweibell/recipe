@@ -357,4 +357,3 @@ Supported styles should be used, but if you need to overwrite styles for the bad
 
 - [Button](/components/ez-button)
 - [Icon](/components/ez-icon)
-- [Status](/components/ez-status) (deprecated)

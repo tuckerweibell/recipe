@@ -1,3 +1,1 @@
-import EzCheckbox from './EzCheckbox';
-
-export default EzCheckbox;
+export {default} from './EzCheckbox';

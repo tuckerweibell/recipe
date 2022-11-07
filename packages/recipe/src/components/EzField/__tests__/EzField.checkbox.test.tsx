@@ -4,16 +4,20 @@ import EzField from '../EzField';
 
 describe('EzField', () => {
   describe('check box list', () => {
-    const checkboxProps = {
-      label: 'Multiple choice list',
-      type: 'checkbox' as const,
-      multiple: true as const,
-      options: [
-        {label: 'Choice A', value: 'a'},
-        {label: 'Choice B', value: 'b'},
-        {label: 'Choice C', value: 'c'},
-      ],
-    };
+    let checkboxProps;
+
+    beforeEach(() => {
+      checkboxProps = {
+        label: 'Multiple choice list',
+        type: 'checkbox' as const,
+        multiple: true as const,
+        options: [
+          {label: 'Choice A', value: 'a'},
+          {label: 'Choice B', value: 'b'},
+          {label: 'Choice C', value: 'c'},
+        ],
+      };
+    });
 
     it('should render checklist with correctly selected options', () => {
       const {container} = render(<EzField {...checkboxProps} value={['a', 'c']} />);

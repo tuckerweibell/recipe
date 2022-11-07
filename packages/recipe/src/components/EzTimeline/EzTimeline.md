@@ -43,7 +43,7 @@ Each timeline period must contain one or more timeline events. Each timeline eve
       <EzTimelineEvent
         title="Phone Call"
         time="12/15/2019 at 4:30PM EST"
-        status={<EzStatus text="New" use="attention" size="small" />}
+        status={<EzChip label="New" variant="attention" size="small" />}
         icon={
           <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#phone" />
@@ -76,7 +76,7 @@ Each timeline period must contain one or more timeline events. Each timeline eve
         title="Order # 1V3023D"
         href="/order/1V3023D"
         time="11/15/2019 at 2:45PM EST"
-        status={<EzStatus text="Complete" use="success" size="small" />}
+        status={<EzChip label="Complete" variant="success" size="small" />}
         icon={
           <svg viewBox="0 0 384 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <use xlinkHref="#receipt" />
@@ -161,4 +161,4 @@ The `expandable` property requires both an `expandLabel` and an `onClick` proper
 ## Related components
 
 - [Link](/components/ez-link)
-- [Status](/components/ez-status)
+- [Chip](/components/ez-chip)

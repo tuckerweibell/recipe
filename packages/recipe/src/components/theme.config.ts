@@ -341,35 +341,6 @@ const stitches = createStitches({
       'segmented-control-border-input-checked': '1px solid $blue500',
       'segmented-control-bg-input-active': '$gray300',
 
-      // EzStatus
-      'status-bg-neutral': '$gray200',
-      'status-text-neutral': '$gray700',
-      'status-bg-success': '$green200',
-      'status-text-success': '$green700',
-      'status-bg-informational': '$blue200',
-      'status-text-informational': '$blue700',
-      'status-bg-attention': '$blue200',
-      'status-text-attention': '$blue700',
-      'status-bg-warning': '$yellow200',
-      'status-text-warning': '$yellow700',
-      'status-bg-error': '$red200',
-      'status-text-error': '$red700',
-      'status-bg-alert': '$purple200',
-      'status-text-alert': '$purple700',
-
-      // EzSuperRadioButtons
-      'super-radio-text': '$blue600',
-      'super-radio-text-hover': '$blue700',
-      'super-radio-text-disabled': '$textDisabled',
-      'super-radio-bg': 'white',
-      'super-radio-bg-hover': '$gray100',
-      'super-radio-bg-selected': '$blue200',
-      'super-radio-bg-down': '$gray300',
-      'super-radio-bg-disabled': '$gray200',
-      'super-radio-border': '$border',
-      'super-radio-border-hover': '$gray500',
-      'super-radio-border-selected': '$blue500',
-
       // EzTable
       'table-bg-alt': '$gray100',
       'table-bg-hover': '$gray100',
@@ -447,10 +418,6 @@ const stitches = createStitches({
       // EzSegmentedControl
       'segmented-control-font-size': '$100',
 
-      // EzStatus
-      'status-text-small': '$75',
-      'status-text-normal': '$200',
-
       // EzTable
       table: '$100',
       'table-heading': '$75',
@@ -481,12 +448,6 @@ const stitches = createStitches({
       'order-summary-card-font-weight': '$bold',
       'order-summary-totals-font-weight': '$regular',
 
-      // EzStatus
-      'status-bold': '$bold',
-
-      // EzSuperRadioButtons
-      'super-radio': '$bold',
-
       // EzTable
       'table-heading': '$bold',
 
@@ -514,9 +475,6 @@ const stitches = createStitches({
 
       // EzSegmentedControl
       'segmented-control-line-height': '1.25rem',
-
-      // EzStatus
-      'status-line-height': '$1',
 
       // EzTable
       table: '1.3em',
@@ -623,13 +581,6 @@ const stitches = createStitches({
       'segmented-control-flex-basis': 'auto',
       'segmented-control-fieldset-h': '1px',
       'segmented-control-fieldset-w': '1px',
-
-      // EzStatus
-      'status-icon-size': '1em',
-
-      // EzSuperRadioButtons
-      'super-radio-button-size': '150px',
-      'super-radio-image-size': '$750',
 
       // EzTimeline
       'timeline-icon': '2rem',
@@ -766,11 +717,6 @@ const stitches = createStitches({
 
       // EzSelect
       'select-z-index': '$select-z',
-
-      // EzStatus
-      'status-px': '$150',
-      'status-py': '$50',
-      'status-icon-top': '0.125em',
 
       // EzTimeline
       'footer-button-x': '$250',

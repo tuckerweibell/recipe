@@ -100,30 +100,36 @@ Details pages should:
           <EzPageSection use="main">
             <EzCard title="Order Details">
               <EzLayout layout="tile" columns={{base: 2, medium: 1, large: 2}}>
-                <EzLabelledItem position="top" size="small" title="Order Status">
-                  <EzStatus text="Reconfirmed" use="neutral" size="small" />
-                </EzLabelledItem>
-
-                <EzLabelledItem position="top" size="small" title="Date">
+                <div>
+                  <EzLabel position="top" use="secondary">Order Status</EzLabel>
+                  <EzChip label="Reconfirmed" variant="neutral" size="small" />
+                </div>
+                
+                <div>
+                  <EzLabel position="top" use="secondary">Date</EzLabel>
                   Thursday, January 16, 2020 at 10:45am
-                </EzLabelledItem>
+                </div>
 
-                <EzLabelledItem position="top" size="small" title="Headcount">
+                <div>
+                  <EzLabel position="top" use="secondary">Headcount</EzLabel>
                   20 people
-                </EzLabelledItem>
+                </div>
 
-                <EzLabelledItem position="top" size="small" title="Confirmation Code">
+                <div>
+                  <EzLabel position="top" use="secondary">Confirmation Code</EzLabel>
                   89080676
-                </EzLabelledItem>
+                </div>
 
-                <EzLabelledItem position="top" size="small" title="Store">
+                <div>
+                  <EzLabel position="top" use="secondary">Store</EzLabel>
                   <address style={{fontStyle: 'normal'}}>
                     <p>Atlanta GA - Midtown, #1058</p>
                     <p>933 Peachtree St NA, Suite 921, Atlanta, GA, 303309</p>
                   </address>
-                </EzLabelledItem>
+                </div>
               </EzLayout>
             </EzCard>
+
             <EzOrderSummary
               items={[
                 {
@@ -167,35 +173,49 @@ Details pages should:
               }}
             />
           </EzPageSection>
+
           <EzPageSection use="aside">
             <EzCard title="Delivery Details">
               <EzLayout layout="tile" columns={{base: 2, medium: 1}}>
-                <EzLabelledItem position="top" size="small" title="Delivery Status">
+                <div>
+                  <EzLabel position="top" use="secondary">Delivery Status</EzLabel>
                   Delivery
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Location">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Location</EzLabel>
                   Next Gear Solutions
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Address">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Address</EzLabel>
                   <EzLink onClick={onClick}>
                     <address style={{fontStyle: 'normal'}}>
                       <p>36790 Cremin Park</p>
                       <p>Atlanta, GA, 303309</p>
                     </address>
                   </EzLink>
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Distance">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Distance</EzLabel>
                   1.3 mi
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Upon delivery ask for">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Upon delivery ask for</EzLabel>
                   Jeff Brettell
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Phone">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Phone</EzLabel>
                   225-555-7146
-                </EzLabelledItem>
-                <EzLabelledItem position="top" size="small" title="Delivery instructions">
+                </div>
+
+                <div>
+                  <EzLabel position="top" use="secondary">Delivery instructions</EzLabel>
                   Building 400 of Colony Square, 17th floor, Suite 1740, Next Gear Solutions
-                </EzLabelledItem>
+                </div>
               </EzLayout>
             </EzCard>
           </EzPageSection>
@@ -218,5 +238,5 @@ Details pages should:
 - [Page sections](/components/ez-page#page-sections)
 - [Card](/components/ez-card)
 - [Small-scale layout](/components/ez-layout)
-- [Labelled Item](/components/ez-labelled-item)
+- [Label](/components/ez-label)
 - [Flash messages](/components/ez-flash-message)

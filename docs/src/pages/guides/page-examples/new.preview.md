@@ -95,6 +95,7 @@
           </EzCardSection>
           <EzCardSection>
             <EzCheckbox
+              legacy
               acknowledgement
               label="■■■ ■■■ ■■ ■■■"
               terms="■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■ ■■■ ■■■ ■■"

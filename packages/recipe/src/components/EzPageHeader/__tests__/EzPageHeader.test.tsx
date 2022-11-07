@@ -2,7 +2,8 @@ import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
 import EzPageHeader from '../EzPageHeader';
-import {EzStatus, EzButton} from '../../index';
+import EzButton from '../../EzButton';
+import EzChip from '../../EzChip';
 
 describe('EzPageHeader', () => {
   it('should cycle through the tabs', () => {
@@ -89,7 +90,7 @@ describe('EzPageHeader', () => {
           label: 'Back to Orders',
           onClick: () => {},
         }}
-        status={<EzStatus text="Verified" use="success" />}
+        status={<EzChip label="Verified" variant="success" size="inherit" />}
         subnav={{tabs, selected: tabs[0], onChange: () => {}}}
         actions={<EzButton use="primary">Accept Order</EzButton>}
       />

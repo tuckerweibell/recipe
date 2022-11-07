@@ -143,7 +143,9 @@ const EzChoice = props => {
           },
           inputStyles()
         );
-        const input = React.createElement(multiple ? EzCheckbox : EzRadioButton, inputProps);
+        const input = multiple
+          ? React.createElement(EzCheckbox, {legacy: true, ...inputProps})
+          : React.createElement(EzRadioButton, inputProps);
 
         return <Option key={i} bordered={props.bordered} {...{disabled, input, rendered}} />;
       })}

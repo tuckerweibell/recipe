@@ -57,8 +57,9 @@
     value="active"
     onChange={() => {}}
   />
-  <EzLabelledItem position="top" size="small" title="Search" htmlFor="customer-search">
+  <div>
+    <EzLabel position="top" use="secondary" htmlFor="customer-search">Search</EzLabel>
     <EzSearchInput id="customer-search" placeholder="Search customers" />
-  </EzLabelledItem>
+  </div>
 </EzLayout>
 ```

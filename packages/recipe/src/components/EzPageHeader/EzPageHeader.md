@@ -93,10 +93,10 @@ Normally links render an [anchor element](https://developer.mozilla.org/en-US/do
 
 ### Page header with status
 
-Used to communicate brief, important and non-interactive status information about the page. The status appears immediately after the page title. The `status` prop accepts any `ReactNode`.
+Used to communicate brief, important and non-interactive status information about the page. The status appears immediately after the page title. The `status` prop accepts any `ReactNode` but should be used with `EzChip` status variants.
 
 ```jsx
-<EzPageHeader title="Order # XYZ-123" status={<EzStatus text="Verified" use="success" />} />
+<EzPageHeader title="Order # XYZ-123" status={<EzChip label="Verified" variant="success" size="inherit" />} />
 ```
 
 ### Page header with actions
@@ -276,7 +276,7 @@ For filters or actions that apply only to a single card, it’s best to use card
 
 - Use the `subheader` prop to provide filters, related links or actions to display within the subheader.
 - One or more `EzLayout` components should be used to layout subheader content and manage how content should stack at smaller breakpoints.
-- Filters should be wrapped with `EzLabelledItem[size=small]` to provide appropriate labels to describe the filter.
+- Filters should be used with `EzLabel[use=secondary]` to provide appropriate labels to describe the filter.
 
 ```jsx
 () => {
@@ -304,9 +304,10 @@ For filters or actions that apply only to a single card, it’s best to use card
               value="active"
               onChange={() => {}}
             />
-            <EzLabelledItem position="top" size="small" title="Search" htmlFor="customer-search">
+            <div>
+              <EzLabel position="top" use="secondary" htmlFor="customer-search">Search</EzLabel>
               <EzSearchInput id="customer-search" placeholder="Search" />
-            </EzLabelledItem>
+            </div>
           </EzLayout>
         }
       />
@@ -340,7 +341,7 @@ Use for detail pages, which should have return links and may also often have rel
           label: 'Back to Orders',
           onClick: () => {},
         }}
-        status={<EzStatus text="Verified" use="success" />}
+        status={<EzChip label="Verified" variant="success" size="inherit" />}
         subnav={{tabs, selected, onChange}}
         actions={
           <EzLayout
@@ -374,3 +375,5 @@ The Page Header component internally uses [`Array.prototype.findIndex()`](https:
 - [Layout](/components/ez-layout)
 - [Link](/components/ez-link)
 - [Page](/components/ez-page)
+- [Chip](/components/ez-chip)
+- [Label](/components/ez-label)

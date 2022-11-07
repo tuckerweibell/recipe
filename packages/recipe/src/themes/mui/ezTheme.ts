@@ -41,6 +41,13 @@ declare module '@mui/material/Badge' {
   }
 }
 
+declare module '@mui/material/Checkbox' {
+  interface CheckboxPropsColorOverrides {
+    alert: true;
+    neutral: true;
+  }
+}
+
 declare module '@mui/material/Chip' {
   interface ChipPropsColorOverrides {
     alert: true;

@@ -12,7 +12,6 @@ interface EzIconFontAwesomeProps extends EzIconMuiProps {
  */
 const EzIconFontAwesome = forwardRef<Ref, EzIconFontAwesomeProps>(({icon, ...props}, ref) => {
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     icon: [width, height, _ligatures, _unicode, svgPathData],
   } = icon;
 

@@ -81,6 +81,14 @@ Allows users to provide short text input. Optionally, additional context can be 
 
 ### Field with validation error
 
+<EzAlert
+  headline="Deprecation Warning"
+  tagline='EzField with type="checkbox" is deprecated as of v16 and will be removed in v17. You can create checkboxes and checkbox groups with EzCheckbox.'
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-checkbox">EzCheckbox</a></EzLink>
+
 Lets the user know that there is a problem with the provided input.
 
 Whenever possible, validate the input after the user has finished their interaction with a field (but not before). If the user does not interact with the field before the form is submitted, the input should be validated on submission of the form. Error messages should be removed as early as possible, ideally as the user is typing, so that the user can see when an error has been addressed.
@@ -175,11 +183,19 @@ Allows the user to input email values.
 
 <EzAlert
   headline="Deprecation Warning"
-  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v16. You can create radio buttons and radio groups with EzRadio.'
+  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
   use="warning"
 />
 
 See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
+
+<EzAlert
+  headline="Deprecation Warning"
+  tagline='EzField with type="checkbox" is deprecated as of v16 and will be removed in v17. You can create checkboxes and checkbox groups with EzCheckbox.'
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-checkbox">EzCheckbox</a></EzLink>
 
 Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.
 
@@ -221,6 +237,14 @@ Alternatively, instead of using the `options` prop, EzField also accepts `<EzIte
 ```
 
 ### Multiple choice input field with nested content
+
+<EzAlert
+  headline="Deprecation Warning"
+  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
+  use="warning"
+/>
+
+See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
 
 Allows for additional content to be presented with each choice of a multiple choice selection.
 
@@ -279,7 +303,7 @@ If presenting additional `<EzField>` elements to capture information about the u
 
 <EzAlert
   headline="Deprecation Warning"
-  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v16. You can create radio buttons and radio groups with EzRadio.'
+  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
   use="warning"
 />
 

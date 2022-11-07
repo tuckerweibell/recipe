@@ -13,6 +13,16 @@ module.exports = {
     'import/no-unresolved': ['error', {ignore: ['@react-types/provider']}],
     'no-unused-expressions': 'off',
     'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/tsup.config.ts']}],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
   },
   overrides: [
     {

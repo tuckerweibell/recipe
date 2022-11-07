@@ -19,7 +19,7 @@ Layouts should:
 
 Layouts should not:
 
-- Be used for large-scale page layout. For large-scale layouts, consider using a [Card](/components/ez-card) within [Page Content](/components/ez-page-content)
+- Be used for large-scale page layout. For large-scale layouts, consider using a [Card](/components/ez-card) within [Page](/components/ez-page)
 - Wrap content onto multiple lines. The content inside a layout should be designed as not to exceed the available horizontal space.
 
 ---
@@ -267,4 +267,4 @@ If you provide more than one layout, you should think of it as progressive enhan
 ## Related components
 
 - [Card](/components/ez-card)
-- [Page Content](/components/ez-page-content)
+- [Page](/components/ez-page)

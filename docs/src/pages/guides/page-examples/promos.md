@@ -234,6 +234,7 @@ An alternative approach (not explored here) might instead use a [custom input fi
             </EzCardSection>
             <EzCardSection>
               <EzCheckbox
+                legacy
                 acknowledgement
                 label="I agree to fund this promotion"
                 terms="I understand that the value of the promotion will be removed from my payment runs from ezCater wherever the promotion has been applied. I am aware that I am responsible for funding and marketing promotion, and that I can cancel this promotion at any time. I understand that this promotion cannot be redeemed by customers on ezCater Marketplace."

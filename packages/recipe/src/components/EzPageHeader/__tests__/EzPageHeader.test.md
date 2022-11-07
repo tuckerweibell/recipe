@@ -27,7 +27,7 @@
       label: 'Back to Orders',
       onClick: e => e.preventDefault(),
     }}
-    status={<EzStatus text="Verified User Account" use="success" />}
+    status={<EzChip label="Verified User Account" variant="success" size="inherit" />}
     actions={
       <EzLayout layout={{base: 'stack', medium: 'basic'}}>
         <EzButton use="primary">Accept Order</EzButton>
@@ -52,7 +52,7 @@
       label: 'Back to Orders',
       onClick: e => e.preventDefault(),
     }}
-    status={<EzStatus text="Verified User Account" use="success" />}
+    status={<EzChip label="Verified User Account" variant="success" size="inherit" />}
     actions={
       <EzLayout layout={{base: 'stack', medium: 'basic'}}>
         <EzButton use="primary">Accept Order</EzButton>
@@ -84,12 +84,19 @@
               medium: 'basic',
             }}
           >
-            <EzLabelledItem position="top" size="small" title="Customers" htmlFor="search">
+            <div>
+              <EzLabel position="top" use="secondary" htmlFor="search">
+                Customers
+              </EzLabel>
               <EzSearchInput id="search" placeholder="Search" />
-            </EzLabelledItem>
-            <EzLabelledItem position="top" size="small" title="Leads" htmlFor="search">
+            </div>
+
+            <div>
+              <EzLabel position="top" use="secondary" htmlFor="search">
+                Leads
+              </EzLabel>
               <EzSearchInput id="search" placeholder="Search" />
-            </EzLabelledItem>
+            </div>
           </EzLayout>
         }
       />

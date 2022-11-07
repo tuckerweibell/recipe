@@ -618,4 +618,3 @@ Use `aria-hidden=true` on the CTA to remove the redundant functionality and avoi
 - [Content](/components/ez-content)
 - [Preview](/components/ez-preview)
 - [Page](/components/ez-page)
-- [Page Content (deprecated)](/components/ez-page-content)
