@@ -33,4 +33,24 @@ describe('EzAlert', () => {
     render(<EzAlert headline="Error Alert" use="error" />);
     expect(await screen.findByRole('alert')).toHaveAttribute('aria-live', 'assertive');
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        default: <EzAlert headline="Alert" />,
+        tagline: <EzAlert headline="Alert" tagline="Tagline" />,
+        success: <EzAlert use="success" headline="Alert" />,
+        error: <EzAlert use="error" headline="Alert" />,
+        warning: <EzAlert use="warning" headline="Alert" />,
+        info: <EzAlert use="info" headline="Alert" />,
+        tip: <EzAlert use="tip" headline="Alert" />,
+        marketing: <EzAlert use="marketing" headline="Alert" />,
+        topArrow: <EzAlert arrow="top" headline="Alert" />,
+        bottomArrow: <EzAlert arrow="bottom" headline="Alert" />,
+        reactNodeTagline: <EzAlert headline="Alert" tagline={<div>Alert</div>} />,
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });
