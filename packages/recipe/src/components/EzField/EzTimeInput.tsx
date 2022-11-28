@@ -23,6 +23,11 @@ const useTimeRangeOptions = ({start, end, step}) => {
 };
 
 const layout = theme.css({
+  '@baseToMedium': {
+    maxWidth: '150px',
+    width: 'auto',
+  },
+
   position: 'relative',
   width: '150px',
   input: {paddingLeft: '2.5em'},

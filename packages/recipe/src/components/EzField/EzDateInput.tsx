@@ -22,6 +22,11 @@ const popper = theme.css({
 });
 
 const calendarPopup = theme.css({
+  '@baseToMedium': {
+    maxWidth: '250px',
+    width: 'auto',
+  },
+
   position: 'relative',
   padding: '$150',
   fontFamily: '$sans',

@@ -15,7 +15,7 @@ module.exports = {
   themes: './playroom/themes.js',
   snippets: './playroom/snippets.js',
   frameComponent: './playroom/FrameComponent.js',
-  widths: [320, 768, 1024],
+  widths: [280, 320, 768, 1024], // 280px is for testing galaxy fold, not an official recipe breakpoint
   port: 9000,
   openBrowser: true,
   paramType: 'search', // default is 'hash'
