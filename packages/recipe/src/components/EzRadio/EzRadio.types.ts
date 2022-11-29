@@ -9,7 +9,7 @@ export interface EzRadioProps {
   color?: EzThemeColors;
   disabled?: boolean;
   name?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   size?: string;
   value?: any;
   variant?: 'outlined' | 'filled';

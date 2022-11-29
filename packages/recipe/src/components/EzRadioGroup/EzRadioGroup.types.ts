@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {ReactNode, ChangeEvent} from 'react';
 
 export type Ref = HTMLDivElement;
 
@@ -7,7 +7,7 @@ export interface EzRadioGroupProps {
   children: ReactNode;
   defaultValue?: any;
   name?: string;
-  onChange?: () => any;
+  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   row?: boolean;
   value?: any;
 }
