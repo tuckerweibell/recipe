@@ -1,4 +1,4 @@
-import React, {forwardRef, type FC, type RefAttributes} from 'react';
+import React, {forwardRef, useEffect, type FC, type RefAttributes} from 'react';
 import warning from 'tiny-warning';
 import theme from '../../theme.config';
 import EzLabel from '../../EzLabel';
@@ -91,10 +91,13 @@ const CheckboxLegacy = forwardRef<HTMLSpanElement, CheckboxLegacyProps>(
 
 const EzCheckboxLegacy: FC<EzCheckboxLegacyProps & RefAttributes<any>> = forwardRef(
   ({label, acknowledgement, ...props}: EzCheckboxLegacyProps, ref: any) => {
-    warning(
-      false,
-      '*Deprecated*. A deprecated legacy version of EzCheckbox is being used. Please use the new EzCheckbox.'
-    );
+    useEffect(() => {
+      warning(
+        false,
+        '*Deprecated*. A deprecated legacy version of EzCheckbox is being used. Please use the new EzCheckbox.'
+      );
+    }, []);
+
     const uniqueId = useUniqueId();
     const id = props.id || uniqueId;
 

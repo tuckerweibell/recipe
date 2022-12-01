@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useEffect} from 'react';
 import warning from 'tiny-warning';
 import theme from '../theme.config';
 import {domProps} from '../../utils';
@@ -61,10 +61,13 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 const EzRadioButton = forwardRef<HTMLSpanElement, Props>(
   ({label, className = '', width = 16, height = 16, ...additionalProps}, ref) => {
-    warning(
-      false,
-      '*Deprecated*. EzField with type="radio" has been deprecated and will be removed in a future version of Recipe. Use EzRadio instead.'
-    );
+    useEffect(() => {
+      warning(
+        false,
+        '*Deprecated*. EzField with type="radio" has been deprecated and will be removed in a future version of Recipe. Use EzRadio instead.'
+      );
+    }, []);
+
     const props: any = domProps({'aria-label': label, ...additionalProps}, radiobuttonInput());
     return (
       <span className={radiobuttonSurface({className})} ref={ref}>
