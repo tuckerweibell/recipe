@@ -1,5 +1,14 @@
 # @ezcater/recipe
 
+## 16.0.1
+
+### Patch Changes
+
+- fix: Update types for EzAlert to explicitly accept ReactNode as props in place of text [[sha]](https://github.com/ezcater/recipe/commit/301b15d8)
+- fix: Update the legacy checkbox and radio button components so that they log the deprecated warning once on mount instead of every render [[sha]](https://github.com/ezcater/recipe/commit/c5e73812)
+- style: update EzField date and time input widths at small viewports [[sha]](https://github.com/ezcater/recipe/commit/badc8194)
+- fix: Update EzRadio and EzRadioGroup `onChange` methods to match the function signature from MUI [[sha]](https://github.com/ezcater/recipe/commit/3f0c67d7)
+
 ## 16.0.0
 
 ### Major Changes
