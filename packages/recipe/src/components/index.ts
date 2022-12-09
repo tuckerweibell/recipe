@@ -19,6 +19,7 @@ export {default as EzFormLayout} from './EzFormLayout';
 export {default as EzGlobalStyles} from './EzGlobalStyles';
 export {default as EzHeading} from './EzHeading';
 export {default as EzIcon} from './EzIcon';
+export {default as EzIconButton} from './EzIconButton';
 export {default as EzLabel} from './EzLabel';
 export {default as EzLayout} from './EzLayout';
 export {default as EzLink} from './EzLink';

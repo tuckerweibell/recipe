@@ -13,7 +13,7 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
       ? theme.palette.common[control.props.color.split('.')[1]]
       : theme.palette[control.props.color].main;
     const themeColorDark = darken(themeColor, 0.5);
-    const disabledColor = theme.palette.common.neutral140;
+    const disabledColor = theme.palette.common.disabled;
 
     return (
       <FormControlLabel

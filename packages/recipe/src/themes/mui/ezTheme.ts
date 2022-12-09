@@ -11,6 +11,8 @@ declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
 
   interface CommonColors extends EzPalette {
+    destructive?: string;
+    disabled?: string;
     green?: string;
   }
 
@@ -142,6 +144,8 @@ const palette: EzPaletteOptions = {
   common: {
     ...ezPalette,
     black: ezPalette.neutral170,
+    destructive: ezPalette.alert100,
+    disabled: ezPalette.neutral140,
     green: ezPalette.primary100,
     white: ezPalette.neutral100,
   },
@@ -215,6 +219,16 @@ const components = {
       sizeSmall: {
         height: '20px',
         lineHeight: '20px',
+      },
+    },
+  },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        '&.Mui-disabled.EzIconButton-filled': {
+          color: palette.common.white,
+          backgroundColor: palette.common.disabled,
+        },
       },
     },
   },

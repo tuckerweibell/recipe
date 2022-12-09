@@ -3,7 +3,6 @@ import {EzPalette} from './ezColors';
 
 export type PaletteOptions =
   | 'alert'
-  | 'default'
   | 'error'
   | 'info'
   | 'neutral'

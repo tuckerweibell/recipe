@@ -52,16 +52,16 @@ const iconDotProps = (bgcolor: string, diameter: number) => ({
   width: diameter,
 });
 
-const EzRadioIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter, opacity}) => (
+const EzRadioIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter}) => (
   <Stack
     {...iconProps(bgcolor, borderColor, diameter)}
     className="EzRadioIcon-unchecked"
-    sx={{opacity, '&:before': {...iconDotProps(dotColor, dotDiameter)}}}
+    sx={{'&:before': {...iconDotProps(dotColor, dotDiameter)}}}
   />
 );
 
-const EzRadioCheckedIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter, opacity}) => (
-  <Stack className="EzRadioIcon-checked" position="relative" sx={{opacity}}>
+const EzRadioCheckedIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter}) => (
+  <Stack className="EzRadioIcon-checked" position="relative">
     <Stack
       {...iconProps(bgcolor, borderColor, diameter)}
       borderColor={borderColor}
@@ -87,11 +87,9 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
     const getDiameter = (part: 'button' | 'dot') => VARIANT_SIZES[variant][size][part];
     const getColor = (checked: boolean, hover: boolean, style: 'background' | 'border' | 'dot') => {
       const radioState = `${checked ? 'checked' : 'unchecked'}${disabled ? 'Disabled' : ''}`;
-      return VARIANT_COLORS(
-        themeColor,
-        theme.palette.common.white,
-        theme.palette.common.neutral150
-      )[variant][hover ? 'hover' : radioState][style];
+      return VARIANT_COLORS(themeColor, theme.palette.common.white, theme.palette.common.disabled)[
+        variant
+      ][hover ? 'hover' : radioState][style];
     };
     const radioIconProps = (checked: boolean) => ({
       bgcolor: getColor(checked, false, 'background'),
@@ -99,7 +97,6 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
       diameter: getDiameter('button'),
       dotColor: getColor(checked, false, 'dot'),
       dotDiameter: getDiameter('dot'),
-      opacity: disabled ? 0.4 : 1,
     });
 
     return (
