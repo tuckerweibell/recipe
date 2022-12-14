@@ -1,5 +1,11 @@
 # @ezcater/recipe-doc-site
 
+## 1.4.0
+
+### Minor Changes
+
+- docs: add EzIconButton documentation [[sha]](https://github.com/ezcater/recipe/commit/3acf0ac4)
+
 ## 1.3.0
 
 ### Minor Changes

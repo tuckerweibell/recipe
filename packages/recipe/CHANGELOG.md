@@ -1,5 +1,15 @@
 # @ezcater/recipe
 
+## 16.1.0
+
+### Minor Changes
+
+- feat: add EzIconButton component [[sha]](https://github.com/ezcater/recipe/commit/3acf0ac4)
+
+### Patch Changes
+
+- fix: remove redundant aria-labels from EzRadio and EzCheckbox [[sha]](https://github.com/ezcater/recipe/commit/e6b69bff)
+
 ## 16.0.1
 
 ### Patch Changes
