@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {cloneElement, forwardRef} from 'react';
 import {Box, FormControlLabel, Stack, useTheme} from '@mui/material';
 import {EzFormControlLabelProps, Ref} from '../EzFormControlLabel.types';
 import EzSuperFormControlLabel from '../../EzSuperFormControlLabel';
@@ -14,7 +14,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>(
       return (
         <EzSuperFormControlLabel
           ref={ref}
-          control={control}
+          control={cloneElement(control, {ariaLabel: control.props.ariaLabel || null})}
           disabled={disabled}
           icon={icon}
           label={label}
@@ -26,7 +26,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>(
       <FormControlLabel
         inputRef={ref}
         classes={{root: 'EzFormControlLabel', label: 'EzFormControlLabel-label'}}
-        control={control}
+        control={cloneElement(control, {ariaLabel: control.props.ariaLabel || null})}
         disabled={disabled}
         label={
           <Stack lineHeight="16px">

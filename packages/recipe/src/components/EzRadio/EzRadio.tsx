@@ -24,7 +24,6 @@ const EzRadio = forwardRef<Ref, EzRadioProps>(
 EzRadio.displayName = 'EzRadio';
 
 EzRadio.defaultProps = {
-  ariaLabel: 'radio-button',
   color: 'primary',
   disabled: false,
   name: 'radio-button',

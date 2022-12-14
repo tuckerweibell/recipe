@@ -81,7 +81,7 @@ const EzRadioCheckedIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiamet
 );
 
 const EzRadioMui = forwardRef<Ref, EzRadioProps>(
-  ({ariaLabel, color, disabled, size, variant, ...props}, ref) => {
+  ({ariaLabel = 'radio-button', color, disabled, size, variant, ...props}, ref) => {
     const theme = useTheme();
     const themeColor = useThemeColor(color);
     const getDiameter = (part: 'button' | 'dot') => VARIANT_SIZES[variant][size][part];
@@ -102,7 +102,6 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
     return (
       <Radio
         inputRef={ref}
-        aria-label={ariaLabel}
         checkedIcon={<EzRadioCheckedIcon {...radioIconProps(true)} />}
         classes={{
           root: `EzRadio EzRadio-${variant}`,

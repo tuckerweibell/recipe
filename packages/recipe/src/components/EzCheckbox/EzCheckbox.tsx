@@ -44,7 +44,6 @@ const EzCheckbox = forwardRef<Ref, EzCheckboxProps>((props, ref) => {
 EzCheckbox.displayName = 'EzCheckbox';
 
 EzCheckbox.defaultProps = {
-  ariaLabel: 'checkbox',
   color: 'primary',
   disabled: false,
   legacy: false, // legacy, deprecated

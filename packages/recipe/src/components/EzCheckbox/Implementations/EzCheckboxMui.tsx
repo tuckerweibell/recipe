@@ -58,7 +58,7 @@ const EzCheckboxIcon = ({bgcolor, borderColor, checked = false, iconColor, size,
 );
 
 const EzCheckboxMui = forwardRef<Ref, EzCheckboxMuiProps>(
-  ({ariaLabel, color, disabled, size, variant, ...props}, ref) => {
+  ({ariaLabel = 'checkbox', color, disabled, size, variant, ...props}, ref) => {
     const theme = useTheme();
     const themeColor = useThemeColor(color);
 
@@ -88,7 +88,6 @@ const EzCheckboxMui = forwardRef<Ref, EzCheckboxMuiProps>(
     return (
       <Checkbox
         inputRef={ref}
-        aria-label={ariaLabel}
         checkedIcon={<EzCheckboxIcon {...checkboxIconProps(true)} />}
         classes={{
           root: `EzCheckbox EzCheckbox-${variant}`,
