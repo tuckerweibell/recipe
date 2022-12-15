@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 16.1.1
+
+### Patch Changes
+
+- style: add optional classname suffix prop to EzField and associated EzPopper [[sha]](https://github.com/ezcater/recipe/commit/2a768909)
+
 ## 16.1.0
 
 ### Minor Changes
