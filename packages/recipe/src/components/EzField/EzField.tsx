@@ -164,7 +164,11 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
 
   return (
     <div
-      className={field({labelSize: props.labelSize})}
+      className={clsx(
+        'EzField',
+        props.classNameSuffix && `EzField-${props.classNameSuffix}`,
+        field({labelSize: props.labelSize})
+      )}
       {...(mouseEvents as any)}
       {...roleAndLabel}
     >

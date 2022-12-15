@@ -42,6 +42,7 @@ const EzAutosuggest = props => {
           placement="bottom-start"
           matchWidth
           className={popper()}
+          classNameSuffix={props.classNameSuffix}
         >
           <EzListBox
             {...listBoxProps}

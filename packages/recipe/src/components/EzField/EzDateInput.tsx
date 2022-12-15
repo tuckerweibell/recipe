@@ -139,6 +139,7 @@ const EzDateInput = ({
           shouldCloseOnBlur
           onClose={close}
           className={popper()}
+          classNameSuffix={props.classNameSuffix}
         >
           <FocusScope contain restoreFocus>
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}

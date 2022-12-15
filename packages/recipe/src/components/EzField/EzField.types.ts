@@ -148,6 +148,10 @@ type BaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'typ
    * Indicates that the input has been interacted with
    */
   touched?: boolean;
+  /**
+   * Optional suffix to append to component class name
+   */
+  classNameSuffix?: string;
 };
 
 export interface FocusState {

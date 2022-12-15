@@ -78,6 +78,7 @@ const EzSelect = props => {
           placement="bottom-start"
           matchWidth
           className={popper()}
+          classNameSuffix={props.classNameSuffix}
         >
           <EzListBox
             {...listBoxProps}

@@ -6,6 +6,7 @@ import theme from '../theme.config';
 import {usePopper} from '../../utils/hooks';
 import {useCloseOnBlur} from './useCloseOnBlur';
 import FocusScope from '../utils/FocusScope';
+import {clsx} from '../../utils';
 
 type Props = {
   targetRef: React.RefObject<HTMLElement>;
@@ -14,6 +15,7 @@ type Props = {
   showArrow?: boolean;
   shouldCloseOnBlur?: boolean;
   onClose?: () => void;
+  classNameSuffix?: string;
 } & React.HTMLAttributes<any>;
 
 const popperStyle = theme.css({
@@ -34,6 +36,7 @@ const PopoverImpl: React.FC<Props> = ({
   shouldCloseOnBlur = false,
   onClose,
   children,
+  classNameSuffix,
   ...rest
 }) => {
   const modifiers: Array<Partial<Modifier<any, any>>> = [
@@ -82,7 +85,16 @@ const PopoverImpl: React.FC<Props> = ({
   }, [targetRef]);
 
   return (
-    <div data-popper-placement ref={popper as any} {...rest} className={popperStyle()}>
+    <div
+      data-popper-placement
+      ref={popper as any}
+      {...rest}
+      className={clsx(
+        popperStyle(),
+        'EzPopover',
+        classNameSuffix && `EzPopover-${classNameSuffix}`
+      )}
+    >
       <PortalContext.Provider value={popper}>
         <FocusScope restoreFocus ref={scopeRef}>
           {children}
