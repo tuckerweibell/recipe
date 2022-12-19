@@ -73,6 +73,7 @@ const EzTimeInput = ({
         aria-labelledby={rest['aria-labelledby']}
         disabled={rest.disabled}
         focusLabel={focusLabel}
+        classNameSuffix={rest.classNameSuffix}
       />
     </div>
   );
