@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 16.1.2
+
+### Patch Changes
+
+- fix: propogate classNameSuffix prop in EzTimeInput to EzSelect [[sha]](https://github.com/ezcater/recipe/commit/a16b6f5d)
+
 ## 16.1.1
 
 ### Patch Changes
