@@ -144,9 +144,7 @@
         </EzRadioGroup>
       </EzFormControl>
 
-      <EzLayout
-        style={{backgroundColor: '#034a34', color: 'white', padding: '1em'}}
-      >
+      <EzLayout style={{backgroundColor: '#034a34', color: 'white', padding: '1em'}}>
         <EzFormControl>
           <EzFormLabel id="radio-button-groups-unchecked-colors">Numbers</EzFormLabel>
           <EzRadioGroup
@@ -263,9 +261,7 @@
         </EzRadioGroup>
       </EzFormControl>
 
-      <EzLayout
-        style={{backgroundColor: '#034a34', color: 'white', padding: '1em'}}
-      >
+      <EzLayout style={{backgroundColor: '#034a34', color: 'white', padding: '1em'}}>
         <EzFormControl>
           <EzFormLabel id="radio-button-groups-checked-colors">Numbers</EzFormLabel>
           <EzRadioGroup
@@ -320,7 +316,7 @@
 };
 ```
 
-### EzRadio Super Radio Buttons Unchecked with Colors
+### EzRadio Groups Unchecked with Gaps
 
 ```jsx
 () => {
@@ -328,71 +324,43 @@
   const [selectedValue, setSelectedValue] = useState(null);
   const handleChange = event => setSelectedValue(event.target.value);
 
+  const RadioButton = ({value}) => (
+    <EzFormControlLabel control={<EzRadio />} label={value} value={value} />
+  );
+
+  const RadioGroup = ({gap, title}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="radio-button-group"
+          gap={gap}
+          name="radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <RadioButton value="one" />
+          <RadioButton value="two" />
+          <RadioButton value="three" />
+          <RadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
   return (
-    <EzFormControl>
-      <EzFormLabel id="super-radio-button-groups-unchecked-colors">Numbers</EzFormLabel>
-      <EzRadioGroup
-        ariaLabel="super-radio-button-groups-unchecked-colors"
-        name="super-radio-button-groups-unchecked-colors"
-        onChange={handleChange}
-        row
-        value={selectedValue}
-      >
-        <EzFormControlLabel
-          control={<EzRadio color="primary" />}
-          label="one"
-          icon={<EzIcon icon={Coffee} />}
-          value="one"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="secondary" />}
-          label="two"
-          icon={<EzIcon icon={Coffee} />}
-          value="two"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="error" />}
-          label="three"
-          icon={<EzIcon icon={Coffee} />}
-          value="three"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="warning" />}
-          label="four"
-          icon={<EzIcon icon={Coffee} />}
-          value="four"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="info" />}
-          label="five"
-          icon={<EzIcon icon={Coffee} />}
-          value="five"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="success" />}
-          label="six"
-          icon={<EzIcon icon={Coffee} />}
-          value="six"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="alert" />}
-          label="seven"
-          icon={<EzIcon icon={Coffee} />}
-          value="seven"
-        />
-        <EzFormControlLabel
-          control={<EzRadio color="neutral" />}
-          label="eight"
-          icon={<EzIcon icon={Coffee} />}
-          value="eight"
-        />
-      </EzRadioGroup>
-    </EzFormControl>
+    <EzLayout layout="stack">
+      <RadioGroup title="default gap unchecked" />
+      <RadioGroup title="gap of 2 unchecked" gap={2} />
+      <RadioGroup title="gap of 3 unchecked" gap={3} />
+      <RadioGroup title="gap of 4 unchecked" gap={4} />
+    </EzLayout>
   );
 };
 ```
 
-### EzRadio Super Radio Buttons Checked with Colors
+### EzRadio Groups Checked with Gaps
 
 ```jsx
 () => {
@@ -400,66 +368,508 @@
   const [selectedValue, setSelectedValue] = useState(null);
   const handleChange = event => setSelectedValue(event.target.value);
 
+  const RadioButton = ({value}) => (
+    <EzFormControlLabel control={<EzRadio checked />} label={value} value={value} />
+  );
+
+  const RadioGroup = ({gap, title}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="radio-button-group"
+          gap={gap}
+          name="radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <RadioButton value="one" />
+          <RadioButton value="two" />
+          <RadioButton value="three" />
+          <RadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
   return (
-    <EzFormControl>
-      <EzFormLabel id="super-radio-button-groups-checked-colors">Numbers</EzFormLabel>
-      <EzRadioGroup
-        ariaLabel="super-radio-button-groups-checked-colors"
-        name="super-radio-button-groups-checked-colors"
-        onChange={handleChange}
-        row
-        value={selectedValue}
-      >
-        <EzFormControlLabel
-          control={<EzRadio checked color="primary" />}
-          label="one"
-          icon={<EzIcon icon={Coffee} />}
-          value="one"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="secondary" />}
-          label="two"
-          icon={<EzIcon icon={Coffee} />}
-          value="two"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="error" />}
-          label="three"
-          icon={<EzIcon icon={Coffee} />}
-          value="three"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="warning" />}
-          label="four"
-          icon={<EzIcon icon={Coffee} />}
-          value="four"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="info" />}
-          label="five"
-          icon={<EzIcon icon={Coffee} />}
-          value="five"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="success" />}
-          label="six"
-          icon={<EzIcon icon={Coffee} />}
-          value="six"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="alert" />}
-          label="seven"
-          icon={<EzIcon icon={Coffee} />}
-          value="seven"
-        />
-        <EzFormControlLabel
-          control={<EzRadio checked color="neutral" />}
-          label="eight"
-          icon={<EzIcon icon={Coffee} />}
-          value="eight"
-        />
-      </EzRadioGroup>
-    </EzFormControl>
+    <EzLayout layout="stack">
+      <RadioGroup title="default gap checked" />
+      <RadioGroup title="gap of 2 checked" gap={2} />
+      <RadioGroup title="gap of 3 checked" gap={3} />
+      <RadioGroup title="gap of 4 checked" gap={4} />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Variants Unchecked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({value}) => (
+    <EzFormControlLabel
+      control={<EzRadio />}
+      label={value}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({title, theme}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          theme={theme}
+          value={selectedValue}
+        >
+          <SuperRadioButton value="one" />
+          <SuperRadioButton value="two" />
+          <SuperRadioButton value="three" />
+          <SuperRadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="filled variant, unchecked" theme={{variant: 'filled'}} />
+      <SuperRadioGroup title="outlined variant, unchecked" theme={{variant: 'outlined'}} />
+      <SuperRadioGroup
+        title="outlined variant with basic theme, unchecked"
+        theme={{
+          color: 'info',
+          variant: 'outlined',
+        }}
+      />
+      <SuperRadioGroup
+        title="outlined variant with custom theme, unchecked"
+        theme={{
+          color: {
+            selected: {
+              backgroundColor: 'common.yellow100',
+              borderColor: 'common.yellow100',
+              textColor: 'common.primary110',
+            },
+            unselected: {
+              backgroundColor: 'common.green105',
+              borderColor: 'common.green105',
+              textColor: 'common.white',
+            },
+          },
+        }}
+      />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Variants Checked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({value}) => (
+    <EzFormControlLabel
+      control={<EzRadio checked />}
+      label={value}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({title, theme}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          theme={theme}
+          value={selectedValue}
+        >
+          <SuperRadioButton value="one" />
+          <SuperRadioButton value="two" />
+          <SuperRadioButton value="three" />
+          <SuperRadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="filled variant, checked" theme={{variant: 'filled'}} />
+      <SuperRadioGroup title="outlined variant, checked" theme={{variant: 'outlined'}} />
+      <SuperRadioGroup
+        title="outlined variant with basic theme, checked"
+        theme={{
+          color: 'info',
+          variant: 'outlined',
+        }}
+      />
+      <SuperRadioGroup
+        title="outlined variant with custom theme, checked"
+        theme={{
+          color: {
+            selected: {
+              backgroundColor: 'common.yellow100',
+              borderColor: 'common.yellow100',
+              textColor: 'common.primary110',
+            },
+            unselected: {
+              backgroundColor: 'common.green105',
+              borderColor: 'common.green105',
+              textColor: 'common.white',
+            },
+          },
+        }}
+      />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Icon Sizes Unchecked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({iconSize, label, value}) => (
+    <EzFormControlLabel
+      control={<EzRadio />}
+      label={label}
+      icon={<EzIcon icon={Coffee} size={iconSize} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({label, title, labelWidth, iconSize}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton iconSize={iconSize} label={label} value="one" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="two" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="three" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="small icon, no label, unchecked" iconSize="small" />
+      <SuperRadioGroup title="medium icon, no label, unchecked" iconSize="medium" />
+      <SuperRadioGroup title="large icon, no label, unchecked" iconSize="large" />
+      <SuperRadioGroup title="xlarge icon, no label, unchecked" iconSize="xlarge" />
+      <SuperRadioGroup title="small icon, with label, unchecked" iconSize="small" label="one" />
+      <SuperRadioGroup title="medium icon, with label, unchecked" iconSize="medium" label="one" />
+      <SuperRadioGroup title="large icon, with label, unchecked" iconSize="large" label="one" />
+      <SuperRadioGroup title="xlarge icon, with label, unchecked" iconSize="xlarge" label="one" />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Icon Sizes Checked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({iconSize, label, value}) => (
+    <EzFormControlLabel
+      control={<EzRadio checked />}
+      label={label}
+      icon={<EzIcon icon={Coffee} size={iconSize} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({label, title, labelWidth, iconSize}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton iconSize={iconSize} label={label} value="one" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="two" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="three" />
+          <SuperRadioButton iconSize={iconSize} label={label} value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="small icon, no label, checked" iconSize="small" />
+      <SuperRadioGroup title="medium icon, no label, checked" iconSize="medium" />
+      <SuperRadioGroup title="large icon, no label, checked" iconSize="large" />
+      <SuperRadioGroup title="xlarge icon, no label, checked" iconSize="xlarge" />
+      <SuperRadioGroup title="small icon, with label, checked" iconSize="small" label="one" />
+      <SuperRadioGroup title="medium icon, with label, checked" iconSize="medium" label="one" />
+      <SuperRadioGroup title="large icon, with label, checked" iconSize="large" label="one" />
+      <SuperRadioGroup title="xlarge icon, with label, checked" iconSize="xlarge" label="one" />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons with labelWidth Unchecked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({value}) => (
+    <EzFormControlLabel
+      control={<EzRadio />}
+      label={value}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({title, labelWidth}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton value="one" />
+          <SuperRadioButton value="two" />
+          <SuperRadioButton value="three" />
+          <SuperRadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="default labelWidth, unchecked" />
+      <SuperRadioGroup title="labelWidth of 100, unchecked" labelWidth={100} />
+      <SuperRadioGroup title="labelWidth of 200, unchecked" labelWidth={200} />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons with labelWidth Checked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({value}) => (
+    <EzFormControlLabel
+      control={<EzRadio checked />}
+      label={value}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({title, labelWidth}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton value="one" />
+          <SuperRadioButton value="two" />
+          <SuperRadioButton value="three" />
+          <SuperRadioButton value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="default labelWidth, checked" />
+      <SuperRadioGroup title="labelWidth of 100, checked" labelWidth={100} />
+      <SuperRadioGroup title="labelWidth of 200, checked" labelWidth={200} />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Labels Unchecked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({label, value}) => (
+    <EzFormControlLabel
+      control={<EzRadio />}
+      label={label}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({label, title, labelWidth}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton label={label} value="one" />
+          <SuperRadioButton label={label} value="two" />
+          <SuperRadioButton label={label} value="three" />
+          <SuperRadioButton label={label} value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="no labels, unchecked" />
+      <SuperRadioGroup title="short labels, unchecked" label="one" />
+      <SuperRadioGroup title="long labels, unchecked" label="one one one one one one one" />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 100, unchecked"
+        label="one one one one one one one"
+        labelWidth={100}
+      />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 150, unchecked"
+        label="one one one one one one one"
+        labelWidth={150}
+      />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 200, unchecked"
+        label="one one one one one one one"
+        labelWidth={200}
+      />
+    </EzLayout>
+  );
+};
+```
+
+### EzRadio Super Radio Buttons Labels Checked
+
+```jsx
+() => {
+  const {Coffee} = require('@ezcater/icons');
+  const [selectedValue, setSelectedValue] = useState(null);
+  const handleChange = event => setSelectedValue(event.target.value);
+
+  const SuperRadioButton = ({label, value}) => (
+    <EzFormControlLabel
+      control={<EzRadio checked />}
+      label={label}
+      icon={<EzIcon icon={Coffee} />}
+      value={value}
+    />
+  );
+
+  const SuperRadioGroup = ({label, title, labelWidth}) => (
+    <EzLayout>
+      <EzFormControl>
+        <EzFormLabel id="super-radio-button-group">{title}</EzFormLabel>
+        <EzRadioGroup
+          ariaLabel="super-radio-button-group"
+          labelWidth={labelWidth}
+          name="super-radio-button-group"
+          onChange={handleChange}
+          row
+          value={selectedValue}
+        >
+          <SuperRadioButton label={label} value="one" />
+          <SuperRadioButton label={label} value="two" />
+          <SuperRadioButton label={label} value="three" />
+          <SuperRadioButton label={label} value="four" />
+        </EzRadioGroup>
+      </EzFormControl>
+    </EzLayout>
+  );
+
+  return (
+    <EzLayout layout="stack">
+      <SuperRadioGroup title="no labels, checked" />
+      <SuperRadioGroup title="short labels, checked" label="one" />
+      <SuperRadioGroup title="long labels, checked" label="one one one one one one one" />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 100, checked"
+        label="one one one one one one one"
+        labelWidth={100}
+      />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 150, checked"
+        label="one one one one one one one"
+        labelWidth={150}
+      />
+      <SuperRadioGroup
+        title="long labels with labelWidth of 200, checked"
+        label="one one one one one one one"
+        labelWidth={200}
+      />
+    </EzLayout>
   );
 };
 ```
@@ -475,33 +885,32 @@
   return (
     <EzLayout layout="equal">
       <style>{`
-        .EzRadio:hover .EzRadioIcon-unchecked,
-        .EzRadioIcon-checked-dot,
-        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
-        .EzSuperFormControlLabel:hover .EzRadioIcon-unchecked {
-          background-color: orange;
-        }
-        .EzRadio:hover .EzRadioIcon-unchecked,
         .EzRadio-outlined .EzRadioIcon-unchecked,
         .EzRadio-outlined .EzRadioIcon-checked-border,
-        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
-        .EzSuperFormControlLabel:hover,
-        .EzSuperFormControlLabel-checked {
+        .EzRadio:hover .EzRadioIcon-unchecked {
           border-color: orange;
         }
         .EzRadio:focus-within,
-        .EzSuperFormControlLabel:hover,
-        .EzSuperFormControlLabel-checked {
-          background-color: #FED8B150;
+        .EzSuperFormControlLabel {
+          background-color: #fed8b150;
+          border-color: #fed8b150;
         }
-        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-text,
-        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-text,
-        .EzFormLabel.Mui-focused {
+        .EzRadioIcon-checked-dot,
+        .EzRadio:hover .EzRadioIcon-unchecked,
+        .EzSuperFormControlLabel-checked,
+        .EzSuperFormControlLabel:hover {
+          background-color: orange;
+        }
+        .EzFormLabel.Mui-focused,
+        .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel-text {
           color: orange;
         }
-        .EzSuperFormControlLabel-icon,
-        .EzSuperFormControlLabel-text {
-          color: #b36200;
+        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-text,
+        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-text {
+          color: white;
         }
       `}</style>
       <EzLayout>
@@ -522,7 +931,7 @@
 
       <EzLayout>
         <EzFormControl>
-          <EzFormLabel id="radio-group-numbers">Numbers</EzFormLabel>
+          <EzFormLabel id="radio-group-numbers">radio group, unchecked</EzFormLabel>
           <EzRadioGroup
             ariaLabel="radio-group-numbers"
             name="radio-group-numbers"
@@ -554,9 +963,11 @@
       </EzLayout>
 
       <EzFormControl>
-        <EzFormLabel id="super-radio-numbers">Numbers</EzFormLabel>
+        <EzFormLabel id="super-radio-numbers">super radio buttons, unchecked</EzFormLabel>
         <EzRadioGroup
           ariaLabel="super-radio-numbers"
+          gap={2}
+          labelWidth={80}
           name="super-radio-numbers"
           onChange={handleChange}
           row
@@ -573,6 +984,12 @@
             label="two"
             icon={<EzIcon icon={Coffee} />}
             value="super-two"
+          />
+          <EzFormControlLabel
+            control={<EzRadio />}
+            label="three"
+            icon={<EzIcon icon={Coffee} />}
+            value="super-three"
           />
         </EzRadioGroup>
       </EzFormControl>
@@ -592,54 +1009,44 @@
   return (
     <EzLayout layout="equal">
       <style>{`
-        .EzRadio:hover .EzRadioIcon-unchecked,
-        .EzRadioIcon-checked-dot,
-        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
-        .EzSuperFormControlLabel:hover .EzRadioIcon-unchecked {
-          background-color: orange;
-        }
-        .EzRadio:hover .EzRadioIcon-unchecked,
         .EzRadio-outlined .EzRadioIcon-unchecked,
         .EzRadio-outlined .EzRadioIcon-checked-border,
-        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
-        .EzSuperFormControlLabel:hover,
-        .EzSuperFormControlLabel-checked {
+        .EzRadio:hover .EzRadioIcon-unchecked {
           border-color: orange;
         }
         .EzRadio:focus-within,
-        .EzSuperFormControlLabel:hover,
-        .EzSuperFormControlLabel-checked {
-          background-color: #FED8B150;
+        .EzSuperFormControlLabel {
+          background-color: #fed8b150;
+          border-color: #fed8b150;
         }
-        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-text,
-        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-text,
-        .EzFormLabel.Mui-focused {
+        .EzRadioIcon-checked-dot,
+        .EzRadio:hover .EzRadioIcon-unchecked,
+        .EzSuperFormControlLabel-checked,
+        .EzSuperFormControlLabel:hover {
+          background-color: orange;
+        }
+        .EzFormLabel.Mui-focused,
+        .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel-text {
           color: orange;
         }
-        .EzSuperFormControlLabel-icon,
-        .EzSuperFormControlLabel-text {
-          color: #b36200;
+        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel-checked .EzSuperFormControlLabel-text,
+        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-icon svg,
+        .EzSuperFormControlLabel:hover .EzSuperFormControlLabel-text {
+          color: white;
         }
       `}</style>
       <EzLayout>
-        <EzRadio
-          checked
-          onChange={handleChange}
-          value="basic-radio"
-        />
+        <EzRadio checked onChange={handleChange} value="basic-radio" />
         <EzLayout style={{backgroundColor: '#034a34'}}>
-          <EzRadio
-            checked
-            onChange={handleChange}
-            value="basic-radio-filled"
-            variant="filled"
-          />
+          <EzRadio checked onChange={handleChange} value="basic-radio-filled" variant="filled" />
         </EzLayout>
       </EzLayout>
 
       <EzLayout>
         <EzFormControl>
-          <EzFormLabel id="radio-group-numbers">Numbers</EzFormLabel>
+          <EzFormLabel id="radio-group-numbers">radio group, checked</EzFormLabel>
           <EzRadioGroup
             ariaLabel="radio-group-numbers"
             name="radio-group-numbers"
@@ -671,9 +1078,11 @@
       </EzLayout>
 
       <EzFormControl>
-        <EzFormLabel id="super-radio-numbers">Numbers</EzFormLabel>
+        <EzFormLabel id="super-radio-numbers">super radio buttons, checked</EzFormLabel>
         <EzRadioGroup
           ariaLabel="super-radio-numbers"
+          gap={2}
+          labelWidth={80}
           name="super-radio-numbers"
           onChange={handleChange}
           row
@@ -690,6 +1099,12 @@
             label="two"
             icon={<EzIcon icon={Coffee} />}
             value="super-two"
+          />
+          <EzFormControlLabel
+            control={<EzRadio checked />}
+            label="three"
+            icon={<EzIcon icon={Coffee} />}
+            value="super-three"
           />
         </EzRadioGroup>
       </EzFormControl>

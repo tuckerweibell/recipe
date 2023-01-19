@@ -2,8 +2,8 @@ import React, {forwardRef} from 'react';
 import {EzFormGroupMui} from './Implementations';
 import {EzFormGroupProps, Ref} from './EzFormGroup.types';
 
-const EzFormGroup = forwardRef<Ref, EzFormGroupProps>(({ariaLabel, children, row}, ref) => (
-  <EzFormGroupMui ref={ref} ariaLabel={ariaLabel} row={row}>
+const EzFormGroup = forwardRef<Ref, EzFormGroupProps>(({ariaLabel, children, gap, row}, ref) => (
+  <EzFormGroupMui ref={ref} ariaLabel={ariaLabel} gap={gap} row={row}>
     {children}
   </EzFormGroupMui>
 ));

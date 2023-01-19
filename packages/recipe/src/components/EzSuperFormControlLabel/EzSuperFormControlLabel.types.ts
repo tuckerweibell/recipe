@@ -4,9 +4,9 @@ import {EzIconTypes} from '../EzIcon/EzIcon.types';
 export type Ref = HTMLDivElement;
 
 export interface EzSuperFormControlLabelProps {
-  control: ReactElement<any, any>;
+  control: ReactElement;
   disabled?: boolean;
-  icon?: EzIconTypes;
-  label: ReactNode;
+  icon: EzIconTypes;
+  label?: ReactNode;
   value: any;
 }

@@ -93,6 +93,7 @@ Recipe supports the following set of design tokens for typography:
     <pre>small: 16px</pre>
     <pre>medium: 24px</pre>
     <pre>large: 32px</pre>
+    <pre>xlarge: 60px</pre>
   </>
 ```
 

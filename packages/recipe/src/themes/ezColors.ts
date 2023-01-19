@@ -126,6 +126,11 @@ export const ezColors = {
       color: '#f2f4ff',
       contrastColor: CONTRAST_DARK,
     },
+    green105: {
+      name: 'Green 105',
+      color: '#407560',
+      contrastColor: CONTRAST_LIGHT,
+    },
   },
   success: {
     success100: {

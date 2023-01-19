@@ -129,7 +129,7 @@ By default, the icon color is the same as the body text. If you want to specifiy
 
 ### Icon size
 
-By default, the icon size is inherited from the parent container. If you want to specify a size, use the `size` prop. We currently support `small`, `medium` (default), `large`, and `inherit`. Font sizes for each icon size are specified in the [theme](/guides/theming/#icons).
+By default, the icon size is inherited from the parent container. If you want to specify a size, use the `size` prop. We currently support `small`, `medium` (default), `large`, `xlarge`, and `inherit`. Font sizes for each icon size are specified in the [theme](/guides/theming/#icons).
 
 ```jsx
 () => {
@@ -140,6 +140,12 @@ By default, the icon size is inherited from the parent container. If you want to
         <EzIcon icon={Ramen} size="small" />
         <EzIcon icon={Ramen} size="medium" />
         <EzIcon icon={Ramen} size="large" />
+        <EzIcon icon={Ramen} size="xlarge" />
+
+        {/* Note: inline styles are discouraged and used here only for demo purposes */}
+        <div style={{fontSize: '14px'}}>
+          <EzIcon icon={Ramen} size="inherit" />
+        </div>
       </EzLayout>
     </EzPage>
   );

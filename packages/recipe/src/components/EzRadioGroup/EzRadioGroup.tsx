@@ -1,21 +1,44 @@
-import React, {forwardRef} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {createContext, forwardRef, useMemo} from 'react';
 import {EzRadioGroupMui} from './Implementations';
-import {EzRadioGroupProps, Ref} from './EzRadioGroup.types';
+import {EzRadioGroupTheme, EzRadioGroupProps, Ref} from './EzRadioGroup.types';
+
+export const RadioGroupThemeContext = createContext<EzRadioGroupTheme>({
+  color: 'primary',
+  variant: 'filled',
+});
 
 const EzRadioGroup = forwardRef<Ref, EzRadioGroupProps>(
-  ({ariaLabel, children, defaultValue, name, onChange, row, value}, ref) => (
-    <EzRadioGroupMui
-      ref={ref}
-      ariaLabel={ariaLabel}
-      defaultValue={defaultValue}
-      name={name}
-      onChange={onChange}
-      row={row}
-      value={value}
-    >
-      {children}
-    </EzRadioGroupMui>
-  )
+  (
+    {ariaLabel, children, defaultValue, gap, labelWidth, name, onChange, row, theme, value},
+    ref
+  ) => {
+    const providerValue = useMemo(
+      () => ({
+        color: theme?.color ?? 'primary',
+        variant: theme?.variant ?? 'filled',
+      }),
+      [theme?.color, theme?.variant]
+    );
+
+    return (
+      <RadioGroupThemeContext.Provider value={providerValue}>
+        <EzRadioGroupMui
+          ref={ref}
+          ariaLabel={ariaLabel}
+          defaultValue={defaultValue}
+          gap={gap}
+          labelWidth={labelWidth}
+          name={name}
+          onChange={onChange}
+          row={row}
+          value={value}
+        >
+          {children}
+        </EzRadioGroupMui>
+      </RadioGroupThemeContext.Provider>
+    );
+  }
 );
 
 EzRadioGroup.displayName = 'EzRadioGroup';

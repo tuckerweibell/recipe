@@ -16,7 +16,7 @@ The rating component is used to indicate how something has been assessed based o
 
 For a rating, you must minimally provide:
 
-- `emptyIcon`: empty icon 
+- `emptyIcon`: empty icon
 - `fullIcon`: fully-filled icon
 - `halfIcon`: half-filled icon
 - `label`: accessible label
@@ -96,7 +96,7 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
 
 ### Size
 
-The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon/#icon-size) `size` can be provided as an optional prop.
+If you want to specify a size, use the `size` prop. We currently support `small`, `medium` (default), `large`, and `inherit`.
 
 ```jsx
 () => {
@@ -104,6 +104,7 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
   const {halfStar} = require('@fortawesome/free-solid-svg-icons/faStarHalfStroke');
   const {emptyStar} = require('@fortawesome/free-regular-svg-icons/faStar');
   const value = 2.74;
+  
   return (
     <EzPage>
       <EzLayout layout="stack">
@@ -116,6 +117,7 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
           size="small"
           value={value}
         />
+
         <EzRating
           emptyIcon={emptyStar}
           fullIcon={fullStar}
@@ -125,6 +127,7 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
           size="medium"
           value={value}
         />
+
         <EzRating
           emptyIcon={emptyStar}
           fullIcon={fullStar}
@@ -134,6 +137,19 @@ The same values available for the [EzIcon's](https://ezcater.github.io/recipe/co
           size="large"
           value={value}
         />
+
+        {/* Note: inline styles are discouraged and used here only for demo purposes */}
+        <div style={{fontSize: '14px'}}>
+          <EzRating
+            emptyIcon={emptyStar}
+            fullIcon={fullStar}
+            halfIcon={halfStar}
+            label={`${value} stars`}
+            max={5}
+            size="inherit"
+            value={value}
+          />
+        </div>
       </EzLayout>
     </EzPage>
   );

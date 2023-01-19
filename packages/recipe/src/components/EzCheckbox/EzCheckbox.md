@@ -156,9 +156,11 @@ If you want to specify a size, use the `size` property. We currently support `sm
 
 EzCheckbox components can be grouped using form controls (see below).
 
-To lay out the buttons horizontally, use the `row` prop on `EzFormGroup`.
-
-To add helper text to a checkbox label, use the optional `helperText` prop on `EzFormControlLabel`.
+- To define the gap between checkbox labels, use the optional `gap` prop of type `number` on `EzFormGroup`.
+  - Recipe uses an `8px` scaling factor, so a gap of `x` (of type `number`) is equal to `x * 8px`.
+  - The default gap for columns is `0` and rows is `2`.
+- To lay out the buttons horizontally, use the optional `row` prop on `EzFormGroup`.
+- To add helper text to a checkbox label, use the optional `helperText` prop on `EzFormControlLabel`.
 
 ```jsx
 <EzPage>
@@ -199,6 +201,7 @@ To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox`
   - `id` - should match the `ariaLabel` prop of `EzFormGroup`
 - `EzFormGroup` - used to group checkboxes
   - `ariaLabel` - should match the `id` prop of `EzFormLabel`
+  - `gap` - the gap between form labels (defaults to 0 for columns and 2 for rows)
   - `row` - lays out the checkboxes horizontally
 - `EzFormControlLabel` - used to provide a label for a checkbox
   - `control` - the required control element (`<EzCheckbox />`)
@@ -302,6 +305,7 @@ To use Recipe's deprecated checkbox style, add the `legacy` prop.
 Supported styles should be used, but if you need to overwrite styles for the checkbox, form label, or form control label, you can do so using provided class names:
 
 - `EzCheckbox`, `EzCheckbox-outlined`, `EzCheckbox-filled`, `EzCheckbox-checked`, `EzCheckbox-unchecked`, `EzCheckbox-icon`, `EzCheckbox-disabled`, `EzCheckbox-input`
+- `EzFormGroup`
 - `EzFormLabel`
 - `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`
 

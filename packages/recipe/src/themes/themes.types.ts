@@ -13,4 +13,4 @@ export type PaletteOptions =
 
 export type EzThemeCommonColors = `common.${keyof EzPalette}` | `common.${keyof CommonColors}`;
 export type EzThemeColors = PaletteOptions | EzThemeCommonColors | 'inherit';
-export type EzThemeSizes = 'small' | 'medium' | 'large' | 'inherit';
+export type EzThemeIconSizes = 'small' | 'medium' | 'large' | 'xlarge' | 'inherit';

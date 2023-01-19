@@ -184,9 +184,11 @@ If you want to specify a size, use the `size` property. We currently support `sm
 
 EzRadio components can be grouped using form controls (see below).
 
-To lay out the buttons horizontally, use the `row` prop on `EzRadioGroup`.
-
-To add helper text to a radio group label, use the optional `helperText` prop on `EzFormControlLabel`.
+- To define the gap between radio labels, use the optional `gap` prop of type `number` on `EzRadioGroup`.
+  - Recipe uses an `8px` scaling factor, so a gap of `x` (of type `number`) is equal to `x * 8px`.
+  - The default gap for columns is `0` and rows is `2`.
+- To lay out the buttons horizontally, use the optional `row` prop on `EzRadioGroup`.
+- To add helper text to a radio label, use the optional `helperText` prop on `EzFormControlLabel`.
 
 ```jsx
 () => {
@@ -216,6 +218,7 @@ To add helper text to a radio group label, use the optional `helperText` prop on
           <EzRadioGroup
             ariaLabel="radio-buttons-drinks-row"
             defaultValue="coffee"
+            gap={3}
             name="radio-buttons-drinks-row-group"
             row
           >
@@ -277,9 +280,12 @@ To provide proper keyboard accessibility when using grouped radio buttons, use `
 - `EzRadioGroup` - used to group radio buttons
   - `ariaLabel` - should match the `id` prop of `EzFormLabel`
   - `defaultValue` - sets the default value if not controlled
+  - `gap` - the gap between radio labels (defaults to 0 for columns and 2 for rows)
+  - `labelWidth` - the defined width of each super radio button in a radio group
   - `name` - used to reference the value of the control
   - `onChange` - if controlled, the callback fired when the radio button is selected
   - `row` - lays out the buttons horizontally
+  - `theme` - a defined theme object with optional keys `color` and `variant` for super radio buttons
   - `value` - if controlled, the value of the selected radio button
 - `EzFormControlLabel` - used to provide a label for a radio button
   - `control` - the required control element (`<EzRadio />`)
@@ -292,45 +298,113 @@ To provide proper keyboard accessibility when using grouped radio buttons, use `
 
 ### Super Radio Buttons
 
-For larger, more visual radio buttons, you can provide an `icon` (`<EzIcon />`) and a `label` to `EzFormControlLabel`.
+For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along with an optional `label` to `EzFormControlLabel`.
 
-- The label for a super radio button should not be more than 2 lines.
-- To lay out the buttons horizontally, use the `row` prop on `EzRadioGroup`.
-- Supports theme colors by passing a `color` prop to `EzRadio` (defaults to `primary`).
+- To define a set pixel width for the buttons, pass a `labelWidth` of type `number` to `EzRadioGroup`. Labels will wrap if needed, but should not be more than 2 lines.
+- To define a theme for each button in a group, pass a `theme` property to `EzRadioGroup` (see example below).
+  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object
+  - `variant` accepts either `filled` (default) or `outlined`
 
 ```jsx
 () => {
-  const {Coffee, WaterGlass, WineGlass} = require('@ezcater/icons');
+  const {Coffee, ThumbsDown, ThumbsUp, WaterGlass, WineGlass} = require('@ezcater/icons');
 
   return (
-    <EzFormControl>
-      <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
-      <EzRadioGroup
-        ariaLabel="radio-buttons-drinks"
-        defaultValue="coffee"
-        name="radio-buttons-drinks-group"
-        row
-      >
-        <EzFormControlLabel
-          control={<EzRadio />}
-          icon={<EzIcon icon={Coffee} />}
-          label="Coffee"
-          value="coffee"
-        />
-        <EzFormControlLabel
-          control={<EzRadio />}
-          icon={<EzIcon icon={WineGlass} />}
-          label="Wine"
-          value="wine"
-        />
-        <EzFormControlLabel
-          control={<EzRadio />}
-          icon={<EzIcon icon={WaterGlass} />}
-          label="Water"
-          value="water"
-        />
-      </EzRadioGroup>
-    </EzFormControl>
+    <EzLayout layout="tile">
+      <EzPage>
+        <EzFormControl>
+          <EzRadioGroup ariaLabel="radio-buttons-thumbs" defaultValue="thumbs-up" row>
+            <EzFormControlLabel
+              control={<EzRadio />}
+              icon={<EzIcon icon={ThumbsUp} size="large" />}
+              value="thumbs-up"
+            />
+
+            <EzFormControlLabel
+              control={<EzRadio />}
+              icon={<EzIcon icon={ThumbsDown} size="large" />}
+              value="thumbs-down"
+            />
+          </EzRadioGroup>
+        </EzFormControl>
+      </EzPage>
+
+      <EzPage>
+        <EzFormControl>
+          <EzRadioGroup
+            ariaLabel="radio-buttons-thumbs-outlined"
+            defaultValue="thumbs-up"
+            row
+            theme={{
+              color: 'info',
+              variant: 'outlined',
+            }}
+          >
+            <EzFormControlLabel
+              control={<EzRadio />}
+              icon={<EzIcon icon={ThumbsUp} size="large" />}
+              value="thumbs-up"
+            />
+
+            <EzFormControlLabel
+              control={<EzRadio />}
+              icon={<EzIcon icon={ThumbsDown} size="large" />}
+              value="thumbs-down"
+            />
+          </EzRadioGroup>
+        </EzFormControl>
+      </EzPage>
+
+      <EzPage>
+        {/* Note: inline styles are discouraged and used here only for demo purposes */}
+        <div style={{backgroundColor: '#034A34', padding: '20px'}}>
+          <EzFormControl>
+            <EzRadioGroup
+              ariaLabel="super-radio-buttons-drinks"
+              defaultValue="coffee"
+              labelWidth={120}
+              name="super-radio-buttons-drinks-group"
+              row
+              theme={{
+                color: {
+                  selected: {
+                    backgroundColor: 'common.yellow100',
+                    borderColor: 'common.yellow100',
+                    textColor: 'common.primary110',
+                  },
+                  unselected: {
+                    backgroundColor: 'common.green105',
+                    borderColor: 'common.green105',
+                    textColor: 'common.white',
+                  },
+                },
+              }}
+            >
+              <EzFormControlLabel
+                control={<EzRadio />}
+                icon={<EzIcon icon={Coffee} size="xlarge" />}
+                label="Coffee"
+                value="coffee"
+              />
+
+              <EzFormControlLabel
+                control={<EzRadio />}
+                icon={<EzIcon icon={WineGlass} size="xlarge" />}
+                label="Wine"
+                value="wine"
+              />
+
+              <EzFormControlLabel
+                control={<EzRadio />}
+                icon={<EzIcon icon={WaterGlass} size="xlarge" />}
+                label="Water"
+                value="water"
+              />
+            </EzRadioGroup>
+          </EzFormControl>
+        </div>
+      </EzPage>
+    </EzLayout>
   );
 };
 ```
@@ -352,30 +426,21 @@ A radio button can be made disabled by adding the optional `disabled` prop on ei
   });
 
   return (
-    <EzLayout layout="stack">
-      <EzLayout layout="equal">
-        <EzLayout layout="stack">
-          <div style={{padding: '5px'}}>
-            <span style={{marginRight: '12px'}}>
-              <EzRadio {...radioProps('a')} disabled />
-            </span>
-
-            <span style={{marginRight: '12px'}}>
-              <EzRadio {...radioProps('b')} />
-            </span>
-          </div>
-
-          <div style={{backgroundColor: '#034a34', padding: '5px'}}>
-            <span style={{marginRight: '12px'}}>
-              <EzRadio {...radioProps('a')} disabled variant="filled" />
-            </span>
-
-            <span style={{marginRight: '12px'}}>
-              <EzRadio {...radioProps('b')} variant="filled" />
-            </span>
-          </div>
+    <EzLayout layout="tile">
+      <EzPage>
+        <EzLayout>
+          <EzRadio {...radioProps('a')} disabled />
+          <EzRadio {...radioProps('b')} />
         </EzLayout>
 
+        {/* Note: inline styles are discouraged and used here only for demo purposes */}
+        <EzLayout style={{backgroundColor: '#034a34'}}>
+          <EzRadio {...radioProps('a')} disabled variant="filled" />
+          <EzRadio {...radioProps('b')} variant="filled" />
+        </EzLayout>
+      </EzPage>
+
+      <EzPage>
         <EzFormControl>
           <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
           <EzRadioGroup
@@ -388,9 +453,9 @@ A radio button can be made disabled by adding the optional `disabled` prop on ei
             <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
           </EzRadioGroup>
         </EzFormControl>
-      </EzLayout>
+      </EzPage>
 
-      <EzLayout>
+      <EzPage>
         <EzFormControl>
           <EzFormLabel id="super-radio-buttons-drinks">Drinks</EzFormLabel>
           <EzRadioGroup
@@ -402,25 +467,25 @@ A radio button can be made disabled by adding the optional `disabled` prop on ei
             <EzFormControlLabel
               control={<EzRadio />}
               disabled
-              icon={<EzIcon icon={Coffee} />}
+              icon={<EzIcon icon={Coffee} size="xlarge" />}
               label="Coffee"
               value="coffee"
             />
             <EzFormControlLabel
               control={<EzRadio />}
-              icon={<EzIcon icon={WineGlass} />}
+              icon={<EzIcon icon={WineGlass} size="xlarge" />}
               label="Wine"
               value="wine"
             />
             <EzFormControlLabel
               control={<EzRadio />}
-              icon={<EzIcon icon={WaterGlass} />}
+              icon={<EzIcon icon={WaterGlass} size="xlarge" />}
               label="Water"
               value="water"
             />
           </EzRadioGroup>
         </EzFormControl>
-      </EzLayout>
+      </EzPage>
     </EzLayout>
   );
 };
@@ -433,6 +498,7 @@ A radio button can be made disabled by adding the optional `disabled` prop on ei
 Supported styles should be used, but if you need to overwrite styles for the radio, form label, form control label, or super form control label, you can do so using provided class names:
 
 - `EzRadio`, `EzRadio-outlined`, `EzRadio-filled`, `EzRadio-checked`, `EzRadioIcon-checked-border`, `EzRadioIcon-checked-dot`, `EzRadio-disabled`, `EzRadio-input`, `EzRadioIcon-checked`, `EzRadioIcon-unchecked`
+- `EzRadioGroup`
 - `EzFormLabel`
 - `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`
 - `EzSuperFormControlLabel`, `EzSuperFormControlLabel-checked`, `EzSuperFormControlLabel-label`,`EzSuperFormControlLabel-icon`, `EzSuperFormControlLabel-text`
@@ -444,6 +510,8 @@ Supported styles should be used, but if you need to overwrite styles for the rad
 See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for radio buttons.
 
 All radio button form controls should have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
+
+If a label isn't used (for example when using an icon-only super radio button), be sure to add an `ariaLabel` directly to `EzRadio`.
 
 ---
 

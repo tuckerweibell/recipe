@@ -17,6 +17,8 @@ import {
   MOCK_ICON_FRIES,
   MOCK_ICON_PIZZA,
   MOCK_ICON_RAMEN,
+  MOCK_ICON_THUMBS_DOWN,
+  MOCK_ICON_THUMBS_UP,
   MOCK_ICON_WATER_GLASS,
   MOCK_ICON_WINE_GLASS,
 } from '../src/components/EzIcon/EzIconMocks';
@@ -63,6 +65,8 @@ const scope: any = {
       Fries: MOCK_ICON_FRIES,
       Pizza: MOCK_ICON_PIZZA,
       Ramen: MOCK_ICON_RAMEN,
+      ThumbsDown: MOCK_ICON_THUMBS_DOWN,
+      ThumbsUp: MOCK_ICON_THUMBS_UP,
       WaterGlass: MOCK_ICON_WATER_GLASS,
       WineGlass: MOCK_ICON_WINE_GLASS,
     };

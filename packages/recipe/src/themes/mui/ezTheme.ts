@@ -158,6 +158,7 @@ const typography = {
       small: 16,
       medium: 24,
       large: 32,
+      xlarge: 60,
     },
   },
 };
@@ -219,6 +220,20 @@ const components = {
       sizeSmall: {
         height: '20px',
         lineHeight: '20px',
+      },
+    },
+  },
+  MuiFormControlLabel: {
+    styleOverrides: {
+      root: {
+        marginLeft: 0,
+        marginRight: 0,
+      },
+      label: {
+        '&.Mui-disabled': {
+          color: palette.common.disabled,
+          opacity: 1,
+        },
       },
     },
   },

@@ -17,7 +17,7 @@ import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
 import {faStar as fullStar} from '@fortawesome/free-solid-svg-icons/faStar';
 import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/faStarHalfStroke';
 import {faStar as emptyStar} from '@fortawesome/free-regular-svg-icons/faStar';
-import {Coffee, Fries, Pizza, Ramen, WaterGlass, WineGlass} from '@ezcater/icons';
+import {Coffee, Fries, Pizza, Ramen, ThumbsDown, ThumbsUp, WaterGlass, WineGlass} from '@ezcater/icons';
 import {faCartShopping as shoppingCart} from '@fortawesome/free-solid-svg-icons/faCartShopping';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
@@ -126,6 +126,8 @@ const scope = {
     Fries,
     Pizza,
     Ramen,
+    ThumbsDown,
+    ThumbsUp,
     WaterGlass,
     WineGlass,
     // svg icons
