@@ -31,15 +31,13 @@ To mark the checkbox as checked by default, use the `defaultChecked` prop.
 
 ```jsx
 <EzLayout>
-  <EzCheckbox defaultChecked />
+  <EzCheckbox defaultChecked name="checkbox" />
 
-  <div style={{backgroundColor: '#034a34'}}>
-    <EzCheckbox defaultChecked variant="filled" />
-  </div>
-
-  <div style={{backgroundColor: '#034a34'}}>
-    <EzCheckbox defaultChecked variant="filled-inverse" />
-  </div>
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="basic" style={{backgroundColor: '#034a34'}}>
+    <EzCheckbox defaultChecked name="filledCheckbox" variant="filled" />
+    <EzCheckbox defaultChecked name="filledInverseCheckbox" variant="filled-inverse" />
+  </EzLayout>
 </EzLayout>
 ```
 
@@ -55,37 +53,39 @@ You can optionally append a set of icons to the label by passing in an array of 
 
   return (
     <EzLayout layout="stack">
-      <EzLayout layout="stack">
-        <div style={{paddingLeft: '16px'}}>
-          <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Outlined" />
-        </div>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="stack" style={{paddingLeft: '16px'}}>
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="outlined" />}
+          label="Outlined"
+        />
 
-        <div style={{paddingLeft: '16px'}}>
-          <EzFormControlLabel
-            control={<EzCheckbox defaultChecked />}
-            label="With Icons"
-            labelIcons={[
-              <EzIcon icon={Coffee} size="small" />,
-              <EzIcon icon={WaterGlass} size="small" />,
-              <EzIcon icon={WineGlass} size="small" />,
-            ]}
-          />
-        </div>
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="withIcons" />}
+          label="With Icons"
+          labelIcons={[
+            <EzIcon icon={Coffee} size="small" />,
+            <EzIcon icon={WaterGlass} size="small" />,
+            <EzIcon icon={WineGlass} size="small" />,
+          ]}
+        />
       </EzLayout>
 
-      <div style={{backgroundColor: '#034a34', color: 'white', paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout
+        layout="stack"
+        style={{backgroundColor: '#034a34', color: 'white', paddingLeft: '16px'}}
+      >
         <EzFormControlLabel
-          control={<EzCheckbox defaultChecked variant="filled" />}
+          control={<EzCheckbox defaultChecked name="filled" variant="filled" />}
           label="Filled"
         />
-      </div>
 
-      <div style={{backgroundColor: '#034a34', color: 'white', paddingLeft: '16px'}}>
         <EzFormControlLabel
-          control={<EzCheckbox defaultChecked variant="filled-inverse" />}
+          control={<EzCheckbox defaultChecked name="filledInverse" variant="filled-inverse" />}
           label="Filled-Inverse"
         />
-      </div>
+      </EzLayout>
     </EzLayout>
   );
 };
@@ -97,32 +97,66 @@ EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `
 
 ```jsx
 <EzLayout layout="stack">
-  <div style={{padding: '0 16px'}}>
-    <EzCheckbox defaultChecked color="primary" />
-    <EzCheckbox defaultChecked color="warning" />
-    <EzCheckbox defaultChecked color="info" />
-    <EzCheckbox defaultChecked color="neutral" />
-    <EzCheckbox defaultChecked color="common.red100" />
-    <EzCheckbox defaultChecked color="common.purple100" />
-  </div>
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
+    <EzCheckbox defaultChecked color="primary" name="primary" />
+    <EzCheckbox defaultChecked color="warning" name="warning" />
+    <EzCheckbox defaultChecked color="info" name="info" />
+    <EzCheckbox defaultChecked color="neutral" name="neutral" />
+    <EzCheckbox defaultChecked color="common.red100" name="commonRed100" />
+    <EzCheckbox defaultChecked color="common.purple100" name="commonPurple100" />
+  </EzLayout>
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox defaultChecked color="primary" variant="filled" />
-    <EzCheckbox defaultChecked color="warning" variant="filled" />
-    <EzCheckbox defaultChecked color="info" variant="filled" />
-    <EzCheckbox defaultChecked color="neutral" variant="filled" />
-    <EzCheckbox defaultChecked color="common.red100" variant="filled" />
-    <EzCheckbox defaultChecked color="common.purple100" variant="filled" />
-  </div>
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="stack" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
+    <EzLayout layout="basic">
+      <EzCheckbox color="primary" defaultChecked name="filledPrimary" variant="filled" />
+      <EzCheckbox color="warning" defaultChecked name="filledWarning" variant="filled" />
+      <EzCheckbox color="info" defaultChecked name="filledInfo" variant="filled" />
+      <EzCheckbox color="neutral" defaultChecked name="filledNeutral" variant="filled" />
+      <EzCheckbox color="common.red100" defaultChecked name="filledCommonRed100" variant="filled" />
+      <EzCheckbox
+        color="common.purple100"
+        defaultChecked
+        name="filledCommonPurple100"
+        variant="filled"
+      />
+    </EzLayout>
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox defaultChecked color="primary" variant="filled-inverse" />
-    <EzCheckbox defaultChecked color="warning" variant="filled-inverse" />
-    <EzCheckbox defaultChecked color="info" variant="filled-inverse" />
-    <EzCheckbox defaultChecked color="neutral" variant="filled-inverse" />
-    <EzCheckbox defaultChecked color="common.red100" variant="filled-inverse" />
-    <EzCheckbox defaultChecked color="common.purple100" variant="filled-inverse" />
-  </div>
+    <EzLayout layout="basic">
+      <EzCheckbox
+        color="primary"
+        defaultChecked
+        name="filledInversePrimary"
+        variant="filled-inverse"
+      />
+      <EzCheckbox
+        color="warning"
+        defaultChecked
+        name="filledInverseWarning"
+        variant="filled-inverse"
+      />
+      <EzCheckbox color="info" defaultChecked name="filledInverseInfo" variant="filled-inverse" />
+      <EzCheckbox
+        color="neutral"
+        defaultChecked
+        name="filledInverseNeutral"
+        variant="filled-inverse"
+      />
+      <EzCheckbox
+        color="common.red100"
+        defaultChecked
+        name="filledInverseCommonRed100"
+        variant="filled-inverse"
+      />
+      <EzCheckbox
+        color="common.purple100"
+        defaultChecked
+        name="filledInverseCommonPurple100"
+        variant="filled-inverse"
+      />
+    </EzLayout>
+  </EzLayout>
 </EzLayout>
 ```
 
@@ -132,24 +166,75 @@ If you want to specify a size, use the `size` property. We currently support `sm
 
 ```jsx
 <EzLayout layout="stack">
-  <div style={{padding: '0 16px'}}>
-    <EzCheckbox defaultChecked size="small" />
-    <EzCheckbox defaultChecked size="medium" />
-    <EzCheckbox defaultChecked size="large" />
-  </div>
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
+    <EzCheckbox defaultChecked name="small" size="small" />
+    <EzCheckbox defaultChecked name="medium" size="medium" />
+    <EzCheckbox defaultChecked name="large" size="large" />
+  </EzLayout>
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox defaultChecked variant="filled" size="small" />
-    <EzCheckbox defaultChecked variant="filled" size="medium" />
-    <EzCheckbox defaultChecked variant="filled" size="large" />
-  </div>
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="stack" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
+    <EzLayout layout="basic">
+      <EzCheckbox defaultChecked name="filledSmall" size="small" variant="filled" />
+      <EzCheckbox defaultChecked name="filledMedium" size="medium" variant="filled" />
+      <EzCheckbox defaultChecked name="filledLarge" size="large" variant="filled" />
+    </EzLayout>
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox defaultChecked variant="filled-inverse" size="small" />
-    <EzCheckbox defaultChecked variant="filled-inverse" size="medium" />
-    <EzCheckbox defaultChecked variant="filled-inverse" size="large" />
-  </div>
+    <EzLayout layout="basic">
+      <EzCheckbox defaultChecked name="filledInverseSmall" size="small" variant="filled-inverse" />
+      <EzCheckbox
+        defaultChecked
+        name="filledInverseMedium"
+        size="medium"
+        variant="filled-inverse"
+      />
+      <EzCheckbox defaultChecked name="filledInverseLarge" size="large" variant="filled-inverse" />
+    </EzLayout>
+  </EzLayout>
 </EzLayout>
+```
+
+### Checkbox Indeterminate State
+
+A checkbox input has only one of two states: checked or unchecked. However, visually, a checkbox can also have an indeterminate state by using the `indeterminate` property on `EzCheckbox`.
+
+```jsx
+() => {
+  const [checked, setChecked] = useState([true, false]);
+  const handleChange1 = event => setChecked([event.target.checked, event.target.checked]);
+  const handleChange2 = event => setChecked([event.target.checked, checked[1]]);
+  const handleChange3 = event => setChecked([checked[0], event.target.checked]);
+
+  return (
+    <EzLayout layout="stack">
+      <EzFormControlLabel
+        label="Parent"
+        control={
+          <EzCheckbox
+            checked={checked[0] && checked[1]}
+            indeterminate={checked[0] !== checked[1]}
+            name="parent"
+            onChange={handleChange1}
+          />
+        }
+      />
+
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="stack" style={{marginLeft: '32px'}}>
+        <EzFormControlLabel
+          label="Child 1"
+          control={<EzCheckbox checked={checked[0]} name="child1" onChange={handleChange2} />}
+        />
+
+        <EzFormControlLabel
+          label="Child 2"
+          control={<EzCheckbox checked={checked[1]} name="child2" onChange={handleChange3} />}
+        />
+      </EzLayout>
+    </EzLayout>
+  );
+};
 ```
 
 ### Checkbox Group
@@ -169,12 +254,21 @@ EzCheckbox components can be grouped using form controls (see below).
       <EzFormLabel id="checkbox-drinks">Drinks</EzFormLabel>
       <EzFormGroup ariaLabel="checkbox-drinks">
         <EzFormControlLabel
-          control={<EzCheckbox defaultChecked />}
-          label="Coffee"
+          control={<EzCheckbox defaultChecked name="coffee" />}
           helperText="Caffineated"
+          label="Coffee"
+          value="coffee"
         />
-        <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Wine" />
-        <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Water" />
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="water" />}
+          label="Water"
+          value="water"
+        />
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="wine" />}
+          label="Wine"
+          value="wine"
+        />
       </EzFormGroup>
     </EzFormControl>
 
@@ -182,16 +276,75 @@ EzCheckbox components can be grouped using form controls (see below).
       <EzFormLabel id="checkbox-drinks-row">Drinks In A Row</EzFormLabel>
       <EzFormGroup ariaLabel="checkbox-drinks-row" row>
         <EzFormControlLabel
-          control={<EzCheckbox defaultChecked />}
+          control={<EzCheckbox defaultChecked name="rowCoffee" />}
           helperText="Caffineated"
           label="Coffee"
+          value="coffee"
         />
-        <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Wine" />
-        <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Water" />
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="rowWater" />}
+          label="Water"
+          value="water"
+        />
+        <EzFormControlLabel
+          control={<EzCheckbox defaultChecked name="rowWine" />}
+          label="Wine"
+          value="wine"
+        />
       </EzFormGroup>
     </EzFormControl>
   </EzLayout>
 </EzPage>
+```
+
+You can also control the checkbox with the `checked` prop on `EzFormControlLabel` and `onChange` on `EzCheckbox`.
+
+```jsx
+() => {
+  const [state, setState] = useState({
+    coffee: true,
+    water: false,
+    wine: false,
+  });
+
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  return (
+    <EzPage>
+      <EzLayout layout="equal">
+        <EzFormControl>
+          <EzFormLabel id="checkbox-buttons-drinks">Drinks</EzFormLabel>
+          <EzFormGroup ariaLabel="checkbox-buttons-drinks">
+            <EzFormControlLabel
+              checked={state.coffee}
+              control={<EzCheckbox name="coffee" onChange={handleChange} />}
+              label="Coffee"
+              helperText="Caffineated"
+              value="coffee"
+            />
+            <EzFormControlLabel
+              checked={state.water}
+              control={<EzCheckbox name="water" onChange={handleChange} />}
+              label="Water"
+              value="water"
+            />
+            <EzFormControlLabel
+              checked={state.wine}
+              control={<EzCheckbox name="wine" onChange={handleChange} />}
+              label="Wine"
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzPage>
+  );
+};
 ```
 
 To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox` with the following components and their props:
@@ -203,6 +356,8 @@ To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox`
   - `ariaLabel` - should match the `id` prop of `EzFormLabel`
   - `gap` - the gap between form labels (defaults to 0 for columns and 2 for rows)
   - `row` - lays out the checkboxes horizontally
+  - `labelWidth` - the defined width of each super checkbox button in a form group
+  - `theme` - a defined theme object with optional keys `color` and `variant` for super checkbox buttons
 - `EzFormControlLabel` - used to provide a label for a checkbox
   - `control` - the required control element (`<EzCheckbox />`)
   - `disabled` - if `true`, the component is disabled
@@ -212,39 +367,260 @@ To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox`
   - `labelIcons` - an optional array of `EzIcon`s to display after the label
   - `value` - the value of the form control label
 
+### Super Checkbox Buttons
+
+For larger, more visual checkbox buttons, provide an `icon` (`<EzIcon />`) along with an optional `label` to `EzFormControlLabel`.
+
+- To define a set pixel width for the buttons, pass a `labelWidth` of type `number` to `EzFormGroup`. Labels will wrap if needed, but should not be more than 2 lines.
+- To define a theme for each button in a group, pass a `theme` property to `EzFormGroup` (see example below).
+  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object
+  - `variant` accepts either `filled` (default), or `outlined` (`filled-inverse` is not supported - use custom defined values)
+- Super checkbox buttons must be controlled, so be sure to pass `checked` and `value` properties to `EzFormControlLabel` as well as `onChange` to `EzCheckbox`.
+
+```jsx
+() => {
+  const {Coffee, WaterGlass, WineGlass} = require('@ezcater/icons');
+  const [state, setState] = useState({
+    noLabelCoffee: true,
+    noLabelWater: false,
+    noLabelWine: false,
+    noLabelOutlinedCoffee: true,
+    noLabelOutlinedWater: false,
+    noLabelOutlinedWine: false,
+    labelCoffee: true,
+    labelWater: false,
+    labelWine: false,
+  });
+
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  return (
+    <EzLayout layout="tile">
+      <EzPage>
+        <EzFormControl>
+          <EzFormGroup ariaLabel="super-checkbox-buttons-no-label" row>
+            <EzFormControlLabel
+              checked={state.noLabelCoffee}
+              control={<EzCheckbox name="noLabelCoffee" onChange={handleChange} />}
+              icon={<EzIcon icon={Coffee} size="large" />}
+              value="coffee"
+            />
+
+            <EzFormControlLabel
+              checked={state.noLabelWater}
+              control={<EzCheckbox name="noLabelWater" onChange={handleChange} />}
+              icon={<EzIcon icon={WaterGlass} size="large" />}
+              value="water"
+            />
+
+            <EzFormControlLabel
+              checked={state.noLabelWine}
+              control={<EzCheckbox name="noLabelWine" onChange={handleChange} />}
+              icon={<EzIcon icon={WineGlass} size="large" />}
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzPage>
+
+      <EzPage>
+        <EzFormControl>
+          <EzFormGroup
+            ariaLabel="super-checkbox-buttons-no-label-outlined"
+            row
+            theme={{
+              color: 'info',
+              variant: 'outlined',
+            }}
+          >
+            <EzFormControlLabel
+              checked={state.noLabelOutlinedCoffee}
+              control={<EzCheckbox name="noLabelOutlinedCoffee" onChange={handleChange} />}
+              icon={<EzIcon icon={Coffee} size="large" />}
+              value="coffee"
+            />
+
+            <EzFormControlLabel
+              checked={state.noLabelOutlinedWater}
+              control={<EzCheckbox name="noLabelOutlinedWater" onChange={handleChange} />}
+              icon={<EzIcon icon={WaterGlass} size="large" />}
+              value="water"
+            />
+
+            <EzFormControlLabel
+              checked={state.noLabelOutlinedWine}
+              control={<EzCheckbox name="noLabelOutlinedWine" onChange={handleChange} />}
+              icon={<EzIcon icon={WineGlass} size="large" />}
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzPage>
+
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout style={{backgroundColor: '#034A34', padding: '20px'}}>
+        <EzFormControl>
+          <EzFormGroup
+            ariaLabel="super-checkbox-buttons-label"
+            labelWidth={120}
+            row
+            theme={{
+              color: {
+                selected: {
+                  backgroundColor: 'common.yellow100',
+                  borderColor: 'common.yellow100',
+                  textColor: 'common.primary110',
+                },
+                unselected: {
+                  backgroundColor: 'common.green105',
+                  borderColor: 'common.green105',
+                  textColor: 'common.white',
+                },
+              },
+            }}
+          >
+            <EzFormControlLabel
+              checked={state.labelCoffee}
+              control={<EzCheckbox name="labelCoffee" onChange={handleChange} />}
+              icon={<EzIcon icon={Coffee} size="xlarge" />}
+              label="Coffee"
+              value="coffee"
+            />
+
+            <EzFormControlLabel
+              checked={state.labelWater}
+              control={<EzCheckbox name="labelWater" onChange={handleChange} />}
+              icon={<EzIcon icon={WaterGlass} size="xlarge" />}
+              label="Water"
+              value="water"
+            />
+
+            <EzFormControlLabel
+              checked={state.labelWine}
+              control={<EzCheckbox name="labelWine" onChange={handleChange} />}
+              icon={<EzIcon icon={WineGlass} size="xlarge" />}
+              label="Wine"
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
 ### Disabled Checkboxes
 
 A checkbox can be made disabled by adding the optional `disabled` prop on either `EzCheckbox` (if standalone) or `EzFormControlLabel` (if in a group).
 
 ```jsx
-<EzLayout layout="stack">
-  <div style={{padding: '0 16px'}}>
-    <EzCheckbox disabled />
-    <EzCheckbox defaultChecked disabled />
-    <EzCheckbox defaultChecked />
-  </div>
+() => {
+  const {Coffee, WaterGlass, WineGlass} = require('@ezcater/icons');
+  const [state, setState] = useState({
+    coffee: true,
+    water: false,
+    wine: false,
+  });
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox disabled variant="filled" />
-    <EzCheckbox defaultChecked disabled variant="filled" />
-    <EzCheckbox defaultChecked variant="filled" />
-  </div>
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
 
-  <div style={{backgroundColor: '#034a34', padding: '0 16px'}}>
-    <EzCheckbox disabled variant="filled-inverse" />
-    <EzCheckbox defaultChecked disabled variant="filled-inverse" />
-    <EzCheckbox defaultChecked variant="filled-inverse" />
-  </div>
+  return (
+    <EzLayout layout="stack">
+      <EzLayout layout="equal">
+        <EzLayout layout="stack">
+          <EzLayout layout="basic">
+            <EzCheckbox disabled name="disabledA" />
+            <EzCheckbox defaultChecked disabled name="disabledB" />
+            <EzCheckbox defaultChecked name="enabled" />
+          </EzLayout>
 
-  <div style={{padding: '0 22px'}}>
-    <EzFormControl>
-      <EzFormLabel id="checkbox-drinks">Drinks</EzFormLabel>
-      <EzFormControlLabel control={<EzCheckbox />} disabled label="Coffee" />
-      <EzFormControlLabel control={<EzCheckbox defaultChecked />} disabled label="Wine" />
-      <EzFormControlLabel control={<EzCheckbox defaultChecked />} label="Water" />
-    </EzFormControl>
-  </div>
-</EzLayout>
+          {/* Note: inline styles are discouraged and used here only for demo purposes */}
+          <EzLayout layout="stack" style={{backgroundColor: '#034a34'}}>
+            <EzLayout layout="basic">
+              <EzCheckbox disabled name="filledDisabledA" variant="filled" />
+              <EzCheckbox defaultChecked disabled name="filledDisabledB" variant="filled" />
+              <EzCheckbox defaultChecked name="filledEnabled" variant="filled" />
+            </EzLayout>
+
+            <EzLayout layout="basic">
+              <EzCheckbox disabled name="filledInverseDisabledA" variant="filled-inverse" />
+              <EzCheckbox
+                defaultChecked
+                disabled
+                name="filledInverseDisabledB"
+                variant="filled-inverse"
+              />
+              <EzCheckbox defaultChecked name="filledInverseEnabled" variant="filled-inverse" />
+            </EzLayout>
+          </EzLayout>
+        </EzLayout>
+
+        <EzPage>
+          <EzFormControl>
+            <EzFormLabel id="checkbox-drinks">Drinks</EzFormLabel>
+            <EzFormControlLabel
+              control={<EzCheckbox name="coffeeDisabled" />}
+              disabled
+              label="Coffee"
+            />
+            <EzFormControlLabel
+              control={<EzCheckbox defaultChecked name="waterDisabled" />}
+              disabled
+              label="Water"
+            />
+            <EzFormControlLabel
+              control={<EzCheckbox defaultChecked name="wineEnabled" />}
+              label="Wine"
+            />
+          </EzFormControl>
+        </EzPage>
+      </EzLayout>
+
+      <EzPage>
+        <EzFormControl>
+          <EzFormGroup ariaLabel="super-checkbox-buttons" labelWidth={120} row>
+            <EzFormControlLabel
+              checked={state.coffee}
+              control={<EzCheckbox name="coffee" onChange={handleChange} />}
+              disabled
+              icon={<EzIcon icon={Coffee} size="xlarge" />}
+              label="Coffee"
+              value="coffee"
+            />
+
+            <EzFormControlLabel
+              checked={state.water}
+              control={<EzCheckbox name="water" onChange={handleChange} />}
+              disabled
+              icon={<EzIcon icon={WaterGlass} size="xlarge" />}
+              label="Water"
+              value="water"
+            />
+
+            <EzFormControlLabel
+              checked={state.wine}
+              control={<EzCheckbox name="wine" onChange={handleChange} />}
+              icon={<EzIcon icon={WineGlass} size="xlarge" />}
+              label="Wine"
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzPage>
+    </EzLayout>
+  );
+};
 ```
 
 ### Legacy Checkboxes (Deprecated)
@@ -262,9 +638,10 @@ To use Recipe's deprecated checkbox style, add the `legacy` prop.
     <EzLayout layout="stack">
       <EzCheckbox
         legacy
-        label="Basic checkbox"
-        onChange={() => setBasicChecked(!basicChecked)}
         checked={basicChecked}
+        label="Basic checkbox"
+        name="legacyBasicCheckbox"
+        onChange={() => setBasicChecked(!basicChecked)}
       />
 
       <EzCheckbox legacy label="Disabled checkbox" disabled />
@@ -272,7 +649,10 @@ To use Recipe's deprecated checkbox style, add the `legacy` prop.
       <EzCheckbox
         legacy
         acknowledgement
+        checked={acknowledgementChecked}
         label="I accept the new terms of service"
+        name="legacyAcknowledgementCheckbox"
+        onChange={() => setAcknowledgementChecked(!acknowledgementChecked)}
         terms={
           <span>
             I have read and agree to the{' '}
@@ -290,8 +670,6 @@ To use Recipe's deprecated checkbox style, add the `legacy` prop.
             .
           </span>
         }
-        onChange={() => setAcknowledgementChecked(!acknowledgementChecked)}
-        checked={acknowledgementChecked}
       />
     </EzLayout>
   );
@@ -304,10 +682,11 @@ To use Recipe's deprecated checkbox style, add the `legacy` prop.
 
 Supported styles should be used, but if you need to overwrite styles for the checkbox, form label, or form control label, you can do so using provided class names:
 
-- `EzCheckbox`, `EzCheckbox-outlined`, `EzCheckbox-filled`, `EzCheckbox-checked`, `EzCheckbox-unchecked`, `EzCheckbox-icon`, `EzCheckbox-disabled`, `EzCheckbox-input`
+- `EzCheckbox`, `EzCheckbox-outlined`, `EzCheckbox-filled`, `EzCheckbox-filled-inverse`, `EzCheckbox-checked`, `EzCheckbox-unchecked`, `EzCheckbox-indeterminate`, `EzCheckbox-icon`, `EzCheckbox-disabled`, `EzCheckbox-input`
 - `EzFormGroup`
 - `EzFormLabel`
 - `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`
+- `EzSuperFormControlLabel`, `EzSuperFormControlLabel-checkbox`, `EzSuperFormControlLabel-checked`, `EzSuperFormControlLabel-label`,`EzSuperFormControlLabel-icon`, `EzSuperFormControlLabel-text`
 
 ---
 
@@ -316,6 +695,8 @@ Supported styles should be used, but if you need to overwrite styles for the che
 See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/) for checkboxes.
 
 All checkbox form controls should have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
+
+Checkboxes should also have a `name` property, which is used to set or return the value of the named attribute of the checkbox field.
 
 ---
 
@@ -376,9 +757,24 @@ All checkbox form controls should have corresponding labels using `ariaLabel` (h
       description: '**Deprecated** If true, the component is a legacy checkbox.'
     },
     {
+      name: 'name',
+      types: ['string'],
+      description: 'The name of the checkbox input.',
+    },
+    {
+      name: 'onBlur',
+      types: ['func'],
+      description: 'Callback fired when the state is blurred for controlled components.',
+    },
+    {
       name: 'onChange',
       types: ['func'],
       description: 'Callback fired when the state is changed for controlled components.',
+    },
+    {
+      name: 'onFocus',
+      types: ['func'],
+      description: 'Callback fired when the state is focused for controlled components.',
     },
     {
       name: 'size',
@@ -398,7 +794,7 @@ All checkbox form controls should have corresponding labels using `ariaLabel` (h
     },
     {
       name: 'variant',
-      types: ['outlined', 'filled'],
+      types: ['outlined', 'filled', 'filled-inverse'],
       defaultValue: 'outlined',
       description: 'The variant of the component.',
     },
@@ -410,5 +806,6 @@ All checkbox form controls should have corresponding labels using `ariaLabel` (h
 
 ## Related components
 
+- [EzRadio](/components/ez-radio)
 - [EzField](/components/ez-field)
 - [EzToggle](/components/ez-toggle)

@@ -14,6 +14,7 @@ const EzCheckbox = forwardRef<Ref, EzCheckboxProps>((props, ref) => {
     color,
     defaultChecked,
     disabled,
+    indeterminate,
     name,
     onBlur,
     onChange,
@@ -30,6 +31,7 @@ const EzCheckbox = forwardRef<Ref, EzCheckboxProps>((props, ref) => {
       color={color}
       defaultChecked={defaultChecked}
       disabled={disabled}
+      indeterminate={indeterminate}
       name={name}
       onBlur={onBlur}
       onChange={onChange}

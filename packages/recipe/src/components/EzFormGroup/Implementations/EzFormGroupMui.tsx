@@ -3,7 +3,7 @@ import {FormGroup} from '@mui/material';
 import type {EzFormGroupProps, Ref} from '../EzFormGroup.types';
 
 const EzFormGroupMui = forwardRef<Ref, EzFormGroupProps>(
-  ({ariaLabel, children, gap, row, ...props}, ref) => {
+  ({ariaLabel, children, gap, labelWidth, row, ...props}, ref) => {
     return (
       <FormGroup
         ref={ref}
@@ -15,6 +15,9 @@ const EzFormGroupMui = forwardRef<Ref, EzFormGroupProps>(
         sx={{
           display: 'flex',
           gap: gap ?? (row ? 2 : 0),
+          '.EzSuperFormControlLabel': {
+            width: labelWidth ? `${labelWidth}px` : 'auto',
+          },
         }}
         {...props}
       >

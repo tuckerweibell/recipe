@@ -41,9 +41,10 @@ EzRadio supports `outlined` (default) and `filled` (for darker backgrounds) vari
     <EzLayout>
       <EzRadio {...radioProps('a')} />
 
-      <div style={{backgroundColor: '#034a34'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="basic" style={{backgroundColor: '#034a34'}}>
         <EzRadio {...radioProps('b')} variant="filled" />
-      </div>
+      </EzLayout>
     </EzLayout>
   );
 };
@@ -69,11 +70,10 @@ You can optionally append a set of icons to the label by passing in an array of 
 
   return (
     <EzLayout layout="stack">
-      <div style={{paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="stack" style={{paddingLeft: '16px'}}>
         <EzFormControlLabel control={<EzRadio {...radioProps('a')} />} label="Outlined" />
-      </div>
 
-      <div style={{paddingLeft: '16px'}}>
         <EzFormControlLabel
           control={<EzRadio {...radioProps('b')} />}
           label="With Icons"
@@ -83,14 +83,18 @@ You can optionally append a set of icons to the label by passing in an array of 
             <EzIcon icon={WineGlass} size="small" />,
           ]}
         />
-      </div>
+      </EzLayout>
 
-      <div style={{backgroundColor: '#034a34', color: 'white', paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout
+        layout="basic"
+        style={{backgroundColor: '#034a34', color: 'white', paddingLeft: '16px'}}
+      >
         <EzFormControlLabel
           control={<EzRadio {...radioProps('c')} variant="filled" />}
           label="Filled"
         />
-      </div>
+      </EzLayout>
     </EzLayout>
   );
 };
@@ -105,37 +109,37 @@ EzRadio supports theme palette properties (`primary`, `secondary`, `error`, `war
   const [selectedValue, setSelectedValue] = useState('a');
   const handleChange = event => setSelectedValue(event.target.value);
   const RadioButton = ({item, color, variant = 'outlined'}) => (
-    <span style={{marginRight: '12px'}}>
-      <EzRadio
-        checked={selectedValue === item}
-        color={color}
-        name="radio-button-colors"
-        onChange={handleChange}
-        value={item}
-        variant={variant}
-      />
-    </span>
+    <EzRadio
+      checked={selectedValue === item}
+      color={color}
+      name="radio-button-colors"
+      onChange={handleChange}
+      value={item}
+      variant={variant}
+    />
   );
 
   return (
     <EzLayout layout="stack">
-      <div style={{paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
         <RadioButton item="a" color="primary" />
         <RadioButton item="b" color="warning" />
         <RadioButton item="c" color="info" />
         <RadioButton item="d" color="neutral" />
         <RadioButton item="e" color="common.red100" />
         <RadioButton item="f" color="common.purple100" />
-      </div>
+      </EzLayout>
 
-      <div style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="basic" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
         <RadioButton item="a" color="primary" variant="filled" />
         <RadioButton item="b" color="warning" variant="filled" />
         <RadioButton item="c" color="info" variant="filled" />
         <RadioButton item="d" color="neutral" variant="filled" />
         <RadioButton item="e" color="common.red100" variant="filled" />
         <RadioButton item="f" color="common.purple100" variant="filled" />
-      </div>
+      </EzLayout>
     </EzLayout>
   );
 };
@@ -150,31 +154,31 @@ If you want to specify a size, use the `size` property. We currently support `sm
   const [selectedValue, setSelectedValue] = useState('a');
   const handleChange = event => setSelectedValue(event.target.value);
   const RadioButton = ({item, size, variant = 'outlined'}) => (
-    <span style={{marginRight: '12px'}}>
-      <EzRadio
-        checked={selectedValue === item}
-        name="radio-button-sizes"
-        onChange={handleChange}
-        size={size}
-        value={item}
-        variant={variant}
-      />
-    </span>
+    <EzRadio
+      checked={selectedValue === item}
+      name="radio-button-sizes"
+      onChange={handleChange}
+      size={size}
+      value={item}
+      variant={variant}
+    />
   );
 
   return (
     <EzLayout layout="stack">
-      <div style={{paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
         <RadioButton item="a" size="small" />
         <RadioButton item="b" size="medium" />
         <RadioButton item="c" size="large" />
-      </div>
+      </EzLayout>
 
-      <div style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="basic" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
         <RadioButton item="a" size="small" variant="filled" />
         <RadioButton item="b" size="medium" variant="filled" />
         <RadioButton item="c" size="large" variant="filled" />
-      </div>
+      </EzLayout>
     </EzLayout>
   );
 };
@@ -191,51 +195,47 @@ EzRadio components can be grouped using form controls (see below).
 - To add helper text to a radio label, use the optional `helperText` prop on `EzFormControlLabel`.
 
 ```jsx
-() => {
-  return (
-    <EzPage>
-      <EzLayout layout="stack">
-        <EzFormControl>
-          <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
-          <EzRadioGroup
-            ariaLabel="radio-buttons-drinks"
-            defaultValue="coffee"
-            name="radio-buttons-drinks-group"
-          >
-            <EzFormControlLabel
-              control={<EzRadio />}
-              label="Coffee"
-              helperText="Caffineated"
-              value="coffee"
-            />
-            <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
-            <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
-          </EzRadioGroup>
-        </EzFormControl>
+<EzPage>
+  <EzLayout layout="stack">
+    <EzFormControl>
+      <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
+      <EzRadioGroup
+        ariaLabel="radio-buttons-drinks"
+        defaultValue="coffee"
+        name="radio-buttons-drinks-group"
+      >
+        <EzFormControlLabel
+          control={<EzRadio />}
+          label="Coffee"
+          helperText="Caffineated"
+          value="coffee"
+        />
+        <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
+        <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
+      </EzRadioGroup>
+    </EzFormControl>
 
-        <EzFormControl>
-          <EzFormLabel id="radio-buttons-drinks-row">Drinks In A Row</EzFormLabel>
-          <EzRadioGroup
-            ariaLabel="radio-buttons-drinks-row"
-            defaultValue="coffee"
-            gap={3}
-            name="radio-buttons-drinks-row-group"
-            row
-          >
-            <EzFormControlLabel
-              control={<EzRadio />}
-              helperText="Caffineated"
-              label="Coffee"
-              value="coffee"
-            />
-            <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
-            <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
-          </EzRadioGroup>
-        </EzFormControl>
-      </EzLayout>
-    </EzPage>
-  );
-};
+    <EzFormControl>
+      <EzFormLabel id="radio-buttons-drinks-row">Drinks In A Row</EzFormLabel>
+      <EzRadioGroup
+        ariaLabel="radio-buttons-drinks-row"
+        defaultValue="coffee"
+        gap={3}
+        name="radio-buttons-drinks-row-group"
+        row
+      >
+        <EzFormControlLabel
+          control={<EzRadio />}
+          helperText="Caffineated"
+          label="Coffee"
+          value="coffee"
+        />
+        <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
+        <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
+      </EzRadioGroup>
+    </EzFormControl>
+  </EzLayout>
+</EzPage>
 ```
 
 You can also control the radio with the `value` and `onChange` props on `EzRadioGroup`.
@@ -357,7 +357,7 @@ For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along wi
 
       <EzPage>
         {/* Note: inline styles are discouraged and used here only for demo purposes */}
-        <div style={{backgroundColor: '#034A34', padding: '20px'}}>
+        <EzLayout layout="basic" style={{backgroundColor: '#034A34', padding: '20px'}}>
           <EzFormControl>
             <EzRadioGroup
               ariaLabel="super-radio-buttons-drinks"
@@ -402,7 +402,7 @@ For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along wi
               />
             </EzRadioGroup>
           </EzFormControl>
-        </div>
+        </EzLayout>
       </EzPage>
     </EzLayout>
   );
@@ -501,7 +501,7 @@ Supported styles should be used, but if you need to overwrite styles for the rad
 - `EzRadioGroup`
 - `EzFormLabel`
 - `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`
-- `EzSuperFormControlLabel`, `EzSuperFormControlLabel-checked`, `EzSuperFormControlLabel-label`,`EzSuperFormControlLabel-icon`, `EzSuperFormControlLabel-text`
+- `EzSuperFormControlLabel`, `EzSuperFormControlLabel-radio`, `EzSuperFormControlLabel-checked`, `EzSuperFormControlLabel-label`, `EzSuperFormControlLabel-icon`, `EzSuperFormControlLabel-text`
 
 ---
 

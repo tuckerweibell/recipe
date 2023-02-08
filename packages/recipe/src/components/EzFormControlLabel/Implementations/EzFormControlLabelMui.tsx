@@ -7,7 +7,7 @@ import {EzIconTypes} from '../../EzIcon/EzIcon.types';
 import {isSuperFormControlLabel} from '../utils';
 
 const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, ref) => {
-  const {control, disabled, label, value} = props;
+  const {checked, control, disabled, label, value} = props;
   const theme = useTheme();
   const themeColor = useThemeColor(control.props.color);
 
@@ -15,6 +15,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
     return (
       <EzSuperFormControlLabel
         ref={ref}
+        checked={checked}
         control={cloneElement(control, {ariaLabel: control.props.ariaLabel || null})}
         disabled={disabled}
         icon={props.icon}
@@ -28,6 +29,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
   return (
     <FormControlLabel
       inputRef={ref}
+      checked={checked}
       classes={{root: 'EzFormControlLabel', label: 'EzFormControlLabel-label'}}
       control={cloneElement(control, {ariaLabel: control.props.ariaLabel || null})}
       disabled={disabled}

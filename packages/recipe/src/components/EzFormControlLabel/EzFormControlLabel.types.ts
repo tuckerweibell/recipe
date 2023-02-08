@@ -4,6 +4,7 @@ import {EzIconTypes} from '../EzIcon/EzIcon.types';
 export type Ref = HTMLDivElement;
 
 export type EzFormControlLabelCommonProps = {
+  checked?: boolean;
   control: ReactElement;
   disabled?: boolean;
   value: any;

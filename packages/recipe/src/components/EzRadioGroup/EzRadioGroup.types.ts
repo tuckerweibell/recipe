@@ -3,19 +3,19 @@ import {EzThemeColors} from '../../themes/themes.types';
 
 export type Ref = HTMLDivElement;
 
-type EzRadioButtonThemeColors = {
+export type CustomColors = {
   backgroundColor: EzThemeColors;
   borderColor?: EzThemeColors;
   textColor: EzThemeColors;
 };
 
-type EzRadioButtonTheme = {
-  selected?: EzRadioButtonThemeColors;
-  unselected?: EzRadioButtonThemeColors;
+export type EzRadioGroupCustomColors = {
+  selected?: CustomColors;
+  unselected?: CustomColors;
 };
 
 export type EzRadioGroupTheme = {
-  color: EzThemeColors | EzRadioButtonTheme;
+  color: EzThemeColors | EzRadioGroupCustomColors;
   variant: 'filled' | 'outlined';
 };
 

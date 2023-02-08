@@ -39,6 +39,7 @@ export type EzCheckboxMuiProps = EzCheckboxCommonProps & {
   ariaLabel?: string;
   color?: EzThemeColors;
   defaultChecked?: boolean;
+  indeterminate?: boolean;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   size?: string;
   value?: any;

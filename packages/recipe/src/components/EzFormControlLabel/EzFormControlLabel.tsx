@@ -5,10 +5,11 @@ import {isSuperFormControlLabel} from './utils';
 
 const EzFormControlLabel = forwardRef<Ref, EzFormControlLabelProps>((props, ref) => {
   if (isSuperFormControlLabel(props)) {
-    const {control, disabled, icon, label, value} = props;
+    const {checked, control, disabled, icon, label, value} = props;
     return (
       <EzFormControlLabelMui
         ref={ref}
+        checked={checked}
         control={control}
         disabled={disabled}
         icon={icon}
@@ -18,10 +19,11 @@ const EzFormControlLabel = forwardRef<Ref, EzFormControlLabelProps>((props, ref)
     );
   }
 
-  const {control, disabled, helperText, label, labelIcons, value} = props;
+  const {checked, control, disabled, helperText, label, labelIcons, value} = props;
   return (
     <EzFormControlLabelMui
       ref={ref}
+      checked={checked}
       control={control}
       disabled={disabled}
       helperText={helperText}
