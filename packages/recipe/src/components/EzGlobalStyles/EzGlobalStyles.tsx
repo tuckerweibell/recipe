@@ -5,14 +5,14 @@ import features from './features';
 const styles = theme.globalCss({
   html: {
     boxSizing: 'border-box',
-    fontSize: '$text',
-    fontFamily: '$sans',
   },
   body: {
-    margin: 0,
-    color: '$black100',
-    '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
+    '-webkit-font-smoothing': 'antialiased',
+    color: '$black100',
+    fontFamily: '$sans',
+    fontSize: '$text',
+    margin: 0,
   },
   '*, *:before, *:after': {
     boxSizing: 'inherit',
