@@ -1,4 +1,4 @@
-import React, {useState, useRef, ReactElement} from 'react';
+import React, {useState, useRef, ReactElement, useEffect} from 'react';
 import theme from '../theme.config';
 import {useUniqueId} from '../../utils/hooks';
 import EzPopover from '../EzPopover';
@@ -8,6 +8,7 @@ type Props = {
   position?: 'vertical' | 'horizontal';
   message: string;
   children: ReactElement;
+  onShowTooltip?: () => void;
 } & React.HTMLAttributes<any>;
 
 const tooltip = theme.css({
@@ -52,7 +53,7 @@ const arrowPosition = theme.css({
 
 const reset = theme.css({my: 0});
 
-const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
+const EzTooltip: React.FC<Props> = ({children, message, position, onShowTooltip, ...rest}) => {
   const id = useUniqueId();
   const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -65,6 +66,13 @@ const EzTooltip: React.FC<Props> = ({children, message, position, ...rest}) => {
 
   const showTooltip = isHovered || isFocused;
   const child = React.Children.only(children);
+
+  const onShowTooltipRef = useRef(onShowTooltip);
+  onShowTooltipRef.current = onShowTooltip;
+
+  useEffect(() => {
+    if (showTooltip) onShowTooltipRef.current?.();
+  }, [showTooltip, onShowTooltipRef]);
 
   const childProps = {
     'aria-describedby': id,

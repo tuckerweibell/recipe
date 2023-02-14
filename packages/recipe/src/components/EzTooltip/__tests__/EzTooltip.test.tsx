@@ -49,6 +49,30 @@ describe('EzTooltip', () => {
 
       expect(tooltip).toBeVisible();
     });
+    it('should call onShowTooltip callback if hovering on tooltip', () => {
+      const onShowTooltip = jest.fn();
+      const {container} = render(
+        <EzTooltip message="tooltip visible" position="horizontal" onShowTooltip={onShowTooltip}>
+          <input />
+        </EzTooltip>
+      );
+
+      fireEvent.mouseEnter(container.querySelector('input'));
+
+      expect(onShowTooltip).toHaveBeenCalled();
+    });
+    it('should call onShowTooltip callback if focusing on tooltip', () => {
+      const onShowTooltip = jest.fn();
+      const {container} = render(
+        <EzTooltip message="tooltip visible" position="horizontal" onShowTooltip={onShowTooltip}>
+          <input />
+        </EzTooltip>
+      );
+
+      fireEvent.focus(container.querySelector('input'));
+
+      expect(onShowTooltip).toHaveBeenCalled();
+    });
     it('should hide tooltip on hover exit', () => {
       const {container, getByRole, queryByRole} = render(
         <EzTooltip message="tooltip visible" position="horizontal">
