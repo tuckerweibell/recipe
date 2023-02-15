@@ -1,5 +1,25 @@
 # @ezcater/recipe
 
+## 16.2.0
+
+### Minor Changes
+
+- feat: add super checkbox buttons to EzCheckbox [[sha]](https://github.com/ezcater/recipe/commit/aa6d149b)
+- style: added alternative color "green105" to supported theme colors [[sha]](https://github.com/ezcater/recipe/commit/9d26fca8)
+- feat: update EzRadio super radio buttons to new design [[sha]](https://github.com/ezcater/recipe/commit/9d26fca8)
+- feat: added xlarge size to supported EzIcon sizes [[sha]](https://github.com/ezcater/recipe/commit/9d26fca8)
+- feat: add indeterminate visual state to EzCheckbox [[sha]](https://github.com/ezcater/recipe/commit/aa6d149b)
+- feat: add callback function to EzTooltip for tracking [[sha]](https://github.com/ezcater/recipe/commit/7b6855a7)
+
+### Patch Changes
+
+- styles: move fontSize and fontFamily styles from html to body [[sha]](https://github.com/ezcater/recipe/commit/21ee418f)
+- fixup: type change to EzFormGroupProps to allow for an array of children, not just a singular element [[sha]](https://github.com/ezcater/recipe/commit/b8286fc6)
+- deps: upgrade @changesets/cli and prettier to latest versions [[sha]](https://github.com/ezcater/recipe/commit/4531d77a)
+- fix: accessibility of EzRadio super radio buttons [[sha]](https://github.com/ezcater/recipe/commit/aa6d149b)
+- workflow: updated changeset config to prevent releasing a major version of packages that do not have any changes [[sha]](https://github.com/ezcater/recipe/commit/4531d77a)
+- docs: update readme and getting started to include emotion, add codeowners, add readme and license to recipe package [[sha]](https://github.com/ezcater/recipe/commit/3bc29953)
+
 ## 16.1.2
 
 ### Patch Changes

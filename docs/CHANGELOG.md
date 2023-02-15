@@ -1,5 +1,15 @@
 # @ezcater/recipe-doc-site
 
+## 1.5.0
+
+### Minor Changes
+
+- docs: update EzRadio documentation for super radio buttons redesign [[sha]](https://github.com/ezcater/recipe/commit/9d26fca8)
+
+### Patch Changes
+
+- docs: update readme and getting started to include emotion, add codeowners, add readme and license to recipe package [[sha]](https://github.com/ezcater/recipe/commit/3bc29953)
+
 ## 1.4.0
 
 ### Minor Changes
