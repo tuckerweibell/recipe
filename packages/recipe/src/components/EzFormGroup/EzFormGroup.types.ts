@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactNode} from 'react';
 import {EzThemeColors} from '../../themes/themes.types';
 
 export type Ref = HTMLDivElement;
@@ -21,7 +21,7 @@ export type EzFormGroupTheme = {
 
 export interface EzFormGroupProps {
   ariaLabel?: string;
-  children: ReactElement;
+  children: ReactNode;
   gap?: number | string;
   labelWidth?: number;
   row?: boolean;
