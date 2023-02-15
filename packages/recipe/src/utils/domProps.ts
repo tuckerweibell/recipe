@@ -10,7 +10,7 @@ import {mergeProps} from './mergeProps';
  */
 export const domProps = (
   props: unknown,
-  ...styledExpressions: ReturnType<typeof stitches['createTheme']>[]
+  ...styledExpressions: ReturnType<(typeof stitches)['createTheme']>[]
 ): HTMLAttributes<any> => {
   return filterValidProps(
     (mergeProps as any)(
