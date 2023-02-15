@@ -18,14 +18,14 @@
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/npm/v/@ezcater/recipe.svg" /></a>
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/bundlephobia/minzip/@ezcater/recipe" /></a>
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@ezcater/recipe.svg"></a>
-  <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/maintainability"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/maintainability" /></a>
-  <a href="https://codeclimate.com/repos/5c12979fd73e384386005c4c/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2497a885426f04568739/test_coverage" /></a>
 </p>
 
 # Installation
 
+Recipe is available as an [npm package](https://www.npmjs.com/package/@ezcater/recipe) and is used with [emotion](https://www.npmjs.com/package/@emotion/react).
+
 ```
-yarn add @ezcater/recipe
+yarn add @ezcater/recipe @emotion/react @emotion/styled
 ```
 
 ## Importing components in downstream projects
@@ -46,7 +46,7 @@ export const MyComponent = () => (
 
 ## Contributing / Creating Components
 
-This project uses [plop](https://www.npmjs.com/package/plop) to generate new React components. The functionality is exposed as the `create-component` npm script from package.json. This will:
+This project uses [plop](https://www.npmjs.com/package/plop) to generate new React components. The functionality is exposed as the `create-component` npm script from `package.json`. This will:
 
 - copy the component template files from `templates/component` to `src/components/YOUR_COMPONENT_NAME`,
 - rename all files to match your component's name

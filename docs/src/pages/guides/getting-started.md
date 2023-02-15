@@ -133,15 +133,13 @@ The matching Sketch symbol library for Recipe is available through a tool called
 
 ### Installation
 
+Recipe is available as an [npm package](https://www.npmjs.com/package/@ezcater/recipe) and is used with [emotion](https://www.npmjs.com/package/@emotion/react).
+
 ```term
-npm install @ezcater/recipe
-```
-or
-```term
-yarn add @ezcater/recipe
+yarn add @ezcater/recipe @emotion/react @emotion/styled
 ```
 
-Aside from React and React DOM, Recipe has no other `peerDependencies`.  Once `@ezcater/recipe` is installed, you're ready to start importing components!
+Once everything is installed, you're ready to start importing components!
 
 ### Server-side rendering (SSR)
 
