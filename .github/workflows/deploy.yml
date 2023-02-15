@@ -23,9 +23,6 @@ jobs:
       - name: Version
         run: yarn changeset version --snapshot canary
 
-      - name: Sync Package Versions
-        run: bin/sync-package-versions
-
       - name: Build source
         run: yarn build
 
