@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 16.2.1
+
+### Patch Changes
+
+- fix: remove default ariaLabel prop from EzRadio to fix overriding wrapped label and add console warning if no label or ariaLabel provided [[sha]](https://github.com/ezcater/recipe/commit/fdd14588)
+
 ## 16.2.0
 
 ### Minor Changes
