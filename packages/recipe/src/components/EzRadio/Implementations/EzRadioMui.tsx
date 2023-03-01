@@ -1,5 +1,6 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Radio, Stack, useTheme, Zoom} from '@mui/material';
+import warning from 'tiny-warning';
 import {EzRadioProps, Ref} from '../EzRadio.types';
 import {useThemeColor} from '../../../themes/hooks/useThemeColor';
 import {PaletteOptions} from '../../../themes/themes.types';
@@ -81,7 +82,7 @@ const EzRadioCheckedIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiamet
 );
 
 const EzRadioMui = forwardRef<Ref, EzRadioProps>(
-  ({ariaLabel = 'radio-button', color, disabled, size, variant, ...props}, ref) => {
+  ({ariaLabel, color, disabled, size, variant, ...props}, ref) => {
     const theme = useTheme();
     const themeColor = useThemeColor(color);
     const getDiameter = (part: 'button' | 'dot') => VARIANT_SIZES[variant][size][part];
@@ -98,10 +99,21 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
       dotColor: getColor(checked, false, 'dot'),
       dotDiameter: getDiameter('dot'),
     });
+    const inputRef = useRef<Ref>(null);
+
+    useImperativeHandle(ref, () => inputRef.current);
+
+    useEffect(() => {
+      if (process.env.NODE_ENV !== 'production')
+        warning(
+          Boolean(ariaLabel || inputRef.current?.closest('label')),
+          '<EzRadio /> was used without an `ariaLabel` attribute and without being wrapped in a label'
+        );
+    }, [ariaLabel, inputRef]);
 
     return (
       <Radio
-        inputRef={ref}
+        inputRef={inputRef}
         checkedIcon={<EzRadioCheckedIcon {...radioIconProps(true)} />}
         classes={{
           root: `EzRadio EzRadio-${variant}`,

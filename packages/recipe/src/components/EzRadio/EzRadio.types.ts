@@ -1,7 +1,7 @@
 import {ChangeEvent} from 'react';
 import {type EzThemeColors} from '../../themes';
 
-export type Ref = HTMLDivElement;
+export type Ref = HTMLInputElement;
 
 export interface EzRadioProps {
   ariaLabel?: string;
