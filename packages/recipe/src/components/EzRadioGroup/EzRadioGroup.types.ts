@@ -1,4 +1,4 @@
-import {ReactElement, ChangeEvent} from 'react';
+import {ReactNode, ChangeEvent} from 'react';
 import {EzThemeColors} from '../../themes/themes.types';
 
 export type Ref = HTMLDivElement;
@@ -21,7 +21,7 @@ export type EzRadioGroupTheme = {
 
 export interface EzRadioGroupProps {
   ariaLabel?: string;
-  children: ReactElement;
+  children: ReactNode;
   defaultValue?: any;
   gap?: number | string;
   labelWidth?: number;
