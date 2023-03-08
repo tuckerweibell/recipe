@@ -1,5 +1,16 @@
 # @ezcater/recipe
 
+## 16.3.0
+
+### Minor Changes
+
+- feat: add option to EzTable to disable multi page selections [[sha]](https://github.com/ezcater/recipe/commit/adc6a662)
+
+### Patch Changes
+
+- fix: propagate stitches theme to EzPortal [[sha]](https://github.com/ezcater/recipe/commit/4c7f60f3)
+- fixup: type change to EzRadioGroupProps to allow for an array of children, not just a singular element [[sha]](https://github.com/ezcater/recipe/commit/5b5f3acc)
+
 ## 16.2.1
 
 ### Patch Changes
