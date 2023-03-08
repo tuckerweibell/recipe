@@ -1,1 +1,1 @@
-export {default} from './EzProvider';
+export {default, EzProviderContext} from './EzProvider';

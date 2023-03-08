@@ -1,5 +1,6 @@
 import React, {useLayoutEffect, useRef, useState, useContext} from 'react';
 import {createPortal} from 'react-dom';
+import {EzProviderContext} from '../EzProvider';
 
 export const PortalContext = React.createContext<React.MutableRefObject<HTMLElement | null>>({
   current: null,
@@ -11,7 +12,8 @@ const EzPortal: React.FC<PortalProps> = ({children}) => {
   const mountNode = useRef<HTMLDivElement | null>(null);
   const {current: contextValue} = useContext(PortalContext);
   const contextRef = useRef<HTMLElement | null>(contextValue);
-  const [hostNode, setHostNode] = useState(null);
+  const [hostNode, setHostNode] = useState<HTMLDivElement>(null);
+  const stitchesClassName = useContext(EzProviderContext);
 
   // because it's possible to render portals within iframes, we need to ensure that we can
   // mount the portal to the correct document element. To do this, we initially mount any
@@ -44,6 +46,13 @@ const EzPortal: React.FC<PortalProps> = ({children}) => {
       parentElement.removeChild(portalNode);
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (!stitchesClassName) return undefined;
+
+    hostNode?.classList?.add(stitchesClassName);
+    return () => hostNode?.classList?.remove(stitchesClassName);
+  }, [hostNode, stitchesClassName]);
 
   if (!hostNode) return <div ref={mountNode} />;
 
