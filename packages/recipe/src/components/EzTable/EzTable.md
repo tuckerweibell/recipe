@@ -528,6 +528,7 @@ To enable this feature, the following additional properties are available when u
 - `selection`
   - `onSelectAllClick` (required): an event that is fired when the "Select all" message is clicked.
   - `onSelectNoneClick` (required): an event that is fired when the "Clear selection" message is clicked.
+  - `disableMultiPageSelection: true` (optional): set to true if you don't want to allow the user to select all rows on all pages.
 
 When offering pagination and selection, users should be offered either or both of the following options:
 

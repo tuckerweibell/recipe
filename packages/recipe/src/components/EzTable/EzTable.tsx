@@ -277,16 +277,18 @@ const SelectionStateBanner = () => {
                   selectedCount: selection.selected.length,
                 })}
               </EzTextStyle>
-              <EzButton
-                use="tertiary"
-                onClick={wrapEvent(selection.onSelectAllClick, () =>
-                  selection.setAllSelected(true)
-                )}
-              >
-                {t('Select all {{totalRowCount}} rows', {
-                  totalRowCount: pagination.totalRows,
-                })}
-              </EzButton>
+              {!selection.disableMultiPageSelection && (
+                <EzButton
+                  use="tertiary"
+                  onClick={wrapEvent(selection.onSelectAllClick, () =>
+                    selection.setAllSelected(true)
+                  )}
+                >
+                  {t('Select all {{totalRowCount}} rows', {
+                    totalRowCount: pagination.totalRows,
+                  })}
+                </EzButton>
+              )}
             </Fragment>
           )}
         </EzLayout>

@@ -23,6 +23,7 @@ type onSortClick = (event: React.MouseEvent<HTMLElement>, options: OnSortClickOp
 type onRowsPerPageChange = (event: any) => void;
 
 type BulkSelection = {
+  disableMultiPageSelection?: boolean;
   onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
   onBulkSelectClick: React.MouseEventHandler;
   isRowSelected: (item: any) => boolean;
