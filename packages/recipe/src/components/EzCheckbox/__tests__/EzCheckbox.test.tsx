@@ -1,17 +1,52 @@
-import React, {ComponentProps, FC} from 'react';
+import React from 'react';
+import warning from 'tiny-warning';
 import {axe, render} from '../../../../test-utils';
+import EzFormControlLabel from '../../EzFormControlLabel';
 import EzCheckbox from '../index';
-import {EzCheckboxProps} from '../EzCheckbox.types';
 
-const Component: FC<Partial<ComponentProps<typeof EzCheckbox>>> = (props: EzCheckboxProps) => (
-  <EzCheckbox {...props} />
-);
+jest.mock('tiny-warning');
+const warningMock = warning as jest.Mock<typeof warning>;
 
 describe('EzCheckbox', () => {
-  it('should meet accessibility guidelines', async () => {
-    const {container} = render(<Component ariaLabel="testing" />);
-    const actual = await axe(container.outerHTML);
-    expect(actual).toHaveNoViolations();
+  beforeEach(() => {
+    warningMock.mockReset();
+  });
+
+  describe('accessibility guidelines', () => {
+    const ariaWarning =
+      '<EzCheckbox /> was used without an `ariaLabel` attribute and without being wrapped in a label';
+
+    it('should meet accessibility guidelines when wrapped in a label', async () => {
+      const {container} = render(
+        <EzFormControlLabel
+          control={<EzCheckbox />}
+          label="Coffee"
+          helperText="Caffineated"
+          value="coffee"
+        />
+      );
+      const actual = await axe(container.outerHTML);
+      expect(actual).toHaveNoViolations();
+      expect(warningMock).toHaveBeenCalledWith(true, ariaWarning);
+    });
+
+    it('should meet accessibility guidelines when an `ariaLabel` prop is passed in', async () => {
+      const {container} = render(<EzCheckbox ariaLabel="Coffee" />);
+      const actual = await axe(container.outerHTML);
+      expect(actual).toHaveNoViolations();
+      expect(warningMock).toHaveBeenCalledWith(true, ariaWarning);
+    });
+
+    it('should not meet accessibility guidelines when no `ariaLabel` prop is passed in and when not wrapped in a label element', async () => {
+      const {container} = render(<EzCheckbox />);
+      const actual = await axe(container.outerHTML);
+      expect(actual.violations).toEqual([
+        expect.objectContaining({
+          help: 'Form elements must have labels',
+        }),
+      ]);
+      expect(warningMock).toHaveBeenCalledWith(false, ariaWarning);
+    });
   });
 
   it('should pass type checking', () => {
