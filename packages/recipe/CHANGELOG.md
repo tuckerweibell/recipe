@@ -1,5 +1,12 @@
 # @ezcater/recipe
 
+## 16.3.1
+
+### Patch Changes
+
+- fix: remove default ariaLabel prop from EzCheckbox to fix overriding wrapped label and add console warning if no label or ariaLabel provided [[sha]](https://github.com/ezcater/recipe/commit/7cc42fc4)
+- workflow: speed up Chromatic github action by exiting once the storybook build is uploaded [[sha]](https://github.com/ezcater/recipe/commit/86e7808c)
+
 ## 16.3.0
 
 ### Minor Changes
