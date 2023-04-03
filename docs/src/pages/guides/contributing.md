@@ -136,12 +136,16 @@ Inside the markdown file, any [fenced code block](https://help.github.com/articl
 Example:
 
 ````markdown
-### Secondary Button
+### Basic Buttons
 
-Secondary buttons are used for action on a page that are important, but aren't the primary action.
+EzButton supports `filled` (default), `outlined`, and `text` variants.
 
 ```jsx
-<EzButton use="secondary">Edit</EzButton>
+<EzLayout>
+  <EzButton>Filled</EzButton>
+  <EzButton variant="outlined">Outlined</EzButton>
+  <EzButton variant="text">Text</EzButton>
+</EzLayout>
 ```
 ````
 
@@ -168,7 +172,7 @@ If the deprecation is related to a theming change, add a reference to it in `src
 ```js
 export const deprecatedColors = {
    set: new Set(['green', 'white']),
-   warning: `*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead.`,
+   warning: `*Recipe Deprecation*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead.`,
 };
 ```
 

@@ -64,8 +64,8 @@ Use to de-emphasize less important text, such as the second line of an address. 
     <EzTextStyle use="subdued">No action needed.</EzTextStyle>
   </div>
   <br />
-  <div>
+  <EzTextStyle>
     This sentence has one <EzTextStyle use="subdued">subdued</EzTextStyle> word.
-  </div>
+  </EzTextStyle>
 </div>
 ```

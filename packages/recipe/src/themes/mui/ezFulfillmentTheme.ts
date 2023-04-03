@@ -1,9 +1,46 @@
 import {createTheme} from '@mui/material';
 import ezTheme from './ezTheme';
 
+const defaultFont = ['Roboto Flex', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(
+  ', '
+);
+const headerFont = ['Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
+
+const typography = {
+  fontFamily: defaultFont,
+};
+
 const ezFulfillmentTheme = createTheme(ezTheme, {
-  typography: {
-    fontFamily: ['Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+  typography,
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: defaultFont,
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily: defaultFont,
+        },
+      },
+    },
+    MuiStack: {
+      styleOverrides: {
+        root: {
+          fontFamily: defaultFont,
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: headerFont,
+        },
+      },
+    },
   },
 });
 

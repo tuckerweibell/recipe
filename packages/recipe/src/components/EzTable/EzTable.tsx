@@ -1,14 +1,18 @@
-import React, {FC, createContext, createElement, useContext, useState, useEffect} from 'react';
+import React, {FC, createContext, createElement, useContext} from 'react';
+import {Stack} from '@mui/material';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import theme from '../theme.config';
 import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
+import EzIcon from '../EzIcon';
 import TableCardSection from './TableCardSection';
 import {TableProps} from './EzTable.types';
 import useSorting from './useSorting';
 import en from './en';
-import {clsx, wrapEvent} from '../../utils';
+import {clsx} from '../../utils';
 import {useTranslation} from '../../utils/hooks';
 import useExpandedClickTarget from './useExpandedClickTarget';
 import EzTextStyle from '../EzTextStyle';
@@ -42,6 +46,12 @@ const selectionCell = theme.css({
   },
 });
 
+const checkboxCell = theme.css({
+  '.EzCheckbox': {
+    marginLeft: '-5px',
+  },
+});
+
 const numericCell = theme.css({
   textAlign: 'right',
 });
@@ -62,9 +72,21 @@ const sortableColumn = theme.css({
   },
   svg: {
     fill: '$gray600',
-    marginLeft: '$100',
     opacity: 0,
   },
+});
+
+const headerIcon = theme.css({
+  '&&': {
+    svg: {
+      fill: 'currentColor',
+      opacity: 1,
+    },
+  },
+});
+
+const headerItems = theme.css({
+  gap: '$50',
 });
 
 const sortedCell = theme.css({
@@ -82,11 +104,19 @@ const rowHover = theme.css({
   },
 });
 
+const fullWidthTable = theme.css({
+  width: '100%',
+});
+
+const transparentBackground = theme.css({
+  backgroundColor: 'inherit',
+});
+
 const base = theme.css({
   margin: 0,
   borderCollapse: 'collapse',
   width: 'auto',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   fontWeight: '$regular',
   fontSize: '$100',
   lineHeight: '$table',
@@ -181,15 +211,16 @@ const SortDirection = ({direction}) => (
 type ThProps = {
   children: any;
   numeric?: boolean;
+  isSelection?: boolean;
   isSortableColumn?: boolean;
   sorted?: boolean;
   onClick?: any;
 };
 
-const Th: FC<ThProps> = ({children, numeric, isSortableColumn, sorted, onClick}) => (
+const Th: FC<ThProps> = ({children, numeric, isSelection, isSortableColumn, sorted, onClick}) => (
   <th
     className={clsx(
-      cell(),
+      isSelection ? checkboxCell() : cell(),
       numeric && numericCell(),
       header(),
       isSortableColumn && sortableColumn(),
@@ -210,17 +241,23 @@ const Thead = ({selectable}) => {
     <thead className={clsx(selectable && selectionCell())}>
       <tr>
         {selection && (
-          <Th>
+          <Th isSelection>
             <EzCheckbox
-              legacy
-              label="Select all"
+              ariaLabel="checkbox-header"
+              checked={items.length === selection.rowsSelectedOnCurrentPage.length}
+              color="common.neutral150"
+              indeterminate={
+                items.length !== selection.rowsSelectedOnCurrentPage.length &&
+                selection.rowsSelectedOnCurrentPage.length > 0
+              }
+              name="select all"
               onChange={selection.onBulkSelectClick}
-              checked={items.length === selection.selected.length}
+              size="small"
             />
           </Th>
         )}
         {columns.map((column, cellIndex) => {
-          const {sortable, heading, numeric} = column;
+          const {sortable, heading, numeric, icon} = column;
           return (
             <Th
               key={column.key || cellIndex}
@@ -229,8 +266,10 @@ const Thead = ({selectable}) => {
               sorted={isSorted(column)}
               onClick={event => onClick(event, column, sorting.onSortClick)}
             >
-              <span>
-                {heading} {sortable && <SortDirection direction={direction} />}
+              <span className={headerItems()}>
+                {heading}
+                {icon && <span className={headerIcon()}>{icon}</span>}
+                {sortable && <SortDirection direction={direction} />}
               </span>
             </Th>
           );
@@ -249,48 +288,43 @@ const selectionStateCell = theme.css({
 
 const SelectionStateBanner = () => {
   const {t} = useTranslation(en);
-  const {columns, items, selection, pagination} = useContext(TableContext);
+  const {columns, selection, pagination} = useContext(TableContext);
 
-  if (!selection || !pagination) return null;
+  if (!selection || selection.totalRowsSelected === 0 || !pagination) return null;
   if (!selection.onSelectAllClick) return null;
-  if (selection.selected.length !== items.length && !selection.allSelected) return null;
 
   return (
     <tr>
       <td colSpan={columns.length + 1} className={selectionStateCell()}>
         <EzLayout layout="cluster" alignX="center">
-          {selection.allSelected || items.length === pagination.totalRows ? (
+          {selection.totalRowsSelected === pagination.totalRows && (
             <Fragment>
               <EzTextStyle align="center">
                 {t('All {{totalRowCount}} rows are selected.', {
                   totalRowCount: pagination.totalRows,
                 })}
               </EzTextStyle>
-              <EzButton use="tertiary" onClick={selection.onSelectNoneClick}>
+              <EzButton variant="text" onClick={selection.onSelectNoneClick}>
                 {t('Clear selection')}
               </EzButton>
             </Fragment>
-          ) : (
-            <Fragment>
-              <EzTextStyle align="center">
-                {t('All {{selectedCount}} rows on this page are selected.', {
-                  selectedCount: selection.selected.length,
-                })}
-              </EzTextStyle>
-              {!selection.disableMultiPageSelection && (
-                <EzButton
-                  use="tertiary"
-                  onClick={wrapEvent(selection.onSelectAllClick, () =>
-                    selection.setAllSelected(true)
-                  )}
-                >
-                  {t('Select all {{totalRowCount}} rows', {
-                    totalRowCount: pagination.totalRows,
-                  })}
-                </EzButton>
-              )}
-            </Fragment>
           )}
+          {selection.totalRowsSelected < pagination.totalRows && (
+            <EzTextStyle align="center">
+              {t('{{partialTotalCount}} out of {{totalPageCount}} rows are selected.', {
+                partialTotalCount: selection.totalRowsSelected,
+                totalPageCount: pagination.totalRows,
+              })}
+            </EzTextStyle>
+          )}
+          {!selection.disableMultiPageSelection &&
+            selection.totalRowsSelected < pagination.totalRows && (
+              <EzButton variant="text" onClick={selection.onSelectAllClick}>
+                {t('Select all {{totalRowCount}} rows', {
+                  totalRowCount: pagination.totalRows,
+                })}
+              </EzButton>
+            )}
         </EzLayout>
       </td>
     </tr>
@@ -309,12 +343,14 @@ const TRow = ({item}) => {
       ref={ref as any}
     >
       {selection && (
-        <td className={cell()}>
+        <td className={checkboxCell()}>
           <EzCheckbox
-            legacy
-            label="Select row"
-            checked={selection.selected.includes(item)}
+            ariaLabel="checkbox-row"
+            checked={selection.rowsSelectedOnCurrentPage.includes(item)}
+            color="common.neutral150"
+            name="select row"
             onChange={event => selection.onRowSelectClick(event, {item})}
+            size="small"
           />
         </td>
       )}
@@ -349,33 +385,30 @@ const rangeWrapper = theme.css({
 
 const paginationNav = theme.css({
   display: 'flex',
+  alignItems: 'center',
   '> * + *': {
     marginLeft: '16px',
   },
 });
 
-const iconStates = theme.css({
-  fill: '#8B99A6',
-  ':hover': {
-    fill: '#212b36',
-  },
-  ':active': {
-    fill: '#637381',
-  },
-});
-
 const virtualTouchable = theme.css({
-  position: 'relative',
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    left: '-10px',
-    right: '-10px',
-    transform: 'translateY(-50%)',
-    minHeight: '44px',
-    minWidth: '44px',
-    height: '100%',
-    top: '50%',
+  '& button': {
+    position: 'relative',
+    minWidth: 0,
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: '-10px',
+      right: '-10px',
+      transform: 'translateY(-50%)',
+      minHeight: '44px',
+      minWidth: '44px',
+      height: '100%',
+      top: '50%',
+    },
+    '&:disabled': {
+      opacity: 0.45,
+    },
   },
 });
 
@@ -413,10 +446,21 @@ const rowsPerPageWrapper = theme.css({
   },
 });
 
+const cardWithoutHeaderActions = theme.css({
+  '&&': {
+    padding: '$250 $250 $50 $250',
+  },
+});
+
 const TablePagination = ({pagination}) => {
   const {t} = useTranslation(en);
-  const {rowsPerPage, currentPage: page, totalRows: count} = pagination;
-  const pages = Math.ceil(pagination.totalRows / pagination.rowsPerPage);
+  const {
+    totalRows,
+    rowsPerPage,
+    currentPage: page,
+    totalFilteredRows: count = totalRows,
+  } = pagination;
+  const pages = Math.ceil(count / pagination.rowsPerPage);
   const from = (page - 1) * rowsPerPage + 1;
   const to = Math.min(count, page * rowsPerPage);
   const range = count === 1 ? 1 : `${from}-${to}`;
@@ -426,32 +470,38 @@ const TablePagination = ({pagination}) => {
       <EzLayout layout="right">
         <nav aria-label={t('Pagination')} className={paginationNav()}>
           <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
-          <EzButton
-            use="tertiary"
-            title={t('Previous Page')}
-            aria-label={t('Previous Page')}
-            onClick={pagination.onPrevPageClick}
-            disabled={pagination.currentPage === 1}
-            className={virtualTouchable()}
-            icon={
-              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" className={iconStates()}>
-                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z" />
-              </svg>
-            }
-          />
-          <EzButton
-            use="tertiary"
-            title={t('Next Page')}
-            aria-label={t('Next Page')}
-            onClick={pagination.onNextPageClick}
-            disabled={pagination.currentPage === pages}
-            className={virtualTouchable()}
-            icon={
-              <svg viewBox="6 5 14 14" xmlns="http://www.w3.org/2000/svg" className={iconStates()}>
-                <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />
-              </svg>
-            }
-          />
+
+          <div className={virtualTouchable()}>
+            {/* TODO: convert to EzIconButton */}
+            <EzButton
+              ariaLabel={t('Previous Page')}
+              color="neutral"
+              disabled={pagination.currentPage === 1}
+              onClick={pagination.onPrevPageClick}
+              size="small"
+              variant="text"
+            >
+              <Stack>
+                <EzIcon icon={faChevronLeft} size="small" />
+              </Stack>
+            </EzButton>
+          </div>
+
+          <div className={virtualTouchable()}>
+            {/* TODO: convert to EzIconButton */}
+            <EzButton
+              ariaLabel={t('Next Page')}
+              color="neutral"
+              disabled={pagination.currentPage === pages}
+              onClick={pagination.onNextPageClick}
+              size="small"
+              variant="text"
+            >
+              <Stack>
+                <EzIcon icon={faChevronRight} size="small" />
+              </Stack>
+            </EzButton>
+          </div>
         </nav>
         <div className={clsx(rowsPerPageWrapper(), iconSize())}>
           <select
@@ -492,13 +542,13 @@ const EzTable: FC<TableProps> = ({
   selection,
   onSortClick,
   pagination,
+  showCardWithoutHeading,
+  ariaLabel,
+  titleIcon,
+  fullWidth,
+  transparent,
 }) => {
-  const [allSelected, setAllSelected] = useState(false);
-  const selected = selection && items.filter(selection.isRowSelected);
-  const numSelectedOnPage = selected && selected.length;
-  const {currentPage, rowsPerPage} = pagination || ({} as any);
-
-  useEffect(() => setAllSelected(false), [numSelectedOnPage, currentPage, rowsPerPage]);
+  const rowsSelectedOnCurrentPage = selection && items.filter(selection.isRowSelected);
 
   const mappedColumns = columns.map(
     ({
@@ -525,9 +575,7 @@ const EzTable: FC<TableProps> = ({
         items,
         selection: selection && {
           ...selection,
-          selected,
-          allSelected,
-          setAllSelected,
+          rowsSelectedOnCurrentPage,
         },
         columns: mappedColumns,
         pagination,
@@ -535,7 +583,14 @@ const EzTable: FC<TableProps> = ({
       }}
     >
       <div className={responsive()}>
-        <table className={base({use: title ? 'card' : 'simple'})}>
+        <table
+          aria-label={ariaLabel}
+          className={clsx(
+            base({use: title || showCardWithoutHeading ? 'card' : 'simple'}),
+            fullWidth && fullWidthTable(),
+            transparent && transparentBackground()
+          )}
+        >
           <Thead selectable={!!selection} />
           <Tbody />
         </table>
@@ -543,11 +598,22 @@ const EzTable: FC<TableProps> = ({
     </TableContext.Provider>
   );
 
-  if (!title) return table;
+  if (!title && !showCardWithoutHeading) return table;
 
   return (
-    <EzCard title={title} subtitle={subtitle} actions={actions}>
-      <TableCardSection>{table}</TableCardSection>
+    <EzCard
+      title={showCardWithoutHeading ? null : title}
+      subtitle={showCardWithoutHeading ? null : subtitle}
+      actions={!showCardWithoutHeading ? actions : null}
+      titleIcon={titleIcon}
+      transparent={transparent}
+    >
+      <TableCardSection showCardWithoutHeading={showCardWithoutHeading}>
+        {actions && showCardWithoutHeading && (
+          <div className={cardWithoutHeaderActions()}>{actions}</div>
+        )}
+        {table}
+      </TableCardSection>
       {pagination && <TablePagination pagination={pagination} />}
     </EzCard>
   );

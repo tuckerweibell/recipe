@@ -11,6 +11,7 @@ import {
   footer,
   sections,
   orientation,
+  transparentBackground,
 } from './EzCard.styles';
 import EzButton from '../EzButton';
 import EzCardSection from './EzCardSection';
@@ -45,6 +46,8 @@ type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   expandable?: ExpandableCardFooter;
   size?: 'small' | 'medium';
   isQuiet?: boolean;
+  titleIcon?: React.ReactNode | React.ComponentType;
+  transparent?: boolean;
   /** The card is visually presented as being clickable. */
   clickable?: boolean;
 };
@@ -58,6 +61,7 @@ const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value)
 const EzCard: React.FC<DOMProps & CardProps> = ({
   title,
   subtitle,
+  titleIcon,
   accent,
   actions,
   expandable,
@@ -71,6 +75,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
   clickable,
   style = {},
   className,
+  transparent,
   ...props
 }) => {
   const {imagePosition = 'top'} = responsiveProps(props as any, true, 'imagePosition');
@@ -87,7 +92,8 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
           size: size || (isQuiet ? 'small' : undefined),
           isQuiet,
           clickable,
-        })
+        }),
+        transparent && transparentBackground()
       )}
       style={{...style, '--sizes-card-preview-max-w': unitlessToPx(maxWidth)} as any}
     >
@@ -106,7 +112,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
         )}
         {title && (
           <EzHeader>
-            <EzCardHeading {...{actions, title, subtitle}} />
+            <EzCardHeading {...{actions, title, subtitle, titleIcon}} />
           </EzHeader>
         )}
         {hasContentSlot(children) ? (
@@ -123,7 +129,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
         )}
         {expandable && (
           <EzFooter>
-            <EzButton use="tertiary" onClick={expandable.onClick}>
+            <EzButton variant="text" onClick={expandable.onClick}>
               {expandable.isExpanded && expandable.collapseLabel
                 ? expandable.collapseLabel
                 : expandable.expandLabel}

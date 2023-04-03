@@ -69,7 +69,7 @@ Each timeline period must contain one or more timeline events. Each timeline eve
         }
       >
         <p>A note for the delivery driver - use the code #12345 at the door for access.</p>
-        <EzButton use="tertiary">Edit Note</EzButton>
+        <EzButton variant="text">Edit Note</EzButton>
       </EzTimelineEvent>
 
       <EzTimelineEvent
@@ -95,7 +95,7 @@ Each timeline period must contain one or more timeline events. Each timeline eve
           </svg>
         }
       >
-        <EzButton use="tertiary">+ Add a note</EzButton>
+        <EzButton variant="text">+ Add a note</EzButton>
       </EzTimelineEvent>
     </EzTimelinePeriod>
   </EzTimeline>
@@ -146,7 +146,7 @@ The `expandable` property requires both an `expandLabel` and an `onClick` proper
                 </svg>
               }
             >
-              <EzButton use="tertiary">+ Add a note</EzButton>
+              <EzButton variant="text">+ Add a note</EzButton>
             </EzTimelineEvent>
           ))}
         </EzTimelinePeriod>

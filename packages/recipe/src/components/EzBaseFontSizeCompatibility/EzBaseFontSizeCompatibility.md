@@ -6,6 +6,12 @@ path: '/components/ez-base-font-size-compatibility'
 tags: ['compatibility', 'font', 'text']
 ---
 
+<EzAlert
+  headline="This component has been deprecated as of v17 and will be removed in v18."
+  tagline="Recipe no longer supports IE11 and all modern browsers use a default font size of 16px."
+  use="error"
+/>
+
 Base Font Size Compatibility is a component that enables applications that are not yet using Recipe's base font size to run in compatibility mode with a base font size of 14px.
 
 <EzAlert

@@ -184,20 +184,25 @@ In layouts that position content into rows (i.e. all layouts except `stack`), co
           <Placeholder minHeight={100} height="auto" width={48} />
           <Placeholder minHeight={60} height="auto" width={48} />
         </EzLayout>
-        <EzField
-          type="radio"
-          bordered
-          label="Choose"
-          options={[
-            {label: 'Top', value: 'top'},
-            {label: 'Center', value: 'center'},
-            {label: 'Bottom', value: 'bottom'},
-            {label: 'Stretch', value: 'stretch'},
-          ]}
-          value={alignY}
-          onChange={e => setAlignY(e.target.value)}
-        />
+
+        <EzFormControl>
+          <EzFormLabel id="choose-vertical-layout">Choose</EzFormLabel>
+          <EzRadioGroup
+            ariaLabel="choose-vertical-layout"
+            defaultValue="top"
+            name="choose-vertical-layout"
+            onChange={e => setAlignY(e.target.value)}
+            row
+            value={alignY}
+          >
+            <EzFormControlLabel control={<EzRadio />} label="Top" value="top" />
+            <EzFormControlLabel control={<EzRadio />} label="Center" value="center" />
+            <EzFormControlLabel control={<EzRadio />} label="Bottom" value="bottom" />
+            <EzFormControlLabel control={<EzRadio />} label="Stretch" value="stretch" />
+          </EzRadioGroup>
+        </EzFormControl>
       </EzCardSection>
+
       <EzCardSection>
         <EzHeading size="3">Align horizontally ({alignX})</EzHeading>
         <EzLayout layout="cluster" alignX={alignX}>
@@ -205,18 +210,22 @@ In layouts that position content into rows (i.e. all layouts except `stack`), co
           <Placeholder height={48} width={48} />
           <Placeholder height={48} width={48} />
         </EzLayout>
-        <EzField
-          type="radio"
-          bordered
-          label="Choose"
-          options={[
-            {label: 'Left', value: 'left'},
-            {label: 'Center', value: 'center'},
-            {label: 'Right', value: 'right'},
-          ]}
-          value={alignX}
-          onChange={e => setAlignX(e.target.value)}
-        />
+
+        <EzFormControl>
+          <EzFormLabel id="choose-horizontal-layout">Choose</EzFormLabel>
+          <EzRadioGroup
+            ariaLabel="choose-horizontal-layout"
+            defaultValue="right"
+            name="choose-horizontal-layout"
+            onChange={e => setAlignX(e.target.value)}
+            row
+            value={alignX}
+          >
+            <EzFormControlLabel control={<EzRadio />} label="Left" value="left" />
+            <EzFormControlLabel control={<EzRadio />} label="Center" value="center" />
+            <EzFormControlLabel control={<EzRadio />} label="Right" value="right" />
+          </EzRadioGroup>
+        </EzFormControl>
       </EzCardSection>
     </EzCard>
   );

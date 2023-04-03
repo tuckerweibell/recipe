@@ -27,19 +27,22 @@ tags:
 Form input fields provide a structured format for capturing form data, such as text, dates, emails and other data types. Further customization of input fields can be achieved by providing a custom input component, such as an application-specific control.
 
 <EzAlert
-  headline="This component is under development"
-  tagline="There will likely be breaking changes to the API. Proceed with caution."
+  headline="This component is in the process of being broken out and deprecated."
+  tagline="There will be breaking changes to the API. Proceed with caution."
   use="warning"
 />
 
+<EzAlert
+  headline="The following types are no longer supported in EzField."
+  tagline="Please use these components directly."
+  use="error"
+/>
+
+- radio: [EzRadio](/components/ez-radio)
+- checkbox: [EzCheckbox](/components/ez-checkbox)
+
 <br />
 <br />
-
-Features still in consideration include:
-
-- Optional field flag
-- Async validation hooks
-- Non-error validation states
 
 ---
 
@@ -81,14 +84,6 @@ Allows users to provide short text input. Optionally, additional context can be 
 
 ### Field with validation error
 
-<EzAlert
-  headline="Deprecation Warning"
-  tagline='EzField with type="checkbox" is deprecated as of v16 and will be removed in v17. You can create checkboxes and checkbox groups with EzCheckbox.'
-  use="warning"
-/>
-
-See: <EzLink><a href="/components/ez-checkbox">EzCheckbox</a></EzLink>
-
 Lets the user know that there is a problem with the provided input.
 
 Whenever possible, validate the input after the user has finished their interaction with a field (but not before). If the user does not interact with the field before the form is submitted, the input should be validated on submission of the form. Error messages should be removed as early as possible, ideally as the user is typing, so that the user can see when an error has been addressed.
@@ -107,17 +102,6 @@ Note: Recipe doesn't maintain the value of `touched`, and instead expects the `t
     placeholder="Examples of what type of stuff to put here"
     touched
     error="First name is required"
-  />
-  <EzField
-    type="checkbox"
-    label="Multiple choice list"
-    touched
-    error="Please choose one or more option"
-    options={[
-      {label: 'Choice A', value: 'a'},
-      {label: 'Choice B', value: 'b'},
-      {label: 'Choice C', value: 'c'},
-    ]}
   />
 </EzFormLayout>
 ```
@@ -175,177 +159,6 @@ Allows the user to input email values.
   const [value, setValue] = React.useState('eat@ezcater.com');
   return (
     <EzField type="email" label="Email" value={value} onChange={e => setValue(e.target.value)} />
-  );
-};
-```
-
-### Multiple choice input field
-
-<EzAlert
-  headline="Deprecation Warning"
-  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
-  use="warning"
-/>
-
-See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
-
-<EzAlert
-  headline="Deprecation Warning"
-  tagline='EzField with type="checkbox" is deprecated as of v16 and will be removed in v17. You can create checkboxes and checkbox groups with EzCheckbox.'
-  use="warning"
-/>
-
-See: <EzLink><a href="/components/ez-checkbox">EzCheckbox</a></EzLink>
-
-Allows the user to choose between a fixed set of options by offering a list of grouped radio buttons or check boxes. Use `type="checkbox"` to allow multiple choices to be selected, or `type="radio"` to allow only a single selection.
-
-Use the `options` prop to provide an array of options for selection. Each option requires a `label` and a `value`. Options may optionally be `disabled` where necessary.
-
-Alternatively, instead of using the `options` prop, EzField also accepts `<EzItem>` elements as children. See the [next example](#multiple-choice-input-field-with-nested-content) for a complete demonstration of this API.
-
-```jsx
-() => {
-  const [selectedChoice, setSelectedChoice] = React.useState(null);
-  const [selectedChoices, setSelectedChoices] = React.useState([]);
-  return (
-    <EzFormLayout>
-      <EzField
-        type="radio"
-        label="Single choice list"
-        options={[
-          {label: 'Choice A', value: 'a'},
-          {label: 'Choice B', value: 'b'},
-          {label: 'Choice C', value: 'c'},
-        ]}
-        value={selectedChoice}
-        onChange={e => setSelectedChoice(e.target.value)}
-      />
-      <EzField
-        type="checkbox"
-        label="Multiple choice list"
-        options={[
-          {label: 'Choice A', value: 'a'},
-          {label: 'Choice B', value: 'b'},
-          {label: 'Choice C', value: 'c'},
-        ]}
-        value={selectedChoices}
-        onChange={e => setSelectedChoices(e.target.value)}
-      />
-    </EzFormLayout>
-  );
-};
-```
-
-### Multiple choice input field with nested content
-
-<EzAlert
-  headline="Deprecation Warning"
-  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
-  use="warning"
-/>
-
-See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
-
-Allows for additional content to be presented with each choice of a multiple choice selection.
-
-EzField accepts `<EzItem>` elements as children, each with a `textValue` prop to denote the item value. Note, that `EzItem` must be a **direct descendant** of the field, and not wrapped in additional DOM nodes or React components.
-
-Items provided should contain a `<EzLabel>` to describe each option. Each item can optionally accept a `<EzContent>` element to provide additional content alongside the label.
-
-If presenting additional `<EzField>` elements to capture information about the users choice, it is recommended that `labelSize="small"` is used to ensure the nested content has the appropriate emphasis within the form.
-
-```jsx
-() => {
-  const [selectedChoice, setSelectedChoice] = React.useState('a');
-  return (
-    <EzFormLayout>
-      <EzField
-        type="radio"
-        label="Single choice list with nested content"
-        value={selectedChoice}
-        onChange={e => setSelectedChoice(e.target.value)}
-      >
-        <EzItem textValue="a">
-          <EzLabel>Choice A</EzLabel>
-          {selectedChoice === 'a' && (
-            <EzContent>
-              <EzField
-                type="textarea"
-                label="Details about Choice A"
-                labelSize="small"
-                size="medium"
-                maxLength={120}
-              />
-            </EzContent>
-          )}
-        </EzItem>
-        <EzItem textValue="b">
-          <EzLabel>Choice B</EzLabel>
-          {selectedChoice === 'b' && (
-            <EzContent>
-              <EzField
-                type="textarea"
-                label="Details about Choice B"
-                labelSize="small"
-                size="medium"
-                maxLength={120}
-              />
-            </EzContent>
-          )}
-        </EzItem>
-      </EzField>
-    </EzFormLayout>
-  );
-};
-```
-
-### Bordered multiple choice input
-
-<EzAlert
-  headline="Deprecation Warning"
-  tagline='EzField with type="radio" is deprecated as of v15 and will be removed in v17. You can create radio buttons and radio groups with EzRadio.'
-  use="warning"
-/>
-
-See: <EzLink><a href="/components/ez-radio">EzRadio</a></EzLink>
-
-Bordered multiple choice inputs should be used to present side-by-side options, typically used when a form requires the user to choose from a short list of options.
-
-Unlike super-radio buttons, toggles, or segmented controls, bordered multiple choice inputs should typically be used within forms and require a submit action for changes to take effect. One exception to this guideline is that bordered multiple choice inputs may also be used as page-level filters that take effect immediately.
-
-Option labels for bordered multiple choice inputs should be kept short. Unlike the non-bordered options, the label will not wrap onto multiple lines.
-
-```jsx
-() => {
-  const [selectedChoice, setSelectedChoice] = React.useState(null);
-  const [selectedChoices, setSelectedChoices] = React.useState([]);
-  return (
-    <EzFormLayout>
-      <EzField
-        type="radio"
-        bordered
-        label="Single choice list"
-        options={[
-          {label: 'Choice A', value: 'a'},
-          {label: 'Choice B', value: 'b'},
-          {label: 'Choice C', value: 'c'},
-        ]}
-        value={selectedChoice}
-        onChange={e => setSelectedChoice(e.target.value)}
-      />
-      <EzField
-        type="checkbox"
-        label="Multiple choice list"
-        bordered
-        options={[
-          {label: 'Choice A', value: 'a'},
-          {label: 'Choice B', value: 'b'},
-          {label: 'Choice C', value: 'c'},
-        ]}
-        value={selectedChoices}
-        onChange={e => setSelectedChoices(e.target.value)}
-      />
-    </EzFormLayout>
   );
 };
 ```
@@ -688,3 +501,5 @@ The Field component internally uses [`Array.prototype.findIndex()`](https://deve
 
 - [EzFormLayout](/components/ez-form-layout)
 - [EzLayout](/components/ez-layout)
+- [EzRadio](/components/ez-radio)
+- [EzCheckbox](/components/ez-checkbox)

@@ -47,7 +47,6 @@ Popovers should not:
   return (
     <div style={{height: 150}}>
       <EzButton
-        use="secondary"
         ref={ref}
         onClick={() => setVisible(!visible)}
         onKeyDown={e => e.key === 'Escape' && setVisible(false)}

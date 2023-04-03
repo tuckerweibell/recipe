@@ -175,48 +175,6 @@ describe('EzField', () => {
             touched={false}
           />
         ),
-        singleChoice: (
-          <EzField
-            type="radio"
-            label="single choice"
-            value="1"
-            onChange={onChange}
-            options={[
-              {label: '1', value: 1, disabled: false},
-              {label: '2', value: 2, disabled: false},
-            ]}
-            bordered={false}
-            error="error"
-            helperText="helper text"
-            labelHidden={false}
-            labelSize="normal"
-            maxLength={10}
-            prefix="prefix"
-            suffix="suffix"
-            touched={false}
-          />
-        ),
-        multipleChoice: (
-          <EzField
-            type="checkbox"
-            label="multiple choice"
-            value={['1', '2']}
-            onChange={onChange}
-            options={[
-              {label: '1', value: 1, disabled: false},
-              {label: '2', value: 2, disabled: false},
-            ]}
-            bordered={false}
-            error="error"
-            helperText="helper text"
-            labelHidden={false}
-            labelSize="normal"
-            maxLength={10}
-            prefix="prefix"
-            suffix="suffix"
-            touched={false}
-          />
-        ),
         email: (
           <EzField
             type="email"

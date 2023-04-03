@@ -28,7 +28,7 @@ const filenameIgnore = [
 ];
 
 // list story names here that should be ignored
-const storiesIgnore = ['Props'];
+const storiesIgnore = ['Global styles', 'Props'];
 
 // @see https://www.chromatic.com/docs/threshold
 const getThreshold = storyName => {
@@ -37,6 +37,31 @@ const getThreshold = storyName => {
       return 0.92;
     default:
       return 0.2;
+  }
+};
+
+const getTheme = storyName => {
+  switch (storyName) {
+    // these stories don't render correctly with side-by-side themes (ex. modals)
+    case 'EzField date input within modal (Regression)':
+    case 'EzModal vertically spaces content (Regression)':
+    case 'Informational modal (Regression)':
+    case 'Confirmation modals (Regression)':
+    case 'Required action modals (Regression)':
+    case 'Modal with header content and footer (Regression)':
+    case 'Modal with only content (Regression)':
+    case 'Modal with only content and header (Regression)':
+    case 'Modal with only content and footer (Regression)':
+    case 'Modal with preview (Regression)':
+    case 'Modal appears above sticky content with z-index (Regression)':
+    case 'Date picker selection appears above the modal (Regression)':
+    case 'Time picker selection appears above the modal (Regression)':
+    case 'Tooltip appears above the modal (Regression)':
+    case 'Select appears above the modal (Regression)':
+    case 'Autosuggest appears above the modal (Regression)':
+      return 'fulfillment';
+    default:
+      return null;
   }
 };
 
@@ -77,6 +102,7 @@ Object.keys(allStories)
               diffThreshold: getThreshold(example.name),
               viewports: docs.screenshotWidths,
             },
+            theme: getTheme(example.name),
           },
         })
     );

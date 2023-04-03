@@ -29,15 +29,26 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/styles/createTypography' {
   type IconSizes = 'small' | 'medium' | 'large';
+  type FontSizes = 'small' | 'medium' | 'large';
 
   interface FontStyle {
     icon: {
       size: Record<IconSizes, number>;
     };
+    font: {
+      size: Record<FontSizes, number>;
+    };
   }
 }
 declare module '@mui/material/Badge' {
   interface BadgePropsColorOverrides {
+    alert: true;
+    neutral: true;
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
     alert: true;
     neutral: true;
   }
@@ -153,6 +164,13 @@ const palette: EzPaletteOptions = {
 
 const typography = {
   fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+  font: {
+    size: {
+      small: 14,
+      medium: 16,
+      large: 18,
+    },
+  },
   icon: {
     size: {
       small: 16,
@@ -189,10 +207,24 @@ const components = {
       disableRipple: true,
     },
   },
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        textTransform: 'none' as const,
+        fontWeight: 700,
+        minWidth: 'auto',
+      },
+      endIcon: {
+        svg: {fontSize: 'inherit !important'},
+      },
+      startIcon: {
+        svg: {fontSize: 'inherit !important'},
+      },
+    },
+  },
   MuiChip: {
     styleOverrides: {
       root: {
-        fontFamily: typography.fontFamily,
         height: '26px',
         lineHeight: '26px',
         '&.EzChip-alert': getStatusChipStyles('alert'),

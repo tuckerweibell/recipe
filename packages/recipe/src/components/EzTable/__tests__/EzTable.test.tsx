@@ -1,7 +1,13 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
-import {axe} from '../../../../test-utils';
+import {faCircleInfo} from '@fortawesome/free-solid-svg-icons/faCircleInfo';
+import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
+import {axe, fireEvent, render, screen} from '../../../../test-utils';
 import EzTable from '../EzTable';
+import EzIcon from '../../EzIcon/EzIcon';
+import EzTooltip from '../../EzTooltip';
+import EzLayout from '../../EzLayout/EzLayout';
+import EzButton from '../../EzButton/EzButton';
+import EzSearchInput from '../../EzSearchInput/EzSearchInput';
 
 describe('EzTable', () => {
   const columns = [
@@ -29,7 +35,7 @@ describe('EzTable', () => {
       });
 
       it('notifies the client that sort is requested', () => {
-        const {getByText} = render(<EzTable {...props} />);
+        const {getByText} = render(<EzTable ariaLabel="test table" {...props} />);
 
         fireEvent.click(getByText(sortableColumns[0].heading));
 
@@ -46,6 +52,7 @@ describe('EzTable', () => {
       it('does NOT notify the client of a sort when a column is not sortable', () => {
         const {getByText} = render(
           <EzTable
+            ariaLabel="test table"
             {...props}
             columns={[
               {heading: 'Store name', accessor: 'name', sortable: false},
@@ -60,7 +67,7 @@ describe('EzTable', () => {
       });
 
       it('can sort a single column in both ascending and descending order', () => {
-        const {getByText} = render(<EzTable {...props} />);
+        const {getByText} = render(<EzTable ariaLabel="test table" {...props} />);
 
         fireEvent.click(getByText(sortableColumns[1].heading));
 
@@ -84,7 +91,7 @@ describe('EzTable', () => {
       });
 
       it('should not change the sort order if the provided onSortClick callback prevents default', () => {
-        const {getByText} = render(<EzTable {...props} />);
+        const {getByText} = render(<EzTable ariaLabel="test table" {...props} />);
 
         onSortClick.mockImplementation(event => event.preventDefault());
 
@@ -111,12 +118,46 @@ describe('EzTable', () => {
     });
   });
 
+  describe('column with icon', () => {
+    const INFO_ICON_TITLE = 'info icon';
+    const INFO_ICON_TOOLTIP_MESSAGE = 'icon with tooltip message';
+    const icon = <EzIcon icon={faCircleInfo} title={INFO_ICON_TITLE} size="inherit" />;
+    const iconWithTooltip = <EzTooltip message={INFO_ICON_TOOLTIP_MESSAGE}>{icon}</EzTooltip>;
+    const columnsWithIcons = [
+      {heading: 'Store name', key: 'store', icon},
+      {heading: 'Total sales', key: 'total'},
+      {heading: 'Average order value', key: 'average', icon: iconWithTooltip},
+    ];
+
+    it('renders column with icon', () => {
+      const {getAllByText} = render(<EzTable items={items} columns={columnsWithIcons} />);
+
+      // expect both icons to be present initially, not just when sort direction is clicked
+      expect(getAllByText(INFO_ICON_TITLE)[0]).toBeInTheDocument();
+      expect(getAllByText(INFO_ICON_TITLE)[1]).toBeInTheDocument();
+    });
+
+    it('renders column with icon wrapped in tooltip', () => {
+      const {getAllByText, getByText} = render(
+        <EzTable items={items} columns={columnsWithIcons} />
+      );
+
+      fireEvent.mouseOver(getAllByText(INFO_ICON_TITLE)[1]);
+
+      expect(getByText(INFO_ICON_TOOLTIP_MESSAGE)).toBeInTheDocument();
+    });
+  });
+
   describe('bulk-select', () => {
     function findInputs(props) {
-      const {queryByLabelText, queryAllByLabelText} = render(<EzTable {...props} />);
+      render(<EzTable ariaLabel="test table" {...props} />);
       return {
-        bulkSelectInput: queryByLabelText('Select all') as HTMLInputElement,
-        rowSelectInputs: queryAllByLabelText('Select row') as HTMLInputElement[],
+        bulkSelectInput: screen.queryByRole('checkbox', {
+          name: 'checkbox-header',
+        }) as HTMLInputElement,
+        rowSelectInputs: screen.queryAllByRole('checkbox', {
+          name: 'checkbox-row',
+        }) as HTMLInputElement[],
       };
     }
 
@@ -150,7 +191,7 @@ describe('EzTable', () => {
           bulkSelectInput.click();
 
           expect(onBulkSelectClick).toHaveBeenCalledTimes(1);
-          expect(onBulkSelectClick).toHaveBeenCalledWith(expect.any(Object));
+          expect(onBulkSelectClick).toHaveBeenCalledWith(expect.any(Object), true);
         });
 
         describe('checked state', () => {
@@ -214,12 +255,14 @@ describe('EzTable', () => {
     it('should meet accessibility guidelines', async () => {
       const {container} = render(
         <EzTable
+          ariaLabel="test table"
           columns={columns}
           items={items}
           selection={{
             onBulkSelectClick: () => null,
             onRowSelectClick: () => null,
             isRowSelected: () => false,
+            totalRowsSelected: 10,
           }}
         />
       );
@@ -255,6 +298,7 @@ describe('EzTable', () => {
             isRowSelected: () => true,
             onSelectAllClick,
             onSelectNoneClick: () => {},
+            totalRowsSelected: 4,
           }}
           columns={[
             {heading: 'First Name', key: 'first'},
@@ -327,7 +371,7 @@ describe('EzTable', () => {
     it('does NOT call the onClick of the link target if clicking interactive elements in the row', () => {
       const spy = jest.fn();
 
-      const {queryAllByLabelText} = render(
+      render(
         <EzTable
           title="All Stores"
           subtitle="Compared to the same period last year"
@@ -335,6 +379,7 @@ describe('EzTable', () => {
             onRowSelectClick: () => {},
             onBulkSelectClick: () => {},
             isRowSelected: () => true,
+            totalRowsSelected: 10,
           }}
           columns={[
             {heading: 'Link', component: link(spy), key: 'link'},
@@ -345,7 +390,7 @@ describe('EzTable', () => {
         />
       );
 
-      const checkbox = queryAllByLabelText('Select row')[0];
+      const checkbox = screen.queryAllByRole('checkbox', {name: 'checkbox-row'})[0];
 
       fireEvent.click(checkbox);
 
@@ -389,8 +434,83 @@ describe('EzTable', () => {
     });
   });
 
+  it('should display table card with actions and without title', async () => {
+    const {getByText, getByPlaceholderText} = render(
+      <EzTable
+        ariaLabel="test table"
+        columns={columns}
+        items={items}
+        showCardWithoutHeading
+        actions={
+          <EzLayout layout="split">
+            <EzSearchInput
+              placeholder="Search"
+              aria-label="Search customers"
+              value={''}
+              onChange={e => console.log(e)}
+            />
+            <EzButton use="secondary">View related orders</EzButton>
+          </EzLayout>
+        }
+      />
+    );
+    expect(getByPlaceholderText('Search')).toBeInTheDocument();
+    expect(getByText('View related orders')).toBeInTheDocument();
+  });
+
+  it('should display simple table without title, no aria label, no card', async () => {
+    const {getAllByText} = render(<EzTable columns={columns} items={items} />);
+    expect(getAllByText('Store name')[0]).toBeInTheDocument();
+    expect(getAllByText('Total sales')[0]).toBeInTheDocument();
+    expect(getAllByText('Average order value')[0]).toBeInTheDocument();
+  });
+
+  it('should display table without title, with aria label, with card', async () => {
+    const {getByLabelText} = render(
+      <EzTable
+        ariaLabel="Test table label"
+        columns={columns}
+        items={items}
+        showCardWithoutHeading
+      />
+    );
+    expect(getByLabelText('Test table label')).toBeInTheDocument();
+  });
+
+  it('should display table with title, without aria label, with card', async () => {
+    const {getByText} = render(
+      <EzTable title="Test table title" columns={columns} items={items} />
+    );
+    expect(getByText('Test table title')).toBeInTheDocument();
+  });
+
+  it('should show title icon', async () => {
+    const TEST_ID = 'title-icon';
+    const titleIcon = (
+      <EzIcon color="primary" size="inherit" icon={faCoffee} data-testid={TEST_ID} />
+    );
+    const {getByTestId} = render(
+      <EzTable title="Table" columns={columns} items={items} titleIcon={titleIcon} />
+    );
+    expect(getByTestId(TEST_ID)).toBeInTheDocument();
+  });
+
+  it('should display simple table at full width', async () => {
+    const {getAllByText} = render(<EzTable columns={columns} items={items} fullWidth />);
+    expect(getAllByText('Store name')[0]).toBeInTheDocument();
+    expect(getAllByText('Total sales')[0]).toBeInTheDocument();
+    expect(getAllByText('Average order value')[0]).toBeInTheDocument();
+  });
+
+  it('should display a table with a transparent background', async () => {
+    const {getAllByText} = render(<EzTable columns={columns} items={items} transparent />);
+    expect(getAllByText('Store name')[0]).toBeInTheDocument();
+    expect(getAllByText('Total sales')[0]).toBeInTheDocument();
+    expect(getAllByText('Average order value')[0]).toBeInTheDocument();
+  });
+
   it('should meet accessibility guidelines', async () => {
-    const {container} = render(<EzTable columns={columns} items={items} />);
+    const {container} = render(<EzTable ariaLabel="test table" columns={columns} items={items} />);
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });

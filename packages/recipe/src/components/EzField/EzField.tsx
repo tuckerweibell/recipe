@@ -4,7 +4,6 @@ import Label from '../EzLabel';
 import {InsetIcon, ErrorTriangle} from '../Icons';
 import {useFocus, useHover, useInput, useUniqueId} from '../../utils/hooks';
 import {clsx, domProps, wrapEvents} from '../../utils';
-import EzChoice from './EzChoice';
 import EzDateInput from './EzDateInput';
 import EzTimeInput from './EzTimeInput';
 import EzTextArea from './EzTextArea';
@@ -14,7 +13,6 @@ import EzAutosuggest from './EzAutosuggest';
 import EzTextInput, {CustomInput} from './EzTextInput';
 
 const inputElements = ['text', 'number', 'password', 'email'];
-const choiceElements = ['radio', 'checkbox'];
 const inlineElements = [...inputElements];
 
 const errorColor = theme.css({color: '$negative', fill: '$negative'});
@@ -32,7 +30,6 @@ const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, .
 ));
 
 const resolveInputFromType = type => {
-  if (choiceElements.includes(type)) return EzChoice;
   if (type === 'date') return EzDateInput;
   if (type === 'select') return EzSelect;
   if (type === 'autosuggest') return EzAutosuggest;
@@ -58,6 +55,7 @@ const field = theme.css({
 });
 
 const helper = theme.css({
+  fontFamily: '$defaultFont',
   fontSize: '$75',
   color: '$deemphasisText',
   marginTop: '$100',
@@ -65,6 +63,7 @@ const helper = theme.css({
 
 const errorContainer = theme.css({
   display: 'flex',
+  fontFamily: '$defaultFont',
   justifyContent: 'flex-end',
   position: 'relative',
   pointerEvents: 'none',
@@ -121,6 +120,7 @@ const arrow = theme.css({
 });
 
 const characterLimit = theme.css({
+  fontFamily: '$defaultFont',
   fontSize: '$75',
   marginTop: '$100',
 });
@@ -137,13 +137,12 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   const Input = resolveInputFromType(props.type);
   const {helperText, label, touched, error, type, maxLength, labelHidden} = props;
   const showInlineError = inlineElements.includes(type as string);
-  const isChoiceElement = choiceElements.includes(type as string);
   const [focused, {onBlur, onFocus}] = useFocus();
   const [hovered, mouseEvents] = useHover();
   const {value, onChange} = useInput(props.value || '');
   const active = focused || hovered;
   const showError = Boolean(touched && error);
-  const labelType = isChoiceElement ? 'div' : 'label';
+  const labelType = 'label';
   const errorMessageId = `errorMessage-${id}`;
   const helperTextId = `helperText-${id}`;
   const errorMessage = (
@@ -158,10 +157,6 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
   );
   const relative: CSSProperties = {position: 'relative'};
 
-  const roleAndLabel = isChoiceElement
-    ? {role: type === 'radio' ? 'radiogroup' : 'group', 'aria-labelledby': labelId}
-    : {};
-
   return (
     <div
       className={clsx(
@@ -170,14 +165,13 @@ const EzField = forwardRef<HTMLElement, Props>((props, ref) => {
         field({labelSize: props.labelSize})
       )}
       {...(mouseEvents as any)}
-      {...roleAndLabel}
     >
       {!labelHidden && (
         <div>
           <div style={relative}>
             <Label
               id={labelId}
-              htmlFor={isChoiceElement ? undefined : id}
+              htmlFor={id}
               as={labelType}
               error={showError}
               use={props.labelSize === 'small' ? 'secondary' : 'primary'}

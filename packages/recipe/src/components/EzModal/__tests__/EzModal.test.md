@@ -4,6 +4,7 @@
 <EzModal
   isOpen={true}
   onDismiss={() => {}}
+  onSubmit={() => {}}
   submitLabel="Submit"
   dismissLabel="Dismiss"
   headerText="Header goes here"
@@ -31,6 +32,7 @@
   destructive
   dismissLabel="Dismiss"
   onDismiss={() => {}}
+  onSubmit={() => {}}
   headerText="Header goes here"
 >
   <p>Modal content goes here!</p>
@@ -55,10 +57,10 @@
   <EzContent>Modal content goes here!</EzContent>
   <EzFooter>
     <EzLayout layout="basic">
-      <EzButton use="primary" onClick={close}>
-        Confirm
+      <EzButton onClick={close}>Confirm</EzButton>
+      <EzButton variant="outlined" onClick={close}>
+        Cancel
       </EzButton>
-      <EzButton onClick={close}>Cancel</EzButton>
     </EzLayout>
   </EzFooter>
 </EzModal>
@@ -92,10 +94,10 @@ Note: this isn't an typical configuration (a header is usually expected).
   <EzContent>Modal content goes here!</EzContent>
   <EzFooter>
     <EzLayout layout="basic">
-      <EzButton use="primary" onClick={close}>
-        Confirm
+      <EzButton onClick={close}>Confirm</EzButton>
+      <EzButton variant="outlined" onClick={close}>
+        Cancel
       </EzButton>
-      <EzButton onClick={close}>Cancel</EzButton>
     </EzLayout>
   </EzFooter>
 </EzModal>
@@ -120,10 +122,10 @@ Note: this isn't an typical configuration (a header is usually expected).
   <EzContent>Modal content goes here!</EzContent>
   <EzFooter>
     <EzLayout layout="basic">
-      <EzButton use="primary" onClick={close}>
-        Confirm
+      <EzButton onClick={close}>Confirm</EzButton>
+      <EzButton variant="outlined" onClick={close}>
+        Cancel
       </EzButton>
-      <EzButton onClick={close}>Cancel</EzButton>
     </EzLayout>
   </EzFooter>
 </EzModal>
@@ -177,7 +179,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   const containerRef = React.createRef();
 
   return (
-    <div style={{height: '600px'}}>
+    <div style={{minHeight: 800}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
@@ -211,7 +213,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   const containerRef = React.createRef();
 
   return (
-    <div style={{height: '600px'}}>
+    <div style={{minHeight: 800}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
@@ -248,7 +250,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   const containerRef = React.createRef();
 
   return (
-    <div style={{height: '600px'}}>
+    <div style={{minHeight: 600}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
@@ -283,7 +285,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   const containerRef = React.createRef();
 
   return (
-    <div style={{height: '600px'}}>
+    <div style={{minHeight: 700}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}
@@ -369,7 +371,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   }
 
   return (
-    <div style={{height: '600px'}}>
+    <div style={{minHeight: 800}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}

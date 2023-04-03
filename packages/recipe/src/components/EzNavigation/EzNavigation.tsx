@@ -49,6 +49,7 @@ const wrapper = theme.css({
   display: 'flex',
   flex: '1 1 auto',
   flexDirection: 'column',
+  fontFamily: '$defaultFont',
   height: '100%',
   '@large': {
     flexDirection: 'row',

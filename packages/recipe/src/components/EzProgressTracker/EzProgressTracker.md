@@ -42,20 +42,14 @@ Progress trackers should:
       {/* Buttons to navigatie between steps */}
       <EzLayout layout="split">
         {activeStep === steps.length ? (
-          <EzButton use="primary" onClick={() => setActiveStep(0)}>
-            Reset
-          </EzButton>
+          <EzButton onClick={() => setActiveStep(0)}>Reset</EzButton>
         ) : (
           <>
-            <EzButton
-              use="tertiary"
-              disabled={activeStep === 0}
-              onClick={() => setActiveStep(activeStep - 1)}
-            >
+            <EzButton disabled={activeStep === 0} onClick={() => setActiveStep(activeStep - 1)}>
               Prev
             </EzButton>
-            {steps[activeStep].label}
-            <EzButton use="primary" onClick={() => setActiveStep(activeStep + 1)}>
+            <EzTextStyle>{steps[activeStep].label}</EzTextStyle>
+            <EzButton onClick={() => setActiveStep(activeStep + 1)}>
               {activeStep < steps.length - 1 ? 'Next' : 'Finish'}
             </EzButton>
           </>
@@ -91,20 +85,14 @@ Progress trackers should:
       {/* Buttons to navigatie between steps */}
       <EzLayout layout="split">
         {activeStep === steps.length ? (
-          <EzButton use="primary" onClick={() => setActiveStep(0)}>
-            Reset
-          </EzButton>
+          <EzButton onClick={() => setActiveStep(0)}>Reset</EzButton>
         ) : (
           <>
-            <EzButton
-              use="tertiary"
-              disabled={activeStep === 0}
-              onClick={() => setActiveStep(activeStep - 1)}
-            >
+            <EzButton disabled={activeStep === 0} onClick={() => setActiveStep(activeStep - 1)}>
               Prev
             </EzButton>
-            {steps[activeStep].label}
-            <EzButton use="primary" onClick={() => setActiveStep(activeStep + 1)}>
+            <EzTextStyle>{steps[activeStep].label}</EzTextStyle>
+            <EzButton onClick={() => setActiveStep(activeStep + 1)}>
               {activeStep < steps.length - 1 ? 'Next' : 'Finish'}
             </EzButton>
           </>
@@ -152,7 +140,6 @@ In order to support client-side routing implementations, each step also supports
       <EzLayout layout="split">
         {activeStep === steps.length ? (
           <EzButton
-            use="primary"
             onClick={() => {
               setActiveStep(0);
               setCompleted(new Set());
@@ -163,15 +150,10 @@ In order to support client-side routing implementations, each step also supports
         ) : (
           <>
             <EzLayout>
-              <EzButton
-                use="tertiary"
-                disabled={activeStep === 0}
-                onClick={() => setActiveStep(activeStep - 1)}
-              >
+              <EzButton disabled={activeStep === 0} onClick={() => setActiveStep(activeStep - 1)}>
                 Prev
               </EzButton>
               <EzButton
-                use="primary"
                 onClick={() => {
                   if (completed.has(activeStep)) completed.delete(activeStep);
                   else completed.add(activeStep);
@@ -181,8 +163,8 @@ In order to support client-side routing implementations, each step also supports
                 {completed.has(activeStep) ? 'Mark as Incomplete' : 'Mark as Complete'}
               </EzButton>
             </EzLayout>
-            {steps[activeStep].label}
-            <EzButton use="primary" onClick={() => setActiveStep(activeStep + 1)}>
+            <EzTextStyle>{steps[activeStep].label}</EzTextStyle>
+            <EzButton onClick={() => setActiveStep(activeStep + 1)}>
               {activeStep < steps.length - 1 ? 'Next' : 'Finish'}
             </EzButton>
           </>

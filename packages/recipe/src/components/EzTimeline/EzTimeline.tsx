@@ -21,7 +21,7 @@ const footerButton = theme.css({
   boxShadow: '$footer-button',
   border: 'solid $borderWidths$thin $colors$border',
   fontWeight: '$bold',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   width: '$full',
   borderRadius: '$footer-button-rounded',
   backgroundColor: '$footer-button-bg',

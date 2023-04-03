@@ -297,6 +297,8 @@ EzCheckbox components can be grouped using form controls (see below).
 </EzPage>
 ```
 
+### Checkbox Controlled Group
+
 You can also control the checkbox with the `checked` prop on `EzFormControlLabel` and `onChange` on `EzCheckbox`.
 
 ```jsx
@@ -347,9 +349,127 @@ You can also control the checkbox with the `checked` prop on `EzFormControlLabel
 };
 ```
 
+### Checkbox Group with Conditional Content
+
+Additional content can also be displayed depending on the selection.
+
+```jsx
+() => {
+  const [state, setState] = useState({
+    coffee: true,
+    water: false,
+    wine: false,
+  });
+
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  return (
+    <EzPage>
+      <EzLayout layout="equal">
+        <EzFormControl>
+          <EzFormLabel id="checkbox-buttons-drinks">Drinks</EzFormLabel>
+          <EzFormGroup ariaLabel="checkbox-buttons-drinks">
+            <EzFormControlLabel
+              checked={state.coffee}
+              control={<EzCheckbox name="coffee" onChange={handleChange} />}
+              label="Coffee"
+              helperText="Caffineated"
+              value="coffee"
+            />
+            {state.coffee && <EzField type="textarea" placeholder="Coffee details..." />}
+            <EzFormControlLabel
+              checked={state.water}
+              control={<EzCheckbox name="water" onChange={handleChange} />}
+              label="Water"
+              value="water"
+            />
+            {state.water && <EzField type="textarea" placeholder="Wine details..." />}
+            <EzFormControlLabel
+              checked={state.wine}
+              control={<EzCheckbox name="wine" onChange={handleChange} />}
+              label="Wine"
+              value="wine"
+            />
+            {state.wine && <EzField type="textarea" placeholder="Water details..." />}
+          </EzFormGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+### Checkbox Group with Error State
+
+To display an error state in a checkbox group, pass an `error` boolean property to `EzFormControl`. Be sure to include an error alert or message to indicate what the error is.
+
+```jsx
+() => {
+  const [state, setState] = useState({
+    coffee: false,
+    water: false,
+    wine: false,
+  });
+
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const {coffee, water, wine} = state;
+  const error = [coffee, water, wine].filter(v => v).length < 1;
+
+  return (
+    <EzPage>
+      <EzLayout layout="equal">
+        <EzFormControl error={error}>
+          <EzFormLabel id="checkbox-buttons-drinks">
+            <EzLayout layout="stack">
+              Drinks
+              {error && (
+                <EzAlert headline="Please choose one or more options" use="error" />
+              )}
+            </EzLayout>
+          </EzFormLabel>
+          <EzFormGroup ariaLabel="checkbox-buttons-drinks">
+            <EzFormControlLabel
+              checked={coffee}
+              control={<EzCheckbox name="coffee" onChange={handleChange} />}
+              label="Coffee"
+              helperText="Caffineated"
+              value="coffee"
+            />
+            <EzFormControlLabel
+              checked={water}
+              control={<EzCheckbox name="water" onChange={handleChange} />}
+              label="Water"
+              value="water"
+            />
+            <EzFormControlLabel
+              checked={wine}
+              control={<EzCheckbox name="wine" onChange={handleChange} />}
+              label="Wine"
+              value="wine"
+            />
+          </EzFormGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
 To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox` with the following components and their props:
 
 - `EzFormControl` - used to provide context and ensure a consistent state
+  - `error` - if `true`, the label is displayed in an error state 
 - `EzFormLabel` - used to provide a label for a group of checkboxes
   - `id` - should match the `ariaLabel` prop of `EzFormGroup`
 - `EzFormGroup` - used to group checkboxes
@@ -623,59 +743,6 @@ A checkbox can be made disabled by adding the optional `disabled` prop on either
 };
 ```
 
-### Legacy Checkboxes (Deprecated)
-
-To use Recipe's deprecated checkbox style, add the `legacy` prop.
-
-<EzAlert use="warning" headline="Legacy checkboxes are deprecated as of v16 and will be removed in v17."></EzAlert>
-
-```jsx
-() => {
-  const [basicChecked, setBasicChecked] = useState(true);
-  const [acknowledgementChecked, setAcknowledgementChecked] = useState(true);
-
-  return (
-    <EzLayout layout="stack">
-      <EzCheckbox
-        legacy
-        checked={basicChecked}
-        label="Basic checkbox"
-        name="legacyBasicCheckbox"
-        onChange={() => setBasicChecked(!basicChecked)}
-      />
-
-      <EzCheckbox legacy label="Disabled checkbox" disabled />
-
-      <EzCheckbox
-        legacy
-        acknowledgement
-        checked={acknowledgementChecked}
-        label="I accept the new terms of service"
-        name="legacyAcknowledgementCheckbox"
-        onChange={() => setAcknowledgementChecked(!acknowledgementChecked)}
-        terms={
-          <span>
-            I have read and agree to the{' '}
-            <EzLink>
-              <a href="/" target="_blank" rel="noreferrer noopener">
-                terms of service
-              </a>
-            </EzLink>{' '}
-            and{' '}
-            <EzLink>
-              <a href="/" target="_blank" rel="noreferrer noopener">
-                privacy policy
-              </a>
-            </EzLink>
-            .
-          </span>
-        }
-      />
-    </EzLayout>
-  );
-};
-```
-
 ---
 
 ## Custom Styles
@@ -705,12 +772,6 @@ Checkboxes should also have a `name` property, which is used to set or return th
 ```jsx-hide-controls
   <PropsTable propsData={[
     {
-      name: 'acknowledgement',
-      types: ['boolean'],
-      defaultValue: 'false',
-      description: '**Deprecated** If true, the legacy checkbox is an acknowlegement.',
-    },
-    {
       name: 'ariaLabel',
       types: ['string'],
       defaultValue: 'checkbox',
@@ -721,11 +782,6 @@ Checkboxes should also have a `name` property, which is used to set or return th
       types: ['boolean'],
       defaultValue: 'false',
       description: 'If true, the component is checked.',
-    },
-    {
-      name: 'className',
-      types: ['string'],
-      description: '**Deprecated** The class name of the component.',
     },
     {
       name: 'color',
@@ -744,17 +800,6 @@ Checkboxes should also have a `name` property, which is used to set or return th
       types: ['boolean'],
       defaultValue: 'false',
       description: 'If true, the component is disabled.'
-    },
-    {
-      name: 'label',
-      types: ['string'],
-      description: '**Deprecated** The label of the legacy checkbox.'
-    },
-    {
-      name: 'legacy',
-      types: ['boolean'],
-      defaultValue: 'false',
-      description: '**Deprecated** If true, the component is a legacy checkbox.'
     },
     {
       name: 'name',
@@ -783,11 +828,6 @@ Checkboxes should also have a `name` property, which is used to set or return th
       description: 'The size of the component.',
     },
     {
-      name: 'terms',
-      types: ['string'],
-      description: '**Deprecated** The terms of the legacy component.',
-    },
-    {
       name: 'value',
       types: ['any'],
       description: 'The value of the controlled component.',
@@ -806,6 +846,6 @@ Checkboxes should also have a `name` property, which is used to set or return th
 
 ## Related components
 
-- [EzRadio](/components/ez-radio)
 - [EzField](/components/ez-field)
+- [EzRadio](/components/ez-radio)
 - [EzToggle](/components/ez-toggle)

@@ -5,6 +5,7 @@ import Slot from '../EzContent/Slot';
 
 const styles = theme.css({
   display: 'block',
+  fontFamily: '$defaultFont',
 
   variants: {
     use: {

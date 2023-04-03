@@ -35,6 +35,7 @@ function getWrappedElement(children: string | ReactElement): ReactElement {
 }
 
 const styles = theme.css({
+  fontFamily: '$defaultFont',
   variants: {
     use: {
       primary: {

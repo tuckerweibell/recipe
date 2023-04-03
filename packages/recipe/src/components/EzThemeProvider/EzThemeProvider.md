@@ -13,7 +13,7 @@ import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
 
 const App = () => (
   <EzThemeProvider theme={themes.ezMarketplaceTheme}>
-    <EzButton use="primary">Click me</EzButton>
+    <EzButton>Click me</EzButton>
   </EzProvider>
 );
 ```
@@ -33,7 +33,7 @@ const customTheme = themes.createTheme(themes.ezTheme, {
 
 const App = () => (
   <EzThemeProvider theme={customTheme}>
-    <EzButton use="primary">Click me</EzButton>
+    <EzButton>Click me</EzButton>
   </EzProvider>
 );
 ```

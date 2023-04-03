@@ -13,11 +13,23 @@ import Placeholder from './Placeholder';
 import logo from '../ezcater-logo.svg';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {faCircle} from '@fortawesome/free-solid-svg-icons/faCircle';
+import {faCircleInfo} from '@fortawesome/free-solid-svg-icons/faCircleInfo';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
 import {faStar as fullStar} from '@fortawesome/free-solid-svg-icons/faStar';
 import {faStarHalfStroke as halfStar} from '@fortawesome/free-solid-svg-icons/faStarHalfStroke';
 import {faStar as emptyStar} from '@fortawesome/free-regular-svg-icons/faStar';
-import {Coffee, Fries, Pizza, Ramen, ThumbsDown, ThumbsUp, WaterGlass, WineGlass} from '@ezcater/icons';
+import {
+  Coffee,
+  FileDownload,
+  Fries,
+  Pizza,
+  Printer,
+  Ramen,
+  ThumbsDown,
+  ThumbsUp,
+  WaterGlass,
+  WineGlass,
+} from '@ezcater/icons';
 import {faCartShopping as shoppingCart} from '@fortawesome/free-solid-svg-icons/faCartShopping';
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
@@ -116,6 +128,7 @@ const scope = {
     Route,
     // font awesome icons
     faCircle,
+    faCircleInfo,
     faCoffee,
     emptyStar,
     halfStar,
@@ -123,8 +136,10 @@ const scope = {
     shoppingCart,
     // ezCater icons
     Coffee,
+    FileDownload,
     Fries,
     Pizza,
+    Printer,
     Ramen,
     ThumbsDown,
     ThumbsUp,

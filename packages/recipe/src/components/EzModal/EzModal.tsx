@@ -144,8 +144,7 @@ const EzModal: React.FC<Props> = ({
                   <EzLayout layout={{base: 'stack', medium: 'basic'}}>
                     {submitLabel && (
                       <EzButton
-                        use="primary"
-                        destructive={destructive}
+                        color={destructive ? 'destructive' : undefined}
                         onClick={onSubmit}
                         loading={isSubmitting}
                       >
@@ -153,7 +152,11 @@ const EzModal: React.FC<Props> = ({
                       </EzButton>
                     )}
                     {dismissLabel && (
-                      <EzButton use="secondary" disabled={isSubmitting} onClick={onDismiss}>
+                      <EzButton
+                        disabled={isSubmitting}
+                        onClick={onDismiss}
+                        variant={onSubmit ? 'outlined' : 'filled'}
+                      >
                         {dismissLabel}
                       </EzButton>
                     )}

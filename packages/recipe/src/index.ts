@@ -5,3 +5,4 @@ export const {theme: createTheme} = stitches;
 
 export * from './components';
 export {themes, stitches};
+export {marketplaceTheme as stitchesMarketplaceTheme} from './components/theme.config';

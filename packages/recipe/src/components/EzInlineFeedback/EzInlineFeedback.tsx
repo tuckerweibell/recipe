@@ -13,6 +13,7 @@ const icons = {
 
 const styles = theme.css({
   display: 'inline-block',
+  fontFamily: '$defaultFont',
   lineHeight: '$inline-feedback',
   verticalAlign: 'top',
 

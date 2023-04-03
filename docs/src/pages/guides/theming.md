@@ -78,10 +78,13 @@ Recipe supports the following set of design tokens for typography:
   <pre>fontFamily: 'Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';</pre>
 ```
 
-`ezFulfillmentTheme` uses the Montserrat font.
+`ezFulfillmentTheme` uses the Montserrat font for headers and the Roboto Flex font for everything else.
 
 ```jsx-hide-controls
-  <pre>fontFamily: 'Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';</pre>
+  <>
+    <pre>fontFamily: 'Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';</pre>
+    <pre>fontFamily: 'Roboto Flex', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif';</pre>
+  </>
 ```
 
 ### Icons

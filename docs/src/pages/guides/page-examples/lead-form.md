@@ -97,7 +97,7 @@ tags: ['wide']
               </EzFormLayout>
             </EzCardSection>
             <EzCardSection>
-              <EzButton use="primary">Save</EzButton>
+              <EzButton>Save</EzButton>
             </EzCardSection>
           </EzCard>
         </EzPage>

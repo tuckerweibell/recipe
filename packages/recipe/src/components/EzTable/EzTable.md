@@ -96,13 +96,110 @@ Used whenever the tabular data is directly related to the preceding or subsequen
 </EzPage>
 ```
 
+### Full Width Table
+
+Add the prop `fullWidth` to allow a table to fill the parent element's width.
+
+```jsx
+<EzPage>
+  <EzCard>
+    <EzTable
+      fullWidth
+      columns={[
+        {heading: 'From', key: 'from'},
+        {heading: 'Through', key: 'to'},
+        {heading: 'Total time closed', key: 'total'},
+      ]}
+      items={[
+        {from: '9/3/18', to: '9/5/18', total: '3 days'},
+        {from: '10/8/18', to: '10/8/18', total: '1 days'},
+      ]}
+    />
+  </EzCard>
+</EzPage>
+```
+
 ### Tables that fill a Card
 
-Used whenever the tabular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional actions.
+Used whenever the tabular data alone represents a cohesive set of content. Should be used with a `title` prop and may include optional `titleIcon` and actions.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const titleIcon = <EzIcon color="primary" size="large" icon={faCoffee} />;
+
+  return (
+    <EzPage>
+      <EzTable
+        title="All Stores"
+        subtitle="Compared to the same period last year"
+        columns={[
+          {heading: 'Store name', key: 'store'},
+          {heading: 'Total sales', key: 'total', numeric: true},
+          {heading: 'Average order value', key: 'average', numeric: true},
+        ]}
+        items={[
+          {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
+          {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
+        ]}
+        titleIcon={titleIcon}
+      />
+    </EzPage>
+  );
+};
+```
+
+### Tables that fill a Card without a Heading
+
+Used whenever the tabular data alone represents a cohesive set of content, without a table card heading using `showCardWithoutHeading` flag.
+
+Maintain accessibility by providing an `ariaLabel`, and optionally also a heading or label above the card.
+
+May include optional actions.
+
+```jsx
+() => {
+  const [searchTerms, setSearchTerms] = React.useState('');
+  return (
+    <EzPage>
+      <EzTable
+        ariaLabel="Table of store sales and average order value"
+        showCardWithoutHeading
+        actions={
+          <EzLayout layout="split">
+            <EzSearchInput
+              placeholder="Search"
+              aria-label="Search stores"
+              value={searchTerms}
+              onChange={e => setSearchTerms(e.target.value)}
+            />
+            <EzButton use="secondary">View related stores</EzButton>
+          </EzLayout>
+        }
+        columns={[
+          {heading: 'Store name', key: 'store'},
+          {heading: 'Total sales', key: 'total', numeric: true},
+          {heading: 'Average order value', key: 'average', numeric: true},
+        ]}
+        items={[
+          {id: '#004', store: '123 Example Store', total: 23267, average: 327.79},
+          {id: '#007', store: '45 Meadowview Lane', total: 22788, average: 367.55},
+        ]}
+      />
+    </EzPage>
+  );
+};
+```
+
+### Tables with a Transparent Background
+
+Use the `transparent` flag to inherit the parent element's background color.
 
 ```jsx
 <EzPage>
   <EzTable
+    transparent
     title="All Stores"
     subtitle="Compared to the same period last year"
     columns={[
@@ -140,6 +237,67 @@ Consider wrapping actions in an [EzLayout](/components/ez-layout) to manage how 
     ]}
   />
 </EzPage>
+```
+
+### Table with search
+
+To filter data with a search filter, provide an `EzSearchInput` as an action, with corresponding search term state and a function to handle filtering the data when the search term changes.
+
+If the search filter needs to be disabled in the case of very large datasets, the recommendation is to first work with a designer to show usable tables with more user-friendly pre-filtered datasets. If that is not possible and performance becomes an issue, conditioanlly hide the search input or disable it.
+
+```jsx
+() => {
+  const Table = () => {
+    const allData = [
+      {id: '1', first: 'Tiffany', last: 'Morin'},
+      {id: '2', first: 'Mitchell', last: 'Hoffman'},
+      {id: '3', first: 'Léo', last: 'Gonzalez'},
+      {id: '4', first: 'Alberto', last: 'Arias'},
+      {id: '5', first: 'Olivier', last: 'Campos'},
+      {id: '6', first: 'Ömür', last: 'Ekici'},
+      {id: '7', first: 'Énio', last: 'Barros'},
+      {id: '8', first: 'Ava', last: 'Ma'},
+      {id: '9', first: 'Norberta', last: 'Novaes'},
+      {id: '10', first: 'Deni', last: 'Lubbers'},
+    ];
+
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [data, setData] = React.useState(allData);
+
+    const handleFilterTerm = term => {
+      const filteredData = allData.filter(datum =>
+        Object.values(datum).some(
+          value => typeof value === 'string' && value.toLowerCase().includes(term)
+        )
+      );
+      setSearchTerm(term);
+      setData(filteredData);
+    };
+
+    const searchInput = (
+      <EzSearchInput
+        placeholder="Search"
+        aria-label="Search store owners"
+        value={searchTerm}
+        onChange={e => handleFilterTerm(e.target.value)}
+      />
+    );
+
+    return (
+      <EzTable
+        title="Store Owners"
+        actions={searchInput}
+        columns={[
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
+        ]}
+        items={data}
+      />
+    );
+  };
+
+  return <Table />;
+};
 ```
 
 ### Custom cell rendering
@@ -366,6 +524,70 @@ The following example performs client-side sorting, using the `key` metadata of 
 };
 ```
 
+### Columns with Icons
+
+To add an icon to a column header, add `icon` to the `column`. Recipe supports `EzIcon`, which can be wrapped in `EzTooltip`.
+
+Consider and choose the appropriate size, color, and accessibility of each icon added to table column headers in the context of the rest of the columns.
+
+```jsx
+() => {
+  const {faCircleInfo} = require('@fortawesome/free-solid-svg-icons/faCircleInfo');
+  const initialItems = [
+    {name: 'Joan Jett', storeCount: 12},
+    {name: 'David Bowie', storeCount: 6},
+    {name: 'Sheena Easton', storeCount: 6},
+    {name: 'Stevie Nicks', storeCount: 1},
+  ];
+
+  const Table = () => {
+    const [items, updateItems] = React.useState(initialItems);
+
+    const onSortClick = (_event, {column, direction}) => {
+      const newItems = [...initialItems].sort((a, b) => {
+        const val1 = a[column.key];
+        const val2 = b[column.key];
+
+        return (direction === 'asc' ? val1 > val2 : val1 < val2) ? 1 : -1;
+      });
+
+      updateItems(newItems);
+    };
+
+    return (
+      <EzPage>
+        <EzTable
+          title="Store Owners"
+          onSortClick={onSortClick}
+          columns={[
+            {
+              heading: 'Name',
+              key: 'name',
+              sortable: true,
+              icon: <EzIcon icon={faCircleInfo} size="inherit" />,
+            },
+            {
+              heading: 'Store Count',
+              key: 'storeCount',
+              sortable: true,
+              defaultSort: 'desc',
+              icon: (
+                <EzTooltip message="Here's more info about this store count column">
+                  <EzIcon icon={faCircleInfo} size="inherit" />
+                </EzTooltip>
+              ),
+            },
+          ]}
+          items={items}
+        />
+      </EzPage>
+    );
+  };
+
+  return <Table />;
+};
+```
+
 ### Pagination
 
 Pagination can be used to display a large data set, either local or remote, with a set number of rows per page.
@@ -379,8 +601,11 @@ Pagination is enabled by adding the `pagination` attribute to `EzTable` with the
 - `onPrevPageClick` (required): an event that is fired when the "Previous Page" link is clicked.
 - `onNextPageClick` (required): an event that is fired when the "Next Page" link is clicked.
 - `onRowsPerPageChange` (required): an event that is fired when the "n rows per page" select value is changed.
+- `totalFilteredRows` (optional): number of rows after data has been filtered, if using a filter
 
 To see selection and pagination features used together, see the [bulk row selection across pages](/components/ez-table/#bulk-row-selection-across-pages) example.
+
+Using bulk selection across pages may interact with your custom `actions` in an unexpected way (for example, with a search filter). Be sure to test all logic to ensure everything works as expected.
 
 #### Local Data
 
@@ -528,64 +753,103 @@ To enable this feature, the following additional properties are available when u
 - `selection`
   - `onSelectAllClick` (required): an event that is fired when the "Select all" message is clicked.
   - `onSelectNoneClick` (required): an event that is fired when the "Clear selection" message is clicked.
+  - `totalRowsSelected` (required): number of total rows selected across pages from your selection state
   - `disableMultiPageSelection: true` (optional): set to true if you don't want to allow the user to select all rows on all pages.
 
-When offering pagination and selection, users should be offered either or both of the following options:
+When offering pagination and selection, users should be offered options:
 
-- Selecting individual records on a single page of results
+- Selecting individual records
+- Selecting all records for the entire page
 - Selecting all records for the entire data-set
-
-Picking-and-choosing records across multiple pages of results is not supported. Instead, consider offering users the ability to find the subset of results they are interested in by using search or filters.
 
 ```jsx
 () => {
-  const allItems = [
-    {first: 'Tiffany', last: 'Morin'},
-    {first: 'Mitchell', last: 'Hoffman'},
-    {first: 'Léo', last: 'Gonzalez'},
-    {first: 'Alberto', last: 'Arias'},
-    {first: 'Olivier', last: 'Campos'},
-    {first: 'Ömür', last: 'Ekici'},
-    {first: 'Énio', last: 'Barros'},
-    {first: 'Ava', last: 'Ma'},
-    {first: 'Norberta', last: 'Novaes'},
-    {first: 'Deni', last: 'Lubbers'},
-  ];
-
   const Table = () => {
+    const allData = [
+      {id: '1', first: 'Tiffany', last: 'Morin'},
+      {id: '2', first: 'Mitchell', last: 'Hoffman'},
+      {id: '3', first: 'Léo', last: 'Gonzalez'},
+      {id: '4', first: 'Alberto', last: 'Arias'},
+      {id: '5', first: 'Olivier', last: 'Campos'},
+      {id: '6', first: 'Ömür', last: 'Ekici'},
+      {id: '7', first: 'Énio', last: 'Barros'},
+      {id: '8', first: 'Ava', last: 'Ma'},
+      {id: '9', first: 'Norberta', last: 'Novaes'},
+      {id: '10', first: 'Deni', last: 'Lubbers'},
+    ];
+
     const [state, setState] = React.useState({
       currentPage: 1,
-      totalRows: 10,
+      totalRows: allData.length,
+      totalFilteredRows: allData.length,
       rowsPerPage: 5,
     });
 
-    const {currentPage, totalRows, rowsPerPage} = state;
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [data, setData] = React.useState(allData);
+
+    const handleFilterTerm = term => {
+      const filteredData = allData.filter(datum =>
+        Object.values(datum).some(
+          value => typeof value === 'string' && value.toLowerCase().includes(term)
+        )
+      );
+      setSearchTerm(term);
+      setData(filteredData);
+      setState({...state, currentPage: 1, totalFilteredRows: filteredData.length});
+    };
+
+    const searchInput = (
+      <EzSearchInput
+        placeholder="Search"
+        aria-label="Search orders"
+        value={searchTerm}
+        onChange={e => handleFilterTerm(e.target.value)}
+      />
+    );
+
+    const {currentPage, totalFilteredRows, totalRows, rowsPerPage} = state;
     const updateState = changes => setState({...state, ...changes});
 
     const startIndex = (state.currentPage - 1) * state.rowsPerPage;
-    const currentPageItems = allItems.slice(startIndex, startIndex + state.rowsPerPage);
+    const currentPageItems = data.slice(startIndex, startIndex + state.rowsPerPage);
 
     const [selection, setSelection] = React.useState([]);
 
-    const selectRow = item => setSelection(selection.concat(item));
-    const deselectRow = item => setSelection(selection.filter(x => x !== item));
-    const isRowSelected = item => selection.includes(item);
+    const isEqual = (item1, item2) => {
+      return item1.id === item2.id;
+    };
 
-    const onSelectAllClick = () => setSelection(allItems);
+    const selectRow = item => setSelection(selection.concat(item));
+    const deselectRow = item => setSelection(selection.filter(x => !isEqual(x, item)));
+    const isRowSelected = item1 => selection.find(item2 => isEqual(item1, item2));
+
+    const onSelectAllClick = () => setSelection(allData);
     const onSelectNoneClick = () => setSelection([]);
 
     const onBulkSelectClick = () => {
       const selectedPageItems = currentPageItems.filter(isRowSelected);
 
+      const areNoneSelectedOnPage = selectedPageItems.length === 0;
+      const areAllSelectedOnPage = selectedPageItems.length === currentPageItems.length;
+
+      const selectAllOnPage = () => selection.concat(currentPageItems);
+      const deselectAllOnPage = () =>
+        selection.filter(item => !selectedPageItems.find(({id}) => id === item.id));
+      const selectRestOnPage = () =>
+        selection.concat(currentPageItems.filter(item => !isRowSelected(item)));
+
       setSelection(
-        selectedPageItems.length === currentPageItems.length
-          ? selection.filter(item => !selectedPageItems.includes(item))
-          : selection.concat(currentPageItems)
+        areNoneSelectedOnPage
+          ? selectAllOnPage()
+          : areAllSelectedOnPage
+          ? deselectAllOnPage()
+          : selectRestOnPage()
       );
     };
 
     const onRowSelectClick = (_event, {item}) => {
-      isRowSelected(item) ? deselectRow(item) : selectRow(item);
+      return isRowSelected(item) ? deselectRow(item) : selectRow(item);
     };
 
     const onPrevPageClick = () => updateState({currentPage: currentPage - 1});
@@ -596,36 +860,34 @@ Picking-and-choosing records across multiple pages of results is not supported. 
         currentPage: 1,
       });
 
-    // clear current selection when changing pagination options
-    React.useEffect(() => setSelection([]), [currentPage, rowsPerPage]);
-
     return (
-      <EzPage>
-        <EzTable
-          title="Store Owners"
-          columns={[
-            {heading: 'First Name', key: 'first'},
-            {heading: 'Last Name', key: 'last'},
-          ]}
-          items={allItems.slice(startIndex, startIndex + state.rowsPerPage)}
-          selection={{
-            onRowSelectClick,
-            onBulkSelectClick,
-            isRowSelected,
-            onSelectAllClick,
-            onSelectNoneClick,
-          }}
-          pagination={{
-            currentPage,
-            totalRows,
-            rowsPerPage,
-            rowsPerPageOptions: [5, 10, 20, 30],
-            onPrevPageClick,
-            onNextPageClick,
-            onRowsPerPageChange,
-          }}
-        />
-      </EzPage>
+      <EzTable
+        title="Store Owners"
+        actions={searchInput}
+        columns={[
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
+        ]}
+        items={data.slice(startIndex, startIndex + state.rowsPerPage)}
+        selection={{
+          totalRowsSelected: selection.length,
+          onRowSelectClick,
+          onBulkSelectClick,
+          isRowSelected,
+          onSelectAllClick,
+          onSelectNoneClick,
+        }}
+        pagination={{
+          currentPage,
+          totalFilteredRows,
+          totalRows,
+          rowsPerPage,
+          rowsPerPageOptions: [5, 10, 20, 30],
+          onPrevPageClick,
+          onNextPageClick,
+          onRowsPerPageChange,
+        }}
+      />
     );
   };
 

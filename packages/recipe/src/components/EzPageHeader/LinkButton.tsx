@@ -11,7 +11,8 @@ export default forwardRef<HTMLElement, LabelledLink>(
     return isLink(propsIn) ? (
       <EzLink {...commonProps} {...propsIn} />
     ) : (
-      <EzButton {...buttonProps} {...commonProps} {...propsIn} />
+      // TODO: refactor to new EzButton after EzLink refactored -- styles need to match
+      <EzButton legacy {...buttonProps} {...commonProps} {...propsIn} />
     );
   }
 );

@@ -21,6 +21,7 @@ const flashMessage = theme.css({
   borderStyle: '$flash-message-border-style',
   borderWidth: '$flash-message-border-width',
   borderLeftWidth: '$flash-message-border-left-width',
+  fontFamily: '$defaultFont',
   padding: '$flash-message-p',
 
   '@medium': {

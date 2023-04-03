@@ -71,7 +71,7 @@ Use the full width layout for wide list or table content that may benefit from m
           }}
           className="responsive"
         >
-          <EzButton use="secondary">Change store or group</EzButton>
+          <EzButton>Change store or group</EzButton>
         </EzLayout>
       }
     />
@@ -128,7 +128,7 @@ Note: The centered layout will only take effect on wide screen sizes.
           }}
           className="responsive"
         >
-          <EzButton use="secondary">Change store or group</EzButton>
+          <EzButton>Change store or group</EzButton>
         </EzLayout>
       }
     />

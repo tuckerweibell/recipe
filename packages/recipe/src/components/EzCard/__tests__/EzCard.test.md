@@ -80,10 +80,10 @@
       title="Card Heading"
       actions={
         <EzLayout layout="basic">
-          <EzButton use="secondary" destructive>
+          <EzButton variant="outlined" color="destructive">
             Delete
           </EzButton>
-          <EzButton>Edit</EzButton>
+          <EzButton variant="outlined">Edit</EzButton>
           <EzButton>View</EzButton>
         </EzLayout>
       }
@@ -104,7 +104,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 400}}>
       <EzPage>
         <EzPageSection use="aside">
           <EzCard>
@@ -208,7 +208,7 @@
       <EzCard
         title={
           <EzLink href="/orders" use="reset" id="focus-me">
-            Amuleto Mexican Table
+            <EzHeading size="3">Amuleto Mexican Table</EzHeading>
           </EzLink>
         }
         subtitle="Upscale Authentic Flavor  |  10 mi  |  $$$"
@@ -269,30 +269,13 @@
         clickable
       >
         <EzLayout layout="stack">
-          <EzHeading size="3">
-            <EzLink href="/orders" use="reset" id="focus-me">
-              Taco bar for Taco Tuesday
-            </EzLink>
-          </EzHeading>
+          <EzLink href="/orders" use="reset" id="focus-me">
+            <EzHeading size="3">Taco bar for Taco Tuesday</EzHeading>
+          </EzLink>
+
           <p>Or taco any day. Spice up your next meeting.</p>
           <p>
-            <EzButton use="tertiary" as="span" aria-hidden>
-              Order Now
-              <svg
-                aria-hidden="true"
-                height={16}
-                width={16}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -8 30 30"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h20M20 5l7 7-8 7" />
-              </svg>
-            </EzButton>
+            <EzButton variant="text">Order Now →</EzButton>
           </p>
         </EzLayout>
       </EzCard>

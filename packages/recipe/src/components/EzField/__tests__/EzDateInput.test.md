@@ -42,7 +42,7 @@
 
   return (
     <EzFormLayout>
-      <div ref={containerRef}>
+      <div ref={containerRef} style={{minHeight: 300}}>
         <Open containerRef={containerRef}>
           <EzField
             label="Order date"
@@ -71,7 +71,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 360}}>
       <Open containerRef={containerRef}>
         <EzField
           label="Order date"
@@ -99,7 +99,7 @@
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 360}}>
       <Open containerRef={containerRef}>
         <EzField
           label="Order date"

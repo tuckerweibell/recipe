@@ -63,7 +63,11 @@ const EzCarouselCustom = forwardRef<Ref, EzCarouselProps>(
             <EzHeading size="3">{title}</EzHeading>
 
             <Stack direction="row" spacing={`${CARD_SPACING}px`}>
-              {link && <EzButton use="secondary">{link}</EzButton>}
+              {link && (
+                <EzButton variant="outlined" color="info" size="small">
+                  {link}
+                </EzButton>
+              )}
 
               {hasMultiplePages && !showMobile && (
                 <>

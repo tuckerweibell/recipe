@@ -11,7 +11,7 @@ type Props = React.AllHTMLAttributes<any> & {
 };
 
 const textInput = theme.css({
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   fontSize: '$text',
   display: 'block',
   color: '$text',

@@ -12,12 +12,27 @@ const fullBleed = theme.css({
   },
 });
 
+const cardWithHeading = theme.css({
+  '&&': {
+    paddingTop: '$250',
+  },
+});
+
 type TableCardSectionProps = {
   className?: string;
+  showCardWithoutHeading?: boolean;
 };
 
-const TableCardSection: FC<TableCardSectionProps> = ({children, className}) => (
-  <EzCardSection className={clsx(fullBleed(), className)}>{children}</EzCardSection>
+const TableCardSection: FC<TableCardSectionProps> = ({
+  children,
+  className,
+  showCardWithoutHeading,
+}) => (
+  <EzCardSection
+    className={clsx(fullBleed(), className, !showCardWithoutHeading && cardWithHeading())}
+  >
+    {children}
+  </EzCardSection>
 );
 
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one

@@ -20,3 +20,4 @@ jobs:
           projectToken: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
           workingDir: packages/recipe
           exitOnceUploaded: true
+          onlyChanged: true

@@ -1,6 +1,6 @@
 export const font = {
   // font family
-  display: {fontFamily: 'Montserrat, sans-serif'},
+  display: {fontFamily: 'Lato, sans-serif'},
   // font weight
   semibold: {fontWeight: 600},
   bold: {fontWeight: 700},

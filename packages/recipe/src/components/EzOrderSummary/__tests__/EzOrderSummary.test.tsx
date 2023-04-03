@@ -66,11 +66,7 @@ describe('EzOrderSummary', () => {
     expect(actual).toHaveNoViolations();
   });
 
-  const action = (
-    <EzButton use="primary" onClick={() => 'clicked!'}>
-      click!
-    </EzButton>
-  );
+  const action = <EzButton onClick={() => 'clicked!'}>click!</EzButton>;
   const name = 'name';
   const labelPair = [
     {label: 'one', value: '1'},

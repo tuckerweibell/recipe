@@ -35,7 +35,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
       disabled={disabled}
       {...remainingProps}
       label={
-        <Stack lineHeight="16px">
+        <Stack>
           <Stack direction="row">
             {label}
 
@@ -58,10 +58,11 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
         </Stack>
       }
       sx={{
+        alignItems: 'start',
         ml: '-7px',
         '.EzFormControlLabel-label': {
           ml: '5px',
-          mt: helperText ? 2 : 0,
+          mt: '5px',
         },
         '&:hover .EzRadioIcon-unchecked': {
           bgcolor: disabled ? undefined : themeColor,

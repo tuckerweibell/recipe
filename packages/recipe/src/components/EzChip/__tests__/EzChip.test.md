@@ -89,7 +89,7 @@
     <EzChip label="Deletable" onDelete={() => {}} color="common.alert90" />
   </EzLayout>
 
-  <EzLayout>
+  <EzLayout layout="tile">
     <EzChip
       label="Clickable and Deletable"
       onClick={() => {}}

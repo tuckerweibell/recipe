@@ -32,7 +32,6 @@ export {default as EzProgress} from './EzProgress';
 export {default as EzProgressTracker} from './EzProgressTracker';
 export {default as EzProvider} from './EzProvider';
 export {default as EzRadio} from './EzRadio';
-export {default as EzRadioButton} from './EzRadioButton';
 export {default as EzRadioGroup} from './EzRadioGroup';
 export {default as EzRating} from './EzRating';
 export {default as EzSearchInput} from './EzSearchInput';

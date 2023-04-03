@@ -1,6 +1,7 @@
 import theme from '../theme.config';
 
 export const container = theme.css({
+  fontFamily: '$defaultFont',
   backgroundColor: '$card-bg',
   boxShadow: '$card',
   borderStyle: '$card-border',
@@ -228,4 +229,8 @@ export const orientation = theme.css({
       },
     },
   },
+});
+
+export const transparentBackground = theme.css({
+  backgroundColor: 'inherit',
 });

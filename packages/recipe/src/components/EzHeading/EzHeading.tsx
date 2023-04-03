@@ -6,35 +6,41 @@ import {ClearSlots, useSlotProps} from '../../utils/slots';
 import {domProps, mergeProps} from '../../utils';
 
 const headingCss = theme.css({
+  fontFamily: '$headerFont',
   color: '$heading-text',
-  lineHeight: '$heading',
   margin: 0,
 
   variants: {
     size: {
       '1': {
-        fontSize: '$800',
-        fontWeight: '$regular',
+        fontSize: '$h1',
+        fontWeight: '$h1',
+        lineHeight: '$h1',
       },
       '2': {
-        fontSize: '$600',
-        fontWeight: '$bold',
+        fontSize: '$h2',
+        fontWeight: '$h2',
+        lineHeight: '$h2',
       },
       '3': {
-        fontSize: '$300',
-        fontWeight: '$bold',
+        fontSize: '$h3',
+        fontWeight: '$h3',
+        lineHeight: '$h3',
       },
       '4': {
-        fontSize: '$200',
-        fontWeight: '$regular',
+        fontSize: '$h4',
+        fontWeight: '$h4',
+        lineHeight: '$h4',
       },
       '5': {
-        fontSize: '$100',
-        fontWeight: '$bold',
+        fontSize: '$h5',
+        fontWeight: '$h5',
+        lineHeight: '$h5',
       },
       '6': {
-        fontSize: '$75',
-        fontWeight: '$regular',
+        fontSize: '$h6',
+        fontWeight: '$h6',
+        lineHeight: '$h6',
       },
     },
     casing: {

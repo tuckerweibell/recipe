@@ -5,6 +5,7 @@ type Column = {
   key?: string;
   component?: React.ReactNode | React.ComponentType;
   sortable?: boolean;
+  icon?: React.ReactNode | React.ComponentType;
   /**
    * @deprecated Use `key` to provide column identifier and `component` to provide a custom cell renderer.
    */
@@ -27,6 +28,7 @@ type BulkSelection = {
   onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
   onBulkSelectClick: React.MouseEventHandler;
   isRowSelected: (item: any) => boolean;
+  totalRowsSelected: number;
 };
 
 type SelectAllOrNoneEnabled = {
@@ -40,8 +42,8 @@ type SelectAllOrNoneDisabled = {
 };
 
 type ActionsProps = {
-  actions: React.ReactNode;
-  title: string;
+  actions: React.ReactNode | React.ComponentType;
+  title?: string;
 };
 
 type OptionalTitle = {
@@ -53,6 +55,7 @@ type TableActions = ActionsProps | OptionalTitle;
 
 type Pagination = {
   currentPage: number;
+  totalFilteredRows?: number;
   totalRows: number;
   rowsPerPage: number;
   rowsPerPageOptions: number[];
@@ -94,9 +97,35 @@ type TableBase = {
   columns: Column[];
   items: any[];
   onSortClick?: onSortClick;
+  titleIcon?: React.ReactNode | React.ComponentType;
+  fullWidth?: boolean;
+  transparent?: boolean;
 };
 
-export type TableProps = TableBase & TableActions & PaginationSelectionCombination;
+// SimpleTableWithoutTitle (no title, aria-label optional, no showCardWithoutHeading)
+interface SimpleTableLabels {
+  title?: never;
+  ariaLabel?: string;
+  showCardWithoutHeading?: never;
+}
+
+// TableInCardWithoutTitle (no title, aria-label required, showCardWithoutHeading true)
+interface TableWithoutTitleCardLabels {
+  title?: never;
+  ariaLabel: string;
+  showCardWithoutHeading: true;
+}
+
+// TableCardWithTitle (title required, aria-label optional, no showCardWithoutHeading)
+interface TableWithTitleCardLabels {
+  title: string;
+  ariaLabel?: string;
+  showCardWithoutHeading?: never;
+}
+
+type TableLabel = SimpleTableLabels | TableWithoutTitleCardLabels | TableWithTitleCardLabels;
+
+export type TableProps = TableBase & TableActions & PaginationSelectionCombination & TableLabel;
 
 export type Sortable = {
   direction: Direction;

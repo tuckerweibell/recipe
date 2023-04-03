@@ -1,7 +1,7 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Checkbox, Stack, SvgIcon, useTheme, Zoom} from '@mui/material';
 import warning from 'tiny-warning';
-import {EzCheckboxMuiProps, Ref} from '../EzCheckbox.types';
+import {EzCheckboxProps, Ref} from '../EzCheckbox.types';
 import {useThemeColor} from '../../../themes/hooks/useThemeColor';
 import {PaletteOptions} from '../../../themes/themes.types';
 
@@ -83,7 +83,7 @@ const EzCheckboxIcon = ({
   </Stack>
 );
 
-const EzCheckboxMui = forwardRef<Ref, EzCheckboxMuiProps>(
+const EzCheckboxMui = forwardRef<Ref, EzCheckboxProps>(
   ({ariaLabel, color, disabled, size, variant, ...props}, ref) => {
     const theme = useTheme();
     const themeColor = useThemeColor(color);

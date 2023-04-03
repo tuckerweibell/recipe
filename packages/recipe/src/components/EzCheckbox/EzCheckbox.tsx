@@ -1,13 +1,8 @@
 import React, {forwardRef} from 'react';
-import {EzCheckboxMui, EzCheckboxLegacy} from './Implementations';
+import {EzCheckboxMui} from './Implementations';
 import {EzCheckboxProps, Ref} from './EzCheckbox.types';
 
 const EzCheckbox = forwardRef<Ref, EzCheckboxProps>((props, ref) => {
-  if (props.legacy === true) {
-    const {legacy, ...remainingProps} = props;
-    return <EzCheckboxLegacy ref={ref} {...remainingProps} />;
-  }
-
   const {
     ariaLabel,
     checked,
@@ -48,7 +43,6 @@ EzCheckbox.displayName = 'EzCheckbox';
 EzCheckbox.defaultProps = {
   color: 'primary',
   disabled: false,
-  legacy: false, // legacy, deprecated
   size: 'medium',
   variant: 'outlined',
 };

@@ -14,17 +14,22 @@ const EzCarouselNavButton = ({type, disabled, onClick}: EzCarouselNavButtonProps
   <Box
     sx={{
       '> button': {
-        display: 'flex',
-        alignItems: 'center',
-        height: '100%',
+        height: '36px',
+        minWidth: '50px',
+        div: {
+          display: 'flex',
+          alignItems: 'center',
+        },
       },
     }}
   >
     <EzButton
-      use="secondary"
-      aria-label={type === 'prev' ? 'Previous Page' : 'Next Page'}
+      ariaLabel={type === 'prev' ? 'Previous Page' : 'Next Page'}
+      color="info"
       disabled={disabled}
       onClick={onClick}
+      size="small"
+      variant="outlined"
     >
       <EzIcon icon={type === 'prev' ? LEFT_ARROW_ICON : RIGHT_ARROW_ICON} size="small" />
     </EzButton>

@@ -13,11 +13,7 @@ describe('EzBlankState', () => {
           <EzBlankState
             title="title"
             message="message"
-            action={
-              <EzButton use="primary" onClick={() => 'clicked!'}>
-                click!
-              </EzButton>
-            }
+            action={<EzButton onClick={() => 'clicked!'}>click!</EzButton>}
           />
         ),
       },

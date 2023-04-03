@@ -81,7 +81,10 @@ An alternative approach (not explored here) might instead use a [custom input fi
   const numeric = value => (!isEmpty(value) && isNaN(value) ? 'Must be a numeric value' : false);
 
   // helper function to combine validation rules
-  const rules = (...rules) => value => rules.reduce((res, rule) => res || rule(value), false);
+  const rules =
+    (...rules) =>
+    value =>
+      rules.reduce((res, rule) => res || rule(value), false);
 
   return (
     <EzAppLayout layout="centered">
@@ -195,55 +198,80 @@ An alternative approach (not explored here) might instead use a [custom input fi
                     style={{width: '100%'}}
                     {...useField({name: 'end-date', validate: required})}
                   />
-                  <EzField
-                    type="radio"
-                    bordered
-                    label="Eligible Days of the Week"
-                    options={[
-                      {label: 'Weekdays only', value: 'weekdays'},
-                      {label: 'All days of the week', value: 'all'},
-                    ]}
-                    {...useField({name: 'eligible-days', type: 'radio'})}
-                  />
+
+                  <EzFormControl>
+                    <EzFormLabel id="eligible-days">Eligible Days of the Week</EzFormLabel>
+                    <EzRadioGroup
+                      ariaLabel="eligible-days"
+                      defaultValue="weekdays"
+                      gap={1}
+                      name="eligible-days"
+                      row
+                      {...useField({name: 'eligible-days', type: 'radio'})}
+                    >
+                      <EzFormControlLabel
+                        control={<EzRadio />}
+                        label="Weekdays only"
+                        value="weekdays"
+                      />
+                      <EzFormControlLabel
+                        control={<EzRadio />}
+                        label="All days of the week"
+                        value="all"
+                      />
+                    </EzRadioGroup>
+                  </EzFormControl>
                 </EzLayout>
               </EzFormLayout>
             </EzCardSection>
+
             <EzCardSection title="Customer Details">
-              <EzField
-                type="radio"
-                bordered
-                label="Redemptions per Customer"
-                options={[
-                  {label: 'One per customer', value: 'once'},
-                  {label: 'Unlimited', value: 'unlimited'},
-                ]}
-                {...useField({name: 'redemptions', type: 'radio'})}
-              />
+              <EzFormControl>
+                <EzFormLabel id="redemptions">Redemptions per Customer</EzFormLabel>
+                <EzRadioGroup
+                  ariaLabel="redemptions"
+                  defaultValue="once"
+                  name="redemptions"
+                  row
+                  {...useField({name: 'redemptions', type: 'radio'})}
+                >
+                  <EzFormControlLabel control={<EzRadio />} label="One per customer" value="once" />
+                  <EzFormControlLabel control={<EzRadio />} label="Unlimited" value="unlimited" />
+                </EzRadioGroup>
+              </EzFormControl>
             </EzCardSection>
+
             <EzCardSection title="Store Details">
-              <EzField
-                type="radio"
-                bordered
-                label="Participating Stores"
-                options={[
-                  {label: 'All stores', value: 'all'},
-                  {label: 'Specific stores', value: 'specific'},
-                ]}
-                {...useField({name: 'participating-stores', type: 'radio'})}
-              />
+              <EzFormControl>
+                <EzFormLabel id="participating-stores">Participating Stores</EzFormLabel>
+                <EzRadioGroup
+                  ariaLabel="participating-stores"
+                  defaultValue="all"
+                  name="participating-stores"
+                  row
+                  {...useField({name: 'participating-stores', type: 'radio'})}
+                >
+                  <EzFormControlLabel control={<EzRadio />} label="All stores" value="all" />
+                  <EzFormControlLabel
+                    control={<EzRadio />}
+                    label="Specific stores"
+                    value="specific"
+                  />
+                </EzRadioGroup>
+              </EzFormControl>
             </EzCardSection>
+
             <EzCardSection>
-              <EzCheckbox
-                legacy
-                acknowledgement
+              <EzFormControlLabel
+                control={<EzCheckbox name="acknowledgement" />}
                 label="I agree to fund this promotion"
-                terms="I understand that the value of the promotion will be removed from my payment runs from ezCater wherever the promotion has been applied. I am aware that I am responsible for funding and marketing promotion, and that I can cancel this promotion at any time. I understand that this promotion cannot be redeemed by customers on ezCater Marketplace."
+                helperText="I understand that the value of the promotion will be removed from my payment runs from ezCater wherever the promotion has been applied. I am aware that I am responsible for funding and marketing promotion, and that I can cancel this promotion at any time. I understand that this promotion cannot be redeemed by customers on ezCater Marketplace."
               />
             </EzCardSection>
+
             <EzCardSection>
               <EzLayout layout="basic">
                 <EzButton
-                  use="primary"
                   onClick={() => {
                     setSubmitting(true);
                     alert(JSON.stringify(values, null, 2));
@@ -251,7 +279,7 @@ An alternative approach (not explored here) might instead use a [custom input fi
                 >
                   Finalize Promotion
                 </EzButton>
-                <EzButton use="secondary" onClick={() => window.location.reload()}>
+                <EzButton variant="outlined" onClick={() => window.location.reload()}>
                   Cancel
                 </EzButton>
               </EzLayout>

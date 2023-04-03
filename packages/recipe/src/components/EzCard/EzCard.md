@@ -67,7 +67,7 @@ The areas within a card can be populated either by providing the relevant props 
         <EzHeading size="3" subheading="Upscale Authentic Flavor">
           Amuleto Mexican Table
         </EzHeading>
-        <EzButton use="tertiary">
+        <EzButton variant="text">
           <span hidden>Menu</span>
           <svg viewBox="0 0 36 36" height="20" width="20" aria-hidden="true" focusable="false">
             <circle cy="6.1" cx="18.2" r="3.8"></circle>
@@ -87,8 +87,8 @@ The areas within a card can be populated either by providing the relevant props 
     </EzContent>
     <EzFooter>
       <EzLayout layout="right">
-        <EzButton use="secondary">Cancel</EzButton>
-        <EzButton use="primary">Confirm</EzButton>
+        <EzButton variant="outlined">Cancel</EzButton>
+        <EzButton>Confirm</EzButton>
       </EzLayout>
     </EzFooter>
   </EzCard>
@@ -146,6 +146,30 @@ Cards can have an optional subheading to provide further information for the car
     </p>
   </EzCard>
 </EzPage>
+```
+
+### Card with Heading Icon
+
+Cards can have an optional heading icon.
+
+Consider the appropriate the size, color, and accessibility of each heading icon.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const titleIcon = <EzIcon color="primary" size="large" icon={faCoffee} />;
+
+  return (
+    <EzPage>
+      <EzCard
+        title="Card Heading"
+        subtitle="Descriptive information about the card"
+        titleIcon={titleIcon}
+      />
+    </EzPage>
+  );
+};
 ```
 
 ### Card with Footer
@@ -225,7 +249,7 @@ Consider wrapping actions in an EzLayout to manage how they stack at smaller bre
     title="Card Heading"
     actions={
       <EzLayout layout="basic">
-        <EzButton use="secondary" destructive>
+        <EzButton variant="outlined" color="destructive">
           Delete
         </EzButton>
         <EzButton>View</EzButton>
@@ -460,6 +484,25 @@ Quiet cards are [small](#card-size) by default.
 </EzPage>
 ```
 
+### Cards with a Transparent Background
+
+Use `transparent` flag to inherit the parent element's background color.
+
+```jsx
+<EzPage>
+  <EzCard transparent>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices finibus purus, in
+      maximus diam molestie nec. Aenean maximus eget lacus sed lobortis.
+    </p>
+  </EzCard>
+</EzPage>
+```
+
 ### Clickable Cards
 
 Clickable cards present a preview of a piece of content and offer a large hit-surface to make it easy to link to the full content.
@@ -496,19 +539,19 @@ Care should be taken to avoid triggering a redundant click event, caused when a 
     }}
   >
     <EzHeader>
-      <EzHeading size="3" subheading="Upscale Authentic Flavor  |  10 mi  |  $$$">
-        <EzLink
-          href="/orders"
-          use="reset"
-          onClick={e => {
-            // avoid triggering navigation for this code example
-            e.preventDefault();
-            alert(`clicked: ${e.target.text}`);
-          }}
-        >
+      <EzLink
+        href="/orders"
+        use="reset"
+        onClick={e => {
+          // avoid triggering navigation for this code example
+          e.preventDefault();
+          alert(`clicked: ${e.target.text}`);
+        }}
+      >
+        <EzHeading size="3" subheading="Upscale Authentic Flavor  |  10 mi  |  $$$">
           Amuleto Mexican Table
-        </EzLink>
-      </EzHeading>
+        </EzHeading>
+      </EzLink>
     </EzHeader>
     <EzContent>
       <p>
@@ -557,30 +600,28 @@ Use `aria-hidden=true` on the CTA to remove the redundant functionality and avoi
     }}
   >
     <EzLayout layout="stack">
-      <EzHeading size="3">
-        <EzLink
-          href="/orders"
-          use="reset"
-          onClick={e => {
-            // avoid triggering navigation for this code example
-            e.preventDefault();
+      <EzLink
+        href="/orders"
+        use="reset"
+        onClick={e => {
+          // avoid triggering navigation for this code example
+          e.preventDefault();
 
-            // read out the aria description, as well as the link text
-            // to simulate what a screen reader can see
-            const el = e.target.ownerDocument.getElementById(
-              e.currentTarget.getAttribute('aria-describedby')
-            );
+          // read out the aria description, as well as the link text
+          // to simulate what a screen reader can see
+          const el = e.target.ownerDocument.getElementById(
+            e.currentTarget.getAttribute('aria-describedby')
+          );
 
-            alert(`clicked: ${e.target.text}, ${el.textContent}`);
-          }}
-          aria-describedby="order-now-btn"
-        >
-          Taco bar for Taco Tuesday
-        </EzLink>
-      </EzHeading>
+          alert(`clicked: ${e.target.text}, ${el.textContent}`);
+        }}
+        aria-describedby="order-now-btn"
+      >
+        <EzHeading size="3">Taco bar for Taco Tuesday</EzHeading>
+      </EzLink>
       <p>Or taco any day. Spice up your next meeting.</p>
       <p>
-        <EzButton use="tertiary" as="span" aria-hidden id="order-now-btn">
+        <EzButton variant="text" ariaHidden id="order-now-btn">
           Order Now
           <svg
             aria-hidden="true"

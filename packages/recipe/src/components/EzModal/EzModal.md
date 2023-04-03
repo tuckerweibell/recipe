@@ -59,10 +59,10 @@ A modal can be shown or hidden using the `isOpen` prop.
         <EzContent>Are you ready to submit this order?</EzContent>
         <EzFooter>
           <EzLayout layout="basic">
-            <EzButton use="primary" onClick={close}>
+            <EzButton onClick={close}>
               Confirm
             </EzButton>
-            <EzButton onClick={close}>Cancel</EzButton>
+            <EzButton variant="outlined" onClick={close}>Cancel</EzButton>
           </EzLayout>
         </EzFooter>
       </EzModal>
@@ -299,10 +299,10 @@ Images can be used to enhance the content of the dialog and are ideal for market
         </EzContent>
         <EzFooter>
           <EzLayout layout="basic">
-            <EzButton use="primary" onClick={close}>
+            <EzButton onClick={close}>
               Order now
             </EzButton>
-            <EzButton onClick={close}>Close</EzButton>
+            <EzButton variant="outlined" onClick={close}>Close</EzButton>
           </EzLayout>
         </EzFooter>
       </EzModal>

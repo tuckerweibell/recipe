@@ -19,7 +19,9 @@ describe('EzWell', () => {
   it('warns user if label is provided without a role', () => {
     const spyWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
     render(<EzWell aria-label="well">Well</EzWell>);
-    expect(spyWarn).toHaveBeenCalledWith('A labelled Well must have a role.');
+    expect(spyWarn).toHaveBeenCalledWith(
+      'Warning: *Recipe Warning*. EzWell - A labelled Well must have a role.'
+    );
   });
 
   it('should meet accessibility guidelines', async () => {

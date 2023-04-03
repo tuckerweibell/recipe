@@ -37,7 +37,7 @@ import {EzButton} from '@ezcater/recipe';
 
 export const MyComponent = () => (
   <div>
-    <EzButton use="primary" onClick={() => alert('You clicked me!')}>
+    <EzButton onClick={() => alert('You clicked me!')}>
       Click Me!
     </EzButton>
   </div>
@@ -73,7 +73,7 @@ To begin developing locally, use the following commands:
   - This will also allow you to view the recipe-doc-site in the browser at `http://localhost:8000/`
     - Changes made to the component markdown as well as the components used in the markdown should be visible here.
 
-Recipe uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lerna.js.org/) internally to manage packages. The above commands can be executed individually using the `yarn workspaces` command, passing in the name of the package and the command to execute.
+Recipe uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) internally to manage packages. The above commands can be executed individually using the `yarn workspaces` command, passing in the name of the package and the command to execute.
 
 To run the `develop` script in only recipe's source, you can use:
 

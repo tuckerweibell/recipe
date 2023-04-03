@@ -16,7 +16,7 @@
       subnav={{tabs: [{label: '■■■'}, {label: '■■■■■'}, {label: '■■■■'}], onChange: () => {}}}
       actions={
         <EzLayout layout="right" className="responsive">
-          <EzButton use="secondary">■■■■■</EzButton>
+          <EzButton>■■■■■</EzButton>
         </EzLayout>
       }
     />

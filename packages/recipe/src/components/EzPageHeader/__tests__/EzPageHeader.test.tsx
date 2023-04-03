@@ -1,6 +1,5 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
-import {axe} from '../../../../test-utils';
+import {axe, render, fireEvent} from '../../../../test-utils';
 import EzPageHeader from '../EzPageHeader';
 import EzButton from '../../EzButton';
 import EzChip from '../../EzChip';
@@ -92,7 +91,7 @@ describe('EzPageHeader', () => {
         }}
         status={<EzChip label="Verified" variant="success" size="inherit" />}
         subnav={{tabs, selected: tabs[0], onChange: () => {}}}
-        actions={<EzButton use="primary">Accept Order</EzButton>}
+        actions={<EzButton>Accept Order</EzButton>}
       />
     );
     const actual = await axe(container.outerHTML);

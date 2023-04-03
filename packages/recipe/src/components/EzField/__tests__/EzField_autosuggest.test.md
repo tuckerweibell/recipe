@@ -29,7 +29,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 320}}>
       <Open containerRef={containerRef}>
         <EzField
           type="autosuggest"
@@ -83,7 +83,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 100}}>
       <Open containerRef={containerRef}>
         <EzField
           type="autosuggest"
@@ -107,7 +107,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 400}}>
       <Open containerRef={containerRef}>
         <EzField
           type="autosuggest"
@@ -148,24 +148,26 @@
 () => {
   const containerRef = React.createRef();
   return (
-    <EzLayout>
-      <EzField
-        type="autosuggest"
-        label="Autosuggest"
-        options={[{label: 'Short value', value: 1}]}
-        value={1}
-      />
-      <div ref={containerRef}>
-        <Open containerRef={containerRef}>
-          <EzField
-            type="autosuggest"
-            label="Autosuggest"
-            options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
-            value={1}
-          />
-        </Open>
-      </div>
-    </EzLayout>
+    <div style={{minHeight: 140}}>
+      <EzLayout>
+        <EzField
+          type="autosuggest"
+          label="Autosuggest"
+          options={[{label: 'Short value', value: 1}]}
+          value={1}
+        />
+        <div ref={containerRef}>
+          <Open containerRef={containerRef}>
+            <EzField
+              type="autosuggest"
+              label="Autosuggest"
+              options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
+              value={1}
+            />
+          </Open>
+        </div>
+      </EzLayout>
+    </div>
   );
 };
 ```
@@ -198,7 +200,7 @@
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 140}}>
       <Open containerRef={containerRef}>
         <TypeInField>
           <EzField

@@ -4,6 +4,7 @@ import theme from '../theme.config';
 const heading = theme.css({
   position: 'relative',
   textTransform: 'uppercase',
+  fontFamily: '$defaultFont',
   fontSize: 11,
   letterSpacing: 1,
   color: '$deemphasisText',

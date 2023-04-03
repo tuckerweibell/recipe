@@ -177,7 +177,7 @@ const linkStyles = theme.css({
   backgroundColor: 'transparent',
   fontWeight: 'bold',
   fontSize: '1rem',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   padding: 0,
   variants: {visited: {true: {color: '$blue600'}}},
 });

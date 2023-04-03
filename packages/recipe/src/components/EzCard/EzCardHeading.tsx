@@ -9,12 +9,14 @@ type PropsWithoutTitle = {
   subtitle?: never;
   actions?: never;
   title?: never;
+  titleIcon?: never;
 };
 
 type PropsWithTitle = {
   subtitle?: string;
   actions?: React.ReactNode;
   title: string;
+  titleIcon?: React.ReactNode | React.ComponentType;
 };
 
 type Props = PropsWithTitle | PropsWithoutTitle;
@@ -22,11 +24,14 @@ type DOMProps = React.HTMLAttributes<HTMLElement>;
 
 export type HeadingProps = DOMProps & Props;
 
-const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions}) => {
+const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions, titleIcon}) => {
   const heading = title && (
-    <EzHeading size="3" subheading={subtitle}>
-      {title}
-    </EzHeading>
+    <EzLayout layout="basic" alignY="top">
+      {titleIcon}
+      <EzHeading size="3" subheading={subtitle}>
+        {title}
+      </EzHeading>
+    </EzLayout>
   );
 
   const layout = actions && (

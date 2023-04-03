@@ -32,6 +32,41 @@ export const theme = stitches.createTheme({
     'button-border-secondary-focus': 'rgba(63, 97, 255, 0.3)',
     'button-text-secondary-focus': '$blue600',
   },
+  fonts: {
+    defaultFont: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+    headerFont: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+  },
+  fontSizes: {
+    h1: '$800',
+    h2: '$600',
+    h3: '$300',
+    h4: '$200',
+    h5: '$100',
+    h6: '$75',
+  },
+  fontWeights: {
+    bold: 700,
+    regular: 400,
+
+    // EzHeading
+    h1: '$regular',
+    h2: '$bold',
+    h3: '$bold',
+    h4: '$regular',
+    h5: '$bold',
+    h6: '$regular',
+  },
+  lineHeights: {
+    snug: 1.35,
+
+    // EzHeading
+    h1: '$snug',
+    h2: '$snug',
+    h3: '$snug',
+    h4: '$snug',
+    h5: '$snug',
+    h6: '$snug',
+  },
   radii: {
     'flash-message-rounded': 0,
   },

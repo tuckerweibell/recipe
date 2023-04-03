@@ -11,8 +11,6 @@
     display: 'flex',
   }}
 >
-  <EzButton use="primary">
-    <span style={{textShadow: 'none'}}>Button</span>
-  </EzButton>
+  <EzButton>Button</EzButton>
 </div>
 ```

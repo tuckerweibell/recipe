@@ -1,9 +1,6 @@
 ```jsx
 <div style={{padding: 20, height: 135, width: 150, textAlign: 'right', '--zoom': 3}}>
-  <EzButton
-    style={{marginBottom: 20, backgroundColor: '#00000010'}}
-    onClick={() => setVisible(!visible)}
-  >
+  <EzButton onClick={() => setVisible(!visible)}>
     ■■■■■{' '}
     <svg
       stroke="gray"

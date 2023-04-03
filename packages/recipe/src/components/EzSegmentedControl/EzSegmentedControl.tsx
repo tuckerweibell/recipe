@@ -31,6 +31,7 @@ const optionLabel = theme.css({
   color: '$segmented-control-color',
   display: 'block',
   flex: 1,
+  fontFamily: '$defaultFont',
   /* 
     should be equivalent in size to inputs and buttons, but since inputs can't be a line-height lower than 1.25em
     we have to use a line-height of 1.25rem and deduct the additional 0.25rem from the vertical padding

@@ -15,7 +15,7 @@ const CodePlaygroundHostNode = ({openState: {setIsOpen}, children}) => {
 
   return (
     <div ref={ref} css={{minHeight: 300}}>
-      <EzButton use="primary" onClick={() => setIsOpen(true)}>
+      <EzButton onClick={() => setIsOpen(true)}>
         Open
       </EzButton>
       {isMounted && children}

@@ -201,7 +201,7 @@ The page may be paired with a page header to provide a consistent page width wit
         }}
         className="responsive"
       >
-        <EzButton use="secondary">Change store or group</EzButton>
+        <EzButton>Change store or group</EzButton>
       </EzLayout>
     }
   />

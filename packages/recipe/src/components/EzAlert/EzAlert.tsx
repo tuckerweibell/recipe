@@ -20,6 +20,7 @@ type Props = {
 };
 
 const container = theme.css({
+  fontFamily: '$defaultFont',
   borderRadius: '$alert-rounded',
   borderWidth: 0,
   display: 'inline-flex',

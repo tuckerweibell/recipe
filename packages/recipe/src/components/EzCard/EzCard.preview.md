@@ -2,7 +2,7 @@
 <div style={{'--zoom': 1.5}}>
   <EzCard
     title="■■■■■■■■■■■■"
-    actions={<EzButton style={{marginBottom: 20}}>■■■■■</EzButton>}
+    actions={<EzButton>■■■■■</EzButton>}
     expandable={{
       expandLabel: '■■■■ ■■■■■■■■■',
       collapseLabel: '',

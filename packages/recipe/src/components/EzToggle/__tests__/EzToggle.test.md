@@ -31,7 +31,7 @@
 ### Toggle control renders in a consistent position regardless of status
 
 ```jsx
-<div className="test">
+<div className="test" style={{minHeight: 20}}>
   <Global
     styles={css(`
     .test > * {

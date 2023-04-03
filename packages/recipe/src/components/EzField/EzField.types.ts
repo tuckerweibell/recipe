@@ -1,4 +1,4 @@
-import React, {Key, ReactNode} from 'react';
+import React, {Key} from 'react';
 
 type ChoiceValue = string | number | boolean;
 
@@ -15,38 +15,6 @@ type ListboxProps = {
   /** Handler that is called when the selection changes. */
   onSelectionChange?: (key: Key) => any;
 };
-
-type BaseChoiceProps = {
-  bordered?: boolean;
-};
-
-type ChoiceWithOptionsProps = {
-  options: Choice[];
-  children?: never;
-};
-
-type ChoiceWithChildrenProps = {
-  options?: never;
-  children: ReactNode;
-};
-
-type SingleChoiceBaseProps = {
-  type: 'radio';
-  value?: ChoiceValue;
-};
-
-type MultipleChoiceBaseProps = {
-  type: 'checkbox';
-  value?: ChoiceValue[];
-};
-
-type SingleChoiceProps = BaseChoiceProps &
-  SingleChoiceBaseProps &
-  (ChoiceWithOptionsProps | ChoiceWithChildrenProps);
-
-type MultipleChoiceProps = BaseChoiceProps &
-  MultipleChoiceBaseProps &
-  (ChoiceWithOptionsProps | ChoiceWithChildrenProps);
 
 type EmailProps = {
   type: 'email';
@@ -98,8 +66,6 @@ type CustomFieldProps = {
 };
 
 type FieldTypeProps =
-  | SingleChoiceProps
-  | MultipleChoiceProps
   | ListboxProps
   | EmailProps
   | HtmlInputProps

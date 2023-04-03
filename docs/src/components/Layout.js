@@ -7,23 +7,23 @@ import Link from 'gatsby-link';
 import naturalSort from 'natural-sort';
 import {
   EzAppLayout,
-  EzPage,
-  EzNavigation,
-  EzPageHeader,
   EzCard,
   EzCardSection,
-  EzProvider,
-  EzLayout,
-  EzSearchInput,
-  EzHeader,
-  EzPageSection,
-  EzHeading,
   EzContent,
+  EzHeader,
+  EzHeading,
+  EzLayout,
+  EzNavigation,
+  EzPage,
+  EzPageHeader,
+  EzPageSection,
+  EzProvider,
+  EzSearchInput,
+  EzSegmentedControl,
   EzThemeProvider,
   themes,
-  EzSegmentedControl,
+  stitchesMarketplaceTheme,
 } from '@ezcater/recipe';
-import {theme as marketplaceTheme} from '@recipe-ui/theme-marketplace';
 import './layout.css';
 import logo from '../recipe-logo.svg';
 import ComponentGrid from './ComponentGrid';
@@ -115,7 +115,7 @@ const Layout = ({
       const hasSearchTerms = searchTerms.length;
       const showTableOfContents = hasHeadings && !isComponentGrid && !hasSearchTerms;
 
-      const [activeTheme, setActiveTheme] = useState('fulfillment');
+      const [activeTheme, setActiveTheme] = useState('marketplace');
       const handleThemeChange = value => {
         localStorage.setItem('recipeTheme', value);
         setActiveTheme(value);
@@ -129,7 +129,7 @@ const Layout = ({
       }, []);
 
       return (
-        <EzProvider theme={isMarketPlace ? marketplaceTheme : undefined}>
+        <EzProvider theme={isMarketPlace ? stitchesMarketplaceTheme : undefined}>
           <EzThemeProvider
             theme={isMarketPlace ? themes.ezMarketplaceTheme : themes.ezFulfillmentTheme}
           >
@@ -144,7 +144,7 @@ const Layout = ({
               <link rel="preconnect" href="https://fonts.googleapis.com" />
               <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
               <link
-                href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap"
                 rel="stylesheet"
               />
             </Helmet>

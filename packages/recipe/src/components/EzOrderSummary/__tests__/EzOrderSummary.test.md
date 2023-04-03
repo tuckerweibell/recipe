@@ -8,7 +8,7 @@ An order summary should be used to present an at-a-glance breakdown of billable 
     <EzOrderSummary
       title="Order XYZ-123"
       subtitle="Optional subtitle"
-      actions={<EzButton use="secondary">Available card actions</EzButton>}
+      actions={<EzButton>Available card actions</EzButton>}
       items={[
         {
           name: 'Make-Your-Own Bowl',

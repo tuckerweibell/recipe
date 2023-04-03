@@ -5,7 +5,7 @@ category: Inputs
 path: '/components/ez-button'
 ---
 
-Buttons represent actions on a page that can be triggered with one click. Buttons can be used in forms, or in other locations in a page to communicate that an action is available.
+Buttons can be used in forms, modals, cards, toolbars, or in other locations on a page to communicate that a one-click action is available.
 
 ---
 
@@ -13,127 +13,480 @@ Buttons represent actions on a page that can be triggered with one click. Button
 
 Buttons should:
 
-- Be clearly labeled, or provide an accessible name (icon buttons)
-- Be positioned in consistent locations
-- Use spacing to separate them from other interactive content
-- Not wrap text. For maximum legibility, a label should remain on a single line
+- Be clearly labeled and explicitly state what they do.
+- Be labeled with actionable verbs, following the Verb + Noun format except in the case of common actions like Save, Edit, Close, or Cancel.
+- Be positioned in consistent locations and in a sensible order.
+- Use spacing to separate them from other interactive content.
+- Not wrap text. For maximum legibility, a label should remain on a single line.
 
 Buttons should not:
 
-- Be used be used in place of a more semantic element. For example, favor anchors for navigation.
-
----
-
-## Content guidelines
-
-Buttons should clearly communicate the action that will occur when the user interacts with them. Try leading with actionable verbs when labeling Buttons. Follow the Verb+Noun format on buttons except in the case of common actions like Save, Edit, Close, or Cancel.
+- Be used in place of a more semantic element.
+  - For navigation or actions that do not affect the state of the app, use [`EzLink`](/components/ez-link). A button does something. A link goes somewhere. Ex. breadcrumbs, redirects, "forgot password", and "learn more" all go somewhere rather than do something, so should be links.
+  - For status chips, use [`EzChip`](/components/ez-chip). Chips are reactive and contextual, whereas buttons are static and predetermined. Ex. a delivery status of "confirmed" is contextual and not a static action, so should be a status chip.
+- Provide too many options at once with too many buttons.
 
 ---
 
 ## Examples
 
-### Primary Button
+### Basic Buttons
 
-Primary buttons are used to highlight the most important actions a user can take. There should not be more than one primary button in a section of a page.
+EzButton supports `filled` (default), `outlined`, and `text` variants.
+
+`filled` buttons are high-emphasis and contain actions that are primary. There should not be more than one primary button in a section of a page.
+
+`outlined` buttons are medium-emphasis and contain actions that are secondary, which are important but aren't the primary action. A page or section should not have more than two secondary buttons.
+
+`text` buttons are typically used for less-pronounced actions than primary or secondary actions. They may also be used when space is a constraint or when content is repeated many times on a page.
 
 ```jsx
-<EzButton use="primary">Create Order</EzButton>
+<EzLayout>
+  <EzButton>Filled</EzButton>
+  <EzButton variant="outlined">Outlined</EzButton>
+  <EzButton variant="text">Text</EzButton>
+</EzLayout>
 ```
 
-### Secondary Button
+### Button Actions
 
-Secondary buttons are used for action on a page that are important, but aren't the primary action.
+Buttons accept an `onClick` prop for performing actions on click and `onKeyDown` for performing actions on a key down.
 
-```jsx
-<EzButton use="secondary">Edit</EzButton>
-```
-
-### Tertiary Button
-
-Tertiary buttons are used when a section or page has too many actions of varying importance. A page should always have one primary action, and may have one or two secondary actions. Any actions that aren’t as important as these primary and secondary actions should use a tertiary button style. For example, on an order details page, if we’re asking the user to accept the order (primary), and reject or request ezDispatch (secondary actions), then any other actions aren’t as important and should use a tertiary button.
-
-Tertiary buttons should also be used when space is a constraint or when content is repeated many times on a page. For example, an action in a table row should use a tertiary button since space is limited and having the outline around the button text in multiple table rows would distract the user from the action we want them to take.
+For destructive actions, set the button's `color` to `destructive`.
 
 ```jsx
-<EzButton use="tertiary">Save as PDF</EzButton>
-```
+<EzLayout>
+  <EzButton onClick={() => alert('Saved.')}>Save</EzButton>
 
-### Tertiary Button with icon
-
-Tertiary buttons may optionally include an image icon, typically an SVG element, to enhance the UX of the application where logos may be more easily recognizable than plain text.
-
-Tertiary buttons with icons should never be mixed with tertiary buttons without icons within the same parent component.
-
-```jsx
-<EzButton
-  use="tertiary"
-  icon={
-    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M2.06295 4.07865C2.06295 3.87385 2.21417 3.70787 2.40075 3.70787H3.46066C3.64712 3.70787 3.79846 3.87385 3.79846 4.07865C3.79846 4.28345 3.64712 4.44944 3.46066 4.44944H2.40075C2.21417 4.44944 2.06295 4.28345 2.06295 4.07865ZM9.45842 7.53933H8.12197L7.98009 6.53178C7.95093 6.32043 7.78529 6.17978 7.5905 6.17978H2.76884C2.57404 6.17978 2.40841 6.32043 2.37924 6.53178L2.23737 7.53933H0.900802V2.8427H9.45842V7.53933ZM2.68 10.1348L3.10743 7.04494H7.25191L7.67934 10.1348H2.68ZM3.37801 1.85393H6.98122V0.741573H3.37801V1.85393ZM9.90882 1.85393H7.65682V0.370787C7.65682 0.165989 7.55818 0 7.3716 0H2.98774C2.80127 0 2.70241 0.165989 2.70241 0.370787V1.85393H0.450401C0.201667 1.85393 0 2.06627 0 2.33929V8.00961C0 8.28263 0.201667 8.52809 0.450401 8.52809H2.10033L1.83189 10.4526C1.81455 10.5773 1.84766 10.7288 1.92254 10.8245C1.99742 10.9202 2.10664 11 2.22149 11H8.13796C8.25281 11 8.36192 10.9141 8.4368 10.8184C8.51168 10.7228 8.54478 10.5928 8.52755 10.468L8.259 8.52809H9.90882C10.1576 8.52809 10.3592 8.28263 10.3592 8.00961V2.33929C10.3592 2.06627 10.1576 1.85393 9.90882 1.85393Z"
-        fill="#8B99A6"
-      />
-    </svg>
-  }
->
-  Print Order
-</EzButton>
-```
-
-### Destructive Button
-
-When an action will delete data, or discard the current page state, a destructive button should be used. Destructive buttons should trigger a confirmation dialog before the action is completed. Destructive buttons should typically be secondary buttons, but are promoted to primary buttons on confirmation dialogs.
-
-```jsx
-<EzLayout layout="basic">
-  <EzButton use="secondary" destructive>
-    Delete Draft
+  <EzButton onClick={() => alert('Deleted.')} color="destructive">
+    Delete
   </EzButton>
-  <EzButton use="primary" destructive>
-    Confirm Deletion
-  </EzButton>
-  <EzButton use="tertiary" destructive>
-    Delete Item
+
+  <EzButton onKeyDown={event => event.key === 'Enter' && alert('Enter pressed.')}>
+    Press Enter
   </EzButton>
 </EzLayout>
 ```
 
-### Disabled State
+### Button Colors
 
-Used to indicate to the user that an action is not currently available. The surrounding interface should indicate the necessary prerequisite action to enable the action. Disabled buttons do not respond to user input (and therefore will not trigger onClick behavior).
+EzButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.neutral160`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 ```jsx
-<div>
-  <EzButton use="primary" disabled>
-    Save Changes
-  </EzButton>
-</div>
+<EzLayout layout="stack">
+  <EzLayout>
+    <EzButton color="info">Info</EzButton>
+    <EzButton color="error">Error</EzButton>
+    <EzButton color="common.neutral160">common.neutral160</EzButton>
+    <EzButton color="common.purple100">common.purple100</EzButton>
+  </EzLayout>
+
+  <EzLayout>
+    <EzButton color="info" variant="outlined">
+      Info
+    </EzButton>
+    <EzButton color="error" variant="outlined">
+      Error
+    </EzButton>
+    <EzButton color="common.neutral160" variant="outlined">
+      common.neutral160
+    </EzButton>
+    <EzButton color="common.purple100" variant="outlined">
+      common.purple100
+    </EzButton>
+  </EzLayout>
+
+  <EzLayout>
+    <EzButton color="info" variant="text">
+      Info
+    </EzButton>
+    <EzButton color="error" variant="text">
+      Error
+    </EzButton>
+    <EzButton color="common.neutral160" variant="text">
+      common.neutral160
+    </EzButton>
+    <EzButton color="common.purple100" variant="text">
+      common.purple100
+    </EzButton>
+  </EzLayout>
+</EzLayout>
 ```
 
-### Disabled State with Tooltip
+### Button and Font Sizes
 
-Used to provide a helpful message to the user as to why the button/action is currently unavailable on mouse over. This prop will need to be paired with the `disabled` prop to function properly.
+If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`.
+
+If you want to specify a font size, use the `fontSize` property, which uses theme supported font sizes. We currently support `small`, `medium` (default), `large`, and `inherit`.
 
 ```jsx
-<div>
-  <EzButton use="primary" disabled disabledMessage="Disabled message">
-    Submit
-  </EzButton>
-</div>
+<EzLayout layout="stack">
+  <EzLayout>
+    <EzButton size="small">Small</EzButton>
+    <EzButton size="medium">Medium</EzButton>
+    <EzButton size="large">Large</EzButton>
+  </EzLayout>
+
+  <EzLayout>
+    <EzButton size="small" variant="outlined">
+      Small
+    </EzButton>
+    <EzButton size="medium" variant="outlined">
+      Medium
+    </EzButton>
+    <EzButton size="large" variant="outlined">
+      Large
+    </EzButton>
+  </EzLayout>
+
+  <EzLayout>
+    <EzButton size="small" variant="text">
+      Small
+    </EzButton>
+    <EzButton size="medium" variant="text">
+      Medium
+    </EzButton>
+    <EzButton size="large" variant="text">
+      Large
+    </EzButton>
+  </EzLayout>
+
+  <EzLayout>
+    <EzButton fontSize="small">Small Font</EzButton>
+    <EzButton fontSize="medium">Medium Font</EzButton>
+    <EzButton fontSize="large">Large Font</EzButton>
+    <div style={{fontSize: '20px'}}>
+      <EzButton fontSize="inherit">Inherit Font</EzButton>
+    </div>
+  </EzLayout>
+</EzLayout>
 ```
 
-### Loading State
+### Button Icons
 
-Used to indicate to the user that an action is currently being processed. The button remains disabled and no further actions will be triggered until loading has completed.
+You can add an icon to the beginning or the end of a button by passing an `EzIcon` to the optional `startIcon` or `endIcon` property.
+
+Icon sizes will default to the font size of the text. If you need a different icon size, use `size="inherit"` on the `EzIcon` and wrap it in an element with the desired size.
 
 ```jsx
-<div>
-  <EzButton use="primary" loading>
-    Save Changes
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  return (
+    <EzLayout layout="stack">
+      <EzLayout>
+        <EzButton startIcon={<EzIcon icon={faCoffee} />}>Start Icon</EzButton>
+        <EzButton endIcon={<EzIcon icon={faCoffee} />}>End Icon</EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        <EzButton startIcon={<EzIcon icon={faCoffee} />} variant="outlined">
+          Start Icon
+        </EzButton>
+        <EzButton endIcon={<EzIcon icon={faCoffee} />} variant="outlined">
+          End Icon
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        <EzButton startIcon={<EzIcon icon={faCoffee} />} variant="text">
+          Start Icon
+        </EzButton>
+        <EzButton endIcon={<EzIcon icon={faCoffee} />} variant="text">
+          End Icon
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        <EzButton
+          startIcon={
+            <div style={{fontSize: '14px', display: 'flex'}}>
+              <EzIcon icon={faCoffee} size="inherit" />
+            </div>
+          }
+        >
+          Inherited Icon Size
+        </EzButton>
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
+### Disabled and Loading Buttons
+
+Disabled buttons can be used to prevent users from doing an invalid or unavailable action.
+
+In general, you should consider removing options that are not available or not applicable, but in some cases showing a disabled button may be necessary. In these cases, be sure to provide context for why the action is unavailable either with a message, or tooltip.
+
+A button can be made disabled by adding the optional `disabled` prop. Disabled buttons do not respond to user input and therefore will not trigger `onClick` behavior.
+
+A button can also display a loading spinner by adding the optional `loading` prop. A loading button will always be disabled.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  return (
+    <EzLayout layout="stack">
+      <EzLayout>
+        <EzButton disabled>Filled</EzButton>
+        <EzButton disabled startIcon={<EzIcon icon={faCoffee} />}>
+          With Icon
+        </EzButton>
+        <EzButton disabled variant="outlined">
+          Outlined
+        </EzButton>
+        <EzButton disabled variant="text">
+          Text
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        <EzButton loading>Filled</EzButton>
+        <EzButton loading startIcon={<EzIcon icon={faCoffee} />}>
+          With Icon
+        </EzButton>
+        <EzButton loading variant="outlined">
+          Outlined
+        </EzButton>
+        <EzButton loading variant="text">
+          Text
+        </EzButton>
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
+### Complex Buttons
+
+EzButton can be used with other Recipe components to create more complex buttons.
+
+```jsx
+<EzLayout>
+  <EzButton color="info">
+    <EzLayout layout="split" style={{width: '250px'}}>
+      View Cart
+      <EzLayout layout="stack">
+        <div style={{textAlign: 'right'}}>$13.45</div>
+
+        <div style={{fontSize: '0.8em', fontWeight: 'normal', marginTop: '-20px'}}>
+          $13.45/person
+        </div>
+      </EzLayout>
+    </EzLayout>
   </EzButton>
-</div>
+
+  <EzTooltip message="This button is disabled">
+    <span>
+      <EzButton disabled>Disabled With Tooltip</EzButton>
+    </span>
+  </EzTooltip>
+</EzLayout>
+```
+
+### Legacy Buttons (Deprecated)
+
+To aid users in migrating to Recipe's current version, a temporarily supported legacy implementation for EzButton is available. To use Recipe's deprecated button style, add the `legacy` prop.
+
+<EzAlert use="warning" headline="Legacy buttons are deprecated as of v17 and will be removed in v18."></EzAlert>
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  return (
+    <EzLayout layout="stack">
+      <EzLayout>
+        Primary:
+        <EzButton legacy use="primary">
+          Create Order
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Secondary:
+        <EzButton legacy use="secondary">
+          Edit
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Tertiary:
+        <EzButton legacy use="tertiary">
+          Save as PDF
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Tertiary with icon:
+        <EzButton legacy use="tertiary" icon={<EzIcon icon={faCoffee} />}>
+          Print Order
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Destructive:
+        <EzButton legacy use="primary" destructive>
+          Confirm Deletion
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Disabled:
+        <EzButton legacy use="primary" disabled>
+          Save Changes
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Disabled with tooltip:
+        <EzButton legacy use="primary" disabled disabledMessage="Disabled message">
+          Submit
+        </EzButton>
+      </EzLayout>
+
+      <EzLayout>
+        Loading:
+        <EzButton legacy use="primary" loading>
+          Save Changes
+        </EzButton>
+      </EzLayout>
+    </EzLayout>
+  );
+};
+```
+
+---
+
+## Custom Styles
+
+Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names (`EzButton`, `EzButton-[variant]`, `EzButton-startIcon`, `EzButton-endIcon`, and `EzButton-disabled`).
+
+---
+
+## Accessibility
+
+See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/button/) for buttons.
+
+All buttons have an accessible label. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with `ariaLabel`.
+
+If you need to hide a button from all accessibility APIs, for example to avoid confusion when using a call-to-action button inside an interactive card, add the `ariaHidden` prop to the button.
+
+---
+
+## Props
+
+```jsx-hide-controls
+  <PropsTable propsData={[
+    {
+      name: 'children*',
+      types: ['node'],
+      description: 'The content that the button wraps.',
+    },
+    {
+      name: 'ariaHidden',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'If true, the component is hidden from accessibility APIs.',
+    },
+    {
+      name: 'ariaLabel',
+      types: ['string'],
+      description: 'The aria-label of the element.',
+    },
+    {
+      name: 'color',
+      types: ['EzThemeColors', 'destructive'],
+      defaultValue: 'primary',
+      description: 'The color of the component. Supports theme palette properties and colors.'
+    },
+    {
+      name: 'destructive',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: '**Deprecated** If true, the color of the button is red.'
+    },
+    {
+      name: 'disabled',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'If true, the component is disabled.'
+    },
+    {
+      name: 'disabledMessage',
+      types: ['string'],
+      description: '**Deprecated** The tooltip message for a disabled button.'
+    },
+    {
+      name: 'endIcon',
+      types: ['element'],
+      description: 'End icon element.'
+    },
+    {
+      name: 'fontSize',
+      types: ['small', 'medium', 'large', 'inherit'],
+      defaultValue: 'medium',
+      description: 'The font size of the component.',
+    },
+    {
+      name: 'icon',
+      types: ['element'],
+      description: '**Deprecated** Icon element.'
+    },
+    {
+      name: 'legacy',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: '**Deprecated** If true, the component is a legacy button.'
+    },
+    {
+      name: 'loading',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'If true, the button displays a spinning loading icon in place of its label.'
+    },
+    {
+      name: 'onClick',
+      types: ['func'],
+      description: 'Callback fired when the button is clicked.'
+    },
+    {
+      name: 'onKeyDown',
+      types: ['func'],
+      description: 'Callback fired when the button is focused and an event key is pressed.'
+    },
+    {
+      name: 'size',
+      types: ['small', 'medium', 'large'],
+      defaultValue: 'medium',
+      description: 'The size of the component.',
+    },
+    {name: 'startIcon', types: ['element'], description: 'Start icon element.'},
+    {
+      name: 'type',
+      types: ['button', 'submit', 'reset'],
+      defaultValue: 'button',
+      description: 'The type of the button.'},
+    {
+      name: 'use',
+      types: ['primary', 'secondary', 'tertiary'],
+      defaultValue: 'secondary',
+      description: '**Deprecated** The use of the component.',
+    },
+    {
+      name: 'variant',
+      types: ['filled', 'outlined', 'text'],
+      defaultValue: 'filled',
+      description: 'The variant of the component.',
+    },
+  ]}>
+  </PropsTable>
 ```
 
 ## Related components
 
-- [Chip](/components/ez-chip)
+- [EzChip](/components/ez-chip)
+- [EzIcon](/components/ez-icon)
+- [EzLink](/components/ez-link)

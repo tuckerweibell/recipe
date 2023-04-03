@@ -59,6 +59,7 @@
           isRowSelected: () => true,
           onSelectAllClick: () => {},
           onSelectNoneClick: () => {},
+          totalRowsSelected: 5,
         }}
         columns={[
           {heading: 'First Name', key: 'first'},
@@ -105,6 +106,7 @@
           isRowSelected: () => true,
           onSelectAllClick: () => {},
           onSelectNoneClick: () => {},
+          totalRowsSelected: items.length,
         }}
         columns={[
           {heading: 'First Name', key: 'first'},
@@ -154,6 +156,7 @@
           onRowSelectClick: () => {},
           onBulkSelectClick: () => {},
           isRowSelected: () => true,
+          totalRowsSelected: items.length,
         }}
         columns={[
           {heading: 'First Name', key: 'first'},
@@ -355,6 +358,7 @@
               onRowSelectClick: () => {},
               onBulkSelectClick: () => {},
               isRowSelected: () => true,
+              totalRowsSelected: items.length,
             }}
             columns={[
               {heading: 'Store name', key: 'store'},

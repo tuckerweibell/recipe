@@ -54,10 +54,10 @@ If the ReactNode provided to the link component is plain text, it will be styled
 The `secondary` link variant's subdued appearance is suitable when the primary variant is too overwhelming, such as in blocks of text with several references linked throughout.
 
 ```jsx
-<p>
+<EzTextStyle>
   These earnings roll into your total <EzLink use="secondary">ezRewards</EzLink>. Use as payment on
   any order at checkout.
-</p>
+</EzTextStyle>
 ```
 
 ### Reset links
@@ -67,7 +67,9 @@ The `reset` link variant removes the browser default text decoration and color f
 ```jsx
 <EzLink use="reset">
   <a href="/" target="_blank">
-    <Placeholder>This placeholder is a link</Placeholder>
+    <Placeholder>
+      <EzTextStyle>This placeholder is a link</EzTextStyle>
+    </Placeholder>
   </a>
 </EzLink>
 ```

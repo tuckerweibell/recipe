@@ -1,53 +1,44 @@
-import React, {forwardRef, Ref, ReactNode, HTMLAttributes} from 'react';
-import {Box} from '@mui/material';
+import React, {forwardRef, useEffect} from 'react';
+import warning from 'tiny-warning';
+import {EzWellProps, Ref} from './EzWell.types';
+import theme from '../theme.config';
 import {filterDOMProps} from '../EzField/filterDOMProps';
 
-type ariaKeys = 'aria-label' | 'aria-labelledby';
-type domProps = 'className' | 'id';
-
-interface Props extends Pick<HTMLAttributes<HTMLDivElement>, ariaKeys | domProps> {
-  /**
-   * The contents of the Well.
-   */
-  children: ReactNode;
-  /**
-   * An accessibility role for the well.
-   */
-  role?: string;
-}
-
-function Well(props: Props, ref: Ref<HTMLDivElement>) {
-  /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-  const {children, role, ...otherProps} = props;
-
-  if (!role && (props['aria-label'] || props['aria-labelledby']))
-    console.warn('A labelled Well must have a role.');
-
-  return (
-    <Box
-      {...filterDOMProps(otherProps, {
-        propNames: new Set(['id', 'className']),
-      })}
-      role={role}
-      ref={ref}
-      p="20px"
-      sx={{
-        bgcolor: 'rgba(75, 75, 75, 0.02)',
-        border: '1px solid rgba(44, 44, 44, 0.05)',
-        borderRadius: '4px',
-        textAlign: 'start',
-        minWidth: '160px',
-      }}
-    >
-      {children}
-    </Box>
-  );
-}
+const well = theme.css({
+  backgroundColor: 'rgba(75, 75, 75, 0.02)',
+  border: '1px solid rgba(44, 44, 44, 0.05)',
+  borderRadius: '4px',
+  fontFamily: '$defaultFont',
+  minWidth: '160px',
+  padding: '20px',
+  textAlign: 'start',
+});
 
 /**
  * A Well is a content container that displays non-editable content separate from other content on the screen.
  * Often this is used to display preformatted text, such as code/markup examples on a documentation page.
  */
-const EzWell = forwardRef(Well);
+const EzWell = forwardRef<Ref, EzWellProps>(({children, role, ...otherProps}, ref) => {
+  const hasAriaLabel = Boolean(otherProps['aria-label'] || otherProps['aria-labelledby']);
+
+  useEffect(() => {
+    if (!role && hasAriaLabel) {
+      warning(false, '*Recipe Warning*. EzWell - A labelled Well must have a role.');
+    }
+  }, [hasAriaLabel, role]);
+
+  return (
+    <div
+      className={well()}
+      ref={ref}
+      role={role}
+      {...filterDOMProps(otherProps, {propNames: new Set(['id', 'className'])})}
+    >
+      {children}
+    </div>
+  );
+});
+
+EzWell.displayName = 'EzWell';
 
 export default EzWell;

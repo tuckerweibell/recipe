@@ -30,7 +30,7 @@
     status={<EzChip label="Verified User Account" variant="success" size="inherit" />}
     actions={
       <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-        <EzButton use="primary">Accept Order</EzButton>
+        <EzButton>Accept Order</EzButton>
       </EzLayout>
     }
   />
@@ -55,7 +55,7 @@
     status={<EzChip label="Verified User Account" variant="success" size="inherit" />}
     actions={
       <EzLayout layout={{base: 'stack', medium: 'basic'}}>
-        <EzButton use="primary">Accept Order</EzButton>
+        <EzButton>Accept Order</EzButton>
       </EzLayout>
     }
   />
@@ -114,7 +114,7 @@
 
 ```jsx
 <>
-  <EzPageHeader title="Order # XYZ-123" actions={<EzButton use="primary">Accept Order</EzButton>} />
+  <EzPageHeader title="Order # XYZ-123" actions={<EzButton>Accept Order</EzButton>} />
   <EzPage />
 </>
 ```

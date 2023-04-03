@@ -31,7 +31,7 @@
 () => {
   const containerRef = React.createRef();
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 320}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -147,7 +147,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 320}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -180,7 +180,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 390}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -205,7 +205,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 390}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -236,7 +236,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{minHeight: 390}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -305,28 +305,30 @@
 () => {
   const containerRef = React.createRef();
   return (
-    <EzLayout>
-      <EzField
-        type="select"
-        label="Select dropdown"
-        placeholder="Choose..."
-        options={[{label: 'Short value', value: 1}]}
-        value={1}
-        onChange={() => {}}
-      />
-      <div ref={containerRef}>
-        <Open containerRef={containerRef}>
-          <EzField
-            type="select"
-            label="Select dropdown"
-            placeholder="Choose..."
-            options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
-            value={1}
-            onChange={() => {}}
-          />
-        </Open>
-      </div>
-    </EzLayout>
+    <div style={{minHeight: 150}}>
+      <EzLayout>
+        <EzField
+          type="select"
+          label="Select dropdown"
+          placeholder="Choose..."
+          options={[{label: 'Short value', value: 1}]}
+          value={1}
+          onChange={() => {}}
+        />
+        <div ref={containerRef}>
+          <Open containerRef={containerRef}>
+            <EzField
+              type="select"
+              label="Select dropdown"
+              placeholder="Choose..."
+              options={[{label: 'Super ridiculously exaggerated value for an option', value: 1}]}
+              value={1}
+              onChange={() => {}}
+            />
+          </Open>
+        </div>
+      </EzLayout>
+    </div>
   );
 };
 ```

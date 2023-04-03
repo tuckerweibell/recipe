@@ -1,5 +1,6 @@
 import React, {useLayoutEffect, useRef, useState, useContext} from 'react';
 import {createPortal} from 'react-dom';
+import theme from '../theme.config';
 import {EzProviderContext} from '../EzProvider';
 
 export const PortalContext = React.createContext<React.MutableRefObject<HTMLElement | null>>({
@@ -7,6 +8,10 @@ export const PortalContext = React.createContext<React.MutableRefObject<HTMLElem
 });
 
 const {Provider} = PortalContext;
+
+const portalStyle = theme.css({
+  fontFamily: '$defaultFont',
+});
 
 const EzPortal: React.FC<PortalProps> = ({children}) => {
   const mountNode = useRef<HTMLDivElement | null>(null);
@@ -36,6 +41,7 @@ const EzPortal: React.FC<PortalProps> = ({children}) => {
 
     const {ownerDocument} = parentElement;
     const portalNode = ownerDocument.createElement('div');
+    portalNode.classList.add(portalStyle());
 
     // insert the new container for the portalled content
     parentElement.appendChild(portalNode);

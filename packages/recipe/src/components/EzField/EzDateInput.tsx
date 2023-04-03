@@ -29,7 +29,7 @@ const calendarPopup = theme.css({
 
   position: 'relative',
   padding: '$150',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   fontSize: '$100',
   width: '320px',
   marginTop: '$100',

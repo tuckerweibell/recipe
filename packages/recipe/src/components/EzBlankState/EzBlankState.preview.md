@@ -16,7 +16,7 @@
         title="■■■■■■■■■■■■■■■■■■■■"
         message="■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
         action={
-          <EzButton use="primary">
+          <EzButton>
             <span style={{padding: '0 20px'}}>■■■■■■■■■■</span>
           </EzButton>
         }

@@ -1,33 +1,31 @@
-import React from 'react';
-import userEvent from '@testing-library/user-event';
-import {screen, render} from '../../../../test-utils';
+import React, {ComponentProps, FC} from 'react';
+import {screen, render, userEvent} from '../../../../test-utils';
 import EzCarousel from '../EzCarousel';
+import {EzCarouselProps} from '../EzCarousel.types';
 import EzLink from '../../EzLink/EzLink';
 import Placeholder from '../../utils/Placeholder';
+
+const Component: FC<Partial<ComponentProps<typeof EzCarousel>>> = (props: EzCarouselProps) => (
+  <EzCarousel title="Carousel" description="carousel" {...props}>
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
+    <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
+  </EzCarousel>
+);
 
 describe('EzCarousel', () => {
   it('calls the onPageChange handler when interacting with carousel pages', async () => {
     jest.spyOn(console, 'log').mockImplementation();
-
-    const user = userEvent.setup();
-
+    const user = userEvent.setup({skipHover: true});
     render(
-      <EzCarousel
-        title="Carousel"
-        description="carousel"
-        onPageChange={(previous, current) => console.log(`${previous} to ${current}`)}
-      >
-        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 94%)'}} />
-        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 84%)'}} />
-        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 74%)'}} />
-        <Placeholder style={{backgroundColor: 'hsl(230deg, 44%, 64%)'}} />
-      </EzCarousel>
+      <Component onPageChange={(previous, current) => console.log(`${previous} to ${current}`)} />
     );
 
-    const nextButton = screen.getByLabelText(/next page/i);
+    const nextButton = screen.getByRole('button', {name: /next page/i});
     await user.click(nextButton);
 
-    const previousButton = screen.getByLabelText(/previous page/i);
+    const previousButton = screen.getByRole('button', {name: /previous page/i});
     await user.click(previousButton);
 
     expect(console.log).toHaveBeenCalledTimes(2);

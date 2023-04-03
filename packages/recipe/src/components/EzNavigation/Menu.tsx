@@ -20,7 +20,7 @@ const menuLink = theme.css({
   background: 'none',
   fontSize: '1em',
   textAlign: 'left',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
 
   '&:hover': {
     color: '$nav-text-hover',

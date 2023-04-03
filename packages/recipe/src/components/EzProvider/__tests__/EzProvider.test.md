@@ -14,9 +14,9 @@ This test asserts that the provided theme is applied to the descendant content.
     }}
   />
   <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
-    <div>blue text</div>
+    <EzTextStyle>blue text</EzTextStyle>
   </EzProvider>
-  <div>body text (default)</div>
+  <EzTextStyle>body text (default)</EzTextStyle>
 </>
 ```
 
@@ -32,9 +32,9 @@ This test asserts that the provided theme is applied to the descendant content.
     }}
   />
   <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
-    <div>blue text</div>
+    <EzTextStyle>blue text</EzTextStyle>
     <EzProvider theme={{toString: () => 'other-theme-xyz'}}>
-      <div>blue text</div>
+      <EzTextStyle>blue text</EzTextStyle>
     </EzProvider>
   </EzProvider>
 </>
@@ -64,9 +64,9 @@ This test asserts that the provided theme is applied to the descendant content.
         }}
       />
       <EzProvider theme={theme}>
-        <div>green text</div>
+        <EzTextStyle>green text</EzTextStyle>
         <EzProvider theme={{toString: () => 'other-theme-xyz'}}>
-          <div>green text</div>
+          <EzTextStyle>green text</EzTextStyle>
         </EzProvider>
       </EzProvider>
     </>
@@ -87,9 +87,9 @@ This test asserts that the provided theme is applied to the descendant content.
     }}
   />
   <EzProvider theme={{toString: () => 'blue-theme-xyz'}}>
-    <div>blue text</div>
+    <EzTextStyle>blue text</EzTextStyle>
     <EzProvider theme={{toString: () => 'green-theme-abc'}}>
-      <div>green text</div>
+      <EzTextStyle>green text</EzTextStyle>
     </EzProvider>
   </EzProvider>
 </>

@@ -52,6 +52,22 @@ const cell = theme.css({
   },
 });
 
+const dayValue = theme.css({
+  backgroundColor: 'transparent',
+  border: 0,
+  color: '$calendar-day-text',
+  cursor: 'pointer',
+  fontFamily: '$defaultFont',
+  fontWeight: 700,
+  padding: 0,
+  '&:hover': {
+    color: '$calendar-day-text-dark',
+  },
+  '&:disabled': {
+    opacity: '50%',
+  },
+});
+
 const weekDayCount = 7;
 const maxDaysInMonth = 31;
 
@@ -152,9 +168,11 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
       <div className={row()}>
         <div className={pagination()}>
           <EzButton
-            use="tertiary"
-            ref={focusTarget}
+            color="info"
             onClick={() => setFocusedDate(focusedDate.subtract(1, 'month').set('date', 1))}
+            ref={focusTarget}
+            size="small"
+            variant="text"
           >
             ← {t('Prev')}
           </EzButton>
@@ -164,8 +182,10 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
         </EzHeading>
         <div className={pagination()}>
           <EzButton
-            use="tertiary"
+            color="info"
             onClick={() => setFocusedDate(focusedDate.add(1, 'month').set('date', 1))}
+            size="small"
+            variant="text"
           >
             {t('Next')} →
           </EzButton>
@@ -194,17 +214,18 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
               return (
                 <div className={cell({selected})} key={dayIndex}>
                   {day && (
-                    <EzButton
-                      use="tertiary"
+                    <button
                       ref={refs[day - 1]}
-                      onClick={selectDate}
-                      disabled={disabled}
-                      onKeyDown={handleKeyInput(selectDate, disabled)}
                       aria-label={currentDay.format('dddd, MMMM D, YYYY').toString()}
+                      className={dayValue()}
+                      disabled={disabled}
+                      onClick={selectDate}
+                      onKeyDown={handleKeyInput(selectDate, disabled)}
                       tabIndex={day === focusedDate.date() ? 0 : -1}
+                      type="button"
                     >
                       <EzTextStyle use={disabled ? 'subdued' : undefined}>{day}</EzTextStyle>
-                    </EzButton>
+                    </button>
                   )}
                 </div>
               );

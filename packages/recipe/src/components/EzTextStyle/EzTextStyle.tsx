@@ -4,6 +4,7 @@ import theme from '../theme.config';
 
 const text = theme.css({
   display: 'inline-block',
+  fontFamily: '$defaultFont',
 
   variants: {
     use: {

@@ -216,6 +216,7 @@ const stitches = createStitches({
 
       // EzCalendar
       'calendar-day-text': '$blue600',
+      'calendar-day-text-dark': '$blue950',
       'calendar-day-border-selected': '$blue500',
       'calendar-day-bg-selected': '$blue200',
 
@@ -371,13 +372,14 @@ const stitches = createStitches({
       'tooltip-z-index': '$tooltip-z',
     },
     fonts: {
-      sans: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+      defaultFont: `'Roboto Flex', 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+      headerFont: `Montserrat, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
 
       // EzButton
       'button-font': '$base',
 
       // EzCheckbox
-      'checkbox-acknowledgement': '$sans',
+      'checkbox-acknowledgement': '$defaultFont',
     },
     fontSizes: {
       75: '12px',
@@ -398,7 +400,12 @@ const stitches = createStitches({
       'checkbox-acknowledgement': '$100',
 
       // EzHeading
-      subheading: '$100',
+      h1: '$600',
+      h2: '$300',
+      h3: '$200',
+      h4: '$200',
+      h5: '$200',
+      h6: '$100',
 
       // EzIcon
       'icon-size-xsmall': '$100',
@@ -427,6 +434,7 @@ const stitches = createStitches({
     },
     fontWeights: {
       regular: 400,
+      semibold: 600,
       bold: 700,
 
       // EzButton
@@ -439,7 +447,12 @@ const stitches = createStitches({
       'checkbox-acknowledgement': '$regular',
 
       // EzHeading
-      subheading: '$400',
+      h1: '$regular',
+      h2: '$regular',
+      h3: '$semibold',
+      h4: '$regular',
+      h5: '$semibold',
+      h6: '$regular',
 
       // EzLabel
       label: '$bold',
@@ -459,13 +472,22 @@ const stitches = createStitches({
       // aliases
       snug: 1.35,
       tight: 1.25,
+      100: '18px',
+      200: '20px',
+      300: '22px',
+      400: '24px',
+      500: '30px',
 
       // EzButton
       'button-leading': '$tight',
 
       // EzHeading
-      heading: '$snug',
-      subheading: '$snug',
+      h1: '$500',
+      h2: '$400',
+      h3: '$300',
+      h4: '$200',
+      h5: '$200',
+      h6: '$100',
 
       // EzInlineFeedback
       'inline-feedback': '$snug',
@@ -864,6 +886,88 @@ const stitches = createStitches({
     medium: '(min-width: 768px)',
     mediumToLarge: '(min-width: 768px) and (max-width: 1060.9375px)',
     large: '(min-width: 1061px)',
+  },
+});
+
+export const marketplaceTheme = stitches.createTheme({
+  borderStyles: {
+    'card-border': 'solid',
+  },
+  borderWidths: {
+    'button-secondary': '$thin',
+    'card-border': '$thin',
+  },
+  colors: {
+    'page-bg': 'white',
+    'card-border': '$colors$gray150',
+
+    /* secondary button default */
+    'button-bg-secondary': '$white',
+    'button-border-secondary': '$blue600',
+    'button-text-secondary': '$blue600',
+
+    /* secondary button hover */
+    'button-bg-secondary-hover': '$blue200',
+    'button-border-secondary-hover': '$blue600',
+    'button-text-secondary-hover': '$blue600',
+
+    /* secondary button active */
+    'button-bg-secondary-down': '$blue300',
+    'button-border-secondary-down': '$blue600',
+    'button-text-secondary-down': '$blue800',
+
+    /* secondary button focus */
+    'button-bg-secondary-focus': '$blue200',
+    'button-border-secondary-focus': 'rgba(63, 97, 255, 0.3)',
+    'button-text-secondary-focus': '$blue600',
+  },
+  fonts: {
+    defaultFont: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+    headerFont: `Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif`,
+  },
+  fontSizes: {
+    h1: '$800',
+    h2: '$600',
+    h3: '$300',
+    h4: '$200',
+    h5: '$100',
+    h6: '$75',
+  },
+  fontWeights: {
+    bold: 700,
+    regular: 400,
+
+    // EzHeading
+    h1: '$regular',
+    h2: '$bold',
+    h3: '$bold',
+    h4: '$regular',
+    h5: '$bold',
+    h6: '$regular',
+  },
+  lineHeights: {
+    snug: 1.35,
+
+    // EzHeading
+    h1: '$snug',
+    h2: '$snug',
+    h3: '$snug',
+    h4: '$snug',
+    h5: '$snug',
+    h6: '$snug',
+  },
+  radii: {
+    'flash-message-rounded': 0,
+  },
+  shadows: {
+    card: 'none',
+    'button-secondary': '0px 1px 2px rgba(0, 0, 0, 0.12)',
+    'button-secondary-hover': '0px 1px 6px rgba(0, 0, 0, 0.16)',
+    'button-secondary-down': '0px 0px 3px rgba(0, 0, 0, 0.2)',
+    'button-secondary-focus-ring': '0 0 0 3px rgba(63, 97, 255, 0.3)',
+  },
+  space: {
+    'carousel-item-offset': '$250',
   },
 });
 

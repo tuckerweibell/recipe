@@ -3,13 +3,16 @@ import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-do
 import {
   MOCK_ICON_FA_CART_SHOPPING,
   MOCK_ICON_FA_CIRCLE,
+  MOCK_ICON_FA_CIRCLE_INFO,
   MOCK_ICON_FA_COFFEE,
   MOCK_ICON_FA_EMPTY_STAR,
   MOCK_ICON_FA_FULL_STAR,
   MOCK_ICON_FA_HALF_STAR,
   MOCK_ICON_COFFEE,
+  MOCK_ICON_FILEDOWNLOAD,
   MOCK_ICON_FRIES,
   MOCK_ICON_PIZZA,
+  MOCK_ICON_PRINTER,
   MOCK_ICON_RAMEN,
   MOCK_ICON_THUMBS_DOWN,
   MOCK_ICON_THUMBS_UP,
@@ -38,6 +41,7 @@ export default () => ({
       return {
         emptyStar: MOCK_ICON_FA_EMPTY_STAR,
         faCircle: MOCK_ICON_FA_CIRCLE,
+        faCircleInfo: MOCK_ICON_FA_CIRCLE_INFO,
         faCoffee: MOCK_ICON_FA_COFFEE,
         fullStar: MOCK_ICON_FA_FULL_STAR,
         halfStar: MOCK_ICON_FA_HALF_STAR,
@@ -47,8 +51,10 @@ export default () => ({
     if (moduleName === '@ezcater/icons') {
       return {
         Coffee: MOCK_ICON_COFFEE,
+        FileDownload: MOCK_ICON_FILEDOWNLOAD,
         Fries: MOCK_ICON_FRIES,
         Pizza: MOCK_ICON_PIZZA,
+        Printer: MOCK_ICON_PRINTER,
         Ramen: MOCK_ICON_RAMEN,
         ThumbsDown: MOCK_ICON_THUMBS_DOWN,
         ThumbsUp: MOCK_ICON_THUMBS_UP,

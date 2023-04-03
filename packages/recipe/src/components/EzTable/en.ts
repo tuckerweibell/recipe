@@ -10,4 +10,6 @@ export default {
   'All {{totalRowCount}} rows are selected.': 'All {{totalRowCount}} rows are selected.',
   'Clear selection': 'Clear selection',
   'Select all {{totalRowCount}} rows': 'Select all {{totalRowCount}} rows',
+  '{{partialTotalCount}} out of {{totalPageCount}} rows are selected.':
+    '{{partialTotalCount}} out of {{totalPageCount}} rows are selected.',
 };

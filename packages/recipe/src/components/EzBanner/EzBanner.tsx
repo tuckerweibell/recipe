@@ -14,6 +14,7 @@ type Props = {
 };
 
 const banner = theme.css({
+  fontFamily: '$defaultFont',
   display: 'flex',
   alignItems: 'flex-start',
   flexDirection: 'column',
@@ -69,6 +70,7 @@ const closeButton = theme.css({
 });
 
 const heading = theme.css({
+  fontFamily: '$headerFont',
   '&&': {color: '$$banner-text'},
 });
 
@@ -79,7 +81,7 @@ const linkButton = theme.css({
   border: 'none',
   borderRadius: '$banner-button-rounded',
   boxShadow: '$banner-button-shadow',
-  fontFamily: '$sans',
+  fontFamily: '$defaultFont',
   fontWeight: '$bold',
   fontSize: '$text',
   cursor: 'pointer',

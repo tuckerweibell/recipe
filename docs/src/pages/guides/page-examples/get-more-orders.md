@@ -13,7 +13,6 @@ tags: ['wide']
   const onClick = e => e.preventDefault();
   return (
     <EzAppLayout layout="centered">
-      <EzBaseFontSizeCompatibility />
       <EzNavigation
         home={{href: '#', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
         links={[
@@ -56,7 +55,7 @@ tags: ['wide']
               Catering customers want to order online. Put the best ordering experience on your
               website to get (and keep) their business.
             </p>
-            <EzButton use="primary">Sign Up Today</EzButton>
+            <EzButton>Sign Up Today</EzButton>
           </EzCard>
           <EzPageSection use="horizontal">
             <EzCard>
@@ -238,7 +237,7 @@ tags: ['wide']
           <EzCard accent="info">
             <EzLayout layout="split">
               <EzHeading size={3}>Getting started is easy and setup is free</EzHeading>
-              <EzButton use="primary">Sign Up Today</EzButton>
+              <EzButton>Sign Up Today</EzButton>
             </EzLayout>
           </EzCard>
         </EzPage>

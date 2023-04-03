@@ -14,12 +14,23 @@ type PropsTableProps = {
 };
 
 const PropsTable = ({propsData}: PropsTableProps) => {
-  const MonospaceCell = ({text, color = 'inherit'}) => (
-    <Stack color={color} fontFamily="monospace" fontSize="12px">
+  const MonospaceCell = ({text, color = 'inherit', deprecated = false}) => (
+    <Stack
+      color={color}
+      fontFamily="monospace"
+      fontSize="12px"
+      sx={{textDecoration: deprecated ? 'line-through' : undefined}}
+    >
       {text}
     </Stack>
   );
-  const Name = ({item: {name}}) => <MonospaceCell color="#ff585d" text={name} />;
+  const Name = ({item: {description, name}}) => (
+    <MonospaceCell
+      color="#ff585d"
+      text={name}
+      deprecated={description.includes('**Deprecated**')}
+    />
+  );
   const DefaultValue = ({item: {defaultValue}}) => <MonospaceCell text={defaultValue} />;
   const Description = ({item: {description}}) => <>{description}</>;
   const Types = ({item: {types}}) => (

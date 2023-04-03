@@ -4,6 +4,7 @@ import EzTextStyle from '../EzTextStyle';
 import theme from '../theme.config';
 
 const wrapper = theme.css({
+  fontFamily: '$defaultFont',
   padding: '$blank-state-py $blank-state-px',
   display: 'flex',
   flexDirection: 'column',

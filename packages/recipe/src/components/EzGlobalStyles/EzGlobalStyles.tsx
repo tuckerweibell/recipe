@@ -10,7 +10,7 @@ const styles = theme.globalCss({
     '-moz-osx-font-smoothing': 'grayscale',
     '-webkit-font-smoothing': 'antialiased',
     color: '$black100',
-    fontFamily: '$sans',
+    fontFamily: '$defaultFont',
     fontSize: '$text',
     margin: 0,
   },

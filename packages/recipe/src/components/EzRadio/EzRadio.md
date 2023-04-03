@@ -238,6 +238,8 @@ EzRadio components can be grouped using form controls (see below).
 </EzPage>
 ```
 
+### Radio Controlled Group
+
 You can also control the radio with the `value` and `onChange` props on `EzRadioGroup`.
 
 ```jsx
@@ -272,9 +274,97 @@ You can also control the radio with the `value` and `onChange` props on `EzRadio
 };
 ```
 
+### Radio Group with Conditional Content
+
+Additional content can also be displayed depending on the selection.
+
+```jsx
+() => {
+  const [value, setValue] = useState('coffee');
+  const handleChange = event => setValue(event.target.value);
+
+  return (
+    <EzPage>
+      <EzLayout layout="equal">
+        <EzFormControl>
+          <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
+          <EzRadioGroup
+            ariaLabel="radio-buttons-drinks"
+            name="radio-buttons-drinks-group"
+            onChange={handleChange}
+            value={value}
+          >
+            <EzFormControlLabel
+              control={<EzRadio />}
+              label="Coffee"
+              helperText="Caffineated"
+              value="coffee"
+            />
+            {value === 'coffee' && <EzField type="textarea" placeholder="Coffee details..." />}
+            <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
+            {value === 'wine' && <EzField type="textarea" placeholder="Wine details..." />}
+            <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
+            {value === 'water' && <EzField type="textarea" placeholder="Water details..." />}
+          </EzRadioGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+### Radio Group with Error State
+
+To display an error state in a checkbox group, pass an `error` boolean property to `EzFormControl`. Be sure to include an error alert or message to indicate what the error is.
+
+```jsx
+() => {
+  const [value, setValue] = useState('coffee');
+  const handleChange = event => setValue(event.target.value);
+  const unavailableItems = ['coffee'];
+  const error = unavailableItems.includes(value);
+
+  return (
+    <EzPage>
+      <EzLayout layout="equal">
+        <EzFormControl error>
+          <EzFormLabel id="radio-buttons-drinks">
+            <EzLayout layout="stack">
+              Drinks
+              {error && (
+                <EzAlert
+                  headline={`${value} is not available, please make another selection`}
+                  use="error"
+                />
+              )}
+            </EzLayout>
+          </EzFormLabel>
+          <EzRadioGroup
+            ariaLabel="radio-buttons-drinks"
+            name="radio-buttons-drinks-group"
+            onChange={handleChange}
+            value={value}
+          >
+            <EzFormControlLabel
+              control={<EzRadio />}
+              label="Coffee"
+              helperText="Caffineated"
+              value="coffee"
+            />
+            <EzFormControlLabel control={<EzRadio />} label="Wine" value="wine" />
+            <EzFormControlLabel control={<EzRadio />} label="Water" value="water" />
+          </EzRadioGroup>
+        </EzFormControl>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
 To provide proper keyboard accessibility when using grouped radio buttons, use `EzRadio` with the following components and their props:
 
 - `EzFormControl` - used to provide context and ensure a consistent state
+  - `error` - if `true`, the label is displayed in an error state
 - `EzFormLabel` - used to provide a label for a group of radio buttons
   - `id` - should match the `ariaLabel` prop of `EzRadioGroup`
 - `EzRadioGroup` - used to group radio buttons
@@ -579,3 +669,4 @@ If a label isn't used (for example when using an icon-only super radio button), 
 ## Related components
 
 - [EzField](/components/ez-field)
+- [EzCheckbox](/components/ez-checkbox)
