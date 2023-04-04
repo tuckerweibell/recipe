@@ -1,5 +1,11 @@
 # @recipe-ui/theme-marketplace
 
+## 8.0.0
+
+### Minor Changes
+
+- feat: add additional stitches variables for fonts, font sizes, font weights, and line heights [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
 ## 7.0.0
 
 ## 6.0.0

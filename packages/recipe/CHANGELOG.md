@@ -1,5 +1,46 @@
 # @ezcater/recipe
 
+## 17.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: update EzButton component to new design [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- BREAKING CHANGE: remove deprecated EzRadioButton [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- BREAKING CHANGE: remove deprecated EzField legacy types 'radio' and 'checkbox' and legacy EzCheckbox [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- BREAKING CHANGE: fulfillment theme fonts changed to Montserrat (headers) and Roboto Flex [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- BREAKING CHANGE: fix: add required field `totalRowsSelected` to `selection` prop for EzTable (to fix selection banner count) [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
+### Minor Changes
+
+- feat: add title icon to EzCard [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- deps: Recipe now includes the marketplace stitches theme directly and removes the deprecated @recipe-ui/theme-marketplace package [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add showCardWithoutHeading prop to EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add fullWidth prop to EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- style: show partial selection count in banner for EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add transparent background color prop to EzCard [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add error state to EzFormControl [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add optional field `totalFilteredRows` to `pagination` prop for EzTable (to update pagination when filtering) [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add title icon to EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add ariaLabel prop to EzTable (required if showCardWithoutHeading table without a title, otherwise optional) [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- style: update EzTable to use new EzCheckbox including new styles and indeterminate state [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add transparent background color prop to EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
+### Patch Changes
+
+- docs: update EzTable example for "Bulk row selection across pages" to work properly and to use new `totalSelectedRows` and `totalFilteredRows` fields with filtering [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- deps: update emotion from v11.8.1 to v11.10.5 [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: add icons, icon buttons, and tooltips to table header column prop [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- style: add EzTable top padding [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- refactor: deprecate EzBaseFontSizeCompatibility [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: add search filter example to EzTable [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- deps: update material ui from v5.4.0 to v5.10.12 and add @mui/lab [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- refactor: removed emotion from EzWell which was causing conflicts with stitches in Gatsby [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- style: fix EzFormControlLabel vertical style for labels with helper text [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- test: update EzTable regression tests [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- feat: update EzTable pagination to work with filtering [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- refactor: make title prop on EzTable actions props optional (if it's a simple table or a showCardWithoutHeading table) [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- styles: fix emotion theme typography for ezFulfillmentTheme [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
 ## 16.3.1
 
 ### Patch Changes

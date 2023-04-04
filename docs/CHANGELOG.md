@@ -1,5 +1,24 @@
 # @ezcater/recipe-doc-site
 
+## 2.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: fulfillment theme fonts changed to Montserrat (headers) and Roboto Flex [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
+### Minor Changes
+
+- docs: update EzButton documentation to new design and deprecate legacy EzButton [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
+### Patch Changes
+
+- docs: add conditional content and error state examples to EzCheckbox [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: add info icon to docs [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: add docs for table columns with icons, icon buttons, and tooltips [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: update EzLayout docs to use new EzRadio instead of EzField [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: update promos example to use new EzRadio and EzCheckbox components [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+- docs: add conditional content and error state examples to EzRadio [[sha]](https://github.com/ezcater/recipe/commit/c8e9cb49)
+
 ## 1.5.0
 
 ### Minor Changes

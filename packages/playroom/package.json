@@ -1,7 +1,7 @@
 {
   "name": "@ezcater/recipe-playroom",
   "description": "Reciple Playroom",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "react": "^17.0.2",
