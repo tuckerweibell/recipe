@@ -376,6 +376,22 @@ If you need to hide a button from all accessibility APIs, for example to avoid c
 
 ---
 
+## Data Attributes
+
+EzButton is very explicit about the properties it accepts, which makes providing arbitrary data attributes not possible. Instead, EzButton accept a data prop, allowing a single collection of data attributes to be provided.
+
+```jsx
+<EzButton
+  data={{
+    testid: 'my-test-id',
+    trackingid: 'my-tracking-id',
+  }}
+  // => data-testid="my-test-id" data-trackingid="my-tracking-id"
+>
+  Button
+</EzButton>
+```
+
 ## Props
 
 ```jsx-hide-controls
@@ -401,6 +417,11 @@ If you need to hide a button from all accessibility APIs, for example to avoid c
       types: ['EzThemeColors', 'destructive'],
       defaultValue: 'primary',
       description: 'The color of the component. Supports theme palette properties and colors.'
+    },
+    {
+      name: 'data',
+      types: ['object'],
+      description: 'The data attributes to be applied to the component.',
     },
     {
       name: 'destructive',

@@ -5,6 +5,7 @@ import {
   ReactElement,
   ReactNode,
 } from 'react';
+import type {DataAttributeMap} from '../../utils/buildDataAttributes';
 import {EzThemeColors} from '../../themes';
 
 export type Ref = HTMLButtonElement;
@@ -42,6 +43,7 @@ export type EzButtonMuiProps = EzButtonCommonProps & {
   ariaLabel?: string;
   children: string | ReactNode;
   color?: EzThemeColors | 'destructive';
+  data?: DataAttributeMap;
   endIcon?: ReactElement;
   fontSize?: 'small' | 'medium' | 'large' | 'inherit';
   onKeyDown?: KeyboardEventHandler<any> | undefined;

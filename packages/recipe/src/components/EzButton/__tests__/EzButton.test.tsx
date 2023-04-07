@@ -28,6 +28,19 @@ describe('EzButton logic', () => {
 
     expect(screen.getByRole('button', {name: /test button/i})).toHaveAttribute('disabled');
   });
+
+  it('applies the correct data attributes', () => {
+    render(<Component data={{testid: 'my-test-id', trackingid: 'my-tracking-id'}} />);
+
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveAttribute(
+      'data-testid',
+      'my-test-id'
+    );
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveAttribute(
+      'data-trackingid',
+      'my-tracking-id'
+    );
+  });
 });
 
 describe('EzButton', () => {

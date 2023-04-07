@@ -1,6 +1,7 @@
 import React, {forwardRef} from 'react';
 import {EzButtonLegacy, EzButtonMui} from './Implementations';
 import {EzButtonProps, Ref} from './EzButton.types';
+import buildDataAttributes from '../../utils/buildDataAttributes';
 
 const EzButton = forwardRef<Ref, EzButtonProps>((props, ref) => {
   if (props.legacy === true) {
@@ -13,6 +14,7 @@ const EzButton = forwardRef<Ref, EzButtonProps>((props, ref) => {
     ariaLabel,
     children,
     color,
+    data,
     disabled,
     endIcon,
     fontSize,
@@ -41,6 +43,7 @@ const EzButton = forwardRef<Ref, EzButtonProps>((props, ref) => {
       startIcon={startIcon}
       type={type}
       variant={variant}
+      {...buildDataAttributes({data})}
     >
       {children}
     </EzButtonMui>
