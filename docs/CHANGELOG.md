@@ -1,5 +1,11 @@
 # @ezcater/recipe-doc-site
 
+## 2.0.1
+
+### Patch Changes
+
+- feat: add data attributes with example to EzButton [[sha]](https://github.com/ezcater/recipe/commit/8038d918)
+
 ## 2.0.0
 
 ### Major Changes

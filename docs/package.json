@@ -1,7 +1,7 @@
 {
   "name": "@ezcater/recipe-doc-site",
   "description": "Documentation for Recipe, ezCater's design system library",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "devDependencies": {
     "@emotion/react": "^11.10.5",
