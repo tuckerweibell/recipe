@@ -47,10 +47,13 @@ const stitches = createStitches({
       gray100: '#fafafb',
       gray150: '#cccfd5',
       gray200: '#f4f7f8',
+      gray250: '#f5f7f7',
       gray300: '#e6e9eb',
+      gray350: '#e5e6e6',
       gray400: '#ced4d9',
       gray500: '#b2b3b3',
       gray600: '#8b99a6',
+      gray650: '#787878',
       gray700: '#565a5c',
       gray800: '#373d43',
       green100: '#00b373',
@@ -95,11 +98,13 @@ const stitches = createStitches({
 
       // aliases
       text: '$gray700',
-      textDisabled: '$gray600',
+      textAlt: '$black100',
+      textDisabled: '$gray650',
       deemphasisText: '$gray600',
-      focusRing: '$blue600',
+      focusRing: '$black100',
       icon: '$gray600',
       border: '$gray400',
+      borderAlt: '$gray500',
 
       // CloseButton
       'dismiss-background': '$transparent',
@@ -329,7 +334,7 @@ const stitches = createStitches({
       'radiobutton-bg-disabled': '$gray200',
 
       // EzSearchInput
-      'search-input-background-image': `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b99a6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='10' cy='10' r='8'%3e%3c/circle%3e%3cline x1='24' y1='24' x2='16.65' y2='16.65'%3e%3c/line%3e%3c/svg%3e")`,
+      'search-input-background-image': `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b99a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='10' cy='10' r='8'%3e%3c/circle%3e%3cline x1='24' y1='24' x2='16.65' y2='16.65'%3e%3c/line%3e%3c/svg%3e")`,
 
       // EzSegmentedControl
       'segmented-control-color': '$gray700',
@@ -500,6 +505,10 @@ const stitches = createStitches({
 
       // EzTable
       table: '1.3em',
+    },
+    outlines: {
+      focusOutline: '2px solid $colors$black100',
+      focusOutlineOffset: '2px',
     },
     radii: {
       // sizes
@@ -749,7 +758,7 @@ const stitches = createStitches({
 
       // Icons
       'icon-baseline-top': '0.125em',
-      'icon-inset-pr': '0.5rem',
+      'icon-inset-pr': '0.75rem',
       'icon-inset-pl': '0.75rem',
     },
     shadows: {
@@ -799,7 +808,6 @@ const stitches = createStitches({
 
       // EzSegmentedControl
       'segmented-control-box-shadow': '$sm',
-      'segmented-control-box-shadow-input-focus': '$focus-ring',
 
       // EzTimeline
       'footer-button': '$sm',

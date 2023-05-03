@@ -168,7 +168,7 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
       <div className={row()}>
         <div className={pagination()}>
           <EzButton
-            color="info"
+            color="primary"
             onClick={() => setFocusedDate(focusedDate.subtract(1, 'month').set('date', 1))}
             ref={focusTarget}
             size="small"
@@ -182,7 +182,7 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
         </EzHeading>
         <div className={pagination()}>
           <EzButton
-            color="info"
+            color="primary"
             onClick={() => setFocusedDate(focusedDate.add(1, 'month').set('date', 1))}
             size="small"
             variant="text"

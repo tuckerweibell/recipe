@@ -18,19 +18,41 @@ const VARIANT_SIZES = {
   },
 };
 
-const VARIANT_COLORS = (themeColor: string, whiteColor: string, disabledColor: string) => ({
+const VARIANT_COLORS = (
+  themeColor: string,
+  whiteColor: string,
+  disabledBackgroundColor: string,
+  disabledBorderColor: string,
+  disabledColor: string
+) => ({
   outlined: {
     unchecked: {background: whiteColor, border: themeColor, dot: whiteColor},
-    uncheckedDisabled: {background: whiteColor, border: disabledColor, dot: whiteColor},
+    uncheckedDisabled: {
+      background: disabledBackgroundColor,
+      border: disabledBorderColor,
+      dot: disabledBackgroundColor,
+    },
     checked: {background: whiteColor, border: themeColor, dot: themeColor},
-    checkedDisabled: {background: whiteColor, border: disabledColor, dot: disabledColor},
+    checkedDisabled: {
+      background: disabledBackgroundColor,
+      border: disabledBorderColor,
+      dot: disabledColor,
+    },
     hover: {background: themeColor, border: themeColor, dot: whiteColor},
   },
   filled: {
     unchecked: {background: whiteColor, border: whiteColor, dot: whiteColor},
-    uncheckedDisabled: {background: whiteColor, border: whiteColor, dot: whiteColor},
+    uncheckedDisabled: {
+      background: disabledBackgroundColor,
+      border: disabledBorderColor,
+      dot: disabledBackgroundColor,
+    },
     checked: {background: whiteColor, border: whiteColor, dot: themeColor},
-    checkedDisabled: {background: whiteColor, border: whiteColor, dot: disabledColor},
+    checkedDisabled: {
+      background: disabledBackgroundColor,
+      border: disabledBorderColor,
+      dot: disabledColor,
+    },
     hover: {background: themeColor, border: themeColor, dot: whiteColor},
   },
 });
@@ -38,7 +60,7 @@ const VARIANT_COLORS = (themeColor: string, whiteColor: string, disabledColor: s
 const iconProps = (bgcolor: string, borderColor: string, diameter: number) => ({
   alignItems: 'center',
   bgcolor,
-  border: `2px solid ${borderColor}`,
+  border: `1px solid ${borderColor}`,
   borderRadius: '50%',
   height: diameter,
   justifyContent: 'space-around',
@@ -62,11 +84,11 @@ const EzRadioIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter}) =>
 );
 
 const EzRadioCheckedIcon = ({bgcolor, borderColor, diameter, dotColor, dotDiameter}) => (
-  <Stack className="EzRadioIcon-checked" position="relative">
+  <Stack position="relative">
     <Stack
       {...iconProps(bgcolor, borderColor, diameter)}
       borderColor={borderColor}
-      className="EzRadioIcon-checked-border"
+      className="EzRadioIcon-checked"
     />
 
     <Zoom in>
@@ -88,13 +110,20 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
     const getDiameter = (part: 'button' | 'dot') => VARIANT_SIZES[variant][size][part];
     const getColor = (checked: boolean, hover: boolean, style: 'background' | 'border' | 'dot') => {
       const radioState = `${checked ? 'checked' : 'unchecked'}${disabled ? 'Disabled' : ''}`;
-      return VARIANT_COLORS(themeColor, theme.palette.common.white, theme.palette.common.disabled)[
-        variant
-      ][hover ? 'hover' : radioState][style];
+      return VARIANT_COLORS(
+        themeColor,
+        theme.palette.common.white,
+        theme.palette.common.neutral120, // disabled background color
+        theme.palette.common.neutral130, // disabled border color
+        theme.palette.common.disabled // disabled color
+      )[variant][hover ? 'hover' : radioState][style];
     };
     const radioIconProps = (checked: boolean) => ({
       bgcolor: getColor(checked, false, 'background'),
-      borderColor: getColor(checked, false, 'border'),
+      borderColor:
+        !disabled && variant === 'outlined' && !checked
+          ? theme.palette.common.neutral140
+          : getColor(checked, false, 'border'),
       diameter: getDiameter('button'),
       dotColor: getColor(checked, false, 'dot'),
       dotDiameter: getDiameter('dot'),
@@ -135,8 +164,9 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
               '&:before': {bgcolor: getColor(false, true, 'dot')},
             },
           },
-          '&:focus-within': {
-            bgcolor: `${themeColor}20`,
+          '&:focus-within .EzRadioIcon-checked': {
+            outline: `2px solid ${theme.palette.common.black}`,
+            outlineOffset: '2px',
           },
         }}
         {...props}

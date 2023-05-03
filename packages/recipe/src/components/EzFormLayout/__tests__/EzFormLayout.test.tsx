@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
+import EzField from '../../EzField';
 import EzFormLayout from '../EzFormLayout';
-import {EzField} from '../..';
 
 describe('EzFormLayout', () => {
   const SampleLayout = () => (

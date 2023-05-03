@@ -31,7 +31,7 @@
 () => {
   const containerRef = React.createRef();
   return (
-    <div ref={containerRef} style={{minHeight: 320}}>
+    <div ref={containerRef} style={{minHeight: 390}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField
@@ -147,7 +147,7 @@
   const containerRef = React.createRef();
 
   return (
-    <div ref={containerRef} style={{minHeight: 320}}>
+    <div ref={containerRef} style={{minHeight: 390}}>
       <Open containerRef={containerRef}>
         <EzFormLayout>
           <EzField

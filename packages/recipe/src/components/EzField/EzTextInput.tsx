@@ -14,10 +14,10 @@ const textInput = theme.css({
   fontFamily: '$defaultFont',
   fontSize: '$text',
   display: 'block',
-  color: '$text',
+  color: '$textAlt',
   width: '$full',
   backgroundColor: 'white',
-  border: '1px solid $border',
+  border: '1px solid $borderAlt',
   borderRadius: '$regular',
   margin: 0,
 
@@ -26,8 +26,8 @@ const textInput = theme.css({
   lineHeight: '1.25rem',
   padding: 'calc($100 - 0.125rem) $150',
 
-  '&:enabled': {boxShadow: '$sm'},
-  '&::placeholder': {color: '$gray500'},
+  '&::placeholder': {color: '$gray650'},
+  '&:focus': {outlineColor: '$colors$focusRing'},
 
   variants: {
     error: {
@@ -39,8 +39,8 @@ const textInput = theme.css({
     touched: {true: {}},
     disabled: {
       true: {
-        backgroundColor: '$gray200',
-        borderColor: '$gray300',
+        backgroundColor: '$gray250',
+        borderColor: '$gray350',
         color: '$textDisabled',
       },
     },

@@ -4,7 +4,6 @@ import {lighten} from '@mui/material/styles';
 import {EzSuperFormControlLabelProps, Ref} from '../EzSuperFormControlLabel.types';
 import {RadioGroupThemeContext} from '../../EzRadioGroup/EzRadioGroup';
 import {FormGroupThemeContext} from '../../EzFormGroup/EzFormGroup';
-import {useThemeColor} from '../../../themes/hooks/useThemeColor';
 
 const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>(
   ({checked, control, disabled, icon, label, value, ...props}, ref) => {
@@ -31,18 +30,28 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
         selected: {
           backgroundColor: getThemeColor(variant === 'outlined' ? 'light' : 'dark'),
           borderColor: getThemeColor('dark'),
+          iconColor: getThemeColor(variant === 'outlined' ? 'dark' : 'light'),
           textColor: getThemeColor(variant === 'outlined' ? 'dark' : 'light'),
         },
         unselected: {
           backgroundColor: getThemeColor('light'),
           borderColor: getThemeColor('light'),
+          iconColor: getThemeColor('dark'),
           textColor: getThemeColor('dark'),
+        },
+        hover: {
+          backgroundColor: getThemeColor(variant === 'outlined' ? 'light' : 'dark'),
+          borderColor: getThemeColor('dark'),
+          iconColor: getThemeColor(variant === 'outlined' ? 'dark' : 'light'),
+          textColor: getThemeColor(variant === 'outlined' ? 'dark' : 'light'),
         },
       };
     }
 
-    const getColor = (selected: boolean, style: 'backgroundColor' | 'borderColor' | 'textColor') =>
-      groupTheme[selected ? 'selected' : 'unselected'][style];
+    const getColor = (
+      state: 'selected' | 'unselected' | 'hover',
+      style: 'backgroundColor' | 'borderColor' | 'iconColor' | 'textColor'
+    ) => groupTheme[state][style];
 
     return (
       <FormControlLabel
@@ -61,7 +70,7 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
             <Box
               className="EzSuperFormControlLabel-icon"
               lineHeight={1}
-              sx={{'& svg': {color: getColor(isChecked, 'textColor')}}}
+              sx={{'& svg': {color: getColor(isChecked ? 'selected' : 'unselected', 'iconColor')}}}
             >
               {icon}
             </Box>
@@ -69,7 +78,7 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
             {label && (
               <Stack
                 className="EzSuperFormControlLabel-text"
-                color={getColor(isChecked, 'textColor')}
+                color={getColor(isChecked ? 'selected' : 'unselected', 'textColor')}
                 textAlign="center"
                 lineHeight="1em"
                 mt={1}
@@ -81,20 +90,17 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
         }
         value={value}
         sx={{
-          bgcolor: getColor(isChecked, 'backgroundColor'),
-          border: '3px solid',
-          borderColor: getColor(isChecked, 'borderColor'),
-          borderRadius: '16px',
+          bgcolor: getColor(isChecked ? 'selected' : 'unselected', 'backgroundColor'),
+          border: '1px solid',
+          borderColor: getColor(isChecked ? 'selected' : 'unselected', 'borderColor'),
+          borderRadius: '8px',
           justifyContent: 'space-around',
           p: 2,
           position: 'relative',
           '&:focus-visible': {outline: 'none'},
           '&:focus-within': {
-            boxShadow: `0 0 0 3px ${
-              isPaletteColor
-                ? getColor(true, 'borderColor')
-                : useThemeColor(getColor(true, 'borderColor'))
-            }50`,
+            outline: `2px solid ${palette.common.black}`,
+            outlineOffset: '2px',
           },
           '.EzRadio, .EzCheckbox': {
             cursor: 'inherit',
@@ -108,13 +114,11 @@ const EzSuperFormControlLabelMui = forwardRef<Ref, EzSuperFormControlLabelProps>
             width: '100%',
             zIndex: 1,
           },
-          '&.EzSuperFormControlLabel-radio:hover:not(.Mui-disabled)': {
-            bgcolor: getColor(true, 'backgroundColor'),
-            borderColor: getColor(true, 'borderColor'),
-            '.EzSuperFormControlLabel-text': {color: getColor(true, 'textColor')},
-            '& svg': {
-              color: getColor(true, 'textColor'),
-            },
+          '&.EzSuperFormControlLabel:hover:not(.Mui-disabled)': {
+            bgcolor: getColor('hover', 'backgroundColor'),
+            borderColor: getColor('hover', 'borderColor'),
+            '.EzSuperFormControlLabel-text': {color: getColor('hover', 'textColor')},
+            '.EzSuperFormControlLabel-icon svg': {color: getColor('hover', 'iconColor')},
           },
         }}
         {...props}

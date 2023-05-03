@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useMemo} from 'react';
 import {Chip} from '@mui/material';
 import {faCircle} from '@fortawesome/free-solid-svg-icons/faCircle';
 import {faXmark} from '@fortawesome/free-solid-svg-icons/faXmark';
@@ -24,15 +24,17 @@ const EzChipMui = forwardRef<Ref, EzChipProps & {children?: null}>(
     const chipCommonColor = isCommonColor ? color : undefined;
     const chipColor = chipThemeColor || chipCommonColor;
     const chipFontColor = variant === 'outlined' ? chipColor : undefined;
+    const dotIconWrapperStyles = useMemo(() => ({display: 'flex', fontSize: '6px'}), []);
+    const deleteIconWrapperStyles = useMemo(() => ({display: 'flex', fontSize: '12px'}), []);
 
     const DotIcon = (
-      <div style={{display: 'flex', fontSize: '6px'}}>
+      <div style={dotIconWrapperStyles}>
         <EzIcon icon={faCircle} color={chipColor} size="inherit" />
       </div>
     );
 
     const DeleteIcon = (
-      <div style={{display: 'flex', fontSize: '12px'}}>
+      <div style={deleteIconWrapperStyles}>
         <EzIcon icon={faXmark} color="inherit" size="inherit" />
       </div>
     );

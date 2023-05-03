@@ -34,8 +34,8 @@ const footerButton = theme.css({
     backgroundColor: 'white',
   },
   '&:focus': {
-    outline: 'none',
-    boxShadow: '$focus-ring',
+    outline: '$outlines$focusOutline',
+    outlineOffset: '$outlines$focusOutlineOffset',
   },
 });
 

@@ -34,8 +34,8 @@ const tabBase = theme.css({
     padding: '$tabs-py $tabs-px',
     textDecoration: 'none',
     '&:focus': {
-      outline: 'auto',
-      outlineColor: '$tabs-outline-color',
+      outline: '$outlines$focusOutline',
+      outlineOffset: '$outlines$focusOutlineOffset',
     },
   },
 });
@@ -45,7 +45,8 @@ const activeTab = theme.css({
   '&& > *, && a': {
     color: '$tabs-active-color',
     ':focus': {
-      outlineColor: '$tabs-focus-outline-color',
+      outline: '$outlines$focusOutline',
+      outlineOffset: '$outlines$focusOutlineOffset',
     },
   },
   '&& a, && > button': {

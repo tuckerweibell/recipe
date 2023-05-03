@@ -110,6 +110,8 @@ In the case that you cannot find what you need from Font Awesome or ezCater icon
 
 By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.primary100`).
 
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
+
 ```jsx
 () => {
   const {Fries} = require('@ezcater/icons');

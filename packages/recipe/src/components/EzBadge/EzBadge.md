@@ -45,6 +45,8 @@ EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `war
 
 Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
+
 ```jsx
 () => {
   const {shoppingCart} = require('@fortawesome/free-solid-svg-icons/faCartShopping');

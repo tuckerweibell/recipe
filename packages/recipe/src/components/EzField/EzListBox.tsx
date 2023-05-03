@@ -1,18 +1,19 @@
 import React, {useRef} from 'react';
 import Highlighter from 'react-highlight-words';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {Stack} from '@mui/material';
 import theme from '../theme.config';
 import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
 import {clsx} from '../../utils';
+import EzIcon from '../EzIcon';
 
 const popup = theme.css({
-  minWidth: '230px',
   background: 'white',
-  border: '1px solid #ccc',
-  borderRadius: '6px',
+  borderRadius: '4px',
   width: '$full',
   overflow: 'scroll',
   maxHeight: '20rem',
-  boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.06)',
 });
 
 const list = theme.css({
@@ -22,7 +23,10 @@ const list = theme.css({
 });
 
 const listItem = theme.css({
-  margin: 0,
+  borderRadius: '4px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  margin: '8px',
   padding: '$100 $150',
 });
 
@@ -34,37 +38,20 @@ const groupLabel = theme.css({
 });
 
 const listItemOption = theme.css({
-  color: '$blue600',
-  fontWeight: 'bold',
+  alignItems: 'center',
+  color: '$black100',
+  cursor: 'pointer',
+  display: 'flex',
   position: 'relative',
-  paddingRight: '2em',
+  paddingRight: '0.75em',
 
   variants: {
     selected: {
       true: {
-        backgroundColor: '$blue600',
-        color: 'white',
-      },
-    },
-    current: {
-      true: {
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center right 12px',
-        backgroundImage:
-          "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%238b99a6' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e\")",
+        backgroundColor: '$gray250',
       },
     },
   },
-  compoundVariants: [
-    {
-      selected: 'true',
-      current: 'true',
-      css: {
-        backgroundImage:
-          "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24' width='12' height='12'%3e%3cpath d='M20.29 2L9 13.57 3.71 8.56 0 12.27 9 21 24 5.71z'/%3e%3c/svg%3e\")",
-      },
-    },
-  ],
 });
 
 const OptGroup = props => {
@@ -124,6 +111,11 @@ const EzListBox = (props, ref) => {
             textDecoration: 'underline',
           }}
         />
+        {current && (
+          <Stack ml={2}>
+            <EzIcon icon={faCheck} size="small" />
+          </Stack>
+        )}
       </li>
     );
   };

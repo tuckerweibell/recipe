@@ -74,18 +74,11 @@ For destructive actions, set the button's `color` to `common.destructive`.
   return (
     <EzPage>
       <EzLayout>
-        <CoffeeIconButton
-          onClick={() => alert('Coffee clicked.')}
-        />
+        <CoffeeIconButton onClick={() => alert('Coffee clicked.')} />
 
-        <CoffeeIconButton
-          onClick={() => alert('Coffee clicked.')}
-          color="common.destructive"
-        />
+        <CoffeeIconButton onClick={() => alert('Coffee clicked.')} color="common.destructive" />
 
-        <CoffeeIconButton
-          onKeyDown={event => event.key === 'Enter' && alert('Coffee entered.')}
-        />
+        <CoffeeIconButton onKeyDown={event => event.key === 'Enter' && alert('Coffee entered.')} />
       </EzLayout>
     </EzPage>
   );
@@ -97,6 +90,8 @@ For destructive actions, set the button's `color` to `common.destructive`.
 EzIconButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.black`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 By default, the `color` passed to `EzIconButton` will also be passed to the child element (`EzIcon`) for `outlined` and `basic` variants. For `filled` icon buttons, the default color passed is `common.white`. The child element `color` prop can be overwritten if a different icon color is needed.
+
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 
 ```jsx
 () => {
@@ -225,7 +220,7 @@ An icon button can be made disabled by adding the optional `disabled` prop. Disa
         <CoffeeIconButton disabled />
         <CoffeeIconButton variant="outlined" disabled />
         <CoffeeIconButton variant="text" disabled />
-        
+
         <EzTooltip message="This icon button is disabled">
           <span>
             <CoffeeIconButton disabled />

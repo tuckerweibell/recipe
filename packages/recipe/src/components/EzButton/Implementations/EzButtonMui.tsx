@@ -32,7 +32,6 @@ const EzButtonMui = forwardRef<Ref, EzButtonMuiProps>(
           color: isCommonColor && variant !== 'filled' ? themeColor : undefined,
           fontSize:
             fontSize === 'inherit' ? fontSize : theme.typography?.font?.size[fontSize] || undefined,
-          '&:focus': {boxShadow: `0 0 0 3px ${themeColor}50`},
           '&:hover, &:active': {
             bgcolor: variant === 'filled' ? darken(themeColor, 0.2) : alpha(themeColor, 0.1),
             borderColor: variant !== 'text' ? themeColor : undefined,

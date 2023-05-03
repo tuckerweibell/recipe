@@ -1,12 +1,14 @@
-import React, {useRef, useCallback} from 'react';
-import theme from '../theme.config';
-import {TextInputWrapper} from './Picker.styles';
-import EzTextInput from './EzTextInput';
-import EzPopover from '../EzPopover';
-import {ChevronIcon, InsetIcon} from '../Icons';
+import React, {useMemo, useRef, useCallback} from 'react';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import EzIcon from '../EzIcon';
 import EzListBox from './EzListBox';
+import EzPopover from '../EzPopover';
+import EzTextInput from './EzTextInput';
+import {InsetIcon} from '../Icons';
 import {useSelectState, useSelect} from './useSelect';
 import {domProps} from '../../utils';
+import {TextInputWrapper} from './Picker.styles';
+import theme from '../theme.config';
 
 const pointer = theme.css({cursor: 'default'});
 
@@ -28,6 +30,7 @@ const EzSelect = props => {
   const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
+  const iconWrapperStyle = useMemo(() => ({fontSize: '13px'}), []);
   const ariaLabelledBy = props['aria-labelledby'];
   const containerRef = useRef<HTMLDivElement>();
   const changeEvent = useCallback(
@@ -67,7 +70,9 @@ const EzSelect = props => {
           touched={props.touched}
         />
         <InsetIcon insetY0 right0 pr2>
-          <ChevronIcon flip={state.isOpen} />
+          <div style={iconWrapperStyle}>
+            <EzIcon icon={state.isOpen ? faChevronUp : faChevronDown} size="inherit" />
+          </div>
         </InsetIcon>
       </TextInputWrapper>
       {state.isOpen && (

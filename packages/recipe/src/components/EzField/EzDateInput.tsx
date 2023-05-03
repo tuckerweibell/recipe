@@ -1,14 +1,16 @@
-import React, {useState, useRef} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import theme from '../theme.config';
-import EzTextInput from './EzTextInput';
-import {TextInputWrapper} from './Picker.styles';
-import EzPopover from '../EzPopover';
 import EzCalendar from '../EzCalendar/EzCalendar';
+import EzIcon from '../EzIcon';
+import EzPopover from '../EzPopover';
+import EzTextInput from './EzTextInput';
 import {useMenuTrigger, useMenuTriggerState} from '../Overlays';
 import {useUpdateEffect} from '../../utils/hooks';
-import {ChevronIcon, CalendarIcon, InsetIcon} from '../Icons';
+import {CalendarIcon, InsetIcon} from '../Icons';
 import FocusScope from '../utils/FocusScope';
+import {TextInputWrapper} from './Picker.styles';
 import {clsx} from '../../utils';
 
 const layout = theme.css({
@@ -72,8 +74,8 @@ const EzDateInput = ({
 
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
-
   const menuState = useMenuTriggerState();
+  const iconWrapperStyle = useMemo(() => ({fontSize: '13px'}), []);
 
   const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
@@ -129,7 +131,9 @@ const EzDateInput = ({
         </InsetIcon>
         <EzTextInput {...comboboxInput} type="text" />
         <InsetIcon insetY0 right0 pr2>
-          <ChevronIcon flip={isOpen} />
+          <div style={iconWrapperStyle}>
+            <EzIcon icon={isOpen ? faChevronUp : faChevronDown} size="inherit" />
+          </div>
         </InsetIcon>
       </TextInputWrapper>
       {isOpen && (

@@ -72,6 +72,8 @@ For destructive actions, set the button's `color` to `destructive`.
 
 EzButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.neutral160`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
+
 ```jsx
 <EzLayout layout="stack">
   <EzLayout>

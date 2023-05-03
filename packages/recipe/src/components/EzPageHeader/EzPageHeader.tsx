@@ -1,13 +1,15 @@
 import React, {createRef, useRef} from 'react';
 import {Stack} from '@mui/material';
 import {faArrowLeftLong} from '@fortawesome/free-solid-svg-icons';
-import LinkButton from './LinkButton';
 import {Link, LabelledLink, Labelled} from '../EzLink/EzLink.types';
-import {EzHeading, EzIcon, EzLayout} from '..';
 import {Tab, TabList} from './Tabs';
 import {MaxWidth} from '../EzAppLayout/EzAppLayout';
 import {clsx, wrapEvent} from '../../utils';
 import theme from '../theme.config';
+import EzHeading from '../EzHeading';
+import EzIcon from '../EzIcon';
+import EzLayout from '../EzLayout';
+import LinkButton from './LinkButton';
 
 type TabType = Labelled | (Labelled & Link);
 

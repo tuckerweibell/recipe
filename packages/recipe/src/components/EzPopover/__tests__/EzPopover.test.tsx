@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
-import {render, screen, fireEvent} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {axe} from '../../../../test-utils';
+import {fireEvent} from '@testing-library/react';
+import {axe, render, screen, userEvent} from '../../../../test-utils';
 import EzPopover from '../EzPopover';
 import EzField from '../../EzField';
 import {useCloseOnBlur} from '../useCloseOnBlur';

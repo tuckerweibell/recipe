@@ -285,7 +285,7 @@ Note: this isn't an typical configuration (a header is usually expected).
   const containerRef = React.createRef();
 
   return (
-    <div style={{minHeight: 700}}>
+    <div style={{minHeight: 740}}>
       <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
       <EzModal
         isOpen={isOpen}

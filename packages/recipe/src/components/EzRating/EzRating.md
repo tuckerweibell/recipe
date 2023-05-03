@@ -52,6 +52,10 @@ For accessibility purposes, Recipe provides the rating component `role="img"` an
 
 The same values available for the [EzIcon's](https://ezcater.github.io/recipe/components/ez-icon/#icon-color) `color` can be provided as an optional prop.
 
+We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.primary100`).
+
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
+
 ```jsx
 () => {
   const {fullStar} = require('@fortawesome/free-solid-svg-icons/faStar');
@@ -104,7 +108,7 @@ If you want to specify a size, use the `size` prop. We currently support `small`
   const {halfStar} = require('@fortawesome/free-solid-svg-icons/faStarHalfStroke');
   const {emptyStar} = require('@fortawesome/free-regular-svg-icons/faStar');
   const value = 2.74;
-  
+
   return (
     <EzPage>
       <EzLayout layout="stack">

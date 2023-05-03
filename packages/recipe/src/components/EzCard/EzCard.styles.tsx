@@ -62,7 +62,8 @@ export const container = theme.css({
         },
         // when the card content is in focus, promote the focus up to the card itself
         '&:focus-within': {
-          boxShadow: '$card-focus',
+          outline: '$outlines$focusOutline',
+          outlineOffset: '$outlines$focusOutlineOffset',
         },
         // for browsers that don't support :focus-within, make sure links retain their focus style
         '& a:focus': {

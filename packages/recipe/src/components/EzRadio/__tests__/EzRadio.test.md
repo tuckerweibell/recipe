@@ -458,12 +458,20 @@
             selected: {
               backgroundColor: 'common.yellow100',
               borderColor: 'common.yellow100',
+              iconColor: 'common.primary110',
               textColor: 'common.primary110',
             },
             unselected: {
               backgroundColor: 'common.green105',
               borderColor: 'common.green105',
+              iconColor: 'common.white',
               textColor: 'common.white',
+            },
+            hover: {
+              backgroundColor: 'common.yellow110',
+              borderColor: 'common.white',
+              iconColor: 'common.black',
+              textColor: 'common.green105',
             },
           },
         }}
@@ -648,16 +656,16 @@
     <EzLayout layout="equal">
       <style>{`
         .EzRadio-outlined .EzRadioIcon-unchecked,
-        .EzRadio-outlined .EzRadioIcon-checked-border,
-        .EzRadio:hover .EzRadioIcon-unchecked {
+        .EzRadio-outlined .EzRadioIcon-checked,
+        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
+        .EzFormControlLabel:hover .EzRadioIcon-checked,
+        .EzRadio:hover .EzRadioIcon-unchecked,
+        .EzRadio:hover .EzRadioIcon-checked {
           border-color: orange;
         }
-        .EzRadio:focus-within {
-          background-color: #fed8b150;
-          border-color: #fed8b150;
-        }
-        .EzRadioIcon-checked-dot,
-        .EzRadio:hover .EzRadioIcon-unchecked {
+        .EzFormControlLabel:hover .EzRadioIcon-unchecked,
+        .EzRadio:hover .EzRadioIcon-unchecked,
+        .EzRadioIcon-checked-dot {
           background-color: orange;
         }
         .EzFormLabel.Mui-focused {
@@ -728,7 +736,7 @@
   return (
     <EzLayout layout="equal">
       <style>{`
-        .EzRadio-outlined .EzRadioIcon-unchecked,
+        .EzRadio-outlined .EzRadioIcon-checked,
         .EzRadio-outlined .EzRadioIcon-checked-border,
         .EzRadio:hover .EzRadioIcon-unchecked {
           border-color: orange;

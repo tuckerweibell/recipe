@@ -12,8 +12,13 @@ const button = theme.css({
   margin: '-$dismiss-padding',
   backgroundColor: '$dismiss-background',
 
-  '&:hover, &:focus': {
+  '&:hover': {
     backgroundColor: '$dismiss-translucent-dark',
+  },
+
+  '&:focus': {
+    outline: '$outlines$focusOutline',
+    outlineOffset: '$outlines$focusOutlineOffset',
   },
 
   '&:active': {

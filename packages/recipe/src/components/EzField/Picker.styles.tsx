@@ -2,7 +2,7 @@ import React from 'react';
 import theme from '../theme.config';
 
 const picker = theme.css({
-  stroke: '$blue600',
+  stroke: '$black100',
 
   input: {
     textOverflow: 'ellipsis',

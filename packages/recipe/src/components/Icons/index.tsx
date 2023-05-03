@@ -124,21 +124,6 @@ export const WarningIcon = () => (
   </SvgIcon>
 );
 
-export const ChevronIcon = (p: {flip?: boolean}) => (
-  <svg
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth="3"
-    viewBox="0 0 24 24"
-    height="1rem"
-    width="1rem"
-    fill="none"
-    style={p.flip ? {transform: 'rotate(-180deg)'} : undefined}
-  >
-    <path d="M6 9l6 6 6-6" />
-  </svg>
-);
-
 export const CalendarIcon = (p: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 14 14" height="1rem" width="1rem" {...p}>
     <path

@@ -148,7 +148,7 @@
 () => {
   const containerRef = React.createRef();
   return (
-    <div style={{minHeight: 140}}>
+    <div style={{minHeight: 160}}>
       <EzLayout>
         <EzField
           type="autosuggest"
@@ -200,7 +200,7 @@
   };
 
   return (
-    <div ref={containerRef} style={{minHeight: 140}}>
+    <div ref={containerRef} style={{minHeight: 160}}>
       <Open containerRef={containerRef}>
         <TypeInField>
           <EzField

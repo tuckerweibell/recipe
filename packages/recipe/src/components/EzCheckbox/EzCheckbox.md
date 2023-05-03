@@ -36,8 +36,9 @@ To mark the checkbox as checked by default, use the `defaultChecked` prop.
   {/* Note: inline styles are discouraged and used here only for demo purposes */}
   <EzLayout layout="basic" style={{backgroundColor: '#034a34'}}>
     <EzCheckbox defaultChecked name="filledCheckbox" variant="filled" />
-    <EzCheckbox defaultChecked name="filledInverseCheckbox" variant="filled-inverse" />
   </EzLayout>
+
+  <EzCheckbox defaultChecked name="filledInverseCheckbox" variant="filled-inverse" />
 </EzLayout>
 ```
 
@@ -80,7 +81,10 @@ You can optionally append a set of icons to the label by passing in an array of 
           control={<EzCheckbox defaultChecked name="filled" variant="filled" />}
           label="Filled"
         />
+      </EzLayout>
 
+      {/* Note: inline styles are discouraged and used here only for demo purposes */}
+      <EzLayout layout="stack" style={{paddingLeft: '16px'}}>
         <EzFormControlLabel
           control={<EzCheckbox defaultChecked name="filledInverse" variant="filled-inverse" />}
           label="Filled-Inverse"
@@ -94,6 +98,8 @@ You can optionally append a set of icons to the label by passing in an array of 
 ### Checkbox Colors
 
 EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 
 ```jsx
 <EzLayout layout="stack">
@@ -122,7 +128,10 @@ EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `
         variant="filled"
       />
     </EzLayout>
+  </EzLayout>
 
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
     <EzLayout layout="basic">
       <EzCheckbox
         color="primary"
@@ -180,7 +189,10 @@ If you want to specify a size, use the `size` property. We currently support `sm
       <EzCheckbox defaultChecked name="filledMedium" size="medium" variant="filled" />
       <EzCheckbox defaultChecked name="filledLarge" size="large" variant="filled" />
     </EzLayout>
+  </EzLayout>
 
+  {/* Note: inline styles are discouraged and used here only for demo purposes */}
+  <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
     <EzLayout layout="basic">
       <EzCheckbox defaultChecked name="filledInverseSmall" size="small" variant="filled-inverse" />
       <EzCheckbox
@@ -433,9 +445,7 @@ To display an error state in a checkbox group, pass an `error` boolean property 
           <EzFormLabel id="checkbox-buttons-drinks">
             <EzLayout layout="stack">
               Drinks
-              {error && (
-                <EzAlert headline="Please choose one or more options" use="error" />
-              )}
+              {error && <EzAlert headline="Please choose one or more options" use="error" />}
             </EzLayout>
           </EzFormLabel>
           <EzFormGroup ariaLabel="checkbox-buttons-drinks">
@@ -469,7 +479,7 @@ To display an error state in a checkbox group, pass an `error` boolean property 
 To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox` with the following components and their props:
 
 - `EzFormControl` - used to provide context and ensure a consistent state
-  - `error` - if `true`, the label is displayed in an error state 
+  - `error` - if `true`, the label is displayed in an error state
 - `EzFormLabel` - used to provide a label for a group of checkboxes
   - `id` - should match the `ariaLabel` prop of `EzFormGroup`
 - `EzFormGroup` - used to group checkboxes
@@ -492,8 +502,8 @@ To provide proper keyboard accessibility when using checkboxes, use `EzCheckbox`
 For larger, more visual checkbox buttons, provide an `icon` (`<EzIcon />`) along with an optional `label` to `EzFormControlLabel`.
 
 - To define a set pixel width for the buttons, pass a `labelWidth` of type `number` to `EzFormGroup`. Labels will wrap if needed, but should not be more than 2 lines.
-- To define a theme for each button in a group, pass a `theme` property to `EzFormGroup` (see example below).
-  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object
+- To define a theme for each button in a group, pass a `theme` property to `EzFormGroup`.
+  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object (see example below)
   - `variant` accepts either `filled` (default), or `outlined` (`filled-inverse` is not supported - use custom defined values)
 - Super checkbox buttons must be controlled, so be sure to pass `checked` and `value` properties to `EzFormControlLabel` as well as `onChange` to `EzCheckbox`.
 
@@ -594,12 +604,20 @@ For larger, more visual checkbox buttons, provide an `icon` (`<EzIcon />`) along
                 selected: {
                   backgroundColor: 'common.yellow100',
                   borderColor: 'common.yellow100',
+                  iconColor: 'common.primary110',
                   textColor: 'common.primary110',
                 },
                 unselected: {
                   backgroundColor: 'common.green105',
                   borderColor: 'common.green105',
+                  iconColor: 'common.white',
                   textColor: 'common.white',
+                },
+                hover: {
+                  backgroundColor: 'common.yellow110',
+                  borderColor: 'common.white',
+                  iconColor: 'common.black',
+                  textColor: 'common.green105',
                 },
               },
             }}
@@ -672,7 +690,9 @@ A checkbox can be made disabled by adding the optional `disabled` prop on either
               <EzCheckbox defaultChecked disabled name="filledDisabledB" variant="filled" />
               <EzCheckbox defaultChecked name="filledEnabled" variant="filled" />
             </EzLayout>
+          </EzLayout>
 
+          <EzLayout layout="basic">
             <EzLayout layout="basic">
               <EzCheckbox disabled name="filledInverseDisabledA" variant="filled-inverse" />
               <EzCheckbox

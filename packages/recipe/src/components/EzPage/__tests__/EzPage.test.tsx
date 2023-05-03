@@ -1,7 +1,8 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import {EzPage, EzPageSection} from '..';
+import EzPage from '../EzPage';
+import EzPageSection from '../EzPageSection';
 
 describe('EzPage', () => {
   it('should meet accessibility guidelines', async () => {

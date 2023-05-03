@@ -46,7 +46,9 @@ const track = theme.css({
   transitionDuration: '0.2s',
 
   'input:focus + &': {
-    '&::after': {boxShadow: '$focus-ring'},
+    '&::after': {
+      outline: '$outlines$focusOutline',
+    },
   },
 
   '&::after': {

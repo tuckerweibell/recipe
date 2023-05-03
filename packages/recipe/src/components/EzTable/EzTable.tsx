@@ -1,5 +1,4 @@
 import React, {FC, createContext, createElement, useContext} from 'react';
-import {Stack} from '@mui/material';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import theme from '../theme.config';
@@ -8,6 +7,7 @@ import EzCheckbox from '../EzCheckbox';
 import EzButton from '../EzButton';
 import EzLayout from '../EzLayout';
 import EzIcon from '../EzIcon';
+import EzIconButton from '../EzIconButton';
 import TableCardSection from './TableCardSection';
 import {TableProps} from './EzTable.types';
 import useSorting from './useSorting';
@@ -422,7 +422,7 @@ const rowsPerPageSvg = theme.css({
   fill: '#8B99A6',
   'select:focus + &': {
     borderRadius: '3px',
-    boxShadow: '#3e90d6 0px 0px 0px 2px',
+    outline: '$outlines$focusOutline',
   },
   'select:hover + &': {
     fill: '#212b36',
@@ -472,35 +472,29 @@ const TablePagination = ({pagination}) => {
           <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
 
           <div className={virtualTouchable()}>
-            {/* TODO: convert to EzIconButton */}
-            <EzButton
+            <EzIconButton
               ariaLabel={t('Previous Page')}
-              color="neutral"
+              color="common.neutral160"
               disabled={pagination.currentPage === 1}
               onClick={pagination.onPrevPageClick}
               size="small"
-              variant="text"
+              variant="basic"
             >
-              <Stack>
-                <EzIcon icon={faChevronLeft} size="small" />
-              </Stack>
-            </EzButton>
+              <EzIcon icon={faChevronLeft} size="small" />
+            </EzIconButton>
           </div>
 
           <div className={virtualTouchable()}>
-            {/* TODO: convert to EzIconButton */}
-            <EzButton
+            <EzIconButton
               ariaLabel={t('Next Page')}
-              color="neutral"
+              color="common.neutral160"
               disabled={pagination.currentPage === pages}
               onClick={pagination.onNextPageClick}
               size="small"
-              variant="text"
+              variant="basic"
             >
-              <Stack>
-                <EzIcon icon={faChevronRight} size="small" />
-              </Stack>
-            </EzButton>
+              <EzIcon icon={faChevronRight} size="small" />
+            </EzIconButton>
           </div>
         </nav>
         <div className={clsx(rowsPerPageWrapper(), iconSize())}>

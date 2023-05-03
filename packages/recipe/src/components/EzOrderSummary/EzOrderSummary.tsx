@@ -1,8 +1,11 @@
 import React from 'react';
-import {EzCard, EzTable, EzTextStyle, EzLayout, EzCardSection} from '..';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
 import theme from '../theme.config';
+import {EzCard, EzCardSection} from '../EzCard';
+import EzLayout from '../EzLayout';
+import EzTable from '../EzTable';
+import EzTextStyle from '../EzTextStyle';
 import TableCardSection from '../EzTable/TableCardSection';
 
 type LabelValuePair = {label: string; value: string};

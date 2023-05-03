@@ -1,6 +1,6 @@
 import React from 'react';
-import {render, getByLabelText, fireEvent, act, screen} from '@testing-library/react';
-import {axe} from '../../../../test-utils';
+import {getByLabelText, fireEvent} from '@testing-library/react';
+import {act, axe, render, screen} from '../../../../test-utils';
 import EzField from '../EzField';
 
 describe('EzField', () => {

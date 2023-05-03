@@ -88,15 +88,14 @@ const linkButton = theme.css({
 
   '&&': {color: '$banner-button-text'},
 
-  '&:focus, &:hover, &:active': {
-    backgroundColor: '$banner-button-bg',
-    outline: 'none',
-  },
   '&:focus': {
-    boxShadow: '$focus-ring',
+    outline: '$outlines$focusOutline',
+    outlineOffset: '$outlines$focusOutlineOffset',
   },
   '&:hover, &:active': {
     boxShadow: '$banner-button-shadow-dark',
+    backgroundColor: '$banner-button-bg',
+    outline: 'none',
   },
   '&:hover': {
     color: '$banner-button-text-hover',

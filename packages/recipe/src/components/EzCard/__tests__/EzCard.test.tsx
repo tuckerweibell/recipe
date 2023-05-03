@@ -3,7 +3,8 @@ import {render} from '@testing-library/react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons/faCoffee';
 import {axe} from '../../../../test-utils';
-import {EzCard, EzCardSection} from '..';
+import EzCard from '../EzCard';
+import EzCardSection from '../EzCardSection';
 import EzIcon from '../../EzIcon/EzIcon';
 
 describe('EzCard', () => {

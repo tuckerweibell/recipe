@@ -28,22 +28,46 @@ EzRadio supports `outlined` (default) and `filled` (for darker backgrounds) vari
 
 ```jsx
 () => {
-  const [selectedValue, setSelectedValue] = useState('a');
-  const handleChange = event => setSelectedValue(event.target.value);
-  const radioProps = item => ({
-    checked: selectedValue === item,
-    name: 'basic-radio-button',
-    onChange: handleChange,
-    value: item,
-  });
+  const [selectedOutlined, setSelectedOutlined] = useState('a');
+  const [selectedFilled, setSelectedFilled] = useState('a');
+  const handleChangeOutlined = event => setSelectedOutlined(event.target.value);
+  const handleChangeFilled = event => setSelectedFilled(event.target.value);
 
   return (
-    <EzLayout>
-      <EzRadio {...radioProps('a')} />
-
+    <EzLayout layout="stack">
       {/* Note: inline styles are discouraged and used here only for demo purposes */}
-      <EzLayout layout="basic" style={{backgroundColor: '#034a34'}}>
-        <EzRadio {...radioProps('b')} variant="filled" />
+      <EzLayout>
+        <span style={{marginLeft: '16px', width: '60px'}}>Outlined:</span>
+        <EzRadio
+          checked={selectedOutlined === 'a'}
+          name="outlined-radio"
+          onChange={handleChangeOutlined}
+          value="a"
+        />
+        <EzRadio
+          checked={selectedOutlined === 'b'}
+          name="outlined-radio"
+          onChange={handleChangeOutlined}
+          value="b"
+        />
+      </EzLayout>
+
+      <EzLayout layout="basic" style={{backgroundColor: '#034a34', color: 'white'}}>
+        <span style={{marginLeft: '16px', width: '60px'}}>Filled:</span>
+        <EzRadio
+          checked={selectedFilled === 'a'}
+          name="filled-radio"
+          variant="filled"
+          onChange={handleChangeFilled}
+          value="a"
+        />
+        <EzRadio
+          checked={selectedFilled === 'b'}
+          name="filled-radio"
+          variant="filled"
+          onChange={handleChangeFilled}
+          value="b"
+        />
       </EzLayout>
     </EzLayout>
   );
@@ -76,7 +100,7 @@ You can optionally append a set of icons to the label by passing in an array of 
 
         <EzFormControlLabel
           control={<EzRadio {...radioProps('b')} />}
-          label="With Icons"
+          label="Outlined with icons"
           labelIcons={[
             <EzIcon icon={Coffee} size="small" />,
             <EzIcon icon={WaterGlass} size="small" />,
@@ -104,41 +128,35 @@ You can optionally append a set of icons to the label by passing in an array of 
 
 EzRadio supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
+<EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
+
 ```jsx
 () => {
   const [selectedValue, setSelectedValue] = useState('a');
   const handleChange = event => setSelectedValue(event.target.value);
-  const RadioButton = ({item, color, variant = 'outlined'}) => (
-    <EzRadio
-      checked={selectedValue === item}
-      color={color}
-      name="radio-button-colors"
-      onChange={handleChange}
-      value={item}
-      variant={variant}
-    />
-  );
+  const radioProps = item => ({
+    checked: selectedValue === item,
+    name: 'radio-button-colors',
+    onChange: handleChange,
+    value: item,
+  });
 
   return (
     <EzLayout layout="stack">
       {/* Note: inline styles are discouraged and used here only for demo purposes */}
       <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
-        <RadioButton item="a" color="primary" />
-        <RadioButton item="b" color="warning" />
-        <RadioButton item="c" color="info" />
-        <RadioButton item="d" color="neutral" />
-        <RadioButton item="e" color="common.red100" />
-        <RadioButton item="f" color="common.purple100" />
+        <EzRadio color="primary" {...radioProps('a')} />
+        <EzRadio color="info" {...radioProps('b')} />
+        <EzRadio color="neutral" {...radioProps('c')} />
+        <EzRadio color="common.purple100" {...radioProps('d')} />
       </EzLayout>
 
       {/* Note: inline styles are discouraged and used here only for demo purposes */}
       <EzLayout layout="basic" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
-        <RadioButton item="a" color="primary" variant="filled" />
-        <RadioButton item="b" color="warning" variant="filled" />
-        <RadioButton item="c" color="info" variant="filled" />
-        <RadioButton item="d" color="neutral" variant="filled" />
-        <RadioButton item="e" color="common.red100" variant="filled" />
-        <RadioButton item="f" color="common.purple100" variant="filled" />
+        <EzRadio color="primary" variant="filled" {...radioProps('a')} />
+        <EzRadio color="info" variant="filled" {...radioProps('b')} />
+        <EzRadio color="neutral" variant="filled" {...radioProps('c')} />
+        <EzRadio color="common.purple100" variant="filled" {...radioProps('d')} />
       </EzLayout>
     </EzLayout>
   );
@@ -153,31 +171,27 @@ If you want to specify a size, use the `size` property. We currently support `sm
 () => {
   const [selectedValue, setSelectedValue] = useState('a');
   const handleChange = event => setSelectedValue(event.target.value);
-  const RadioButton = ({item, size, variant = 'outlined'}) => (
-    <EzRadio
-      checked={selectedValue === item}
-      name="radio-button-sizes"
-      onChange={handleChange}
-      size={size}
-      value={item}
-      variant={variant}
-    />
-  );
+  const radioProps = item => ({
+    checked: selectedValue === item,
+    name: 'radio-button-sizes',
+    onChange: handleChange,
+    value: item,
+  });
 
   return (
     <EzLayout layout="stack">
       {/* Note: inline styles are discouraged and used here only for demo purposes */}
       <EzLayout layout="basic" style={{paddingLeft: '16px'}}>
-        <RadioButton item="a" size="small" />
-        <RadioButton item="b" size="medium" />
-        <RadioButton item="c" size="large" />
+        <EzRadio size="small" {...radioProps('a')} />
+        <EzRadio size="medium" {...radioProps('b')} />
+        <EzRadio size="large" {...radioProps('c')} />
       </EzLayout>
 
       {/* Note: inline styles are discouraged and used here only for demo purposes */}
       <EzLayout layout="basic" style={{backgroundColor: '#034a34', paddingLeft: '16px'}}>
-        <RadioButton item="a" size="small" variant="filled" />
-        <RadioButton item="b" size="medium" variant="filled" />
-        <RadioButton item="c" size="large" variant="filled" />
+        <EzRadio size="small" variant="filled" {...radioProps('a')} />
+        <EzRadio size="medium" variant="filled" {...radioProps('b')} />
+        <EzRadio size="large" variant="filled" {...radioProps('c')} />
       </EzLayout>
     </EzLayout>
   );
@@ -391,8 +405,8 @@ To provide proper keyboard accessibility when using grouped radio buttons, use `
 For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along with an optional `label` to `EzFormControlLabel`.
 
 - To define a set pixel width for the buttons, pass a `labelWidth` of type `number` to `EzRadioGroup`. Labels will wrap if needed, but should not be more than 2 lines.
-- To define a theme for each button in a group, pass a `theme` property to `EzRadioGroup` (see example below).
-  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object
+- To define a theme for each button in a group, pass a `theme` property to `EzRadioGroup`.
+  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object (see example below)
   - `variant` accepts either `filled` (default) or `outlined`
 
 ```jsx
@@ -460,12 +474,20 @@ For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along wi
                   selected: {
                     backgroundColor: 'common.yellow100',
                     borderColor: 'common.yellow100',
+                    iconColor: 'common.primary110',
                     textColor: 'common.primary110',
                   },
                   unselected: {
                     backgroundColor: 'common.green105',
                     borderColor: 'common.green105',
+                    iconColor: 'common.white',
                     textColor: 'common.white',
+                  },
+                  hover: {
+                    backgroundColor: 'common.yellow110',
+                    borderColor: 'common.white',
+                    iconColor: 'common.black',
+                    textColor: 'common.green105',
                   },
                 },
               }}
@@ -587,7 +609,7 @@ A radio button can be made disabled by adding the optional `disabled` prop on ei
 
 Supported styles should be used, but if you need to overwrite styles for the radio, form label, form control label, or super form control label, you can do so using provided class names:
 
-- `EzRadio`, `EzRadio-outlined`, `EzRadio-filled`, `EzRadio-checked`, `EzRadioIcon-checked-border`, `EzRadioIcon-checked-dot`, `EzRadio-disabled`, `EzRadio-input`, `EzRadioIcon-checked`, `EzRadioIcon-unchecked`
+- `EzRadio`, `EzRadio-outlined`, `EzRadio-filled`, `EzRadio-checked`, `EzRadioIcon-checked`, `EzRadioIcon-checked-dot`, `EzRadio-disabled`, `EzRadio-input`, `EzRadioIcon-checked`, `EzRadioIcon-unchecked`
 - `EzRadioGroup`
 - `EzFormLabel`
 - `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`

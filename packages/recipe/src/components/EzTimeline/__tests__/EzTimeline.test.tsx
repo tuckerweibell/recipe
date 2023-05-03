@@ -1,8 +1,10 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import {axe} from '../../../../test-utils';
-import {EzTimeline, EzTimelinePeriod, EzTimelineEvent} from '..';
-import {EzPage} from '../..';
+import EzTimeline from '../EzTimeline';
+import EzTimelineEvent from '../EzTimelineEvent';
+import EzTimelinePeriod from '../EzTimelinePeriod';
+import {EzPage} from '../../EzPage';
 
 describe('EzTimeline', () => {
   it('should meet accessibility guidelines', async () => {

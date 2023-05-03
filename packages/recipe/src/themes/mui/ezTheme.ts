@@ -150,7 +150,7 @@ const palette: EzPaletteOptions = {
   text: {
     primary: ezPalette.neutral170,
     secondary: ezPalette.neutral150,
-    disabled: ezPalette.neutral120,
+    disabled: ezPalette.neutral140,
   },
   common: {
     ...ezPalette,
@@ -201,6 +201,11 @@ const getStatusChipStyles = themeProp => {
   };
 };
 
+const focusOutline = {
+  outline: `2px solid ${palette.common.black}`,
+  outlineOffset: '2px',
+};
+
 const components = {
   MuiButtonBase: {
     defaultProps: {
@@ -213,6 +218,7 @@ const components = {
         textTransform: 'none' as const,
         fontWeight: 700,
         minWidth: 'auto',
+        '&:focus': focusOutline,
       },
       endIcon: {
         svg: {fontSize: 'inherit !important'},

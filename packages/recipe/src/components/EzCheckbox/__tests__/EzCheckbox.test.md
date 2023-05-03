@@ -6,9 +6,7 @@
   <EzLayout style={{backgroundColor: '#034a34'}}>
     <EzCheckbox variant="filled" />
   </EzLayout>
-  <EzLayout style={{backgroundColor: '#034a34'}}>
-    <EzCheckbox variant="filled-inverse" />
-  </EzLayout>
+  <EzCheckbox variant="filled-inverse" />
 </EzLayout>
 ```
 
@@ -20,9 +18,7 @@
   <EzLayout style={{backgroundColor: '#034a34'}}>
     <EzCheckbox checked variant="filled" />
   </EzLayout>
-  <EzLayout style={{backgroundColor: '#034a34'}}>
-    <EzCheckbox checked variant="filled-inverse" />
-  </EzLayout>
+  <EzCheckbox checked variant="filled-inverse" />
 </EzLayout>
 ```
 
@@ -56,7 +52,7 @@
     <EzCheckbox color="common.black" variant="filled" />
   </EzLayout>
 
-  <EzLayout style={{backgroundColor: '#034a34'}}>
+  <EzLayout>
     <EzCheckbox color="primary" variant="filled-inverse" />
     <EzCheckbox color="secondary" variant="filled-inverse" />
     <EzCheckbox color="error" variant="filled-inverse" />
@@ -101,7 +97,7 @@
     <EzCheckbox checked color="common.black" variant="filled" />
   </EzLayout>
 
-  <EzLayout style={{backgroundColor: '#034a34'}}>
+  <EzLayout>
     <EzCheckbox checked color="primary" variant="filled-inverse" />
     <EzCheckbox checked color="secondary" variant="filled-inverse" />
     <EzCheckbox checked color="error" variant="filled-inverse" />
@@ -172,10 +168,11 @@
     <EzLayout layout="stack">
       <FormGroup variant="outlined" />
 
-      <EzLayout layout="stack" style={{backgroundColor: '#034a34', color: 'white', padding: '16px'}}>
+      <EzLayout style={{backgroundColor: '#034a34', color: 'white', padding: '16px'}}>
         <FormGroup variant="filled" />
-        <FormGroup variant="filled-inverse" />
       </EzLayout>
+
+      <FormGroup variant="filled-inverse" />
     </EzLayout>
   );
 };
@@ -222,45 +219,45 @@
         />
       </EzFormGroup>
     </EzFormControl>
-
-    <EzFormControl>
-      <EzFormLabel id="checkbox-groups-unchecked-colors">Numbers</EzFormLabel>
-      <EzFormGroup ariaLabel="checkbox-groups-unchecked-colors">
-        <EzFormControlLabel
-          control={<EzCheckbox color="primary" variant="filled-inverse" />}
-          label="one"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="secondary" variant="filled-inverse" />}
-          label="two"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="error" variant="filled-inverse" />}
-          label="three"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="warning" variant="filled-inverse" />}
-          label="four"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="info" variant="filled-inverse" />}
-          label="five"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="success" variant="filled-inverse" />}
-          label="six"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="alert" variant="filled-inverse" />}
-          label="seven"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox color="neutral" variant="filled-inverse" />}
-          label="eight"
-        />
-      </EzFormGroup>
-    </EzFormControl>
   </EzLayout>
+
+  <EzFormControl>
+    <EzFormLabel id="checkbox-groups-unchecked-colors">Numbers</EzFormLabel>
+    <EzFormGroup ariaLabel="checkbox-groups-unchecked-colors">
+      <EzFormControlLabel
+        control={<EzCheckbox color="primary" variant="filled-inverse" />}
+        label="one"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="secondary" variant="filled-inverse" />}
+        label="two"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="error" variant="filled-inverse" />}
+        label="three"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="warning" variant="filled-inverse" />}
+        label="four"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="info" variant="filled-inverse" />}
+        label="five"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="success" variant="filled-inverse" />}
+        label="six"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="alert" variant="filled-inverse" />}
+        label="seven"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox color="neutral" variant="filled-inverse" />}
+        label="eight"
+      />
+    </EzFormGroup>
+  </EzFormControl>
 </EzLayout>
 ```
 
@@ -320,45 +317,45 @@
         />
       </EzFormGroup>
     </EzFormControl>
-
-    <EzFormControl>
-      <EzFormLabel id="checkbox-groups-unchecked-colors">Numbers</EzFormLabel>
-      <EzFormGroup ariaLabel="checkbox-groups-unchecked-colors">
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="primary" variant="filled-inverse" />}
-          label="one"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="secondary" variant="filled-inverse" />}
-          label="two"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="error" variant="filled-inverse" />}
-          label="three"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="warning" variant="filled-inverse" />}
-          label="four"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="info" variant="filled-inverse" />}
-          label="five"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="success" variant="filled-inverse" />}
-          label="six"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="alert" variant="filled-inverse" />}
-          label="seven"
-        />
-        <EzFormControlLabel
-          control={<EzCheckbox checked color="neutral" variant="filled-inverse" />}
-          label="eight"
-        />
-      </EzFormGroup>
-    </EzFormControl>
   </EzLayout>
+
+  <EzFormControl>
+    <EzFormLabel id="checkbox-groups-unchecked-colors">Numbers</EzFormLabel>
+    <EzFormGroup ariaLabel="checkbox-groups-unchecked-colors">
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="primary" variant="filled-inverse" />}
+        label="one"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="secondary" variant="filled-inverse" />}
+        label="two"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="error" variant="filled-inverse" />}
+        label="three"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="warning" variant="filled-inverse" />}
+        label="four"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="info" variant="filled-inverse" />}
+        label="five"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="success" variant="filled-inverse" />}
+        label="six"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="alert" variant="filled-inverse" />}
+        label="seven"
+      />
+      <EzFormControlLabel
+        control={<EzCheckbox checked color="neutral" variant="filled-inverse" />}
+        label="eight"
+      />
+    </EzFormGroup>
+  </EzFormControl>
 </EzLayout>
 ```
 
@@ -487,12 +484,20 @@
             selected: {
               backgroundColor: 'common.yellow100',
               borderColor: 'common.yellow100',
+              iconColor: 'common.primary110',
               textColor: 'common.primary110',
             },
             unselected: {
               backgroundColor: 'common.green105',
               borderColor: 'common.green105',
+              iconColor: 'common.white',
               textColor: 'common.white',
+            },
+            hover: {
+              backgroundColor: 'common.yellow110',
+              borderColor: 'common.white',
+              iconColor: 'common.black',
+              textColor: 'common.green105',
             },
           },
         }}
@@ -691,11 +696,8 @@
         .EzCheckbox-filled-inverse .EzCheckbox-checked {
           border-color: orange;
         }
-        .EzCheckbox:focus-within {
-          background-color: #FED8B150;
-        }
-        .EzCheckbox-outlined .EzCheckbox-icon,
-        .EzCheckbox-filled .EzCheckbox-icon {
+        .EzCheckbox-outlined .EzCheckbox-icon svg,
+        .EzCheckbox-filled .EzCheckbox-icon svg {
           fill: orange;
         }
         .EzCheckbox-filled-inverse .EzCheckbox-checked {
@@ -707,9 +709,7 @@
     <EzLayout style={{backgroundColor: '#034a34'}}>
       <EzCheckbox variant="filled" />
     </EzLayout>
-    <EzLayout style={{backgroundColor: '#034a34'}}>
-      <EzCheckbox variant="filled-inverse" />
-    </EzLayout>
+    <EzCheckbox variant="filled-inverse" />
   </EzLayout>
 
   <EzLayout>
@@ -729,10 +729,7 @@
           <EzFormControlLabel control={<EzCheckbox variant="filled" />} label="four" />
         </EzLayout>
 
-        <EzLayout
-          style={{backgroundColor: '#034a34', color: 'white', padding: '10px'}}
-          layout="stack"
-        >
+        <EzLayout style={{padding: '10px'}} layout="stack">
           <EzFormControlLabel control={<EzCheckbox variant="filled-inverse" />} label="five" />
           <EzFormControlLabel control={<EzCheckbox variant="filled-inverse" />} label="six" />
         </EzLayout>
@@ -752,11 +749,8 @@
         .EzCheckbox-filled-inverse .EzCheckbox-checked {
           border-color: orange;
         }
-        .EzCheckbox:focus-within {
-          background-color: #FED8B150;
-        }
-        .EzCheckbox-outlined .EzCheckbox-icon,
-        .EzCheckbox-filled .EzCheckbox-icon {
+        .EzCheckbox-outlined .EzCheckbox-icon svg,
+        .EzCheckbox-filled .EzCheckbox-icon svg {
           fill: orange;
         }
         .EzCheckbox-filled-inverse .EzCheckbox-checked {
@@ -768,9 +762,7 @@
     <EzLayout style={{backgroundColor: '#034a34'}}>
       <EzCheckbox checked variant="filled" />
     </EzLayout>
-    <EzLayout style={{backgroundColor: '#034a34'}}>
-      <EzCheckbox checked variant="filled-inverse" />
-    </EzLayout>
+    <EzCheckbox checked variant="filled-inverse" />
   </EzLayout>
 
   <EzLayout>
@@ -790,10 +782,7 @@
           <EzFormControlLabel control={<EzCheckbox checked variant="filled" />} label="four" />
         </EzLayout>
 
-        <EzLayout
-          style={{backgroundColor: '#034a34', color: 'white', padding: '10px'}}
-          layout="stack"
-        >
+        <EzLayout style={{padding: '10px'}} layout="stack">
           <EzFormControlLabel
             control={<EzCheckbox checked variant="filled-inverse" />}
             label="five"

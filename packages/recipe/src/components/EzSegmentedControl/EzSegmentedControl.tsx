@@ -66,7 +66,7 @@ const optionLabel = theme.css({
     background: '$segmented-control-bg-input-active',
   },
   'input:focus + &': {
-    boxShadow: '$segmented-control-box-shadow-input-focus',
+    outline: '$outlines$focusOutline',
   },
   'input:disabled + &': {
     cursor: 'default',

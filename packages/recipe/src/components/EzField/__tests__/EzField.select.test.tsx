@@ -1,7 +1,7 @@
 import React from 'react';
-import {render, getByLabelText, getByText, fireEvent, act, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {getByLabelText, getByText, fireEvent} from '@testing-library/react';
 import ReactTestUtils from 'react-dom/test-utils';
+import {act, render, screen, userEvent} from '../../../../test-utils';
 import EzField from '../EzField';
 import EzModal from '../../EzModal';
 

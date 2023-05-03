@@ -6,12 +6,14 @@ export type Ref = HTMLDivElement;
 export type CustomColors = {
   backgroundColor: EzThemeColors;
   borderColor?: EzThemeColors;
+  iconColor?: EzThemeColors;
   textColor: EzThemeColors;
 };
 
 export type EzRadioGroupCustomColors = {
   selected?: CustomColors;
   unselected?: CustomColors;
+  hover?: CustomColors;
 };
 
 export type EzRadioGroupTheme = {
