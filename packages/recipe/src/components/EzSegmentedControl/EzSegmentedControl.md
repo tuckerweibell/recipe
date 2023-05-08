@@ -105,19 +105,18 @@ Used to indicate to the user that an action is not currently available. Disabled
 
 Used to trigger an `onClick` handler when an option is clicked. Does not conflict with `onChange`.
 
-
 ```jsx
 () => {
   const [active, setActive] = React.useState('map');
 
-  const handleChange = (value) => {
-    console.log('option changed!', 'new value:', value)
+  const handleChange = value => {
+    console.log('option changed!', 'new value:', value);
     setActive(value);
-  }
+  };
 
   const handleOnClick = () => {
     console.log('onClick option clicked!');
-  }
+  };
 
   return (
     <EzSegmentedControl
@@ -131,6 +130,65 @@ Used to trigger an `onClick` handler when an option is clicked. Does not conflic
       active={active}
       onChange={value => handleChange(value)}
     />
+  );
+};
+```
+
+### Option with onKeyDown handlers
+
+Used to trigger an `onKeyDown` handler with keyboard events. Does not conflict with `onChange`.
+
+To navigate and select with the keyboard, tab into the component and use `arrow keys` and `enter` within the component, as outlined in [accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#fundamentalkeyboardnavigationconventions).
+
+```jsx
+() => {
+  const [active, setActive] = React.useState(null);
+
+  const OPTIONS = [
+    {
+      label: 'Map',
+      value: 'map',
+    },
+    {
+      label: 'Transit',
+      value: 'transit',
+    },
+    {
+      label: 'Satellite',
+      value: 'satellite',
+    },
+  ];
+
+  const handleChange = value => {
+    setActive(value);
+  };
+
+  const toggleSelection = value => (value === active ? setActive(null) : setActive(value));
+
+  const handleOnKeyDown = (event, value) => {
+    console.log('onKeyDown used!');
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleSelection(value);
+    }
+  };
+
+  const OPTIONS_WITH_HANDLERS = OPTIONS.map(option => ({
+    ...option,
+    onKeyDown: handleOnKeyDown,
+  }));
+
+  return (
+    <>
+      <EzSegmentedControl
+        name="view-map-options-with-onkeydown-option"
+        label="Map View"
+        options={OPTIONS_WITH_HANDLERS}
+        onChange={handleChange}
+        active={active}
+      />
+      <div>Selected: {active ? active : 'none'}</div>
+    </>
   );
 };
 ```

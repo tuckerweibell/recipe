@@ -12,6 +12,7 @@ type Button = {
   label: string;
   disabled?: boolean;
   onClick?: () => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>, value: string) => void;
 };
 
 type Props = Omit<React.FieldsetHTMLAttributes<any>, 'onChange'> & {
@@ -67,6 +68,7 @@ const optionLabel = theme.css({
   },
   'input:focus + &': {
     outline: '$outlines$focusOutline',
+    position: 'relative',
   },
   'input:disabled + &': {
     cursor: 'default',
@@ -129,6 +131,7 @@ const EzSegmentedControl: React.FC<Props> = ({
           onChange={() => onChange && onChange(option.value)}
           disabled={option.disabled}
           onClick={() => option.onClick && option.onClick()}
+          onKeyDown={event => option.onKeyDown?.(event, option.value)}
         />
         <label className={optionLabel()} key={option.value} htmlFor={getId(name, option)}>
           {option.label}

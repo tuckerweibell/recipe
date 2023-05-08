@@ -1,6 +1,5 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
-import {axe} from '../../../../test-utils';
+import {axe, render, userEvent, fireEvent} from '../../../../test-utils';
 import EzSegmentedControl from '../EzSegmentedControl';
 
 describe('EzSegmentedControl', () => {
@@ -55,6 +54,34 @@ describe('EzSegmentedControl', () => {
 
       expect(onChangeSpy).toHaveBeenCalledWith('thirdValue');
       expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('onKeyDown', () => {
+    it('triggers onKeyDown when option with onKeyDown is triggered', async () => {
+      const user = userEvent.setup();
+      const onChangeSpy = jest.fn();
+      const onKeyDownSpy = jest.fn();
+
+      const {getByText} = render(
+        <EzSegmentedControl
+          name="test-segment"
+          label="test segment"
+          active="firstValue"
+          className="test"
+          labelPosition="left"
+          onChange={onChangeSpy}
+          options={[
+            {label: 'first', value: 'firstValue', onKeyDown: onKeyDownSpy},
+            {label: 'second', value: 'secondValue', onKeyDown: onKeyDownSpy},
+            {label: 'third', value: 'thirdValue', onKeyDown: onKeyDownSpy},
+          ]}
+        />
+      );
+
+      await user.click(getByText('first'));
+      await user.keyboard('{ArrowRight}');
+      expect(onKeyDownSpy).toHaveBeenCalled();
     });
   });
 
