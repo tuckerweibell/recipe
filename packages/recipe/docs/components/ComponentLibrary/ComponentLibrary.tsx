@@ -1,5 +1,7 @@
 import React, {createElement} from 'react';
+import {linkTo} from '@storybook/addon-links';
 import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/material';
+import FullBleed from '../FullBleed';
 import {ezTheme} from '../../../src/themes';
 
 const inputComponents = ['EzButton', 'EzCheckbox', 'EzRadio', 'EzField', 'EzLabel'];
@@ -46,7 +48,7 @@ const getSnapshotComponent = (componentName: string) => {
   return <div></div>;
 };
 
-const LibrarySection = ({sectionName, components}) => (
+const LibrarySection = ({sectionName, category, components}) => (
   <>
     <Box
       color={ezTheme.palette.common.neutral150}
@@ -64,7 +66,7 @@ const LibrarySection = ({sectionName, components}) => (
         <LibraryItem
           key={componentName}
           name={componentName}
-          link={`/?path=/docs/data-display-${componentName.toLowerCase()}`}
+          link={`${category}/${componentName}`}
           snapshot={getSnapshotComponent(componentName)}
         />
       ))}
@@ -74,7 +76,7 @@ const LibrarySection = ({sectionName, components}) => (
 
 const LibraryItem = ({snapshot, link, name}) => (
   <Card sx={{height: 200, width: 200, mr: 3, mb: 3}}>
-    <CardActionArea sx={{height: '100%', justifyContent: 'space-between'}} href={link}>
+    <CardActionArea sx={{height: '100%', justifyContent: 'space-between'}} onClick={linkTo(link)}>
       <CardContent>
         <Stack alignItems="center">
           <Stack justifyContent="space-around" minHeight={140} sx={{'*': {cursor: 'pointer'}}}>
@@ -92,19 +94,41 @@ const LibraryItem = ({snapshot, link, name}) => (
 
 const ComponentLibrary = () => {
   return (
-    <Stack bgcolor={ezTheme.palette.common.neutral120} p={6}>
-      <Typography variant="h5" pb={3}>
-        Component Library
-      </Typography>
+    <FullBleed>
+      <Stack bgcolor={ezTheme.palette.common.neutral120} px={12} py={8}>
+        <Typography variant="h5" pb={3} textTransform="uppercase">
+          Component Library
+        </Typography>
 
-      <LibrarySection sectionName="inputs" components={inputComponents} />
-      <LibrarySection sectionName="data display" components={dataDisplayComponents} />
-      <LibrarySection sectionName="feedback" components={feedbackComponents} />
-      <LibrarySection sectionName="surfaces" components={surfacesComponents} />
-      <LibrarySection sectionName="navigation" components={navigationComponents} />
-      <LibrarySection sectionName="layout" components={layoutComponents} />
-      <LibrarySection sectionName="typography" components={typographyComponents} />
-    </Stack>
+        <LibrarySection sectionName="inputs" category="Input" components={inputComponents} />
+        <LibrarySection
+          sectionName="data display"
+          category="Data Display"
+          components={dataDisplayComponents}
+        />
+        <LibrarySection
+          sectionName="feedback"
+          category="Feedback"
+          components={feedbackComponents}
+        />
+        <LibrarySection
+          sectionName="surfaces"
+          category="Surfaces"
+          components={surfacesComponents}
+        />
+        <LibrarySection
+          sectionName="navigation"
+          category="Navigation"
+          components={navigationComponents}
+        />
+        <LibrarySection sectionName="layout" category="Layout" components={layoutComponents} />
+        <LibrarySection
+          sectionName="typography"
+          category="Typography"
+          components={typographyComponents}
+        />
+      </Stack>
+    </FullBleed>
   );
 };
 

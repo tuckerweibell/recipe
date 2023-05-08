@@ -8,6 +8,7 @@ node_modules
 dist
 packages/**/dist
 packages/**/storybook-static
+packages/recipe/public/playroom
 reports
 .eslintcache
 *.cache

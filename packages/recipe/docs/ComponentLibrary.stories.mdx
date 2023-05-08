@@ -1,9 +1,0 @@
-import {Meta, Story} from '@storybook/addon-docs';
-import ComponentLibrary from './components/ComponentLibrary';
-import metaParameters from './utils/metaParameters';
-
-<Meta title="Component Library" component={ComponentLibrary} parameters={metaParameters} />
-
-export const Template = args => <ComponentLibrary {...args} />;
-
-<Story name="Component Library">{Template.bind({})}</Story>

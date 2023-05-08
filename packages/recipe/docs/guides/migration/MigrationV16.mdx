@@ -1,0 +1,185 @@
+import {Meta} from '@storybook/blocks';
+import TableOfContents from '../../components/TableOfContents';
+
+<Meta title="Guides/Migration/v16" />
+<TableOfContents />
+
+# Migration to Recipe 16
+
+## Prologue
+
+Version 16 of Recipe updates the design for `EzCheckbox`.
+
+This release is a **major version release** and as such, **will require migration steps** for applications that currently use Recipe Version 15.x or below.
+
+## Breaking changes
+
+The following changes are considered breaking changes:
+
+### 1. Redesigned `EzCheckbox`
+
+[`EzCheckbox`](/components/ez-checkbox) has a new design with support for labels, colors, groups, and sizes.
+
+To make it easier to incrementally move over to the new design, users can simply add a `legacy` tag to their current implementations. The legacy `EzCheckbox` will be supported through v16, but will be removed in v17.
+
+```js
+// old
+<EzCheckbox label="Vegan" checked={checked} onChange={handleOnChange} />
+
+// new
+<EzFormControlLabel
+  control={<EzCheckbox checked={checked} onChange={handleOnChange} />}
+  label="Vegan"
+/>
+
+// legacy
+<EzCheckbox
+  legacy
+  label="Vegan"
+  checked={checked}
+  onChange={handleOnChange}
+/>
+
+```
+
+### 2. Removed `EzStatus`
+
+`EzStatus` was deprecated in v15 in favor of [`EzChip`](/components/ez-chip/#status) status variants. Recipe has removed `EzStatus` as of v16 and as such, any uses of `EzStatus` will need to be refactored to use `EzChip`.
+
+```js
+// old
+<EzStatus text="Verified" use="success" size="small" />
+
+// new
+<EzChip label="Verified" variant="success" size="small" />
+```
+
+### 3. Removed `EzPageContent`
+
+`EzPageContent` was deprecated in v1.9.0 in favor of [`EzPage`](/components/ez-page) and is being removed as of v16. All uses of `EzPageContent` will need to be refactored to use `EzPage`.
+
+```js
+// old
+<EzPageContent>...</EzPageContent>
+
+// new
+<EzPage>...</EzPage>
+```
+
+### 4. Removed `EzContentGroup`
+
+`EzContentGroup` was deprecated in v1.9.0 in favor of [`EzLayout`](/components/ez-layout) and is being removed as of v16. All uses of `EzContentGroup` will need to be refactored to use `EzLayout`.
+
+```js
+// old
+<EzContentGroup>...</EzContentGroup>
+<EzContentGroup horizontal>...</EzContentGroup>
+
+// new
+<EzLayout layout="stack">...</EzLayout>
+<EzLayout layout="basic">...</EzLayout>
+```
+
+### 5. Removed `EzSuperRadioButtons`
+
+`EzSuperRadioButtons` was deprecated in v15 in favor of [`EzRadio`](/components/ez-radio/#super-radio-buttons) super radio buttons and is being removed as of v16. All uses of `EzSuperRadioButtons` will need to be refactored to use `EzRadio`.
+
+```js
+// old
+<EzSuperRadioButtons
+  label="Drinks"
+  options={[
+    {
+      label: 'Coffee',
+      value: 'coffee',
+      imageSrc: withPrefix('/images/coffee.svg'),
+    },
+    {
+      label: 'Wine',
+      value: 'wine',
+      imageSrc: withPrefix('/images/wine.svg'),
+    },
+    {
+      label: 'Water',
+      value: 'water',
+      imageSrc: withPrefix('/images/water.svg'),
+    },
+  ]}
+  value={selected}
+  onChange={setSelected}
+/>;
+
+// new
+const {Coffee, WaterGlass, WineGlass} = require('@ezcater/icons');
+
+<EzFormControl>
+  <EzFormLabel id="radio-buttons-drinks">Drinks</EzFormLabel>
+  <EzRadioGroup
+    ariaLabel="radio-buttons-drinks"
+    defaultValue="coffee"
+    name="radio-buttons-drinks-group"
+    onChange={setSelected}
+    row
+    value={selected}
+  >
+    <EzFormControlLabel
+      control={<EzRadio />}
+      icon={<EzIcon icon={Coffee} />}
+      label="Coffee"
+      value="coffee"
+    />
+    <EzFormControlLabel
+      control={<EzRadio />}
+      icon={<EzIcon icon={WineGlass} />}
+      label="Wine"
+      value="wine"
+    />
+    <EzFormControlLabel
+      control={<EzRadio />}
+      icon={<EzIcon icon={WaterGlass} />}
+      label="Water"
+      value="water"
+    />
+  </EzRadioGroup>
+</EzFormControl>;
+```
+
+### 6. Removed `EzLabelledItem`
+
+`EzLabelledItem` was deprecated in v12.1 in favor of [`EzLabel`](/components/ez-label) and is being removed as of v16. All uses of `EzLabelledItem` will need to be refactored to use `EzLabel`.
+
+```js
+// old
+<EzLabelledItem position="left" size="small" htmlFor="headcount">
+  Headcount
+  <input id="headcount" placeholder="20 people" />
+</EzLabelledItem>
+
+// new
+<div>
+  <EzLabel position="side" use="secondary" htmlFor="headcount">
+    Headcount
+  </EzLabel>
+  <input id="headcount" placeholder="20 people" />
+</div>
+```
+
+## Other changes
+
+`EzField` with `type="radio"` was set to be removed in v16, but has been pushed back to v17 to coincide with the removal of of `EzField` with `type="checkbox"`, giving users more time to switch over.
+
+## Migration steps
+
+### Installation
+
+You can update your Recipe installation using a package manager like [npm](https://docs.npmjs.com/cli/v6/commands/npm) or [yarn](https://classic.yarnpkg.com/lang/en/).
+
+```term
+npm install @ezcater/recipe@latest
+```
+
+or
+
+```term
+yarn upgrade @ezcater/recipe@latest
+```

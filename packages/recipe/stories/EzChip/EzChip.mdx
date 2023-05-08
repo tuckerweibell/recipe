@@ -1,0 +1,121 @@
+import {Canvas, Controls, Meta, Primary, Story, Title} from '@storybook/blocks';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
+import dedent from 'ts-dedent';
+import {EzAlert, EzChip, EzIcon} from '../../src';
+import TableOfContents from '../../docs/components/TableOfContents';
+import * as ActionStories from './Stories/Action.stories';
+import * as ColorStories from './Stories/Color.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as IconStories from './Stories/Icon.stories';
+import * as SizeStories from './Stories/Size.stories';
+import * as StatusStories from './Stories/Status.stories';
+import * as VariantStories from './Stories/Variant.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+
+<TableOfContents />
+
+# EzChip
+
+Chips are compact elements that represent an input, attribute, or action. They allow users to enter information, make selections, filter content, or trigger actions.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best Practices
+
+- Chips are handy components that quickly convey information. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
+- Chips are compact components that represent discrete information.
+- Chips should have a clear and helpful relationship to the content or task they represent.
+- Chips should make tasks easier to complete, or content easier to sort.
+
+## Basic Chips
+
+EzChip supports `filled` (default) and `outlined` variants.
+
+<Canvas>
+  <Story of={VariantStories.Filled} meta={VariantStories} />
+  <Story of={VariantStories.Outlined} meta={VariantStories} />
+</Canvas>
+
+## Status Chips
+
+EzChip also support status variants, which are used to call attention to an individual item in a set.
+
+<EzAlert
+  use="info"
+  headline="Status variant colors are defined in ezTheme and should not be used with the color or icon props."
+/>
+
+Use a basic status (`neutral`, `success`, or `informational`) when an action is not required of the user or there’s not a compelling reason to draw their attention to an item.
+
+Use an action status (`attention`, `warning`, `error`, or `alert`) when an action is required, or it needs attention. A dot icon is displayed.
+
+<Canvas>
+  <Story of={StatusStories.StatusNeutral} meta={StatusStories} />
+  <Story of={StatusStories.StatusSuccess} meta={StatusStories} />
+  <Story of={StatusStories.StatusInformational} meta={StatusStories} />
+  <Story of={StatusStories.StatusAttention} meta={StatusStories} />
+  <Story of={StatusStories.StatusWarning} meta={StatusStories} />
+  <Story of={StatusStories.StatusError} meta={StatusStories} />
+  <Story of={StatusStories.StatusAlert} meta={StatusStories} />
+</Canvas>
+
+## Action Chips
+
+Chips with an `onClick` prop defined will change appearance on focus, hover, and click.
+
+Chips with an `onDelete` prop defined will display a delete icon which changes appearance on hover.
+
+<Canvas>
+  <Story of={ActionStories.Clickable} meta={ActionStories} />
+  <Story of={ActionStories.Deletable} meta={ActionStories} />
+  <Story of={ActionStories.ClickableAndDeletable} meta={ActionStories} />
+</Canvas>
+
+## Chip Colors
+
+EzChip supports theme palette properties (`primary`, `secondary`, `neutral`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.neutral120`).
+
+Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Canvas>
+  <Story of={ColorStories.PrimaryColor} meta={ColorStories} />
+  <Story of={ColorStories.SecondaryColor} meta={ColorStories} />
+  <Story of={ColorStories.NeutralColor} meta={ColorStories} />
+  <Story of={ColorStories.ErrorColor} meta={ColorStories} />
+  <Story of={ColorStories.WarningColor} meta={ColorStories} />
+  <Story of={ColorStories.InfoColor} meta={ColorStories} />
+  <Story of={ColorStories.SuccessColor} meta={ColorStories} />
+  <Story of={ColorStories.CommonColor} meta={ColorStories} />
+</Canvas>
+
+## Chip Sizes
+
+If you want to specify a size, use the `size` property. We currently support `small`, `medium` (default), and `inherit`.
+
+<Canvas>
+  <Story of={SizeStories.SizeSmall} meta={SizeStories} />
+  <Story of={SizeStories.SizeMedium} meta={SizeStories} />
+  <Story of={SizeStories.SizeInherit} meta={SizeStories} />
+</Canvas>
+
+## Chip Icons
+
+You can add an icon to the beginning of a chip by passing an `EzIcon` to the optional `icon` property.
+
+Icon sizes will default to the font size of the text. If you need a different icon size, use `size="inherit"` on the `EzIcon` and wrap it in an element with the desired size.
+
+<Canvas>
+  <Story of={IconStories.WithIcon} meta={IconStories} />
+  <Story of={IconStories.WithInheritedIconSize} meta={IconStories} />
+</Canvas>
+
+## Custom Styles
+
+Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names.
+
+`EzChip`, `EzChip-[variant]`, `EzChip-clickable`, `EzChip-deletable`, `EzChip-deleteIcon`, `EzChip-disabled`, `EzChip-icon`, `EzChip-label`

@@ -5,12 +5,16 @@ module.exports = {
       {
         devDependencies: [
           '**/jest.setup.tsx',
-          '**/stories/**/*.tsx',
+          '**/playroom.config.js',
+          '**/playroom/**.js',
+          '**/playroom/**.tsx',
+          '**/src/**/*.stories.tsx',
           '**/src/**/*.test.ts',
           '**/src/**/*.test.tsx',
-          '**/src/**/*.stories.tsx',
           '**/src/components/EzField/Open.tsx',
           '**/src/components/theme.config.ts',
+          '**/stories/**/*.mdx',
+          '**/stories/**/*.tsx',
           '**/test-utils.tsx',
         ],
       },
@@ -23,6 +27,7 @@ module.exports = {
         'jest.config.js',
         'jest.fileTransformer.js',
         'jest.setup.tsx',
+        'playroom.config.js',
         'plopfile.js',
       ],
       env: {
@@ -38,6 +43,19 @@ module.exports = {
       files: ['src/**/__tests__/*.ts', 'src/**/__tests__/*.tsx'],
       rules: {
         'no-console': 'off',
+      },
+    },
+    {
+      files: ['**/*.stories.tsx', '**/*.stories.ts', '**/*.regression.tsx'],
+      rules: {
+        'filenames/match-exported': 'off',
+      },
+    },
+    {
+      files: ['test-utils.d.ts'],
+      rules: {
+        'filenames/match-regex': 'off',
+        'import/no-extraneous-dependencies': 'off',
       },
     },
   ],

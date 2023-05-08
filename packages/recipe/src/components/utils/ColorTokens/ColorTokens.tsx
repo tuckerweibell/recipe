@@ -23,7 +23,7 @@ const ColorToken: React.FC<ColorTokenProps> = ({colorKey, colorProps}) => (
     p={1}
     mb={1}
   >
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack direction="row" gap={2} alignItems="center">
       <Stack
         bgcolor={colorProps.color}
         height={48}
