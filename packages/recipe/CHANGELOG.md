@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.2.0
+
+### Minor Changes
+
+- feat: add onKeyDown to options in EzSegmentedControl [[sha]](https://github.com/ezcater/recipe/commit/248cd88e)
+
 ## 17.1.0
 
 ### Minor Changes
