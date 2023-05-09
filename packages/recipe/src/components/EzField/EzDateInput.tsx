@@ -75,7 +75,14 @@ const EzDateInput = ({
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
   const menuState = useMenuTriggerState();
-  const iconWrapperStyle = useMemo(() => ({fontSize: '13px'}), []);
+  const iconWrapperStyle = useMemo(
+    () => ({
+      alignItems: 'center',
+      display: 'flex',
+      fontSize: '13px',
+    }),
+    []
+  );
 
   const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();

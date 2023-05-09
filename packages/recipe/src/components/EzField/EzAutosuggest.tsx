@@ -16,7 +16,14 @@ const popper = theme.css({
 const EzAutosuggest = props => {
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
-  const iconWrapperStyle = useMemo(() => ({fontSize: '13px'}), []);
+  const iconWrapperStyle = useMemo(
+    () => ({
+      alignItems: 'center',
+      display: 'flex',
+      fontSize: '13px',
+    }),
+    []
+  );
   const ariaLabelledBy = props['aria-labelledby'];
 
   const state = useComboBoxState(props);

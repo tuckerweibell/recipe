@@ -30,7 +30,14 @@ const EzSelect = props => {
   const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
-  const iconWrapperStyle = useMemo(() => ({fontSize: '13px'}), []);
+  const iconWrapperStyle = useMemo(
+    () => ({
+      alignItems: 'center',
+      display: 'flex',
+      fontSize: '13px',
+    }),
+    []
+  );
   const ariaLabelledBy = props['aria-labelledby'];
   const containerRef = useRef<HTMLDivElement>();
   const changeEvent = useCallback(
