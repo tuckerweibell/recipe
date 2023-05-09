@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useRef} from 'react';
+import React, {useEffect, useMemo, useState, useRef} from 'react';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import theme from '../theme.config';
@@ -100,6 +100,10 @@ const EzDateInput = ({
   useUpdateEffect(() => {
     onChangeRef.current(validDate);
   }, [validDate]);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
 
   const {menuTriggerProps, menuProps} = useMenuTrigger(menuState);
 

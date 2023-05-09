@@ -400,6 +400,29 @@ The below example demonstrates using the `filterDate` prop to restrict the calen
 };
 ```
 
+### Date input field with programmatic clear
+
+Programmatically clear the selection in a date input.
+
+```jsx
+() => {
+  const [date, setDate] = React.useState('01/01/2020');
+  const handleClear = () => setDate('');
+  return (
+    <EzFormLayout>
+      <EzField
+        type="date"
+        value={date}
+        label="Select delivery date"
+        helperText="This is the date your food will be delivered."
+        onChange={value => setDate(value)}
+      />
+      <EzButton onClick={handleClear}>Clear</EzButton>
+    </EzFormLayout>
+  );
+};
+```
+
 Times in this component are displayed with the format h:mma, for example, `9:45am`.
 
 ### Time input field
