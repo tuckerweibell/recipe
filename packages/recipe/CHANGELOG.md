@@ -1,5 +1,13 @@
 # @ezcater/recipe
 
+## 17.2.1
+
+### Patch Changes
+
+- fix: update EzDateInput value when props change [[sha]](https://github.com/ezcater/recipe/commit/c494bfd8)
+- style: fix alignment of select dropdown icon [[sha]](https://github.com/ezcater/recipe/commit/e0ca6c0a)
+- docs: fix really old out-of-order time and date picker docs [[sha]](https://github.com/ezcater/recipe/commit/9427360f)
+
 ## 17.2.0
 
 ### Minor Changes
