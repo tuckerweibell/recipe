@@ -309,6 +309,8 @@ When providing
 
 Allows the user to pick a date from a popup calendar or enter their own date directly into the input field. Use `type="date"` to enable the user to pick a date from a popup calendar.
 
+Dates in this component are displayed with the format `MM/DD/YYYY`.
+
 ```jsx
 () => {
   const [date, setDate] = React.useState('01/01/2020');
@@ -423,8 +425,6 @@ Programmatically clear the selection in a date input.
 };
 ```
 
-Times in this component are displayed with the format h:mma, for example, `9:45am`.
-
 ### Time input field
 
 Allows the user to pick a time from a select dropdown. Use `type="time"` to enable the user to pick a time from a select dropdown. An optional range can be used to limit the number of options in the select dropdown. Use `start="9:00am"` to specify the start of the range, and `end="5:00pm"` to specify the end of the range. An optional step can change the interval in which the times are generated. By default the step is `60` minutes. You can change it by adding `step={15}`.
@@ -435,6 +435,8 @@ Optional Props:
 
 - `displayAsNoon: <boolean>`: Replaces the "12:00 PM" label with "Noon"
 - `focusLabel: <string>`: Determines which option is guaranteed to be within view when the dropdown opens
+
+Times in this component are displayed with the format h:mma, for example, `9:45am`.
 
 ```jsx
 () => {
@@ -456,8 +458,6 @@ Optional Props:
   );
 };
 ```
-
-Dates in this component are displayed with the format `MM/DD/YYYY`.
 
 ### Custom input field
 
