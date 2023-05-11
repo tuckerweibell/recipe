@@ -1,5 +1,6 @@
 import React, {createElement} from 'react';
 import {linkTo} from '@storybook/addon-links';
+import {Unstyled} from '@storybook/blocks';
 import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/material';
 import FullBleed from '../FullBleed';
 import {ezTheme} from '../../../src/themes';
@@ -80,7 +81,7 @@ const LibraryItem = ({snapshot, link, name}) => (
       <CardContent>
         <Stack alignItems="center">
           <Stack justifyContent="space-around" minHeight={140} sx={{'*': {cursor: 'pointer'}}}>
-            {snapshot}
+            <Unstyled>{snapshot}</Unstyled>
           </Stack>
 
           <Box mt={1} fontSize="0.8em" fontWeight={600} color={ezTheme.palette.common.green100}>

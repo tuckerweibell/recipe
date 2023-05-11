@@ -1,8 +1,6 @@
-import {Canvas, Controls, Meta, Primary, Story, Title} from '@storybook/blocks';
-import {faStar} from '@fortawesome/free-solid-svg-icons';
-import dedent from 'ts-dedent';
-import {EzAlert, EzChip, EzIcon} from '../../src';
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
 import TableOfContents from '../../docs/components/TableOfContents';
+import EzAlert from '../../src/components/EzAlert';
 import * as ActionStories from './Stories/Action.stories';
 import * as ColorStories from './Stories/Color.stories';
 import * as DefaultStories from './Stories/Default.stories';
@@ -45,10 +43,12 @@ EzChip supports `filled` (default) and `outlined` variants.
 
 EzChip also support status variants, which are used to call attention to an individual item in a set.
 
-<EzAlert
-  use="info"
-  headline="Status variant colors are defined in ezTheme and should not be used with the color or icon props."
-/>
+<Unstyled>
+  <EzAlert
+    use="info"
+    headline="Status variant colors are defined in ezTheme and should not be used with the color or icon props."
+  />
+</Unstyled>
 
 Use a basic status (`neutral`, `success`, or `informational`) when an action is not required of the user or there’s not a compelling reason to draw their attention to an item.
 
@@ -81,6 +81,10 @@ Chips with an `onDelete` prop defined will display a delete icon which changes a
 EzChip supports theme palette properties (`primary`, `secondary`, `neutral`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.green100`).
 
 Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Unstyled>
+  <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
+</Unstyled>
 
 <Canvas>
   <Story of={ColorStories.PrimaryColor} meta={ColorStories} />

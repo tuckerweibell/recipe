@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Meta, Unstyled} from '@storybook/blocks';
 import TableOfContents from '../components/TableOfContents';
 import {EzAlert} from '../../src/components';
 
@@ -71,11 +71,13 @@ const App = () => (
 
 ### Extending themes
 
-<EzAlert
-  headline="Warning"
-  tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
-  use="warning"
-></EzAlert>
+<Unstyled>
+  <EzAlert
+    headline="Warning"
+    tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
+    use="warning"
+  />
+</Unstyled>
 
 We recognize there may be instances where extending a theme is necessary. For example, your app may require context-specific styles that are not supported by Recipe. In these cases, you can create a new customized emotion theme by extending a supported theme.
 
@@ -95,11 +97,13 @@ const App = () => (
 
 Note: Recipe's supported themes extend MUI's [default theme](https://mui.com/customization/default-theme/), which uses the following theme configuration variables: `breakpoints`, `direction`, `components`, `palette`, `spacing`, `mixins`, `shadows`, `typography`, `transitions`, `zIndex`.
 
-<EzAlert
-  headline="Warning"
-  tagline="Overwriting these configuration variables may result in unexpected behavior or change how the theme functions."
-  use="warning"
-></EzAlert>
+<Unstyled>
+  <EzAlert
+    headline="Warning"
+    tagline="Overwriting these configuration variables may result in unexpected behavior or change how the theme functions."
+    use="warning"
+  />
+</Unstyled>
 
 ### Importing theme properties
 

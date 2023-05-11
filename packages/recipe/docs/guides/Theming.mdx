@@ -1,4 +1,4 @@
-import {Meta, Source} from '@storybook/blocks';
+import {Meta, Source, Unstyled} from '@storybook/blocks';
 import dedent from 'ts-dedent';
 import ColorPalette from '../components/ColorPalette';
 import TableOfContents from '../components/TableOfContents';
@@ -14,11 +14,13 @@ As of [Recipe v14](/support/migrating-to-recipe-14/), Emotion themes are now sup
 
 Recipe themes are extended from the [MUI default theme](https://mui.com/customization/default-theme/) and represent a single source of truth for supported theme properties. If there is a specific use case for doing so, these themes can be further extended.
 
-<EzAlert
-  headline="Warning"
-  tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
-  use="warning"
-></EzAlert>
+<Unstyled>
+  <EzAlert
+    headline="Warning"
+    tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
+    use="warning"
+  />
+</Unstyled>
 
 ---
 
