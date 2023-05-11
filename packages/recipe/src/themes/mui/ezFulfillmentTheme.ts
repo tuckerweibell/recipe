@@ -8,6 +8,8 @@ const headerFont = ['Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-
 
 const typography = {
   fontFamily: defaultFont,
+  defaultFont,
+  headerFont,
 };
 
 const ezFulfillmentTheme = createTheme(ezTheme, {

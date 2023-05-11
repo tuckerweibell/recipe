@@ -12,7 +12,6 @@ declare module '@mui/material/styles/createPalette' {
   interface CommonColors extends EzPalette {
     destructive?: string;
     disabled?: string;
-    green?: string;
   }
 
   interface PaletteOptions {
@@ -159,8 +158,13 @@ const palette: EzPaletteOptions = {
   },
 };
 
+const defaultFont = ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
+const headerFont = ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
+
 const typography = {
-  fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+  fontFamily: defaultFont,
+  defaultFont,
+  headerFont,
   font: {
     size: {
       small: 14,
