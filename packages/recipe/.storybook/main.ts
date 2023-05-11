@@ -29,13 +29,10 @@ const config: StorybookConfig = {
   staticDirs: ['../public'],
   stories: [
     '../docs/**/*.mdx',
-    // '../src/components/**/*.@(mdx|stories.*)', // BREAKS SB
-    '../stories/**/*.mdx', // FIXME: workaround until wildcard globs fixed
+    '../src/components/**/*.mdx',
     process.env.STORYBOOK_INCLUDE_REGRESSION_STORIES === '1'
-      ? //  '../src/components/**/*.stories.@(ts|tsx)' // BREAKS SB
-        '../stories/**/*.stories.@(ts|tsx)' // FIXME: workaround until wildcard globs fixed
-      : //  '../src/components/**/!(*Regression).stories.@(ts|tsx)', // BREAKS SB
-        '../stories/**/!(*Regression).stories.@(ts|tsx)', // FIXME: workaround until wildcard globs fixed
+      ? '../src/components/**/*.stories.@(ts|tsx)'
+      : '../src/components/**/!(*Regression).stories.@(ts|tsx)',
   ].filter(Boolean) as string[],
 };
 

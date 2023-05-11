@@ -1,5 +1,5 @@
 import {type Meta, type StoryObj} from '@storybook/react';
-import {EzChip} from '../../../src';
+import EzChip from '../../EzChip';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzChip> = {

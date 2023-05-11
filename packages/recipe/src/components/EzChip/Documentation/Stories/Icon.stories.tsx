@@ -2,7 +2,8 @@ import React from 'react';
 import {type Meta, type StoryObj} from '@storybook/react';
 import {faStar} from '@fortawesome/free-solid-svg-icons';
 import dedent from 'ts-dedent';
-import {EzChip, EzIcon} from '../../../src';
+import EzChip from '../../EzChip';
+import EzIcon from '../../../EzIcon';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzChip> = {
