@@ -3,7 +3,7 @@ import type {Preview} from '@storybook/react';
 import {DocsContainer} from '@storybook/blocks';
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport';
 import isChromatic from 'chromatic/isChromatic';
-import {Stack} from '@mui/material';
+import {CssBaseline, Stack} from '@mui/material';
 import {withThemeFromJSXProvider} from '@storybook/addon-styling';
 import {previewTheme} from './theme';
 import {ezTheme, ezFulfillmentTheme, ezMarketplaceTheme} from '../src/themes';
@@ -110,6 +110,7 @@ const preview: Preview = {
       },
       defaultTheme: 'marketplace',
       Provider: EzThemeProvider,
+      GlobalStyles: CssBaseline,
     }),
   ],
   parameters: {
@@ -117,7 +118,15 @@ const preview: Preview = {
     docs: {
       container: ({children, context}) => (
         <DocsContainer context={context}>
-          <EzThemeProvider theme={ezTheme}>{children}</EzThemeProvider>
+          <EzThemeProvider
+            theme={
+              context.store.globals.globals.theme === 'fulfillment'
+                ? ezFulfillmentTheme
+                : ezMarketplaceTheme
+            }
+          >
+            {children}
+          </EzThemeProvider>
         </DocsContainer>
       ),
       theme: previewTheme,
