@@ -1,0 +1,74 @@
+import {Meta} from '@storybook/blocks';
+import TableOfContents from '../../components/TableOfContents';
+
+<Meta title="Guides/Migration/v18" />
+<TableOfContents />
+
+# Migration to Recipe 18
+
+Version 18 of Recipe updates includes moving our Gatsby doc site over to Storybook Docs as well as various theming changes.
+
+This release is a **major version release** and as such, **will require migration steps** for applications that currently use Recipe Version 17.x or below.
+
+## Breaking changes
+
+The following changes are considered breaking changes:
+
+### 1. Color names in `ezColors` are now color specific, not theme property specific
+
+Recipe's set of global colors found in `themes/ezColors.ts` has renamed various colors to remove theme property names now that we have multiple themes using different color tokens for theme properties.
+
+If using any of these colors directly, they will need to be updated to the new color names.
+
+- **OLD => NEW**
+- `alert110` => `red120`
+- `alert100` => `red110`
+- `alert90` => `red90`
+- `alert80` => `red80`
+- `neutral170` => `black`
+- `neutral160` => `grey160`
+- `neutral150` => `grey150`
+- `neutral140` => `grey140`
+- `neutral130` => `grey130`
+- `neutral120` => `grey120`
+- `neutral110` => `grey110`
+- `neutral100` => `white`
+- `primary120` => `green120`
+- `primary110` => `green110`
+- `primary100` => `green100`
+- `primary90` => `green90`
+- `success100` => `green103`
+- `success90` => `green95`
+- `warning110` => `orange110`
+- `warning100` => `orange100`
+- `warning90` => `orange90`
+- `warning80` => `orange80`
+- `blue90` => `blue70`
+- `yellow110` => `yellow100`
+- `yellow100` => `yellow90`
+
+```js
+// Example change
+
+// OLD
+<EzButton color="common.primary100">Button</EzButton>
+
+// NEW
+<EzButton color="common.green100">Button</EzButton>
+```
+
+## Migration steps
+
+### Installation
+
+You can update your Recipe installation using a package manager like [npm](https://docs.npmjs.com/cli/v6/commands/npm) or [yarn](https://classic.yarnpkg.com/lang/en/).
+
+```term
+npm install @ezcater/recipe@latest
+```
+
+or
+
+```term
+yarn upgrade @ezcater/recipe@latest
+```

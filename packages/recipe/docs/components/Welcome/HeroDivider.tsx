@@ -16,7 +16,7 @@ const HeroDivider = () => (
       bottom: 0,
       height: '100%',
       width: '12rem',
-      color: ezTheme.palette.common.primary120,
+      color: ezTheme.palette.common.green120,
     }}
   >
     <polygon points="50,0 100,0 50,100 0,100"></polygon>

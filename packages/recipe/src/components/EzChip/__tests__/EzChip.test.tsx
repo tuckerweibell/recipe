@@ -61,7 +61,7 @@ describe('EzChip', () => {
     [
       {
         color: <EzChip label="test" color="primary" />,
-        commonColor: <EzChip label="test" color="common.alert100" />,
+        commonColor: <EzChip label="test" color="common.red110" />,
         icon: <EzChip label="test" icon={<EzIcon icon={faCoffee} />} />,
         label: <EzChip label="test" />,
         onClick: <EzChip label="test" onClick={() => {}} />,

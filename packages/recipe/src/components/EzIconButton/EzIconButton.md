@@ -109,9 +109,9 @@ By default, the `color` passed to `EzIconButton` will also be passed to the chil
         <CoffeeIconButton color="primary" />
         <CoffeeIconButton color="info" />
         <CoffeeIconButton color="error" />
-        <CoffeeIconButton color="common.neutral160" />
+        <CoffeeIconButton color="common.grey160" />
         <CoffeeIconButton color="common.purple100" />
-        <EzIconButton ariaLabel="coffee" color="common.neutral130">
+        <EzIconButton ariaLabel="coffee" color="common.grey130">
           <EzIcon icon={faCoffee} color="common.black" />
         </EzIconButton>
       </EzLayout>
@@ -120,9 +120,9 @@ By default, the `color` passed to `EzIconButton` will also be passed to the chil
         <CoffeeIconButton color="primary" variant="outlined" />
         <CoffeeIconButton color="info" variant="outlined" />
         <CoffeeIconButton color="error" variant="outlined" />
-        <CoffeeIconButton color="common.neutral160" variant="outlined" />
+        <CoffeeIconButton color="common.grey160" variant="outlined" />
         <CoffeeIconButton color="common.purple100" variant="outlined" />
-        <EzIconButton ariaLabel="coffee" color="common.neutral140" variant="outlined">
+        <EzIconButton ariaLabel="coffee" color="common.grey140" variant="outlined">
           <EzIcon icon={faCoffee} color="common.black" />
         </EzIconButton>
       </EzLayout>
@@ -131,9 +131,9 @@ By default, the `color` passed to `EzIconButton` will also be passed to the chil
         <CoffeeIconButton color="primary" variant="basic" />
         <CoffeeIconButton color="info" variant="basic" />
         <CoffeeIconButton color="error" variant="basic" />
-        <CoffeeIconButton color="common.neutral160" variant="basic" />
+        <CoffeeIconButton color="common.grey160" variant="basic" />
         <CoffeeIconButton color="common.purple100" variant="basic" />
-        <EzIconButton ariaLabel="coffee" color="common.neutral150" variant="basic">
+        <EzIconButton ariaLabel="coffee" color="common.grey150" variant="basic">
           <EzIcon icon={faCoffee} color="common.black" />
         </EzIconButton>
       </EzLayout>

@@ -15,11 +15,11 @@ import RecipeContributor from './RecipeContributor';
 
 const Welcome = () => (
   <FullBleed>
-    <Stack bgcolor={ezTheme.palette.common.primary120} overflow="hidden">
+    <Stack bgcolor={ezTheme.palette.common.green120} overflow="hidden">
       <HeroImage displaySizeHide="xs" displaySizeShow="md" objectPosition="30% center" />
 
       <Stack
-        bgcolor={ezTheme.palette.common.primary120}
+        bgcolor={ezTheme.palette.common.green120}
         justifyContent="center"
         minHeight="100vh"
         minWidth={{xs: '34rem', lg: '56rem'}}
@@ -52,14 +52,14 @@ const Welcome = () => (
                 </Box>
 
                 <Stack direction="row" alignItems="center">
-                  <Box color={ezTheme.palette.common.green} fontSize="3rem" mr={2}>
+                  <Box color={ezTheme.palette.common.green100} fontSize="3rem" mr={2}>
                     from
                   </Box>
                   <Box component="img" src={ezcaterLogo} alt="ezcater" height="3rem" />
                 </Stack>
 
                 <Box
-                  color={ezTheme.palette.common.neutral120}
+                  color={ezTheme.palette.common.grey120}
                   fontSize="1.5rem"
                   fontWeight="300"
                   mt={1}

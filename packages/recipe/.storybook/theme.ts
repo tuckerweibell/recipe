@@ -16,9 +16,9 @@ const baseTheme = {
 const managerTheme = create({
   ...baseTheme,
   base: 'dark',
-  appBg: ezTheme.palette.common.primary110,
-  colorPrimary: ezTheme.palette.common.green,
-  colorSecondary: ezTheme.palette.common.green,
+  appBg: ezTheme.palette.common.green110,
+  colorPrimary: ezTheme.palette.common.green100,
+  colorSecondary: ezTheme.palette.common.green100,
 });
 
 const previewTheme = create({

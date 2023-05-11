@@ -40,7 +40,7 @@ const RecipeContributor = ({href, imgSrc, name, role}: RecipeContributorProps) =
         {name}
       </Box>
 
-      <Box color={ezTheme.palette.common.neutral140} fontSize="0.875rem" fontWeight="300">
+      <Box color={ezTheme.palette.common.grey140} fontSize="0.875rem" fontWeight="300">
         {role}
       </Box>
     </Stack>

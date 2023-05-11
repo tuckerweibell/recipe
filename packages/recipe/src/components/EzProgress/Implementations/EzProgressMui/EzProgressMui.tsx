@@ -19,7 +19,7 @@ const EzProgressMui: React.FC<EzProgressMuiProps> = ({value, color, children}) =
         variant="determinate"
         sx={{
           position: 'absolute',
-          color: 'common.neutral120',
+          color: 'common.grey120',
         }}
         size={CIRCULAR_PROGRESS_SIZE}
         thickness={CIRCULAR_PROGRESS_THICKNESS}

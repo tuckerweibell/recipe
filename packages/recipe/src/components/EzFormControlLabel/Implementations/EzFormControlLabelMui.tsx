@@ -49,7 +49,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
           {helperText && (
             <Box
               className="EzFormControlLabel-helperText"
-              color={theme.palette.common.neutral150}
+              color={theme.palette.common.grey150}
               fontSize="12px"
             >
               {helperText}

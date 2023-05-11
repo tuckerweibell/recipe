@@ -137,8 +137,8 @@ const EzCheckboxMui = forwardRef<Ref, EzCheckboxProps>(
       return VARIANT_COLORS(
         themeColor,
         theme.palette.common.white,
-        theme.palette.common.neutral120, // disabled background color
-        theme.palette.common.neutral130, // disabled border color
+        theme.palette.common.grey120, // disabled background color
+        theme.palette.common.grey130, // disabled border color
         theme.palette.common.disabled // disabled color
       )[variant][hover ? 'hover' : checkedState][style];
     };

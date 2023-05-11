@@ -15,7 +15,7 @@ const WelcomeSubheader = ({children, href}: WelcomeSubheaderProps) => (
     rel={href ? 'noreferrer' : undefined}
     textTransform="uppercase"
     letterSpacing="0.05em"
-    color={ezTheme.palette.common.neutral130}
+    color={ezTheme.palette.common.grey130}
     fontSize="0.875rem"
     fontWeight="600"
     underline={href ? 'hover' : undefined}

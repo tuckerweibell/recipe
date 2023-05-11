@@ -2,7 +2,7 @@
 
 ```jsx
 () => {
-  const {faCoffee} = require("@fortawesome/free-solid-svg-icons/faCoffee");
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
 
   return (
     <EzLayout>
@@ -14,7 +14,7 @@
       <EzIcon icon={faCoffee} color="info" />
       <EzIcon icon={faCoffee} color="success" />
       <EzIcon icon={faCoffee} color="common.white" />
-      <EzIcon icon={faCoffee} color="common.green" />
+      <EzIcon icon={faCoffee} color="common.green100" />
       <EzIcon icon={faCoffee} color="common.purple100" />
       <EzIcon icon={faCoffee} size="small" />
       <EzIcon icon={faCoffee} size="medium" />
@@ -40,7 +40,7 @@
       <EzIcon icon={Pizza} color="info" />
       <EzIcon icon={Pizza} color="success" />
       <EzIcon icon={Pizza} color="common.white" />
-      <EzIcon icon={Pizza} color="common.green" />
+      <EzIcon icon={Pizza} color="common.green100" />
       <EzIcon icon={Pizza} color="common.purple100" />
       <EzIcon icon={Pizza} size="small" />
       <EzIcon icon={Pizza} size="medium" />
@@ -70,7 +70,7 @@
       <EzIcon icon={burgerIcon} color="info" />
       <EzIcon icon={burgerIcon} color="success" />
       <EzIcon icon={burgerIcon} color="common.white" />
-      <EzIcon icon={burgerIcon} color="common.green" />
+      <EzIcon icon={burgerIcon} color="common.green100" />
       <EzIcon icon={burgerIcon} color="common.purple100" />
       <EzIcon icon={burgerIcon} size="small" />
       <EzIcon icon={burgerIcon} size="medium" />

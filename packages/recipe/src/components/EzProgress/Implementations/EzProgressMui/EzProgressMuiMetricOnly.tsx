@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import Stack from '@mui/material/Stack';
 
 const COLORS = {
-  gray: 'common.neutral120',
+  grey: 'common.grey120',
 };
 
 interface EzProgressMuiMetricOnly {
@@ -16,7 +16,7 @@ const EzProgressMuiMetricOnly: React.FC<EzProgressMuiMetricOnly> = ({children}) 
       justifyContent="center"
       position="relative"
       border="4px solid"
-      borderColor={COLORS.gray}
+      borderColor={COLORS.grey}
       borderRadius="8px"
       height={112}
       width={112}

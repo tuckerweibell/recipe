@@ -58,7 +58,7 @@ export const FilledVariantsWithColors: Story = {
       <DefaultEzChip {...filled} label="filled - color error" color="error" />
       <DefaultEzChip {...filled} label="filled - color info" color="info" />
       <DefaultEzChip {...filled} label="filled - color success" color="success" />
-      <DefaultEzChip {...filled} label="filled - color common" color="common.neutral130" />
+      <DefaultEzChip {...filled} label="filled - color common" color="common.grey130" />
     </Stack>
   ),
 };
@@ -72,7 +72,7 @@ export const OutlinedVariantsWithColors: Story = {
       <DefaultEzChip {...outlined} label="outlined - color error" color="error" />
       <DefaultEzChip {...outlined} label="outlined - color info" color="info" />
       <DefaultEzChip {...outlined} label="outlined - color success" color="success" />
-      <DefaultEzChip {...outlined} label="outlined - color common" color="common.neutral150" />
+      <DefaultEzChip {...outlined} label="outlined - color common" color="common.grey150" />
     </Stack>
   ),
 };

@@ -246,7 +246,7 @@ const Thead = ({selectable}) => {
             <EzCheckbox
               ariaLabel="checkbox-header"
               checked={items.length === selection.rowsSelectedOnCurrentPage.length}
-              color="common.neutral150"
+              color="common.grey150"
               indeterminate={
                 items.length !== selection.rowsSelectedOnCurrentPage.length &&
                 selection.rowsSelectedOnCurrentPage.length > 0
@@ -348,7 +348,7 @@ const TRow = ({item}) => {
           <EzCheckbox
             ariaLabel="checkbox-row"
             checked={selection.rowsSelectedOnCurrentPage.includes(item)}
-            color="common.neutral150"
+            color="common.grey150"
             name="select row"
             onChange={event => selection.onRowSelectClick(event, {item})}
             size="small"
@@ -475,7 +475,7 @@ const TablePagination = ({pagination}) => {
           <div className={virtualTouchable()}>
             <EzIconButton
               ariaLabel={t('Previous Page')}
-              color="common.neutral160"
+              color="common.grey160"
               disabled={pagination.currentPage === 1}
               onClick={pagination.onPrevPageClick}
               size="small"
@@ -488,7 +488,7 @@ const TablePagination = ({pagination}) => {
           <div className={virtualTouchable()}>
             <EzIconButton
               ariaLabel={t('Next Page')}
-              color="common.neutral160"
+              color="common.grey160"
               disabled={pagination.currentPage === pages}
               onClick={pagination.onNextPageClick}
               size="small"

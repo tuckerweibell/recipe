@@ -28,7 +28,7 @@ const EzBadgeMui = forwardRef<Ref, EzBadgeProps>(
         sx={{
           '& .MuiBadge-badge': {
             bgcolor: isCommonColor ? color : undefined,
-            color: isCommonColor ? 'common.neutral100' : undefined,
+            color: isCommonColor ? 'common.white' : undefined,
           },
         }}
         variant={minimize ? 'dot' : 'standard'}

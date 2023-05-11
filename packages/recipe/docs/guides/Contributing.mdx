@@ -158,7 +158,7 @@ Add a deprecation warning alert to the appropriate doc site page to let users kn
 ```jsx
 <EzAlert
   headline="Deprecation Warning"
-  tagline="Previously supported colors 'green' and 'white' are deprecated and will be removed in v15. Instead, use 'common.green' and 'common.white'."
+  tagline="Previously supported colors 'green' and 'white' are deprecated and will be removed in v15. Instead, use 'common.green100' and 'common.white'."
   use="warning"
 />
 ```
@@ -170,7 +170,7 @@ If the deprecation is related to a theming change, add a reference to it in `src
 ```js
 export const deprecatedColors = {
   set: new Set(['green', 'white']),
-  warning: `*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead.`,
+  warning: `*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green100' and 'common.white' instead.`,
 };
 ```
 
@@ -202,7 +202,7 @@ describe('EzIcon', () => {
       render(<EzIcon icon={SVG_ICON_BURGER} color="green" />);
       expect(warningMock).toHaveBeenCalledWith(
       false,
-      "*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green' and 'common.white' instead."
+      "*Deprecated*. The colors 'green' and 'white' are deprecated and will be removed in a future version of Recipe. Use 'common.green100' and 'common.white' instead."
       );
    });
 });

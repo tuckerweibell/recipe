@@ -41,9 +41,9 @@ Badges always require a `value`.
 
 ### Badge Colors
 
-EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.red100`).
+EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, `neutral`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.red100`).
 
-Out of the box, badges have a background color of `common.alert100` and font color of `common.neutral100`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+Out of the box, badges have a background color of `common.red110` and font color of `common.white`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 <EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 

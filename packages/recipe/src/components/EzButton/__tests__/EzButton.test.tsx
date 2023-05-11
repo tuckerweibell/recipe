@@ -78,7 +78,7 @@ describe('EzButton', () => {
     [
       {
         ariaLabel: <EzButton ariaLabel="test">Test Button</EzButton>,
-        color: <EzButton color="common.alert100">Test Button</EzButton>,
+        color: <EzButton color="common.red110">Test Button</EzButton>,
         disabled: <EzButton disabled>Test Button</EzButton>,
         endIcon: <EzButton endIcon={<svg />}>Test Button</EzButton>,
         fontSize: <EzButton fontSize="small">Test Button</EzButton>,

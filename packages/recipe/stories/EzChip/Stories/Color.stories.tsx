@@ -39,10 +39,10 @@ export const NeutralColor: Story = {
   args: {
     ...Default.args,
     color: 'neutral',
-    label: 'Nuetral',
+    label: 'Neutral',
   },
   parameters: {
-    playroom: {code: '<EzChip color="neutral" label="Nuetral" />'},
+    playroom: {code: '<EzChip color="neutral" label="Neutral" />'},
   },
 };
 
@@ -93,10 +93,10 @@ export const SuccessColor: Story = {
 export const CommonColor: Story = {
   args: {
     ...Default.args,
-    color: 'common.neutral120',
-    label: 'common.neutral120',
+    color: 'common.grey120',
+    label: 'common.grey120',
   },
   parameters: {
-    playroom: {code: '<EzChip color="common.neutral120" label="common.neutral120" />'},
+    playroom: {code: '<EzChip color="common.grey120" label="common.grey120" />'},
   },
 };

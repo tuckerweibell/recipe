@@ -6,11 +6,11 @@ import EzProgressMuiMetricOnly from './Implementations/EzProgressMui/EzProgressM
 import EzProgressMuiDisplayValue from './Implementations/EzProgressMui/components/EzProgressMuiDisplayValue';
 
 const PROGRESS_COLORS = {
-  green: 'common.primary100',
-  yellow: 'common.yellow110',
+  green: 'common.green100',
+  yellow: 'common.yellow100',
   red: 'common.red100',
   blue: 'common.blue100',
-  gray: 'common.neutral120',
+  gray: 'common.grey120',
 };
 
 const isMetricNumeric = metric => (metric && typeof metric === 'number') || metric === 0;

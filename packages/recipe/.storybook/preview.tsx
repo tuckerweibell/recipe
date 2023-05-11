@@ -146,7 +146,7 @@ const preview: Preview = {
             'Versioning',
             'Changelog',
             'Migration',
-            ['v17', 'v16', 'v15', 'v14', 'v12', 'v11', 'v10', 'v8'],
+            ['v18', 'v17', 'v16', 'v15', 'v14', 'v12', 'v11', 'v10', 'v8'],
           ],
         ],
       },

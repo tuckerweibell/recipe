@@ -10,7 +10,7 @@ const STATUS_MAP = {
   success: {color: 'success', icon: false},
   informational: {color: 'info', icon: false},
   attention: {color: 'info', icon: true},
-  warning: {color: 'common.warning110', icon: true},
+  warning: {color: 'common.orange110', icon: true},
   error: {color: 'error', icon: true},
   alert: {color: 'alert', icon: true},
 };
@@ -58,7 +58,7 @@ const EzChipMui = forwardRef<Ref, EzChipProps & {children?: null}>(
           borderColor: variant === 'outlined' && isCommonColor ? color : undefined,
           color: chipFontColor,
           fontSize: size === 'inherit' ? 'inherit' : undefined,
-          '&.EzChip-warning': {color: 'common.warning110'},
+          '&.EzChip-warning': {color: 'common.orange110'},
         }}
         variant={variant === 'outlined' ? variant : undefined}
         {...props}

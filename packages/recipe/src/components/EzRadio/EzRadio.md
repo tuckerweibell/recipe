@@ -473,10 +473,10 @@ For larger, more visual radio buttons, provide an `icon` (`<EzIcon />`) along wi
               theme={{
                 color: {
                   selected: {
-                    backgroundColor: 'common.yellow100',
-                    borderColor: 'common.yellow100',
-                    iconColor: 'common.primary110',
-                    textColor: 'common.primary110',
+                    backgroundColor: 'common.yellow90',
+                    borderColor: 'common.yellow90',
+                    iconColor: 'common.green110',
+                    textColor: 'common.green110',
                   },
                   unselected: {
                     backgroundColor: 'common.green105',

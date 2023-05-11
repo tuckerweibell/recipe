@@ -108,7 +108,7 @@ In the case that you cannot find what you need from Font Awesome or ezCater icon
 
 ### Icon color
 
-By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.primary100`).
+By default, the icon color is the same as the body text. If you want to specifiy a color, use the `color` prop. We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.green100`).
 
 <EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 
@@ -122,7 +122,7 @@ By default, the icon color is the same as the body text. If you want to specifiy
         <EzIcon icon={Fries} color="secondary" />
         <EzIcon icon={Fries} color="error" />
         <EzIcon icon={Fries} color="common.purple100" />
-        <EzIcon icon={Fries} color="common.green" />
+        <EzIcon icon={Fries} color="common.green100" />
       </EzLayout>
     </EzPage>
   );

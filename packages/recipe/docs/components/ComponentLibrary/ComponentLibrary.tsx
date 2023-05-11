@@ -51,7 +51,7 @@ const getSnapshotComponent = (componentName: string) => {
 const LibrarySection = ({sectionName, category, components}) => (
   <>
     <Box
-      color={ezTheme.palette.common.neutral150}
+      color={ezTheme.palette.common.grey150}
       fontSize="0.9em"
       fontWeight={600}
       letterSpacing={2}
@@ -83,7 +83,7 @@ const LibraryItem = ({snapshot, link, name}) => (
             {snapshot}
           </Stack>
 
-          <Box mt={1} fontSize="0.8em" fontWeight={600} color={ezTheme.palette.common.green}>
+          <Box mt={1} fontSize="0.8em" fontWeight={600} color={ezTheme.palette.common.green100}>
             {name}
           </Box>
         </Stack>
@@ -95,7 +95,7 @@ const LibraryItem = ({snapshot, link, name}) => (
 const ComponentLibrary = () => {
   return (
     <FullBleed>
-      <Stack bgcolor={ezTheme.palette.common.neutral120} px={12} py={8}>
+      <Stack bgcolor={ezTheme.palette.common.grey120} px={12} py={8}>
         <Typography variant="h5" pb={3} textTransform="uppercase">
           Component Library
         </Typography>

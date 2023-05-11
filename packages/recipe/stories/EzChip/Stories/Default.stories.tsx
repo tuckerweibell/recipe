@@ -21,7 +21,7 @@ const meta: Meta<typeof EzChip> = {
     },
     color: {
       control: {type: 'select'},
-      defaultValue: 'common.neutral130',
+      defaultValue: 'common.grey130',
       description: 'The color of the component. Supports theme palette properties and colors.',
       options: [
         'default',
@@ -32,13 +32,13 @@ const meta: Meta<typeof EzChip> = {
         'info',
         'success',
         'warning',
-        'common.neutral130',
-        'common.yellow100',
-        'common.alert90',
+        'common.grey130',
+        'common.yellow90',
+        'common.red90',
         'common.blue90',
       ],
       table: {
-        defaultValue: {summary: 'common.neutral130'},
+        defaultValue: {summary: 'common.grey130'},
         type: {summary: 'EzThemeColors'},
       },
     },
@@ -104,7 +104,7 @@ type Story = StoryObj<typeof EzChip>;
 export const Default: Story = {
   args: {
     label: 'Chip',
-    color: 'common.neutral130',
+    color: 'common.grey130',
     onClick: undefined,
     onDelete: undefined,
     size: 'medium',
@@ -115,7 +115,7 @@ export const Default: Story = {
       code: dedent`
         <EzChip
           label="Chip"
-          color="common.neutral130"
+          color="common.grey130"
           onClick={undefined}
           onDelete={undefined}
           size="medium"
