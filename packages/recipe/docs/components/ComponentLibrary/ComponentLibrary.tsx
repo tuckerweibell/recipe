@@ -5,39 +5,15 @@ import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/ma
 import FullBleed from '../FullBleed';
 import getSnapshot from './getSnapshot';
 import {ezTheme} from '../../../src/themes';
-
-const inputComponents = ['EzButton', 'EzCheckbox', 'EzRadio', 'EzField', 'EzLabel'];
-const dataDisplayComponents = [
-  'EzBadge',
-  'EzChip',
-  'EzOrderSummary',
-  'EzRating',
-  'EzSearchInput',
-  'EzSegmentedControl',
-  'EzTable',
-  'EzTimeline',
-  'EzToggle',
-];
-const feedbackComponents = [
-  'EzAlert',
-  'EzModal',
-  'EzFlashMessage',
-  'EzPopover',
-  'EzProgress',
-  'EzTooltip',
-];
-const surfacesComponents = ['EzCard', 'EzWell'];
-const navigationComponents = ['EzCarousel', 'EzLink', 'EzNavigation', 'EzProgressTracker'];
-const layoutComponents = [
-  'EzAppLayout',
-  'EzBanner',
-  'EzBlankState',
-  'EzFormLayout',
-  'EzLayout',
-  'EzPage',
-  'EzPageHeader',
-];
-const typographyComponents = ['EzBaseFontSizeCompatibility', 'EzHeading', 'EzIcon', 'EzTextStyle'];
+import {
+  dataDisplayComponents,
+  feedbackComponents,
+  inputComponents,
+  layoutComponents,
+  navigationComponents,
+  surfacesComponents,
+  typographyComponents,
+} from './categories';
 
 const LibrarySection = ({sectionName, category, components}) => (
   <>
