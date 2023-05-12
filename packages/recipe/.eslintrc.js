@@ -46,7 +46,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.stories.tsx', '**/*.stories.ts', '**/*.regression.tsx'],
+      files: ['**/*.regression.tsx', '**/*.snapshot.tsx', '**/*.stories.ts', '**/*.stories.tsx'],
       rules: {
         'filenames/match-exported': 'off',
       },

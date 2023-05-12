@@ -1,8 +1,9 @@
-import React, {createElement} from 'react';
+import React from 'react';
 import {linkTo} from '@storybook/addon-links';
 import {Unstyled} from '@storybook/blocks';
 import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/material';
 import FullBleed from '../FullBleed';
+import getSnapshot from './getSnapshot';
 import {ezTheme} from '../../../src/themes';
 
 const inputComponents = ['EzButton', 'EzCheckbox', 'EzRadio', 'EzField', 'EzLabel'];
@@ -38,17 +39,6 @@ const layoutComponents = [
 ];
 const typographyComponents = ['EzBaseFontSizeCompatibility', 'EzHeading', 'EzIcon', 'EzTextStyle'];
 
-const allSnapshots = require.context('../../../src/components', true, /\Snapshot\.tsx$/);
-
-const getSnapshotComponent = (componentName: string) => {
-  const file = allSnapshots
-    .keys()
-    .find(snapshotComponentName => snapshotComponentName.endsWith(`${componentName}Snapshot.tsx`));
-  if (file) return createElement(allSnapshots(file).default, {});
-
-  return <div></div>;
-};
-
 const LibrarySection = ({sectionName, category, components}) => (
   <>
     <Box
@@ -68,7 +58,7 @@ const LibrarySection = ({sectionName, category, components}) => (
           key={componentName}
           name={componentName}
           link={`${category}/${componentName}`}
-          snapshot={getSnapshotComponent(componentName)}
+          snapshot={getSnapshot(componentName)}
         />
       ))}
     </Stack>
