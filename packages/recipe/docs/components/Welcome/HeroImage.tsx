@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box} from '@mui/system';
 import heroImg from '../../../public/images/hero-pattern-xl.jpg';
+import {HeroImageProps} from './Welcome.types';
 
-interface HeroImageProps {
-  displaySizeHide: string;
-  displaySizeShow: string;
-  objectPosition?: string;
-}
-
-const HeroImage = ({displaySizeHide, displaySizeShow, objectPosition}: HeroImageProps) => (
+const HeroImage: FC<HeroImageProps> = ({
+  displaySizeHide = 'md',
+  displaySizeShow = 'xs',
+  objectPosition = 'center',
+}) => (
   <Box
     src={heroImg}
     alt=""
@@ -20,11 +19,5 @@ const HeroImage = ({displaySizeHide, displaySizeShow, objectPosition}: HeroImage
     sx={{objectFit: 'cover', objectPosition}}
   />
 );
-
-HeroImage.defaultProps = {
-  displaySizeHide: 'md',
-  displaySizeShow: 'xs',
-  objectPosition: 'center',
-};
 
 export default HeroImage;

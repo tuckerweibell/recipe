@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Stack} from '@mui/material';
+import {FullBleedProps} from './FullBleed.types';
 
-const FullBleed = ({children}) => (
+const FullBleed: FC<FullBleedProps> = ({children}) => (
   <Stack
     bottom="50%"
     height="100vh"

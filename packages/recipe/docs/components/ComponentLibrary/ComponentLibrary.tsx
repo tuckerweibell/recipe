@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {linkTo} from '@storybook/addon-links';
 import {Unstyled} from '@storybook/blocks';
 import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/material';
+import {LibraryItemProps, LibrarySectionProps} from './ComponentLibrary.types';
 import FullBleed from '../FullBleed';
 import getSnapshot from './getSnapshot';
 import {ezTheme} from '../../../src/themes';
@@ -15,7 +16,7 @@ import {
   typographyComponents,
 } from './categories';
 
-const LibrarySection = ({sectionName, category, components}) => (
+const LibrarySection: FC<LibrarySectionProps> = ({sectionName, category, components}) => (
   <>
     <Box
       color={ezTheme.palette.common.grey150}
@@ -41,7 +42,7 @@ const LibrarySection = ({sectionName, category, components}) => (
   </>
 );
 
-export const LibraryItem = ({snapshot, link, name}) => (
+export const LibraryItem: FC<LibraryItemProps> = ({snapshot, link, name}) => (
   <Card sx={{height: 200, width: 200, mr: 3, mb: 3}}>
     <CardActionArea sx={{height: '100%', justifyContent: 'space-between'}} onClick={linkTo(link)}>
       <CardContent>
@@ -59,44 +60,34 @@ export const LibraryItem = ({snapshot, link, name}) => (
   </Card>
 );
 
-const ComponentLibrary = () => {
-  return (
-    <FullBleed>
-      <Stack bgcolor={ezTheme.palette.common.grey120} px={12} py={8}>
-        <Typography variant="h5" pb={3} textTransform="uppercase">
-          Component Library
-        </Typography>
+const ComponentLibrary: FC<unknown> = () => (
+  <FullBleed>
+    <Stack bgcolor={ezTheme.palette.common.grey120} px={12} py={8}>
+      <Typography variant="h5" pb={3} textTransform="uppercase">
+        Component Library
+      </Typography>
 
-        <LibrarySection sectionName="inputs" category="Input" components={inputComponents} />
-        <LibrarySection
-          sectionName="data display"
-          category="Data Display"
-          components={dataDisplayComponents}
-        />
-        <LibrarySection
-          sectionName="feedback"
-          category="Feedback"
-          components={feedbackComponents}
-        />
-        <LibrarySection
-          sectionName="surfaces"
-          category="Surfaces"
-          components={surfacesComponents}
-        />
-        <LibrarySection
-          sectionName="navigation"
-          category="Navigation"
-          components={navigationComponents}
-        />
-        <LibrarySection sectionName="layout" category="Layout" components={layoutComponents} />
-        <LibrarySection
-          sectionName="typography"
-          category="Typography"
-          components={typographyComponents}
-        />
-      </Stack>
-    </FullBleed>
-  );
-};
+      <LibrarySection sectionName="inputs" category="Input" components={inputComponents} />
+      <LibrarySection
+        sectionName="data display"
+        category="Data Display"
+        components={dataDisplayComponents}
+      />
+      <LibrarySection sectionName="feedback" category="Feedback" components={feedbackComponents} />
+      <LibrarySection sectionName="surfaces" category="Surfaces" components={surfacesComponents} />
+      <LibrarySection
+        sectionName="navigation"
+        category="Navigation"
+        components={navigationComponents}
+      />
+      <LibrarySection sectionName="layout" category="Layout" components={layoutComponents} />
+      <LibrarySection
+        sectionName="typography"
+        category="Typography"
+        components={typographyComponents}
+      />
+    </Stack>
+  </FullBleed>
+);
 
 export default ComponentLibrary;

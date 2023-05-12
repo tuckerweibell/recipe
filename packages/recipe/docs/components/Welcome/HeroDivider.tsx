@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {ezTheme} from '../../../src/themes';
 
-const HeroDivider = () => (
+const HeroDivider: FC<unknown> = () => (
   <svg
     height="70"
     width="20"

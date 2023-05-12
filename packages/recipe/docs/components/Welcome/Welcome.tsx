@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box, Stack} from '@mui/material';
 import {Unstyled} from '@storybook/blocks';
 import {linkTo} from '@storybook/addon-links';
@@ -14,7 +14,7 @@ import WelcomeSubheader from './WelcomeSubheader';
 import RecipeLogo from './RecipeLogo';
 import RecipeContributor from './RecipeContributor';
 
-const Welcome = () => (
+const Welcome: FC<unknown> = () => (
   <FullBleed>
     <Stack bgcolor={ezTheme.palette.common.green120} overflow="hidden">
       <Unstyled>

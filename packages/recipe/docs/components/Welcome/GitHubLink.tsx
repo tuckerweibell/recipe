@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box, Link, Stack} from '@mui/material';
 import {ezTheme} from '../../../src/themes';
 
-const GitHubLink = () => (
+const GitHubLink: FC<unknown> = () => (
   <Stack
     component={Link}
     href="https://github.com/ezcater/recipe"

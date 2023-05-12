@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-const RecipeLogo = () => (
+const RecipeLogo: FC<unknown> = () => (
   <svg viewBox="0 0 972.16 239.56" height="32" width="130">
     <g>
       <path

@@ -1,15 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Avatar, Box, Link, Stack} from '@mui/material';
 import {ezTheme} from '../../../src/themes';
+import {RecipeContributorProps} from './Welcome.types';
 
-interface RecipeContributorProps {
-  href: string;
-  imgSrc: string;
-  name: string;
-  role: string;
-}
-
-const RecipeContributor = ({href, imgSrc, name, role}: RecipeContributorProps) => (
+const RecipeContributor: FC<RecipeContributorProps> = ({href, imgSrc, name, role}) => (
   <Stack
     component={Link}
     href={href}

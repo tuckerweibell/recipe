@@ -1,13 +1,9 @@
-import React, {ReactNode} from 'react';
+import React, {FC} from 'react';
 import {Box, Link} from '@mui/material';
 import {ezTheme} from '../../../src/themes';
+import {WelcomeSubheaderProps} from './Welcome.types';
 
-interface WelcomeSubheaderProps {
-  children: ReactNode;
-  href?: string;
-}
-
-const WelcomeSubheader = ({children, href}: WelcomeSubheaderProps) => (
+const WelcomeSubheader: FC<WelcomeSubheaderProps> = ({children, href}) => (
   <Box
     component={href ? Link : 'div'}
     href={href ? href : undefined}

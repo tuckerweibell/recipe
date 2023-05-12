@@ -1,10 +1,6 @@
-import {
-  createTheme,
-  PaletteOptions as MuiPaletteOptions,
-  responsiveFontSizes,
-  SimplePaletteColorOptions,
-} from '@mui/material';
+import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
+import type {EzPaletteOptions} from '../themes.types';
 
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
@@ -73,20 +69,6 @@ declare module '@mui/material/Radio' {
     neutral: true;
   }
 }
-
-type EzPaletteOptions = Omit<
-  MuiPaletteOptions,
-  'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'alert' | 'neutral'
-> & {
-  primary?: SimplePaletteColorOptions;
-  secondary?: SimplePaletteColorOptions;
-  error?: SimplePaletteColorOptions;
-  warning?: SimplePaletteColorOptions;
-  info?: SimplePaletteColorOptions;
-  success?: SimplePaletteColorOptions;
-  alert?: SimplePaletteColorOptions;
-  neutral?: SimplePaletteColorOptions;
-};
 
 const palette: EzPaletteOptions = {
   primary: {
