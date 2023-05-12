@@ -41,7 +41,7 @@ const LibrarySection = ({sectionName, category, components}) => (
   </>
 );
 
-const LibraryItem = ({snapshot, link, name}) => (
+export const LibraryItem = ({snapshot, link, name}) => (
   <Card sx={{height: 200, width: 200, mr: 3, mb: 3}}>
     <CardActionArea sx={{height: '100%', justifyContent: 'space-between'}} onClick={linkTo(link)}>
       <CardContent>
