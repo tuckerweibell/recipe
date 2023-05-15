@@ -73,11 +73,19 @@ const Welcome: FC<unknown> = () => (
                   </Box>
 
                   <Stack direction={{xs: 'column', md: 'row'}} mt={2} gap={3}>
-                    <EzButton size="large" onClick={linkTo('Guides/Getting Started')}>
+                    <EzButton
+                      color="common.green100"
+                      onClick={linkTo('Guides/Getting Started')}
+                      size="large"
+                    >
                       Getting Started
                     </EzButton>
 
-                    <EzButton size="large" onClick={linkTo('Component Library')}>
+                    <EzButton
+                      color="common.green100"
+                      onClick={linkTo('Component Library')}
+                      size="large"
+                    >
                       Explore the components
                     </EzButton>
                   </Stack>

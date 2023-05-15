@@ -2,7 +2,7 @@ import {ezTheme} from '../../../src/themes';
 
 const isActiveLiStyles = {
   '&::before': {
-    bgcolor: ezTheme.palette.primary.main,
+    bgcolor: ezTheme.palette.secondary.main,
     content: '""',
     height: '100%',
     left: 0,
@@ -13,7 +13,7 @@ const isActiveLiStyles = {
 };
 
 const tocLinkStyles = {
-  color: ezTheme.palette.primary.main,
+  color: ezTheme.palette.secondary.main,
   fontFamily: 'Montserrat',
   fontSize: '0.8rem',
 };
