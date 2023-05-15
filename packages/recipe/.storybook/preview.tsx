@@ -57,7 +57,7 @@ const preview: Preview = {
         globals.theme ||
         parameters.theme ||
         parameters.parameters?.theme ||
-        (isChromatic() ? 'side-by-side' : 'fulfillment');
+        (isChromatic() ? 'side-by-side' : 'marketplace');
 
       if (theme === 'side-by-side')
         return (
