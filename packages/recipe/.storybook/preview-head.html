@@ -19,6 +19,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .sbdocs.sbdocs-wrapper:has(ol[class*='toc-list']) {
+    padding: 4rem 300px 4rem 60px;
+  }
+
   a.sbdocs-a,
   div.docs-toc a {
     color: #00b373;
@@ -49,5 +53,10 @@
     margin-right: -150px;
     position: sticky;
     top: 0;
+  }
+
+  :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+  :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+    font-size: 16px !important;
   }
 </style>

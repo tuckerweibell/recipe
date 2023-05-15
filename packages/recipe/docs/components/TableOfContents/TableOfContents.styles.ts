@@ -42,6 +42,7 @@ const tocStyles = {
   position: 'fixed',
   right: 20,
   transition: 'all 0.3s ease-in',
+  width: '260px',
   zIndex: 2,
   '.toc-list': tocListStyles,
   '.toc-list-item': tocListItemStyles,

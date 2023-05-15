@@ -44,7 +44,7 @@ const LibrarySection: FC<LibrarySectionProps> = ({sectionName, category, compone
 
 export const LibraryItem: FC<LibraryItemProps> = ({snapshot, link, name}) => (
   <Card sx={{height: 200, width: 200, mr: 3, mb: 3}}>
-    <CardActionArea sx={{height: '100%', justifyContent: 'space-between'}} onClick={linkTo(link)}>
+    <CardActionArea sx={{justifyContent: 'space-between'}} onClick={linkTo(link)}>
       <CardContent>
         <Stack alignItems="center">
           <Stack justifyContent="space-around" minHeight={140} sx={{'*': {cursor: 'pointer'}}}>
