@@ -1,5 +1,7 @@
 import {createTheme} from '@mui/material';
 import ezTheme from './ezTheme';
+import {ezPalette} from '../ezColors';
+import type {EzPaletteOptions} from '../themes.types';
 
 const defaultFont = '"Roboto Flex", "Helvetica Neue", Arial, Helvetica, sans-serif';
 const headerFont = 'Montserrat, "Helvetica Neue", Arial, Helvetica, sans-serif';
@@ -10,8 +12,16 @@ const typography = {
   headerFont,
 };
 
+const palette: EzPaletteOptions = {
+  primary: {
+    main: ezPalette.blue90,
+    light: ezPalette.blue60,
+    dark: ezPalette.blue130,
+    contrastText: ezPalette.white,
+  },
+};
+
 const ezFulfillmentTheme = createTheme(ezTheme, {
-  typography,
   components: {
     MuiButton: {
       styleOverrides: {
@@ -42,6 +52,8 @@ const ezFulfillmentTheme = createTheme(ezTheme, {
       },
     },
   },
+  palette,
+  typography,
 });
 
 export default ezFulfillmentTheme;

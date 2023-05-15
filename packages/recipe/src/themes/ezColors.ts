@@ -28,6 +28,11 @@ export const ezColors = {
     },
   },
   blue: {
+    blue130: {
+      name: 'Blue 130',
+      color: '#0a4475',
+      contrastColor: CONTRAST_LIGHT,
+    },
     blue120: {
       name: 'Blue 120',
       color: '#0f4879',
@@ -63,12 +68,22 @@ export const ezColors = {
       color: '#f2f4ff',
       contrastColor: CONTRAST_DARK,
     },
+    blue60: {
+      name: 'Blue 60',
+      color: '#edf6fe',
+      contrastColor: CONTRAST_DARK,
+    },
   },
   green: {
     green120: {
       name: 'Green 120', // was primary 120
       alternateName: 'Kale',
       color: '#1d3c34',
+      contrastColor: CONTRAST_LIGHT,
+    },
+    green115: {
+      name: 'Green 115',
+      color: '#074402',
       contrastColor: CONTRAST_LIGHT,
     },
     green110: {
@@ -98,6 +113,11 @@ export const ezColors = {
       color: '#00b373',
       contrastColor: CONTRAST_LIGHT,
     },
+    green98: {
+      name: 'Green 98',
+      color: '#93ba53',
+      contrastColor: CONTRAST_DARK,
+    },
     green95: {
       name: 'Green 95', // was success 90
       color: '#f0fae4',
@@ -108,8 +128,18 @@ export const ezColors = {
       color: '#f0faf7',
       contrastColor: CONTRAST_DARK,
     },
+    green80: {
+      name: 'Green 80',
+      color: '#f4f8ec',
+      contrastColor: CONTRAST_DARK,
+    },
   },
   grey: {
+    grey170: {
+      name: 'Grey 170',
+      color: '#373d43',
+      contrastColor: CONTRAST_LIGHT,
+    },
     grey160: {
       name: 'Grey 160', // was neutral 160
       color: '#565a5c',
@@ -130,6 +160,11 @@ export const ezColors = {
       color: '#e5e6e6',
       contrastColor: CONTRAST_DARK,
     },
+    grey125: {
+      name: 'Grey 105',
+      color: '#f4f7f8',
+      contrastColor: CONTRAST_DARK,
+    },
     grey120: {
       name: 'Grey 120', // was neutral 120
       color: '#f5f7f7',
@@ -142,15 +177,30 @@ export const ezColors = {
     },
   },
   orange: {
+    orange120: {
+      name: 'Orange 120',
+      color: '#883e0a',
+      contrastColor: CONTRAST_LIGHT,
+    },
     orange110: {
       name: 'Orange 110', // was warning 110
       color: '#926a00',
       contrastColor: CONTRAST_LIGHT,
     },
+    orange105: {
+      name: 'Orange 105',
+      color: '#ff6b1e',
+      contrastColor: CONTRAST_DARK,
+    },
     orange100: {
       name: 'Orange 100', // was warning 100
       color: '#e9a801',
       contrastColor: CONTRAST_LIGHT,
+    },
+    orange95: {
+      name: 'Orange 95',
+      color: '#fff1eb',
+      contrastColor: CONTRAST_DARK,
     },
     orange90: {
       name: 'Orange 90', // was warning 90
@@ -164,6 +214,11 @@ export const ezColors = {
     },
   },
   purple: {
+    purple120: {
+      name: 'Purple 120',
+      color: '#400d54',
+      contrastColor: CONTRAST_LIGHT,
+    },
     purple110: {
       name: 'Purple 110',
       color: '#5f2975',
@@ -174,6 +229,11 @@ export const ezColors = {
       color: '#7f379c',
       contrastColor: CONTRAST_LIGHT,
     },
+    purple95: {
+      name: 'Purple 95',
+      color: '#f2e8f8',
+      contrastColor: CONTRAST_DARK,
+    },
     purple90: {
       name: 'Purple 90',
       color: '#f8f3fa',
@@ -181,6 +241,11 @@ export const ezColors = {
     },
   },
   red: {
+    red130: {
+      name: 'Red 130',
+      color: '#751417',
+      contrastColor: CONTRAST_LIGHT,
+    },
     red120: {
       name: 'Red 120', // was alert 110
       color: '#972f2f',
@@ -195,6 +260,11 @@ export const ezColors = {
       name: 'Red 100',
       alternateName: 'Guava',
       color: '#ff585d',
+      contrastColor: CONTRAST_LIGHT,
+    },
+    red95: {
+      name: 'Red 95',
+      color: '#da5e59',
       contrastColor: CONTRAST_LIGHT,
     },
     red90: {
