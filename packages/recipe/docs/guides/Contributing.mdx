@@ -8,8 +8,6 @@ import TableOfContents from '../components/TableOfContents';
 
 Welcome and thank you for contributing! The Recipe team is committed to maintaining consistent, quality components and guidelines. We welcome all feedback, designs, or ideas to produce the best possible experience for our users. Below are the contribution guidelines for contributing.
 
----
-
 ## Bug fixes
 
 Never be shy about reporting a bug or challenge with Recipe. The system can only get better if we understand how its being used in the real world by downstream applications.
@@ -23,15 +21,15 @@ Please start by [filing a GitHub issue against the Recipe project](https://githu
 ### Fixing bugs
 
 1. **Clearly identify the situation(s) where you are encountering an issue.**
-1. **Review your issue and proposed solution (if you have one) with [the Recipe team](/meet-the-team).**
+1. **Review your issue and proposed solution (if you have one) with the Recipe team.**
 1. **Implement your fix.**
    - Provide test coverage for the changes made; this will help catch future regressions. Recipe's default template for testing includes visual UI tests with [Chromatic](https://www.chromatic.com/) for each example from the component's API documentation, automatically providing regression test coverage ensuring that your component _looks as it should_ when initially rendered. Beyond this, you should provide additional tests to demonstrate the component _behaves as it should_ upon user interaction.
-   - Update `src/unreleased.md` with a summary of the changes made, following our [versioning guidance](/guides/versioning-and-changelog#versioning-scheme) to categorize changes into appropriate headings.
+   - Create a [changeset](#following-semantic-versioning) with a summary of the changes made, following our [versioning guidance](?path=/docs/guides-versioning--docs#versioning) to categorize changes into appropriate headings.
 1. **Code review.**
-   - A code review from the Recipe team is not required for code to land in Recipe; any engineer with Senior+ frontend skills can review your code.
-   - If the Recipe team did not review the PR, they may propose follow-up changes at a later time.
+   - Two code reviews are required for code to land in Recipe: one from the Recipe team and one from any engineer with Senior+ frontend skills.
+   - If the Recipe team is not able to review the PR, they may propose follow-up changes at a later time.
 1. **Publish the new changes.**
-   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the main Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the main branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
+   - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the `main` Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the `main` branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
    - Downstream applications should be updated to use the new version.
 
 ### Following semantic versioning
@@ -44,11 +42,9 @@ When a contributor is preparing a branch to submit as a pull request, we need to
 yarn changeset
 ```
 
-and answer the provided questions. The changeset command will be write a Markdown file that contains the summary and metadata to store data about the package(s) that will be released and the semver bump types for them. This file should then be committed to git. Committing the changeset file within the same commit the summarized change was applied is ideal, as it will associate the changeset with the commit sha of the actual change. We recommend following following our [versioning guidance](/guides/versioning-and-changelog) for the format of the changeset message in order to help communicate what impact the changeset contents have on the next version.
+and answer the provided questions. The changeset command will create a Markdown file that contains the summary and metadata to store data about the package(s) that will be released and the semver bump types for them. This file should then be committed to git. Committing the changeset file within the same commit the summarized change was applied is ideal, as it will associate the changeset with the commit sha of the actual change. We recommend following our [versioning guidance](?path=/docs/guides-versioning--docs#versioning) for the format of the changeset message in order to help communicate what impact the changeset contents have on the next version.
 
 When [a release is cut](#publishing-a-new-release), we use this changeset metadata to version bump Recipe to an appropriate number, combining multiple changesets into a single coordinated release.
-
----
 
 ## New components
 
@@ -62,12 +58,12 @@ When [a release is cut](#publishing-a-new-release), we use this changeset metada
    - What are guidelines for the content that could go into this component?
    - Are there limitations/restrictions on what it can handle?
    - Is anything not going into this first version? What did you exclude and what was the reasoning behind that?
-1. **Review the design with [the Recipe design team](/meet-the-team#recipe-design-team).**
-   - Reviews are an important step for helping maintain the [principles](/guides/principles) behind Recipe.
+1. **Review the design with the Recipe design team.**
+   - Reviews are an important step for helping maintain the [principles](?path=/docs/guides-principles--docs#principles) behind Recipe.
 1. **Write API documentation.**
-   - Use the usage documentation from the prior step to help define the component API
-   - Provide API examples for each of the variations of the component, pairing each of the examples with the corresponding usage documentation describing the use cases for which the variation should be used
-1. **Review the API with [the Recipe development team](/meet-the-team#recipe-development-team).**
+   - Use the usage documentation from the prior step to help define the component API.
+   - Provide API examples for each of the variations of the component, pairing each of the examples with the corresponding usage documentation describing the use cases for which the variation should be used.
+1. **Review the API with the Recipe development team.**
    - We have found that any time spent coming to consensus on the component API is a huge time saver for avoiding PR churn.
 1. **Implement the component.**
    - [Create the component](#creating-components)
@@ -79,8 +75,6 @@ When [a release is cut](#publishing-a-new-release), we use this changeset metada
 1. **Publish the new changes**
    - In order for changes to take effect in downstream applications, the changes must be published to npm with a new version number. A canary branch will be published on your behalf when your PR is merged into the main Recipe branch. Additionally, a "Release" PR will be created containing your changes (and updated automatically upon subsequent changes to the main branch), allowing Recipe maintainers to aggregate changes into a SemVer release at a later time.
    - Downstream applications should be updated to use the new version.
-
----
 
 ## Development
 
@@ -99,12 +93,17 @@ Example:
      ┗ 📂 EzExample
        ┣ 📂 __tests__
        ┃ ┗ 📜 EzExample.test.tsx
+       ┣ 📂 Documentation
+       ┃ ┗ 📂 Stories
+       ┃ ┃ ┗ 📜 Default.stories.tsx
+       ┃ ┃ ┗ 📜 Regression.stories.tsx
+       ┃ ┗ 📜 EzExample.mdx
+       ┃ ┗ 📜 EzExample.snapshot.tsx
+       ┃ ┗ 📜 EzExample.snippets.tsx
        ┣ 📂 Implementations
        ┃ ┣ 📜 EzExampleImplementation.tsx
        ┃ ┗ 📜 index.ts
        ┣ 📜 EzExample.tsx
-       ┣ 📜 EzExample.md
-       ┣ 📜 EzExample.preview.md
        ┣ 📜 EzExample.types.ts
        ┗ 📜 index.ts
 ```
@@ -124,30 +123,18 @@ New component requirements:
 - Must be [proposed](#proposing-new-components-to-the-design-system) to the Recipe team for consideration and guidance.
 - Must have comprehensive documentation describing all supported variations.
 - Must have comprehensive tests demonstrating what a component looks like in each supported variation and interaction.
-- Must follow Recipe's code and [theming](/guides/theming) conventions.
+- Must follow Recipe's code and [theming](?path=/docs/guides-theming--docs#theming) conventions.
 - Designs and code must be reviewed and approved by the Recipe team.
 
-### Documentation and live examples
+### Documentation
 
 Recipe's documentation is generated from its source code. To supplement this autogenerated documentation, you'll need to create and modify a markdown file associated with your component. By default, the markdown file is created for you when you [create your component](#creating-components) and provides the structure you need to document your component and provided live examples.
 
-Inside the markdown file, any [fenced code block](https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks) decorated with the `jsx` language identifier will be enhanced with a live editor on the doc site. You should use fenced code blocks to provide examples of your components in various supported states in order to document the component's features.
-
-Example:
-
-````markdown
-### Secondary Button
-
-Secondary buttons are used for action on a page that are important, but aren't the primary action.
-
-```jsx
-<EzButton use="secondary">Edit</EzButton>
-```
-````
+Recipe uses [Storybook Docs](https://storybook.js.org/docs/react/writing-docs/introduction) with [MDX](https://storybook.js.org/docs/react/writing-docs/mdx) to write documentation and stories for components. [Stories](https://storybook.js.org/docs/react/writing-stories/introduction) should be created for each group of variants and properties of a component.
 
 ### Deprecations
 
-When a change to a property, feature, or component in Recipe requires a [breaking change](/guides/versioning-and-changelog/), we can give users more time to react to these changes by deprecating these features before entirely removing or overhauling them at a later time.<br /><br />
+When a change to a property, feature, or component in Recipe requires a [breaking change](?path=/docs/guides-versioning--docs#versioning), we can give users more time to react to these changes by deprecating these features before entirely removing or overhauling them at a later time.
 
 **Deprecation Warnings**
 
@@ -206,13 +193,9 @@ describe('EzIcon', () => {
 });
 ```
 
-<br />
-
 **Removing Deprecations**
 
 When the deprecated feature is ready to be removed, remove the feature along with all associated alerts and warnings. Be sure to note the breaking change in the migration guide for the major version release.
-
----
 
 ## Start contributing
 
@@ -230,7 +213,7 @@ The doc site provides live examples to demonstrate the various states of your co
 
 We strongly encourage using documentation to drive your component design. Having detailed usage guidelines and a complete API promotes clear systems thinking and is a huge timesaver for preventing churn in the PR.
 
-The doc site is a great environment to start developing your component as the environment has hot reloading and components can be added on the fly through various doc files. Any file in the `src/components` folder with an `.md` extension and corresponding [front matter](https://jekyllrb.com/docs/front-matter/) (including `name`, `title` and `path`) will run in the doc site automatically. Any JSX examples will turned into a live playground for your component.
+The doc site is a great environment to start developing your component as the environment has hot reloading and components can be added on the fly through various doc files. Any file in the `src/components` folder with an `.mdx` extension and corresponding Storybook Docs markup will run in the doc site automatically.
 
 You can run the doc site as follows:
 
@@ -238,7 +221,7 @@ You can run the doc site as follows:
 yarn develop
 ```
 
-This command will start a server and open your browser to http://localhost:8000/ to see the doc site. The server will watch your local file system and will hot reload the doc site as you make changes.
+This command will start a server and open your browser to http://localhost:6006/ to see the doc site. The server will watch your local file system and will hot reload the doc site as you make changes.
 
 ### Working on a component in a downstream application
 

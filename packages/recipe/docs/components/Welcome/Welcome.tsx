@@ -46,7 +46,7 @@ const Welcome: FC<unknown> = () => (
               </Stack>
 
               <Stack>
-                <WelcomeSubheader href="/changelog">
+                <WelcomeSubheader onClick={linkTo('Guides/Changelog')}>
                   Latest: v{packageJson.version}
                 </WelcomeSubheader>
 
@@ -124,14 +124,14 @@ const Welcome: FC<unknown> = () => (
                     />
 
                     <RecipeContributor
-                      href="https://www.linkedin.com/in/marthabergmann/"
+                      href="https://www.linkedin.com/in/carlidottore/"
                       imgSrc="/images/carli-dottore.jpg"
                       name="Carli Dottore"
                       role="Recipe Designer"
                     />
 
                     <RecipeContributor
-                      href="https://www.linkedin.com/in/marthabergmann/"
+                      href="https://www.linkedin.com/in/catguido/"
                       imgSrc="/images/cat-guido.jpg"
                       name="Cat Guido"
                       role="Recipe Designer"

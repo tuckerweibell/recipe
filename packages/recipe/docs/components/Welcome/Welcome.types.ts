@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {MouseEventHandler, ReactNode} from 'react';
 
 interface HeroImageProps {
   displaySizeHide?: string;
@@ -15,7 +15,7 @@ interface RecipeContributorProps {
 
 interface WelcomeSubheaderProps {
   children: ReactNode;
-  href?: string;
+  onClick?: MouseEventHandler<any> | undefined;
 }
 
 export {HeroImageProps, RecipeContributorProps, WelcomeSubheaderProps};

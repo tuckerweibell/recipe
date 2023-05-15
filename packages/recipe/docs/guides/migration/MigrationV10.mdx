@@ -12,7 +12,7 @@ To facilitate the usage of emotion 10 alongside Recipe, a new release of Recipe 
 
 ## Breaking Changes
 
-The breaking changes are detailed in the Recipe [release notes for version 10.0.0](/changelog/#1000---2020-01-23), but can be summarized as follows:
+The breaking changes are detailed in the Recipe [release notes](?path=/docs/guides-changelog--docs) for version 10.0.0, but can be summarized as follows:
 
 1. Recipe's peer dependency on Emotion has been updated from v9 to v10.
 2. EzLink and EzField now support React.ForwardRef instead of `innerRef`. You will need to upgrade React Router to at least v5.1 if your application passes refs to EzLink and uses EzLink's `as` prop.
@@ -52,7 +52,7 @@ npm install create-emotion-server
 
 #### Configure emotion codemods
 
-The emotion team have provided some basic tooling to update emotion v9 imports to use the newer emotion v10 packages. This tooling is packaged up as a [plugin for eslint](https://emotion.sh/docs/eslint-plugin-emotion) and should have been installed during the previous installation step.
+The emotion team have provided some basic tooling to update emotion v9 imports to use the newer emotion v10 packages. This tooling is packaged up as a [plugin for eslint](https://emotion.sh/docs/@emotion/eslint-plugin) and should have been installed during the previous installation step.
 
 In order to run the eslint-plugin, we first need to configure it.
 
@@ -66,7 +66,7 @@ Now add the `emotion` plugin to the plugins section. You can omit the `eslint-pl
 }
 ```
 
-You should then configure the specific [codemod rules](https://emotion.sh/docs/eslint-plugin-emotion#emotion-10-codemods) you wish to include by adding to the rules section of the eslint configuration.
+You should then configure the specific [codemod rules](https://github.com/eslint/eslint-transforms) you wish to include by adding to the rules section of the eslint configuration.
 
 The Recipe team recommends starting with just `emotion/import-from-emotion` and `emotion/styled-import`:
 
@@ -296,7 +296,7 @@ Now we're server rendering using the emotion cache (which on the server is confi
 
 #### Configure the emotion cache
 
-Emotion 10 needs to be configured to allow usage of the full set of CSS selectors, such as `nth-child`, when running in a browser. In order to do this, we need to tell emotion's styles cache to run in compatibility mode. If you do not implement this step, you [may see console errors](/advanced/migrating-to-recipe-10#why-am-i-getting-the-warning-the-pseudo-class-unsafepseudoclass-is-potentially-unsafe-when-doing-server-side-rendering) when running the application.
+Emotion 10 needs to be configured to allow usage of the full set of CSS selectors, such as `nth-child`, when running in a browser. In order to do this, we need to tell emotion's styles cache to run in compatibility mode. If you do not implement this step, you [may see console errors](#why-am-i-getting-the-warning-the-pseudo-class-unsafepseudoclass-is-potentially-unsafe-when-doing-server-side-rendering) when running the application.
 
 In the entry point for your client application (likely `src/index` for apps created with create-react-app, or `src/client` in server rendered apps), import the `CacheProvider` component from `@emotion/core`, then wrap the application with the CacheProvider:
 
@@ -319,7 +319,7 @@ In the entry point for your client application (likely `src/index` for apps crea
 
 If your application does not need to support IE11, you can skip this step.
 
-As part of the [Recipe 8.x upgrade process](/advanced/migrating-to-recipe-8), applications that need to support IE11 were instructed to install `css-vars-ponyfill` and disable emotion's speedy feature.
+As part of the [Recipe 8.x upgrade process](?path=/docs/guides-migration-v8--docs#migration-to-recipe-8), applications that need to support IE11 were instructed to install `css-vars-ponyfill` and disable emotion's speedy feature.
 
 Disabling speedy in emotion 10 is now achieved via a new API on emotion's cache.
 
@@ -404,7 +404,7 @@ Emotion 10 supports a new zero-config server-side rendering mode, however, this 
 
 In an effort to identify CSS selectors that are not supported in the mode, emotion logs a warning message when a subset of those selectors are used. This message can be misleading, since it can occur in environments that are not utilizing server-rendering.
 
-If you see this messsage, please double check that you have set [emotion's cache to compatibility mode](#Configure-the-emotion-cache). Compatibility mode should suppress this warning message.
+If you see this messsage, please double check that you have set [emotion's cache to compatibility mode](#configure-the-emotion-cache). Compatibility mode should suppress this warning message.
 
 ### Why am I getting the warning: Using kebab-case for css properties in objects is not supported?
 

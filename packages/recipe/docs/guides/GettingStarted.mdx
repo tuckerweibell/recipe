@@ -17,17 +17,13 @@ import {EzAlert} from '../../src/components';
 
 > "Now that I’ve worked with Recipe, I don’t want to go back to working without Recipe." -Jesse Belanger
 
----
-
 ## Components overview
 
-- A good place to start is by reading the overview of how to do [high level screen layout](/components/ez-app-layout) with Recipe.
-- Most Recipe components are opinionated about how to layout their child content. However in some cases you may need to use [Layout](/components/ez-layout) to control the horizontal layout of individual components across multiple breakpoints.
-- If you want to see what's available in Recipe, you can [browse all components](/components/).
-- Recipe components use consistent patterns for properties; you'll find various components use similarly named properties like `title` or `value` when the usage is equivalent across the components. Certain properties will also have a consistent shape wherever they are found. For example, the `breadcrumb` and `tabs` properties on [Page Header](/components/ez-page-header) and the `home` and `links` properties on [Navigation](/components/ez-navigation) accept a common "link" shaped object that accepts a url as an `href` or a [Router compatible Link](https://reacttraining.com/react-router/web/api/Link).
-- [Principles for using Recipe](/guides/principles#principles-for-using-recipe)
-
----
+- A good place to start is by reading the overview of how to do [high level screen layout](?path=/docs/layout-ezapplayout--docs#structure-of-a-screen) with Recipe.
+- Most Recipe components are opinionated about how to lay out their child content. However in some cases you may need to use [Layout](?path=/docs/layout-ezlayout--docs#ezlayout) to control the horizontal layout of individual components across multiple breakpoints.
+- If you want to see what's available in Recipe, you can [browse all components](?path=/docs/component-library--docs).
+- Recipe components use consistent patterns for properties; you'll find various components use similarly named properties like `title` or `value` when the usage is equivalent across the components. Certain properties will also have a consistent shape wherever they are found. For example, the `breadcrumb` and `tabs` properties on [Page Header](?path=/docs/layout-ezpageheader--docs#ezpageheader) and the `home` and `links` properties on [Navigation](?path=/docs/navigation-eznavigation--docs#eznavigation) accept a common "link" shaped object that accepts a url as an `href` or a [Router compatible Link](https://reactrouter.com/en/main/components/link).
+- [Principles for using Recipe](?path=/docs/guides-principles--docs#principles)
 
 ## Considerations
 
@@ -43,11 +39,9 @@ Here are some things to consider when proposing a change to Recipe:
   - Can you provide clear guidance to designers and developers about when to choose this variation vs. the ones that are already available?
   - Will it be predictable to the user when they will see this variation vs. the ones that are already available?
 
----
-
 ## Recipe themes
 
-[Recipe v14](/support/migrating-to-recipe-14) introduces extendable [Material UI](https://mui.com/) themes using [emotion](https://emotion.sh/docs/introduction). As new components are introduced and current components are updated, they will use these supported themes. A future version of Recipe will remove all legacy themes once all components have migrated to using these themes.
+[Recipe v14](?path=/docs/guides-migration-v14--docs#migration-to-recipe-14) introduces extendable [Material UI](https://mui.com/) themes using [emotion](https://emotion.sh/docs/introduction). As new components are introduced and current components are updated, they will use these supported themes. A future version of Recipe will remove all legacy themes once all components have migrated to using these themes.
 
 ### Supported themes
 
@@ -64,7 +58,7 @@ import {EzThemeProvider, EzButton, themes} from  '@ezcater/recipe';
 
 const App = () => (
   <EzThemeProvider theme={themes.ezMarketplaceTheme}>
-    <EzButton use="primary">Click me</EzButton>
+    <EzButton>Click me</EzButton>
   </EzProvider>
 );
 ```
@@ -90,7 +84,7 @@ const customTheme = themes.createTheme(themes.ezTheme, {
 
 const App = () => (
   <EzThemeProvider theme={customTheme}>
-    <EzButton use="primary">Click me</EzButton>
+    <EzButton>Click me</EzButton>
   </EzProvider>
 );
 ```
@@ -126,22 +120,16 @@ const MyOtherComponent = styled.div`
 
 ### Including Recipe's default font
 
-To ensure Recipe's default font is available in a webpage, copy this code into the `<head>` of your HTML document.
+To ensure Recipe's default fonts are available in a webpage, copy this code into the `<head>` of your HTML document.
 
 ```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap"
   rel="stylesheet"
 />
 ```
-
----
-
-## Design setup
-
-The matching Sketch symbol library for Recipe is available through a tool called [Abstract](https://www.abstract.com/). Contact [the Recipe design team](/meet-the-team#recipe-design-team) if you have any questions about accessing it.
-
----
 
 ## Development setup
 
@@ -157,11 +145,19 @@ or
 yarn add @ezcater/recipe
 ```
 
-Aside from React and React DOM, Recipe has no other `peerDependencies`. Once `@ezcater/recipe` is installed, you're ready to start importing components!
+Aside from React, React DOM, and Emotion, Recipe has no other `peerDependencies`. Once `@ezcater/recipe` is installed, you're ready to start importing components!
 
 ### Server-side rendering (SSR)
 
 If your app uses server-side rendering (SSR), you will need to add some additional configuration to support hydration by passing in the CSS string from [stitches](https://stitches.dev/docs/server-side-rendering) using a `<style />` tag.
+
+<Unstyled>
+  <EzAlert
+    headline="Warning"
+    tagline="Stitches will be removed in a future version of Recipe."
+    use="warning"
+  />
+</Unstyled>
 
 Here's an example of SSR with Next.js:
 
@@ -196,18 +192,14 @@ import {EzButton} from '@ezcater/recipe';
 
 export const MyComponent = () => (
   <div>
-    <EzButton use="primary" onClick={() => alert('You clicked me!')}>
-      Click Me!
-    </EzButton>
+    <EzButton onClick={() => alert('You clicked me!')}>Click Me!</EzButton>
   </div>
 );
 ```
 
----
-
 ### Updating to new releases
 
-To install or update to the [latest version of Recipe](/changelog) in your application, run the following command:
+To install or update to the [latest version of Recipe](?path=/docs/guides-changelog--docs) in your application, run the following command:
 
 ```term
 npm install @ezcater/recipe@latest
@@ -218,8 +210,6 @@ or
 ```term
 yarn add @ezcater/recipe@latest
 ```
-
----
 
 ## Browser support
 
@@ -244,8 +234,6 @@ We recommend using [Polyfill.io](https://polyfill.io/) in your application to ap
 >
 ```
 
----
-
 ## Contributing
 
-If you're interested in contributing, check out our [contributing guidelines](/guides/contributing) to get started.
+If you're interested in contributing, check out our [contributing guidelines](?path=/docs/guides-contributing--docs#contributing) to get started.
