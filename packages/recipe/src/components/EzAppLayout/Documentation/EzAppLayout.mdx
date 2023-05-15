@@ -1,0 +1,88 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import {Stack} from '@mui/material';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import EzAlert from '../../EzAlert';
+import * as DefaultStories from './Stories/Default.stories';
+import * as CenteredStories from './Stories/Centered.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzAppLayout
+
+The application layout component provides common ways to arrange the content of a screen by controling the horizontal margins of the content area. The application layout wraps the main page content and houses the primary navigation for the application.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best Practices
+
+Application layouts should:
+
+- Only appear once per screen
+- Host the page content
+- Optionally wrap the page content with a navigation component, where multiple top-level pages are needed
+
+## Structure of a screen
+
+A screen is the entire user interface of an application.
+
+A typical screen in Recipe consists of several layers. The application layout is the outermost layer. Typically, the application layout will contain a navigation component (`EzNavigation`), and inside that a page header component (`EzPageHeader`) followed by a page component (`EzPage`).
+
+The application layout component ensures that content containers are arranged in an appropriate way across all screen sizes.
+
+## Examples
+
+### Full width layout
+
+This is the default and should be used for pages where the user benefits from the content taking up the available screen width, like on a page with a Table.
+
+Use the full width layout for wide list or table content that may benefit from more horizontal space.
+
+<Stack direction="row" spacing={2} alignItems="center">
+  <figure>
+    <img src="/images/full-narrow.png" alt="Full width layout, narrow screen" height="250px" />
+    <figcaption>Full width layout, narrow screen</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/images/full-wide.png" alt="Full width layout, wide screen" height="250px" />
+    <figcaption>Full width layout, wide screen</figcaption>
+  </figure>
+</Stack>
+
+<Canvas>
+  <Story of={DefaultStories.Default} />
+</Canvas>
+
+### Centered layout
+
+Use the centered layout to constrain page width to improve readability or focus attention on the primary page content. Pages with text-heavy cards or forms typically benefit from being constrained to a max-width.
+
+<Unstyled>
+  <EzAlert headline="The centered layout will only take effect on wide screen sizes." />
+</Unstyled>
+
+<Stack direction="row" spacing={2} alignItems="center">
+  <figure>
+    <img src="/images/centered-narrow.png" alt="Centered width layout, narrow screen" height="300px" />
+    <figcaption>Centered width layout, narrow screen</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/images/centered-wide.png" alt="Centered width layout, wide screen" height="300px" />
+    <figcaption>Centered width layout, wide screen</figcaption>
+  </figure>
+</Stack>
+
+<Canvas>
+  <Story of={CenteredStories.Centered} meta={CenteredStories} />
+</Canvas>
+
+## Related components
+
+<RelatedComponents components={['EzNavigation', 'EzPageHeader', 'EzPage', 'EzGlobalStyles']} />

@@ -2,4 +2,4 @@
 '@ezcater/recipe': minor
 ---
 
-docs: Move doc site from Gatsby to Storybook Docs
+docs: move doc site from Gatsby to storybook docs

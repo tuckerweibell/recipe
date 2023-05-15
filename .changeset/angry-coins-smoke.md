@@ -2,4 +2,4 @@
 '@ezcater/recipe': patch
 ---
 
-docs: adds playroom snippet for `EzChip`
+docs: add playroom snippet for `EzChip`

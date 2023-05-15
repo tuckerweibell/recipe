@@ -36,6 +36,7 @@
     "@react-types/shared": "^3.7.0",
     "@stitches/core": "^1.2.8",
     "dayjs": "^1.11.7",
+    "react-element-to-jsx-string": "^15.0.0",
     "react-highlight-words": "^0.18.0",
     "tiny-warning": "^1.0.3",
     "ts-dedent": "^2.2.0",
