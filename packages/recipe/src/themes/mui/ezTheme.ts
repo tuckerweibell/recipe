@@ -165,8 +165,8 @@ const typography = {
 
 const getStatusChipStyles = themeProp => {
   return {
-    backgroundColor: palette[themeProp].light,
-    color: palette[themeProp].main,
+    backgroundColor: themeProp === 'neutral' ? palette.common.grey120 : palette[themeProp].light,
+    color: palette[themeProp].dark,
     '&.MuiChip-clickable:hover': {
       backgroundColor: palette[themeProp].main,
       color: palette.common.white,
@@ -175,7 +175,7 @@ const getStatusChipStyles = themeProp => {
       },
     },
     '& .MuiChip-deleteIcon': {
-      color: themeProp === 'warning' ? palette[themeProp].dark : palette[themeProp].main,
+      color: palette[themeProp].main,
       '&:hover': {
         color: palette.common.black,
       },

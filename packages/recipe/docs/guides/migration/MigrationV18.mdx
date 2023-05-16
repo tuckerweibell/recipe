@@ -1,5 +1,7 @@
 import {Meta} from '@storybook/blocks';
 import TableOfContents from '../../components/TableOfContents';
+import {ColorSwatch} from '../../components/ColorPalette';
+import {ezPalette} from '../../../src/themes/ezColors';
 
 <Meta title="Guides/Migration/v18" />
 <TableOfContents />
@@ -21,31 +23,31 @@ Recipe's set of global colors found in `themes/ezColors.ts` has renamed various 
 If using any of these colors directly, they will need to be updated to the new color names.
 
 - **OLD => NEW**
-- `alert110` => `red120`
-- `alert100` => `red110`
-- `alert90` => `red90`
-- `alert80` => `red80`
-- `neutral170` => `black`
-- `neutral160` => `grey160`
-- `neutral150` => `grey150`
-- `neutral140` => `grey140`
-- `neutral130` => `grey130`
-- `neutral120` => `grey120`
-- `neutral110` => `grey110`
-- `neutral100` => `white`
-- `primary120` => `green120`
-- `primary110` => `green110`
-- `primary100` => `green100`
-- `primary90` => `green90`
-- `success100` => `green103`
-- `success90` => `green95`
-- `warning110` => `orange110`
-- `warning100` => `orange100`
-- `warning90` => `orange90`
-- `warning80` => `orange80`
-- `blue90` => `blue70`
-- `yellow110` => `yellow100`
-- `yellow100` => `yellow90`
+- <ColorSwatch color={ezPalette.red120} /> `alert110` => `red120`
+- <ColorSwatch color={ezPalette.red110} /> `alert100` => `red110`
+- <ColorSwatch color={ezPalette.red90} /> `alert90` => `red90`
+- <ColorSwatch color={ezPalette.red80} /> `alert80` => `red80`
+- <ColorSwatch color={ezPalette.black} /> `neutral170` => `black`
+- <ColorSwatch color={ezPalette.grey160} /> `neutral160` => `grey160`
+- <ColorSwatch color={ezPalette.grey150} /> `neutral150` => `grey150`
+- <ColorSwatch color={ezPalette.grey140} /> `neutral140` => `grey140`
+- <ColorSwatch color={ezPalette.grey130} /> `neutral130` => `grey130`
+- <ColorSwatch color={ezPalette.grey120} /> `neutral120` => `grey120`
+- <ColorSwatch color={ezPalette.grey110} /> `neutral110` => `grey110`
+- <ColorSwatch color={ezPalette.white} /> `neutral100` => `white`
+- <ColorSwatch color={ezPalette.green120} /> `primary120` => `green120`
+- <ColorSwatch color={ezPalette.green110} /> `primary110` => `green110`
+- <ColorSwatch color={ezPalette.green100} /> `primary100` => `green100`
+- <ColorSwatch color={ezPalette.green90} /> `primary90` => `green90`
+- <ColorSwatch color={ezPalette.green103} /> `success100` => `green103`
+- <ColorSwatch color={ezPalette.green95} /> `success90` => `green95`
+- <ColorSwatch color={ezPalette.orange110} /> `warning110` => `orange110`
+- <ColorSwatch color={ezPalette.orange100} /> `warning100` => `orange100`
+- <ColorSwatch color={ezPalette.orange90} /> `warning90` => `orange90`
+- <ColorSwatch color={ezPalette.orange80} /> `warning80` => `orange80`
+- <ColorSwatch color={ezPalette.blue70} /> `blue90` => `blue70`
+- <ColorSwatch color={ezPalette.yellow100} /> `yellow110` => `yellow100`
+- <ColorSwatch color={ezPalette.yellow90} /> `yellow100` => `yellow90`
 
 ```js
 // Example change
@@ -56,6 +58,57 @@ If using any of these colors directly, they will need to be updated to the new c
 // NEW
 <EzButton color="common.green100">Button</EzButton>
 ```
+
+### 2. Theme property color tokens have changed for `ezTheme`, `ezMarketplaceTheme`, and `ezFulfillmentTheme`
+
+Design tokens for the following theme properties have changed. See new colors in our [theming page](?path=/docs/guides-theming--docs#colors). No syntax changes required when migrating, but be aware that the colors will change where used. New colors were also added to `ezColors` and are available using `theme.palette.common[colorName]`.
+
+#### `ezTheme` and `ezMarketplaceTheme`
+
+- `primary`:
+  - `main`: <ColorSwatch color={ezPalette.green100} /> `green100` => <ColorSwatch color={ezPalette.orange105} /> `orange105`
+  - `light`: <ColorSwatch color={ezPalette.green90} /> `green90` => <ColorSwatch color={ezPalette.orange95} /> `orange95`
+  - `dark`: <ColorSwatch color={ezPalette.green110} /> `green110` => <ColorSwatch color={ezPalette.orange120} /> `orange120`
+- `secondary`:
+  - `main`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green100} /> `green100`
+  - `light`: <ColorSwatch color={ezPalette.yellow90} /> `yellow90` => <ColorSwatch color={ezPalette.green90} /> `green90`
+  - `dark`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green110} /> `green110`
+  - `contrastText`: <ColorSwatch color={ezPalette.black} /> `black` => <ColorSwatch color={ezPalette.white} /> `white`
+
+#### `ezFulfillmentTheme`
+
+- `primary`:
+  - `main`: <ColorSwatch color={ezPalette.green100} /> `green100` => <ColorSwatch color={ezPalette.blue90} /> `blue90`
+  - `light`: <ColorSwatch color={ezPalette.green90} /> `green90` => <ColorSwatch color={ezPalette.blue60} /> `blue60`
+  - `dark`: <ColorSwatch color={ezPalette.green110} /> `green110` => <ColorSwatch color={ezPalette.blue130} /> `blue130`
+- `secondary`:
+  - `main`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green100} /> `green100`
+  - `light`: <ColorSwatch color={ezPalette.yellow90} /> `yellow90` => <ColorSwatch color={ezPalette.green90} /> `green90`
+  - `dark`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green110} /> `green110`
+  - `contrastText`: <ColorSwatch color={ezPalette.black} /> `black` => <ColorSwatch color={ezPalette.white} /> `white`
+
+#### `ezTheme`, `ezMarketplaceTheme`, and `ezFulfillmentTheme`
+
+- `error`:
+  - `main`: <ColorSwatch color={ezPalette.red110} /> `red110` => <ColorSwatch color={ezPalette.red95} /> `red95`
+  - `dark`: <ColorSwatch color={ezPalette.red120} /> `red120` => <ColorSwatch color={ezPalette.red130} /> `red130`
+- `warning`:
+  - `light`: <ColorSwatch color={ezPalette.orange90} /> `orange90` => <ColorSwatch color={ezPalette.orange80} /> `orange80`
+  - `contrastText`: <ColorSwatch color={ezPalette.black} /> 'black' => <ColorSwatch color={ezPalette.white} /> `white`
+- `info`:
+  - `main`: <ColorSwatch color={ezPalette.blue100} /> `blue100` => <ColorSwatch color={ezPalette.blue90} /> `blue90`
+  - `light`: <ColorSwatch color={ezPalette.blue70} /> `blue70` => <ColorSwatch color={ezPalette.blue60} /> `blue60`
+  - `dark`: <ColorSwatch color={ezPalette.blue110} /> `blue110` => <ColorSwatch color={ezPalette.greenblue130100} /> `blue130`
+- `success`:
+  - `main`: <ColorSwatch color={ezPalette.green103} /> `green103` => <ColorSwatch color={ezPalette.green98} /> `green98`
+  - `light`: <ColorSwatch color={ezPalette.green95} /> `green95` => <ColorSwatch color={ezPalette.green80} /> `green80`
+  - `dark`: <ColorSwatch color={ezPalette.green108} /> `green108` => <ColorSwatch color={ezPalette.green115} /> `green115`
+- `alert`:
+  - `light`: <ColorSwatch color={ezPalette.purple90} /> `purple90` => <ColorSwatch color={ezPalette.purple95} /> `purple95`
+  - `dark`: <ColorSwatch color={ezPalette.purple110} /> `purple110` => <ColorSwatch color={ezPalette.purple120} /> `purple120`
+- `neutral`:
+  - `main`: <ColorSwatch color={ezPalette.grey160} /> `grey160` => <ColorSwatch color={ezPalette.grey140} /> `grey140`
+  - `light`: <ColorSwatch color={ezPalette.grey120} /> `grey120` => <ColorSwatch color={ezPalette.white} /> `white`
 
 ## Migration steps
 
