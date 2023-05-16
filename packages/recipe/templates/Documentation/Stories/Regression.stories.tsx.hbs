@@ -1,0 +1,37 @@
+import React, {ComponentProps} from 'react';
+import {type Meta, type StoryObj} from '@storybook/react';
+import {{pascalCase name}} from '../../{{pascalCase name}}';
+import DefaultMeta, {Default} from './Default.stories';
+
+const meta: Meta<typeof {{pascalCase name}}> = {
+  title: 'Category/{{pascalCase name}}/Regression',
+  component: {{pascalCase name}},
+  argTypes: {
+    ...DefaultMeta.argTypes,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof {{pascalCase name}}>;
+
+const Default{{pascalCase name}} = (args: ComponentProps<typeof {{pascalCase name}}>) => (
+  <{{pascalCase name}} {...Default.args} {...args} />
+);
+
+export const RegressionStoryA: Story = {
+  render: () => (
+    <Default{{pascalCase name}}
+      propA="option1"
+      propB="Some text"
+    />
+  ),
+};
+
+export const RegressionStoryB: Story = {
+  render: () => (
+    <Default{{pascalCase name}}
+      propA="option2"
+      propB="Some more text"
+    />
+  ),
+};
