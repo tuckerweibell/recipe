@@ -1,0 +1,114 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import EzAlert from '../../EzAlert';
+import * as AccessibilityStories from './Stories/Accessibility.stories';
+import * as AlignmentStories from './Stories/Alignment.stories';
+import * as ColorStories from './Stories/Color.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as ValueStories from './Stories/Value.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzBadge
+
+Badges indicate notifications or events that are relevant and relatively close to or overlapping another element, like a button or an icon. They can either wrap an element (like an icon) or be used standalone.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best Practices
+
+- Badges convey information about notifications or events.
+- Badges appear very close to, often overlapping, the element that they are describing.
+- Badges should make it easy to understand the presence of notifications or events, encouraging action to be taken on the element the badge describes.
+- Badges should always be wrapped in an accessible element with a proper `aria-label` to be read by screen readers. The wrapping element will depend on the context with which you use the badge (see below for examples).
+
+## Badge Values
+
+Badges always require a `value`.
+
+<Canvas of={ValueStories.Value} meta={ValueStories} />
+
+The value can be hidden using the optional `hide` property. The default is `false`.
+
+<Canvas of={ValueStories.Hide} meta={ValueStories} />
+
+The value can be minimized using the optional `minimize` property, which will make the badge appear as a dot. The default is `false`.
+
+<Canvas of={ValueStories.Minimize} meta={ValueStories} />
+
+By default, badges will automatically hide when the value is `0`. You can override this with the `showZero` prop. The default is `false`.
+
+<Canvas of={ValueStories.ShowZero} meta={ValueStories} />
+
+To cap the value of a badge, provide a numerical `max` value. Any value over the `max` will show `max+`. The default is `99`.
+
+<Canvas of={ValueStories.Max} meta={ValueStories} />
+
+## Badge Colors
+
+EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, `neutral`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.red100`).
+
+Out of the box, badges have a background color of `common.red110` and font color of `common.white`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Unstyled>
+  <EzAlert
+    headline="Note"
+    tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."
+  />
+</Unstyled>
+
+<Canvas>
+  <Story of={ColorStories.PrimaryColor} meta={ColorStories} />
+  <Story of={ColorStories.SecondaryColor} meta={ColorStories} />
+  <Story of={ColorStories.ErrorColor} meta={ColorStories} />
+  <Story of={ColorStories.WarningColor} meta={ColorStories} />
+  <Story of={ColorStories.AlertColor} meta={ColorStories} />
+  <Story of={ColorStories.InfoColor} meta={ColorStories} />
+  <Story of={ColorStories.NeutralColor} meta={ColorStories} />
+  <Story of={ColorStories.SuccessColor} meta={ColorStories} />
+  <Story of={ColorStories.CommonColor} meta={ColorStories} />
+</Canvas>
+
+## Aligning Badges
+
+To align a badge with its wrapped element, use `alignX` with `left` or `right` and `alignY` with `top` or `bottom`. The default is `alignX="right"` and `alignY="top"`.
+
+<Canvas>
+  <Story of={AlignmentStories.TopRight} meta={AlignmentStories} />
+  <Story of={AlignmentStories.BottomRight} meta={AlignmentStories} />
+  <Story of={AlignmentStories.TopLeft} meta={AlignmentStories} />
+  <Story of={AlignmentStories.BottomLeft} meta={AlignmentStories} />
+</Canvas>
+
+To align the badge relative to the corner of the wrapped element, use `overlap` with a value of `circular` or `rectangular`, depending on the shape of the wrapped element. The default is `rectangular`.
+
+<Canvas>
+  <Story of={AlignmentStories.Rectangular} meta={AlignmentStories} />
+  <Story of={AlignmentStories.Circular} meta={AlignmentStories} />
+</Canvas>
+
+## Accessibility
+
+Badges should be wrapped in an accessible element with a proper `aria-label` to be read by screen readers. The wrapping element will depend on the context with which you use the badge.
+
+<Canvas of={AccessibilityStories.AriaLabel} meta={AccessibilityStories} />
+
+When using a standalone badge, ensure the badge and any siblings are accessible by wrapping them with an element that has an `aria-label`.
+
+<Canvas of={AccessibilityStories.Standalone} meta={AccessibilityStories} />
+
+## Custom Styles
+
+Supported styles should be used, but if you need to overwrite styles for the badge or dot, you can do so using provided class names.
+
+`EzBadge`, `EzBadge-badge`, `EzBadge-dot`
+
+## Related components
+
+<RelatedComponents components={['EzButton', 'EzIcon']} />

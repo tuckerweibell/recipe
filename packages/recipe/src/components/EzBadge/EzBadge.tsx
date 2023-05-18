@@ -28,7 +28,7 @@ const EzBadge = forwardRef<Ref, EzBadgeProps>(
 EzBadge.defaultProps = {
   alignX: 'right',
   alignY: 'top',
-  color: 'error',
+  color: 'common.red110',
   hide: false,
   minimize: false,
   overlap: 'rectangular',
