@@ -23,6 +23,7 @@ export {default as EzIcon} from './EzIcon';
 export {default as EzIconButton} from './EzIconButton';
 export {default as EzLabel} from './EzLabel';
 export {default as EzLayout} from './EzLayout';
+export {default as EzLineChart} from './EzLineChart';
 export {default as EzLink} from './EzLink';
 export {default as EzModal} from './EzModal';
 export {default as EzNavigation} from './EzNavigation';

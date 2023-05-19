@@ -1,29 +1,29 @@
 ---
-name: EzBarChart
-title: Bar Chart
+name: EzLineChart
+title: Line Chart
 category: Data
-path: '/components/ez-bar-chart'
+path: '/components/ez-line-chart'
 tags: ['chart', 'graph', 'bar', 'line', 'progress']
 ---
 
-Bar charts are a [type of chart](https://help.flourish.studio/article/25-line-bar-and-pie-charts) consisting of a series of bars that describe a dataset.
+Line charts are a [type of chart](https://help.flourish.studio/article/25-line-bar-and-pie-charts) consisting of a line that describe a dataset.
 
 ---
 
 ## Best Practices
 
-- Bar charts are used to show change over time, especially for a single series
-- Bar charts are good for comparing relative size
+- Line charts are used to a changing time series
+- Line charts are good for showing trends over time
 
 ---
 
 ## Examples
 
-### Basic bar chart
+### Basic line chart
 
-Bar charts should include a title and be contained in an `EzCard`. The card title can optionally have a description and icon.
+Line charts should include a title and be contained in an `EzCard` container. The title can optionally have a description and icon.
 
-To chart a dataset as a bar chart, provide a dataset as a `data` array of objects with `x` and `y` values.
+To chart a dataset as a line chart, provide a dataset as a `data` array of objects with `x` and `y` values. 
 
 For example:
 
@@ -39,39 +39,37 @@ Always provide `title` and a detailed `description` for assistive devices.
 
 Typically, the independent axis will be the x-axis and the dependent axis will be the y-axis. To format the point labels on each axis, optionally pass a function to each `dependentAxisLabelFormatter` and/or `independentAxisLabelFormatter`. To customize which labels appear on each axis, optionally pass an array of values of the same type as the respective `data` values to each `dependentAxisLabelValues` and/or `independentAxisLabelValues`.
 
-Bar colors can be customized with [theme colors](/guides/theming/#colors). The default is `primary`.
+Lines colors can be customized with [theme colors](/guides/theming/#colors). The default is `primary`.
 
 If your dataset may sometimes be an empty array, work with design to render something other than a blank chart, perhaps an `EzBlankState`.
 
 ```jsx
 () => {
   const DATA = [
-    {x: 'January', y: 100000},
-    {x: 'February', y: 120000},
-    {x: 'March', y: 145000},
-    {x: 'April', y: 140000},
-    {x: 'May', y: 180000},
-    {x: 'June', y: 145000},
-    {x: 'July', y: 200000},
-    {x: 'August', y: 180000},
-    {x: 'September', y: 200000},
-    {x: 'October', y: 140000},
-    {x: 'November', y: 170000},
-    {x: 'December', y: 180000},
+    {x: 'January', y: 1000},
+    {x: 'February', y: 1100},
+    {x: 'March', y: 1500},
+    {x: 'April', y: 1400},
+    {x: 'May', y: 1500},
+    {x: 'June', y: 1800},
+    {x: 'July', y: 2000},
+    {x: 'August', y: 2200},
+    {x: 'September', y: 2500},
+    {x: 'October', y: 2800},
+    {x: 'November', y: 3000},
+    {x: 'December', y: 3500},
   ];
 
-  const SUM = '$899,300';
-  const METRIC = 'Total spend';
+  const SUM = '3,588';
+  const METRIC = 'Total active users';
   const TIME_PERIOD = 'Last 12 months';
-  const title = `${METRIC} over the ${TIME_PERIOD.toLowerCase()} totals ${SUM} dollars.`;
-  const barChartMonthlyList = DATA.map(datum => `${datum.x} spend was ${datum.y} dollars`).join(
-    ', '
-  );
-  const description = `A bar chart for ${METRIC} over the ${TIME_PERIOD.toLowerCase()} totalling ${SUM}. Spend for each month is as follows: ${barChartMonthlyList}.`;
+  const title = `${METRIC} over the ${TIME_PERIOD.toLowerCase()} totals ${SUM} users.`;
+  const lineChartMonthlyList = DATA.map(
+    datum => `${datum.x} active user count was ${datum.y}`
+  ).join(', ');
+  const description = `A line chart for ${METRIC} over the ${TIME_PERIOD.toLowerCase()} totalling ${SUM}. Active users for each month is as follows: ${lineChartMonthlyList}.`;
 
   const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -79,18 +77,22 @@ If your dataset may sometimes be an empty array, work with design to render some
   const independentAxisLabelFormatter = t => `${t.substring(0, 3)}`;
   const dependentAxisLabelFormatter = t => `${formatter.format(t)}`;
 
-  const DEPENDENT_AXIS_LABEL_VALUES = [0, 50000, 100000, 150000, 200000, 250000, 300000];
+  const DEPENDENT_AXIS_LABEL_VALUES = [0, 1000, 2000, 3000, 4000, 5000];
 
   return (
     <EzPage>
-      <EzCard title={METRIC} subtitle={TIME_PERIOD} actions={<EzHeading size="1">{SUM}</EzHeading>}>
+      <EzCard
+        title={METRIC}
+        subtitle={TIME_PERIOD}
+        actions={<EzHeading size="1">{SUM}</EzHeading>}
+      >
         {!DATA || DATA.length === 0 ? (
           <EzBlankState
             title="No data available"
             description="We may not have enough information yet."
           />
         ) : (
-          <EzBarChart
+          <EzLineChart
             data={DATA}
             description={description}
             dependentAxisLabelFormatter={dependentAxisLabelFormatter}
@@ -107,11 +109,11 @@ If your dataset may sometimes be an empty array, work with design to render some
 
 ---
 
-## Bar chart colors
+## Line chart colors
 
-`EzBarChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+`EzLineChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
-The default `barColor` is `primary`.
+The default `lineColor` is `primary`.
 
 ---
 
@@ -137,16 +139,10 @@ All charts should have a `title` and `description`.
       types: ['string'],
       description: 'Detailed accessible description for the chart.',
     },
-    {
+        {
       name: 'title*',
       types: ['string'],
       description: 'Accessible title for the chart.',
-    },
-    {
-      name: 'barColor',
-      types: ['EzThemeColors'],
-      defaultValue: 'primary',
-      description: 'Bar chart bar color.',
     },
     {
       name: 'dependentAxisLabelFormatter',
@@ -168,6 +164,12 @@ All charts should have a `title` and `description`.
       types: ['AxisLabelValue[]'],
       description: 'Array of axis label values to customize the independent axis labels.',
     },
+    {
+      name: 'lineColor',
+      types: ['EzThemeColors'],
+      defaultValue: 'primary',
+      description: 'Line chart line color.',
+    },
   ]}>
   </PropsTable>
 ```
@@ -178,4 +180,4 @@ All charts should have a `title` and `description`.
 
 - [EzProgress](/components/ez-progress)
 - [EzBlankState](/components/ez-blank-state)
-- [EzLineChart](/components/ez-line-chart)
+- [EzBarChart](/components/ez-bar-chart)

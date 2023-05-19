@@ -8,6 +8,18 @@ export const getVictoryBarChartStyles = ({barFillColor}) => {
   };
 };
 
+export const getVictoryLineChartStyles = ({lineFillColor}) => {
+  return {
+    lineStyle: {
+      data: {
+        stroke: lineFillColor,
+        strokeWidth: 3,
+        strokeLinecap: 'round',
+      },
+    },
+  };
+};
+
 export const getVictoryChartStyles = ({fontFamily}) => {
   const tickLabels = {fontFamily, fontSize: 10, fill: TICK_COLOR, padding: 5};
   const noStroke = {stroke: 'none'};
