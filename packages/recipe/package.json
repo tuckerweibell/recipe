@@ -36,7 +36,8 @@
     "@stitches/core": "^1.2.8",
     "dayjs": "^1.8.14",
     "react-highlight-words": "^0.18.0",
-    "tiny-warning": "^1.0.3"
+    "tiny-warning": "^1.0.3",
+    "victory": "^36.6.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
