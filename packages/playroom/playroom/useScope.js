@@ -1,5 +1,9 @@
 import {useRef, useEffect, useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isBetween from 'dayjs/plugin/isBetween';
 import {
   MOCK_ICON_FA_CART_SHOPPING,
   MOCK_ICON_FA_CIRCLE,
@@ -31,6 +35,14 @@ export default () => ({
   useEffect,
   useState,
   require: moduleName => {
+    if (moduleName.includes('dayjs')) {
+      return {
+        dayjs,
+        isSameOrBefore,
+        isSameOrAfter,
+        isBetween,
+      };
+    }
     // fake out calls to `require('react-router-dom')` and icon libraries within our .md examples.
     if (moduleName === 'react-router-dom')
       return {BrowserRouter, StaticRouter, NavLink, Link, Route};

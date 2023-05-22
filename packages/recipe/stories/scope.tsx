@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
 import {fireEvent} from '@storybook/testing-library';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isBetween from 'dayjs/plugin/isBetween';
 import * as Components from '../src';
 import Open from '../src/components/EzField/Open';
 import Focus from '../src/components/EzField/Focus';
@@ -58,6 +62,10 @@ const scope: any = {
       NavLink,
       BrowserRouter: typeof window === 'undefined' ? StaticRouterWithProps : BrowserRouter,
       Route,
+      dayjs,
+      isSameOrBefore,
+      isSameOrAfter,
+      isBetween,
       emptyStar: MOCK_ICON_FA_EMPTY_STAR,
       faCircle: MOCK_ICON_FA_CIRCLE,
       faCircleInfo: MOCK_ICON_FA_CIRCLE_INFO,

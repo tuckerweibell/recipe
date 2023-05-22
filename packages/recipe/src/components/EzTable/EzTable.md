@@ -894,3 +894,390 @@ When offering pagination and selection, users should be offered options:
   return <Table />;
 };
 ```
+
+### Advanced filtering
+
+This is an advanced example of how to use multiple filters in a table.
+
+To avoid performance degradation
+
+- Do NOT use client-side filtering for large datasets (hundreds or more entries), it can make the table unusable. Prefer server-side filtering, in most cases.
+- Prefer making server-side API calls to filter the actual dataset as the client-side filters change, with appropriate [debouncing](https://www.developerway.com/posts/debouncing-in-react) based on the situation.
+
+```jsx
+() => {
+  /* This example code may be too long to run in the playroom, 
+     in order to run in the playroom, pare down the example
+  */
+
+  const {dayjs} = require('dayjs');
+  const {isSameOrBefore} = require('dayjs/plugin/isSameOrBefore');
+  const {isSameOrAfter} = require('dayjs/plugin/isSameOrAfter');
+  const {isBetween} = require('dayjs/plugin/isBetween');
+
+  dayjs.extend(isSameOrBefore);
+  dayjs.extend(isSameOrAfter);
+  dayjs.extend(isBetween);
+
+  const Table = () => {
+    // Raw data
+    const allData = [
+      {
+        id: '1',
+        first: 'Tiffany',
+        last: 'Morin',
+        date: '2023-01-15',
+        status: 'completed',
+        address: '123 Beacon Street',
+      },
+      {
+        id: '2',
+        first: 'Mitchell',
+        last: 'Hoffman',
+        date: '2023-02-15',
+        status: 'todo',
+        address: '456 Washington Street',
+      },
+      {
+        id: '3',
+        first: 'Léo',
+        last: 'Gonzalez',
+        date: '2023-02-24',
+        status: 'waiting',
+        address: '234 Marlborough Street',
+      },
+      {
+        id: '4',
+        first: 'Alberto',
+        last: 'Arias',
+        date: '2023-03-10',
+        status: 'completed',
+        address: '431 Arlington Street',
+      },
+      {
+        id: '5',
+        first: 'Olivier',
+        last: 'Campos',
+        date: '2023-06-12',
+        status: 'blocked',
+        address: '678 Berkeley Street',
+      },
+      {
+        id: '6',
+        first: 'Ömür',
+        last: 'Ekici',
+        date: '2023-09-03',
+        status: 'todo',
+        address: '989 Clarendon Street',
+      },
+      {
+        id: '7',
+        first: 'Énio',
+        last: 'Barros',
+        date: '2023-10-18',
+        status: 'todo',
+        address: '144 Dartmouth Street',
+      },
+      {
+        id: '8',
+        first: 'Ava',
+        last: 'Ma',
+        date: '2023-12-22',
+        status: 'waiting',
+        address: '402 Exeter Street',
+      },
+      {
+        id: '9',
+        first: 'Norberta',
+        last: 'Novaes',
+        date: '2023-12-26',
+        status: 'blocked',
+        address: '635 Fairfield Street',
+      },
+      {
+        id: '10',
+        first: 'Deni',
+        last: 'Lubbers',
+        date: '2024-01-01',
+        status: 'completed',
+        address: '605 Gloucester Street',
+      },
+    ];
+
+    const [state, setState] = React.useState({
+      currentPage: 1,
+      totalRows: allData.length,
+      totalFilteredRows: allData.length,
+      rowsPerPage: 5,
+    });
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [startDate, setStartDate] = React.useState('');
+    const [endDate, setEndDate] = React.useState('');
+    const [status, setStatus] = React.useState(null);
+    const [address, setAddress] = React.useState('');
+    const [addressSearchTerm, setAddressSearchTerm] = React.useState('');
+    const [data, setData] = React.useState(allData);
+
+    // This filters table data
+    // This is a presentational example
+    // PLEASE do this in a more performant way: server-side debounced filtering logic preferred
+    React.useEffect(() => {
+      const filteredData = allData.filter(datum => {
+        if (status && datum.status !== status) {
+          return false;
+        }
+        if (
+          searchTerm &&
+          !Object.values(datum).some(
+            value => typeof value === 'string' && value.toLowerCase().includes(searchTerm)
+          )
+        ) {
+          return false;
+        }
+
+        const hasStartDate = startDate && startDate.length > 0;
+        const hasEndDate = endDate && endDate.length > 0;
+
+        if (
+          hasStartDate &&
+          hasEndDate &&
+          !dayjs(datum.date).isBetween(startDate, endDate, 'day', '[]')
+        ) {
+          return false;
+        }
+
+        if (
+          hasStartDate &&
+          !hasEndDate &&
+          !dayjs(datum.date).isSameOrAfter(dayjs(startDate, 'day'))
+        ) {
+          return false;
+        }
+
+        if (
+          !hasStartDate &&
+          hasEndDate &&
+          !dayjs(datum.date).isSameOrBefore(dayjs(endDate, 'day'))
+        ) {
+          return false;
+        }
+
+        if (address && datum.address !== address) {
+          return false;
+        }
+
+        return true;
+      });
+      setData(filteredData);
+      setState({...state, currentPage: 1, totalFilteredRows: filteredData.length});
+    }, [searchTerm, status, startDate, endDate, address, addressSearchTerm]);
+
+    // Clear filters
+    const handleClearFilters = () => {
+      setSearchTerm('');
+      setStatus(null);
+      setStartDate('');
+      setEndDate('');
+      setAddress('');
+      setAddressSearchTerm('');
+    };
+
+    const clearButton = <EzButton onClick={handleClearFilters}>Clear</EzButton>;
+
+    // Search term input filter
+    const handleFilterTermChange = term => {
+      setSearchTerm(term);
+    };
+
+    const searchInput = (
+      <EzSearchInput
+        placeholder="Search"
+        aria-label="Search orders"
+        value={searchTerm}
+        onChange={e => handleFilterTermChange(e.target.value)}
+      />
+    );
+
+    // Status select filter
+    const handleStatusChange = status => {
+      setStatus(status);
+    };
+
+    const uniqueStatusList = Array.from(new Set(allData.map(item => item.status)));
+
+    const statusInput = (
+      <EzField
+        type="select"
+        label="Status"
+        placeholder="Choose..."
+        options={uniqueStatusList.map(status => {
+          return {label: status.toUpperCase(), value: status};
+        })}
+        value={status}
+        onSelectionChange={handleStatusChange}
+      />
+    );
+
+    // Start date select filter
+    const handleStartDateChange = startDate => {
+      setStartDate(startDate);
+    };
+
+    const startDateInput = (
+      <EzField type="date" value={startDate} label="Start date" onChange={handleStartDateChange} />
+    );
+
+    // End date select filter
+    const handleEndDateChange = endDate => {
+      setEndDate(endDate);
+    };
+
+    const endDateInput = (
+      <EzField type="date" value={endDate} label="End date" onChange={handleEndDateChange} />
+    );
+
+    // Address search autosuggest filter
+    const handleAddressChange = address => {
+      setAddress(address);
+    };
+
+    const addresses = useAddressSearch(addressSearchTerm);
+
+    function sort(a, b) {
+      // if there is a non-empty search term, sort by earliest match
+      if (addressSearchTerm.trim() !== '') {
+        const indexA = a.toLowerCase().indexOf(addressSearchTerm.toLowerCase());
+        const indexB = b.toLowerCase().indexOf(addressSearchTerm.toLowerCase());
+        return indexA - indexB;
+      }
+      // retain provided ordering
+      return 0;
+    }
+
+    function useAddressSearch(addressSearchTerm) {
+      const addressData = data.map(datum => datum.address);
+
+      addressData.sort(sort);
+
+      return addressData.filter(datum =>
+        datum.toLowerCase().includes(addressSearchTerm.toLowerCase())
+      );
+    }
+
+    const ADDRESS_OPTIONS = addresses.map(value => ({label: value, value}));
+
+    const addressInput = (
+      <EzField
+        type="autosuggest"
+        label="Address"
+        placeholder="Select an address..."
+        options={ADDRESS_OPTIONS}
+        value={address}
+        onSelectionChange={handleAddressChange}
+        onFilter={setAddressSearchTerm}
+      />
+    );
+
+    // Filters layout
+    const filters = (
+      <EzLayout layout="stack">
+        <div>{searchInput}</div>
+        <div>{addressInput}</div>
+        <EzLayout layout="cluster">
+          <div>{startDateInput}</div>
+          <div>{endDateInput}</div>
+          <div>{statusInput}</div>
+        </EzLayout>
+        <div>{clearButton}</div>
+      </EzLayout>
+    );
+
+    const {currentPage, totalFilteredRows, totalRows, rowsPerPage} = state;
+    const updateState = changes => setState({...state, ...changes});
+
+    const startIndex = (state.currentPage - 1) * state.rowsPerPage;
+    const currentPageItems = data.slice(startIndex, startIndex + state.rowsPerPage);
+
+    const [selection, setSelection] = React.useState([]);
+
+    const isEqual = (item1, item2) => {
+      return item1.id === item2.id;
+    };
+
+    const selectRow = item => setSelection(selection.concat(item));
+    const deselectRow = item => setSelection(selection.filter(x => !isEqual(x, item)));
+    const isRowSelected = item1 => selection.find(item2 => isEqual(item1, item2));
+
+    const onSelectAllClick = () => setSelection(allData);
+    const onSelectNoneClick = () => setSelection([]);
+
+    const onBulkSelectClick = () => {
+      const selectedPageItems = currentPageItems.filter(isRowSelected);
+
+      const areNoneSelectedOnPage = selectedPageItems.length === 0;
+      const areAllSelectedOnPage = selectedPageItems.length === currentPageItems.length;
+
+      const selectAllOnPage = () => selection.concat(currentPageItems);
+      const deselectAllOnPage = () =>
+        selection.filter(item => !selectedPageItems.find(({id}) => id === item.id));
+      const selectRestOnPage = () =>
+        selection.concat(currentPageItems.filter(item => !isRowSelected(item)));
+
+      setSelection(
+        areNoneSelectedOnPage
+          ? selectAllOnPage()
+          : areAllSelectedOnPage
+          ? deselectAllOnPage()
+          : selectRestOnPage()
+      );
+    };
+
+    const onRowSelectClick = (_event, {item}) => {
+      return isRowSelected(item) ? deselectRow(item) : selectRow(item);
+    };
+
+    const onPrevPageClick = () => updateState({currentPage: currentPage - 1});
+    const onNextPageClick = () => updateState({currentPage: currentPage + 1});
+    const onRowsPerPageChange = e =>
+      updateState({
+        rowsPerPage: e.target.value,
+        currentPage: 1,
+      });
+
+    return (
+      <EzTable
+        title="Store Owners"
+        actions={filters}
+        columns={[
+          {heading: 'First Name', key: 'first'},
+          {heading: 'Last Name', key: 'last'},
+          {heading: 'Date', key: 'date'},
+          {heading: 'Status', key: 'status'},
+          {heading: 'Address', key: 'address'},
+        ]}
+        items={data.slice(startIndex, startIndex + state.rowsPerPage)}
+        selection={{
+          totalRowsSelected: selection.length,
+          onRowSelectClick,
+          onBulkSelectClick,
+          isRowSelected,
+          onSelectAllClick,
+          onSelectNoneClick,
+        }}
+        pagination={{
+          currentPage,
+          totalFilteredRows,
+          totalRows,
+          rowsPerPage,
+          rowsPerPageOptions: [5, 10, 20, 30],
+          onPrevPageClick,
+          onNextPageClick,
+          onRowsPerPageChange,
+        }}
+      />
+    );
+  };
+
+  return <Table />;
+};
+```

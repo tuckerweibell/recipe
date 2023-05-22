@@ -34,6 +34,10 @@ import {faCartShopping as shoppingCart} from '@fortawesome/free-solid-svg-icons/
 import 'prismjs/themes/prism.css';
 import CodeHighlighting from './Code';
 import Playground from './Playground';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isBetween from 'dayjs/plugin/isBetween';
 
 const cleanProps = p =>
   Object.keys(p).reduce((previous, current) => {
@@ -119,6 +123,10 @@ const scope = {
   css,
   Global,
   require: () => ({
+    dayjs,
+    isSameOrBefore,
+    isSameOrAfter,
+    isBetween,
     Link,
     NavLink,
     BrowserRouter:
