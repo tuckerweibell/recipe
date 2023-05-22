@@ -1,5 +1,14 @@
 # @ezcater/recipe-doc-site
 
+## 2.0.2
+
+### Patch Changes
+
+- feat: add EzBarChart component [[sha]](https://github.com/ezcater/recipe/commit/93ee234c)
+- feat: add tooltips to EzBarChart and EzLineChart [[sha]](https://github.com/ezcater/recipe/commit/271dcea3)
+- feat: add EzLineChart component [[sha]](https://github.com/ezcater/recipe/commit/25f88c43)
+- docs: add advanced filtering example to EzTable [[sha]](https://github.com/ezcater/recipe/commit/b8f645e8)
+
 ## 2.0.1
 
 ### Patch Changes

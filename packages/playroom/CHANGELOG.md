@@ -1,5 +1,13 @@
 # @ezcater/recipe-playroom
 
+## 1.0.3
+
+### Patch Changes
+
+- feat: add EzBarChart component [[sha]](https://github.com/ezcater/recipe/commit/93ee234c)
+- feat: add EzLineChart component [[sha]](https://github.com/ezcater/recipe/commit/25f88c43)
+- docs: add advanced filtering example to EzTable [[sha]](https://github.com/ezcater/recipe/commit/b8f645e8)
+
 ## 1.0.2
 
 ### Patch Changes

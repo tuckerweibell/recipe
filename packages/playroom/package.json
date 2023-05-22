@@ -1,7 +1,7 @@
 {
   "name": "@ezcater/recipe-playroom",
   "description": "Reciple Playroom",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "dayjs": "^1.11.7",
