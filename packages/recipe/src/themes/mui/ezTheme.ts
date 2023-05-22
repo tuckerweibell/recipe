@@ -158,13 +158,12 @@ const palette: EzPaletteOptions = {
   },
 };
 
-const defaultFont = ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
-const headerFont = ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
+const defaultFont = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
 const typography = {
-  fontFamily: defaultFont,
   defaultFont,
-  headerFont,
+  fontFamily: defaultFont,
+  headerFont: defaultFont,
   font: {
     size: {
       small: 14,

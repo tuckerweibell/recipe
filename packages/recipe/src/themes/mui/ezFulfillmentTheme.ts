@@ -1,14 +1,12 @@
 import {createTheme} from '@mui/material';
 import ezTheme from './ezTheme';
 
-const defaultFont = ['Roboto Flex', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(
-  ', '
-);
-const headerFont = ['Montserrat', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', ');
+const defaultFont = '"Roboto Flex", "Helvetica Neue", Arial, Helvetica, sans-serif';
+const headerFont = 'Montserrat, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
 const typography = {
-  fontFamily: defaultFont,
   defaultFont,
+  fontFamily: defaultFont,
   headerFont,
 };
 

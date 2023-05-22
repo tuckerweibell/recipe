@@ -3,7 +3,7 @@ import {EzGlobalStyles, EzProvider, EzThemeProvider, stitchesMarketplaceTheme} f
 
 export default function FrameComponent({theme, children}) {
   const isMarketplaceTheme =
-    theme.typography.fontFamily === 'Lato, Helvetica Neue, Arial, Helvetica, sans-serif';
+    theme.typography.fontFamily === 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
   return (
     <>
