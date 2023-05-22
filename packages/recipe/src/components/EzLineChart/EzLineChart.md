@@ -21,19 +21,13 @@ Line charts are a [type of chart](https://help.flourish.studio/article/25-line-b
 
 ### Basic line chart
 
-Line charts should include a title and be contained in an `EzCard` container. The title can optionally have a description and icon.
+Line charts should include a title and be contained in an `EzCard` container. The card title can optionally have a description and icon.
 
-To chart a dataset as a line chart, provide a dataset as a `data` array of objects with `x` and `y` values. 
+To chart a dataset as a line chart, provide a dataset as a `data` array of objects with `x` and `y` values.
 
 For example:
 
-```js
-data = [
-  {x: 'first', y: 1},
-  {x: 'second', y: 2},
-  {x: 'third', y: 3},
-];
-```
+`data = [{x: 'first', y: 1}, {x: 'second', y: 2}, {x: 'third', y: 3}];`
 
 Always provide `title` and a detailed `description` for assistive devices.
 
@@ -81,11 +75,7 @@ If your dataset may sometimes be an empty array, work with design to render some
 
   return (
     <EzPage>
-      <EzCard
-        title={METRIC}
-        subtitle={TIME_PERIOD}
-        actions={<EzHeading size="1">{SUM}</EzHeading>}
-      >
+      <EzCard title={METRIC} subtitle={TIME_PERIOD} actions={<EzHeading size="1">{SUM}</EzHeading>}>
         {!DATA || DATA.length === 0 ? (
           <EzBlankState
             title="No data available"

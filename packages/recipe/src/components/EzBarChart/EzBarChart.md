@@ -27,13 +27,7 @@ To chart a dataset as a bar chart, provide a dataset as a `data` array of object
 
 For example:
 
-```js
-data = [
-  {x: 'first', y: 1},
-  {x: 'second', y: 2},
-  {x: 'third', y: 3},
-];
-```
+`data = [{x: 'first', y: 1}, {x: 'second', y: 2}, {x: 'third', y: 3}];`
 
 Always provide `title` and a detailed `description` for assistive devices.
 

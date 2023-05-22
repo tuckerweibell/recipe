@@ -40,12 +40,8 @@ describe('EzBarChart logic', () => {
     );
 
     expect(getByLabelText(TITLE)).toBeDefined();
-    expect(INDEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(
-      INDEPENDENT_AXIS_LABEL_VALUES.length
-    ); // not showing all y values on y-axis
-    expect(DEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(
-      DEPENDENT_AXIS_LABEL_VALUES.length
-    ); // not showing all x values on x-axis
+    expect(INDEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
+    expect(DEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
   });
 });
 
