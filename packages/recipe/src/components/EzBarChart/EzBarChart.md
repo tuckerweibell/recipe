@@ -115,7 +115,7 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
 
 ## Bar chart colors
 
-`EzBarChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+`EzBarChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 The default `barColor` is `primary`.
 
@@ -125,7 +125,7 @@ The default `barColor` is `primary`.
 
 See [WAI-ARIA accessibility guidelines](https://www.w3.org/TR/2000/NOTE-SVG-access-20000807/#Equivalent) for SVG charts.
 
-All charts should have a `title` and `description`.
+All charts must have a `title` and `description`.
 
 ---
 

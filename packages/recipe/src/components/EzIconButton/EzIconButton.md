@@ -87,7 +87,7 @@ For destructive actions, set the button's `color` to `common.destructive`.
 
 ### Icon Button Colors
 
-EzIconButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.black`). Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+EzIconButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.black`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 By default, the `color` passed to `EzIconButton` will also be passed to the child element (`EzIcon`) for `outlined` and `basic` variants. For `filled` icon buttons, the default color passed is `common.white`. The child element `color` prop can be overwritten if a different icon color is needed.
 

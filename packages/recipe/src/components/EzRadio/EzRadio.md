@@ -126,7 +126,7 @@ You can optionally append a set of icons to the label by passing in an array of 
 
 ### Radio Colors
 
-EzRadio supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+EzRadio supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 <EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 
@@ -622,7 +622,7 @@ Supported styles should be used, but if you need to overwrite styles for the rad
 
 See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for radio buttons.
 
-All radio button form controls should have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
+All radio button form controls must have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
 
 If a label isn't used (for example when using an icon-only super radio button), be sure to add an `ariaLabel` directly to `EzRadio`.
 

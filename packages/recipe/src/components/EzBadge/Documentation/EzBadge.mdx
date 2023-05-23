@@ -54,7 +54,7 @@ To cap the value of a badge, provide a numerical `max` value. Any value over the
 
 EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, `neutral`, and `success`) as well as all supported [theme colors](http://localhost:8000/guides/theming/#colors) (ex. `common.red100`).
 
-Out of the box, badges have a background color of `common.red110` and font color of `common.white`. Text and background colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+Out of the box, badges have a background color of `common.red110` and font color of `common.white`. Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 <Unstyled>
   <EzAlert
@@ -95,7 +95,7 @@ To align the badge relative to the corner of the wrapped element, use `overlap` 
 
 ## Accessibility
 
-Badges should be wrapped in an accessible element with a proper `aria-label` to be read by screen readers. The wrapping element will depend on the context with which you use the badge.
+Badges must be wrapped in an accessible element with a proper `aria-label` to be read by screen readers. The wrapping element will depend on the context with which you use the badge.
 
 <Canvas of={AccessibilityStories.AriaLabel} meta={AccessibilityStories} />
 

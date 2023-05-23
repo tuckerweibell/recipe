@@ -97,7 +97,7 @@ You can optionally append a set of icons to the label by passing in an array of 
 
 ### Checkbox Colors
 
-EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 <EzAlert headline="Note" tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."></EzAlert>
 
@@ -784,7 +784,7 @@ See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns
 
 All checkbox form controls should have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
 
-Checkboxes should also have a `name` property, which is used to set or return the value of the named attribute of the checkbox field.
+Checkboxes must also have a `name` property, which is used to set or return the value of the named attribute of the checkbox field.
 
 ---
 

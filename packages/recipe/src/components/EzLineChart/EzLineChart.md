@@ -113,7 +113,7 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
 
 ## Line chart colors
 
-`EzLineChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors should have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+`EzLineChart` supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.red100`). Colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 The default `lineColor` is `primary`.
 
@@ -123,7 +123,7 @@ The default `lineColor` is `primary`.
 
 See [WAI-ARIA accessibility guidelines](https://www.w3.org/TR/2000/NOTE-SVG-access-20000807/#Equivalent) for SVG charts.
 
-All charts should have a `title` and `description`.
+All charts must have a `title` and `description`.
 
 ---
 
