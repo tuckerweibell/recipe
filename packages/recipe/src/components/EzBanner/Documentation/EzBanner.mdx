@@ -1,0 +1,48 @@
+import {Canvas, Controls, Meta, Primary, Story} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as DefaultStories from './Stories/Default.stories';
+import * as UseStories from './Stories/Use.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzBanner
+
+Banners displays a prominent, succinct message with a related link or action. They are used to draw attention to marketing messages, using color to indicate that the content is related to a particular order source.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best Practices
+
+Banners should:
+
+- Be presented at the top of the screen, below the top navigation bar and page header.
+- Require user action in order to be dismissed.
+- Be persistent and non-modal, allowing users to either ignore them, or interact on them at any time.
+- Contain a single message, with a corresponding action that the user can take.
+
+Banners should not:
+
+- Be used to provide feedback on system or user actions. Use a [flash messsage](?path=/docs/feedback-ezflashmessage--docs) for page-level feedback and an [alert](?path=/docs/feedback-ezalert--docs) for feedback specific to a container on a page.
+
+---
+
+## Banner Uses
+
+Banners must include one of two uses: `marketing` or `ezOrdering`, which change the banner's background image color.
+
+<Canvas>
+  <Story of={UseStories.Marketing} meta={UseStories} />
+  <Story of={UseStories.EzOrdering} meta={UseStories} />
+</Canvas>
+
+---
+
+## Related components
+
+<RelatedComponents components={['EzAlert', 'EzFlashMessage', 'EzLink']} />
