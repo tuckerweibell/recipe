@@ -3,11 +3,9 @@ import EzChip from '../../EzChip';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzChip> = {
-  title: 'Data Display/EzChip/Status',
+  argTypes: DefaultMeta.argTypes,
   component: EzChip,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  title: 'Data Display/EzChip/Status',
 };
 
 export default meta;
@@ -28,7 +26,6 @@ export const StatusNeutral: Story = {
 export const StatusSuccess: Story = {
   args: {
     ...Default.args,
-
     color: undefined,
     label: 'Success',
     variant: 'success',

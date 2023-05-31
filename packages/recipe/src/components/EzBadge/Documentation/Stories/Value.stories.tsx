@@ -6,18 +6,14 @@ import DefaultMeta, {Default} from './Default.stories';
 const meta: Meta<typeof EzBadge> = {
   title: 'Data Display/EzBadge/Value',
   component: EzBadge,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  argTypes: DefaultMeta.argTypes,
 };
 
 export default meta;
 type Story = StoryObj<typeof EzBadge>;
 
 export const Value: Story = {
-  args: {
-    ...Default.args,
-  },
+  args: Default.args,
   parameters: {
     docs: {
       source: {

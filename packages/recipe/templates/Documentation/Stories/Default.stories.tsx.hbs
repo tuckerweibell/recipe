@@ -4,8 +4,6 @@ import dedent from 'ts-dedent';
 import {{pascalCase name}} from '../../{{pascalCase name}}';
 
 const meta: Meta<typeof {{pascalCase name}}> = {
-  title: 'Category/{{pascalCase name}}',
-  component: {{pascalCase name}},
   argTypes: {
     propA: {
       control: {type: 'select'},
@@ -20,6 +18,8 @@ const meta: Meta<typeof {{pascalCase name}}> = {
       table: {type: {summary: 'string'}},
     },
   },
+  component: {{pascalCase name}},
+  title: 'Category/{{pascalCase name}}',
 };
 
 export default meta;

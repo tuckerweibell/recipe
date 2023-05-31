@@ -11,8 +11,6 @@ const icons = {
 };
 
 const meta: Meta<typeof EzChip> = {
-  title: 'Data Display/EzChip',
-  component: EzChip,
   argTypes: {
     label: {
       control: {type: 'text'},
@@ -97,6 +95,8 @@ const meta: Meta<typeof EzChip> = {
       },
     },
   },
+  component: EzChip,
+  title: 'Data Display/EzChip',
 };
 
 export default meta;

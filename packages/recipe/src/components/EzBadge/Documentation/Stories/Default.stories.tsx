@@ -6,8 +6,6 @@ import EzBadge from '../../EzBadge';
 import EzIcon from '../../../EzIcon';
 
 const meta: Meta<typeof EzBadge> = {
-  title: 'Data Display/EzBadge',
-  component: EzBadge,
   argTypes: {
     alignX: {
       control: {type: 'select'},
@@ -106,6 +104,7 @@ const meta: Meta<typeof EzBadge> = {
       table: {type: {summary: 'ReactNode'}},
     },
   },
+  component: EzBadge,
   parameters: {
     docs: {
       source: {
@@ -131,6 +130,7 @@ const meta: Meta<typeof EzBadge> = {
       },
     },
   },
+  title: 'Data Display/EzBadge',
 };
 
 export default meta;

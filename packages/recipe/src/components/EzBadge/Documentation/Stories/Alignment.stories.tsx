@@ -9,18 +9,14 @@ import DefaultMeta, {Default} from './Default.stories';
 const meta: Meta<typeof EzBadge> = {
   title: 'Data Display/EzBadge/Alignment',
   component: EzBadge,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  argTypes: DefaultMeta.argTypes,
 };
 
 export default meta;
 type Story = StoryObj<typeof EzBadge>;
 
 export const TopRight: Story = {
-  args: {
-    ...Default.args,
-  },
+  args: Default.args,
   parameters: {
     docs: {
       source: {
@@ -160,9 +156,7 @@ export const BottomLeft: Story = {
 };
 
 export const Rectangular: Story = {
-  args: {
-    ...Default.args,
-  },
+  args: Default.args,
   parameters: {
     docs: {
       source: {

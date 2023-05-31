@@ -21,9 +21,7 @@ const playroomCode = (color: string) =>
 const meta: Meta<typeof EzBadge> = {
   title: 'Data Display/EzBadge/Color',
   component: EzBadge,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  argTypes: DefaultMeta.argTypes,
 };
 
 export default meta;

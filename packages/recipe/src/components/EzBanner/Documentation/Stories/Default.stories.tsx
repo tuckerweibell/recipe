@@ -5,8 +5,6 @@ import dedent from 'ts-dedent';
 import EzBanner from '../../EzBanner';
 
 const meta: Meta<typeof EzBanner> = {
-  title: 'Layout/EzBanner',
-  component: EzBanner,
   argTypes: {
     link: {
       control: {type: 'object'},
@@ -42,6 +40,8 @@ const meta: Meta<typeof EzBanner> = {
       type: {name: 'string', required: true},
     },
   },
+  component: EzBanner,
+  title: 'Layout/EzBanner',
 };
 
 export default meta;

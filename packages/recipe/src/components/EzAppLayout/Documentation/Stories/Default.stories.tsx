@@ -5,8 +5,6 @@ import EzAppLayout from '../../EzAppLayout';
 import RenderedChildren, {RenderedChildrenCode} from '../RenderedChildren';
 
 const meta: Meta<typeof EzAppLayout> = {
-  title: 'Layout/EzAppLayout',
-  component: EzAppLayout,
   argTypes: {
     layout: {
       control: {type: 'select'},
@@ -18,6 +16,7 @@ const meta: Meta<typeof EzAppLayout> = {
       },
     },
   },
+  component: EzAppLayout,
   parameters: {
     docs: {
       source: {
@@ -29,17 +28,13 @@ const meta: Meta<typeof EzAppLayout> = {
       },
     },
   },
+  title: 'Layout/EzAppLayout',
 };
 
 export default meta;
 type Story = StoryObj<typeof EzAppLayout>;
 
 export const Default: Story = {
-  render: args => (
-    <EzAppLayout {...args}>
-      <RenderedChildren />
-    </EzAppLayout>
-  ),
   args: {
     layout: 'full',
   },
@@ -52,4 +47,9 @@ export const Default: Story = {
       `,
     },
   },
+  render: args => (
+    <EzAppLayout {...args}>
+      <RenderedChildren />
+    </EzAppLayout>
+  ),
 };

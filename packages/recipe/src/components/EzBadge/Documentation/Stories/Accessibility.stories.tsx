@@ -12,18 +12,14 @@ import {EzCard} from '../../../EzCard';
 const meta: Meta<typeof EzBadge> = {
   title: 'Data Display/EzBadge/Accessibility',
   component: EzBadge,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  argTypes: DefaultMeta.argTypes,
 };
 
 export default meta;
 type Story = StoryObj<typeof EzBadge>;
 
 export const AriaLabel: Story = {
-  args: {
-    ...Default.args,
-  },
+  args: Default.args,
   parameters: {
     docs: {
       source: {
@@ -64,9 +60,7 @@ export const AriaLabel: Story = {
 };
 
 export const Standalone: Story = {
-  args: {
-    ...Default.args,
-  },
+  args: Default.args,
   parameters: {
     docs: {
       source: {

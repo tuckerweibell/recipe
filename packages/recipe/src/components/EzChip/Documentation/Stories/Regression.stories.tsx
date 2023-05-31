@@ -7,11 +7,9 @@ import EzIcon from '../../../EzIcon';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzChip> = {
-  title: 'Data Display/EzChip/Regression',
+  argTypes: DefaultMeta.argTypes,
   component: EzChip,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  title: 'Data Display/EzChip/Regression',
 };
 
 export default meta;

@@ -4,11 +4,9 @@ import {{pascalCase name}} from '../../{{pascalCase name}}';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof {{pascalCase name}}> = {
-  title: 'Category/{{pascalCase name}}/Regression',
+  argTypes: DefaultMeta.argTypes,
   component: {{pascalCase name}},
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  title: 'Category/{{pascalCase name}}/Regression',
 };
 
 export default meta;

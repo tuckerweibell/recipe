@@ -3,11 +3,9 @@ import EzChip from '../../EzChip';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzChip> = {
-  title: 'Data Display/EzChip/Variant',
+  argTypes: DefaultMeta.argTypes,
   component: EzChip,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  title: 'Data Display/EzChip/Variant',
 };
 
 export default meta;

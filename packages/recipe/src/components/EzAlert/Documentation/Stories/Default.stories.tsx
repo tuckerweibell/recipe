@@ -3,8 +3,6 @@ import dedent from 'ts-dedent';
 import EzAlert from '../../EzAlert';
 
 const meta: Meta<typeof EzAlert> = {
-  title: 'Feedback/EzAlert',
-  component: EzAlert,
   argTypes: {
     arrow: {
       control: {type: 'select'},
@@ -34,6 +32,8 @@ const meta: Meta<typeof EzAlert> = {
       },
     },
   },
+  component: EzAlert,
+  title: 'Feedback/EzAlert',
 };
 
 export default meta;

@@ -9,9 +9,7 @@ import DefaultMeta, {Default} from './Default.stories';
 const meta: Meta<typeof EzBadge> = {
   title: 'Data Display/EzBadge/Regression',
   component: EzBadge,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  argTypes: DefaultMeta.argTypes,
 };
 
 export default meta;

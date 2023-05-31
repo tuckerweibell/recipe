@@ -4,11 +4,9 @@ import EzAlert from '../../EzAlert';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzAlert> = {
-  title: 'Feedback/EzAlert/Directional',
+  argTypes: DefaultMeta.argTypes,
   component: EzAlert,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
+  title: 'Feedback/EzAlert/Directional',
 };
 
 export default meta;

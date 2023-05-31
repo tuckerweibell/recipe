@@ -6,11 +6,8 @@ import DefaultMeta, {Default} from './Default.stories';
 import RenderedChildren, {RenderedChildrenCode} from '../RenderedChildren';
 
 const meta: Meta<typeof EzAppLayout> = {
-  title: 'Layout/EzAppLayout/Centered',
+  argTypes: DefaultMeta.argTypes,
   component: EzAppLayout,
-  argTypes: {
-    ...DefaultMeta.argTypes,
-  },
   parameters: {
     docs: {
       source: {
@@ -22,17 +19,13 @@ const meta: Meta<typeof EzAppLayout> = {
       },
     },
   },
+  title: 'Layout/EzAppLayout/Centered',
 };
 
 export default meta;
 type Story = StoryObj<typeof EzAppLayout>;
 
 export const Centered: Story = {
-  render: args => (
-    <EzAppLayout {...args}>
-      <RenderedChildren />
-    </EzAppLayout>
-  ),
   args: {
     ...Default.args,
     layout: 'centered',
@@ -46,4 +39,9 @@ export const Centered: Story = {
       `,
     },
   },
+  render: args => (
+    <EzAppLayout {...args}>
+      <RenderedChildren />
+    </EzAppLayout>
+  ),
 };
