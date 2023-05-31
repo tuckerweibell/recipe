@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {linkTo} from '@storybook/addon-links';
 import {Unstyled} from '@storybook/blocks';
-import {Box, Card, CardActionArea, CardContent, Stack, Typography} from '@mui/material';
+import {Box, Card, CardContent, Stack, Typography} from '@mui/material';
 import {LibraryItemProps, LibrarySectionProps} from './ComponentLibrary.types';
 import FullBleed from '../FullBleed';
 import getSnapshot from './getSnapshot';
@@ -43,20 +43,18 @@ const LibrarySection: FC<LibrarySectionProps> = ({sectionName, category, compone
 );
 
 export const LibraryItem: FC<LibraryItemProps> = ({snapshot, link, name}) => (
-  <Card sx={{height: 200, width: 200, mr: 3, mb: 3}}>
-    <CardActionArea sx={{justifyContent: 'space-between'}} onClick={linkTo(link)}>
-      <CardContent>
-        <Stack alignItems="center">
-          <Stack justifyContent="space-around" minHeight={140} sx={{'*': {cursor: 'pointer'}}}>
-            <Unstyled>{snapshot}</Unstyled>
-          </Stack>
-
-          <Box mt={1} fontSize="0.8em" fontWeight={600} color={ezTheme.palette.common.green100}>
-            {name}
-          </Box>
+  <Card sx={{height: 200, width: 200, mr: 3, mb: 3}} onClick={linkTo(link)}>
+    <CardContent>
+      <Stack alignItems="center">
+        <Stack justifyContent="space-around" minHeight={140} sx={{'*': {cursor: 'pointer'}}}>
+          <Unstyled>{snapshot}</Unstyled>
         </Stack>
-      </CardContent>
-    </CardActionArea>
+
+        <Box mt={1} fontSize="0.8em" fontWeight={600} color={ezTheme.palette.common.green100}>
+          {name}
+        </Box>
+      </Stack>
+    </CardContent>
   </Card>
 );
 
