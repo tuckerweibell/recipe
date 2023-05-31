@@ -4,7 +4,7 @@ import {Unstyled} from '@storybook/blocks';
 import {Box, Card, CardContent, Stack, Typography} from '@mui/material';
 import {LibraryItemProps, LibrarySectionProps} from './ComponentLibrary.types';
 import FullBleed from '../FullBleed';
-import getSnapshot from './getSnapshot';
+import getSnapshot from '../../utils/getSnapshot';
 import {ezTheme} from '../../../src/themes';
 import {
   dataDisplayComponents,
@@ -14,7 +14,7 @@ import {
   navigationComponents,
   surfacesComponents,
   typographyComponents,
-} from './categories';
+} from '../../categories';
 
 const LibrarySection: FC<LibrarySectionProps> = ({sectionName, category, components}) => (
   <>

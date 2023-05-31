@@ -1,4 +1,4 @@
-import * as categories from './categories';
+import * as categories from '../categories';
 
 export default function getCategory(componentName: string) {
   const foundCategory = Object.keys(categories).find(category =>
