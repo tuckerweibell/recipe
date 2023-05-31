@@ -1,3 +1,6 @@
+Please use the default template below, or choose an appropriate sub-template by going to the `Preview` tab and selecting one of the following:
+* [Storybook Docs](?template=storybook_template.md)
+
 ## What did we change?
 
 ## Why are we doing this?
@@ -8,5 +11,5 @@
 
 - [ ] Provide test coverage for the changes made
 - [ ] Create a changeset (`yarn changeset`) with a summary of the changes
-
+ 
 [Contributing guidelines](https://ezcater.github.io/recipe/guides/contributing/)
