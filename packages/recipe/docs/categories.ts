@@ -1,6 +1,8 @@
 const dataDisplayComponents = [
   'EzBadge',
+  'EzBarChart',
   'EzChip',
+  'EzLineChart',
   'EzOrderSummary',
   'EzRating',
   'EzSearchInput',

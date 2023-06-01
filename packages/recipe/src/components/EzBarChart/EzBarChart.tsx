@@ -40,4 +40,6 @@ EzBarChart.defaultProps = {
   barColor: 'primary',
 };
 
+EzBarChart.displayName = 'EzBarChart';
+
 export default EzBarChart;
