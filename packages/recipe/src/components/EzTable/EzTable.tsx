@@ -1,6 +1,12 @@
 import React, {FC, createContext, createElement, useContext} from 'react';
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import {Box} from '@mui/material';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faSort,
+  faSortDown,
+  faSortUp,
+} from '@fortawesome/free-solid-svg-icons';
 import theme from '../theme.config';
 import {EzCard} from '../EzCard';
 import EzCheckbox from '../EzCheckbox';
@@ -72,7 +78,6 @@ const sortableColumn = theme.css({
   },
   svg: {
     fill: '$gray600',
-    opacity: 0,
   },
 });
 
@@ -195,17 +200,13 @@ const responsive = theme.css({
 const {Fragment} = React;
 const TableContext = createContext(null);
 
-const SortDirection = ({direction}) => (
-  <svg
-    width="0.5em"
-    height="0.4em"
-    viewBox="0 0 1 1"
-    preserveAspectRatio="none"
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-  >
-    {direction === 'asc' ? <polygon points="0.5,0 1,1 0,1" /> : <polygon points="0.5,1 0,0 1,0" />}
-  </svg>
+const SortIcon = ({direction, isSorted}) => (
+  <Box fontSize="0.6rem">
+    <EzIcon
+      icon={isSorted ? (direction === 'asc' ? faSortDown : faSortUp) : faSort}
+      size="inherit"
+    />
+  </Box>
 );
 
 type ThProps = {
@@ -269,7 +270,7 @@ const Thead = ({selectable}) => {
               <span className={headerItems()}>
                 {heading}
                 {icon && <span className={headerIcon()}>{icon}</span>}
-                {sortable && <SortDirection direction={direction} />}
+                {sortable && <SortIcon direction={direction} isSorted={isSorted(column)} />}
               </span>
             </Th>
           );
