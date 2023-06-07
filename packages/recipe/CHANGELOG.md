@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.3.1
+
+### Patch Changes
+
+- fix: update EzTable column header sort icons to be more intuitive [[sha]](https://github.com/ezcater/recipe/commit/eb9e9a97)
+
 ## 17.3.0
 
 ### Minor Changes
