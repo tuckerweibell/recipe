@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.3.2
+
+### Patch Changes
+
+- fix: switch table sort icons for asc and desc directions [[sha]](https://github.com/ezcater/recipe/commit/1aa77707)
+
 ## 17.3.1
 
 ### Patch Changes
