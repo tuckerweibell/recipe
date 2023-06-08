@@ -203,7 +203,7 @@ const TableContext = createContext(null);
 const SortIcon = ({direction, isSorted}) => (
   <Box fontSize="0.6rem">
     <EzIcon
-      icon={isSorted ? (direction === 'asc' ? faSortDown : faSortUp) : faSort}
+      icon={isSorted ? (direction === 'asc' ? faSortUp : faSortDown) : faSort}
       size="inherit"
     />
   </Box>
