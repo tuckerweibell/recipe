@@ -18,6 +18,7 @@ const EzButton = forwardRef<Ref, EzButtonProps>((props, ref) => {
     disabled,
     endIcon,
     fontSize,
+    fullWidth,
     loading,
     onClick,
     onKeyDown,
@@ -36,6 +37,7 @@ const EzButton = forwardRef<Ref, EzButtonProps>((props, ref) => {
       disabled={disabled}
       endIcon={endIcon}
       fontSize={fontSize}
+      fullWidth={fullWidth}
       loading={loading}
       onClick={onClick}
       onKeyDown={onKeyDown}
@@ -57,6 +59,7 @@ EzButton.defaultProps = {
   color: 'primary',
   disabled: false,
   fontSize: 'medium',
+  fullWidth: false,
   legacy: false, // deprecated
   loading: false,
   size: 'medium',

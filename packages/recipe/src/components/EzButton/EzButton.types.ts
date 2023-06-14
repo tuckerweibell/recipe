@@ -46,6 +46,7 @@ export type EzButtonMuiProps = EzButtonCommonProps & {
   data?: DataAttributeMap;
   endIcon?: ReactElement;
   fontSize?: 'small' | 'medium' | 'large' | 'inherit';
+  fullWidth?: boolean;
   onKeyDown?: KeyboardEventHandler<any> | undefined;
   size?: 'small' | 'medium' | 'large';
   startIcon?: ReactElement;

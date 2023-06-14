@@ -91,6 +91,14 @@ const meta: Meta<typeof EzButton> = {
         type: {summary: 'small | medium | large | inherit'},
       },
     },
+    fullWidth: {
+      control: {type: 'boolean'},
+      description: 'If true, the button will take up the full width of its container.',
+      table: {
+        defaultValue: {summary: false},
+        type: {summary: 'boolean'},
+      },
+    },
     icon: {
       control: {type: 'select'},
       description: '**[Deprecated]** Icon element.',

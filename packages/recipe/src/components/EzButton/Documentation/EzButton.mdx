@@ -117,6 +117,8 @@ For destructive actions, set the button's `color` to `destructive`.
 
 If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`. Button sizes affect the amount of padding around the button content.
 
+If you want the button to be full width, use the `fullWidth` prop.
+
 <Canvas>
   <Story of={ButtonSizeStories.FilledButtonSizeSmall} meta={ButtonSizeStories} />
   <Story of={ButtonSizeStories.FilledButtonSizeMedium} meta={ButtonSizeStories} />
@@ -134,6 +136,8 @@ If you want to specify a button size, use the `size` property. We currently supp
   <Story of={ButtonSizeStories.TextButtonSizeMedium} meta={ButtonSizeStories} />
   <Story of={ButtonSizeStories.TextButtonSizeLarge} meta={ButtonSizeStories} />
 </Canvas>
+
+<Canvas of={ButtonSizeStories.FullWidth} meta={ButtonSizeStories} />
 
 ## Font Sizes
 

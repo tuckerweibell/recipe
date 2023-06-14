@@ -160,3 +160,20 @@ export const TextButtonSizeLarge: Story = {
     playroom: {code: playroomCode('large', 'text')},
   },
 };
+
+export const FullWidth: Story = {
+  args: {
+    ...Default.args,
+    children: 'Full width',
+    fullWidth: true,
+  } as EzButtonProps,
+  parameters: {
+    playroom: {
+      code: dedent`
+        <EzButton fullWidth>
+          Full width
+        </EzButton>
+      `,
+    },
+  },
+};
