@@ -4,9 +4,9 @@ import EzBadge from '../../EzBadge';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzBadge> = {
-  title: 'Data Display/EzBadge/Value',
-  component: EzBadge,
   argTypes: DefaultMeta.argTypes,
+  component: EzBadge,
+  title: 'Data Display/EzBadge/Value',
 };
 
 export default meta;

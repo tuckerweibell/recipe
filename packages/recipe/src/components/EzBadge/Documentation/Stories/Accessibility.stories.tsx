@@ -10,9 +10,9 @@ import DefaultMeta, {Default} from './Default.stories';
 import {EzCard} from '../../../EzCard';
 
 const meta: Meta<typeof EzBadge> = {
-  title: 'Data Display/EzBadge/Accessibility',
-  component: EzBadge,
   argTypes: DefaultMeta.argTypes,
+  component: EzBadge,
+  title: 'Data Display/EzBadge/Accessibility',
 };
 
 export default meta;

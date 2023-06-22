@@ -7,9 +7,9 @@ import EzIcon from '../../../EzIcon';
 import DefaultMeta, {Default} from './Default.stories';
 
 const meta: Meta<typeof EzBadge> = {
-  title: 'Data Display/EzBadge/Alignment',
-  component: EzBadge,
   argTypes: DefaultMeta.argTypes,
+  component: EzBadge,
+  title: 'Data Display/EzBadge/Alignment',
 };
 
 export default meta;
