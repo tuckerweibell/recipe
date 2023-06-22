@@ -379,6 +379,7 @@ To provide proper keyboard accessibility when using grouped radio buttons, use `
 
 - `EzFormControl` - used to provide context and ensure a consistent state
   - `error` - if `true`, the label is displayed in an error state
+  - `fullWidth` - if `true`, the component will take up the full width of its container
 - `EzFormLabel` - used to provide a label for a group of radio buttons
   - `id` - should match the `ariaLabel` prop of `EzRadioGroup`
 - `EzRadioGroup` - used to group radio buttons

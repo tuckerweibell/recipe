@@ -12,4 +12,14 @@ describe('EzFormControl', () => {
     const actual = await axe(container.outerHTML);
     expect(actual).toHaveNoViolations();
   });
+
+  it('should pass type checking', () => {
+    [
+      {
+        fullWidth: <EzFormControl fullWidth>Full Width Form</EzFormControl>,
+      },
+    ].forEach(() => {});
+
+    expect.assertions(0);
+  });
 });
