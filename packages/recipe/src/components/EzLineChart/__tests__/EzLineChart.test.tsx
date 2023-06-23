@@ -21,13 +21,15 @@ const DEPENDENT_AXIS_LABEL_VALUES = [0, 1000, 2000, 3000, 4000, 5000];
 const INDEPENDENT_AXIS_LABEL_VALUES = [2, 4, 6, 8, 10, 12];
 const INDEPENDENT_AXIS_LABEL_FORMATTER = jest.fn();
 const DEPENDENT_AXIS_LABEL_FORMATTER = jest.fn();
-const LABEL = 'line chart label';
+const TITLE = 'line chart label';
 const DESCRIPTION = 'line chart description';
+const ID_PREFIX = 'lineChartExample';
 
 describe('EzLineChart logic', () => {
   it('Passing data, title, and description creates a line chart', async () => {
     const {getByLabelText} = render(
       <EzLineChart
+        idPrefix={ID_PREFIX}
         data={DATA}
         description={DESCRIPTION}
         dependentAxisLabelFormatter={DEPENDENT_AXIS_LABEL_FORMATTER}
@@ -35,11 +37,15 @@ describe('EzLineChart logic', () => {
         independentAxisLabelFormatter={INDEPENDENT_AXIS_LABEL_FORMATTER}
         independentAxisLabelValues={INDEPENDENT_AXIS_LABEL_VALUES}
         lineColor="error"
-        title={LABEL}
+        title={TITLE}
       />
     );
 
-    expect(getByLabelText(LABEL)).toBeDefined();
+    const chartTitle = getByLabelText(TITLE);
+    const titleId = chartTitle.querySelector(`#${ID_PREFIX}-title`);
+
+    expect(chartTitle).toBeInTheDocument();
+    expect(titleId).toBeInTheDocument();
     expect(INDEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
     expect(DEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
   });
@@ -49,6 +55,7 @@ describe('EzLineChart', () => {
   it('should meet accessibility guidelines', async () => {
     const {container} = render(
       <EzLineChart
+        idPrefix={ID_PREFIX}
         data={DATA}
         description={DESCRIPTION}
         dependentAxisLabelFormatter={DEPENDENT_AXIS_LABEL_FORMATTER}
@@ -56,7 +63,7 @@ describe('EzLineChart', () => {
         independentAxisLabelFormatter={INDEPENDENT_AXIS_LABEL_FORMATTER}
         independentAxisLabelValues={INDEPENDENT_AXIS_LABEL_VALUES}
         lineColor="error"
-        title={LABEL}
+        title={TITLE}
       />
     );
     const actual = await axe(container.outerHTML);
@@ -66,13 +73,13 @@ describe('EzLineChart', () => {
   it('should pass type checking', () => {
     [
       {
-        description: <EzLineChart description={DESCRIPTION} title={LABEL} data={DATA} />,
-        title: <EzLineChart description={DESCRIPTION} title={LABEL} data={DATA} />,
-        dataProp: <EzLineChart description={DESCRIPTION} title={LABEL} data={DATA} />,
+        description: <EzLineChart description={DESCRIPTION} title={TITLE} data={DATA} />,
+        title: <EzLineChart description={DESCRIPTION} title={TITLE} data={DATA} />,
+        dataProp: <EzLineChart description={DESCRIPTION} title={TITLE} data={DATA} />,
         dependentAxisLabelFormatter: (
           <EzLineChart
             description={DESCRIPTION}
-            title={LABEL}
+            title={TITLE}
             data={DATA}
             dependentAxisLabelFormatter={DEPENDENT_AXIS_LABEL_FORMATTER}
           />
@@ -80,7 +87,7 @@ describe('EzLineChart', () => {
         dependentAxisLabelValues: (
           <EzLineChart
             description={DESCRIPTION}
-            title={LABEL}
+            title={TITLE}
             data={DATA}
             dependentAxisLabelValues={DEPENDENT_AXIS_LABEL_VALUES}
           />
@@ -88,7 +95,7 @@ describe('EzLineChart', () => {
         independentAxisLabelFormatter: (
           <EzLineChart
             description={DESCRIPTION}
-            title={LABEL}
+            title={TITLE}
             data={DATA}
             independentAxisLabelFormatter={INDEPENDENT_AXIS_LABEL_FORMATTER}
           />
@@ -96,13 +103,16 @@ describe('EzLineChart', () => {
         independentAxisLabelValues: (
           <EzLineChart
             description={DESCRIPTION}
-            title={LABEL}
+            title={TITLE}
             data={DATA}
             independentAxisLabelValues={INDEPENDENT_AXIS_LABEL_VALUES}
           />
         ),
         lineColor: (
-          <EzLineChart description={DESCRIPTION} title={LABEL} data={DATA} lineColor="alert" />
+          <EzLineChart description={DESCRIPTION} title={TITLE} data={DATA} lineColor="alert" />
+        ),
+        idPrefix: (
+          <EzLineChart description={DESCRIPTION} title={TITLE} data={DATA} idPrefix={ID_PREFIX} />
         ),
       },
     ].forEach(() => {});

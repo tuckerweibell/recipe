@@ -5,6 +5,7 @@ import {EzBarChartProps, Ref} from './EzBarChart.types';
 const EzBarChart = forwardRef<Ref, EzBarChartProps>(
   (
     {
+      idPrefix,
       description,
       title,
       barColor,
@@ -18,6 +19,7 @@ const EzBarChart = forwardRef<Ref, EzBarChartProps>(
   ) => (
     <EzBarChartVictory
       barColor={barColor}
+      idPrefix={idPrefix}
       data={data}
       description={description}
       dependentAxisLabelFormatter={dependentAxisLabelFormatter}

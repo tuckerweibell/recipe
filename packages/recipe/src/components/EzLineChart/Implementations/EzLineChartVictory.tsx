@@ -21,6 +21,7 @@ import {useThemeColor} from '../../../themes/hooks/useThemeColor';
 const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
   (
     {
+      idPrefix,
       data,
       description,
       dependentAxisLabelFormatter,
@@ -77,7 +78,9 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
           minDomain={minDomain}
           title={title}
           desc={description}
-          containerComponent={<VictoryVoronoiContainer voronoiDimension="x" activateData />}
+          containerComponent={
+            <VictoryVoronoiContainer containerId={idPrefix} voronoiDimension="x" activateData />
+          }
         >
           <VictoryAxis
             dependentAxis

@@ -5,6 +5,7 @@ import {EzLineChartProps, Ref} from './EzLineChart.types';
 const EzLineChart = forwardRef<Ref, EzLineChartProps>(
   (
     {
+      idPrefix,
       data,
       description,
       lineColor,
@@ -17,6 +18,7 @@ const EzLineChart = forwardRef<Ref, EzLineChartProps>(
     ref
   ) => (
     <EzLineChartVictory
+      idPrefix={idPrefix}
       data={data}
       description={description}
       dependentAxisLabelFormatter={dependentAxisLabelFormatter}

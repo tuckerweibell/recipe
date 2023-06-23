@@ -19,6 +19,7 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
   (
     {
       barColor,
+      idPrefix,
       data,
       description,
       dependentAxisLabelFormatter,
@@ -59,7 +60,9 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
           minDomain={minDomain}
           title={title}
           desc={description}
-          containerComponent={<VictoryVoronoiContainer voronoiDimension="x" activateData />}
+          containerComponent={
+            <VictoryVoronoiContainer containerId={idPrefix} voronoiDimension="x" activateData />
+          }
         >
           <VictoryAxis
             dependentAxis

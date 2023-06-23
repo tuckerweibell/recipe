@@ -23,12 +23,14 @@ const INDEPENDENT_AXIS_LABEL_FORMATTER = jest.fn();
 const DEPENDENT_AXIS_LABEL_FORMATTER = jest.fn();
 const TITLE = 'bar chart label';
 const DESCRIPTION = 'bar chart description';
+const ID_PREFIX = 'barChartExample';
 
 describe('EzBarChart logic', () => {
   it('Passing data, title, and description creates a bar chart', async () => {
     const {getByLabelText} = render(
       <EzBarChart
         barColor="error"
+        idPrefix={ID_PREFIX}
         data={DATA}
         description={DESCRIPTION}
         dependentAxisLabelFormatter={DEPENDENT_AXIS_LABEL_FORMATTER}
@@ -39,7 +41,11 @@ describe('EzBarChart logic', () => {
       />
     );
 
-    expect(getByLabelText(TITLE)).toBeDefined();
+    const chartTitle = getByLabelText(TITLE);
+    const titleId = chartTitle.querySelector(`#${ID_PREFIX}-title`);
+
+    expect(chartTitle).toBeInTheDocument();
+    expect(titleId).toBeInTheDocument();
     expect(INDEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
     expect(DEPENDENT_AXIS_LABEL_FORMATTER).toHaveBeenCalledTimes(DATA.length);
   });
@@ -50,6 +56,7 @@ describe('EzBarChart', () => {
     const {container} = render(
       <EzBarChart
         barColor="error"
+        idPrefix={ID_PREFIX}
         data={DATA}
         description={DESCRIPTION}
         dependentAxisLabelFormatter={DEPENDENT_AXIS_LABEL_FORMATTER}
@@ -103,6 +110,9 @@ describe('EzBarChart', () => {
         ),
         barColor: (
           <EzBarChart description={DESCRIPTION} title={TITLE} data={DATA} barColor="alert" />
+        ),
+        idPrefix: (
+          <EzBarChart description={DESCRIPTION} title={TITLE} data={DATA} idPrefix={ID_PREFIX} />
         ),
       },
     ].forEach(() => {});

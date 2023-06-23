@@ -11,6 +11,7 @@ type AxisLabelValue = string | number | string[] | (() => void);
 
 export interface EzBarChartProps {
   barColor?: EzThemeColors;
+  idPrefix?: string | number;
   data: Datum[];
   description: string;
   dependentAxisLabelFormatter?: (t: AxisLabelValue) => void;

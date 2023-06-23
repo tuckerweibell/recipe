@@ -10,6 +10,7 @@ type Datum = {
 type AxisLabelValue = string | number | string[] | (() => void);
 
 export interface EzLineChartProps {
+  idPrefix?: string | number;
   data: Datum[];
   description: string;
   dependentAxisLabelFormatter?: (t: AxisLabelValue) => void;

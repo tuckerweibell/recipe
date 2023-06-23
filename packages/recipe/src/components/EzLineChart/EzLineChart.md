@@ -37,6 +37,8 @@ Lines colors can be customized with [theme colors](/guides/theming/#colors). The
 
 If your dataset may sometimes be an empty array, work with design to render something other than a blank chart, perhaps an `EzBlankState`.
 
+In some cases, like server-side rendering, a deterministic id may be needed. If needed, use prop `idPrefix`.
+
 ```jsx
 () => {
   const DATA = [
@@ -83,6 +85,7 @@ If your dataset may sometimes be an empty array, work with design to render some
           />
         ) : (
           <EzLineChart
+            idPrefix="lineChartExample"
             data={DATA}
             description={description}
             dependentAxisLabelFormatter={dependentAxisLabelFormatter}
@@ -133,6 +136,11 @@ All charts should have a `title` and `description`.
       name: 'title*',
       types: ['string'],
       description: 'Accessible title for the chart.',
+    },
+    {
+      name: 'idPrefix',
+      types: ['string', 'number'],
+      description: 'Deterministic id for the chart.',
     },
     {
       name: 'dependentAxisLabelFormatter',
