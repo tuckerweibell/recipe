@@ -1,5 +1,13 @@
 # @ezcater/recipe
 
+## 17.4.0
+
+### Minor Changes
+
+- fix: add idPrefix prop to EzLineChart [[sha]](https://github.com/ezcater/recipe/commit/85f6616d)
+- feat: add optional fullWidth option to EzFormControl [[sha]](https://github.com/ezcater/recipe/commit/84a0a374)
+- fix: add idPrefix prop to EzBarChart [[sha]](https://github.com/ezcater/recipe/commit/85f6616d)
+
 ## 17.3.2
 
 ### Patch Changes
