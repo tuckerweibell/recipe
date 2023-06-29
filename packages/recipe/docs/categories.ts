@@ -35,7 +35,7 @@ const layoutComponents = [
 
 const navigationComponents = ['EzCarousel', 'EzLink', 'EzNavigation', 'EzProgressTracker'];
 
-const surfacesComponents = ['EzCard', 'EzWell'];
+const surfaceComponents = ['EzCard', 'EzWell'];
 
 const typographyComponents = [
   'EzBaseFontSizeCompatibility',
@@ -51,6 +51,6 @@ export {
   inputComponents,
   layoutComponents,
   navigationComponents,
-  surfacesComponents,
+  surfaceComponents,
   typographyComponents,
 };

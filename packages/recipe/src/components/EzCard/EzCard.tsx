@@ -39,7 +39,7 @@ type ImageSizeProps = {
   imageMaxWidth?: MaxWidthProperty<string | number>;
 };
 
-type CardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
+export type EzCardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   children: React.ReactNode;
   horizontal?: boolean;
   accent?: 'info';
@@ -58,7 +58,7 @@ const unitlessToPx = value => (typeof value === 'number' ? `${value}px` : value)
 /**
  * Cards are the primary means of grouping sections on a page.
  */
-const EzCard: React.FC<DOMProps & CardProps> = ({
+const EzCard: React.FC<DOMProps & EzCardProps> = ({
   title,
   subtitle,
   titleIcon,
@@ -95,6 +95,7 @@ const EzCard: React.FC<DOMProps & CardProps> = ({
         }),
         transparent && transparentBackground()
       )}
+      data-testid="ez-card"
       style={{...style, '--sizes-card-preview-max-w': unitlessToPx(maxWidth)} as any}
     >
       <SlotProvider

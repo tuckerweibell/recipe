@@ -12,7 +12,7 @@ import {
   inputComponents,
   layoutComponents,
   navigationComponents,
-  surfacesComponents,
+  surfaceComponents,
   typographyComponents,
 } from '../../categories';
 
@@ -75,7 +75,7 @@ const ComponentLibrary: FC<unknown> = () => (
         components={dataDisplayComponents}
       />
       <LibrarySection sectionName="feedback" category="Feedback" components={feedbackComponents} />
-      <LibrarySection sectionName="surfaces" category="Surfaces" components={surfacesComponents} />
+      <LibrarySection sectionName="surface" category="Surface" components={surfaceComponents} />
       <LibrarySection
         sectionName="navigation"
         category="Navigation"
