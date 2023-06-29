@@ -1,16 +1,15 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, ReactNode} from 'react';
 import Slot from './Slot';
 
-type PreviewProps = {
-  children: React.ReactNode;
+type Ref = HTMLElement;
+type EzPreviewProps = {
+  children: ReactNode;
 };
 
-function Preview(props: PreviewProps, ref) {
-  return <Slot element="figure" slot="preview" ref={ref} {...props} />;
-}
+const EzPreview = forwardRef<Ref, EzPreviewProps>((props, ref) => (
+  <Slot element="figure" slot="preview" ref={ref} {...props} />
+));
 
-/**
- * EzHeader represents self-contained content such as an image or illustration within a Recipe container.
- */
-const EzPreview = forwardRef(Preview);
+EzPreview.displayName = 'EzPreview';
+
 export default EzPreview;
