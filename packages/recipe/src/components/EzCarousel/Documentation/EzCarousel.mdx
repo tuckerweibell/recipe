@@ -1,0 +1,59 @@
+import {Canvas, Controls, Meta, Primary, Story} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as ActionStories from './Stories/Action.stories';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzCarousel
+
+Carousels allow users to browse through a set of items to find those that may be of interest to them.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+Carousels should:
+
+- highlight a small number of items from an otherwise large set (no more than 16 items)
+- be used when there is not enough space to show the complete set of items
+- contain highly visual content, typically caterer or menu images
+- be used with an [EzCard](?path=/docs/surface-ezcard--docs) for each item
+
+## Basic carousel
+
+A `title` and `description` is required for a basic carousel. The description is used for the `aria-description` of the carousel.
+
+The carousel will automatically determine how many slides to show per page as follows:
+
+- Desktop viewports (`>= 768px`) will show a number of cards per page depending on the container width:
+  - container width `> 1024px` will show 4 cards per page
+  - container width `650px` to `1023px` will show 3 cards per page
+  - container width `< 650px` will show 2 cards per page
+- Mobile viewports (`< 768px`) regardless of container width will show all cards with horizontal scroll
+
+<Canvas of={DefaultStories.Default} />
+
+## Actions
+
+### Link
+
+An optional navigational link may be provided to a carousel. You must provide `link` an [EzLink](?path=/docs/navigation-ezlink--docs).
+
+<Canvas of={ActionStories.Link} meta={ActionStories} />
+
+### Page change handler
+
+Providing an optional function to `onPageChange` will call that action when the user clicks a page change button in the carousel for desktop viewports, providing a method of tracking user interaction. If needed, the previous and current page numbers are available as arguments, starting at page 1.
+
+<Canvas of={ActionStories.PageChange} meta={ActionStories} />
+
+## Related components
+
+<RelatedComponents components={['EzCard', 'EzLink', 'EzButton']} />
