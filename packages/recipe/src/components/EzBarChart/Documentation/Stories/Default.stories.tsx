@@ -38,6 +38,12 @@ const meta: Meta<typeof EzBarChart> = {
       table: {type: {summary: 'string'}},
       type: {name: 'string', required: true},
     },
+    idPrefix: {
+      control: {type: 'text'},
+      description: 'Deterministic id for the chart.',
+      table: {type: {summary: 'string'}},
+      type: {name: 'string'},
+    },
     independentAxisLabelFormatter: {
       description: 'The function to format the independent axis points.',
       table: {type: {summary: '(t: AxisLabelValue) => void'}},
@@ -77,6 +83,7 @@ export const Default: Story = {
       {x: 'Dec', y: 180000},
     ],
     description: 'A bar chart for total spend over the last 12 months.',
+    idPrefix: 'barChartExample',
     title: 'Total spend over the last 12 months.',
   },
   parameters: {
@@ -107,6 +114,7 @@ export const Default: Story = {
               <EzBarChart
                 data={DATA}
                 description="A bar chart for total spend over the last 12 months."
+                idPrefix="barChartExample"
                 title="Total spend over the last 12 months."
               />
             </EzCard>
@@ -141,6 +149,7 @@ export const Default: Story = {
             <EzBarChart
               data={DATA}
               description="A bar chart for total spend over the last 12 months."
+              idPrefix="barChartExample"
               title="Total spend over the last 12 months."
             />
           </EzCard>

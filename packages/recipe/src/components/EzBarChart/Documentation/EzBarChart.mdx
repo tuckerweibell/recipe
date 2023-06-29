@@ -49,6 +49,8 @@ To chart a dataset as a bar chart, provide the required `data` prop whose value 
 
 Bar charts must include an accessible `title` and `description` and should be contained in an [`EzCard`](?path=/docs/feedback-ezcard--docs). The card title can optionally have a `title`, `subtitle`, and `titleIcon`.
 
+In some cases, like server-side rendering, a deterministic id may be needed. If needed, use prop `idPrefix`.
+
 <Canvas of={DefaultStories.Default} />
 
 ## Bar Colors
