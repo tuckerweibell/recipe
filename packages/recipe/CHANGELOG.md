@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.5.0
+
+### Minor Changes
+
+- feat: make EzSearchInput type search to make clearable by default [[sha]](https://github.com/ezcater/recipe/commit/81187468)
+
 ## 17.4.0
 
 ### Minor Changes
