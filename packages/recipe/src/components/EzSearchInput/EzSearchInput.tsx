@@ -9,12 +9,13 @@ const searchInput = theme.css({
   '&&': {
     paddingLeft: '$search-input-padding-left',
   },
+  WebkitAppearance: 'none',
 });
 
 type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
 const EzSearchInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <EzTextInput ref={ref} {...props} className={searchInput()} />
+  <EzTextInput ref={ref} {...props} className={searchInput()} type="search" />
 ));
 
 export default EzSearchInput;
