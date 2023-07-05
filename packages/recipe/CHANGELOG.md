@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.6.0
+
+### Minor Changes
+
+- feat: add icons to utility links in EzNavigation [[sha]](https://github.com/ezcater/recipe/commit/a4b79eba)
+
 ## 17.5.0
 
 ### Minor Changes
