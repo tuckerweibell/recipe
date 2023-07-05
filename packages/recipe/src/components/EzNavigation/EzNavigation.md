@@ -234,9 +234,13 @@ Note: a special notification value `★` can be used to highlight the link for e
 
 The user menu displays the user's name and actions that are related to the current user.
 
+To optionally change the user menu default icon, pass an [EzIcon](/components/ez-icon) as `icon` in `userMenu`.
+
 ```jsx
 () => {
   const menuOpen = React.useState(false);
+  const {faCircleInfo} = require('@fortawesome/free-solid-svg-icons/faCircleInfo');
+
   return (
     <EzAppLayout>
       <EzNavigation
@@ -252,6 +256,7 @@ The user menu displays the user's name and actions that are related to the curre
             {href: '#', onClick: e => e.preventDefault(), label: 'Sign out'},
           ],
           name: 'Stefania Mallett',
+          icon: <EzIcon icon={faCircleInfo} title="More info icon" />,
         }}
       >
         <EzPage>

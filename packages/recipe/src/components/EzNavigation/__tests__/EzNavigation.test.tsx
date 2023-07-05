@@ -96,6 +96,30 @@ describe('EzNavigation', () => {
     expect(getByText(LINK_ICON_TITLE)).toBeInTheDocument();
   });
 
+  it('should display custom user menu icon', async () => {
+    const USER_MENU_ICON_TITLE = 'More info icon';
+    const {getByText} = render(
+      <EzNavigation
+        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        links={[
+          {href: '#', onClick: e => e.preventDefault(), label: 'Orders'},
+          {href: '#', onClick: e => e.preventDefault(), label: 'Customers'},
+          {href: '#', onClick: e => e.preventDefault(), label: 'Reports'},
+        ]}
+        userMenu={{
+          links: [
+            {href: '#', onClick: e => e.preventDefault(), label: 'Settings'},
+            {href: '#', onClick: e => e.preventDefault(), label: 'Sign out'},
+          ],
+          name: 'Stefania Mallett',
+          icon: <EzIcon icon={faCircleInfo} title={USER_MENU_ICON_TITLE} size="inherit" />,
+        }}
+      />
+    );
+
+    expect(getByText(USER_MENU_ICON_TITLE)).toBeInTheDocument();
+  });
+
   it('should expand grouped navigation links when clicked', async () => {
     const user = userEvent.setup();
     render(

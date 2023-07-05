@@ -40,6 +40,7 @@ type UtilityLink = NavLink & {
 type UserMenu = {
   links: LabelledLink[];
   name: string;
+  icon?: ReactElement;
 };
 
 type Props = {
@@ -300,6 +301,7 @@ const EzNavigation: FC<Props> = ({
                 links={userMenu.links}
                 isSidebarOpen={!hidden}
                 sidebarToggle={toggle}
+                icon={userMenu.icon}
               />
             </nav>
           )}
