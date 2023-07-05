@@ -42,6 +42,12 @@ const iconPosition = theme.css({
   right: '$300',
 });
 
+const linkIconPosition = theme.css({
+  display: 'flex',
+  alignItems: 'center',
+  marginRight: '$150',
+});
+
 const Link = React.forwardRef<HTMLElement, any>(
   ({href, as: component = href ? 'a' : 'button', ...props}, ref) => {
     return React.createElement(component, {...props, href, ref});
@@ -58,6 +64,7 @@ const Menu = ({link: {active, label, notifications, ...link}}: any) => (
     className={clsx(menuLink(), active && activeMenuLink())}
     {...(link.to ? {activeClassName: 'active'} : {})}
   >
+    {link.icon && <span className={linkIconPosition()}>{link.icon}</span>}
     <span>{label}</span>
     <span className={iconPosition()}>
       {Boolean(notifications) && <Notification value={notifications} />}

@@ -145,9 +145,13 @@ Use utility links to offer navigation paths to sections of the application that 
 
 Utility links can only be used in conjunction with the main navigation links. On larger screens, the main navigation will expand to fill the available vertical space, such that the utility links are presented at the bottom of the screen.
 
+To optionally add icons to a utility links, pass an [EzIcon](/components/ez-icon) as `icon` in a utility link.
+
 ```jsx
 () => {
   const {Link, NavLink, BrowserRouter: Router, Route} = require('react-router-dom');
+  const {faCircleInfo} = require('@fortawesome/free-solid-svg-icons/faCircleInfo');
+
   return (
     <Router>
       <EzAppLayout>
@@ -161,6 +165,12 @@ Utility links can only be used in conjunction with the main navigation links. On
           utilityLinks={[
             {href: '/chat', onClick: e => e.preventDefault(), label: 'Chat'},
             {href: '/support', onClick: e => e.preventDefault(), label: '24/7 Support'},
+            {
+              href: '/info',
+              onClick: e => e.preventDefault(),
+              label: 'More Info',
+              icon: <EzIcon icon={faCircleInfo} title="More info icon" />,
+            },
           ]}
         >
           <EzPage>

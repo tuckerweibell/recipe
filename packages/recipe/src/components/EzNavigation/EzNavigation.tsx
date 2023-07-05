@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, {FC, useState} from 'react';
+import React, {FC, useState, ReactElement} from 'react';
 import theme from '../theme.config';
 import en from './en';
 import Logo, {LogoType} from './Logo';
@@ -33,6 +33,10 @@ type NavLink = LinkOrGroup & {
   notifications?: number | '★';
 };
 
+type UtilityLink = NavLink & {
+  icon?: ReactElement;
+};
+
 type UserMenu = {
   links: LabelledLink[];
   name: string;
@@ -40,7 +44,7 @@ type UserMenu = {
 
 type Props = {
   links: NavLink[];
-  utilityLinks?: NavLink[];
+  utilityLinks?: UtilityLink[];
   userMenu?: UserMenu;
   home: HomeLink;
 };
