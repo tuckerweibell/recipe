@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.7.0
+
+### Minor Changes
+
+- feat: make user menu icon customizable for EzNavigation [[sha]](https://github.com/ezcater/recipe/commit/b3bb9206)
+
 ## 17.6.0
 
 ### Minor Changes
