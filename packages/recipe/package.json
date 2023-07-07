@@ -53,6 +53,7 @@
     "@emotion/babel-plugin": "^11.11.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@ezcater/icons": "^1.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@storybook/addon-a11y": "^7.0.21",
