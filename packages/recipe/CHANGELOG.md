@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 17.8.0
+
+### Minor Changes
+
+- feat: add 'inline' variant for EzButton [[sha]](https://github.com/ezcater/recipe/commit/693472b6)
+
 ## 17.7.0
 
 ### Minor Changes
