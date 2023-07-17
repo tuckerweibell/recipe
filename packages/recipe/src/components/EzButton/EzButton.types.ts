@@ -50,7 +50,7 @@ export type EzButtonMuiProps = EzButtonCommonProps & {
   size?: 'small' | 'medium' | 'large';
   startIcon?: ReactElement;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'filled' | 'outlined' | 'text';
+  variant?: 'filled' | 'inline' | 'outlined' | 'text';
 };
 
 export type EzButtonProps =

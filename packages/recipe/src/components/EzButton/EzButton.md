@@ -32,7 +32,7 @@ Buttons should not:
 
 ### Basic Buttons
 
-EzButton supports `filled` (default), `outlined`, and `text` variants.
+EzButton supports `filled` (default), `outlined`, `text`, and `inline` variants.
 
 `filled` buttons are high-emphasis and contain actions that are primary. There should not be more than one primary button in a section of a page.
 
@@ -40,11 +40,18 @@ EzButton supports `filled` (default), `outlined`, and `text` variants.
 
 `text` buttons are typically used for less-pronounced actions than primary or secondary actions. They may also be used when space is a constraint or when content is repeated many times on a page.
 
+`inline` buttons are `text` buttons that align with surrounding text.
+
 ```jsx
-<EzLayout>
-  <EzButton>Filled</EzButton>
-  <EzButton variant="outlined">Outlined</EzButton>
-  <EzButton variant="text">Text</EzButton>
+<EzLayout layout="stack">
+  <EzLayout>
+    <EzButton>Filled</EzButton>
+    <EzButton variant="outlined">Outlined</EzButton>
+    <EzButton variant="text">Text</EzButton>
+  </EzLayout>
+  <div>
+    This <EzButton variant="inline">Inline</EzButton> button is between text.
+  </div>
 </EzLayout>
 ```
 
@@ -500,7 +507,7 @@ EzButton is very explicit about the properties it accepts, which makes providing
     },
     {
       name: 'variant',
-      types: ['filled', 'outlined', 'text'],
+      types: ['filled', 'outlined', 'text', 'inline'],
       defaultValue: 'filled',
       description: 'The variant of the component.',
     },

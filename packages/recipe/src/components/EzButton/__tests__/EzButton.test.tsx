@@ -41,6 +41,30 @@ describe('EzButton logic', () => {
       'my-tracking-id'
     );
   });
+
+  it('applies the filled variant', () => {
+    render(<Component variant="filled" />);
+
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveClass('MuiButton-contained');
+  });
+
+  it('applies the outlined variant', () => {
+    render(<Component variant="outlined" />);
+
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveClass('MuiButton-outlined');
+  });
+
+  it('applies the text variant', () => {
+    render(<Component variant="text" />);
+
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveClass('MuiButton-text');
+  });
+
+  it('applies the inline variant', () => {
+    render(<Component variant="inline" />);
+
+    expect(screen.getByRole('button', {name: /test button/i})).toHaveClass('MuiButton-text');
+  });
 });
 
 describe('EzButton', () => {

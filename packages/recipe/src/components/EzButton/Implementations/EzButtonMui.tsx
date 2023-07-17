@@ -11,6 +11,16 @@ const EzButtonMui = forwardRef<Ref, EzButtonMuiProps>(
     const isCommonColor = color?.startsWith('common.') || color === 'destructive';
     const themeColor = useThemeColor(color === 'destructive' ? 'common.alert100' : color);
     const ButtonComponent = loading ? LoadingButton : Button;
+    const baseVariant = (btnVariant: EzButtonMuiProps['variant']) => {
+      switch (btnVariant) {
+        case 'filled':
+          return 'contained';
+        case 'inline':
+          return 'text';
+        default:
+          return btnVariant;
+      }
+    };
 
     return (
       <ButtonComponent
@@ -32,12 +42,14 @@ const EzButtonMui = forwardRef<Ref, EzButtonMuiProps>(
           color: isCommonColor && variant !== 'filled' ? themeColor : undefined,
           fontSize:
             fontSize === 'inherit' ? fontSize : theme.typography?.font?.size[fontSize] || undefined,
+          padding: variant === 'inline' ? 0 : undefined,
+          verticalAlign: variant === 'inline' ? 'inherit' : undefined,
           '&:hover, &:active': {
             bgcolor: variant === 'filled' ? darken(themeColor, 0.2) : alpha(themeColor, 0.1),
             borderColor: variant !== 'text' ? themeColor : undefined,
           },
         }}
-        variant={variant === 'filled' ? 'contained' : variant}
+        variant={baseVariant(variant)}
         {...props}
       >
         <Box whiteSpace="nowrap">{children}</Box>
