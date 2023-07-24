@@ -175,11 +175,11 @@ const meta: Meta<typeof EzButton> = {
       control: {type: 'select'},
       defaultValue: 'filled',
       description: 'The variant of the component.',
-      options: ['filled', 'outlined', 'text'],
+      options: ['filled', 'outlined', 'text', 'inline'],
       table: {
         defaultValue: {summary: 'filled'},
         type: {
-          summary: 'filled | outlined | text',
+          summary: 'filled | outlined | text | inline',
         },
       },
     },

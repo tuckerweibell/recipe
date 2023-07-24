@@ -1,3 +1,4 @@
+import React from 'react';
 import {type Meta, type StoryObj} from '@storybook/react';
 import dedent from 'ts-dedent';
 import EzButton from '../../EzButton';
@@ -55,4 +56,26 @@ export const Text: Story = {
     playroom: {code: '<EzButton variant="text">Text</EzButton>'},
   },
   render: Default.render,
+};
+
+export const Inline: Story = {
+  args: {
+    ...Default.args,
+    children: 'Inline',
+    variant: 'inline',
+  } as EzButtonProps,
+  parameters: {
+    playroom: {
+      code: dedent`
+        <div>
+          This <EzButton variant="inline">Inline</EzButton> button is between text.
+        </div>
+      `,
+    },
+  },
+  render: (args: EzButtonProps) => (
+    <div>
+      This <EzButton {...args}>Inline</EzButton> button is between text.
+    </div>
+  ),
 };

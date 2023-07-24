@@ -46,7 +46,7 @@ Buttons should not:
 
 ## Basic Buttons
 
-EzButton supports `filled` (default), `outlined`, and `text` variants.
+EzButton supports `filled` (default), `outlined`, `text`, and `inline` variants.
 
 `filled` buttons are high-emphasis and contain actions that are primary. There should not be more than one primary button in a section of a page.
 
@@ -54,11 +54,15 @@ EzButton supports `filled` (default), `outlined`, and `text` variants.
 
 `text` buttons are typically used for less-pronounced actions than primary or secondary actions. They may also be used when space is a constraint or when content is repeated many times on a page.
 
+`inline` buttons are text buttons that align with surrounding text.
+
 <Canvas>
   <Story of={VariantStories.Filled} meta={VariantStories} />
   <Story of={VariantStories.Outlined} meta={VariantStories} />
   <Story of={VariantStories.Text} meta={VariantStories} />
 </Canvas>
+
+<Canvas of={VariantStories.Inline} meta={VariantStories} />
 
 ## Button Colors
 
