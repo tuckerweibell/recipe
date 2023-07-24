@@ -132,26 +132,10 @@ For full width buttons, use the `fullWidth` prop.
 
 If you want to specify a font size for the button, use the `fontSize` property, which uses theme supported font sizes. We currently support `small`, `medium` (default), `large`, and `inherit`.
 
-<Canvas>
-  <Story of={FontSizeStories.FilledFontSizeSmall} meta={FontSizeStories} />
-  <Story of={FontSizeStories.FilledFontSizeMedium} meta={FontSizeStories} />
-  <Story of={FontSizeStories.FilledFontSizeLarge} meta={FontSizeStories} />
-  <Story of={FontSizeStories.FilledFontSizeInherit} meta={FontSizeStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={FontSizeStories.OutlinedFontSizeSmall} meta={FontSizeStories} />
-  <Story of={FontSizeStories.OutlinedFontSizeMedium} meta={FontSizeStories} />
-  <Story of={FontSizeStories.OutlinedFontSizeLarge} meta={FontSizeStories} />
-  <Story of={FontSizeStories.OutlinedFontSizeInherit} meta={FontSizeStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={FontSizeStories.TextFontSizeSmall} meta={FontSizeStories} />
-  <Story of={FontSizeStories.TextFontSizeMedium} meta={FontSizeStories} />
-  <Story of={FontSizeStories.TextFontSizeLarge} meta={FontSizeStories} />
-  <Story of={FontSizeStories.TextFontSizeInherit} meta={FontSizeStories} />
-</Canvas>
+<Canvas of={FontSizeStories.FilledFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.OutlinedFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.TextFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.InlineFontSizes} meta={FontSizeStories} />
 
 ## Button Icons
 
