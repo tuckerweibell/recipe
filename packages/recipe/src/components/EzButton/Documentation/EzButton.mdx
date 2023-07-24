@@ -119,28 +119,13 @@ For destructive actions, set the button's `color` to `destructive`.
 
 ## Button Sizes
 
-If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`. Button sizes affect the amount of padding around the button content.
+If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`. Button sizes affect the amount of padding around the button content. Applies to all variants except `inline`.
 
-If you want the button to be full width, use the `fullWidth` prop.
+For full width buttons, use the `fullWidth` prop.
 
-<Canvas>
-  <Story of={ButtonSizeStories.FilledButtonSizeSmall} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.FilledButtonSizeMedium} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.FilledButtonSizeLarge} meta={ButtonSizeStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={ButtonSizeStories.OutlinedButtonSizeSmall} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.OutlinedButtonSizeMedium} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.OutlinedButtonSizeLarge} meta={ButtonSizeStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={ButtonSizeStories.TextButtonSizeSmall} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.TextButtonSizeMedium} meta={ButtonSizeStories} />
-  <Story of={ButtonSizeStories.TextButtonSizeLarge} meta={ButtonSizeStories} />
-</Canvas>
-
+<Canvas of={ButtonSizeStories.FilledButtonSizes} meta={ButtonSizeStories} />
+<Canvas of={ButtonSizeStories.OutlinedButtonSizes} meta={ButtonSizeStories} />
+<Canvas of={ButtonSizeStories.TextButtonSizes} meta={ButtonSizeStories} />
 <Canvas of={ButtonSizeStories.FullWidth} meta={ButtonSizeStories} />
 
 ## Font Sizes
