@@ -3,11 +3,12 @@ import dedent from 'ts-dedent';
 import TableOfContents from '../../../../docs/components/TableOfContents';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import EzAlert from '../../EzAlert';
+import * as AxisLabelFormatterStories from './Stories/AxisLabelFormatter.stories';
+import * as AxisLabelValuesStories from './Stories/AxisLabelValues.stories';
 import * as BlankStateStories from './Stories/BlankState.stories';
 import * as ColorStories from './Stories/Color.stories';
 import * as DefaultStories from './Stories/Default.stories';
-import * as AxisLabelFormatterStories from './Stories/AxisLabelFormatter.stories';
-import * as AxisLabelValuesStories from './Stories/AxisLabelValues.stories';
+import * as MaxValueStories from './Stories/MaxValue.stories';
 
 <Meta of={DefaultStories} name="Docs" />
 <TableOfContents />
@@ -92,6 +93,15 @@ To customize which labels appear on each axis, optionally pass an array of value
 <Canvas>
   <Story of={AxisLabelValuesStories.DependentAxisLabelValues} meta={AxisLabelValuesStories} />
   <Story of={AxisLabelValuesStories.IndependentAxisLabelValues} meta={AxisLabelValuesStories} />
+</Canvas>
+
+## Max Values
+
+To customize the highest dependent and independent values displayed on the axes, pass numeric values to `maxDependentValue` and `maxIndependentValue`, respectively. Be sure any defined max values are included in any defined axis label values.
+
+<Canvas>
+  <Story of={MaxValueStories.MaxDependentValue} meta={MaxValueStories} />
+  <Story of={MaxValueStories.MaxIndependentValue} meta={MaxValueStories} />
 </Canvas>
 
 ## Blank States

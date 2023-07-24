@@ -53,6 +53,16 @@ const meta: Meta<typeof EzBarChart> = {
       description: 'Array of axis label values to customize the independent axis labels.',
       table: {type: {summary: 'AxisLabelValue[]'}},
     },
+    maxDependentValue: {
+      control: {type: 'number'},
+      description: 'The maximum dependent value for the chart.',
+      table: {type: {summary: 'number'}},
+    },
+    maxIndependentValue: {
+      control: {type: 'number'},
+      description: 'The maximum independent value for the chart.',
+      table: {type: {summary: 'number'}},
+    },
     title: {
       description: 'Accessible title for the chart.',
       table: {type: {summary: 'string'}},
