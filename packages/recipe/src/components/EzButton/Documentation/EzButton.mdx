@@ -72,38 +72,10 @@ EzButton supports theme palette properties (`primary`, `secondary`, `error`, `wa
   <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
 </Unstyled>
 
-<Canvas>
-  <Story of={ColorStories.FilledPrimaryColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledSecondaryColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledNeutralColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledErrorColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledWarningColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledInfoColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledSuccessColor} meta={ColorStories} />
-  <Story of={ColorStories.FilledCommonColor} meta={ColorStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={ColorStories.OutlinedPrimaryColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedSecondaryColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedNeutralColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedErrorColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedWarningColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedInfoColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedSuccessColor} meta={ColorStories} />
-  <Story of={ColorStories.OutlinedCommonColor} meta={ColorStories} />
-</Canvas>
-
-<Canvas>
-  <Story of={ColorStories.TextPrimaryColor} meta={ColorStories} />
-  <Story of={ColorStories.TextSecondaryColor} meta={ColorStories} />
-  <Story of={ColorStories.TextNeutralColor} meta={ColorStories} />
-  <Story of={ColorStories.TextErrorColor} meta={ColorStories} />
-  <Story of={ColorStories.TextWarningColor} meta={ColorStories} />
-  <Story of={ColorStories.TextInfoColor} meta={ColorStories} />
-  <Story of={ColorStories.TextSuccessColor} meta={ColorStories} />
-  <Story of={ColorStories.TextCommonColor} meta={ColorStories} />
-</Canvas>
+<Canvas of={ColorStories.OutlinedColors} meta={ColorStories} />
+<Canvas of={ColorStories.FilledColors} meta={ColorStories} />
+<Canvas of={ColorStories.TextColors} meta={ColorStories} />
+<Canvas of={ColorStories.InlineColors} meta={ColorStories} />
 
 ## Button Actions
 
