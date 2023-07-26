@@ -3,10 +3,11 @@ import React, {Key} from 'react';
 type ChoiceValue = string | number | boolean;
 
 type Choice = {
-  label: string | JSX.Element;
-  value: ChoiceValue;
   description?: string;
   disabled?: boolean;
+  label: string | JSX.Element;
+  group?: string;
+  value: ChoiceValue;
 };
 
 type ListboxProps = {

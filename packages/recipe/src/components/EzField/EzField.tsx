@@ -229,6 +229,8 @@ EzField.defaultProps = {
   type: 'text',
 };
 
+EzField.displayName = 'EzField';
+
 /**
  * @component
  */
