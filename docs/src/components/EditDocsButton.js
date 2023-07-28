@@ -13,7 +13,7 @@ const EditDocsButton = ({path}) => {
   return (
     <EzTooltip message="Edit docs on GitHub">
       <EzLink>
-        <a href={gitLink} target="_blank">
+        <a href={gitLink} target="_blank" rel="noopener noreferrer">
           <svg
             height="16"
             fill="#8b99a6"
