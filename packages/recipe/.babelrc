@@ -1,6 +1,28 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
-  "plugins": ["@babel/plugin-transform-runtime", "babel-plugin-dev-expression"],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "babel-plugin-dev-expression",
+    [
+      "@emotion",
+      {
+        "importMap": {
+          "@mui/system": {
+            "styled": {
+              "canonicalImport": ["@emotion/styled", "default"],
+              "styledBaseImport": ["@mui/system", "styled"]
+            }
+          },
+          "@mui/material/styles": {
+            "styled": {
+              "canonicalImport": ["@emotion/styled", "default"],
+              "styledBaseImport": ["@mui/material/styles", "styled"]
+            }
+          }
+        }
+      }
+    ]
+  ],
   "env": {
     "esm": {
       "presets": [
@@ -10,9 +32,6 @@
       ]
     }
   },
-  "ignore": [
-    "**/__tests__",
-    "*.snippets.ts*"
-  ],
+  "ignore": ["**/__tests__", "*.snippets.ts*"],
   "comments": false
 }

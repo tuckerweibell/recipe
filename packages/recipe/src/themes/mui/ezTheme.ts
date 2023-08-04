@@ -5,7 +5,7 @@ import {
   responsiveFontSizes,
   SimplePaletteColorOptions,
 } from '@mui/material';
-import {ezPalette} from '../ezColors';
+import {ezPalette, legacyColors} from '../ezColors';
 
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
@@ -207,6 +207,7 @@ const focusOutline = {
 };
 
 const components = {
+  // MUI core components
   MuiButtonBase: {
     defaultProps: {
       disableRipple: true,
@@ -284,6 +285,82 @@ const components = {
         },
       },
     },
+  },
+
+  // Recipe components
+  EzAlert: {
+    variants: [
+      // `use` variants
+      {
+        props: {use: 'success'},
+        style: {
+          backgroundColor: legacyColors.green200,
+          color: legacyColors.green700,
+          '--ezalert-arrow-bg': legacyColors.green200,
+        },
+      },
+      {
+        props: {use: 'error'},
+        style: {
+          backgroundColor: legacyColors.red200,
+          color: legacyColors.red700,
+          '--ezalert-arrow-bg': legacyColors.red200,
+        },
+      },
+      {
+        props: {use: 'warning'},
+        style: {
+          backgroundColor: legacyColors.yellow200,
+          color: legacyColors.yellow700,
+          '--ezalert-arrow-bg': legacyColors.yellow200,
+        },
+      },
+      {
+        props: {use: 'info'},
+        style: {
+          backgroundColor: legacyColors.blue200,
+          color: legacyColors.blue700,
+          '--ezalert-arrow-bg': legacyColors.blue200,
+        },
+      },
+      {
+        props: {use: 'marketing'},
+        style: {
+          backgroundColor: legacyColors.teal200,
+          color: legacyColors.teal700,
+          '--ezalert-arrow-bg': legacyColors.teal200,
+        },
+      },
+      {
+        props: {use: 'tip'},
+        style: {
+          backgroundColor: legacyColors.purple200,
+          color: legacyColors.purple700,
+          '--ezalert-arrow-bg': legacyColors.purple200,
+        },
+      },
+      // `arrow` variants
+      {
+        props: {arrow: 'top'},
+        style: {
+          '&::after': {
+            content: `""`,
+            top: '-12px',
+            borderBottomColor: 'var(--ezalert-arrow-bg)',
+          },
+        },
+      },
+      {
+        props: {arrow: 'bottom'},
+        style: {
+          '&::after': {
+            content: `""`,
+            bottom: '-12px',
+            borderTopColor: 'var(--ezalert-arrow-bg)',
+          },
+        },
+      },
+    ],
   },
 };
 
