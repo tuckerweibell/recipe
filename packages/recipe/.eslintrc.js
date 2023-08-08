@@ -17,7 +17,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['jest.config.js', 'jest.fileTransformer.js', 'jest.setup.tsx', 'plopfile.js'],
+      files: [
+        'babel.config.js',
+        'jest.config.js',
+        'jest.fileTransformer.js',
+        'jest.setup.tsx',
+        'plopfile.js',
+      ],
       env: {
         node: true,
       },
