@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useMemo, useRef} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Checkbox, Stack, SvgIcon, useTheme, Zoom} from '@mui/material';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import warning from 'tiny-warning';
@@ -93,11 +93,6 @@ const EzCheckboxIcon = ({
   size,
   opacity,
 }) => {
-  const iconWrapperStyles = useMemo(
-    () => ({color: iconColor, display: 'flex', fontSize: size - 4}),
-    [iconColor, size]
-  );
-
   return (
     <Stack
       className={`EzCheckbox-${checked ? 'checked' : 'unchecked'}`}
@@ -108,9 +103,9 @@ const EzCheckboxIcon = ({
         (indeterminate ? (
           <IndeterminateIcon iconColor={iconColor} size={size} />
         ) : (
-          <div className="EzCheckbox-icon" style={iconWrapperStyles}>
+          <Stack className="EzCheckbox-icon" sx={{color: iconColor, fontSize: size - 4}}>
             <EzIcon icon={faCheck} size="inherit" />
-          </div>
+          </Stack>
         ))}
     </Stack>
   );

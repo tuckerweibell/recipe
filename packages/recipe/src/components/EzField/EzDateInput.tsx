@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import theme from '../theme.config';
@@ -62,6 +62,12 @@ const arrow = theme.css({
   },
 });
 
+const iconWrapperStyle = theme.css({
+  alignItems: 'center',
+  display: 'flex',
+  fontSize: '13px',
+});
+
 const EzDateInput = ({
   id,
   name,
@@ -75,14 +81,6 @@ const EzDateInput = ({
   const [value, setValue] = useState(props.value);
   const [validDate, setValidDate] = useState(dayjs(value).isValid() ? value : null);
   const menuState = useMenuTriggerState();
-  const iconWrapperStyle = useMemo(
-    () => ({
-      alignItems: 'center',
-      display: 'flex',
-      fontSize: '13px',
-    }),
-    []
-  );
 
   const {close, isOpen} = menuState;
   const calendarRef = useRef<React.ElementRef<typeof EzCalendar>>();
@@ -142,7 +140,7 @@ const EzDateInput = ({
         </InsetIcon>
         <EzTextInput {...comboboxInput} type="text" />
         <InsetIcon insetY0 right0 pr2>
-          <div style={iconWrapperStyle}>
+          <div className={iconWrapperStyle()}>
             <EzIcon icon={isOpen ? faChevronUp : faChevronDown} size="inherit" />
           </div>
         </InsetIcon>

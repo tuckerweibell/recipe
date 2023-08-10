@@ -1,4 +1,4 @@
-import React, {useMemo, useRef} from 'react';
+import React, {useRef} from 'react';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import {TextInputWrapper} from './Picker.styles';
 import EzIcon from '../EzIcon';
@@ -13,17 +13,15 @@ const popper = theme.css({
   zIndex: '$autosuggest-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert autosuggest to mui
 });
 
+const iconWrapperStyle = theme.css({
+  alignItems: 'center',
+  display: 'flex',
+  fontSize: '13px',
+});
+
 const EzAutosuggest = props => {
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
-  const iconWrapperStyle = useMemo(
-    () => ({
-      alignItems: 'center',
-      display: 'flex',
-      fontSize: '13px',
-    }),
-    []
-  );
   const ariaLabelledBy = props['aria-labelledby'];
 
   const state = useComboBoxState(props);
@@ -41,7 +39,7 @@ const EzAutosuggest = props => {
       <TextInputWrapper className={props.className} disabled={props.disabled}>
         <EzTextInput {...inputProps} ref={triggerRef} error={props.error} touched={props.touched} />
         <InsetIcon insetY0 right0 pr2>
-          <div style={iconWrapperStyle}>
+          <div className={iconWrapperStyle()}>
             <EzIcon icon={state.isOpen ? faChevronUp : faChevronDown} size="inherit" />
           </div>
         </InsetIcon>

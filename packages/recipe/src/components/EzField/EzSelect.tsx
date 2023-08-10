@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useCallback} from 'react';
+import React, {useRef, useCallback} from 'react';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import EzIcon from '../EzIcon';
 import EzListBox from './EzListBox';
@@ -26,18 +26,16 @@ const popper = theme.css({
   zIndex: '$select-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert select to mui
 });
 
+const iconWrapperStyle = theme.css({
+  alignItems: 'center',
+  display: 'flex',
+  fontSize: '13px',
+});
+
 const EzSelect = props => {
   const {onChange} = props;
   const triggerRef = useRef<HTMLInputElement>();
   const listboxRef = useRef<unknown>();
-  const iconWrapperStyle = useMemo(
-    () => ({
-      alignItems: 'center',
-      display: 'flex',
-      fontSize: '13px',
-    }),
-    []
-  );
   const ariaLabelledBy = props['aria-labelledby'];
   const containerRef = useRef<HTMLDivElement>();
   const changeEvent = useCallback(
@@ -77,7 +75,7 @@ const EzSelect = props => {
           touched={props.touched}
         />
         <InsetIcon insetY0 right0 pr2>
-          <div style={iconWrapperStyle}>
+          <div className={iconWrapperStyle()}>
             <EzIcon icon={state.isOpen ? faChevronUp : faChevronDown} size="inherit" />
           </div>
         </InsetIcon>
