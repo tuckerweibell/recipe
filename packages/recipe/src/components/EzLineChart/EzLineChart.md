@@ -31,7 +31,9 @@ For example:
 
 Always provide `title` and a detailed `description` for assistive devices.
 
-Typically, the independent axis will be the x-axis and the dependent axis will be the y-axis. To format the point labels on each axis, optionally pass a function to each `dependentAxisLabelFormatter` and/or `independentAxisLabelFormatter`. To customize which labels appear on each axis, optionally pass an array of values of the same type as the respective `data` values to each `dependentAxisLabelValues` and/or `independentAxisLabelValues`.
+Typically, the independent axis will be the x-axis and the dependent axis will be the y-axis. To format the point labels on each axis, optionally pass a function to each `dependentAxisLabelFormatter` and/or `independentAxisLabelFormatter`. To customize which labels appear on each axis, optionally pass an array of values of the same type as the respective `data` values to each `dependentAxisLabelValues` and/or `independentAxisLabelValues`. Axis labels do not have to be passed as a static array, they can be dynamically generated as an array of values.
+
+To customize the highest independent and dependent values displayed on the axes, pass numeric values to `maxIndependentValue` and `maxDependentValue`, respectively. Avoid explicitly defining `independentAxisLabelValues` and `dependentAxisLabelValues` simultaneously with `maxIndependentValue` or `maxDependentValue`.
 
 Lines colors can be customized with [theme colors](/guides/theming/#colors). The default is `primary`.
 
@@ -49,7 +51,7 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
     {x: 'May', y: 1500},
     {x: 'June', y: 1800},
     {x: 'July', y: 2000},
-    {x: 'August', y: 2200},
+    {x: 'August', y: 4100},
     {x: 'September', y: 2500},
     {x: 'October', y: 2800},
     {x: 'November', y: 3000},
@@ -75,6 +77,12 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
 
   const DEPENDENT_AXIS_LABEL_VALUES = [0, 1000, 2000, 3000, 4000, 5000];
 
+  /* start calculation for custom max y-value */
+  const highestDependentValue = Math.max(...DATA.map(datum => datum.y));
+  const increment = 1000;
+  const maxDependentValue = Math.ceil(highestDependentValue / increment) * increment;
+  /* end calculation for custom max y-value */
+
   return (
     <EzPage>
       <EzCard title={METRIC} subtitle={TIME_PERIOD} actions={<EzHeading size="1">{SUM}</EzHeading>}>
@@ -91,6 +99,7 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
             dependentAxisLabelFormatter={dependentAxisLabelFormatter}
             dependentAxisLabelValues={DEPENDENT_AXIS_LABEL_VALUES}
             independentAxisLabelFormatter={independentAxisLabelFormatter}
+            maxDependentValue={maxDependentValue}
             title={title}
           />
         )}

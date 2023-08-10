@@ -14,6 +14,8 @@ const EzBarChart = forwardRef<Ref, EzBarChartProps>(
       dependentAxisLabelValues,
       independentAxisLabelFormatter,
       independentAxisLabelValues,
+      maxDependentValue,
+      maxIndependentValue,
     },
     ref
   ) => (
@@ -26,6 +28,8 @@ const EzBarChart = forwardRef<Ref, EzBarChartProps>(
       dependentAxisLabelValues={dependentAxisLabelValues}
       independentAxisLabelFormatter={independentAxisLabelFormatter}
       independentAxisLabelValues={independentAxisLabelValues}
+      maxDependentValue={maxDependentValue}
+      maxIndependentValue={maxIndependentValue}
       ref={ref}
       title={title}
     />

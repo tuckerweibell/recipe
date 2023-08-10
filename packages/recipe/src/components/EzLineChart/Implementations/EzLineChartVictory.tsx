@@ -29,6 +29,8 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
       independentAxisLabelFormatter,
       independentAxisLabelValues,
       lineColor,
+      maxDependentValue,
+      maxIndependentValue,
       title,
     },
     ref
@@ -75,6 +77,7 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
           padding={chartPadding}
           height={chartHeight}
           width={chartWidth}
+          maxDomain={{x: maxIndependentValue, y: maxDependentValue}}
           minDomain={minDomain}
           title={title}
           desc={description}

@@ -13,6 +13,8 @@ const EzLineChart = forwardRef<Ref, EzLineChartProps>(
       dependentAxisLabelValues,
       independentAxisLabelFormatter,
       independentAxisLabelValues,
+      maxDependentValue,
+      maxIndependentValue,
       title,
     },
     ref
@@ -26,6 +28,8 @@ const EzLineChart = forwardRef<Ref, EzLineChartProps>(
       independentAxisLabelFormatter={independentAxisLabelFormatter}
       independentAxisLabelValues={independentAxisLabelValues}
       lineColor={lineColor}
+      maxDependentValue={maxDependentValue}
+      maxIndependentValue={maxIndependentValue}
       ref={ref}
       title={title}
     />

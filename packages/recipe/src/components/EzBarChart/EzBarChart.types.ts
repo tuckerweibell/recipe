@@ -18,5 +18,7 @@ export interface EzBarChartProps {
   dependentAxisLabelValues?: AxisLabelValue[];
   independentAxisLabelFormatter?: (t: AxisLabelValue) => void;
   independentAxisLabelValues?: AxisLabelValue[];
+  maxDependentValue?: number;
+  maxIndependentValue?: number;
   title: string;
 }

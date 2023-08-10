@@ -26,6 +26,8 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
       dependentAxisLabelValues,
       independentAxisLabelFormatter,
       independentAxisLabelValues,
+      maxDependentValue,
+      maxIndependentValue,
       title,
     },
     ref
@@ -57,6 +59,7 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
           padding={chartPadding}
           height={chartHeight}
           width={chartWidth}
+          maxDomain={{x: maxIndependentValue, y: maxDependentValue}}
           minDomain={minDomain}
           title={title}
           desc={description}

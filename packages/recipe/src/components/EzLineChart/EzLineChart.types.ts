@@ -18,5 +18,7 @@ export interface EzLineChartProps {
   independentAxisLabelFormatter?: (t: AxisLabelValue) => void;
   independentAxisLabelValues?: AxisLabelValue[];
   lineColor?: EzThemeColors;
+  maxDependentValue?: number;
+  maxIndependentValue?: number;
   title: string;
 }
