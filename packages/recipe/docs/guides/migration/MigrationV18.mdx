@@ -110,6 +110,14 @@ Design tokens for the following theme properties have changed. See new colors in
   - `main`: <ColorSwatch color={ezPalette.grey160} /> `grey160` => <ColorSwatch color={ezPalette.grey140} /> `grey140`
   - `light`: <ColorSwatch color={ezPalette.grey120} /> `grey120` => <ColorSwatch color={ezPalette.white} /> `white`
 
+### 3. The deprecated `EzBaseFontSizeCompatibility` component has been removed
+
+`EzBaseFontSizeCompatibility` was a component that enabled applications that were not yet using Recipe's base font size to run in compatibility mode with a base font size of `14px`. However, as Recipe no longer supports IE11 and all modern browsers use a default font size of `16px`, this was deprecated in `v17` and has now been removed. To migrate, simply remove this component where used.
+
+## Notes
+
+- `EzButton` legacy buttons were scheduled to be removed in this major release, but have been pushed back to `v19` to give teams more time to migrate to the new buttons. Please take the time needed to do so before the `v19` release.
+
 ## Migration steps
 
 ### Installation

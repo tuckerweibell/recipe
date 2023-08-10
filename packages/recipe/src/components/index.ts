@@ -4,7 +4,6 @@ export {default as EzAppLayout} from './EzAppLayout';
 export {default as EzBadge} from './EzBadge';
 export {default as EzBanner} from './EzBanner';
 export {default as EzBarChart} from './EzBarChart';
-export {default as EzBaseFontSizeCompatibility} from './EzBaseFontSizeCompatibility';
 export {default as EzBlankState} from './EzBlankState';
 export {default as EzButton} from './EzButton';
 export {default as EzCarousel} from './EzCarousel';

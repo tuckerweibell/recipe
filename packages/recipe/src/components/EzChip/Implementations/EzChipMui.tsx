@@ -32,7 +32,7 @@ const EzChipMui = forwardRef<Ref, EzChipProps & {children?: null}>(
     );
 
     const DeleteIcon = (
-      <Stack sx={{fontSize: '12px'}}>
+      <Stack sx={{fontSize: '12px'}} data-testid="DeleteIcon">
         <EzIcon icon={faXmark} color="inherit" size="inherit" />
       </Stack>
     );
