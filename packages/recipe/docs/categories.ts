@@ -5,11 +5,8 @@ const dataDisplayComponents = [
   'EzLineChart',
   'EzOrderSummary',
   'EzRating',
-  'EzSearchInput',
-  'EzSegmentedControl',
   'EzTable',
   'EzTimeline',
-  'EzToggle',
 ];
 
 const feedbackComponents = [
@@ -21,7 +18,17 @@ const feedbackComponents = [
   'EzTooltip',
 ];
 
-const inputComponents = ['EzButton', 'EzCheckbox', 'EzRadio', 'EzField', 'EzLabel'];
+const inputComponents = [
+  'EzButton',
+  'EzCheckbox',
+  'EzField',
+  'EzIconButton',
+  'EzLabel',
+  'EzRadio',
+  'EzSearchInput',
+  'EzSegmentedControl',
+  'EzToggle',
+];
 
 const layoutComponents = [
   'EzAppLayout',

@@ -23,12 +23,12 @@ Bar charts are a [type of chart](https://help.flourish.studio/article/25-line-ba
 
 <Controls of={DefaultStories.Default} sort="requiredFirst" />
 
-## Best Practices
+## Best practices
 
 - Bar charts are used to show change over time, especially for a single series.
 - Bar charts are good for comparing relative size.
 
-## Basic Bar Chart
+## Basic bar chart
 
 To chart a dataset as a bar chart, provide the required `data` prop whose value is an array of type `Datum` objects with `x` and `y` values.
 
@@ -54,7 +54,7 @@ In some cases, like server-side rendering, a deterministic id may be needed. If 
 
 <Canvas of={DefaultStories.Default} />
 
-## Bar Colors
+## Bar colors
 
 EzBarChart supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.purple100`). The default `barColor` is `primary`.
 
@@ -71,7 +71,7 @@ Colors must have high enough [contrast](https://webaim.org/resources/contrastche
   <Story of={ColorStories.CommonColor} meta={ColorStories} />
 </Canvas>
 
-## Axis Label Formatters
+## Axis label formatters
 
 Typically, the dependent axis will be the y-axis and the independent axis will be the x-axis. To format the point labels on each axis, optionally pass a function to `dependentAxisLabelFormatter` and/or `independentAxisLabelFormatter`.
 
@@ -86,7 +86,7 @@ Typically, the dependent axis will be the y-axis and the independent axis will b
   />
 </Canvas>
 
-## Axis Label Values
+## Axis label values
 
 To customize which labels appear on each axis, optionally pass an array of values of the same type as the respective `data` values to each `dependentAxisLabelValues` and/or `independentAxisLabelValues`.
 
@@ -95,7 +95,7 @@ To customize which labels appear on each axis, optionally pass an array of value
   <Story of={AxisLabelValuesStories.IndependentAxisLabelValues} meta={AxisLabelValuesStories} />
 </Canvas>
 
-## Max Values
+## Max values
 
 To customize the highest dependent and independent values displayed on the axes, pass numeric values to `maxDependentValue` and `maxIndependentValue`, respectively. Be sure any defined max values are included in any defined axis label values.
 
@@ -104,7 +104,7 @@ To customize the highest dependent and independent values displayed on the axes,
   <Story of={MaxValueStories.MaxIndependentValue} meta={MaxValueStories} />
 </Canvas>
 
-## Blank States
+## Blank states
 
 If your dataset may sometimes be an empty array, work with design to render something other than a blank chart, perhaps an `EzBlankState`.
 

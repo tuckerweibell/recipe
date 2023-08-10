@@ -6,7 +6,7 @@ import getCategory from '../../utils/getCategory';
 import {RelatedComponentsProps} from './RelatedComponents.types';
 
 const RelatedComponents: FC<RelatedComponentsProps> = ({components}) => (
-  <EzLayout>
+  <EzLayout layout="tile">
     {components.map(component => (
       <LibraryItem
         key={component}

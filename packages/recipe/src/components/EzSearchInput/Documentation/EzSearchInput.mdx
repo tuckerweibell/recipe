@@ -1,0 +1,58 @@
+import {Meta} from '@storybook/blocks';
+import MigrationAlert from '../../../../docs/components/MigrationAlert';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzSearchInput
+
+<MigrationAlert component="ez-search-input" />
+
+Search inputs allow users to search for specific content by providing search terms or simple keywords.
+
+## Best practices
+
+Search inputs should:
+
+- Provide an accessible name for assistive technologies. Separate visual cues convey the purpose of the field to sighted users.
+- Use the `placeholder` prop to provide additional context as to what the user can search for e.g. Search customers.
+
+## Basic search input
+
+Used to offer users the opportunity to find specific information from large data sets, or to filter on-screen collections.
+
+```jsx
+() => {
+  const [searchTerms, setSearchTerms] = React.useState('');
+  return (
+    <>
+      <EzSearchInput
+        placeholder="Search"
+        aria-label="Search customers"
+        value={searchTerms}
+        onChange={e => setSearchTerms(e.target.value)}
+      />
+      {searchTerms && (
+        <>
+          <br /> <p>You searched for: {searchTerms}</p>
+        </>
+      )}
+    </>
+  );
+};
+```
+
+## Disabled search input
+
+Use the `disabled` prop to prevent users from being able to interact with the checkbox and to convey the inactive state to assistive technologies.
+
+```jsx
+<EzSearchInput placeholder="Search" aria-label="Search stores" disabled />
+```
+
+## Related components
+
+<RelatedComponents components={['EzField', 'EzFormLayout']} />

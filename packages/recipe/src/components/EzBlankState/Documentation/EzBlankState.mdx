@@ -19,7 +19,7 @@ Blank states are used when a container has no data to show. This can happen when
 
 <Controls of={DefaultStories.Default} sort="requiredFirst" />
 
-## Best Practices
+## Best practices
 
 Blank state should:
 
@@ -33,7 +33,7 @@ Blank state should not:
 - Be used on the page background. They need to appear in a container.
 - Include more than one button.
 
-## Basic Blank State
+## Basic blank state
 
 A basic blank state contains a required `title` and `message`.
 
@@ -41,13 +41,13 @@ Keep titles short and descriptive of the state. Avoid punctation at the end of t
 
 <Canvas of={DefaultStories.Default} />
 
-## Blank State with Action
+## Blank state with action
 
 A blank state can display an optional `action`. An action button should help the user fix the problem.
 
 <Canvas of={ActionStories.Action} meta={ActionStories} />
 
-## Blank State with Image
+## Blank state with image
 
 A blank state can display an optional image using `imageSrc`.
 

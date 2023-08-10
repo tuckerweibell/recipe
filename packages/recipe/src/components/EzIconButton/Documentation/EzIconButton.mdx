@@ -1,0 +1,318 @@
+import {Meta, Unstyled} from '@storybook/blocks';
+import MigrationAlert from '../../../../docs/components/MigrationAlert';
+import PropsTable from '../../utils/PropsTable';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import EzAlert from '../../EzAlert';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzIconButton
+
+<MigrationAlert component="ez-icon-button" />
+
+Icon buttons are buttons without visible text labels.
+
+Icon buttons are also appropriate for toggle buttons that allow a single or multiple choice to be selected or deselected, such as adding or removing a star to an item, or giving a thumbs up or thumbs down on an order survey.
+
+## Best practices
+
+Icon Buttons should:
+
+- Follow the same general guidelines as [EzButton](?path=/docs/input-ezbutton--docs)
+- Include an accessible label with `ariaLabel`
+- Be used to perform an inline action on a page when there's no room for a default button
+- Be used only when the icon is clear and understandable
+
+Icon Buttons should not:
+
+- Be used as the main action on a page - use [EzButton](?path=/docs/input-ezbutton--docs) instead
+
+## Basic icon buttons
+
+EzIconButton supports `filled` (default), `outlined`, and `basic` variants.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const CoffeeIconButton = props => (
+    <EzIconButton ariaLabel="coffee" {...props}>
+      <EzIcon icon={faCoffee} />
+    </EzIconButton>
+  );
+
+  return (
+    <EzPage>
+      <EzLayout>
+        <CoffeeIconButton variant="filled" />
+        <CoffeeIconButton variant="outlined" />
+        <CoffeeIconButton variant="basic" />
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Icon button actions
+
+Icon buttons accept an `onClick` prop for performing actions on click and `onKeyDown` for performing actions on a key down.
+
+For destructive actions, set the button's `color` to `common.destructive`.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const CoffeeIconButton = props => (
+    <EzIconButton ariaLabel="coffee" {...props}>
+      <EzIcon icon={faCoffee} />
+    </EzIconButton>
+  );
+
+  return (
+    <EzPage>
+      <EzLayout>
+        <CoffeeIconButton onClick={() => alert('Coffee clicked.')} />
+
+        <CoffeeIconButton onClick={() => alert('Coffee clicked.')} color="common.destructive" />
+
+        <CoffeeIconButton onKeyDown={event => event.key === 'Enter' && alert('Coffee entered.')} />
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Icon button colors
+
+EzIconButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.black`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+By default, the `color` passed to `EzIconButton` will also be passed to the child element (`EzIcon`) for `outlined` and `basic` variants. For `filled` icon buttons, the default color passed is `common.white`. The child element `color` prop can be overwritten if a different icon color is needed.
+
+<Unstyled>
+  <EzAlert
+    headline="Note"
+    tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."
+  />
+</Unstyled>
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const CoffeeIconButton = props => (
+    <EzIconButton ariaLabel="coffee" {...props}>
+      <EzIcon icon={faCoffee} />
+    </EzIconButton>
+  );
+
+  return (
+    <EzPage>
+      <EzLayout>
+        <CoffeeIconButton color="primary" />
+        <CoffeeIconButton color="info" />
+        <CoffeeIconButton color="error" />
+        <CoffeeIconButton color="common.grey160" />
+        <CoffeeIconButton color="common.purple100" />
+        <EzIconButton ariaLabel="coffee" color="common.grey130">
+          <EzIcon icon={faCoffee} color="common.black" />
+        </EzIconButton>
+      </EzLayout>
+
+      <EzLayout>
+        <CoffeeIconButton color="primary" variant="outlined" />
+        <CoffeeIconButton color="info" variant="outlined" />
+        <CoffeeIconButton color="error" variant="outlined" />
+        <CoffeeIconButton color="common.grey160" variant="outlined" />
+        <CoffeeIconButton color="common.purple100" variant="outlined" />
+        <EzIconButton ariaLabel="coffee" color="common.grey140" variant="outlined">
+          <EzIcon icon={faCoffee} color="common.black" />
+        </EzIconButton>
+      </EzLayout>
+
+      <EzLayout>
+        <CoffeeIconButton color="primary" variant="basic" />
+        <CoffeeIconButton color="info" variant="basic" />
+        <CoffeeIconButton color="error" variant="basic" />
+        <CoffeeIconButton color="common.grey160" variant="basic" />
+        <CoffeeIconButton color="common.purple100" variant="basic" />
+        <EzIconButton ariaLabel="coffee" color="common.grey150" variant="basic">
+          <EzIcon icon={faCoffee} color="common.black" />
+        </EzIconButton>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Icon button sizes
+
+If you want to specify an icon button size, use the `size` property. We currently support `small`, `medium` (default), and `large`.
+
+Icon button sizes only affect icon button padding. To change the size of the `EzIcon` within `EzIconButton`, add a `size` property to `EzIcon`.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const CoffeeIconButton = props => (
+    <EzIconButton ariaLabel="coffee" {...props}>
+      <EzIcon icon={faCoffee} />
+    </EzIconButton>
+  );
+
+  return (
+    <EzPage>
+      <EzLayout layout="stack">
+        <EzLayout>
+          <CoffeeIconButton size="small" />
+          <CoffeeIconButton size="medium" />
+          <CoffeeIconButton size="large" />
+
+          <EzIconButton ariaLabel="coffee" size="small">
+            <EzIcon icon={faCoffee} size="inherit" />
+          </EzIconButton>
+        </EzLayout>
+
+        <EzLayout>
+          <CoffeeIconButton size="small" variant="outlined" />
+          <CoffeeIconButton size="medium" variant="outlined" />
+          <CoffeeIconButton size="large" variant="outlined" />
+
+          <EzIconButton ariaLabel="coffee" size="small" variant="outlined">
+            <EzIcon icon={faCoffee} size="inherit" />
+          </EzIconButton>
+        </EzLayout>
+
+        <EzLayout>
+          <CoffeeIconButton size="small" variant="text" />
+          <CoffeeIconButton size="medium" variant="text" />
+          <CoffeeIconButton size="large" variant="text" />
+
+          <EzIconButton ariaLabel="coffee" size="small" variant="text">
+            <EzIcon icon={faCoffee} size="inherit" />
+          </EzIconButton>
+        </EzLayout>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Disabled icon buttons
+
+Disabled icon buttons can be used to prevent users from doing an invalid or unavailable action.
+
+In general, you should consider removing options that are not available or not applicable, but in some cases showing a disabled icon button may be necessary. In these cases, be sure to provide context for why the action is unavailable either with a message, or tooltip.
+
+An icon button can be made disabled by adding the optional `disabled` prop. Disabled icon buttons do not respond to user input and therefore will not trigger `onClick` behavior.
+
+```jsx
+() => {
+  const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+  const CoffeeIconButton = props => (
+    <EzIconButton ariaLabel="coffee" {...props}>
+      <EzIcon icon={faCoffee} />
+    </EzIconButton>
+  );
+
+  return (
+    <EzPage>
+      <EzLayout>
+        <CoffeeIconButton disabled />
+        <CoffeeIconButton variant="outlined" disabled />
+        <CoffeeIconButton variant="text" disabled />
+
+        <EzTooltip message="This icon button is disabled">
+          <span>
+            <CoffeeIconButton disabled />
+          </span>
+        </EzTooltip>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Custom styles
+
+Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names (`EzIconButton`, `EzIconButton-[variant]`, and `EzIconButton-disabled`).
+
+## Accessibility
+
+See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/button/) for buttons.
+
+All icon buttons require an accessible label provided with `ariaLabel`.
+
+If you need to hide an icon button from all accessibility APIs, for example to avoid confusion when using a call-to-action button inside an interactive card, add the `ariaHidden` prop to the icon button.
+
+## Props
+
+<PropsTable
+  propsData={[
+    {
+      name: 'ariaLabel*',
+      types: ['string'],
+      description: 'The aria-label of the element.',
+    },
+    {
+      name: 'children*',
+      types: ['node'],
+      description: 'The wrapped icon of the icon button.',
+    },
+    {
+      name: 'ariaHidden',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'If true, the component is hidden from accessibility APIs.',
+    },
+    {
+      name: 'color',
+      types: ['EzThemeColors'],
+      defaultValue: 'primary',
+      description: 'The color of the component. Supports theme palette properties and colors.',
+    },
+    {
+      name: 'disabled',
+      types: ['boolean'],
+      defaultValue: 'false',
+      description: 'If true, the component is disabled.',
+    },
+    {
+      name: 'onClick',
+      types: ['func'],
+      description: 'Callback fired when the icon button is clicked.',
+    },
+    {
+      name: 'onKeyDown',
+      types: ['func'],
+      description: 'Callback fired when the icon button is focused and an event key is pressed.',
+    },
+    {
+      name: 'size',
+      types: ['small', 'medium', 'large'],
+      defaultValue: 'medium',
+      description: 'The size of the component.',
+    },
+    {
+      name: 'type',
+      types: ['button', 'submit', 'reset'],
+      defaultValue: 'button',
+      description: 'The type of the button.',
+    },
+    {
+      name: 'variant',
+      types: ['filled', 'outlined', 'basic'],
+      defaultValue: 'filled',
+      description: 'The variant of the component.',
+    },
+  ]}
+/>
+
+## Related components
+
+<RelatedComponents components={['EzButton']} />

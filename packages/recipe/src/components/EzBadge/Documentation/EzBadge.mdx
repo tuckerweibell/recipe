@@ -21,14 +21,14 @@ Badges indicate notifications or events that are relevant and relatively close t
 
 <Controls of={DefaultStories.Default} sort="requiredFirst" />
 
-## Best Practices
+## Best practices
 
 - Badges convey information about notifications or events.
 - Badges appear very close to, often overlapping, the element that they are describing.
 - Badges should make it easy to understand the presence of notifications or events, encouraging action to be taken on the element the badge describes.
 - Badges should always be wrapped in an accessible element with a proper `aria-label` to be read by screen readers. The wrapping element will depend on the context with which you use the badge (see below for examples).
 
-## Badge Values
+## Badge values
 
 Badges always require a `value`.
 
@@ -50,7 +50,7 @@ To cap the value of a badge, provide a numerical `max` value. Any value over the
 
 <Canvas of={ValueStories.Max} meta={ValueStories} />
 
-## Badge Colors
+## Badge colors
 
 EzBadge supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `alert`, `info`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.red100`).
 
@@ -75,7 +75,7 @@ Out of the box, badges have a background color of `common.red110` and font color
   <Story of={ColorStories.CommonColor} meta={ColorStories} />
 </Canvas>
 
-## Aligning Badges
+## Aligning badges
 
 To align a badge with its wrapped element, use `alignX` with `left` or `right` and `alignY` with `top` or `bottom`. The default is `alignX="right"` and `alignY="top"`.
 
@@ -103,7 +103,7 @@ When using a standalone badge, ensure the badge and any siblings are accessible 
 
 <Canvas of={AccessibilityStories.Standalone} meta={AccessibilityStories} />
 
-## Custom Styles
+## Custom styles
 
 Supported styles should be used, but if you need to overwrite styles for the badge or dot, you can do so using provided class names.
 

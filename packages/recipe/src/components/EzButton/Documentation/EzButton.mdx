@@ -27,7 +27,7 @@ Buttons can be used in forms, modals, cards, toolbars, or in other locations on 
 
 <Controls of={DefaultStories.Default} sort="requiredFirst" />
 
-## Best Practices
+## Best practices
 
 Buttons should:
 
@@ -40,11 +40,11 @@ Buttons should:
 Buttons should not:
 
 - Be used in place of a more semantic element.
-  - For navigation or actions that do not affect the state of the app, use [`EzLink`](/components/ez-link). A button does something. A link goes somewhere. Ex. breadcrumbs, redirects, "forgot password", and "learn more" all go somewhere rather than do something, so should be links.
-  - For status chips, use [`EzChip`](/components/ez-chip). Chips are reactive and contextual, whereas buttons are static and predetermined. Ex. a delivery status of "confirmed" is contextual and not a static action, so should be a status chip.
+  - For navigation or actions that do not affect the state of the app, use [`EzLink`](?path=/docs/navigation-ezlink--docs). A button does something. A link goes somewhere. Ex. breadcrumbs, redirects, "forgot password", and "learn more" all go somewhere rather than do something, so should be links.
+  - For status chips, use [`EzChip`](?path=/docs/data-display-ezchip--docs). Chips are reactive and contextual, whereas buttons are static and predetermined. Ex. a delivery status of "confirmed" is contextual and not a static action, so should be a status chip.
 - Provide too many options at once with too many buttons.
 
-## Basic Buttons
+## Basic buttons
 
 EzButton supports `filled` (default), `outlined`, `text`, and `inline` variants.
 
@@ -64,9 +64,9 @@ EzButton supports `filled` (default), `outlined`, `text`, and `inline` variants.
 
 <Canvas of={VariantStories.Inline} meta={VariantStories} />
 
-## Button Colors
+## Button colors
 
-EzButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `neutral`, and `success`) as well as all supported [theme colors](/guides/theming/#colors) (ex. `common.grey160`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+EzButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.grey160`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
 
 <Unstyled>
   <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
@@ -77,7 +77,7 @@ EzButton supports theme palette properties (`primary`, `secondary`, `error`, `wa
 <Canvas of={ColorStories.TextColors} meta={ColorStories} />
 <Canvas of={ColorStories.InlineColors} meta={ColorStories} />
 
-## Button Actions
+## Button actions
 
 Buttons accept an `onClick` prop for performing actions on click and `onKeyDown` for performing actions on a key down.
 
@@ -89,7 +89,7 @@ For destructive actions, set the button's `color` to `destructive`.
   <Story of={ActionStories.KeyDown} meta={ActionStories} />
 </Canvas>
 
-## Button Sizes
+## Button sizes
 
 If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`. Button sizes affect the amount of padding around the button content. Applies to all variants except `inline`.
 
@@ -100,7 +100,7 @@ For full width buttons, use the `fullWidth` prop.
 <Canvas of={ButtonSizeStories.TextButtonSizes} meta={ButtonSizeStories} />
 <Canvas of={ButtonSizeStories.FullWidth} meta={ButtonSizeStories} />
 
-## Font Sizes
+## Font sizes
 
 If you want to specify a font size for the button, use the `fontSize` property, which uses theme supported font sizes. We currently support `small`, `medium` (default), `large`, and `inherit`.
 
@@ -109,7 +109,7 @@ If you want to specify a font size for the button, use the `fontSize` property, 
 <Canvas of={FontSizeStories.TextFontSizes} meta={FontSizeStories} />
 <Canvas of={FontSizeStories.InlineFontSizes} meta={FontSizeStories} />
 
-## Button Icons
+## Button icons
 
 You can add an icon to the beginning or the end of a button by passing an `EzIcon` to the optional `startIcon` or `endIcon` property.
 
@@ -132,7 +132,7 @@ Icon sizes will default to the font size of the text. If you need a different ic
 
 <Canvas of={IconStories.InheritedIconSize} meta={IconStories} />
 
-## Disabled Buttons
+## Disabled buttons
 
 Disabled buttons can be used to prevent users from doing an invalid or unavailable action.
 
@@ -146,7 +146,7 @@ A button can be made disabled by adding the optional `disabled` prop. Disabled b
   <Story of={DisabledStories.TextDisabled} meta={DisabledStories} />
 </Canvas>
 
-## Loading Buttons
+## Loading buttons
 
 A button can also display a loading spinner by adding the optional `loading` prop. A loading button will always be disabled.
 
@@ -156,7 +156,7 @@ A button can also display a loading spinner by adding the optional `loading` pro
   <Story of={LoadingStories.TextLoading} meta={LoadingStories} />
 </Canvas>
 
-## Complex Buttons
+## Complex buttons
 
 EzButton can be used with other Recipe components to create more complex buttons.
 
@@ -165,7 +165,7 @@ EzButton can be used with other Recipe components to create more complex buttons
   <Story of={ComplexStories.ComplexTooltip} meta={ComplexStories} />
 </Canvas>
 
-## Legacy Buttons (Deprecated)
+## Legacy buttons (deprecated)
 
 To aid users in migrating to Recipe's current version, a temporarily supported legacy implementation for EzButton is available. To use Recipe's deprecated button style, add the `legacy` prop.
 
@@ -190,7 +190,7 @@ To aid users in migrating to Recipe's current version, a temporarily supported l
   <Story of={LegacyStories.LegacyLoading} meta={LegacyStories} />
 </Canvas>
 
-## Data Attributes
+## Data attributes
 
 EzButton is very explicit about the properties it accepts, which makes providing arbitrary data attributes not possible. Instead, EzButton accept a data prop, allowing a single collection of data attributes to be provided.
 
@@ -206,7 +206,7 @@ EzButton is very explicit about the properties it accepts, which makes providing
 </EzButton>
 ```
 
-## Custom Styles
+## Custom styles
 
 Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names.
 

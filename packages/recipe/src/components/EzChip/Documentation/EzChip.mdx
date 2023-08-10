@@ -23,14 +23,14 @@ Chips are compact elements that represent an input, attribute, or action. They a
 
 <Controls of={DefaultStories.Default} sort="requiredFirst" />
 
-## Best Practices
+## Best practices
 
 - Chips are handy components that quickly convey information. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
 - Chips are compact components that represent discrete information.
 - Chips should have a clear and helpful relationship to the content or task they represent.
 - Chips should make tasks easier to complete, or content easier to sort.
 
-## Basic Chips
+## Basic chips
 
 EzChip supports `filled` (default) and `outlined` variants.
 
@@ -39,7 +39,7 @@ EzChip supports `filled` (default) and `outlined` variants.
   <Story of={VariantStories.Outlined} meta={VariantStories} />
 </Canvas>
 
-## Status Chips
+## Status chips
 
 EzChip also support status variants, which are used to call attention to an individual item in a set.
 
@@ -64,7 +64,7 @@ Use an action status (`attention`, `warning`, `error`, or `alert`) when an actio
   <Story of={StatusStories.StatusAlert} meta={StatusStories} />
 </Canvas>
 
-## Action Chips
+## Action chips
 
 Chips with an `onClick` prop defined will change appearance on focus, hover, and click.
 
@@ -76,7 +76,7 @@ Chips with an `onDelete` prop defined will display a delete icon which changes a
   <Story of={ActionStories.ClickableAndDeletable} meta={ActionStories} />
 </Canvas>
 
-## Chip Colors
+## Chip colors
 
 EzChip supports theme palette properties (`primary`, `secondary`, `neutral`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.green100`).
 
@@ -97,7 +97,7 @@ Text and background colors must have high enough [contrast](https://webaim.org/r
   <Story of={ColorStories.CommonColor} meta={ColorStories} />
 </Canvas>
 
-## Chip Sizes
+## Chip sizes
 
 If you want to specify a size, use the `size` property. We currently support `small`, `medium` (default), and `inherit`.
 
@@ -107,7 +107,7 @@ If you want to specify a size, use the `size` property. We currently support `sm
   <Story of={SizeStories.SizeInherit} meta={SizeStories} />
 </Canvas>
 
-## Chip Icons
+## Chip icons
 
 You can add an icon to the beginning of a chip by passing an `EzIcon` to the optional `icon` property.
 
@@ -118,7 +118,7 @@ Icon sizes will default to the font size of the text. If you need a different ic
   <Story of={IconStories.WithInheritedIconSize} meta={IconStories} />
 </Canvas>
 
-## Custom Styles
+## Custom styles
 
 Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names.
 
