@@ -1,5 +1,11 @@
 # @ezcater/recipe-doc-site
 
+## 2.0.3
+
+### Patch Changes
+
+- workflow: add storybook to gatsby docs [[sha]](https://github.com/ezcater/recipe/commit/e6d3b34b)
+
 ## 2.0.2
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @ezcater/recipe
 
+## 17.9.0
+
+### Minor Changes
+
+- feat: add maxDependentValue and maxIndependentValue to EzLineChart and EzBarChart [[sha]](https://github.com/ezcater/recipe/commit/ce421026)
+- internal: convert EzAlert to use MUI for the styles [[sha]](https://github.com/ezcater/recipe/commit/737190a0)
+
+### Patch Changes
+
+- workflow: add storybook to gatsby docs [[sha]](https://github.com/ezcater/recipe/commit/e6d3b34b)
+- deps: add dev dependency copyfiles [[sha]](https://github.com/ezcater/recipe/commit/e6d3b34b)
+- fix: remove inline styles using useMemo [[sha]](https://github.com/ezcater/recipe/commit/18b21b41)
+
 ## 17.8.0
 
 ### Minor Changes
