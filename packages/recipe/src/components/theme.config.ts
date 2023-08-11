@@ -111,20 +111,6 @@ const stitches = createStitches({
       'dismiss-translucent-dark': 'rgba(241, 241, 244, $shadows$opacity40)',
       'dismiss-translucent-darker': 'rgba(196, 203, 207, $shadows$opacity40)',
 
-      // EzAlert
-      'alert-bg-success': '$positiveBg',
-      'alert-text-success': '$positiveText',
-      'alert-bg-error': '$negativeBg',
-      'alert-text-error': '$negativeText',
-      'alert-bg-warning': '$cautionBg',
-      'alert-text-warning': '$cautionText',
-      'alert-bg-info': '$informativeBg',
-      'alert-text-info': '$informativeText',
-      'alert-bg-marketing': '$teal200',
-      'alert-text-marketing': '$teal700',
-      'alert-bg-tip': '$purple200',
-      'alert-text-tip': '$purple700',
-
       // EzBanner
       'banner-bg-marketing': '$purple600',
       'banner-text-marketing': '#fff',
@@ -518,9 +504,6 @@ const stitches = createStitches({
       pill: '9999px',
       round: '50%',
 
-      // EzAlert
-      'alert-rounded': '$regular',
-
       // EzBanner
       'banner-rounded': '$regular',
       'banner-button-rounded': '$regular',
@@ -638,11 +621,6 @@ const stitches = createStitches({
 
       // CloseButton
       'dismiss-padding': '$250',
-
-      // EzAlert
-      'alert-p-icon-side': '$150',
-      'alert-px': '$250',
-      'alert-py': '$150',
 
       // EzAutosuggest
       'autosuggest-z-index': '$autosuggest-z',

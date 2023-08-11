@@ -1,5 +1,7 @@
 import React, {forwardRef} from 'react';
-import theme from '../theme.config';
+import {Box} from '@mui/material';
+import {styled} from '@mui/material/styles';
+import isPropValid from '@emotion/is-prop-valid';
 import EzTextStyle from '../EzTextStyle';
 import {ErrorIcon, InfoIcon, MarketingIcon, SuccessIcon, TipIcon, WarningIcon} from '../Icons';
 
@@ -19,81 +21,31 @@ type Props = {
   use?: 'success' | 'error' | 'warning' | 'tip' | 'info' | 'marketing';
 };
 
-const container = theme.css({
-  fontFamily: '$defaultFont',
-  borderRadius: '$alert-rounded',
+const EzAlertContainer = styled('div', {
+  shouldForwardProp: isPropValid,
+  name: 'EzAlert',
+})<Pick<Props, 'arrow' | 'use'>>(({theme}) => ({
+  fontFamily: theme.typography.fontFamily,
+  borderRadius: theme.shape.borderRadius,
   borderWidth: 0,
   display: 'inline-flex',
   position: 'relative',
-  py: '$alert-py',
-  px: '$alert-px',
-  paddingLeft: '$alert-p-icon-side',
-  fill: 'currentColor',
+  padding: theme.spacing(1.5),
+  paddingRight: theme.spacing(2.5),
+
+  '& svg': {
+    fill: 'currentColor',
+  },
 
   // pseudo element for the arrow
   '&::before, &::after': {
     borderWidth: '6px',
     borderStyle: 'solid',
-    color: '$transparent',
+    color: 'transparent',
     left: '13px',
     position: 'absolute',
   },
-
-  variants: {
-    use: {
-      success: {
-        backgroundColor: '$alert-bg-success',
-        color: '$alert-text-success',
-        '$$alert-bg': '$colors$alert-bg-success',
-      },
-      error: {
-        backgroundColor: '$alert-bg-error',
-        color: '$alert-text-error',
-        '$$alert-bg': '$colors$alert-bg-error',
-      },
-      warning: {
-        backgroundColor: '$alert-bg-warning',
-        color: '$alert-text-warning',
-        '$$alert-bg': '$colors$alert-bg-warning',
-      },
-      info: {
-        backgroundColor: '$alert-bg-info',
-        color: '$alert-text-info',
-        '$$alert-bg': '$colors$alert-bg-info',
-      },
-      marketing: {
-        backgroundColor: '$alert-bg-marketing',
-        color: '$alert-text-marketing',
-        '$$alert-bg': '$colors$alert-bg-marketing',
-      },
-      tip: {
-        backgroundColor: '$alert-bg-tip',
-        color: '$alert-text-tip',
-        '$$alert-bg': '$colors$alert-bg-tip',
-      },
-    },
-    arrow: {
-      top: {
-        '&::after': {
-          content: `""`,
-          top: '-12px',
-          borderBottomColor: '$$alert-bg',
-        },
-      },
-      bottom: {
-        '&::after': {
-          content: `""`,
-          bottom: '-12px',
-          borderTopColor: '$$alert-bg',
-        },
-      },
-    },
-  },
-});
-
-const content = theme.css({
-  marginLeft: '$100',
-});
+}));
 
 type Ref = HTMLDivElement;
 /**
@@ -109,13 +61,13 @@ const EzAlert = forwardRef<Ref, Props>(({arrow, tagline, headline, use}, ref) =>
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#preferring_specialized_live_region_roles
   const live = use === 'error' ? 'assertive' : 'polite';
   return (
-    <div role={role} aria-live={live} className={container({arrow, use})} ref={ref}>
+    <EzAlertContainer arrow={arrow} use={use} role={role} aria-live={live} ref={ref}>
       {icons[use]}
-      <div className={content()}>
+      <Box marginLeft={1}>
         <EzTextStyle use="strong">{headline}</EzTextStyle>
         <div>{tagline}</div>
-      </div>
-    </div>
+      </Box>
+    </EzAlertContainer>
   );
 });
 
