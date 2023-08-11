@@ -5,3 +5,4 @@ npm-debug.log*
 
 # Build directory
 /public
+/static/storybook
