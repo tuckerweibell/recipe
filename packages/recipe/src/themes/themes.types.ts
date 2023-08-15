@@ -1,16 +1,21 @@
-import {CommonColors} from '@mui/material/styles/createPalette';
+import {CommonColors, Palette} from '@mui/material/styles/createPalette';
 import {PaletteOptions as MuiPaletteOptions, SimplePaletteColorOptions} from '@mui/material';
 import {EzPalette} from './ezColors';
 
-export type PaletteOptions =
-  | 'alert'
-  | 'error'
-  | 'info'
-  | 'neutral'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning';
+export type PaletteOptions = keyof Omit<
+  Palette,
+  | 'common'
+  | 'mode'
+  | 'contrastThreshold'
+  | 'tonalOffset'
+  | 'grey'
+  | 'text'
+  | 'divider'
+  | 'action'
+  | 'background'
+  | 'getContrastText'
+  | 'augmentColor'
+>;
 
 export type EzPaletteOptions = Omit<
   MuiPaletteOptions,
