@@ -8,7 +8,7 @@ import {ezPalette} from '../../../src/themes/ezColors';
 
 # Migration to Recipe 18
 
-Version 18 of Recipe updates includes moving our Gatsby doc site over to Storybook Docs as well as various theming changes.
+Version 18 of Recipe updates includes moving our Gatsby doc site over to Storybook Docs, removing the deprecated `EzBaseFontSizeCompatibility` component, as well as various theming changes.
 
 This release is a **major version release** and as such, **will require migration steps** for applications that currently use Recipe Version 17.x or below.
 
@@ -114,9 +114,23 @@ Design tokens for the following theme properties have changed. See new colors in
 
 `EzBaseFontSizeCompatibility` was a component that enabled applications that were not yet using Recipe's base font size to run in compatibility mode with a base font size of `14px`. However, as Recipe no longer supports IE11 and all modern browsers use a default font size of `16px`, this was deprecated in `v17` and has now been removed. To migrate, simply remove this component where used.
 
-## Notes
+## Non-breaking changes
 
-- `EzButton` legacy buttons were scheduled to be removed in this major release, but have been pushed back to `v19` to give teams more time to migrate to the new buttons. Please take the time needed to do so before the `v19` release.
+### 1. New Storybook Docs site
+
+While technically a non-breaking change, this major release marks the official release of our new [Storybook Docs site](https://recipe.ezcater.com). Roughly 1/3 of our components have completed their migration to this new site, including adding stories, interaction tests, and updating the documentation where needed. The remaining 2/3 of the components have basic markdown with links back to the [old site](https://ezcater.github.io/recipe/), which will continue to be supported until all components have completely migrated to the new site. We have a new URL ([**https://recipe.ezcater.com**](https://recipe.ezcater.com)) and the new site includes the following features:
+
+- New search capabilities for searching by key words, not just component names
+- Prop lists for all components including required, types, and default values
+- Built-in controls for real-time props manipulation
+- Built-in accessibility tests and color blindness rendering
+- Interaction tests for interactive components
+- Improved documentation navigation
+- Built-in playroom with snippets for every component
+
+### 2. Legacy button removal delay
+
+`EzButton` legacy buttons were scheduled to be removed in this major release, but have been pushed back to `v19` to give teams more time to migrate to the new buttons. Please take the time needed to do so before the `v19` release.
 
 ## Migration steps
 
