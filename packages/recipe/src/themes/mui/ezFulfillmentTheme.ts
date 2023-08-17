@@ -19,6 +19,12 @@ const palette: EzPaletteOptions = {
     dark: ezPalette.blue130,
     contrastText: ezPalette.white,
   },
+  secondary: {
+    main: ezPalette.green100,
+    light: ezPalette.green90,
+    dark: ezPalette.green110,
+    contrastText: ezPalette.white,
+  },
 };
 
 const ezFulfillmentTheme = createTheme(ezTheme, {
