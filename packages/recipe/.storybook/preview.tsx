@@ -159,7 +159,7 @@ const preview: Preview = {
       },
     },
     playroom: {
-      url: process.env.NODE_ENV === 'production' ? '/recipe/playroom/' : 'http://localhost:9000',
+      url: process.env.NODE_ENV === 'production' ? '/playroom/' : 'http://localhost:9000',
     },
     viewport: {
       viewports: {...customViewports, ...INITIAL_VIEWPORTS},
