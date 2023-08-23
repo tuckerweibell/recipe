@@ -6,6 +6,7 @@ import theme from '../theme.config';
 import {useUniqueId, useScrollIntoView} from '../../utils/hooks';
 import {clsx} from '../../utils';
 import EzIcon from '../EzIcon';
+import EzTextStyle from '../EzTextStyle';
 
 const popup = theme.css({
   background: 'white',
@@ -102,20 +103,28 @@ const EzListBox = (props, ref) => {
         id={getItemId(props.id, option.key)}
         key={option.label}
       >
-        <Highlighter
-          searchWords={searchWords || []}
-          textToHighlight={option.label}
-          highlightStyle={{
-            backgroundColor: 'inherit',
-            color: 'currentColor',
-            textDecoration: 'underline',
-          }}
-        />
-        {current && (
-          <Stack ml={2}>
-            <EzIcon icon={faCheck} size="small" />
+        <Stack
+          direction="row"
+          sx={{justifyContent: 'space-between', alignItems: 'center', width: '100%'}}
+        >
+          <Stack>
+            <Highlighter
+              searchWords={searchWords || []}
+              textToHighlight={option.label}
+              highlightStyle={{
+                backgroundColor: 'inherit',
+                color: 'currentColor',
+                textDecoration: 'underline',
+              }}
+            />
+            {option.description && <EzTextStyle use="subdued">{option.description}</EzTextStyle>}
           </Stack>
-        )}
+          {current && (
+            <Stack ml={2}>
+              <EzIcon icon={faCheck} size="small" />
+            </Stack>
+          )}
+        </Stack>
       </li>
     );
   };

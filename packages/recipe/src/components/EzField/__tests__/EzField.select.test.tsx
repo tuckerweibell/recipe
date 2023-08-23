@@ -11,7 +11,7 @@ describe('EzField', () => {
 
     const inputLabel = 'Select dropdown';
     const options = [
-      {label: 'All Upcoming', value: 'upcoming'},
+      {label: 'All Upcoming', value: 'upcoming', description: 'Description1'},
       {label: 'Today', value: 'today'},
       {label: 'Tomorrow', value: 'tomorrow'},
       {label: 'All Time', value: 'all'},
@@ -20,7 +20,7 @@ describe('EzField', () => {
       {label: 'This Month', value: 'month'},
     ];
 
-    it('should open by pressing the enter key', () => {
+    it('should open by pressing the enter key, displaying option labels and descriptions', () => {
       const {container} = render(
         <EzField type="select" label={inputLabel} options={options} value="upcoming" />
       );
@@ -34,6 +34,7 @@ describe('EzField', () => {
       const lastOption = screen.getByRole('option', {name: /This Month/i});
 
       expect(option1).toBeInTheDocument();
+      expect(screen.getByText('Description1')).toBeInTheDocument();
       expect(option2).toBeInTheDocument();
       expect(lastOption).toBeInTheDocument();
     });

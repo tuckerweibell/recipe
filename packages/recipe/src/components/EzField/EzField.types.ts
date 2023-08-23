@@ -5,6 +5,7 @@ type ChoiceValue = string | number | boolean;
 type Choice = {
   label: string | JSX.Element;
   value: ChoiceValue;
+  description?: string;
   disabled?: boolean;
 };
 

@@ -168,7 +168,7 @@ Allows the user to input email values.
 Allows the user to choose between a larger set of options than would be appropriate for radio buttons. Use `type="select"` to enable the user to pick from a dropdown list of available options.
 
 - Use `type="select"` to enable the user to pick from a list of available options.
-- Use `options` to provide a array of objects with `label` and `value` properties for each option to present for selection.
+- Use `options` to provide a array of objects with `label` and `value` properties for each option to present for selection. Optionally add `description` if a label needs further detail.
 - Use `onSelectionChange` to identify the selected item. The `onSelectionChange` callback is provided the `value` of the selected option.
 
 Using `onChange` for `EzField[type=select]` is currently supported, but is deprecated in favor of `onSelectionChange`.
@@ -183,10 +183,10 @@ Using `onChange` for `EzField[type=select]` is currently supported, but is depre
         label="Select dropdown"
         placeholder="Choose..."
         options={[
-          {label: 'All Upcoming', value: 'upcoming'},
-          {label: 'Today', value: 'today'},
-          {label: 'Tomorrow', value: 'tomorrow'},
-          {label: 'All Time', value: 'all'},
+          {label: 'All Upcoming', value: 'upcoming', description: 'Orders for the future'},
+          {label: 'Today', value: 'today', description: 'Orders for today'},
+          {label: 'Tomorrow', value: 'tomorrow', description: 'Orders for tomorrow'},
+          {label: 'All Time', value: 'all', description: 'All orders'},
           {label: 'Yesterday', value: 'yesterday'},
           {label: 'Last 7 Days', value: 'week'},
           {label: 'This Month', value: 'month'},
