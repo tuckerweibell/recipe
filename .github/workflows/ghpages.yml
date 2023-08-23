@@ -1,0 +1,31 @@
+name: Ghpages
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  release:
+    name: Ghpages
+
+    if: ${{ github.event.label.name == 'ghpages' }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Dependencies
+        uses: ./.github/actions/dependencies
+
+      - name: Build source
+        run: yarn build
+
+      - name: Publish doc-site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/public
