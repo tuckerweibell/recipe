@@ -1624,7 +1624,7 @@
 
 "@ezcater/icons@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ezcater/icons/-/icons-1.0.0.tgz#f6f99dae3a55961969101e43bad536329f5868fe"
+  resolved "https://ezcater.jfrog.io/ezcater/api/npm/npm/@ezcater/icons/-/icons-1.0.0.tgz#f6f99dae3a55961969101e43bad536329f5868fe"
   integrity sha512-n06yZAgOacLYwxJNy9t0WI4xsqcW/r0ym9IXDL+8GqSZ8eWMvsp4Y5eFoco5ZHOQ+600f6ePuFh1hNxd7qWi9w==
   dependencies:
     tslib "^1.11.1"

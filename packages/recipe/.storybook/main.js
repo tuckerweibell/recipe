@@ -7,9 +7,9 @@ module.exports = {
       // we can enable some of these options as and when we implement CSF format for our stories
       options: {
         backgrounds: false,
-        docs: false,
-        controls: false,
-        actions: false,
+        docs: true,
+        controls: true,
+        actions: true,
       },
     },
   ],

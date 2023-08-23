@@ -2,6 +2,10 @@ import React, {forwardRef} from 'react';
 import {EzBadgeMui} from './Implementations';
 import {EzBadgeProps, Ref} from './EzBadge.types';
 
+/**
+ * Badges indicate notifications or events that are relevant and relatively close to or overlapping another element, like a button or an icon.
+ * @component
+ */
 const EzBadge = forwardRef<Ref, EzBadgeProps>(
   ({alignX, alignY, children, color, hide, max, minimize, overlap, showZero, value}, ref) => (
     <EzBadgeMui

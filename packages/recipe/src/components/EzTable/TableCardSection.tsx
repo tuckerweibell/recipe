@@ -36,6 +36,6 @@ const TableCardSection: FC<TableCardSectionProps> = ({
 );
 
 // EzCard checks for a card section (by displayName), and will wrap if it can't find one
-TableCardSection.displayName = EzCardSection.displayName;
+TableCardSection.displayName = 'EzCardSection';
 
 export default TableCardSection;

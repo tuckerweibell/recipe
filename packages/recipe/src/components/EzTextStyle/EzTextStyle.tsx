@@ -23,7 +23,7 @@ const text = theme.css({
   },
 });
 
-interface Props
+export interface Props
   extends VariantProps<typeof text>,
     Omit<AllHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   as?: keyof JSX.IntrinsicElements;
