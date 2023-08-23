@@ -1,5 +1,16 @@
 # @ezcater/recipe
 
+## 17.10.0
+
+### Minor Changes
+
+- feat: add optional description to EzField select options prop [[sha]](https://github.com/ezcater/recipe/commit/9972a411)
+
+### Patch Changes
+
+- deps: add ezCater icons [[sha]](https://github.com/ezcater/recipe/commit/9c2b2038)
+- docs: add args and jsdoc to a subset of components as POC for Storybook docs [[sha]](https://github.com/ezcater/recipe/commit/9c2b2038)
+
 ## 17.9.0
 
 ### Minor Changes
