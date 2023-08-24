@@ -1,0 +1,121 @@
+import {Canvas, Controls, Meta, Primary, Source, Story, Unstyled} from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import EzAlert from '../../EzAlert';
+import * as AxisLabelFormatterStories from './Stories/AxisLabelFormatter.stories';
+import * as AxisLabelValuesStories from './Stories/AxisLabelValues.stories';
+import * as BlankStateStories from './Stories/BlankState.stories';
+import * as ColorStories from './Stories/Color.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as MaxValueStories from './Stories/MaxValue.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzBarChart
+
+Bar charts are a [type of chart](https://help.flourish.studio/article/25-line-bar-and-pie-charts) consisting of a series of bars that describe a dataset.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+- Bar charts are used to show change over time, especially for a single series.
+- Bar charts are good for comparing relative size.
+
+## Basic bar chart
+
+To chart a dataset as a bar chart, provide the required `data` prop whose value is an array of type `Datum` objects with `x` and `y` values.
+
+<Source
+  code={dedent`
+    type Datum = {
+      x: string | number | string[] | (() => void);
+      y: string | number | string[] | (() => void);
+    };
+
+    data: Datum[] = [
+      {x: 'first', y: 1},
+      {x: 'second', y: 2},
+      {x: 'third', y: 3},
+    ];
+
+`}
+/>
+
+Bar charts must include an accessible `title` and `description` and should be contained in an [`EzCard`](?path=/docs/feedback-ezcard--docs). The card title can optionally have a `title`, `subtitle`, and `titleIcon`.
+
+In some cases, like server-side rendering, a deterministic id may be needed. If needed, use prop `idPrefix`.
+
+<Canvas of={DefaultStories.Default} />
+
+## Bar colors
+
+EzBarChart supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `alert`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.purple100`). The default `barColor` is `primary`.
+
+Colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Unstyled>
+  <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
+</Unstyled>
+
+<Canvas>
+  <Story of={ColorStories.PrimaryColor} meta={ColorStories} />
+  <Story of={ColorStories.SecondaryColor} meta={ColorStories} />
+  <Story of={ColorStories.NeutralColor} meta={ColorStories} />
+  <Story of={ColorStories.CommonColor} meta={ColorStories} />
+</Canvas>
+
+## Axis label formatters
+
+Typically, the dependent axis will be the y-axis and the independent axis will be the x-axis. To format the point labels on each axis, optionally pass a function to `dependentAxisLabelFormatter` and/or `independentAxisLabelFormatter`.
+
+<Canvas>
+  <Story
+    of={AxisLabelFormatterStories.DependentAxisLabelFormatter}
+    meta={AxisLabelFormatterStories}
+  />
+  <Story
+    of={AxisLabelFormatterStories.IndependentAxisLabelFormatter}
+    meta={AxisLabelFormatterStories}
+  />
+</Canvas>
+
+## Axis label values
+
+To customize which labels appear on each axis, optionally pass an array of values of the same type as the respective `data` values to each `dependentAxisLabelValues` and/or `independentAxisLabelValues`.
+
+<Canvas>
+  <Story of={AxisLabelValuesStories.DependentAxisLabelValues} meta={AxisLabelValuesStories} />
+  <Story of={AxisLabelValuesStories.IndependentAxisLabelValues} meta={AxisLabelValuesStories} />
+</Canvas>
+
+## Max values
+
+To customize the highest dependent and independent values displayed on the axes, pass numeric values to `maxDependentValue` and `maxIndependentValue`, respectively. Be sure any defined max values are included in any defined axis label values.
+
+<Canvas>
+  <Story of={MaxValueStories.MaxDependentValue} meta={MaxValueStories} />
+  <Story of={MaxValueStories.MaxIndependentValue} meta={MaxValueStories} />
+</Canvas>
+
+## Blank states
+
+If your dataset may sometimes be an empty array, work with design to render something other than a blank chart, perhaps an `EzBlankState`.
+
+<Canvas of={BlankStateStories.BlankState} meta={BlankStateStories} />
+
+## Accessibility
+
+See [WAI-ARIA accessibility guidelines](https://www.w3.org/TR/2000/NOTE-SVG-access-20000807/#Equivalent) for SVG charts.
+
+All charts must have a `title` and `description` for accessibility.
+
+## Related components
+
+<RelatedComponents components={['EzBlankState', 'EzLineChart', 'EzProgress']} />

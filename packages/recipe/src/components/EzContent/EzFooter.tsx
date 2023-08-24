@@ -1,16 +1,15 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, ReactNode} from 'react';
 import Slot from './Slot';
 
-type FooterProps = {
-  children: React.ReactNode;
+type Ref = HTMLElement;
+type EzFooterProps = {
+  children: ReactNode;
 };
 
-function Footer(props: FooterProps, ref) {
-  return <Slot element="footer" slot="footer" ref={ref} {...props} />;
-}
+const EzFooter = forwardRef<Ref, EzFooterProps>((props, ref) => (
+  <Slot element="footer" slot="footer" ref={ref} {...props} />
+));
 
-/**
- * EzFooter represents a footer section within a Recipe container.
- */
-const EzFooter = forwardRef(Footer);
+EzFooter.displayName = 'EzFooter';
+
 export default EzFooter;

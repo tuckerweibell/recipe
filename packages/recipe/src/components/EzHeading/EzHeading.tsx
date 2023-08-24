@@ -130,4 +130,6 @@ const EzHeading = forwardRef<HTMLElement, Props>(
 // eslint-disable-next-line dot-notation
 EzHeading['__internalComponentSelector'] = 'css-ezh';
 
+EzHeading.displayName = 'EzHeading';
+
 export default EzHeading;

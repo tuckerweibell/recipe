@@ -1,0 +1,172 @@
+import {Meta, Unstyled} from '@storybook/blocks';
+import MigrationAlert from '../../../../docs/components/MigrationAlert';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import EzAlert from '../../EzAlert';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzRating
+
+<MigrationAlert component="ez-rating" />
+
+The rating component is used to indicate how something has been assessed based on quality, standards, or performance.
+
+## Basic rating
+
+For a rating, you must minimally provide:
+
+- `emptyIcon`: empty icon
+- `fullIcon`: fully-filled icon
+- `halfIcon`: half-filled icon
+- `label`: accessible label
+- `max`: naximum rating value
+- `value`: the rating value
+
+The rating component uses `EzIcon`. For more information about how to provide an icon to Recipe from your application, see [EzIcon](?path=/docs/typography-ezicon--docs).
+
+For accessibility purposes, Recipe provides the rating component `role="img"` and `aria-label`, based on the `label` provided.
+
+```jsx
+() => {
+  const {fullStar} = require('@fortawesome/free-solid-svg-icons/faStar');
+  const {halfStar} = require('@fortawesome/free-solid-svg-icons/faStarHalfStroke');
+  const {emptyStar} = require('@fortawesome/free-regular-svg-icons/faStar');
+  const value = 2.24;
+  return (
+    <EzPage>
+      <EzRating
+        emptyIcon={emptyStar}
+        fullIcon={fullStar}
+        halfIcon={halfStar}
+        label={`${value} stars`}
+        max={5}
+        value={value}
+      />
+    </EzPage>
+  );
+};
+```
+
+## Color
+
+The same values available for the [EzIcon's](?path=/docs/typography-ezicon--docs#icon-color) `color` can be provided as an optional prop.
+
+We currently support theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.primary100`).
+
+<Unstyled>
+  <EzAlert
+    headline="Note"
+    tagline="Only a select handful of available colors are shown below. All theme properties and colors are supported."
+  />
+</Unstyled>
+
+```jsx
+() => {
+  const {fullStar} = require('@fortawesome/free-solid-svg-icons/faStar');
+  const {halfStar} = require('@fortawesome/free-solid-svg-icons/faStarHalfStroke');
+  const {emptyStar} = require('@fortawesome/free-regular-svg-icons/faStar');
+  const value = 3.76;
+  return (
+    <EzPage>
+      <EzLayout layout="stack">
+        <EzRating
+          color="primary"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+        <EzRating
+          color="secondary"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+        <EzRating
+          color="common.purple100"
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          value={value}
+        />
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Size
+
+If you want to specify a size, use the `size` prop. We currently support `small`, `medium` (default), `large`, and `inherit`.
+
+```jsx
+() => {
+  const {fullStar} = require('@fortawesome/free-solid-svg-icons/faStar');
+  const {halfStar} = require('@fortawesome/free-solid-svg-icons/faStarHalfStroke');
+  const {emptyStar} = require('@fortawesome/free-regular-svg-icons/faStar');
+  const value = 2.74;
+
+  return (
+    <EzPage>
+      <EzLayout layout="stack">
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="small"
+          value={value}
+        />
+
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="medium"
+          value={value}
+        />
+
+        <EzRating
+          emptyIcon={emptyStar}
+          fullIcon={fullStar}
+          halfIcon={halfStar}
+          label={`${value} stars`}
+          max={5}
+          size="large"
+          value={value}
+        />
+
+        {/* Note: inline styles are discouraged and used here only for demo purposes */}
+        <div style={{fontSize: '14px'}}>
+          <EzRating
+            emptyIcon={emptyStar}
+            fullIcon={fullStar}
+            halfIcon={halfStar}
+            label={`${value} stars`}
+            max={5}
+            size="inherit"
+            value={value}
+          />
+        </div>
+      </EzLayout>
+    </EzPage>
+  );
+};
+```
+
+## Related components
+
+<RelatedComponents components={['EzProgress']} />

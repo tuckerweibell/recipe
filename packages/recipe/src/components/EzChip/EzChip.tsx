@@ -18,7 +18,7 @@ const EzChip = forwardRef<Ref, EzChipProps>(
 );
 
 EzChip.defaultProps = {
-  color: 'common.neutral130',
+  color: 'common.grey130',
   size: 'medium',
   variant: 'filled',
 };

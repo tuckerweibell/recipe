@@ -121,6 +121,8 @@ const EzBanner = forwardRef<Ref, Props>(({title, link, use, message, onDismiss},
   );
 });
 
+EzBanner.displayName = 'EzBanner';
+
 /**
  * @component
  */

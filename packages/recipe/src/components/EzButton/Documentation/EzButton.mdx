@@ -1,0 +1,225 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import EzAlert from '../../EzAlert';
+import * as ActionStories from './Stories/Action.stories';
+import * as ButtonSizeStories from './Stories/ButtonSize.stories';
+import * as ColorStories from './Stories/Color.stories';
+import * as ComplexStories from './Stories/Complex.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as DisabledStories from './Stories/Disabled.stories';
+import * as FontSizeStories from './Stories/FontSize.stories';
+import * as IconStories from './Stories/Icon.stories';
+import * as LegacyStories from './Stories/Legacy.stories';
+import * as LoadingStories from './Stories/Loading.stories';
+import * as VariantStories from './Stories/Variant.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzButton
+
+Buttons can be used in forms, modals, cards, toolbars, or in other locations on a page to communicate that a one-click action is available.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+Buttons should:
+
+- Be clearly labeled and explicitly state what they do.
+- Be labeled with actionable verbs, following the Verb + Noun format except in the case of common actions like Save, Edit, Close, or Cancel.
+- Be positioned in consistent locations and in a sensible order.
+- Use spacing to separate them from other interactive content.
+- Not wrap text. For maximum legibility, a label should remain on a single line.
+
+Buttons should not:
+
+- Be used in place of a more semantic element.
+  - For navigation or actions that do not affect the state of the app, use [`EzLink`](?path=/docs/navigation-ezlink--docs). A button does something. A link goes somewhere. Ex. breadcrumbs, redirects, "forgot password", and "learn more" all go somewhere rather than do something, so should be links.
+  - For status chips, use [`EzChip`](?path=/docs/data-display-ezchip--docs). Chips are reactive and contextual, whereas buttons are static and predetermined. Ex. a delivery status of "confirmed" is contextual and not a static action, so should be a status chip.
+- Provide too many options at once with too many buttons.
+
+## Basic buttons
+
+EzButton supports `filled` (default), `outlined`, `text`, and `inline` variants.
+
+`filled` buttons are high-emphasis and contain actions that are primary. There should not be more than one primary button in a section of a page.
+
+`outlined` buttons are medium-emphasis and contain actions that are secondary, which are important but aren't the primary action. A page or section should not have more than two secondary buttons.
+
+`text` buttons are typically used for less-pronounced actions than primary or secondary actions. They may also be used when space is a constraint or when content is repeated many times on a page.
+
+`inline` buttons are text buttons that align with surrounding text.
+
+<Canvas>
+  <Story of={VariantStories.Filled} meta={VariantStories} />
+  <Story of={VariantStories.Outlined} meta={VariantStories} />
+  <Story of={VariantStories.Text} meta={VariantStories} />
+</Canvas>
+
+<Canvas of={VariantStories.Inline} meta={VariantStories} />
+
+## Button colors
+
+EzButton supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.grey160`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Unstyled>
+  <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
+</Unstyled>
+
+<Canvas of={ColorStories.OutlinedColors} meta={ColorStories} />
+<Canvas of={ColorStories.FilledColors} meta={ColorStories} />
+<Canvas of={ColorStories.TextColors} meta={ColorStories} />
+<Canvas of={ColorStories.InlineColors} meta={ColorStories} />
+
+## Button actions
+
+Buttons accept an `onClick` prop for performing actions on click and `onKeyDown` for performing actions on a key down.
+
+For destructive actions, set the button's `color` to `destructive`.
+
+<Canvas>
+  <Story of={ActionStories.Clickable} meta={ActionStories} />
+  <Story of={ActionStories.ClickableDestructive} meta={ActionStories} />
+  <Story of={ActionStories.KeyDown} meta={ActionStories} />
+</Canvas>
+
+## Button sizes
+
+If you want to specify a button size, use the `size` property. We currently support `small`, `medium` (default), and `large`. Button sizes affect the amount of padding around the button content. Applies to all variants except `inline`.
+
+For full width buttons, use the `fullWidth` prop.
+
+<Canvas of={ButtonSizeStories.FilledButtonSizes} meta={ButtonSizeStories} />
+<Canvas of={ButtonSizeStories.OutlinedButtonSizes} meta={ButtonSizeStories} />
+<Canvas of={ButtonSizeStories.TextButtonSizes} meta={ButtonSizeStories} />
+<Canvas of={ButtonSizeStories.FullWidth} meta={ButtonSizeStories} />
+
+## Font sizes
+
+If you want to specify a font size for the button, use the `fontSize` property, which uses theme supported font sizes. We currently support `small`, `medium` (default), `large`, and `inherit`.
+
+<Canvas of={FontSizeStories.FilledFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.OutlinedFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.TextFontSizes} meta={FontSizeStories} />
+<Canvas of={FontSizeStories.InlineFontSizes} meta={FontSizeStories} />
+
+## Button icons
+
+You can add an icon to the beginning or the end of a button by passing an `EzIcon` to the optional `startIcon` or `endIcon` property.
+
+Icon sizes will default to the font size of the text. If you need a different icon size, use `size="inherit"` on the `EzIcon` and wrap it in an element with the desired size.
+
+<Canvas>
+  <Story of={IconStories.FilledStartIcon} meta={IconStories} />
+  <Story of={IconStories.FilledEndIcon} meta={IconStories} />
+</Canvas>
+
+<Canvas>
+  <Story of={IconStories.OutlinedStartIcon} meta={IconStories} />
+  <Story of={IconStories.OutlinedEndIcon} meta={IconStories} />
+</Canvas>
+
+<Canvas>
+  <Story of={IconStories.TextStartIcon} meta={IconStories} />
+  <Story of={IconStories.TextEndIcon} meta={IconStories} />
+</Canvas>
+
+<Canvas of={IconStories.InheritedIconSize} meta={IconStories} />
+
+## Disabled buttons
+
+Disabled buttons can be used to prevent users from doing an invalid or unavailable action.
+
+In general, you should consider removing options that are not available or not applicable, but in some cases showing a disabled button may be necessary. In these cases, be sure to provide context for why the action is unavailable either with a message, or tooltip.
+
+A button can be made disabled by adding the optional `disabled` prop. Disabled buttons do not respond to user input and therefore will not trigger `onClick` behavior.
+
+<Canvas>
+  <Story of={DisabledStories.FilledDisabled} meta={DisabledStories} />
+  <Story of={DisabledStories.OutlinedDisabled} meta={DisabledStories} />
+  <Story of={DisabledStories.TextDisabled} meta={DisabledStories} />
+</Canvas>
+
+## Loading buttons
+
+A button can also display a loading spinner by adding the optional `loading` prop. A loading button will always be disabled.
+
+<Canvas>
+  <Story of={LoadingStories.FilledLoading} meta={LoadingStories} />
+  <Story of={LoadingStories.OutlinedLoading} meta={LoadingStories} />
+  <Story of={LoadingStories.TextLoading} meta={LoadingStories} />
+</Canvas>
+
+## Complex buttons
+
+EzButton can be used with other Recipe components to create more complex buttons.
+
+<Canvas>
+  <Story of={ComplexStories.ComplexChildren} meta={ComplexStories} />
+  <Story of={ComplexStories.ComplexTooltip} meta={ComplexStories} />
+</Canvas>
+
+## Legacy buttons (deprecated)
+
+To aid users in migrating to Recipe's current version, a temporarily supported legacy implementation for EzButton is available. To use Recipe's deprecated button style, add the `legacy` prop.
+
+<Unstyled>
+  <EzAlert
+    use="warning"
+    headline="Legacy buttons are deprecated as of v17 and will be removed in v19."
+  />
+</Unstyled>
+
+<Canvas>
+  <Story of={LegacyStories.LegacyPrimary} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacySecondary} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacyTertiary} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacyTertiaryWithIcon} meta={LegacyStories} />
+</Canvas>
+
+<Canvas>
+  <Story of={LegacyStories.LegacyDestructive} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacyDisabled} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacyDisabledWithTooltip} meta={LegacyStories} />
+  <Story of={LegacyStories.LegacyLoading} meta={LegacyStories} />
+</Canvas>
+
+## Data attributes
+
+EzButton is very explicit about the properties it accepts, which makes providing arbitrary data attributes not possible. Instead, EzButton accept a data prop, allowing a single collection of data attributes to be provided.
+
+```jsx
+<EzButton
+  data={{
+    testid: 'my-test-id',
+    trackingid: 'my-tracking-id',
+  }}
+  // => data-testid="my-test-id" data-trackingid="my-tracking-id"
+>
+  Button
+</EzButton>
+```
+
+## Custom styles
+
+Supported styles should be used, but if you need to overwrite styles for the background, text, icon, or border, you can do so using provided class names.
+
+`EzButton`, `EzButton-[variant]`, `EzButton-startIcon`, `EzButton-endIcon`, `EzButton-disabled`
+
+## Accessibility
+
+See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/button/) for buttons.
+
+All buttons have an accessible label. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with `ariaLabel`.
+
+If you need to hide a button from all accessibility APIs, for example to avoid confusion when using a call-to-action button inside an interactive card, add the `ariaHidden` prop to the button.
+
+## Related components
+
+<RelatedComponents components={['EzChip', 'EzLink']} />

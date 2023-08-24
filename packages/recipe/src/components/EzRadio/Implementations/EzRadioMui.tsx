@@ -113,8 +113,8 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
       return VARIANT_COLORS(
         themeColor,
         theme.palette.common.white,
-        theme.palette.common.neutral120, // disabled background color
-        theme.palette.common.neutral130, // disabled border color
+        theme.palette.common.grey120, // disabled background color
+        theme.palette.common.grey130, // disabled border color
         theme.palette.common.disabled // disabled color
       )[variant][hover ? 'hover' : radioState][style];
     };
@@ -122,7 +122,7 @@ const EzRadioMui = forwardRef<Ref, EzRadioProps>(
       bgcolor: getColor(checked, false, 'background'),
       borderColor:
         !disabled && variant === 'outlined' && !checked
-          ? theme.palette.common.neutral140
+          ? theme.palette.common.grey140
           : getColor(checked, false, 'border'),
       diameter: getDiameter('button'),
       dotColor: getColor(checked, false, 'dot'),

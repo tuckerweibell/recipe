@@ -4,3 +4,4 @@ docs/
 dist/
 .github/
 storybook-static/
+packages/recipe/public/playroom

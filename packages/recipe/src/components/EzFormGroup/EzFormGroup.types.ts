@@ -17,8 +17,8 @@ export type EzFormGroupCustomColors = {
 };
 
 export type EzFormGroupTheme = {
-  color: EzThemeColors | EzFormGroupCustomColors;
-  variant: 'filled' | 'outlined';
+  color?: EzThemeColors | EzFormGroupCustomColors;
+  variant?: 'filled' | 'outlined';
 };
 
 export interface EzFormGroupProps {

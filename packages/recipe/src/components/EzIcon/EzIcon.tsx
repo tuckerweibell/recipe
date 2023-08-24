@@ -20,7 +20,7 @@ const EzIcon = forwardRef<Ref, EzIconProps>(({color, icon, size, ...props}, ref)
   const theme = useTheme();
   const iconProps = {
     color,
-    fontSize: size === 'inherit' ? size : theme.typography.icon.size[size],
+    fontSize: size === 'inherit' ? size : theme.typography.icon?.size[size],
     ref,
     ...props,
   };

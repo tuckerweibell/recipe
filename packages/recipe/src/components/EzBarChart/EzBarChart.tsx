@@ -5,27 +5,27 @@ import {EzBarChartProps, Ref} from './EzBarChart.types';
 const EzBarChart = forwardRef<Ref, EzBarChartProps>(
   (
     {
-      idPrefix,
-      description,
-      title,
       barColor,
       data,
       dependentAxisLabelFormatter,
       dependentAxisLabelValues,
+      description,
+      idPrefix,
       independentAxisLabelFormatter,
       independentAxisLabelValues,
       maxDependentValue,
       maxIndependentValue,
+      title,
     },
     ref
   ) => (
     <EzBarChartVictory
       barColor={barColor}
-      idPrefix={idPrefix}
       data={data}
-      description={description}
       dependentAxisLabelFormatter={dependentAxisLabelFormatter}
       dependentAxisLabelValues={dependentAxisLabelValues}
+      description={description}
+      idPrefix={idPrefix}
       independentAxisLabelFormatter={independentAxisLabelFormatter}
       independentAxisLabelValues={independentAxisLabelValues}
       maxDependentValue={maxDependentValue}
@@ -39,5 +39,7 @@ const EzBarChart = forwardRef<Ref, EzBarChartProps>(
 EzBarChart.defaultProps = {
   barColor: 'primary',
 };
+
+EzBarChart.displayName = 'EzBarChart';
 
 export default EzBarChart;

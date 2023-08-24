@@ -1,0 +1,55 @@
+import {Canvas, Controls, Meta, Primary, Story} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as DefaultStories from './Stories/Default.stories';
+import * as Example1Stories from './Stories/Example1Stories.stories';
+import * as Example2Stories from './Stories/Example2Stories.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# {{pascalCase name}}
+
+{{pascalCase name}} description.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best Practices
+
+{{pascalCase name}} best practices.
+
+## {{pascalCase name}} Example 1
+
+{{pascalCase name}} example 1 description.
+
+<Canvas>
+  <Story of={Example1Stories.Example1A} meta={Example1Stories} />
+  <Story of={Example1Stories.Example1B} meta={Example1Stories} />
+  <Story of={Example1Stories.Example1C} meta={Example1Stories} />
+</Canvas>
+
+## {{pascalCase name}} Example 2
+
+{{pascalCase name}} example 2 description.
+
+<Canvas>
+  <Story of={Example2Stories.Example2A} meta={Example2Stories} />
+  <Story of={Example2Stories.Example2B} meta={Example2Stories} />
+  <Story of={Example2Stories.Example2C} meta={Example2Stories} />
+</Canvas>
+
+## Accessibility
+
+Accessibility description.
+
+## Custom Styles
+
+Custom styles description.
+
+## Related components
+
+<RelatedComponents components={['EzRelatedComponent1', 'EzRelatedComponent2']} />

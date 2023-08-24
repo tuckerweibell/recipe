@@ -1,11 +1,6 @@
-import {
-  createTheme,
-  darken,
-  PaletteOptions as MuiPaletteOptions,
-  responsiveFontSizes,
-  SimplePaletteColorOptions,
-} from '@mui/material';
+import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
+import type {EzPaletteOptions} from '../themes.types';
 
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
@@ -13,7 +8,6 @@ declare module '@mui/material/styles/createPalette' {
   interface CommonColors extends EzPalette {
     destructive?: string;
     disabled?: string;
-    green?: string;
   }
 
   interface PaletteOptions {
@@ -40,6 +34,7 @@ declare module '@mui/material/styles/createTypography' {
     };
   }
 }
+
 declare module '@mui/material/Badge' {
   interface BadgePropsColorOverrides {
     alert: true;
@@ -75,95 +70,82 @@ declare module '@mui/material/Radio' {
   }
 }
 
-type EzPaletteOptions = Omit<
-  MuiPaletteOptions,
-  'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success' | 'alert' | 'neutral'
-> & {
-  primary?: SimplePaletteColorOptions;
-  secondary?: SimplePaletteColorOptions;
-  error?: SimplePaletteColorOptions;
-  warning?: SimplePaletteColorOptions;
-  info?: SimplePaletteColorOptions;
-  success?: SimplePaletteColorOptions;
-  alert?: SimplePaletteColorOptions;
-  neutral?: SimplePaletteColorOptions;
-};
-
 const palette: EzPaletteOptions = {
   primary: {
-    main: ezPalette.primary100,
-    light: ezPalette.primary90,
-    dark: ezPalette.primary110,
-    contrastText: ezPalette.neutral100,
+    main: ezPalette.green100,
+    light: ezPalette.green90,
+    dark: ezPalette.green110,
+    contrastText: ezPalette.white,
   },
   secondary: {
-    main: ezPalette.yellow110,
-    light: ezPalette.yellow100,
-    dark: darken(ezPalette.yellow110, 0.1),
-    contrastText: ezPalette.neutral170,
+    main: ezPalette.orange105,
+    light: ezPalette.orange95,
+    dark: ezPalette.orange120,
+    contrastText: ezPalette.white,
   },
   error: {
-    main: ezPalette.alert100,
-    light: ezPalette.alert80,
-    dark: ezPalette.alert110,
-    contrastText: ezPalette.neutral100,
+    main: ezPalette.red110,
+    light: ezPalette.red80,
+    dark: ezPalette.red120,
+    contrastText: ezPalette.white,
   },
   warning: {
-    main: ezPalette.warning100,
-    light: ezPalette.warning90,
-    dark: darken(ezPalette.warning110, 0.1),
-    contrastText: ezPalette.neutral170,
+    main: ezPalette.orange100,
+    light: ezPalette.orange90,
+    dark: ezPalette.orange110,
+    contrastText: ezPalette.black,
   },
   info: {
     main: ezPalette.blue100,
-    light: ezPalette.blue90,
-    dark: darken(ezPalette.blue100, 0.1),
-    contrastText: ezPalette.neutral100,
+    light: ezPalette.blue70,
+    dark: ezPalette.blue110,
+    contrastText: ezPalette.white,
   },
   success: {
-    main: ezPalette.success100,
-    light: ezPalette.success90,
-    dark: darken(ezPalette.success100, 0.1),
-    contrastText: ezPalette.neutral100,
+    main: ezPalette.green103,
+    light: ezPalette.green95,
+    dark: ezPalette.green108,
+    contrastText: ezPalette.white,
   },
   alert: {
     main: ezPalette.purple100,
-    light: ezPalette.purple90,
-    dark: darken(ezPalette.purple100, 0.2),
-    contrastText: ezPalette.neutral100,
+    light: ezPalette.purple95,
+    dark: ezPalette.purple110,
+    contrastText: ezPalette.white,
   },
   neutral: {
-    main: ezPalette.neutral160,
-    light: ezPalette.neutral120,
-    dark: darken(ezPalette.neutral160, 0.3),
-    contrastText: ezPalette.neutral100,
+    main: ezPalette.grey160,
+    light: ezPalette.grey120,
+    dark: ezPalette.black,
+    contrastText: ezPalette.white,
   },
   grey: {
-    100: ezPalette.neutral110,
-    200: ezPalette.neutral120,
-    300: ezPalette.neutral130,
-    500: ezPalette.neutral140,
-    700: ezPalette.neutral150,
-    800: ezPalette.neutral160,
-    900: ezPalette.neutral170,
+    100: ezPalette.grey110,
+    200: ezPalette.grey120,
+    300: ezPalette.grey130,
+    500: ezPalette.grey140,
+    700: ezPalette.grey150,
+    800: ezPalette.grey160,
+    900: ezPalette.black,
   },
   text: {
-    primary: ezPalette.neutral170,
-    secondary: ezPalette.neutral150,
-    disabled: ezPalette.neutral140,
+    primary: ezPalette.black,
+    secondary: ezPalette.grey150,
+    disabled: ezPalette.grey120,
   },
   common: {
     ...ezPalette,
-    black: ezPalette.neutral170,
-    destructive: ezPalette.alert100,
-    disabled: ezPalette.neutral140,
-    green: ezPalette.primary100,
-    white: ezPalette.neutral100,
+    destructive: ezPalette.red110,
+    disabled: ezPalette.grey140,
   },
 };
 
+const defaultFont = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
+
 const typography = {
-  fontFamily: ['Lato', 'Helvetica Neue', 'Arial', 'Helvetica', 'sans-serif'].join(', '),
+  defaultFont,
+  fontFamily: defaultFont,
+  headerFont: defaultFont,
   font: {
     size: {
       small: 14,
@@ -183,8 +165,8 @@ const typography = {
 
 const getStatusChipStyles = themeProp => {
   return {
-    backgroundColor: palette[themeProp].light,
-    color: palette[themeProp].main,
+    backgroundColor: themeProp === 'neutral' ? palette.common.grey120 : palette[themeProp].light,
+    color: palette[themeProp].dark,
     '&.MuiChip-clickable:hover': {
       backgroundColor: palette[themeProp].main,
       color: palette.common.white,
@@ -193,7 +175,7 @@ const getStatusChipStyles = themeProp => {
       },
     },
     '& .MuiChip-deleteIcon': {
-      color: themeProp === 'warning' ? palette[themeProp].dark : palette[themeProp].main,
+      color: palette[themeProp].main,
       '&:hover': {
         color: palette.common.black,
       },

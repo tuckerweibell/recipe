@@ -14,6 +14,10 @@ jobs:
       - name: Dependencies
         uses: ./.github/actions/dependencies
 
+      - name: Build Playroom
+        run: yarn build-playroom
+        working-directory: ./packages/recipe
+
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
@@ -21,3 +25,5 @@ jobs:
           workingDir: packages/recipe
           exitOnceUploaded: true
           onlyChanged: false # TODO: turn on after storybook-docs feature merged
+        env:
+          STORYBOOK_INCLUDE_REGRESSION_STORIES: 1

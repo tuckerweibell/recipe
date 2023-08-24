@@ -20,7 +20,7 @@ describe('EzIcon', () => {
       {
         iconProp: <EzIcon icon={SVG_ICON_BURGER} />,
         titleProp: <EzIcon icon={SVG_ICON_BURGER} title="burger icon" />,
-        colorProp: <EzIcon icon={SVG_ICON_BURGER} color="common.green" />,
+        colorProp: <EzIcon icon={SVG_ICON_BURGER} color="common.green100" />,
         sizeProp: <EzIcon icon={SVG_ICON_BURGER} size="large" />,
       },
     ].forEach(() => {});

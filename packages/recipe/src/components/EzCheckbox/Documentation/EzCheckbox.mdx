@@ -1,0 +1,188 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import EzAlert from '../../EzAlert';
+import * as ColorStories from './Stories/Color.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as GroupStories from './Stories/Group.stories';
+import * as LabelStories from './Stories/Label.stories';
+import * as SizeStories from './Stories/Size.stories';
+import * as StateStories from './Stories/State.stories';
+import * as VariantStories from './Stories/Variant.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzCheckbox
+
+Checkboxes allow the user to select one or more items from a set.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+- Use checkboxes to turn an option on or off for multiple options appearing in a list.
+- If you have a single option, avoid using a checkbox and use [EzToggle](?path=/docs/data-display-eztoggle--docs) instead.
+- Checkboxes should be clearly labelled, or provided an accessible name.
+- Checkboxes should not be used to perform actions.
+- Clicking a checkbox should not persist until a separate action button is clicked (ex. form submission).
+- Options should be structured in a logical order, such as from simplest to most complex, or most common to least common.
+
+## Checkbox variants
+
+EzCheckbox supports `outlined` (default), `filled` (for darker backgrounds), and `filled-inverse` variants.
+
+To mark the checkbox as checked by default, use the `defaultChecked` prop.
+
+<Canvas>
+  <Story of={VariantStories.Outlined} meta={VariantStories} />
+  <Story of={VariantStories.Filled} meta={VariantStories} />
+  <Story of={VariantStories.FilledInverse} meta={VariantStories} />
+</Canvas>
+
+## Checkbox labels
+
+To add a label to a checkbox, use `EzFormControlLabel` and provide the `EzCheckbox` to its `control` prop along with the `label`.
+
+<Canvas of={LabelStories.Label} meta={LabelStories} />
+
+You can optionally append a set of icons to the label by passing in an array of `EzIcon`s to `labelIcons` in `EzFormControlLabel`.
+
+<Canvas of={LabelStories.LabelWithIcons} meta={LabelStories} />
+
+## Checkbox colors
+
+EzCheckbox supports theme palette properties (`primary`, `secondary`, `error`, `warning`, `info`, `neutral`, and `success`) as well as all supported [theme colors](?path=/docs/guides-theming--docs#colors) (ex. `common.grey160`). Text and background colors must have high enough [contrast](https://webaim.org/resources/contrastchecker/) for accessibility.
+
+<Unstyled>
+  <EzAlert headline="Only a select handful of available colors are shown below. All theme properties and colors are supported." />
+</Unstyled>
+
+<Canvas of={ColorStories.OutlinedColors} meta={ColorStories} />
+<Canvas className="canvas-dark" of={ColorStories.FilledColors} meta={ColorStories} />
+<Canvas of={ColorStories.FilledInverseColors} meta={ColorStories} />
+
+## Checkbox sizes
+
+If you want to specify a size, use the `size` property. We currently support `small`, `medium` (default), and `large`.
+
+<Canvas of={SizeStories.OutlinedSizes} meta={SizeStories} />
+<Canvas className="canvas-dark" of={SizeStories.FilledSizes} meta={SizeStories} />
+<Canvas of={SizeStories.FilledInverseSizes} meta={SizeStories} />
+
+## Checkbox groups
+
+### Form control components
+
+EzCheckbox components can be grouped using the following form control components:
+
+#### `EzFormControl` - used to provide context and ensure a consistent state
+
+- `error` - if `true`, the label is displayed in an error state
+- `fullWidth` - if `true`, the component will take up the full width of its container
+
+#### `EzFormLabel` - used to provide a label for a group of checkboxes
+
+- `id` - should match the `ariaLabel` prop of `EzFormGroup`
+
+#### `EzFormGroup` - used to group checkboxes
+
+- `ariaLabel` - should match the `id` prop of `EzFormLabel`
+- `gap` - the gap between form labels (defaults to 0 for columns and 2 for rows)
+  - uses an `8px` scaling factor, so a gap of `x` (of type `number`) is equal to `x * 8px`
+  - default gap for columns is `0` and rows is `2`
+- `row` - lays out the checkboxes horizontally
+- `labelWidth` - the defined width of each super checkbox button in a form group
+
+#### `EzFormControlLabel` - used to provide a label for a checkbox
+
+- `control` - the required control element (`<EzCheckbox />`)
+- `disabled` - if `true`, the component is disabled
+- `helperText` - the helper text content
+- `icon` - the icon for the checkbox when using a super checkbox
+- `label` - the label for the checkbox
+- `labelIcons` - an optional array of `EzIcon`s to display after the label
+- `value` - the value of the form control label
+- `theme` - a defined theme object with optional keys `color` and `variant` for super checkbox buttons
+
+### Uncontrolled
+
+Checkboxes can be uncontrolled, where form data is handled by the DOM itself.
+
+<Canvas of={GroupStories.Uncontrolled} meta={GroupStories} />
+
+### Controlled
+
+You can also control the checkbox with the `checked` prop on `EzFormControlLabel` and `onChange` on `EzCheckbox`.
+
+<Canvas of={GroupStories.Controlled} meta={GroupStories} />
+
+### Row
+
+To lay out the checkboxes in a row, use the `row` property on `EzFormGroup`.
+
+<Canvas of={GroupStories.UncontrolledRow} meta={GroupStories} />
+
+### Conditional content
+
+Additional content can also be displayed depending on the selection.
+
+<Canvas of={GroupStories.Conditional} meta={GroupStories} />
+
+### Super checkbox buttons
+
+For larger, more visual checkbox buttons, provide an `icon` (`<EzIcon />`) along with an optional `label` to `EzFormControlLabel`.
+
+- To define a set pixel width for the buttons, pass a `labelWidth` of type `number` to `EzFormGroup`. Labels will wrap if needed, but should not be more than 2 lines.
+- To define a theme for each button in a group, pass a `theme` property to `EzFormGroup`.
+  - `color` accepts either a color theme property (ex. `color: 'primary'`), or a custom defined values object (see example below)
+  - `variant` accepts either `filled` (default), or `outlined` (`filled-inverse` is not supported - use custom defined values)
+- Super checkbox buttons must be controlled, so be sure to pass `checked` and `value` properties to `EzFormControlLabel` as well as `onChange` to `EzCheckbox`.
+
+<Canvas of={GroupStories.SuperCheckboxButtons} meta={GroupStories} />
+
+## Checkbox states
+
+### Disabled state
+
+A checkbox can be made disabled by adding the optional `disabled` prop on either `EzCheckbox` (if standalone) or `EzFormControlLabel` (if in a group).
+
+<Canvas of={StateStories.Disabled} meta={StateStories} />
+
+### Error state
+
+To display an error state in a checkbox group, pass an `error` boolean property to `EzFormControl`. Be sure to include an error alert or message to indicate what the error is.
+
+<Canvas of={StateStories.Error} meta={StateStories} />
+
+### Indeterminate state
+
+A checkbox input has only one of two states: checked or unchecked. However, visually, a checkbox can also have an indeterminate state by using the `indeterminate` property on `EzCheckbox`.
+
+<Canvas of={StateStories.Indeterminate} meta={StateStories} />
+
+## Custom styles
+
+Supported styles should be used, but if you need to overwrite styles for the checkbox, form label, or form control label, you can do so using provided class names:
+
+- `EzCheckbox`, `EzCheckbox-outlined`, `EzCheckbox-filled`, `EzCheckbox-filled-inverse`, `EzCheckbox-checked`, `EzCheckbox-unchecked`, `EzCheckbox-indeterminate`, `EzCheckbox-icon`, `EzCheckbox-disabled`, `EzCheckbox-input`
+- `EzFormGroup`
+- `EzFormLabel`
+- `EzFormControlLabel`, `EzFormControlLabel-label`, `EzFormControlLabel-helperText`
+- `EzSuperFormControlLabel`, `EzSuperFormControlLabel-checkbox`, `EzSuperFormControlLabel-checked`, `EzSuperFormControlLabel-label`,`EzSuperFormControlLabel-icon`, `EzSuperFormControlLabel-text`
+
+## Accessibility
+
+See [WAI-ARIA accessibility guidelines](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/) for checkboxes.
+
+All checkbox form controls should have corresponding labels using `ariaLabel` (hidden) or `EzFormControlLabel`.
+
+Checkboxes must also have a `name` property, which is used to set or return the value of the named attribute of the checkbox field.
+
+## Related components
+
+<RelatedComponents components={['EzToggle', 'EzRadio']} />

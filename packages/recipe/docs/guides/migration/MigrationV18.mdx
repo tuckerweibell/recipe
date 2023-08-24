@@ -1,0 +1,122 @@
+import {Meta} from '@storybook/blocks';
+import TableOfContents from '../../components/TableOfContents';
+import {ColorSwatch} from '../../components/ColorPalette';
+import {ezPalette} from '../../../src/themes/ezColors';
+
+<Meta title="Guides/Migration/v18" />
+<TableOfContents />
+
+# Migration to Recipe 18
+
+Version 18 of Recipe updates includes moving our Gatsby doc site over to Storybook Docs, removing the deprecated `EzBaseFontSizeCompatibility` component, as well as various theming changes.
+
+This release is a **major version release** and as such, **will require migration steps** for applications that currently use Recipe Version 17.x or below.
+
+## Breaking changes
+
+The following changes are considered breaking changes:
+
+### 1. Color names in `ezColors` are now color specific, not theme property specific
+
+Recipe's set of global colors found in `themes/ezColors.ts` has renamed various colors to remove theme property names now that we have multiple themes using different color tokens for theme properties.
+
+If using any of these colors directly, they will need to be updated to the new color names.
+
+- **OLD => NEW**
+- <ColorSwatch color={ezPalette.red120} /> `alert110` => `red120`
+- <ColorSwatch color={ezPalette.red110} /> `alert100` => `red110`
+- <ColorSwatch color={ezPalette.red90} /> `alert90` => `red90`
+- <ColorSwatch color={ezPalette.red80} /> `alert80` => `red80`
+- <ColorSwatch color={ezPalette.black} /> `neutral170` => `black`
+- <ColorSwatch color={ezPalette.grey160} /> `neutral160` => `grey160`
+- <ColorSwatch color={ezPalette.grey150} /> `neutral150` => `grey150`
+- <ColorSwatch color={ezPalette.grey140} /> `neutral140` => `grey140`
+- <ColorSwatch color={ezPalette.grey130} /> `neutral130` => `grey130`
+- <ColorSwatch color={ezPalette.grey120} /> `neutral120` => `grey120`
+- <ColorSwatch color={ezPalette.grey110} /> `neutral110` => `grey110`
+- <ColorSwatch color={ezPalette.white} /> `neutral100` => `white`
+- <ColorSwatch color={ezPalette.green120} /> `primary120` => `green120`
+- <ColorSwatch color={ezPalette.green110} /> `primary110` => `green110`
+- <ColorSwatch color={ezPalette.green100} /> `primary100` => `green100`
+- <ColorSwatch color={ezPalette.green90} /> `primary90` => `green90`
+- <ColorSwatch color={ezPalette.green103} /> `success100` => `green103`
+- <ColorSwatch color={ezPalette.green95} /> `success90` => `green95`
+- <ColorSwatch color={ezPalette.orange110} /> `warning110` => `orange110`
+- <ColorSwatch color={ezPalette.orange100} /> `warning100` => `orange100`
+- <ColorSwatch color={ezPalette.orange90} /> `warning90` => `orange90`
+- <ColorSwatch color={ezPalette.orange80} /> `warning80` => `orange80`
+- <ColorSwatch color={ezPalette.blue70} /> `blue90` => `blue70`
+- <ColorSwatch color={ezPalette.yellow100} /> `yellow110` => `yellow100`
+- <ColorSwatch color={ezPalette.yellow90} /> `yellow100` => `yellow90`
+
+```js
+// Example change
+
+// OLD
+<EzButton color="common.primary100">Button</EzButton>
+
+// NEW
+<EzButton color="common.green100">Button</EzButton>
+```
+
+### 2. Theme property color tokens have changed for `ezTheme`, `ezMarketplaceTheme`, and `ezFulfillmentTheme`
+
+Design tokens for the following theme properties have changed. See new colors in our [theming page](?path=/docs/guides-theming--docs#colors). No syntax changes required when migrating, but be aware that the colors will change where used. New colors were also added to `ezColors` and are available using `theme.palette.common[colorName]`.
+
+#### `ezTheme` and `ezMarketplaceTheme`
+
+- `secondary`:
+  - `main`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.orange105} /> `orange105`
+  - `light`: <ColorSwatch color={ezPalette.yellow90} /> `yellow90` => <ColorSwatch color={ezPalette.orange95} /> `orange95`
+  - `dark`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.orange120} /> `orange120`
+  - `contrastText`: <ColorSwatch color={ezPalette.black} /> `black` => <ColorSwatch color={ezPalette.white} /> `white`
+
+#### `ezFulfillmentTheme`
+
+- `primary`:
+  - `main`: <ColorSwatch color={ezPalette.green100} /> `green100` => <ColorSwatch color={ezPalette.blue90} /> `blue90`
+  - `light`: <ColorSwatch color={ezPalette.green90} /> `green90` => <ColorSwatch color={ezPalette.blue60} /> `blue60`
+  - `dark`: <ColorSwatch color={ezPalette.green110} /> `green110` => <ColorSwatch color={ezPalette.blue130} /> `blue130`
+- `secondary`:
+  - `main`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green100} /> `green100`
+  - `light`: <ColorSwatch color={ezPalette.yellow90} /> `yellow90` => <ColorSwatch color={ezPalette.green90} /> `green90`
+  - `dark`: <ColorSwatch color={ezPalette.yellow110} /> `yellow110` => <ColorSwatch color={ezPalette.green110} /> `green110`
+  - `contrastText`: <ColorSwatch color={ezPalette.black} /> `black` => <ColorSwatch color={ezPalette.white} /> `white`
+
+### 3. The deprecated `EzBaseFontSizeCompatibility` component has been removed
+
+`EzBaseFontSizeCompatibility` was a component that enabled applications that were not yet using Recipe's base font size to run in compatibility mode with a base font size of `14px`. However, as Recipe no longer supports IE11 and all modern browsers use a default font size of `16px`, this was deprecated in `v17` and has now been removed. To migrate, simply remove this component where used.
+
+## Non-breaking changes
+
+### 1. New Storybook Docs site
+
+While technically a non-breaking change, this major release marks the official release of our new [Storybook Docs site](https://recipe.ezcater.com). Roughly 1/3 of our components have completed their migration to this new site, including adding stories, interaction tests, and updating the documentation where needed. The remaining 2/3 of the components have basic markdown with links back to the [old site](https://ezcater.github.io/recipe/), which will continue to be supported until all components have completely migrated to the new site. We have a new URL ([**https://recipe.ezcater.com**](https://recipe.ezcater.com)) and the new site includes the following features:
+
+- New search capabilities for searching by key words, not just component names
+- Prop lists for all components including required, types, and default values
+- Built-in controls for real-time props manipulation
+- Built-in accessibility tests and color blindness rendering
+- Interaction tests for interactive components
+- Improved documentation navigation
+- Built-in playroom with snippets for every component
+
+### 2. Legacy button removal delay
+
+`EzButton` legacy buttons were scheduled to be removed in this major release, but have been pushed back to `v19` to give teams more time to migrate to the new buttons. Please take the time needed to do so before the `v19` release.
+
+## Migration steps
+
+### Installation
+
+You can update your Recipe installation using a package manager like [npm](https://docs.npmjs.com/cli/v6/commands/npm) or [yarn](https://classic.yarnpkg.com/lang/en/).
+
+```term
+npm install @ezcater/recipe@latest
+```
+
+or
+
+```term
+yarn upgrade @ezcater/recipe@latest
+```

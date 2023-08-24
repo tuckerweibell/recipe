@@ -1,0 +1,255 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import EzAlert from '../../EzAlert';
+import * as AutosuggestStories from './Stories/Autosuggest.stories';
+import * as CustomStories from './Stories/Custom.stories';
+import * as DateStories from './Stories/Date.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as DisabledStories from './Stories/Disabled.stories';
+import * as EmailStories from './Stories/Email.stories';
+import * as LabelStories from './Stories/Label.stories';
+import * as NumericStories from './Stories/Numeric.stories';
+import * as PasswordStories from './Stories/Password.stories';
+import * as SelectStories from './Stories/Select.stories';
+import * as TextStories from './Stories/Text.stories';
+import * as TimeStories from './Stories/Time.stories';
+import * as ValidationStories from './Stories/Validation.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzField
+
+Form input fields provide a structured format for capturing form data, such as text, dates, emails and other data types. Further customization of input fields can be achieved by providing a custom input component, such as an application-specific control.
+
+<Unstyled>
+  <EzAlert
+    headline="This component is in the process of being broken out and deprecated."
+    tagline="There will be breaking changes to the API. Proceed with caution."
+    use="warning"
+  />
+</Unstyled>
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+Form fields should:
+
+- Be clearly labelled. When the field's purpose is clear from context, a label should be visually hidden to ensure the label is available for screen readers.
+- Validate input as soon as possible, usually when users have finished interacting with the field. For validation that may take some time to evaluate, defer validation until form submission.
+
+Form fields should not:
+
+- Use custom z-indices. See more about layering in our [theming guide](?path=/docs/guides-theming--docs#layering).
+
+## Content guidelines
+
+- Use placeholder text with example input values where additional context is valuable.
+- Provide helper text to assist with filling out a form field, or clarify the purpose of the information being captured. Form helper text should be succinct.
+- Provide short and concise error messages, explaining what went wrong and how to fix it.
+- Mark fields as optional where the information provided isn't essential for the purpose of the form. Don't mark required fields with asterisks.
+
+## Text
+
+#### `type="text"`
+
+Text fields (default) allow users to provide short text input.
+
+<Canvas of={TextStories.Text} meta={TextStories} />
+
+#### `type="textarea"`
+
+Text area fields allow users to provide text input that may span more than one line.
+
+<Canvas of={TextStories.TextArea} meta={TextStories} />
+
+#### `placeholder`
+
+A `placeholder` can be used to provide the user with additional context about the expected input.
+
+<Canvas of={TextStories.TextPlaceholder} meta={TextStories} />
+
+#### `maxLength`
+
+A character count can be used on a text or text area field to indicate the restrictions on the maximum length of an input.
+
+<Canvas of={TextStories.TextMaxLength} meta={TextStories} />
+
+#### `size`
+
+Use `size` to specify how tall the text area field should be with the options: `small`, `medium`, `large`.
+
+<Canvas of={TextStories.TextAreaSize} meta={TextStories} />
+
+## Labels
+
+EzField inputs should include a `label` where appropriate.
+
+<Canvas of={LabelStories.Label} meta={LabelStories} />
+
+#### `helperText`
+
+Additional context can be given in the form of `helperText` to provide further instructional content.
+
+<Canvas of={LabelStories.HelperText} meta={LabelStories} />
+
+#### `labelSize`
+
+For fields where the intent is otherwise clear from the context of the page, use `labelSize="small"` to provide an understated label, so as not to draw focus away from the primary actions on the page.
+
+<Unstyled>
+  <EzAlert headline="It is recommended not to use small labels with helper text." use="warning" />
+</Unstyled>
+
+<Canvas of={LabelStories.LabelSmall} meta={LabelStories} />
+
+#### `labelHidden`
+
+If a label is clear from context, use `labelHidden` to visually hide the label while still providing context for accessibility.
+
+<Canvas of={LabelStories.LabelHidden} meta={LabelStories} />
+
+## Disabled
+
+Use the `disabled` prop to show users that a field is not available for interaction. Often used where a form field is not available due to the current state of the form.
+
+<Canvas of={DisabledStories.DisabledText} meta={DisabledStories} />
+
+## Validation
+
+Validation lets the user know that there is a problem with the provided input.
+
+- Whenever possible, validate the input _after_ the user has finished their interaction with a field.
+- If the user does not interact with the field before the form is submitted, the input should be validated on submission of the form.
+- Error messages should be removed as early as possible, ideally as the user is typing, so that the user can see when an error has been addressed.
+- Use the `error` prop to provide a validation message to display to the user. The presence of a value indicates that the field is currently in an invalid state.
+- Use the `touched` prop to indicate that the user has interacted with or has visited the field. This value is used to determine whether or not to show an error and helps to avoid overwhelming users with error messages for fields they have not interacted with.
+
+Note: Recipe doesn't maintain the value of `touched`, and instead expects the `touched` state to be managed within the application, typically via [formik](https://jaredpalmer.com/formik/) or another form validation library.
+
+<Canvas of={ValidationStories.Validation} meta={ValidationStories} />
+
+## Numeric
+
+#### `type="number"`
+
+Numeric fields allow users to provide numeric input values.
+
+<Canvas of={NumericStories.Numeric} meta={NumericStories} />
+
+## Password
+
+#### `type="password"`
+
+Password fields allow users to securely enter a password, typically as part of a login form.
+
+<Canvas of={PasswordStories.Password} meta={PasswordStories} />
+
+## Email
+
+#### `type="email"`
+
+Email fields allow users to input email values.
+
+Can be paired with the any of the following props to forward supported [HTML input element attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#additional_attributes) onto the rendered input element: `list`, `maxLength`, `minLength`, `multiple`, `pattern`, `placeholder`, and `readOnly`.
+
+<Canvas of={EmailStories.Email} meta={EmailStories} />
+
+## Select list
+
+#### `type="select"`
+
+Select list fields allow users to choose from a larger dropdown list of options than would be appropriate for radio buttons.
+
+- Use `options` to provide an array of objects with `label` and `value` properties for each option to present for selection.
+- Use `onSelectionChange` to identify the selected item. This callback is provided the `value` of the selected option. Note: `onChange` is supported, but is deprecated.
+
+<Canvas of={SelectStories.Select} meta={SelectStories} />
+
+#### `group`
+
+A `group` prop can be applied to each option to allow users to select from smaller lists of logically related options, making them easier to navigate. Options are presented in the order in which they are grouped, and then by the order in which they are provided. To avoid options rendering options out of sequence, provide the `options` prop a list pre-sorted by group.
+
+<Canvas of={SelectStories.SelectGroup} meta={SelectStories} />
+
+## Autosuggest list
+
+#### `type="autosuggest"`
+
+Autosuggest fields allow the user to filter longer lists of options to a set that matches the text entered.
+
+- If you have fewer than 6 items, consider using [EzRadio](?path=/docs/input-ezradio--docs) instead.
+- Use `onSelectionChange` to identify the selected item.
+- Use `onFilter` to react to user text input, in order to filter options to match. When updating the options list, it is strongly recommended that results are first sorted so that options are listed in the order in which the term appears earliest. For example, when searching "al", "**Al**bany, New York" appears before "T**al**lahassee, Florida".
+
+<Canvas of={AutosuggestStories.Autosuggest} meta={AutosuggestStories} />
+
+## Date
+
+#### `type="date"`
+
+Date fields allow users to pick a date from a popup calendar or enter their own date directly into the input field. Dates are displayed with the format `MM/DD/YYYY`.
+
+<Canvas of={DateStories.Date} meta={DateStories} />
+
+#### `minDate` and `maxDate`
+
+Use `minDate` and `maxDate` to allow users to pick a restricted range of available dates from a popup calendar _based on specified dates_. Dates outside of this range will not be selectable, however additional validation is required to prevent invalid values from being entered directly into the input.
+
+<Canvas of={DateStories.DateRange} meta={DateStories} />
+
+#### `filterDate`
+
+Use `filterDate` to allow users to pick a restricted range of available dates from a popup calendar _based on a given filter_. Dates outside of this range will not be selectable, however additional validation is required to prevent invalid values from being entered directly into the input.
+
+<Canvas of={DateStories.DateFilter} meta={DateStories} />
+
+#### Clearing a date
+
+Programmatically clear the selection in a date input using an `EzButton` to set the date to `''`.
+
+<Canvas of={DateStories.DateClear} meta={DateStories} />
+
+## Time
+
+#### `type="time"`
+
+Time fields allow users to pick a time from a select dropdown. Be sure to specify the range of times to display using `start` and `end`. Times are displayed with the format h:mma, for example, `9:45am`.
+
+<Canvas of={TimeStories.Time} meta={TimeStories} />
+
+#### `step`
+
+An optional step can change the interval in which the times are generated. By default the step is `60` minutes.
+
+Supported steps are: `5`, `10`, `15`, `20`, `30`, and `60`.
+
+<Canvas of={TimeStories.TimeStep} meta={TimeStories} />
+
+#### `displayAsNoon`
+
+To replace the "12:00 PM" label with "Noon", use the `displayAsNoon` prop.
+
+<Canvas of={TimeStories.TimeDisplayAsNoon} meta={TimeStories} />
+
+#### `focusLabel`
+
+Use `focusLabel` to determine which option is guaranteed to be within view when the dropdown opens, before a selection is made.
+
+<Canvas of={TimeStories.TimeFocusLabel} meta={TimeStories} />
+
+## Custom
+
+A custom input can be created to allow the usage of application-specific input components while still providing standard field behaviors, such as validation. The custom component will have props forwarded from EzField.
+
+<Canvas of={CustomStories.Custom} meta={CustomStories} />
+
+## Related components
+
+<RelatedComponents components={['EzCheckbox', 'EzFormLayout', 'EzLayout', 'EzRadio']} />

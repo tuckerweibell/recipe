@@ -123,4 +123,6 @@ export const Link = forwardRef<HTMLElement, any>((props, ref) => {
   return <LinkComponent ref={ref} {...rest} />;
 });
 
+EzLink.displayName = 'EzLink';
+
 export default EzLink;

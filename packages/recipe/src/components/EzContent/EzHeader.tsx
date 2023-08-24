@@ -1,16 +1,15 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, ReactNode} from 'react';
 import Slot from './Slot';
 
-type HeaderProps = {
-  children: React.ReactNode;
+type Ref = HTMLElement;
+type EzHeaderProps = {
+  children: ReactNode;
 };
 
-function Header(props: HeaderProps, ref) {
-  return <Slot element="header" slot="header" ref={ref} {...props} />;
-}
+const EzHeader = forwardRef<Ref, EzHeaderProps>((props, ref) => (
+  <Slot element="header" slot="header" ref={ref} {...props} />
+));
 
-/**
- * EzHeader represents a header section within a Recipe container.
- */
-const EzHeader = forwardRef(Header);
+EzHeader.displayName = 'EzHeader';
+
 export default EzHeader;

@@ -1,0 +1,100 @@
+import {Meta, Source, Unstyled} from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import ColorPalette from '../components/ColorPalette';
+import TableOfContents from '../components/TableOfContents';
+import Typography from '../components/Typography';
+import {EzAlert} from '../../src/components';
+
+<Meta title="Guides/Theming" />
+<TableOfContents />
+
+# Theming
+
+As of [Recipe v14](?path=/docs/guides-migration-v14--docs#migration-to-recipe-14), Emotion themes are now supported, making Recipe more flexible and adaptable, allowing downstream apps to use themes to utilize Recipe components more effectively.
+
+Recipe themes are extended from the [MUI default theme](https://mui.com/customization/default-theme/) and represent a single source of truth for supported theme properties. If there is a specific use case for doing so, these themes can be further extended.
+
+<Unstyled>
+  <EzAlert
+    headline="Warning"
+    tagline="Extending themes can make future upgrade paths more difficult and should only be done when there is a valid use case to do so. If you'd like to suggest a change to a supported theme, please reach out to the Recipe team."
+    use="warning"
+  />
+</Unstyled>
+
+---
+
+## Supported Themes
+
+Recipe defines and makes accessible the following supported themes:
+
+- `ezTheme`
+- `ezMarketplaceTheme` - extends `ezTheme`
+- `ezFulfillmentTheme` - extends `ezTheme`
+
+To learn more about how to use and extend these themes, read our Getting Started section on [Recipe Themes](?path=/docs/guides-getting-started--docs#recipe-themes).
+
+---
+
+## Colors
+
+### Theme properties
+
+This Recipe theme supports the following Emotion theme properties, which can be extended if needed.
+
+<ColorPalette showThemeProperties />
+
+### Common colors
+
+This Recipe theme supports the following set of design tokens for colors (`theme.palette.common.[color]`).
+
+<ColorPalette />
+
+---
+
+## Typography
+
+This Recipe theme supports the following set of design tokens for typography.
+
+### Fonts
+
+#### Default Font
+
+<Typography fontType="defaultFont" />
+
+#### Header Font
+
+<Typography fontType="headerFont" />
+
+### Icons
+
+This Recipe theme supports the following icon sizes.
+
+<Source
+  language="jsx"
+  code={dedent`
+    small: 16px;
+    medium: 24px;
+    large: 32px;
+    xlarge: 60px;
+  `}
+/>
+
+## Layering
+
+Recipe uses `z-index` sparingly, as this can cause maintenance issues with [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) within Recipe and in downstream applications. In some cases, we carefully use `z-index` values to properly layer components like modals. Recipe mirrors the [MUI `z-index` values](https://mui.com/material-ui/customization/z-index/) to avoid conflicts with components that were implemented with MUI. While you can override `z-index`, it is discouraged because it will likely have cascading effects.
+
+This theme's currently specified `z-index` values:
+
+<Source
+  language="jsx"
+  code={dedent`
+    EzAutosuggest: 1350;
+    EzDateInput: 1350;
+    EzModal: 1300;
+    EzPopover: 1350;
+    EzSelect: 1350;
+    EzTimeInput: 1350;
+    EzTooltip: 1500;
+  `}
+/>

@@ -1,0 +1,60 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import dedent from 'ts-dedent';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import * as ActionStories from './Stories/Action.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as ImageStories from './Stories/Image.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzBlankState
+
+Blank states are used when a container has no data to show. This can happen when no results are returned while filtering, or for new users of the product when they haven't had time to create data yet. They should inform the user why they're seeing the blank state, and what action the user can take (if applicable) to resolve.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+Blank state should:
+
+- Be the only thing visible in the card to focus the user's attention on the message. When using blanks state within a card, the card title, subheading and card actions must be removed and replaced with the blank state.
+- Have a title that concisely explains the current state.
+- Have a message with any additional details, and a clear course of action for the user when applicable.
+- Use a primary button when the action is something the user can trigger.
+
+Blank state should not:
+
+- Be used on the page background. They need to appear in a container.
+- Include more than one button.
+
+## Basic blank state
+
+A basic blank state contains a required `title` and `message`.
+
+Keep titles short and descriptive of the state. Avoid punctation at the end of the title unless you are using two sentences. Messages should add more detail of why the blank state could be showing (if details beyond the title are needed) and suggest a path back to an ideal state.
+
+<Canvas of={DefaultStories.Default} />
+
+## Blank state with action
+
+A blank state can display an optional `action`. An action button should help the user fix the problem.
+
+<Canvas of={ActionStories.Action} meta={ActionStories} />
+
+## Blank state with image
+
+A blank state can display an optional image using `imageSrc`.
+
+When it's likely that the user has never had data in a container, using an image can draw attention to and explain a potentially new concept. You can also use an image to help reinforce complex concepts.
+
+<Canvas of={ImageStories.Image} meta={ImageStories} />
+
+## Related components
+
+<RelatedComponents components={['EzCard']} />

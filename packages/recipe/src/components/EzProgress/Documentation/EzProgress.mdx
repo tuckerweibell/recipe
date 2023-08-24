@@ -1,0 +1,111 @@
+import {Meta} from '@storybook/blocks';
+import MigrationAlert from '../../../../docs/components/MigrationAlert';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzProgress
+
+<MigrationAlert component="ez-progress" />
+
+The `EzProgress` component charts circular progress towards a percentage goal from 0 to 100.
+
+## Best practices
+
+Provide a `value` for progress. If no `value` is provided, the display value will default to `--%`.
+Provide an accessible `label`. If there's a chance your `value` could be undefined, account for that in your label.
+
+## Goal progress
+
+When using a `goal` and `subgoal`:
+
+- If the goal is met or exceeded, the progress color will be `green`.
+- If the value falls between the `goal` and `subgoal`, the progress color will be `yellow`.
+- If the value is below the `subgoal`, the progress color will be `red`, and the display value will be bold.
+
+Provide _either_ `goal` with `subgoal` _or_ `color`. Don't provide `color` _and_ `goal` with `subgoal`. Don't use the `metricOnly` or `inverted` flags.
+
+```jsx
+<EzPage>
+  <EzCard isQuiet title="Meeting goal">
+    <EzProgress value={91} goal={90} subgoal={49} label="Q1 on-time delivery goal progress - 91%" />
+  </EzCard>
+  <EzCard isQuiet title="Meeting subgoal">
+    <EzProgress value={52} goal={90} subgoal={49} label="Q1 on-time delivery goal progress - 52%" />
+  </EzCard>
+  <EzCard isQuiet title="Not meeting subgoal">
+    <EzProgress value={44} goal={90} subgoal={49} label="Q1 on-time delivery goal progress - 44%" />
+  </EzCard>
+</EzPage>
+```
+
+## Custom progress
+
+When using a `color` from the supported colors list: `red`, `yellow`, `green`, `blue`.
+
+Provide _either_ `goal` with `subgoal` _or_ `color`. Don't provide `color` _and_ `goal` with `subgoal`. Don't use the `metricOnly` or `inverted` flags.
+
+```jsx
+<EzPage>
+  <EzCard isQuiet title="Custom progress">
+    <EzProgress value={44} color="blue" label="Q1 on-time delivery goal progress - 44%" />
+  </EzCard>
+</EzPage>
+```
+
+## Metric only and inverted progress
+
+Metrics only progress is meant for inverted goals (descending towards 0% instead of ascending towards 100%) and metrics for which a percentage circular progress chart does not make logical sense.
+
+Provide a `goal` and the `metricOnly` flag to display progress without a circular chart. If the goal is an inverted goal, use the `inverted` flag.
+
+Do not use `color` or `subgoal` with the `metricOnly` and `inverted` flags.
+
+```jsx
+<EzPage>
+  <EzCard isQuiet title="Not meeting metric only inverted goal: 0%">
+    <EzProgress
+      label="Q1 rejected orders goal - 3% of 0% goal"
+      value={3}
+      goal={0}
+      metricOnly
+      inverted
+    />
+  </EzCard>
+  <EzCard isQuiet title="Meeting metric only inverted goal: 0%">
+    <EzProgress
+      label="Q1 cancelled orders - 0% of 0% goal"
+      value={0}
+      goal={0}
+      metricOnly
+      inverted
+    />
+  </EzCard>
+  <EzCard isQuiet title="Meeting metric only goal: 10%">
+    <EzProgress label="Q1 cancelled orders - 12% of 10% goal" value={12} goal={10} metricOnly />
+  </EzCard>
+  <EzCard isQuiet title="Not meeting metric only goal: 10%">
+    <EzProgress label="Q1 cancelled orders - 8% of 10% goal" value={8} goal={10} metricOnly />
+  </EzCard>
+</EzPage>
+```
+
+## Empty progress
+
+Provide a `value` for progress. If no `value` is provided, the display value will default to `--%`.
+Provide an accessible `label`. If there's a chance your `value` could be undefined, account for that in your label.
+
+```jsx
+<EzPage>
+  <EzCard isQuiet>
+    <EzProgress color="blue" label="Q1 on-time delivery goal progress - empty value" />
+  </EzCard>
+</EzPage>
+```
+
+## Related components
+
+<RelatedComponents components={['EzCard', 'EzProgressTracker']} />

@@ -4,3 +4,4 @@ dist/
 build/
 out/
 .github/
+packages/recipe/public/playroom

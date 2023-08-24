@@ -1,0 +1,43 @@
+import React from 'react';
+import {type Meta, type StoryObj} from '@storybook/react';
+import dedent from 'ts-dedent';
+import {{pascalCase name}} from '../../{{pascalCase name}}';
+
+const meta: Meta<typeof {{pascalCase name}}> = {
+  argTypes: {
+    propA: {
+      control: {type: 'select'},
+      description: 'The description of propA.',
+      options: ['option1', 'option2', 'option3'],
+      table: {type: {summary: 'string'}},
+    },
+    propB: {
+      control: {type: 'text'},
+      description: 'The description of propB.',
+      type: {name: 'string', required: true},
+      table: {type: {summary: 'string'}},
+    },
+  },
+  component: {{pascalCase name}},
+  title: 'Category/{{pascalCase name}}',
+};
+
+export default meta;
+type Story = StoryObj<typeof {{pascalCase name}}>;
+
+export const Default: Story = {
+  args: {
+    propA: 'option1',
+    propB: 'Some text',
+  },
+  parameters: {
+    playroom: {
+      code: dedent`
+        <{{pascalCase name}}
+          propA="option1"
+          propB="Some text"
+        />
+      `,
+    },
+  },
+};

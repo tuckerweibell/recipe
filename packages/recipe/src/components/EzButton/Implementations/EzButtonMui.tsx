@@ -9,7 +9,7 @@ const EzButtonMui = forwardRef<Ref, EzButtonMuiProps>(
   ({ariaHidden, ariaLabel, children, color, fontSize, loading, variant, ...props}, ref) => {
     const theme = useTheme();
     const isCommonColor = color?.startsWith('common.') || color === 'destructive';
-    const themeColor = useThemeColor(color === 'destructive' ? 'common.alert100' : color);
+    const themeColor = useThemeColor(color === 'destructive' ? 'common.red110' : color);
     const ButtonComponent = loading ? LoadingButton : Button;
     const baseVariant = (btnVariant: EzButtonMuiProps['variant']) => {
       switch (btnVariant) {

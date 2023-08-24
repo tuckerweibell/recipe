@@ -19,11 +19,11 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
   (
     {
       barColor,
-      idPrefix,
       data,
-      description,
       dependentAxisLabelFormatter,
       dependentAxisLabelValues,
+      description,
+      idPrefix,
       independentAxisLabelFormatter,
       independentAxisLabelValues,
       maxDependentValue,
@@ -55,40 +55,33 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
     return (
       <div ref={ref}>
         <VictoryChart
-          domainPadding={domainPadding}
-          padding={chartPadding}
-          height={chartHeight}
-          width={chartWidth}
-          maxDomain={{x: maxIndependentValue, y: maxDependentValue}}
-          minDomain={minDomain}
-          title={title}
-          desc={description}
           containerComponent={
             <VictoryVoronoiContainer containerId={idPrefix} voronoiDimension="x" activateData />
           }
+          desc={description}
+          domainPadding={domainPadding}
+          height={chartHeight}
+          maxDomain={{x: maxIndependentValue, y: maxDependentValue}}
+          minDomain={minDomain}
+          padding={chartPadding}
+          title={title}
+          width={chartWidth}
         >
           <VictoryAxis
-            dependentAxis
             crossAxis={false}
-            tickFormat={dependentAxisLabelFormatter}
+            dependentAxis
             style={dependentAxisStyle}
+            tickFormat={dependentAxisLabelFormatter}
             tickValues={dependentAxisLabelValues}
           />
           <VictoryAxis
-            tickFormat={independentAxisLabelFormatter}
             style={independentAxisStyle}
+            tickFormat={independentAxisLabelFormatter}
             tickValues={independentAxisLabelValues}
           />
           <VictoryBar
-            style={barStyle}
             barWidth={barWidth}
             data={data}
-            labels={({datum}) => {
-              const displayLabel = dependentAxisLabelFormatter
-                ? dependentAxisLabelFormatter(datum.y)
-                : datum.y;
-              return `${displayLabel}`;
-            }}
             labelComponent={
               <VictoryTooltip
                 style={tooltipFont}
@@ -98,6 +91,13 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
                 dy={-6}
               />
             }
+            labels={({datum}) => {
+              const displayLabel = dependentAxisLabelFormatter
+                ? dependentAxisLabelFormatter(datum.y)
+                : datum.y;
+              return `${displayLabel}`;
+            }}
+            style={barStyle}
           />
         </VictoryChart>
       </div>

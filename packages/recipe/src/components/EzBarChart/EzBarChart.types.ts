@@ -11,11 +11,11 @@ type AxisLabelValue = string | number | string[] | (() => void);
 
 export interface EzBarChartProps {
   barColor?: EzThemeColors;
-  idPrefix?: string | number;
   data: Datum[];
-  description: string;
   dependentAxisLabelFormatter?: (t: AxisLabelValue) => void;
   dependentAxisLabelValues?: AxisLabelValue[];
+  description: string;
+  idPrefix?: string | number;
   independentAxisLabelFormatter?: (t: AxisLabelValue) => void;
   independentAxisLabelValues?: AxisLabelValue[];
   maxDependentValue?: number;

@@ -235,7 +235,7 @@ describe('EzRating', () => {
             emptyIcon={MOCK_ICON_FA_EMPTY_STAR}
             halfIcon={MOCK_ICON_FA_HALF_STAR}
             fullIcon={MOCK_ICON_FA_FULL_STAR}
-            color="common.green"
+            color="common.green100"
           />
         ),
         sizeProp: (

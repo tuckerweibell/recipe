@@ -382,7 +382,7 @@ const stitches = createStitches({
       800: '32px',
       900: '42px',
       // aliases
-      text: 'var(--recipe-base-font-size, $200)',
+      text: '$200',
 
       // EzButton
       'button-text': '$text',

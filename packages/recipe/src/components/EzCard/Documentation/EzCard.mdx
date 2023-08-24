@@ -1,0 +1,220 @@
+import {Canvas, Controls, Meta, Primary, Story} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as AccentStories from './Stories/Accent.stories';
+import * as ActionStories from './Stories/Action.stories';
+import * as AppearanceStories from './Stories/Appearance.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as ElementsStories from './Stories/Elements.stories';
+import * as ExpandableStories from './Stories/Expandable.stories';
+import * as SectionStories from './Stories/Section.stories';
+import * as SizeStories from './Stories/Size.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzCard
+
+Cards are a means of visually grouping content on a page.
+
+Cards can be completely custom, or built using any of the card options provided out-of-the-box. They may have a cover photo or preview image, a card body or multiple card sections with information about the content, and an optional footer.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Best practices
+
+Cards should:
+
+- be used to organize page content
+- group related content - otherwise consider using two separate cards
+- contain a maximum of one primary call-to-action per card
+- position call-to-action for next steps at the bottom of the card, and use the space in the top right for optional actions
+- use [card sections](#cards-with-sections) for related but distinct content - multiple sections can help break up complicated concepts to make them easier to scan
+- optionally use a heading to help identify the contents of the card at-a-glance
+- be used with accents sparingly
+
+Cards should not:
+
+- be nested inside each other
+
+## Anatomy
+
+A standard card has the following anatomy:
+
+<img
+  src="/images/card-anatomy.svg"
+  alt="Image labeling the component parts of a standard-style card, including a preview image, caption, title, action menu, and empty content areas for body content and other actions."
+  width="800px"
+/>
+
+## Cards with props
+
+A card can display grouped elements by providing relevant props.
+
+- `title` - the title of the card
+  - should be descriptive of the entire card, not just the first section within the card
+  - should be used when you want the content to be identifiable at a glance
+- `subtitle` - the subtitle of the card, providing further information
+  - should only be used with a title
+  - should describe the entire card, not just a particular section
+- `titleIcon` - the card title icon
+  - consider the appropriate the size, color, and accessibility of each icon
+- `actions` - quick actions included in the card header
+  - should only be provided with a corresponding card title, such that the target of the action is clear
+  - multiple actions should be wrapped in an `EzLayout` to manage breakpoints
+  - minimize the number of actions offered due to limited space
+- `imageSrc` - the image URL for the card
+  - used to enhance the content of the card (e.g. ideal for marketing content)
+  - renders full-bleed inside of a card (without padding between the image and the card container)
+  - fill the width of the container while maintaining their aspect ratio, however images positioned to the right or left of the container will fill half of the card, clipping the image to match the aspect ratio of the available space
+- `imagePosition` - the image position
+  - `left`, `right`, `top`, or responsive e.g. `{base: 'top', medium: 'left'}`
+- `imageMaxHeight` - constrains the max image height
+  - only available with `imagePosition="top"`
+  - when using this option, if the image's aspect ratio does not match the aspect ratio of its box, the image will be clipped to fit the available space
+- `imageMaxWidth` - constrains the max image width
+  - only available with `imagePosition="left"` and `imagePosition="right"`
+
+<Canvas of={ElementsStories.WithProps} meta={ElementsStories} />
+
+## Cards with components
+
+A card can also display grouped elements by providing the following content components as _direct descendants_ to `EzCard`:
+
+- `EzPreview` - image or illustration of the card
+- `EzHeader` - title and other header content of the card (such as actions)
+- `EzContent` - body of the card
+- `EzFooter` - footer of the card
+
+<Canvas of={ElementsStories.WithComponents} meta={ElementsStories} />
+
+## Cards with sections
+
+Cards can have multiple sections to break up complex content into easier to digest parts. Use `EzCardSection` when you have more than one section in your panel.
+
+Cards with sections:
+
+- are automatically separated visually with a divider when used in the default configuration (vertically stacked)
+- may optionally include a heading
+- may optionally include a subheading - should only be used alongside a card section heading
+- may optionally include actions - should only be provided when the card section has a corresponding card title, such that the target of the action is clear
+- do not support varying horizontal/vertical layouts across breakpoints
+
+<Canvas of={SectionStories.VerticalSections} meta={SectionStories} />
+
+Sections can also be laid out horizontally, which does not display a separator.
+
+<Canvas of={SectionStories.HorizontalSections} meta={SectionStories} />
+
+## Expandable cards
+
+Expandable cards can be used to offer at-a-glance content, with the option to show more on demand.
+
+Expandable cards:
+
+- should be used when space is a constraint and where the information is either not frequently used, or is not critical for the user to make informed choices
+- will render a footer at the bottom of `EzCard` for toggling `EzCardExpandable` components
+- should pass down an `isExpanded` state to both the `EzCard` and `EzCardExpandable` components
+- requires the `expandLabel`, `collapseLabel` and `onClick` properties in the `expandable` prop
+
+<Canvas of={ExpandableStories.Expandable} meta={ExpandableStories} />
+
+## Card actions
+
+#### Single actions
+
+Quick actions may optionally be included in the card header and should be provided with a corresponding card title, such that the target of the action is clear. As the card header has limited space, it's recommended to minimize the number of actions offered.
+
+<Canvas of={ActionStories.SingleAction} meta={ActionStories} />
+
+#### Multiple actions
+
+Consider wrapping multiple actions in an `EzLayout` to manage how they stack at smaller breakpoints.
+
+<Canvas of={ActionStories.MultipleActions} meta={ActionStories} />
+
+#### Clickable cards
+
+Clickable cards present a preview of a piece of content and offer a large hit-surface to make it easy to link to the full content.
+
+Clickable cards:
+
+- are reserved for content where there is a single unique and predictable outcome resulting from interaction with the card
+- render the whole card surface as interactive
+- use the `clickable` prop to indicate to users that a card is clickable
+- use the `onClick` prop to handle click or touch interactions with the card, typically triggering the navigation action of a link within the card, or to display a [modal dialog](?path=/docs/feedback-ezmodal--docs)
+- typically belong to a [list item](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) allowing assistive technology to help users know how many cards are available and provide a shortcut between items
+- should not contain more than one link, button or other call-to-action - otherwise consider using [quiet cards](#card-appearance)
+
+<Canvas of={ActionStories.Clickable} meta={ActionStories} />
+
+#### Clickable cards with a header link
+
+When the card heading text describes the content at the destination of the link, the header text should become the primary link for the card.
+
+Clickable cards with a heading link:
+
+- includes a link with a unique and descriptive label, which is useful when users are searching through aggregated lists of links
+- allows the whole card to act as a large hit-surface for the link, without negatively impacting keyboard users, who retain access to the original link
+- should avoid triggering a redundant click event, caused when a click event directly on the link bubbles up to the card
+
+<Canvas of={ActionStories.ClickableHeaderLink} meta={ActionStories} />
+
+#### Card with a specific call to action (CTA)
+
+An explicit CTA button or link within a card can be added to grab the user's attention or further emphasize that a card is interactive.
+
+Cards with CTAs:
+
+- tell the user exactly what action to take and how to take it, and are often short simple instructions like "Order now" or "Read more"
+- should use `aria-hidden` on the CTA to remove the redundant functionality and avoid the unwanted tab-stop for keyboard users
+
+<Canvas of={ActionStories.ClickableCTA} meta={ActionStories} />
+
+## Cards with accents
+
+Accented info cards can be used when you want to draw attention to a card that does not need immediate action.
+
+##### `accent="info"`:
+
+<Canvas of={AccentStories.Info} meta={AccentStories} />
+
+## Card size
+
+Cards apply spacing to the card container, card header, card sections and top-level content within the card body.
+
+The default size for a card is `medium`. Cards with a `small` size are best for browsing content as part of a list or grid of cards.
+
+##### `size="medium"`:
+
+<Canvas of={SizeStories.Medium} meta={SizeStories} />
+
+##### `size="small"`:
+
+<Canvas of={SizeStories.Small} meta={SizeStories} />
+
+## Card appearance
+
+By default, cards are intentionally prominent. A card's appearance can be changed using the following props:
+
+##### `isQuiet`:
+
+- uses a solid outline and appears flat on the page
+- [small](#card-size) by default
+- intended for secondary content or lists of homogeneous content, intentionally trading prominence for easy-scanning
+
+<Canvas of={AppearanceStories.Quiet} meta={AppearanceStories} />
+
+##### `transparent`:
+
+- inherits the parent element's background color
+
+<Canvas of={AppearanceStories.Transparent} meta={AppearanceStories} />
+
+## Related components
+
+<RelatedComponents components={['EzPage']} />

@@ -1,0 +1,318 @@
+import {Meta} from '@storybook/blocks';
+import MigrationAlert from '../../../../docs/components/MigrationAlert';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import * as DefaultStories from './Stories/Default.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzModal
+
+<MigrationAlert component="ez-modal" />
+
+Modals display content in a layer on top of the application. Modals should be used when it's necessary to interrupt the user or ensure their attention is focused on specific information. Modals can also be used when you'd like the user to accomplish a lower-priority action without changing the state of the page they're working in.
+
+## Best practices
+
+Modals should:
+
+- Provide the user with clear paths forward and/or out of the modal.
+- Provide tabbable elements in the dialog context when providing content for editing.
+
+Modals should not:
+
+- Create a “wizard” flow with two or more steps. Instead, favor full-page layouts for “wizard” style flows.
+- Use custom z-indices. See more about layering in our [theming guide](?path=/docs/guides-theming--docs#layering).
+
+## Content
+
+A standard Modal has the following anatomy:
+
+<img
+  src="/images/modal-anatomy.svg"
+  alt="Image illustrating through labels the component parts of a standard-style modal, including a title and empty content areas for body content and dialog actions."
+  width="800px"
+/>
+
+The areas within a modal can be populated either by providing the relevant props (`headerText`, `submitLabel`, `dismissLabel` etc), or by providing the following content components to your modal as **direct descendants** to the modal:
+
+- `EzPreview` (image or illustration)
+- `EzHeader` (title and other header content e.g. card actions)
+- `EzContent` (body)
+- `EzFooter` (footer)
+
+The `EzHeader`, `EzContent`, and `EzFooter` content elements accept any renderable node, not just strings, allowing you to create dialogs for more complex workflows.
+
+A modal can be shown or hidden using the `isOpen` prop.
+
+## Basic modal
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const close = React.useCallback(() => setIsOpen(false), []);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal isOpen={isOpen} onDismiss={close}>
+        <EzHeader>
+          <EzHeading size="2">Submit Order</EzHeading>
+        </EzHeader>
+        <EzContent>Are you ready to submit this order?</EzContent>
+        <EzFooter>
+          <EzLayout layout="basic">
+            <EzButton onClick={close}>Confirm</EzButton>
+            <EzButton variant="outlined" onClick={close}>
+              Cancel
+            </EzButton>
+          </EzLayout>
+        </EzFooter>
+      </EzModal>
+    </>
+  );
+};
+```
+
+## Informational modal
+
+Informational modals are used to focus the user’s attention on specific information.
+
+Use this variant when presenting information that is not essential to the completion of the actions on the page. This variant can be useful when there is otherwise too much content to display in a tooltip, or where content formatting is needed.
+
+Provide a both the `dismissLabel` prop and the `onDismiss` prop to present the user with a close button and enable the dialog to be automatically closed when clicking away or when pressing the escape key.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </>
+  );
+};
+```
+
+## Editing modals
+
+Editing modals can contain any form elements and should be kept as brief as possible. Long or complex forms should almost always be done in a new section/page instead of a modal. Editing modals are suitable for prompting the user to take a specific action before they are allowed proceed with their regular page interactions.
+
+The `onSubmit` function will be called when the user clicking the button labelled by the provided `submitLabel`.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(null);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal
+        isOpen={isOpen}
+        onSubmit={() => {
+          setSubmitted(true);
+          setIsOpen(false);
+        }}
+        submitLabel="Submit"
+        onDismiss={() => {
+          setSubmitted(false);
+          setIsOpen(false);
+        }}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+      <div>
+        {submitted !== null ? (
+          submitted ? (
+            <EzAlert headline="Submitted" use="success" />
+          ) : (
+            <EzAlert headline="Dismissed" use="info" />
+          )
+        ) : null}
+      </div>
+    </>
+  );
+};
+```
+
+## Confirmation modals
+
+Use a confirmation modal to ask the user to confirm changes they're about to make or confirm a destructive action they're about to take.
+
+- Use destructive buttons to clearly designate actions with destructive consequences
+- Provide a cancel option with a clear label. Make sure the copy isn't confusing when placed next to a destructive action (cancel order, cancel).
+- Provide appropriate detail so the user can make an informed decision.
+
+The `destructive` prop should be used to indicate that the `onSubmit` function is destructive.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal
+        destructive
+        isOpen={isOpen}
+        onSubmit={() => setIsOpen(false)}
+        submitLabel="Submit"
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </>
+  );
+};
+```
+
+## Required action modals
+
+Use a required action modal only when the user must accept or submit the modal information to move forward on the site.
+
+- Use sparingly as the modal will block use of the site until submitted. Most use cases for required actions should original from our legal team.
+
+A required action modal will be presented when both of the following conditions are met:
+
+- The `dismissLabel` prop is not provided
+- The `onDismiss` prop is not provided
+
+The `submitLabel` prop and the corresponding `onSubmit` prop should be provided to handle the user's acknowledgement and close the dialog.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(null);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal
+        isOpen={isOpen}
+        submitLabel="Submit"
+        headerText="Header goes here"
+        onSubmit={() => {
+          setSubmitted(true);
+          setIsOpen(false);
+        }}
+      >
+        Modal content goes here!
+      </EzModal>
+      <div>
+        {submitted !== null ? (
+          submitted ? (
+            <EzAlert headline="Submitted" use="success" />
+          ) : null
+        ) : null}
+      </div>
+    </>
+  );
+};
+```
+
+## Asynchronous actions
+
+When triggering an action that may take some time, is can be useful for the user to remain on the modal until the action has completed.
+
+You can set the `isSubmitting` prop to indicate that the modal is processing the action.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(null);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal
+        isSubmitting={isSubmitting}
+        isOpen={isOpen}
+        onSubmit={() => {
+          setIsSubmitting(true);
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setIsOpen(false);
+          }, 2000);
+        }}
+        submitLabel="Submit"
+        onDismiss={() => setIsOpen(false)}
+        dismissLabel="Dismiss"
+        headerText="Header goes here"
+      >
+        Modal content goes here!
+      </EzModal>
+    </>
+  );
+};
+```
+
+## Content preview image
+
+Images can be used to enhance the content of the dialog and are ideal for marketing content. Images will render full-bleed inside of a card (i.e. without padding between the image and the dialog container). Images will fill the width of the container while maintaining their aspect ratio.
+
+```jsx
+() => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const close = React.useCallback(() => setIsOpen(false), []);
+
+  return (
+    <>
+      <EzButton onClick={() => setIsOpen(true)}>Open</EzButton>
+      <EzModal isOpen={isOpen} onDismiss={close}>
+        <EzPreview>
+          <picture>
+            <source media="(max-width: 799px)" srcSet={withPrefix('/images/tacos.jpg')} />
+            <source media="(min-width: 800px)" srcSet={withPrefix('/images/tacos-high.jpg')} />
+            <img
+              src={withPrefix('/images/tacos.jpg')}
+              alt="Selection of Baja Fish tacos and Beef Barbacoa Tacos"
+              style={{
+                width: '100%',
+                maxHeight: 300,
+                objectFit: 'cover',
+              }}
+            />
+          </picture>
+        </EzPreview>
+        <EzHeader>
+          <EzHeading size="2">Amuleto Mexican Table</EzHeading>
+        </EzHeader>
+        <EzContent>
+          <p>
+            We pride ourselves on serving the most authentic Mexican food outside of Mexico. But
+            we're warning you: once you try our food, you'll never be able to order from another
+            Mexican restaurant. It's that good! Indulge in our variety of tacos or our flavorful
+            house salsa. We can't wait for you to try it!
+          </p>
+        </EzContent>
+        <EzFooter>
+          <EzLayout layout="basic">
+            <EzButton onClick={close}>Order now</EzButton>
+            <EzButton variant="outlined" onClick={close}>
+              Close
+            </EzButton>
+          </EzLayout>
+        </EzFooter>
+      </EzModal>
+    </>
+  );
+};
+```
+
+## Related components
+
+<RelatedComponents components={['EzButton']} />

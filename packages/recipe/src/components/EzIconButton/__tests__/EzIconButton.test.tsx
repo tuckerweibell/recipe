@@ -49,7 +49,7 @@ describe('EzIconButton', () => {
           </EzIconButton>
         ),
         color: (
-          <EzIconButton ariaLabel="test" color="common.alert100">
+          <EzIconButton ariaLabel="test" color="common.red110">
             <EzIcon icon={faCoffee} />
           </EzIconButton>
         ),

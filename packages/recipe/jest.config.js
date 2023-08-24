@@ -16,6 +16,8 @@ module.exports = {
     '^.+\\.(ts|tsx|js)$': 'ts-jest',
     '^.+\\.svg$': '<rootDir>/jest.fileTransformer.js',
     '^.+\\.md?$': 'jest-raw-loader',
+    '^.+\\.[tj]sx?$': 'babel-jest',
+    '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx',
   },
   transformIgnorePatterns: ['node_modules/(?!(@react-hook)/)'],
   testMatch: ['<rootDir>/src/**/__tests__/**/*.(spec|test).(js|ts)?(x)'],
