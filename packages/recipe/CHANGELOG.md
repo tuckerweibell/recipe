@@ -1,5 +1,32 @@
 # @ezcater/recipe
 
+## 18.0.0
+
+### Major Changes
+
+- BREAKING CHANGE: update `ezColors` to be theme property agnostic and propagate changes to uses [[sha]](https://github.com/ezcater/recipe/commit/9be2bc03)
+- BREAKING CHANGE: remove the deprecated EzBaseFontSizeCompatibility component [[sha]](https://github.com/ezcater/recipe/commit/c540c095)
+- BREAKING CHANGE: update emotion theme property color tokens [[sha]](https://github.com/ezcater/recipe/commit/f94e2bf2)
+
+### Minor Changes
+
+- feat: add fullWidth prop to EzButton [[sha]](https://github.com/ezcater/recipe/commit/157c5f55)
+- docs: move doc site from Gatsby to storybook docs [[sha]](https://github.com/ezcater/recipe/commit/b8b9e1ff)
+
+### Patch Changes
+
+- docs: add playroom snippet for `EzChip` [[sha]](https://github.com/ezcater/recipe/commit/bb2665c3)
+- fix: correct EzFormGroup theme types to be optional [[sha]](https://github.com/ezcater/recipe/commit/add578e0)
+- deps: upgrade `storybook` to `7.0.8`
+  deps: upgrade `storybook-addon-playroom` to `4.0.0`
+  deps: lock `typescript` to `4.6.3` due to stitches issues with any newer version [[sha]](https://github.com/ezcater/recipe/commit/ea30426b)
+- workflow: update plop CLI tool to create new storybook docs structure [[sha]](https://github.com/ezcater/recipe/commit/e4074688)
+- deps: add @fortawesome/free-regular-svg-icons [[sha]](https://github.com/ezcater/recipe/commit/434afce9)
+- fix: update PaletteOptions to allow addition of new top level theme properties [[sha]](https://github.com/ezcater/recipe/commit/779d1eaa)
+- docs: update theming page to show theme properties based on the selected theme [[sha]](https://github.com/ezcater/recipe/commit/12083e21)
+- deps: add @ezcater/icons as dev dependency for use in storybook playroom [[sha]](https://github.com/ezcater/recipe/commit/add578e0)
+- fix: add fill="currentColor" to EzIcon mocks for use in storybook playroom [[sha]](https://github.com/ezcater/recipe/commit/add578e0)
+
 ## 17.10.0
 
 ### Minor Changes
