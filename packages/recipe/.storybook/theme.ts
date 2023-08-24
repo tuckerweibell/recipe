@@ -4,7 +4,7 @@ import {ezTheme} from '../src/themes';
 const baseTheme = {
   // Brand
   brandTitle: 'Recipe',
-  brandUrl: 'https://ezcater.github.io/recipe/',
+  brandUrl: 'https://recipe.ezcater.com/',
   brandImage: 'https://i.imgur.com/uIjnFxK.png',
   brandTarget: '_self',
 

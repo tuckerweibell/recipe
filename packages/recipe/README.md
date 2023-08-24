@@ -1,7 +1,7 @@
 <br>
 
 <p align="center">
-  <a href="https://ezcater.github.io/recipe/">
+  <a href="https://recipe.ezcater.com/">
     <img src="https://user-images.githubusercontent.com/109814/82938935-8e390600-9f60-11ea-8526-c5c8471d642e.png" alt="Recipe logo" />
   </a>
 </p>
@@ -9,7 +9,7 @@
 <p align="center">
   Delicious UI components, from <a href="https://www.ezcater.com/">ezcater</a>.
   <br>
-  <a href="https://ezcater.github.io/recipe/"><strong>Explore website »</strong></a>
+  <a href="https://recipe.ezcater.com/"><strong>Explore website »</strong></a>
 </p>
 
 <br>
@@ -63,14 +63,14 @@ export {default as EzButton} from './components/EzButton';
 
 ## Developing
 
-The [recipe contributions docs](https://ezcater.github.io/recipe/guides/contributing) have a more thorough breakdown of the contribution guidelines.
+The [recipe contributions docs](https://recipe.ezcater.com/?path=/docs/guides-contributing--docs) have a more thorough breakdown of the contribution guidelines.
 
 To begin developing locally, use the following commands:
 
 - Run `yarn install` in the root dir
 - Run `yarn develop` in the root dir
   - This will also open up the recipe-playroom: `http://localhost:9000`
-  - This will also allow you to view the recipe-doc-site in the browser at `http://localhost:8000/`
+  - This will also allow you to view the recipe-doc-site in the browser at `http://localhost:6006/`
     - Changes made to the component markdown as well as the components used in the markdown should be visible here.
 
 Recipe uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lerna.js.org/) internally to manage packages. The above commands can be executed individually using the `yarn workspaces` command, passing in the name of the package and the command to execute.
