@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/ezcater/recipe/issues"
   },
-  "homepage": "https://ezcater.github.io/recipe/",
+  "homepage": "https://recipe.ezcater.com/",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@emotion/is-prop-valid": "^1.1.2",

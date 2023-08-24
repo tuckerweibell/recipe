@@ -12,4 +12,4 @@ Please use the default template below, or choose an appropriate sub-template by 
 - [ ] Provide test coverage for the changes made
 - [ ] Create a changeset (`yarn changeset`) with a summary of the changes
  
-[Contributing guidelines](https://ezcater.github.io/recipe/guides/contributing/)
+[Contributing guidelines](https://recipe.ezcater.com/?path=/docs/guides-contributing--docs)

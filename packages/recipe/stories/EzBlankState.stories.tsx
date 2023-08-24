@@ -12,7 +12,7 @@ export default {
     action: <EzButton>Take action</EzButton>,
     title: 'Blank state title',
     message: 'Blank state description',
-    imageSrc: 'https://ezcater.github.io/recipe/images/review-star.svg',
+    imageSrc: 'https://recipe.ezcater.com/images/review-star.svg',
   },
 };
 
