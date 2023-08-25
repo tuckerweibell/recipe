@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 18.0.1
+
+### Patch Changes
+
+- fix: prevent the emotion plugin from rewriting stitches css prop [[sha]](https://github.com/ezcater/recipe/commit/d8e732f5)
+
 ## 18.0.0
 
 ### Major Changes
