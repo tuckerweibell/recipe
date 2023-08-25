@@ -3,9 +3,8 @@ import {Box, Stack} from '@mui/material';
 import {Unstyled} from '@storybook/blocks';
 import {linkTo} from '@storybook/addon-links';
 import packageJson from '../../../package.json';
-import ezcaterLogo from '../../../public/images/ezcater-logo.svg';
 import {ezTheme} from '../../../src/themes';
-import {EzButton} from '../../../src/components';
+import {EzButton, EzLogo} from '../../../src/components';
 import FullBleed from '../FullBleed';
 import GitHubLink from './GitHubLink';
 import HeroDivider from './HeroDivider';
@@ -59,7 +58,7 @@ const Welcome: FC<unknown> = () => (
                     <Box color={ezTheme.palette.common.green100} fontSize="3rem" mr={2}>
                       from
                     </Box>
-                    <Box component="img" src={ezcaterLogo} alt="ezcater" height="3rem" />
+                    <EzLogo size="large" />
                   </Stack>
 
                   <Box
