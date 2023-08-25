@@ -1,6 +1,6 @@
-const isStorybookCommand = () =>
-  process.env.npm_lifecycle_event === 'storybook' ||
-  process.env.npm_lifecycle_event === 'build-storybook';
+// const isStorybookCommand = () =>
+//   process.env.npm_lifecycle_event === 'storybook' ||
+//   process.env.npm_lifecycle_event === 'build-storybook';
 
 module.exports = api => {
   api.cache(true);
@@ -10,25 +10,26 @@ module.exports = api => {
     plugins: [
       '@babel/plugin-transform-runtime',
       'babel-plugin-dev-expression',
-      !isStorybookCommand() && [
-        '@emotion',
-        {
-          importMap: {
-            '@mui/system': {
-              styled: {
-                canonicalImport: ['@emotion/styled', 'default'],
-                styledBaseImport: ['@mui/system', 'styled'],
-              },
-            },
-            '@mui/material/styles': {
-              styled: {
-                canonicalImport: ['@emotion/styled', 'default'],
-                styledBaseImport: ['@mui/material/styles', 'styled'],
-              },
-            },
-          },
-        },
-      ],
+      // TODO: uncoment when stitches has been removed from recipe
+      // !isStorybookCommand() && [
+      //   '@emotion',
+      //   {
+      //     importMap: {
+      //       '@mui/system': {
+      //         styled: {
+      //           canonicalImport: ['@emotion/styled', 'default'],
+      //           styledBaseImport: ['@mui/system', 'styled'],
+      //         },
+      //       },
+      //       '@mui/material/styles': {
+      //         styled: {
+      //           canonicalImport: ['@emotion/styled', 'default'],
+      //           styledBaseImport: ['@mui/material/styles', 'styled'],
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
     ].filter(Boolean),
     env: {
       esm: {
