@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, type PropsWithChildren} from 'react';
 import theme from '../theme.config';
 import {clsx} from '../../utils';
 
@@ -6,10 +6,12 @@ type OpenProps = {
   opened: boolean;
 };
 
-type HamburgerProps = OpenProps & {
-  onClick: (ev: React.SyntheticEvent<any>) => void;
-  className: string;
-};
+type HamburgerProps = PropsWithChildren<
+  OpenProps & {
+    onClick: (ev: React.SyntheticEvent<any>) => void;
+    className: string;
+  }
+>;
 
 const hamburgerBox = theme.css({
   position: 'relative',

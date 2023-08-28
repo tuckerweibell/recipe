@@ -1,15 +1,17 @@
+import type {ComponentType, MouseEvent, MouseEventHandler, ReactNode} from 'react';
+
 type Column = {
   heading: string;
   numeric?: boolean;
   defaultSort?: Direction;
   key?: string;
-  component?: React.ReactNode | React.ComponentType;
+  component?: ReactNode | ComponentType;
   sortable?: boolean;
-  icon?: React.ReactNode | React.ComponentType;
+  icon?: ReactNode | ComponentType;
   /**
    * @deprecated Use `key` to provide column identifier and `component` to provide a custom cell renderer.
    */
-  accessor?: React.ReactNode | React.ComponentType | string;
+  accessor?: ReactNode | ComponentType | string;
 };
 
 type Direction = 'asc' | 'desc';
@@ -19,21 +21,21 @@ type OnSortClickOptions = {
   direction: Direction;
 };
 
-type onSortClick = (event: React.MouseEvent<HTMLElement>, options: OnSortClickOptions) => void;
+type onSortClick = (event: MouseEvent<HTMLElement>, options: OnSortClickOptions) => void;
 
 type onRowsPerPageChange = (event: any) => void;
 
 type BulkSelection = {
   disableMultiPageSelection?: boolean;
-  onRowSelectClick: (event: React.MouseEvent<HTMLInputElement>, value: any) => void;
-  onBulkSelectClick: React.MouseEventHandler;
+  onRowSelectClick: (event: MouseEvent<HTMLInputElement>, value: any) => void;
+  onBulkSelectClick: MouseEventHandler;
   isRowSelected: (item: any) => boolean;
   totalRowsSelected: number;
 };
 
 type SelectAllOrNoneEnabled = {
-  onSelectAllClick: React.MouseEventHandler;
-  onSelectNoneClick: React.MouseEventHandler;
+  onSelectAllClick: MouseEventHandler;
+  onSelectNoneClick: MouseEventHandler;
 };
 
 type SelectAllOrNoneDisabled = {
@@ -42,7 +44,7 @@ type SelectAllOrNoneDisabled = {
 };
 
 type ActionsProps = {
-  actions: React.ReactNode | React.ComponentType;
+  actions: ReactNode;
   title?: string;
 };
 
@@ -59,8 +61,8 @@ type Pagination = {
   totalRows: number;
   rowsPerPage: number;
   rowsPerPageOptions: number[];
-  onPrevPageClick: React.MouseEventHandler;
-  onNextPageClick: React.MouseEventHandler;
+  onPrevPageClick: MouseEventHandler;
+  onNextPageClick: MouseEventHandler;
   onRowsPerPageChange: onRowsPerPageChange;
 };
 
@@ -97,7 +99,7 @@ type TableBase = {
   columns: Column[];
   items: any[];
   onSortClick?: onSortClick;
-  titleIcon?: React.ReactNode | React.ComponentType;
+  titleIcon?: ReactNode;
   fullWidth?: boolean;
   transparent?: boolean;
 };
@@ -131,10 +133,10 @@ export type Sortable = {
   direction: Direction;
   isSorted: (column: Column) => boolean;
   onClick: (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     column: Column,
     // eslint-disable-next-line no-shadow
-    callback: (event: React.MouseEvent<HTMLElement>, options: OnSortClickOptions) => void
+    callback: (event: MouseEvent<HTMLElement>, options: OnSortClickOptions) => void
   ) => void;
 };
 

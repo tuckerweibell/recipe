@@ -1,4 +1,12 @@
-import React, {useEffect, useRef, createRef, useState} from 'react';
+import React, {
+  createRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type ForwardRefRenderFunction,
+} from 'react';
 import dayjs from 'dayjs';
 import theme from '../theme.config';
 import EzButton from '../EzButton';
@@ -104,7 +112,7 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
   const [focusedDate, setFocusedDate] = useState(selectedDate);
   const focusTarget = useRef<HTMLButtonElement>();
 
-  React.useImperativeHandle(ref, () => ({
+  useImperativeHandle(ref, () => ({
     focus() {
       focusTarget.current.focus();
     },
@@ -239,4 +247,4 @@ const EzCalendar = ({value, onChange, minDate, maxDate, filterDate}, ref) => {
 
 type Handles = {focus: () => void};
 
-export default React.forwardRef(EzCalendar as React.RefForwardingComponent<Handles, any>);
+export default forwardRef(EzCalendar as ForwardRefRenderFunction<Handles, any>);

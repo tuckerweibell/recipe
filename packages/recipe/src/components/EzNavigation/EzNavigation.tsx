@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, {FC, useState, ReactElement} from 'react';
+import React, {FC, type ReactElement, type ReactNode, useState} from 'react';
 import theme from '../theme.config';
 import en from './en';
 import Logo, {LogoType} from './Logo';
@@ -44,10 +44,11 @@ type UserMenu = {
 };
 
 type Props = {
-  links: NavLink[];
-  utilityLinks?: UtilityLink[];
-  userMenu?: UserMenu;
+  children?: ReactNode;
   home: HomeLink;
+  links: NavLink[];
+  userMenu?: UserMenu;
+  utilityLinks?: UtilityLink[];
 };
 
 const wrapper = theme.css({

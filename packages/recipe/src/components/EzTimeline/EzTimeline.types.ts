@@ -1,3 +1,5 @@
+import type {PropsWithChildren} from 'react';
+
 type OptionalLink =
   // requires link props (and does not allow anchor props)
   | {href: string; to: never; as: never}
@@ -6,13 +8,14 @@ type OptionalLink =
   // props of link and anchor are optional, but if you provide them, they must be complete
   | {to?: never; as?: never; href?: never};
 
-export type TimelineEventProps = {
+export type TimelineEventProps = PropsWithChildren<{
   title: string;
   time: string;
   status?: React.ReactElement;
   icon?: React.ReactElement;
-} & OptionalLink;
+}> &
+  OptionalLink;
 
-export type TimelineProps = {
+export type TimelineProps = PropsWithChildren<{
   expandable?: {expandLabel: string; onClick: React.MouseEventHandler};
-};
+}>;

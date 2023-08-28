@@ -3,7 +3,6 @@ import {Box, FormControlLabel, Stack, useTheme} from '@mui/material';
 import {EzFormControlLabelProps, Ref} from '../EzFormControlLabel.types';
 import EzSuperFormControlLabel from '../../EzSuperFormControlLabel';
 import {useThemeColor} from '../../../themes/hooks/useThemeColor';
-import {EzIconTypes} from '../../EzIcon/EzIcon.types';
 import {isSuperFormControlLabel} from '../utils';
 
 const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, ref) => {
@@ -39,7 +38,7 @@ const EzFormControlLabelMui = forwardRef<Ref, EzFormControlLabelProps>((props, r
           <Stack direction="row">
             {label}
 
-            {labelIcons?.map((labelIcon: EzIconTypes, index: number) => (
+            {labelIcons?.map((labelIcon, index: number) => (
               <Box ml={1} key={index}>
                 {labelIcon}
               </Box>

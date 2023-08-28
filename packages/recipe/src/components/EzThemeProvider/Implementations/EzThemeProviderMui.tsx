@@ -1,9 +1,7 @@
-import React, {FC} from 'react';
+import React, {FC, type PropsWithChildren} from 'react';
 import {Theme, ThemeProvider} from '@mui/material';
 
-type EzThemeProviderMuiProps = {
-  theme: Theme;
-};
+type EzThemeProviderMuiProps = PropsWithChildren<{theme: Theme}>;
 
 const EzThemeProviderMui: FC<EzThemeProviderMuiProps> = ({theme, children}) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>

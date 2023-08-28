@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, type HTMLAttributes, type ReactNode} from 'react';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
 import theme from '../theme.config';
@@ -6,25 +6,25 @@ import theme from '../theme.config';
 const box = theme.css({position: 'relative'});
 
 type PropsWithoutTitle = {
-  subtitle?: never;
   actions?: never;
+  subtitle?: never;
   title?: never;
   titleIcon?: never;
 };
 
 type PropsWithTitle = {
+  actions?: ReactNode;
   subtitle?: string;
-  actions?: React.ReactNode;
   title: string;
-  titleIcon?: React.ReactNode | React.ComponentType;
+  titleIcon?: ReactNode;
 };
 
 type Props = PropsWithTitle | PropsWithoutTitle;
-type DOMProps = React.HTMLAttributes<HTMLElement>;
+type DOMProps = HTMLAttributes<HTMLElement>;
 
 export type HeadingProps = DOMProps & Props;
 
-const EzCardHeading: React.FC<HeadingProps> = ({title, subtitle, actions, titleIcon}) => {
+const EzCardHeading: FC<HeadingProps> = ({title, subtitle, actions, titleIcon}) => {
   const heading = title && (
     <EzLayout layout="basic" alignY="top">
       {titleIcon}

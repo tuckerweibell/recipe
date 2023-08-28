@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {type ReactNode, useEffect} from 'react';
 import theme from '../theme.config';
 import EzLayout from '../EzLayout';
 import EzHeading from '../EzHeading';
@@ -11,6 +11,7 @@ type EzFlashMessageUses = 'success' | 'error' | 'warning' | 'info';
 type FlashMessageProps = {
   autohide?: boolean;
   autohideDuration?: number;
+  children?: ReactNode;
   headline?: string;
   onAutohide?: () => void;
   onDismiss?: () => void;

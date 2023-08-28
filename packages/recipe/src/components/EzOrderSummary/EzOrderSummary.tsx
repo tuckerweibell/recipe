@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, type ReactNode} from 'react';
 import en from './en';
 import {useTranslation} from '../../utils/hooks';
 import theme from '../theme.config';
@@ -31,7 +31,7 @@ type Summary = {
 };
 
 type ActionsProps = {
-  actions: React.ReactNode;
+  actions: ReactNode;
   title: string;
 };
 
@@ -121,7 +121,7 @@ const instructions = theme.css({
   padding: '$order-summary-instructions-py $order-summary-instructions-px',
 });
 
-const Item = ({item}) => {
+const Item: FC<{item: Item}> = ({item}) => {
   const {t} = useTranslation(en);
   return (
     <div>
@@ -157,7 +157,7 @@ const Item = ({item}) => {
 /**
  * An order summary is an at-a-glance breakdown of billable items that make up an order.
  */
-const EzOrderSummary: React.FC<Props> = ({actions, items, subtitle, tableware, title, summary}) => {
+const EzOrderSummary: FC<Props> = ({actions, items, subtitle, tableware, title, summary}) => {
   const {t} = useTranslation(en);
   return (
     <EzCard actions={actions} title={title} subtitle={subtitle}>

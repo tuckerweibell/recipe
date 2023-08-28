@@ -1,14 +1,15 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties, FC, type ReactNode} from 'react';
 
 interface PlaceholderProps {
-  width?: CSSProperties['width'];
+  children?: ReactNode;
   height?: CSSProperties['height'];
-  minWidth?: CSSProperties['minWidth'];
   minHeight?: CSSProperties['minHeight'];
+  minWidth?: CSSProperties['minWidth'];
   style?: CSSProperties;
+  width?: CSSProperties['width'];
 }
 
-const Placeholder: React.FC<PlaceholderProps> = ({
+const Placeholder: FC<PlaceholderProps> = ({
   width = 'auto',
   height = 120,
   minWidth,

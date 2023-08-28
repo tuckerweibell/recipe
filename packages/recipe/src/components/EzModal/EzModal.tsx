@@ -1,4 +1,4 @@
-import React, {MouseEvent} from 'react';
+import React, {type MouseEvent, type ReactNode} from 'react';
 import theme from '../theme.config';
 import EzButton from '../EzButton';
 import EzHeading from '../EzHeading';
@@ -71,15 +71,16 @@ const icon = theme.css({
 });
 
 type Props = {
-  headerText?: string;
+  appElement?: string;
+  children?: ReactNode;
   destructive?: boolean;
+  dismissLabel?: string;
+  headerText?: string;
   isOpen: boolean;
   isSubmitting?: boolean;
   onDismiss?: (e?: MouseEvent<HTMLButtonElement>) => void;
   onSubmit?: (e?: MouseEvent<HTMLButtonElement>) => void;
-  appElement?: string;
   submitLabel?: string;
-  dismissLabel?: string;
 };
 
 const useDialogBackdrop = ({onDismiss}) => ({

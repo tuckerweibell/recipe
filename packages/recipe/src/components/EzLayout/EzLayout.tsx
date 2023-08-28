@@ -1,4 +1,4 @@
-import React, {HTMLAttributes} from 'react';
+import React, {HTMLAttributes, type PropsWithChildren} from 'react';
 import {VariantProps} from '@stitches/core';
 import theme from '../theme.config';
 import {domProps, responsiveProps} from '../../utils';
@@ -108,7 +108,11 @@ type Props = Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'> &
 /**
  * Layout provide common ways to arrange content in a single horizontal row.
  */
-const EzLayout: React.FC<Props> = ({children, className, ...initialProps}: any) => {
+const EzLayout: React.FC<PropsWithChildren<Props>> = ({
+  children,
+  className,
+  ...initialProps
+}: any) => {
   const props = responsiveProps(initialProps, true, 'layout', 'alignX', 'alignY', 'columns');
 
   // Note: The layout component needs to the respect white space that might be applied by a parent layout component.
