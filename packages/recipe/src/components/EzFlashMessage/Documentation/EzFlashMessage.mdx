@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -11,11 +11,13 @@ import * as DefaultStories from './Stories/Default.stories';
 
 <MigrationAlert component="ez-flash-message" />
 
----
-
 Flash messages are used to display contextual messages related to content on the page. This could be an action that was just performed by the user or an action that should be taken by the user.
 
----
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
