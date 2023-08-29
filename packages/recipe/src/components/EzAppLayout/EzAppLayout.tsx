@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react';
+import React, {FC, createContext, type PropsWithChildren, useContext} from 'react';
 import {VariantProps} from '@stitches/core';
 import theme from '../theme.config';
 import EzGlobalStyles from '../EzGlobalStyles';
@@ -29,7 +29,7 @@ const frame = theme.css({
   flexDirection: 'column',
 });
 
-const EzAppLayout: React.FC<Props> = ({children, layout}) => {
+const EzAppLayout: FC<PropsWithChildren<Props>> = ({children, layout}) => {
   return (
     <div className={frame()}>
       <EzGlobalStyles />

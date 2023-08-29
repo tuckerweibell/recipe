@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Children, FC, type ReactNode} from 'react';
 import theme from '../theme.config';
 
 const heading = theme.css({
@@ -46,11 +46,11 @@ const list = theme.css({
   '&& > * + *': {marginTop: '$sizes$timeline-gap'},
 });
 
-const EzTimelinePeriod: React.FC<{label: string}> = ({label, children}) => (
+const EzTimelinePeriod: FC<{label: string; children: ReactNode}> = ({label, children}) => (
   <section>
     <h3 className={heading()}>{label}</h3>
     <ol className={list()}>
-      {React.Children.map(children, (child, i) => (
+      {Children.map(children, (child, i) => (
         <li key={i}>{child}</li>
       ))}
     </ol>

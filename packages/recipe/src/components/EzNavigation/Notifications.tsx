@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, type PropsWithChildren} from 'react';
 import {VariantProps} from '@stitches/core';
 import theme from '../theme.config';
 
@@ -27,7 +27,7 @@ const notification = theme.css({
   defaultVariants: {use: 'default'},
 });
 
-type Props = VariantProps<typeof notification>;
+type Props = PropsWithChildren<VariantProps<typeof notification>>;
 
 export const Counter: FC<Props> = ({children, ...props}) => (
   <span className={notification(props)}>{children}</span>

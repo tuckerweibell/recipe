@@ -1,3 +1,5 @@
+import React, {type ComponentType, type MouseEventHandler, type ReactNode} from 'react';
+
 export type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
 };
@@ -7,10 +9,10 @@ export type Path = string;
 export type Location = any;
 export type LinkProps = {
   to: Path | Location;
-  as: React.ComponentType<{to: string}>;
+  as: ComponentType<{to: string; children?: ReactNode}>;
 };
 
-export type Clickable = {onClick: React.MouseEventHandler};
+export type Clickable = {onClick: MouseEventHandler};
 
 export type Labelled = Partial<Clickable> & {
   label: string;

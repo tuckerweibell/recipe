@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {type ReactNode} from 'react';
 import theme from '../theme.config';
 import {usePageSection} from './EzPage';
 import {clsx} from '../../utils';
@@ -54,6 +54,7 @@ const sibling = theme.css({
 });
 
 type Props = {
+  children?: ReactNode;
   use: 'aside' | 'main' | 'horizontal';
 };
 

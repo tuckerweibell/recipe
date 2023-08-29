@@ -1,5 +1,5 @@
 /* eslint-disable filenames/match-regex */
-import React, {FC, ReactElement} from 'react';
+import React, {FC, type PropsWithChildren, type ReactElement} from 'react';
 import {configureAxe} from 'jest-axe';
 import {render, RenderOptions} from '@testing-library/react';
 import EzThemeProvider from './src/components/EzThemeProvider';
@@ -12,7 +12,7 @@ const axe = configureAxe({
   },
 });
 
-const ProviderStack: FC = ({children}) => (
+const ProviderStack: FC<PropsWithChildren<unknown>> = ({children}) => (
   <EzThemeProvider theme={ezTheme}>{children}</EzThemeProvider>
 );
 

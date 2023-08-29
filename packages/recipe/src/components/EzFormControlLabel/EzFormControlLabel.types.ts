@@ -1,5 +1,4 @@
-import {ReactElement, ReactNode} from 'react';
-import {EzIconTypes} from '../EzIcon/EzIcon.types';
+import type {ReactElement, ReactNode} from 'react';
 
 export type Ref = HTMLDivElement;
 
@@ -13,11 +12,11 @@ export type EzFormControlLabelCommonProps = {
 export type FormControlLabelProps = EzFormControlLabelCommonProps & {
   helperText?: string;
   label: ReactNode;
-  labelIcons?: EzIconTypes[];
+  labelIcons?: ReactNode[];
 };
 
 export type SuperFormControlLabelProps = EzFormControlLabelCommonProps & {
-  icon: EzIconTypes;
+  icon: ReactNode;
   label?: ReactNode;
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {type ReactNode, type SVGProps} from 'react';
 import theme from '../theme.config';
 import {clsx} from '../../utils';
 
@@ -24,7 +24,7 @@ const rotateAnimationStyles = theme.css({
 });
 
 type SvgProps = {
-  children: React.SVGProps<SVGSVGElement>;
+  children: ReactNode;
   title: string;
   className?: string;
 };
@@ -63,13 +63,13 @@ export const DotIcon = () => (
   </SvgIcon>
 );
 
-export const ErrorTriangle = (p: React.SVGProps<SVGSVGElement>) => (
+export const ErrorTriangle = (p: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 14 14" height="1rem" width="1rem" {...p}>
     <path d="M13.37 10.94c.12.24.16.49.11.74a1.08 1.08 0 01-1.06.89H1.58a1.08 1.08 0 01-1.06-.9c-.05-.24 0-.49.11-.73l5.42-9.4c.14-.23.33-.4.58-.48.25-.08.5-.08.74 0 .25.08.44.25.58.49l5.42 9.4zM7 9a1 1 0 00-.73.3 1 1 0 00-.3.74c0 .29.1.53.3.73.2.2.44.3.73.3a1 1 0 00.73-.3 1 1 0 00.3-.73 1 1 0 00-.3-.73A1 1 0 007 9zM6 5.27l.19 3.08c0 .06.02.11.08.16.05.06.11.08.19.08h1.08c.08 0 .14-.02.2-.08.05-.05.07-.1.07-.16L8 5.27a.29.29 0 00-.08-.21.26.26 0 00-.19-.08H6.28a.26.26 0 00-.2.08.29.29 0 00-.07.21z" />
   </svg>
 );
 
-export const ErrorIcon = (p: React.SVGProps<SVGSVGElement>) => (
+export const ErrorIcon = (p: SVGProps<SVGSVGElement>) => (
   <ErrorTriangle {...p} className={alignBaseline()} />
 );
 
@@ -124,7 +124,7 @@ export const WarningIcon = () => (
   </SvgIcon>
 );
 
-export const CalendarIcon = (p: React.SVGProps<SVGSVGElement>) => (
+export const CalendarIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 14 14" height="1rem" width="1rem" {...p}>
     <path
       d="M12.833 14H1.167A1.167 1.167 0 0 1 0 12.833v-10.5c0-.644.522-1.166 1.167-1.166h1.166v1.166H1.167v10.5h11.666v-10.5h-1.166V1.167h1.166c.645 0 1.167.522 1.167 1.166v10.5c0 .645-.522 1.167-1.167 1.167zM9.917 9.917h1.166a.583.583 0 1 1 0 1.166H9.917a.583.583 0 1 1 0-1.166zm0-2.334h1.166a.583.583 0 1 1 0 1.167H9.917a.583.583 0 1 1 0-1.167zm1.166-1.166H9.917a.583.583 0 1 1 0-1.167h1.166a.583.583 0 1 1 0 1.167zM10.5 3.5a.583.583 0 0 1-.583-.583V.583a.583.583 0 1 1 1.166 0v2.334a.583.583 0 0 1-.583.583zM8.167 1.167h1.166v1.166H8.167V1.167zm-1.75 8.75h1.166a.583.583 0 1 1 0 1.166H6.417a.583.583 0 1 1 0-1.166zm0-2.334h1.166a.583.583 0 1 1 0 1.167H6.417a.583.583 0 1 1 0-1.167zm1.166-1.166H6.417a.583.583 0 1 1 0-1.167h1.166a.583.583 0 1 1 0 1.167zM7 3.5a.583.583 0 0 1-.583-.583V.583a.583.583 0 1 1 1.166 0v2.334A.583.583 0 0 1 7 3.5zM4.667 1.167h1.166v1.166H4.667V1.167zm-1.75 8.75h1.166a.583.583 0 1 1 0 1.166H2.917a.583.583 0 1 1 0-1.166zm0-2.334h1.166a.583.583 0 1 1 0 1.167H2.917a.583.583 0 1 1 0-1.167zm1.166-1.166H2.917a.583.583 0 1 1 0-1.167h1.166a.583.583 0 1 1 0 1.167zM3.5 3.5a.583.583 0 0 1-.583-.583V.583a.583.583 0 1 1 1.166 0v2.334A.583.583 0 0 1 3.5 3.5z"
@@ -134,7 +134,7 @@ export const CalendarIcon = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const ClockIcon = (p: React.SVGProps<SVGSVGElement>) => (
+export const ClockIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 14 14" height="1rem" width="1rem" {...p}>
     <path
       fill="#8B99A6"
@@ -144,12 +144,12 @@ export const ClockIcon = (p: React.SVGProps<SVGSVGElement>) => (
 );
 
 type InsetIconProps = {
-  children: React.SVGProps<SVGSVGElement>;
+  children: ReactNode;
   insetY0?: boolean;
-  right0?: boolean;
-  pr2?: boolean;
   left0?: boolean;
   pl3?: boolean;
+  pr2?: boolean;
+  right0?: boolean;
   z1?: boolean;
 };
 

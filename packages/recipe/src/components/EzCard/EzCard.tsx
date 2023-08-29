@@ -113,7 +113,12 @@ const EzCard: React.FC<DOMProps & EzCardProps> = ({
         )}
         {title && (
           <EzHeader>
-            <EzCardHeading {...{actions, title, subtitle, titleIcon}} />
+            <EzCardHeading
+              actions={actions}
+              title={title}
+              subtitle={subtitle}
+              titleIcon={titleIcon}
+            />
           </EzHeader>
         )}
         {hasContentSlot(children) ? (

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, type PropsWithChildren} from 'react';
 import theme from '../theme.config';
 import {EzCardSection} from '../EzCard';
 import {clsx} from '../../utils';
@@ -18,10 +18,10 @@ const cardWithHeading = theme.css({
   },
 });
 
-type TableCardSectionProps = {
+type TableCardSectionProps = PropsWithChildren<{
   className?: string;
   showCardWithoutHeading?: boolean;
-};
+}>;
 
 const TableCardSection: FC<TableCardSectionProps> = ({
   children,

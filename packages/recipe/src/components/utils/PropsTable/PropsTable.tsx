@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Stack} from '@mui/material';
 import EzTable from '../../EzTable';
 
@@ -13,7 +13,7 @@ type PropsTableProps = {
   propsData: PropData[];
 };
 
-const PropsTable = ({propsData}: PropsTableProps) => {
+const PropsTable: FC<PropsTableProps> = ({propsData}) => {
   const MonospaceCell = ({text, color = 'inherit', deprecated = false}) => (
     <Stack
       color={color}

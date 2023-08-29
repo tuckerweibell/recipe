@@ -1,5 +1,4 @@
-import {ReactElement, ReactNode} from 'react';
-import {EzIconTypes} from '../EzIcon/EzIcon.types';
+import {type ReactElement, type ReactNode} from 'react';
 
 export type Ref = HTMLDivElement;
 
@@ -7,7 +6,7 @@ export interface EzSuperFormControlLabelProps {
   checked?: boolean | undefined;
   control: ReactElement;
   disabled?: boolean;
-  icon: EzIconTypes;
+  icon: ReactNode;
   label?: ReactNode;
   value?: any;
 }
