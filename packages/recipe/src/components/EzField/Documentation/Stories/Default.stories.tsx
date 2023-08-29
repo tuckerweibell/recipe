@@ -34,7 +34,7 @@ const meta: Meta<typeof EzField> = {
     },
     error: {
       control: {type: 'text'},
-      description: 'The error text of invalid input.',
+      description: 'The error text of invalid input. Will only display if `touched` is `true`.',
       type: {name: 'string'},
       table: {type: {summary: 'string'}},
     },
