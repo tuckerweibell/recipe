@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -12,6 +12,12 @@ import * as DefaultStories from './Stories/Default.stories';
 <MigrationAlert component="ez-heading" />
 
 Headings are the primary way of styling text in Recipe. Use them to create visual hierarchy on the page.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
