@@ -18,6 +18,8 @@ const EzFormLayout = forwardRef<HTMLDivElement, Props>((initProps, ref) => {
   return <div {...props} ref={ref} />;
 });
 
+EzFormLayout.displayName = 'EzFormLayout';
+
 /**
  * @component
  */
