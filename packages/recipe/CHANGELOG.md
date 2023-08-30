@@ -1,5 +1,19 @@
 # @ezcater/recipe
 
+## 18.1.0
+
+### Minor Changes
+
+- feat: add EzLogo component [[sha]](https://github.com/ezcater/recipe/commit/467edb4e)
+- feat: support React 18 types [[sha]](https://github.com/ezcater/recipe/commit/e40fd269)
+
+### Patch Changes
+
+- docs: add arg types to EzHeading [[sha]](https://github.com/ezcater/recipe/commit/d644fd71)
+- docs: add default story to EzFormLayout [[sha]](https://github.com/ezcater/recipe/commit/130b547f)
+- docs: add arg types to EzFlashMessage [[sha]](https://github.com/ezcater/recipe/commit/b48e4492)
+- docs: EzField validation docs updated to be more clear around use of error and touched props [[sha]](https://github.com/ezcater/recipe/commit/2ab54bbd)
+
 ## 18.0.1
 
 ### Patch Changes
