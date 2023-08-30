@@ -24,6 +24,7 @@ export {default as EzLabel} from './EzLabel';
 export {default as EzLayout} from './EzLayout';
 export {default as EzLineChart} from './EzLineChart';
 export {default as EzLink} from './EzLink';
+export {default as EzLogo} from './EzLogo';
 export {default as EzModal} from './EzModal';
 export {default as EzNavigation} from './EzNavigation';
 export {default as EzOrderSummary} from './EzOrderSummary';

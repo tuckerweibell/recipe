@@ -1,0 +1,55 @@
+import {Canvas, Controls, Meta, Primary, Story, Unstyled} from '@storybook/blocks';
+import RelatedComponents from '../../../../docs/components/RelatedComponents';
+import TableOfContents from '../../../../docs/components/TableOfContents';
+import EzAlert from '../../EzAlert';
+import * as ColorStories from './Stories/Color.stories';
+import * as DefaultStories from './Stories/Default.stories';
+import * as SizeStories from './Stories/Size.stories';
+import * as VariantStories from './Stories/Variant.stories';
+
+<Meta of={DefaultStories} name="Docs" />
+<TableOfContents />
+
+# EzLogo
+
+A visual representation of our brand and products. See [logo identity guidelines](https://ezcaterinc.app.box.com/s/joqczx3wb8658vx9bdzl7cmf4gbxhaz8/file/1245971842250).
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
+
+## Logo variants
+
+`EzLogo` is available in two variants: `horizontal` (default) and `vertical`.
+
+<Canvas of={VariantStories.Horizontal} meta={VariantStories} />
+<Canvas of={VariantStories.Vertical} meta={VariantStories} />
+
+## Logo colors
+
+`EzLogo` supports three brand colors: `default` (default), `black`, and `white`.
+
+<Canvas of={ColorStories.HorizontalColors} meta={ColorStories} />
+<Canvas of={ColorStories.VerticalColors} meta={ColorStories} />
+
+## Logo sizes
+
+`EzLogo` supports `small`, `medium` (default), `large`, and `inherit` sizes.
+
+<Unstyled>
+  <EzAlert
+    headline='It is recommended only to use size="inherit" if absolutely necessary.'
+    tagline="Please use standard sizes where possible."
+  />
+</Unstyled>
+
+<Canvas>
+  <Story of={SizeStories.HorizontalSizes} meta={SizeStories} />
+  <Story of={SizeStories.VerticalSizes} meta={SizeStories} />
+</Canvas>
+
+## Related components
+
+<RelatedComponents components={['EzIcon']} />

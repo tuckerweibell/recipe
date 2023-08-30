@@ -44,7 +44,7 @@ const navigationComponents = ['EzCarousel', 'EzLink', 'EzNavigation', 'EzProgres
 
 const surfaceComponents = ['EzCard', 'EzWell'];
 
-const typographyComponents = ['EzGlobalStyles', 'EzHeading', 'EzIcon', 'EzTextStyle'];
+const typographyComponents = ['EzGlobalStyles', 'EzHeading', 'EzIcon', 'EzLogo', 'EzTextStyle'];
 
 export {
   dataDisplayComponents,
