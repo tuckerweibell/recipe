@@ -74,7 +74,10 @@ const alignCss = theme.css({
 type TextStyle = VariantProps<typeof headingCss>;
 type Alignment = VariantProps<typeof alignCss>;
 type Tag = React.ComponentType<any>;
-interface Props extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>, Alignment, TextStyle {
+export interface EzHeadingProps
+  extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>,
+    Alignment,
+    TextStyle {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subheading?: string;
   casing?: 'uppercase';
@@ -84,7 +87,7 @@ interface Props extends Omit<HTMLAttributes<HTMLElement>, 'as' | 'css'>, Alignme
 /**
  * Headings are used to create visual hierarchy in page content. They are the primary means of controlling typography.
  */
-const EzHeading = forwardRef<HTMLElement, Props>(
+const EzHeading = forwardRef<HTMLElement, EzHeadingProps>(
   (
     {children: title, subheading: subtitle, align, size, casing, color, as, ...additionalProps},
     ref
