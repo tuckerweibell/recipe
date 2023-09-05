@@ -1,13 +1,14 @@
 import type {ComponentType, MouseEvent, MouseEventHandler, ReactNode} from 'react';
 
 type Column = {
-  heading: string;
-  numeric?: boolean;
-  defaultSort?: Direction;
-  key?: string;
   component?: ReactNode | ComponentType;
-  sortable?: boolean;
+  defaultSort?: Direction;
+  heading: string;
   icon?: ReactNode | ComponentType;
+  key?: string;
+  numeric?: boolean;
+  sortable?: boolean;
+  width?: number;
   /**
    * @deprecated Use `key` to provide column identifier and `component` to provide a custom cell renderer.
    */

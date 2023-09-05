@@ -6,6 +6,7 @@ import EzIcon from '../../../EzIcon';
 import EzTable from '../../EzTable';
 import {TableProps} from '../../EzTable.types';
 import EzButton from '../../../EzButton';
+import EzLayout from '../../../EzLayout';
 
 const ICONS = {
   faCoffee: <EzIcon icon={faCoffee} />,
@@ -39,6 +40,7 @@ const meta: Meta<typeof EzTable> = {
               key?: string;
               numeric?: boolean;
               sortable?: boolean;
+              width?: number;
             ]
           `,
         },
@@ -155,17 +157,41 @@ const meta: Meta<typeof EzTable> = {
 export default meta;
 type Story = StoryObj<typeof EzTable>;
 
+const ActionButtons = (
+  <EzLayout layout="right">
+    <EzButton fontSize="small" variant="text">
+      View
+    </EzButton>
+    <EzButton color="destructive" fontSize="small" variant="text">
+      Delete
+    </EzButton>
+  </EzLayout>
+);
+
 export const Default: Story = {
   args: {
     actions: <EzButton>Add store</EzButton>,
     columns: [
       {heading: 'Store name', key: 'store'},
-      {heading: 'Total sales', key: 'total', numeric: true},
-      {heading: 'Average order value', key: 'average', numeric: true},
+      {heading: 'Total sales', key: 'total', numeric: true, width: 100},
+      {heading: 'Average order value', key: 'average', numeric: true, width: 150},
+      {heading: '', key: 'actions'},
     ],
     items: [
-      {id: '#004', store: 'Ten Forward', total: 23267, average: 327.79},
-      {id: '#007', store: "Sisko's Creole Kitchen", total: 22788, average: 367.55},
+      {
+        id: '#004',
+        store: 'Ten Forward',
+        total: 23267,
+        average: 327.79,
+        actions: ActionButtons,
+      },
+      {
+        id: '#007',
+        store: "Sisko's Creole Kitchen",
+        total: 22788,
+        average: 367.55,
+        actions: ActionButtons,
+      },
     ],
     subtitle: 'Compared to the same period last year',
     title: 'All stores',
@@ -181,12 +207,25 @@ export const Default: Story = {
             actions={<EzButton>Add store</EzButton>}
             columns={[
               {heading: 'Store name', key: 'store'},
-              {heading: 'Total sales', key: 'total', numeric: true},
-              {heading: 'Average order value', key: 'average', numeric: true},
+              {heading: 'Total sales', key: 'total', numeric: true, width: 100},
+              {heading: 'Average order value', key: 'average', numeric: true, width: 150},
+              {heading: '', key: 'actions'},
             ]}
             items={[
-              {id: '#004', store: 'Ten Forward', total: 23267, average: 327.79},
-              {id: '#007', store: "Sisko's Creole Kitchen", total: 22788, average: 367.55},
+              {
+                id: '#004',
+                store: 'Ten Forward',
+                total: 23267,
+                average: 327.79,
+                actions: ActionButtons,
+              },
+              {
+                id: '#007',
+                store: "Sisko's Creole Kitchen",
+                total: 22788,
+                average: 367.55,
+                actions: ActionButtons,
+              },
             ]}
             subtitle="Compared to the same period last year"
             title="All stores"
