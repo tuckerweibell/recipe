@@ -55,6 +55,11 @@ const listItemOption = theme.css({
   },
 });
 
+const disabledOption = theme.css({
+  pointerEvents: 'none',
+  opacity: 0.6,
+});
+
 const OptGroup = props => {
   const id = useUniqueId();
   return (
@@ -94,7 +99,11 @@ const EzListBox = (props, ref) => {
     return (
       <li
         role="option"
-        className={clsx(listItem(), listItemOption({current, selected}))}
+        className={clsx(
+          listItem(),
+          listItemOption({current, selected}),
+          option.disabled && disabledOption()
+        )}
         aria-current={current}
         aria-selected={selected}
         ref={selected || shouldReceiveFocus ? (activeOptionRef as any) : undefined}
@@ -114,7 +123,7 @@ const EzListBox = (props, ref) => {
               highlightStyle={{
                 backgroundColor: 'inherit',
                 color: 'currentColor',
-                textDecoration: 'underline',
+                textDecoration: option.disabled ? undefined : 'underline',
               }}
             />
             {option.description && <EzTextStyle use="subdued">{option.description}</EzTextStyle>}

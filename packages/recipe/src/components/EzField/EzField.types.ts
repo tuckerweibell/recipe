@@ -62,6 +62,11 @@ type AutosuggestInputProps = {
   onSelectionChange?: (key: Key) => any;
 };
 
+type AutosuggesSearchInputProps = Omit<AutosuggestInputProps, 'type'> & {
+  type: 'autosuggest-search';
+  loading?: boolean;
+};
+
 type CustomFieldProps = {
   type: React.FC<any> | React.ComponentClass<any>;
   value?: any;
@@ -75,6 +80,7 @@ type FieldTypeProps =
   | TimeInputProps
   | TextAreaInputProps
   | AutosuggestInputProps
+  | AutosuggesSearchInputProps
   | CustomFieldProps;
 
 type ErrorOrMessage = string | boolean;

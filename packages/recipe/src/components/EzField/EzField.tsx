@@ -32,7 +32,7 @@ const EzCustomInput = forwardRef<HTMLElement, CustomInputProps>(({type: Input, .
 const resolveInputFromType = type => {
   if (type === 'date') return EzDateInput;
   if (type === 'select') return EzSelect;
-  if (type === 'autosuggest') return EzAutosuggest;
+  if (type === 'autosuggest' || type === 'autosuggest-search') return EzAutosuggest;
   if (type === 'time') return EzTimeInput;
   if (type === 'textarea') return EzTextArea;
   if (inputElements.includes(type)) return EzTextInput;

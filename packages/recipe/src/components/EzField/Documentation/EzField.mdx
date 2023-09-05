@@ -195,6 +195,18 @@ Autosuggest fields allow the user to filter longer lists of options to a set tha
 
 <Canvas of={AutosuggestStories.Autosuggest} meta={AutosuggestStories} />
 
+## Autosuggest search list
+
+#### `type="autosuggest-search"`
+
+Autosuggest search fields support the same features as `type="autosuggest"` except they will have a search icon adornment and will not have a dropdown icon. Follow the same guidelines as with autosuggest lists.
+
+<Canvas of={AutosuggestStories.AutosuggestSearch} meta={AutosuggestStories} />
+
+Autosuggest search fields can also be used with async data fetching as well as programmatic clears.
+
+<Canvas of={AutosuggestStories.AutosuggestAsyncSearch} meta={AutosuggestStories} />
+
 ## Date
 
 #### `type="date"`
