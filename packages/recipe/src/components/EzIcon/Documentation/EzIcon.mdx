@@ -1,4 +1,4 @@
-import {Meta, Unstyled} from '@storybook/blocks';
+import {Controls, Meta, Primary, Unstyled} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -13,6 +13,12 @@ import * as DefaultStories from './Stories/Default.stories';
 <MigrationAlert component="ez-icon" />
 
 Recipe provides icon support for Font Awesome, ezCater icons, and SVG icons.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
