@@ -1,5 +1,21 @@
 # @ezcater/recipe
 
+## 18.2.0
+
+### Minor Changes
+
+- feat: add disabled option to EzField's select options [[sha]](https://github.com/ezcater/recipe/commit/e35cb501)
+- feat: add EzField autosuggest-search option for search fields with autocomplete lists [[sha]](https://github.com/ezcater/recipe/commit/e35cb501)
+- feat: add width option to EzTable columns [[sha]](https://github.com/ezcater/recipe/commit/19f6f297)
+- fix: switch colors for EzPageHeader active and inactive tabs to improve UX [[sha]](https://github.com/ezcater/recipe/commit/282caeb8)
+
+### Patch Changes
+
+- docs: add arg types to EzPageHeader [[sha]](https://github.com/ezcater/recipe/commit/2b535cc1)
+- fix: add fill of currentColor to EzIcon for use in playroom [[sha]](https://github.com/ezcater/recipe/commit/f8bd0c63)
+- fix: EzField autosuggest list selections can now clear both programmatically and with the browser's built-in input clear button [[sha]](https://github.com/ezcater/recipe/commit/e35cb501)
+- docs: add arg types to EzIcon [[sha]](https://github.com/ezcater/recipe/commit/33ab3e67)
+
 ## 18.1.0
 
 ### Minor Changes
