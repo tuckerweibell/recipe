@@ -22,7 +22,7 @@ type SubNavProps<T> = (T extends Link ? Partial<Changeable> : Changeable) & {
 
 type SubNav = SubNavProps<TabType>;
 
-type HeaderProps = {
+export type EzPageHeaderProps = {
   actions?: React.ReactNode;
   breadcrumb?: LabelledLink;
   status?: React.ReactNode;
@@ -85,7 +85,7 @@ const handleKeyDown =
 /**
  * EzPageHeader is used to build the outer structure of a page including the page title and associated actions.
  */
-const EzPageHeader: React.FC<HeaderProps> = ({
+const EzPageHeader: React.FC<EzPageHeaderProps> = ({
   actions,
   breadcrumb,
   status,
