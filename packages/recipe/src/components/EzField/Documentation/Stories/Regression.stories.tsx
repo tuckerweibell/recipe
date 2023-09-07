@@ -1,5 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {type Meta, type StoryObj} from '@storybook/react';
+import {userEvent, within} from '@storybook/testing-library';
+import {expect} from '@storybook/jest';
 import dayjs from 'dayjs';
 import DefaultMeta from './Default.stories';
 import EzButton from '../../../EzButton';
@@ -198,6 +200,31 @@ export const SelectListLongContent: Story = {
 };
 
 export const SelectListLongContentOpen: Story = {
+  play: ({canvasElement}) => {
+    const canvas = within(canvasElement);
+    const firstInput = canvas.getAllByRole('combobox')[0];
+    const secondInput = canvas.getAllByRole('combobox')[1];
+
+    // both inputs should exist
+    expect(canvas.queryAllByDisplayValue(/short value/i)[0]).toBeInTheDocument();
+    expect(
+      canvas.queryAllByDisplayValue(/super ridiculously exaggerated value for an option/i)[0]
+    ).toBeInTheDocument();
+
+    // neither input should be expanded
+    expect(firstInput).toHaveAttribute('aria-expanded', 'false');
+    expect(secondInput).toHaveAttribute('aria-expanded', 'false');
+
+    // the first input should expand when clicked
+    userEvent.click(firstInput);
+    expect(firstInput).toHaveAttribute('aria-expanded', 'true');
+    expect(secondInput).toHaveAttribute('aria-expanded', 'false');
+
+    // the second input should expand when clicked
+    userEvent.click(secondInput);
+    expect(firstInput).toHaveAttribute('aria-expanded', 'false');
+    expect(secondInput).toHaveAttribute('aria-expanded', 'true');
+  },
   render: function SelectListLongContentOpenRender() {
     const selectListLongContentOpenRef = useRef<HTMLDivElement>();
 
@@ -369,6 +396,7 @@ export const AutosuggestLong: Story = {
 };
 
 export const AutosuggestLongContent: Story = {
+  play: SelectListLongContentOpen.play,
   render: function AutosuggestLongContentRender() {
     const autosuggestLongContentRef = useRef<HTMLDivElement>();
 

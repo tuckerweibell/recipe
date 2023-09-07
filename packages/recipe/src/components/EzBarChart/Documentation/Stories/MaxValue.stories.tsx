@@ -36,7 +36,7 @@ export const MaxDependentValue: Story = {
     data: DATA,
     dependentAxisLabelValues: [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000],
     independentAxisLabelFormatter: (t: number) => {
-      const date = new Date();
+      const date = new Date('2023-01-01T12:00:00Z');
       date.setMonth(t - 1);
       return date.toLocaleString('en-US', {month: 'short'});
     },
@@ -62,7 +62,7 @@ export const MaxDependentValue: Story = {
           ];
 
           const independentAxisLabelFormatter = (t: number) => {
-            const date = new Date();
+            const date = new Date('2023-01-01T12:00:00Z');
             date.setMonth(t - 1);
             return date.toLocaleString('en-US', {month: 'short'});
           };
@@ -103,7 +103,7 @@ export const MaxDependentValue: Story = {
           ];
 
           const independentAxisLabelFormatter = t => {
-            const date = new Date();
+            const date = new Date('2023-01-01T12:00:00Z');
             date.setMonth(t - 1);
             return date.toLocaleString('en-US', {month: 'short'});
           };
@@ -140,7 +140,7 @@ export const MaxIndependentValue: Story = {
     data: DATA,
     dependentAxisLabelValues: [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000],
     independentAxisLabelFormatter: (t: number) => {
-      const date = new Date();
+      const date = new Date('2023-01-01T12:00:00Z');
       date.setMonth(t - 1);
       return date.toLocaleString('en-US', {month: 'short'});
     },
@@ -184,7 +184,7 @@ export const MaxIndependentValue: Story = {
           ];
 
           const independentAxisLabelFormatter = t => {
-            const date = new Date();
+            const date = new Date('2023-01-01T12:00:00Z');
             date.setMonth(t - 1);
             return date.toLocaleString('en-US', {month: 'short'});
           };
