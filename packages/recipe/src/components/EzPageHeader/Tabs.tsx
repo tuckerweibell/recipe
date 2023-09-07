@@ -29,6 +29,9 @@ const listBase = theme.css({
 const tabBase = theme.css({
   display: 'flex',
   margin: 0,
+  '&& > *, && a': {
+    color: '$tabs-inactive-color',
+  },
   '&& a, && > button': {
     display: 'flex',
     padding: '$tabs-py $tabs-px',
