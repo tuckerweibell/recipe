@@ -216,10 +216,20 @@ type ThProps = {
   isSortableColumn?: boolean;
   sorted?: boolean;
   onClick?: any;
+  width?: number;
 };
 
-const Th: FC<ThProps> = ({children, numeric, isSelection, isSortableColumn, sorted, onClick}) => (
-  <th
+const Th: FC<ThProps> = ({
+  children,
+  isSelection,
+  isSortableColumn,
+  numeric,
+  onClick,
+  sorted,
+  width,
+}) => (
+  <Box
+    component="th"
     className={clsx(
       isSelection ? checkboxCell() : cell(),
       numeric && numericCell(),
@@ -228,9 +238,10 @@ const Th: FC<ThProps> = ({children, numeric, isSelection, isSortableColumn, sort
       sorted && sortedCell()
     )}
     onClick={onClick}
+    width={width || 'auto'}
   >
     {children}
-  </th>
+  </Box>
 );
 
 const Thead = ({selectable}) => {
@@ -258,7 +269,7 @@ const Thead = ({selectable}) => {
           </Th>
         )}
         {columns.map((column, cellIndex) => {
-          const {sortable, heading, numeric, icon} = column;
+          const {sortable, heading, numeric, icon, width} = column;
           return (
             <Th
               key={column.key || cellIndex}
@@ -266,9 +277,10 @@ const Thead = ({selectable}) => {
               isSortableColumn={sortable}
               sorted={isSorted(column)}
               onClick={event => onClick(event, column, sorting.onSortClick)}
+              width={width}
             >
               <span className={headerItems()}>
-                {heading}
+                <Box whiteSpace="normal">{heading}</Box>
                 {icon && <span className={headerIcon()}>{icon}</span>}
                 {sortable && <SortIcon direction={direction} isSorted={isSorted(column)} />}
               </span>
