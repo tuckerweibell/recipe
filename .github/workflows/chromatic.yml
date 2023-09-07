@@ -18,12 +18,26 @@ jobs:
         run: yarn build-playroom
         working-directory: ./packages/recipe
 
+      # this only applies to non-main branches (e.g., feature branches)
       - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/main'
         uses: chromaui/action@v1
         with:
           projectToken: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
           workingDir: packages/recipe
           exitOnceUploaded: true
-          onlyChanged: false # TODO: turn on after storybook-docs feature merged
+          onlyChanged: true # turbosnap (see https://www.chromatic.com/docs/turbosnap)
+        env:
+          STORYBOOK_INCLUDE_REGRESSION_STORIES: 1
+
+      # this only applies to the `main` branch
+      - name: Publish to Chromatic
+        if: github.ref == 'refs/heads/main'
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
+          workingDir: packages/recipe
+          exitOnceUploaded: true
+          autoAcceptChanges: true # `main` is the baseline
         env:
           STORYBOOK_INCLUDE_REGRESSION_STORIES: 1
