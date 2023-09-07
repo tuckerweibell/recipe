@@ -302,7 +302,8 @@ const stitches = createStitches({
 
       // Tabs
       'tabs-outline-color': '$blue600',
-      'tabs-active-color': '$gray700',
+      'tabs-active-color': '$blue600',
+      'tabs-inactive-color': '$gray700',
       'tabs-focus-outline-color': '$blue600',
 
       // EzProgressTracker
