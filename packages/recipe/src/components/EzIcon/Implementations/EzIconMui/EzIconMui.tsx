@@ -10,7 +10,11 @@ const EzIconMui = forwardRef<Ref, EzIconMuiProps>(
       <SvgIcon
         color={isCommonColor ? undefined : (color as SvgIconColorType)}
         ref={ref}
-        sx={{color: isCommonColor ? color : undefined, fontSize}}
+        sx={{
+          color: isCommonColor ? color : undefined,
+          fill: 'currentColor',
+          fontSize,
+        }}
         titleAccess={title}
         {...props}
       >
