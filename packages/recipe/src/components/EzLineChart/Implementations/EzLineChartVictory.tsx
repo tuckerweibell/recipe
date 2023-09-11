@@ -6,6 +6,7 @@ import {
   VictoryScatter,
   VictoryTooltip,
   VictoryVoronoiContainer,
+  VictoryClipContainer,
 } from 'victory';
 import {useTheme} from '@mui/material';
 import {EzLineChartProps, Ref} from '../EzLineChart.types';
@@ -97,7 +98,13 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
             style={independentAxisStyle}
             tickValues={independentAxisLabelValues}
           />
-          <VictoryLine style={lineStyle} data={data} />
+          <VictoryLine
+            style={lineStyle}
+            data={data}
+            groupComponent={
+              <VictoryClipContainer clipId={idPrefix ? `${idPrefix}-clip` : undefined} />
+            }
+          />
           <VictoryScatter
             data={data}
             size={({active}) => (active ? 10 : 1)}
