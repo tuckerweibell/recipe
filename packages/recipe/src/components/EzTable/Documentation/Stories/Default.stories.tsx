@@ -202,6 +202,18 @@ export const Default: Story = {
       code: dedent`
       {(() => {
         const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
+
+        const ActionButtons = (
+          <EzLayout layout="right">
+            <EzButton fontSize="small" variant="text">
+              View
+            </EzButton>
+            <EzButton color="destructive" fontSize="small" variant="text">
+              Delete
+            </EzButton>
+          </EzLayout>
+        );
+        
         return (
           <EzTable
             actions={<EzButton>Add store</EzButton>}
