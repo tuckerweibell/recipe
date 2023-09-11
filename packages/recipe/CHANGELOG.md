@@ -1,5 +1,12 @@
 # @ezcater/recipe
 
+## 18.2.1
+
+### Patch Changes
+
+- fix: EzLineChart: Pass through the `idPrefix` prop to the line chart clip component to enable apps that use SSR to generate unique IDs for the clip path and avoid a hydration mismatch. [[sha]](https://github.com/ezcater/recipe/commit/dc4ab70e)
+- docs: fix playroom for EzTable default story [[sha]](https://github.com/ezcater/recipe/commit/5246c35e)
+
 ## 18.2.0
 
 ### Minor Changes
