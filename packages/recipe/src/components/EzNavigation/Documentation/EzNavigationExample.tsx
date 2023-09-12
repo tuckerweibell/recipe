@@ -50,7 +50,7 @@ const EzNavigationExampleJSX = () => dedent`
   
   return (
     <EzNavigation
-      home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+      home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
       links={[
         {
           active: active === 'Orders',
