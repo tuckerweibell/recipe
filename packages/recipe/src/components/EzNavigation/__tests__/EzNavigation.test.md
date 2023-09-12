@@ -47,7 +47,7 @@
 ```jsx
 <EzAppLayout>
   <EzNavigation
-    home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+    home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
     links={[
       {href: '/orders', label: 'Orders', active: true, notifications: 15},
       {href: '/ezo', label: 'Get More Orders', notifications: '★'},
@@ -72,7 +72,7 @@
 ```jsx
 <EzAppLayout>
   <EzNavigation
-    home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+    home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
     links={[
       {href: '#', label: 'Components'},
       {

@@ -1,4 +1,5 @@
 import React, {FC, ReactNode} from 'react';
+import {Stack} from '@mui/material';
 import theme from '../theme.config';
 import {Link} from '../EzLink/EzLink';
 import {LabelledLink, Link as LinkType} from '../EzLink/EzLink.types';
@@ -42,7 +43,7 @@ interface LogoProps {
 
 const Logo: FC<LogoProps> = ({link: {label, ...link}, logo}) => (
   <div className={logoWrapper()}>
-    <Link {...link} aria-label={label} style={{display: 'flex'}}>
+    <Stack component={Link} {...link} aria-label={label}>
       {logo ? (
         logo.component || (
           <img className={logoImage()} src={logo.src} width={logo.width} alt="logo" />
@@ -50,7 +51,7 @@ const Logo: FC<LogoProps> = ({link: {label, ...link}, logo}) => (
       ) : (
         <h1 className={logoText()}>{label}</h1>
       )}
-    </Link>
+    </Stack>
   </div>
 );
 
