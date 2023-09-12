@@ -43,7 +43,7 @@ type UserMenu = {
   icon?: ReactElement;
 };
 
-type Props = {
+export type EzNavigationProps = {
   children?: ReactNode;
   home: HomeLink;
   links: NavLink[];
@@ -256,7 +256,7 @@ const Links = ({links}) =>
     <Menu key={i} link={{...link, as: link.links?.length ? Group : link.as}} />
   ));
 
-const EzNavigation: FC<Props> = ({
+const EzNavigation: FC<EzNavigationProps> = ({
   children,
   links,
   utilityLinks,
@@ -314,5 +314,7 @@ const EzNavigation: FC<Props> = ({
     </div>
   );
 };
+
+EzNavigation.displayName = 'EzNavigation';
 
 export default EzNavigation;
