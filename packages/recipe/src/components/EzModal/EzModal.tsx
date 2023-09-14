@@ -70,8 +70,7 @@ const icon = theme.css({
   '&&': {margin: '8px'},
 });
 
-type Props = {
-  appElement?: string;
+export type EzModalProps = {
   children?: ReactNode;
   destructive?: boolean;
   dismissLabel?: string;
@@ -99,7 +98,7 @@ const useDialog = ({onDismiss}) => ({
   },
 });
 
-const EzModal: React.FC<Props> = ({
+const EzModal: React.FC<EzModalProps> = ({
   children,
   headerText,
   destructive,
