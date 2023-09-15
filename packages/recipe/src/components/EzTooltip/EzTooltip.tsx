@@ -1,15 +1,23 @@
-import React, {useState, useRef, ReactElement, useEffect} from 'react';
+import React, {
+  cloneElement,
+  FC,
+  type HTMLAttributes,
+  type ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import theme from '../theme.config';
 import {useUniqueId} from '../../utils/hooks';
 import EzPopover from '../EzPopover';
 import {domProps} from '../../utils';
 
-type Props = {
+export type EzTooltipProps = {
   position?: 'vertical' | 'horizontal';
   message: string;
   children: ReactElement;
   onShowTooltip?: () => void;
-} & React.HTMLAttributes<any>;
+} & HTMLAttributes<any>;
 
 const tooltip = theme.css({
   position: 'relative',
@@ -53,7 +61,7 @@ const arrowPosition = theme.css({
 
 const reset = theme.css({my: 0});
 
-const EzTooltip: React.FC<Props> = ({children, message, position, onShowTooltip, ...rest}) => {
+const EzTooltip: FC<EzTooltipProps> = ({children, message, position, onShowTooltip, ...rest}) => {
   const id = useUniqueId();
   const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -87,7 +95,7 @@ const EzTooltip: React.FC<Props> = ({children, message, position, onShowTooltip,
 
   return (
     <>
-      {React.cloneElement(child, childProps)}
+      {cloneElement(child, childProps)}
 
       {showTooltip && (
         <EzPopover
