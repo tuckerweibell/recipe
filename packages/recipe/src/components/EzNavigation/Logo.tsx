@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, ReactNode} from 'react';
+import {Stack} from '@mui/material';
 import theme from '../theme.config';
 import {Link} from '../EzLink/EzLink';
 import {LabelledLink, Link as LinkType} from '../EzLink/EzLink.types';
@@ -29,26 +30,29 @@ const logoText = theme.css({
   margin: 0,
 });
 
+export type LogoType = {
+  component?: ReactNode;
+  src?: string;
+  width?: number | string;
+};
+
 interface LogoProps {
   link: LabelledLink & LinkType;
-  logo: {src: string; width: number | string};
+  logo: LogoType;
 }
 
 const Logo: FC<LogoProps> = ({link: {label, ...link}, logo}) => (
   <div className={logoWrapper()}>
-    <Link {...link} aria-label={label}>
+    <Stack component={Link} {...link} aria-label={label}>
       {logo ? (
-        <img className={logoImage()} src={logo.src} width={logo.width} alt="" />
+        logo.component || (
+          <img className={logoImage()} src={logo.src} width={logo.width} alt="logo" />
+        )
       ) : (
         <h1 className={logoText()}>{label}</h1>
       )}
-    </Link>
+    </Stack>
   </div>
 );
-
-export type LogoType = {
-  src: string;
-  width?: number;
-};
 
 export default Logo;

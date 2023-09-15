@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -12,6 +12,12 @@ import * as DefaultStories from './Stories/Default.stories';
 <MigrationAlert component="ez-navigation" />
 
 The EzNavigation component provides the primary means for users to move between sections of the application. On small screens, the Navigation menu is presented as a top-bar, while on larger screens the Navigation menu is presented as a left side-bar.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
@@ -35,7 +41,7 @@ Use the Navigation component to offer a menu containing navigation links, either
   return (
     <EzAppLayout>
       <EzNavigation
-        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
         links={[
           {href: '#', label: 'Orders', active: active === 'Orders', onClick},
           {href: '#', label: 'Customers', active: active === 'Customers', onClick},
@@ -72,7 +78,7 @@ When using the `as` prop, you must use the `to` prop in place of `href` to provi
           home={{
             to: '/components',
             label: 'Homepage',
-            logo: {src: ezCaterLogoPath, width: 100},
+            logo: {component: <EzLogo />},
             as: Link,
           }}
           links={[
@@ -110,7 +116,7 @@ Use grouped navigation links to promote discoverability of related pages.
   return (
     <EzAppLayout>
       <EzNavigation
-        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
         links={[
           {href: '#', label: 'Components', active: active === 'Components', onClick},
           {
@@ -155,7 +161,7 @@ To optionally add icons to a utility links, pass an [EzIcon](?path=/docs/typogra
     <Router>
       <EzAppLayout>
         <EzNavigation
-          home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+          home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
           links={[
             {href: '/orders', onClick: e => e.preventDefault(), label: 'Orders'},
             {href: '/customers', onClick: e => e.preventDefault(), label: 'Customers'},
@@ -198,7 +204,7 @@ Note: a special notification value `★` can be used to highlight the link for e
 ```jsx
 <EzAppLayout>
   <EzNavigation
-    home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+    home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
     links={[
       {
         href: '/orders',
@@ -243,7 +249,7 @@ To optionally change the user menu default icon, pass an [EzIcon](?path=/docs/ty
   return (
     <EzAppLayout>
       <EzNavigation
-        home={{href: '/', label: 'Homepage', logo: {src: ezCaterLogoPath, width: 100}}}
+        home={{href: '/', label: 'Homepage', logo: {component: <EzLogo />}}}
         links={[
           {href: '#', onClick: e => e.preventDefault(), label: 'Orders'},
           {href: '#', onClick: e => e.preventDefault(), label: 'Customers'},
