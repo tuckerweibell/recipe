@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -12,6 +12,12 @@ import * as DefaultStories from './Stories/Default.stories';
 <MigrationAlert component="ez-modal" />
 
 Modals display content in a layer on top of the application. Modals should be used when it's necessary to interrupt the user or ensure their attention is focused on specific information. Modals can also be used when you'd like the user to accomplish a lower-priority action without changing the state of the page they're working in.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
