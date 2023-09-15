@@ -48,7 +48,7 @@ const pageWrapper = theme.css({
   },
 });
 
-type Props = {
+export type EzPageProps = {
   backgroundColor?: 'white' | 'gray';
   children: React.ReactNode;
 };
@@ -75,7 +75,7 @@ export const usePageSection = type => {
   return ref.current;
 };
 
-const EzPage: React.FC<Props> = ({children, backgroundColor}) => {
+const EzPage: React.FC<EzPageProps> = ({children, backgroundColor}) => {
   const sectionsCounter = useRef(0);
   return (
     <SectionContext.Provider value={sectionsCounter}>
