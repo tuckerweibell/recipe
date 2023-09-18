@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import RelatedComponents from '../../../../docs/components/RelatedComponents';
 import TableOfContents from '../../../../docs/components/TableOfContents';
@@ -14,6 +14,12 @@ import * as DefaultStories from './Stories/Default.stories';
 EzPage is the main content container for a page. The Page component controls the horizontal margins of the content area, as well as the vertical spacing between content.
 
 These examples mostly use Cards, but you can put multiple kinds of content in Page.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 
