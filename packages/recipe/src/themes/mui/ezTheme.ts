@@ -5,7 +5,7 @@ import {shadow} from '../tokens';
 
 declare module '@mui/material/styles/createTheme' {
   interface ThemeOptions {
-    tokens?: Record<string, string>;
+    tokens?: EzThemeTokens;
   }
 }
 

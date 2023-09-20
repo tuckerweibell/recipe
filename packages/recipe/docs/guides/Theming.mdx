@@ -1,6 +1,7 @@
 import {Meta, Source, Unstyled} from '@storybook/blocks';
 import dedent from 'ts-dedent';
 import ColorPalette from '../components/ColorPalette';
+import DesignTokens from '../components/DesignTokens';
 import TableOfContents from '../components/TableOfContents';
 import Typography from '../components/Typography';
 import {EzAlert} from '../../src/components';
@@ -22,7 +23,7 @@ Recipe themes are extended from the [MUI default theme](https://mui.com/customiz
   />
 </Unstyled>
 
----
+<br />
 
 ## Supported Themes
 
@@ -34,7 +35,23 @@ Recipe defines and makes accessible the following supported themes:
 
 To learn more about how to use and extend these themes, read our Getting Started section on [Recipe Themes](?path=/docs/guides-getting-started--docs#recipe-themes).
 
----
+## Design tokens
+
+Recipe provides a comprehensive suite of design tokens for styling each part of the user interface. These tokens are used in our components and are available via our supported themes to style custom UI elements.
+
+<Unstyled>
+  <EzAlert
+    headline="In Progress"
+    tagline="We are currently in the process of adding these design tokens to our themes and as such, they may change in the future. Any breaking changes will be done in a major release and include migration instructions."
+    use="warning"
+  />
+</Unstyled>
+
+<br />
+
+<Unstyled>
+  <DesignTokens />
+</Unstyled>
 
 ## Colors
 
@@ -49,8 +66,6 @@ This Recipe theme supports the following Emotion theme properties, which can be 
 This Recipe theme supports the following set of design tokens for colors (`theme.palette.common.[color]`).
 
 <ColorPalette />
-
----
 
 ## Typography
 
