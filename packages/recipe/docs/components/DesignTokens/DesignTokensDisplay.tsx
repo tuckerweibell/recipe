@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box, Stack, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
+import {color} from '@storybook/theming';
 import {DesignTokensDisplayProps} from './DesignTokens.types';
 import {EzThemeTokens} from '../../../src/themes/themes.types';
 import {shadow} from '../../../src/themes/tokens';
@@ -49,31 +50,35 @@ const DesignTokenPreview = ({token, tokenType}) => {
   );
 };
 
-const DesignTokensDisplay = ({tokens, tokenType}: DesignTokensDisplayProps) => (
-  <Table aria-label="design tokens display">
-    <TableHead>
-      <TableRow>
-        <TableCell sx={{color: '#2e343899', fontWeight: 'bold'}}>Name</TableCell>
-        <TableCell sx={{color: '#2e343899', fontWeight: 'bold'}}>Value</TableCell>
-        <TableCell sx={{color: '#2e343899', fontWeight: 'bold'}}>Preview</TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {tokens.map((token: EzThemeTokens, index: number) => (
-        <TableRow key={index} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-          <TableCell>
-            <CodeBlock withCopy>{token[0]}</CodeBlock>
-          </TableCell>
-          <TableCell sx={{maxWidth: '300px'}}>
-            <CodeBlock>{token[1]}</CodeBlock>
-          </TableCell>
-          <TableCell sx={{minWidth: '300px'}}>
-            <DesignTokenPreview token={token} tokenType={tokenType} />
-          </TableCell>
+const DesignTokensDisplay = ({tokens, tokenType}: DesignTokensDisplayProps) => {
+  const cellStyles = {color: color.darkest, fontWeight: 'bold', opacity: 0.6};
+
+  return (
+    <Table aria-label="design tokens display">
+      <TableHead>
+        <TableRow>
+          <TableCell sx={cellStyles}>Name</TableCell>
+          <TableCell sx={cellStyles}>Value</TableCell>
+          <TableCell sx={cellStyles}>Preview</TableCell>
         </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-);
+      </TableHead>
+      <TableBody>
+        {tokens.map((token: EzThemeTokens, index: number) => (
+          <TableRow key={index} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+            <TableCell>
+              <CodeBlock withCopy>{token[0]}</CodeBlock>
+            </TableCell>
+            <TableCell sx={{maxWidth: '300px'}}>
+              <CodeBlock>{token[1]}</CodeBlock>
+            </TableCell>
+            <TableCell sx={{minWidth: '300px'}}>
+              <DesignTokenPreview token={token} tokenType={tokenType} />
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
 
 export default DesignTokensDisplay;
