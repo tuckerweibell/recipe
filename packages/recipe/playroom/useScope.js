@@ -1,5 +1,6 @@
 import {useRef, useEffect, useState} from 'react';
 import {Link, NavLink, BrowserRouter, StaticRouter, Route} from 'react-router-dom';
+import {Box, Stack} from '@mui/material';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
@@ -30,6 +31,8 @@ import Placeholder from '../src/components/utils/Placeholder';
 export default () => ({
   withPrefix: path => `https://recipe.ezcater.com/playroom${path}`,
   Placeholder,
+  Box,
+  Stack,
   useRef,
   useEffect,
   useState,
