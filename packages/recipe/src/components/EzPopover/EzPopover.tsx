@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import React from 'react';
+import React, {FC, type HTMLAttributes, type RefObject, useEffect, useRef} from 'react';
 import {Placement, Modifier} from '@popperjs/core';
 import EzPortal, {PortalContext} from '../EzPortal';
 import theme from '../theme.config';
@@ -8,27 +8,27 @@ import {useCloseOnBlur} from './useCloseOnBlur';
 import FocusScope from '../utils/FocusScope';
 import {clsx} from '../../utils';
 
-type Props = {
-  targetRef: React.RefObject<HTMLElement>;
-  placement?: Placement;
-  matchWidth?: boolean;
-  showArrow?: boolean;
-  shouldCloseOnBlur?: boolean;
-  onClose?: () => void;
+export type EzPopoverProps = {
   classNameSuffix?: string;
-} & React.HTMLAttributes<any>;
+  matchWidth?: boolean;
+  onClose?: () => void;
+  placement?: Placement;
+  shouldCloseOnBlur?: boolean;
+  showArrow?: boolean;
+  targetRef: RefObject<HTMLElement>;
+} & HTMLAttributes<any>;
 
 const popperStyle = theme.css({
   zIndex: '$popover-z', // this is hard-coded in theme.config.ts for now, but we should really pull it in from mui when we convert popovers to mui
 });
 
-const EzPopover: React.FC<Props> = props => (
+const EzPopover: FC<EzPopoverProps> = props => (
   <EzPortal>
     <PopoverImpl {...props} />
   </EzPortal>
 );
 
-const PopoverImpl: React.FC<Props> = ({
+const PopoverImpl: FC<EzPopoverProps> = ({
   targetRef,
   placement = 'bottom',
   matchWidth = false,
@@ -63,9 +63,9 @@ const PopoverImpl: React.FC<Props> = ({
 
   useCloseOnBlur({shouldCloseOnBlur, onClose, refs: [targetRef, popper]});
 
-  const scopeRef = React.useRef();
+  const scopeRef = useRef();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const triggerEl = targetRef.current;
     const focusScope: any = scopeRef.current;
 
