@@ -5,9 +5,6 @@ import EzPopover from '../EzPopover';
 import EzField from '../../EzField';
 import {useCloseOnBlur} from '../useCloseOnBlur';
 
-// Not sure why this path is two levels deep instead of one, but 🤷‍♂️
-jest.unmock('../../EzPopover');
-
 describe('EzPopover', () => {
   describe('shouldCloseOnBlur', () => {
     it('should call onClose only when clicking outside', () => {
@@ -173,6 +170,21 @@ describe('EzPopover', () => {
     // tab back up to the original input
     await user.tab({shift: true});
     expect(document.activeElement).toBe(inputBefore);
+  });
+
+  it('forwards refs', () => {
+    const ref = {current: undefined};
+    const {rerender} = render(
+      <EzPopover targetRef={{current: document.createElement('div')}} ref={ref}>
+        <div>Hi!</div>
+      </EzPopover>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInTheDocument();
+
+    rerender(<></>);
+    expect(ref.current).toBeNull();
   });
 
   it('should meet accessibility guidelines', async () => {
