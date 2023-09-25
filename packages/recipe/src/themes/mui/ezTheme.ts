@@ -1,6 +1,13 @@
 import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
-import type {EzPaletteOptions} from '../themes.types';
+import type {EzPaletteOptions, EzThemeTokens} from '../themes.types';
+import {shadow} from '../tokens';
+
+declare module '@mui/material/styles/createTheme' {
+  interface ThemeOptions {
+    tokens?: EzThemeTokens;
+  }
+}
 
 declare module '@mui/material/styles/createPalette' {
   type EzPalette = typeof ezPalette;
@@ -163,7 +170,7 @@ const typography = {
   },
 };
 
-const getStatusChipStyles = themeProp => {
+const getStatusChipStyles = (themeProp: string) => {
   return {
     backgroundColor: themeProp === 'neutral' ? palette.common.grey120 : palette[themeProp].light,
     color: palette[themeProp].dark,
@@ -346,6 +353,14 @@ const components = {
   },
 };
 
+const tokens: EzThemeTokens = {
+  // shadow
+  'shadow-none': shadow['shadow-none'].value,
+  'shadow-sm': shadow['shadow-sm'].value,
+  'shadow-md': shadow['shadow-md'].value,
+  'shadow-lg': shadow['shadow-lg'].value,
+};
+
 const ezTheme = responsiveFontSizes(
   createTheme({
     breakpoints: {
@@ -359,6 +374,7 @@ const ezTheme = responsiveFontSizes(
     },
     components,
     palette,
+    tokens,
     typography,
   })
 );

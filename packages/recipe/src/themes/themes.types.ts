@@ -34,3 +34,5 @@ export type EzPaletteOptions = Omit<
 export type EzThemeCommonColors = `common.${keyof EzPalette}` | `common.${keyof CommonColors}`;
 export type EzThemeColors = PaletteOptions | EzThemeCommonColors | 'inherit';
 export type EzThemeIconSizes = 'small' | 'medium' | 'large' | 'xlarge' | 'inherit';
+export type EzTokenTypes = 'color' | 'radius' | 'shadow' | 'spacing' | 'typography';
+export type EzThemeTokens = Record<`${EzTokenTypes}${string}`, string>;

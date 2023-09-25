@@ -1,4 +1,3 @@
-export {default as ColorTokens} from './utils/ColorTokens';
 export {default as EzAlert} from './EzAlert';
 export {default as EzAppLayout} from './EzAppLayout';
 export {default as EzBadge} from './EzBadge';

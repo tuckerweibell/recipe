@@ -66,6 +66,7 @@ const ColorPalette: FC<ColorPaletteProps> = ({showThemeProperties = false}) => {
       {showThemeProperties ? (
         themeProperties.map(({title, subtitle, property}) => (
           <ColorItem
+            key={title}
             title={title}
             subtitle={subtitle}
             colors={theme.palette[property] as unknown as Colors}
