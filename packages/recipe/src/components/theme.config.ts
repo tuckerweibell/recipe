@@ -100,7 +100,7 @@ const stitches = createStitches({
       text: '$gray700',
       textAlt: '$black100',
       textDisabled: '$gray650',
-      deemphasisText: '$gray600',
+      deemphasisText: '#565964', // this is a new color from color tokens, the old color $gray600 was not accessible but used elsewhere in non-text contexts
       focusRing: '$black100',
       icon: '$gray600',
       border: '$gray400',

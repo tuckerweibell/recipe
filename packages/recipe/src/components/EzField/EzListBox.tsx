@@ -36,6 +36,7 @@ const groupLabel = theme.css({
   fontSize: '$75',
   lineHeight: '1.3em',
   color: '$deemphasisText',
+  marginBottom: 0,
 });
 
 const listItemOption = theme.css({
@@ -60,6 +61,17 @@ const disabledOption = theme.css({
   opacity: 0.6,
 });
 
+const groupDivider = theme.css({
+  '&': {
+    color: '#F0F2F7', // this is a new color from color tokens, we're adding this divider for accessibility purposes before moving to new color tokens
+  },
+  size: '1px',
+  marginLeft: '$250',
+  marginRight: '$250',
+  marginTop: 0,
+  borderStyle: 'solid',
+});
+
 const OptGroup = props => {
   const id = useUniqueId();
   return (
@@ -68,6 +80,7 @@ const OptGroup = props => {
         <li id={id} role="presentation" className={clsx(groupLabel(), listItem())}>
           {props.group}
         </li>
+        <hr className={groupDivider()} />
         {props.children}
       </ul>
     </li>

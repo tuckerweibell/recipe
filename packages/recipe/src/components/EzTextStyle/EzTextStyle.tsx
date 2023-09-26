@@ -48,6 +48,8 @@ const EzTextStyle = forwardRef<HTMLElement, Props>(
   }
 );
 
+EzTextStyle.displayName = 'EzTextStyle';
+
 /**
  * @component
  */

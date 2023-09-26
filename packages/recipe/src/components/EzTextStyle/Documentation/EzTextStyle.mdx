@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/blocks';
+import {Controls, Meta, Primary} from '@storybook/blocks';
 import MigrationAlert from '../../../../docs/components/MigrationAlert';
 import TableOfContents from '../../../../docs/components/TableOfContents';
 import * as DefaultStories from './Stories/Default.stories';
@@ -11,6 +11,12 @@ import * as DefaultStories from './Stories/Default.stories';
 <MigrationAlert component="ez-text-style" />
 
 Enhances text with styles to visually communicate meaning, such as emphasis.
+
+<Primary />
+
+## Props
+
+<Controls of={DefaultStories.Default} sort="requiredFirst" />
 
 ## Best practices
 

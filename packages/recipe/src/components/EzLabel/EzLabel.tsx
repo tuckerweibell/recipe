@@ -38,7 +38,7 @@ const styles = theme.css({
 type Uses = Pick<VariantProps<typeof styles>, 'use'>['use'];
 type Positions = Pick<VariantProps<typeof styles>, 'position'>['position'];
 type Ref = HTMLDivElement;
-interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
+export interface EzLabelProps extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
   /**
    * changes the HTML element used to render the label
    */
@@ -61,7 +61,7 @@ interface Props extends Omit<LabelHTMLAttributes<HTMLElement>, 'as' | 'css'> {
 /**
  * A component to provide consistent styling for Primary and Secondary labels.
  */
-const EzLabel = forwardRef<Ref, Props>(({as: element, ...initialProps}, ref) => {
+const EzLabel = forwardRef<Ref, EzLabelProps>(({as: element, ...initialProps}, ref) => {
   const {props} = styles(initialProps);
 
   return <Slot element={element} slot="label" {...props} ref={ref} />;
