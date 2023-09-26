@@ -1,3 +1,1 @@
-import EzPopover from './EzPopover';
-
-export default EzPopover;
+export {default} from './EzPopover';
