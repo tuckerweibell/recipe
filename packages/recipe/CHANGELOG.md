@@ -1,5 +1,28 @@
 # @ezcater/recipe
 
+## 18.3.0
+
+### Minor Changes
+
+- feat: add option to pass in EzLogo to EzNavigation [[sha]](https://github.com/ezcater/recipe/commit/75189f3b)
+
+### Patch Changes
+
+- fix: add forwardRef to EzPopover [[sha]](https://github.com/ezcater/recipe/commit/de45e645)
+- docs: add arg types to EzModal [[sha]](https://github.com/ezcater/recipe/commit/2aeefcb5)
+- docs: add arg types to EzLabel [[sha]](https://github.com/ezcater/recipe/commit/90a80236)
+- docs: add design tokens to theming page [[sha]](https://github.com/ezcater/recipe/commit/1baf8b78)
+- style: add shadow design tokens to themes [[sha]](https://github.com/ezcater/recipe/commit/1baf8b78)
+- docs: add arg types to EzTextStyle [[sha]](https://github.com/ezcater/recipe/commit/90a80236)
+- docs: add arg types to EzTooltip [[sha]](https://github.com/ezcater/recipe/commit/a84f7a91)
+- docs: add Box and Stack MUI components to playroom [[sha]](https://github.com/ezcater/recipe/commit/4cdac75e)
+- fix: vertically align EzNavigation user menu icons with text [[sha]](https://github.com/ezcater/recipe/commit/2cf27976)
+- docs: add arg types to EzPopover [[sha]](https://github.com/ezcater/recipe/commit/7db3d4c2)
+- docs: add arg types to EzPage [[sha]](https://github.com/ezcater/recipe/commit/58eebd92)
+- style: add EzField select group label divider [[sha]](https://github.com/ezcater/recipe/commit/90a80236)
+- fix: make deemphasis text accessible [[sha]](https://github.com/ezcater/recipe/commit/90a80236)
+- fix: fix EzPopover typescript error with shouldCloseOnBlur which must be used with onClose [[sha]](https://github.com/ezcater/recipe/commit/f361d02d)
+
 ## 18.2.1
 
 ### Patch Changes
