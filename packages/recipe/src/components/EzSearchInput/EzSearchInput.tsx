@@ -18,4 +18,6 @@ const EzSearchInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
   <EzTextInput ref={ref} {...props} className={searchInput()} type="search" />
 ));
 
+EzSearchInput.displayName = 'EzSearchInput';
+
 export default EzSearchInput;
