@@ -39,6 +39,7 @@ const meta: Meta<typeof EzTable> = {
               icon?: ReactNode | ComponentType;
               key?: string;
               numeric?: boolean;
+              numericPadded?: boolean;
               sortable?: boolean;
               width?: number;
             ]

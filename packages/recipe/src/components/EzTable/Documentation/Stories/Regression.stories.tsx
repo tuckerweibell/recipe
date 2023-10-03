@@ -205,3 +205,33 @@ const HorizontalScrollExample = () => {
 export const HorizontalScroll: Story = {
   render: () => HorizontalScrollExample(),
 };
+
+export const NumericPadded: Story = {
+  render: () => (
+    <EzTable
+      columns={[
+        {heading: 'Store name', key: 'store'},
+        {
+          heading: 'Total sales',
+          key: 'total',
+          numeric: true,
+        },
+        {heading: 'Average order value', key: 'average', numericPadded: true},
+        {heading: 'Status', key: 'status'},
+      ]}
+      items={[
+        {id: '#001', store: 'Ten Forward', total: 23267, average: 327.79, status: 'Open'},
+        {id: '#002', store: "Sisko's Kitchen", total: 22788, average: 367.55, status: 'Open'},
+        {id: '#003', store: "Quark's Bar", total: 12392, average: 210.21, status: 'Closed'},
+        {id: '#004', store: 'Betazoid Bakery', total: 13085, average: 184.29, status: 'Open'},
+      ]}
+      selection={{
+        isRowSelected: () => true,
+        onBulkSelectClick: () => {},
+        onRowSelectClick: () => {},
+      }}
+      subtitle="Compared to the same period last year"
+      title="All Stores"
+    />
+  ),
+};

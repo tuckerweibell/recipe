@@ -7,6 +7,7 @@ type Column = {
   icon?: ReactNode | ComponentType;
   key?: string;
   numeric?: boolean;
+  numericPadded?: boolean;
   sortable?: boolean;
   width?: number;
   /**
