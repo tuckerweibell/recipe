@@ -1,5 +1,5 @@
 import React, {FC, createContext, createElement, useContext} from 'react';
-import {Box} from '@mui/material';
+import {Box, Stack} from '@mui/material';
 import {
   faChevronLeft,
   faChevronRight,
@@ -15,7 +15,7 @@ import EzLayout from '../EzLayout';
 import EzIcon from '../EzIcon';
 import EzIconButton from '../EzIconButton';
 import TableCardSection from './TableCardSection';
-import {TableProps} from './EzTable.types';
+import {EzTableProps} from './EzTable.types';
 import useSorting from './useSorting';
 import en from './en';
 import {clsx} from '../../utils';
@@ -23,6 +23,7 @@ import {useTranslation} from '../../utils/hooks';
 import useExpandedClickTarget from './useExpandedClickTarget';
 import EzTextStyle from '../EzTextStyle';
 import {EzFooter} from '../EzContent';
+import {ezTheme} from '../../themes';
 
 const cell = theme.css({
   textAlign: 'left',
@@ -76,22 +77,6 @@ const sortableColumn = theme.css({
     display: 'inline-flex',
     alignItems: 'center',
   },
-  svg: {
-    fill: '$gray600',
-  },
-});
-
-const headerIcon = theme.css({
-  '&&': {
-    svg: {
-      fill: 'currentColor',
-      opacity: 1,
-    },
-  },
-});
-
-const headerItems = theme.css({
-  gap: '$50',
 });
 
 const sortedCell = theme.css({
@@ -149,7 +134,7 @@ const base = theme.css({
           paddingTop: '$50',
           paddingBottom: '$50',
         },
-        'tr td:not(:last-of-type)': {
+        'tr th:not(:last-of-type), tr td:not(:last-of-type)': {
           paddingRight: '$400',
         },
         'tr:nth-of-type(odd) td': {
@@ -201,7 +186,7 @@ const {Fragment} = React;
 const TableContext = createContext(null);
 
 const SortIcon = ({direction, isSorted}) => (
-  <Box fontSize="0.6rem">
+  <Box fontSize="0.6rem" sx={{svg: {fill: ezTheme.palette.common.grey150}}}>
     <EzIcon
       icon={isSorted ? (direction === 'asc' ? faSortUp : faSortDown) : faSort}
       size="inherit"
@@ -279,11 +264,18 @@ const Thead = ({selectable}) => {
               onClick={event => onClick(event, column, sorting.onSortClick)}
               width={width}
             >
-              <span className={headerItems()}>
+              <Stack
+                alignItems="center"
+                direction="row"
+                gap={0.5}
+                justifyContent={numeric && 'flex-end'}
+              >
                 <Box whiteSpace="normal">{heading}</Box>
-                {icon && <span className={headerIcon()}>{icon}</span>}
-                {sortable && <SortIcon direction={direction} isSorted={isSorted(column)} />}
-              </span>
+                <Stack alignItems="center" direction="row" gap={0.5}>
+                  {icon && icon}
+                  {sortable && <SortIcon direction={direction} isSorted={isSorted(column)} />}
+                </Stack>
+              </Stack>
             </Th>
           );
         })}
@@ -540,7 +532,7 @@ const TablePagination = ({pagination}) => {
  * so that users can look for patterns and insights.
  * They can be embedded in primary content, such as cards.
  */
-const EzTable: FC<TableProps> = ({
+const EzTable: FC<EzTableProps> = ({
   actions,
   title,
   subtitle,
