@@ -72,6 +72,10 @@ const noWrap = theme.css({
   whiteSpace: 'nowrap',
 });
 
+const noWrap = theme.css({
+  whiteSpace: 'nowrap',
+});
+
 const header = theme.css({
   fontWeight: '$table-heading',
   fontSize: '$table-heading',
