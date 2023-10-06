@@ -95,7 +95,6 @@ const EzCard: React.FC<DOMProps & EzCardProps> = ({
         }),
         transparent && transparentBackground()
       )}
-      data-testid="ez-card"
       style={{...style, '--sizes-card-preview-max-w': unitlessToPx(maxWidth)} as any}
     >
       <SlotProvider

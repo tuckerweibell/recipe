@@ -61,6 +61,7 @@ export const MultipleActions: Story = {
               <EzButton>View</EzButton>
             </EzLayout>
           }
+          data-testid="ez-card"
           subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
           title="Amuleto Mexican Table"
         >
@@ -78,6 +79,7 @@ export const MultipleActions: Story = {
             <EzButton>View</EzButton>
           </EzLayout>
         }
+        data-testid="ez-card"
         subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
         title="Amuleto Mexican Table"
       >
@@ -99,6 +101,7 @@ export const Clickable: Story = {
       code: dedent`
         <EzCard
           clickable
+          data-testid="ez-card"
           onClick={() => {}}
           subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
           title="Amuleto Mexican Table"
@@ -120,6 +123,7 @@ delete Clickable.args.onClick;
 const ClickableHeaderLinkCard = (args?: EzCardProps, includeCTA?: boolean) => (
   <EzCard
     {...args}
+    data-testid="ez-card"
     imageSrc="/images/tacos.jpg"
     imagePosition="left"
     imageMaxWidth={200}
@@ -164,6 +168,7 @@ const ClickableHeaderLinkCard = (args?: EzCardProps, includeCTA?: boolean) => (
 const ClickableHeaderLinkCardJSX = (includeCTA?: boolean) => dedent`
   <EzCard
     clickable
+    data-testid="ez-card"
     imageSrc="/images/tacos.jpg"
     imagePosition="left"
     imageMaxWidth={200}
