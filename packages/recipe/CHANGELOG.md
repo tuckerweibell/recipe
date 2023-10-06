@@ -1,5 +1,11 @@
 # @ezcater/recipe
 
+## 18.3.1
+
+### Patch Changes
+
+- fix: remove data-testid from EzCard [[sha]](https://github.com/ezcater/recipe/commit/0f4e7ee9)
+
 ## 18.3.0
 
 ### Minor Changes
