@@ -110,7 +110,7 @@ export const Clickable: Story = {
   },
   play: ({args, canvasElement}) => {
     const canvas = within(canvasElement);
-    userEvent.click(canvas.getAllByTestId('ez-card')[0]);
+    userEvent.click(canvas.getAllByText('Amuleto Mexican Table')[0]);
     expect(args.onClick).toHaveBeenCalled();
   },
   render: (args: EzCardProps) => EzCardSimpleExample(args),
