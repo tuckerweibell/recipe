@@ -61,7 +61,6 @@ export const MultipleActions: Story = {
               <EzButton>View</EzButton>
             </EzLayout>
           }
-          data-testid="ez-card"
           subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
           title="Amuleto Mexican Table"
         >
@@ -79,7 +78,6 @@ export const MultipleActions: Story = {
             <EzButton>View</EzButton>
           </EzLayout>
         }
-        data-testid="ez-card"
         subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
         title="Amuleto Mexican Table"
       >
@@ -101,7 +99,6 @@ export const Clickable: Story = {
       code: dedent`
         <EzCard
           clickable
-          data-testid="ez-card"
           onClick={() => {}}
           subtitle="Upscale Authentic Flavor | 6 mi | $$$$"
           title="Amuleto Mexican Table"
@@ -113,7 +110,7 @@ export const Clickable: Story = {
   },
   play: ({args, canvasElement}) => {
     const canvas = within(canvasElement);
-    userEvent.click(canvas.getAllByTestId('ez-card')[0]);
+    userEvent.click(canvas.getAllByText('Amuleto Mexican Table')[0]);
     expect(args.onClick).toHaveBeenCalled();
   },
   render: (args: EzCardProps) => EzCardSimpleExample(args),
@@ -123,7 +120,6 @@ delete Clickable.args.onClick;
 const ClickableHeaderLinkCard = (args?: EzCardProps, includeCTA?: boolean) => (
   <EzCard
     {...args}
-    data-testid="ez-card"
     imageSrc="/images/tacos.jpg"
     imagePosition="left"
     imageMaxWidth={200}
@@ -168,7 +164,6 @@ const ClickableHeaderLinkCard = (args?: EzCardProps, includeCTA?: boolean) => (
 const ClickableHeaderLinkCardJSX = (includeCTA?: boolean) => dedent`
   <EzCard
     clickable
-    data-testid="ez-card"
     imageSrc="/images/tacos.jpg"
     imagePosition="left"
     imageMaxWidth={200}
