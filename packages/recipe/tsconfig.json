@@ -1,8 +1,9 @@
 {
   "extends": "../../tsconfig",
   "compilerOptions": {
-    "allowJs": true
+    "allowJs": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", "stories", "typings"],
+  "include": ["src", "docs", "stories", "typings"],
   "exclude": ["**/node_modules", "dist/**/*.ts*"]
 }

@@ -1,9 +1,13 @@
 import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
 import type {EzPaletteOptions, EzThemeTokens} from '../themes.types';
-import {shadow} from '../tokens';
+import {color, shadow} from '../tokens';
 
 declare module '@mui/material/styles/createTheme' {
+  interface Theme {
+    tokens: EzThemeTokens;
+  }
+
   interface ThemeOptions {
     tokens?: EzThemeTokens;
   }
@@ -353,12 +357,12 @@ const components = {
   },
 };
 
-const tokens: EzThemeTokens = {
-  // shadow
-  'shadow-none': shadow['shadow-none'].value,
-  'shadow-sm': shadow['shadow-sm'].value,
-  'shadow-md': shadow['shadow-md'].value,
-  'shadow-lg': shadow['shadow-lg'].value,
+const getTokens = (themeTokens: Record<string, {value: string}>) => {
+  return Object.entries(themeTokens).reduce((tokens, [tokenKey, {value}]) => {
+    // eslint-disable-next-line no-param-reassign
+    tokens[tokenKey] = value;
+    return tokens;
+  }, {});
 };
 
 const ezTheme = responsiveFontSizes(
@@ -374,7 +378,10 @@ const ezTheme = responsiveFontSizes(
     },
     components,
     palette,
-    tokens,
+    tokens: {
+      ...getTokens(color),
+      ...getTokens(shadow),
+    },
     typography,
   })
 );
