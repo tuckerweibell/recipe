@@ -31,7 +31,7 @@ type BulkSelection = {
   onRowSelectClick: (event: MouseEvent<HTMLInputElement>, value: any) => void;
   onBulkSelectClick: MouseEventHandler;
   isRowSelected: (item: any) => boolean;
-  totalRowsSelected: number;
+  totalRowsSelected?: number;
 };
 
 type SelectAllOrNoneEnabled = {
@@ -128,7 +128,7 @@ interface TableWithTitleCardLabels {
 
 type TableLabel = SimpleTableLabels | TableWithoutTitleCardLabels | TableWithTitleCardLabels;
 
-export type TableProps = TableBase & TableActions & PaginationSelectionCombination & TableLabel;
+export type EzTableProps = TableBase & TableActions & PaginationSelectionCombination & TableLabel;
 
 export type Sortable = {
   direction: Direction;

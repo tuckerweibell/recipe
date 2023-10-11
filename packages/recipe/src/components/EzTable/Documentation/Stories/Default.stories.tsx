@@ -1,12 +1,12 @@
 import React from 'react';
 import {type Meta, type StoryObj} from '@storybook/react';
 import {faCoffee, faStar} from '@fortawesome/free-solid-svg-icons';
-import dedent from 'ts-dedent';
+import {EzCard} from '../../../EzCard';
+import {EzTableExample, EzTableExampleJSX} from '../EzTableExample';
+import {EzTableProps} from '../../EzTable.types';
+import EzButton from '../../../EzButton';
 import EzIcon from '../../../EzIcon';
 import EzTable from '../../EzTable';
-import {TableProps} from '../../EzTable.types';
-import EzButton from '../../../EzButton';
-import EzLayout from '../../../EzLayout';
 
 const ICONS = {
   faCoffee: <EzIcon icon={faCoffee} />,
@@ -157,96 +157,26 @@ const meta: Meta<typeof EzTable> = {
 export default meta;
 type Story = StoryObj<typeof EzTable>;
 
-const ActionButtons = (
-  <EzLayout layout="right">
-    <EzButton fontSize="small" variant="text">
-      View
-    </EzButton>
-    <EzButton color="destructive" fontSize="small" variant="text">
-      Delete
-    </EzButton>
-  </EzLayout>
+const defaultArgs = {
+  actions: <EzButton>Add store</EzButton>,
+  onSortClick: undefined,
+  subtitle: 'Compared to the same period last year',
+  title: 'All stores',
+  titleIcon: <EzIcon icon={faCoffee} size="large" />,
+};
+
+const defaultJSX = EzTableExampleJSX(
+  ['store', 'total', 'average', 'actions'],
+  defaultArgs as EzTableProps
 );
 
 export const Default: Story = {
-  args: {
-    actions: <EzButton>Add store</EzButton>,
-    columns: [
-      {heading: 'Store name', key: 'store'},
-      {heading: 'Total sales', key: 'total', numeric: true, width: 100},
-      {heading: 'Average order value', key: 'average', numeric: true, width: 150},
-      {heading: '', key: 'actions'},
-    ],
-    items: [
-      {
-        id: '#004',
-        store: 'Ten Forward',
-        total: 23267,
-        average: 327.79,
-        actions: ActionButtons,
-      },
-      {
-        id: '#007',
-        store: "Sisko's Creole Kitchen",
-        total: 22788,
-        average: 367.55,
-        actions: ActionButtons,
-      },
-    ],
-    subtitle: 'Compared to the same period last year',
-    title: 'All stores',
-    titleIcon: <EzIcon icon={faCoffee} size="large" />,
-  },
+  args: defaultArgs,
   parameters: {
-    playroom: {
-      code: dedent`
-      {(() => {
-        const {faCoffee} = require('@fortawesome/free-solid-svg-icons/faCoffee');
-
-        const ActionButtons = (
-          <EzLayout layout="right">
-            <EzButton fontSize="small" variant="text">
-              View
-            </EzButton>
-            <EzButton color="destructive" fontSize="small" variant="text">
-              Delete
-            </EzButton>
-          </EzLayout>
-        );
-        
-        return (
-          <EzTable
-            actions={<EzButton>Add store</EzButton>}
-            columns={[
-              {heading: 'Store name', key: 'store'},
-              {heading: 'Total sales', key: 'total', numeric: true, width: 100},
-              {heading: 'Average order value', key: 'average', numeric: true, width: 150},
-              {heading: '', key: 'actions'},
-            ]}
-            items={[
-              {
-                id: '#004',
-                store: 'Ten Forward',
-                total: 23267,
-                average: 327.79,
-                actions: ActionButtons,
-              },
-              {
-                id: '#007',
-                store: "Sisko's Creole Kitchen",
-                total: 22788,
-                average: 367.55,
-                actions: ActionButtons,
-              },
-            ]}
-            subtitle="Compared to the same period last year"
-            title="All stores"
-            titleIcon={<EzIcon icon={faCoffee} size="large" />}
-          />
-        );
-      })()}
-      `,
-    },
+    docs: {source: {code: defaultJSX}},
+    playroom: {code: defaultJSX},
   },
-  render: (args: TableProps) => <EzTable {...args} />,
+  render: (args: EzTableProps) => (
+    <EzCard>{EzTableExample(['store', 'total', 'average', 'actions'], args)}</EzCard>
+  ),
 };
