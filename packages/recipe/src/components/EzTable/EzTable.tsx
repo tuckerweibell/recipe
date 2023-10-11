@@ -63,6 +63,11 @@ const numericCell = theme.css({
   textAlign: 'right',
 });
 
+const numericPaddedCell = theme.css({
+  textAlign: 'right',
+  paddingRight: '32px',
+});
+
 const header = theme.css({
   fontWeight: '$table-heading',
   fontSize: '$table-heading',
@@ -197,6 +202,7 @@ const SortIcon = ({direction, isSorted}) => (
 type ThProps = {
   children: any;
   numeric?: boolean;
+  numericPadded?: boolean;
   isSelection?: boolean;
   isSortableColumn?: boolean;
   sorted?: boolean;
@@ -209,6 +215,7 @@ const Th: FC<ThProps> = ({
   isSelection,
   isSortableColumn,
   numeric,
+  numericPadded,
   onClick,
   sorted,
   width,
@@ -218,6 +225,7 @@ const Th: FC<ThProps> = ({
     className={clsx(
       isSelection ? checkboxCell() : cell(),
       numeric && numericCell(),
+      numericPadded && numericPaddedCell(),
       header(),
       isSortableColumn && sortableColumn(),
       sorted && sortedCell()
@@ -254,11 +262,12 @@ const Thead = ({selectable}) => {
           </Th>
         )}
         {columns.map((column, cellIndex) => {
-          const {sortable, heading, numeric, icon, width} = column;
+          const {sortable, heading, numeric, numericPadded, icon, width} = column;
           return (
             <Th
               key={column.key || cellIndex}
               numeric={numeric}
+              numericPadded={numericPadded}
               isSortableColumn={sortable}
               sorted={isSorted(column)}
               onClick={event => onClick(event, column, sorting.onSortClick)}
@@ -268,7 +277,7 @@ const Thead = ({selectable}) => {
                 alignItems="center"
                 direction="row"
                 gap={0.5}
-                justifyContent={numeric && 'flex-end'}
+                justifyContent={(numeric || numericPadded) && 'flex-end'}
               >
                 <Box whiteSpace="normal">{heading}</Box>
                 <Stack alignItems="center" direction="row" gap={0.5}>
@@ -359,8 +368,11 @@ const TRow = ({item}) => {
           />
         </td>
       )}
-      {columns.map(({component, numeric}, cellIndex) => (
-        <td className={clsx(cell(), numeric && numericCell())} key={cellIndex}>
+      {columns.map(({component, numeric, numericPadded}, cellIndex) => (
+        <td
+          className={clsx(cell(), numeric && numericCell(), numericPadded && numericPaddedCell())}
+          key={cellIndex}
+        >
           {createElement(component, {item, linkRef: targetRef})}
         </td>
       ))}
