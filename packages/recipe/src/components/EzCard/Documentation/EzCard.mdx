@@ -9,6 +9,7 @@ import * as ElementsStories from './Stories/Elements.stories';
 import * as ExpandableStories from './Stories/Expandable.stories';
 import * as SectionStories from './Stories/Section.stories';
 import * as SizeStories from './Stories/Size.stories';
+import * as TruncatedStories from './Stories/Truncated.stories';
 
 <Meta of={DefaultStories} name="Docs" />
 <TableOfContents />
@@ -214,6 +215,13 @@ By default, cards are intentionally prominent. A card's appearance can be change
 - inherits the parent element's background color
 
 <Canvas of={AppearanceStories.Transparent} meta={AppearanceStories} />
+
+##### `truncateHeading`:
+
+- by default, card headers wrap to a new line
+- when set to true, truncate's the card heading (title and subtitle) with an ellipsis
+
+<Canvas of={TruncatedStories.Truncate} meta={TruncatedStories} />
 
 ## Related components
 

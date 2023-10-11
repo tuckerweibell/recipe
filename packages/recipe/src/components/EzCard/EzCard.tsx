@@ -48,6 +48,7 @@ export type EzCardProps = (HeadingProps & ImageProps & ImageSizeProps) & {
   isQuiet?: boolean;
   titleIcon?: React.ReactNode | React.ComponentType;
   transparent?: boolean;
+  truncateHeading?: boolean;
   /** The card is visually presented as being clickable. */
   clickable?: boolean;
 };
@@ -76,6 +77,7 @@ const EzCard: React.FC<DOMProps & EzCardProps> = ({
   style = {},
   className,
   transparent,
+  truncateHeading,
   ...props
 }) => {
   const {imagePosition = 'top'} = responsiveProps(props as any, true, 'imagePosition');
@@ -117,6 +119,7 @@ const EzCard: React.FC<DOMProps & EzCardProps> = ({
               title={title}
               subtitle={subtitle}
               titleIcon={titleIcon}
+              truncateHeading={truncateHeading}
             />
           </EzHeader>
         )}

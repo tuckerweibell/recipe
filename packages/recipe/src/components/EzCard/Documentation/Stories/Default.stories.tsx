@@ -124,6 +124,15 @@ const meta: Meta<typeof EzCard> = {
         type: {summary: 'boolean'},
       },
     },
+    truncateHeading: {
+      control: {type: 'boolean'},
+      description:
+        'If true, the card heading (title and subtitle) will be truncated with an ellipsis.',
+      table: {
+        defaultValue: {summary: false},
+        type: {summary: 'boolean'},
+      },
+    },
   },
   component: EzCard,
   title: 'Surface/EzCard',
@@ -139,6 +148,7 @@ export const Default: Story = {
     isQuiet: false,
     onClick: undefined,
     transparent: false,
+    truncateHeading: false,
   },
   parameters: {
     playroom: {code: getJSXString(EzCardExample())},

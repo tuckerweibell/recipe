@@ -1,7 +1,20 @@
 import React, {FC, type HTMLAttributes, type ReactNode} from 'react';
+import {clsx} from '../../utils';
 import EzHeading from '../EzHeading';
 import EzLayout from '../EzLayout';
 import theme from '../theme.config';
+
+const truncate = theme.css({
+  '& div': {
+    display: 'inline-block',
+    maxWidth: '100%',
+  },
+  '& *': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+});
 
 const box = theme.css({position: 'relative'});
 
@@ -10,6 +23,7 @@ type PropsWithoutTitle = {
   subtitle?: never;
   title?: never;
   titleIcon?: never;
+  truncateHeading?: never;
 };
 
 type PropsWithTitle = {
@@ -17,6 +31,7 @@ type PropsWithTitle = {
   subtitle?: string;
   title: string;
   titleIcon?: ReactNode;
+  truncateHeading?: boolean;
 };
 
 type Props = PropsWithTitle | PropsWithoutTitle;
@@ -24,7 +39,13 @@ type DOMProps = HTMLAttributes<HTMLElement>;
 
 export type HeadingProps = DOMProps & Props;
 
-const EzCardHeading: FC<HeadingProps> = ({title, subtitle, actions, titleIcon}) => {
+const EzCardHeading: FC<HeadingProps> = ({
+  title,
+  subtitle,
+  actions,
+  titleIcon,
+  truncateHeading,
+}) => {
   const heading = title && (
     <EzLayout layout="basic" alignY="top">
       {titleIcon}
@@ -41,7 +62,9 @@ const EzCardHeading: FC<HeadingProps> = ({title, subtitle, actions, titleIcon}) 
     </EzLayout>
   );
 
-  return <div className={box()}>{actions ? layout : heading}</div>;
+  return (
+    <div className={clsx(box(), truncateHeading && truncate())}>{actions ? layout : heading}</div>
+  );
 };
 
 EzCardHeading.displayName = 'EzCardHeading';
