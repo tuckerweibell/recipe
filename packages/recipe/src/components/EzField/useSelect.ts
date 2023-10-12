@@ -89,7 +89,7 @@ export function useSelect(props, state): SelectAria {
     inputProps: {
       ...mergeProps(typeSelectProps, menuTriggerProps, inputProps, domProps),
       role: 'combobox',
-      'aria-controls': state.isOpen ? menuProps.id : undefined,
+      'aria-controls': menuProps.id,
       'aria-autocomplete': 'list',
       'aria-activedescendant': focusedKeyId,
     },

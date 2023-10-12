@@ -42,7 +42,7 @@ const useOverlayTrigger = (state: OverlayTriggerState) => {
   return {
     triggerProps: {
       'aria-expanded': isOpen,
-      'aria-owns': isOpen ? overlayId : null,
+      'aria-controls': overlayId,
       role: 'combobox',
     },
     overlayProps: {
