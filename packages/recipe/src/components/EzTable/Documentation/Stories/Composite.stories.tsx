@@ -11,6 +11,7 @@ import EzIcon from '../../../EzIcon';
 import EzLayout from '../../../EzLayout';
 import EzSearchInput from '../../../EzSearchInput';
 import EzTable from '../../EzTable';
+import EzBlankState from '../../../EzBlankState';
 
 const meta: Meta<typeof EzTable> = {
   argTypes: DefaultMeta.argTypes,
@@ -77,6 +78,37 @@ export const CompositeTransparent: Story = {
   parameters: {
     docs: {source: {code: compositeTransparentJSX}},
     playroom: {code: compositeTransparentJSX},
+  },
+  render: args => (
+    <EzCard style={{backgroundColor: color.lighter}}>{EzTableExample(compositeKeys, args)}</EzCard>
+  ),
+};
+
+const compositeBlankStateArgs = {
+  actions: <EzButton>Create custom checkout field</EzButton>,
+  blankState: (
+    <EzBlankState
+      message="Adding a custom checkout field can help you organize food spend, customize reports, split and manage invoicing, and/or ensure compliance. As you create custom checkout fields, they'll appear here."
+      title="You don't have any custom checkout fields yet"
+    />
+  ),
+  columns: [
+    {heading: 'Field', key: 'field'},
+    {heading: 'Field details', key: 'details'},
+  ],
+  items: [],
+  title: 'Custom checkout fields',
+};
+const compositeBlankStateJSX = EzTableExampleJSX(
+  compositeKeys,
+  compositeBlankStateArgs as EzTableProps
+);
+
+export const CompositeBlankState: Story = {
+  args: compositeBlankStateArgs as EzTableProps,
+  parameters: {
+    docs: {source: {code: compositeBlankStateJSX}},
+    playroom: {code: compositeBlankStateJSX},
   },
   render: args => (
     <EzCard style={{backgroundColor: color.lighter}}>{EzTableExample(compositeKeys, args)}</EzCard>

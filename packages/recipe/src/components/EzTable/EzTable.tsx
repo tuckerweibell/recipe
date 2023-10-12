@@ -556,6 +556,7 @@ const EzTable: FC<EzTableProps> = ({
   actions,
   alignY = 'center',
   ariaLabel,
+  blankState,
   columns,
   fullWidth,
   items,
@@ -633,7 +634,7 @@ const EzTable: FC<EzTableProps> = ({
         {actions && showCardWithoutHeading && (
           <div className={cardWithoutHeaderActions()}>{actions}</div>
         )}
-        {table}
+        {blankState && items.length === 0 ? blankState : table}
       </TableCardSection>
       {pagination && <TablePagination pagination={pagination} />}
     </EzCard>

@@ -99,6 +99,7 @@ type PaginationSelectionCombination =
 
 type TableBase = {
   alignY?: 'center' | 'top';
+  blankState?: ReactNode;
   columns: Column[];
   fullWidth?: boolean;
   items: any[];

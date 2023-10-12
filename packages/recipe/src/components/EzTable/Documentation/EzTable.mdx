@@ -83,6 +83,7 @@ Use simple tables whenever the tabular data is directly related to the preceding
   - `numericPadded` (boolean): If true, the column is right aligned with a right padding of `32px`.
   - `width` (number): The width of the column.
   - `allowWrap` (boolean): If true, the text in the column cells will wrap.
+  - `blankState` (ReactNode): Pass in an optional `EzBlankState` to the table that will display if no items are passed to the table. See [Blank state](#blankstate).
   - `component` (ReactNode | ComponentType): See [Interactive cells](#interactive-cells).
   - `sortable` (boolean): See [Sortable tables](#sortable).
   - `defaultSort` (`asc | desc`): See [Sortable tables](#sortable).
@@ -126,6 +127,17 @@ To maintain accessibility, provide an `ariaLabel` and optionally a heading or la
 Add the `transparent` property to inherit the parent element's background color.
 
 <Canvas of={CompositeStories.CompositeTransparent} meta={CompositeStories} />
+
+### `blankState`
+
+To render a blank state when the table does not have any data, pass in `blankState` to `EzTable` with the [EzBlankState](?path=/docs/layout-ezblankstate--docs) you'd like to display.
+
+Include the following `EzBlankState` properties:
+
+- `title` (string): `You don't have any [table name] yet`
+- `message` (string): `[Value proposition sentence.] As you create [table name], they'll appear here.`
+
+<Canvas of={CompositeStories.CompositeBlankState} meta={CompositeStories} />
 
 ## Interactive
 
@@ -241,4 +253,4 @@ Multiple filters can be used across pages to filter a data set in a table. To av
 
 ## Related components
 
-<RelatedComponents components={['EzCard']} />
+<RelatedComponents components={['EzBlankState', 'EzCard']} />
