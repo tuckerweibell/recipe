@@ -60,8 +60,8 @@ const EzProgress = forwardRef<Ref, EzProgressProps>(
     const progressValueChart = value < 1 ? 1 : value;
 
     return (
-      <Box component="span" ref={ref} aria-label={label} margin="auto">
-        <EzProgressMui value={progressValueChart} color={progressColor}>
+      <Box component="span" ref={ref} margin="auto">
+        <EzProgressMui color={progressColor} label={label} value={progressValueChart}>
           <EzProgressMuiDisplayValue
             boldDisplayValue={goal && subgoal && !meetsSubGoal}
             value={progressValue}
