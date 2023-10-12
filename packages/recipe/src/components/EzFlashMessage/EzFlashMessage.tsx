@@ -129,7 +129,7 @@ const EzFlashMessage: React.FC<FlashMessageProps> = ({
                 {headline}
               </EzHeading>
             )}
-            <div>{children}</div>
+            <div id={headline ? undefined : labelId}>{children}</div>
           </EzLayout>
         </div>
         {onDismiss && (
