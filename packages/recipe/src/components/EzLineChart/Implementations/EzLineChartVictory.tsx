@@ -7,6 +7,7 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
   VictoryClipContainer,
+  VictoryLabel,
 } from 'victory';
 import {useTheme} from '@mui/material';
 import {EzLineChartProps, Ref} from '../EzLineChart.types';
@@ -18,6 +19,7 @@ import {
   NONE,
 } from '../../../themes/victory/getVictoryStyles';
 import {useThemeColor} from '../../../themes/hooks/useThemeColor';
+import {useUniqueId} from '../../../utils/hooks';
 
 const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
   (
@@ -71,6 +73,9 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
       );
     };
 
+    const uniqueDependentAxisId = useUniqueId();
+    const uniqueIndependentAxisId = useUniqueId();
+
     return (
       <div ref={ref}>
         <VictoryChart
@@ -87,15 +92,17 @@ const EzLineChartVictory = forwardRef<Ref, EzLineChartProps>(
           }
         >
           <VictoryAxis
-            dependentAxis
             crossAxis={false}
-            tickFormat={dependentAxisLabelFormatter}
+            dependentAxis
             style={dependentAxisStyle}
+            tickFormat={dependentAxisLabelFormatter}
+            tickLabelComponent={<VictoryLabel id={uniqueDependentAxisId} />}
             tickValues={dependentAxisLabelValues}
           />
           <VictoryAxis
-            tickFormat={independentAxisLabelFormatter}
             style={independentAxisStyle}
+            tickFormat={independentAxisLabelFormatter}
+            tickLabelComponent={<VictoryLabel id={uniqueIndependentAxisId} />}
             tickValues={independentAxisLabelValues}
           />
           <VictoryLine

@@ -3,6 +3,7 @@ import {
   VictoryAxis,
   VictoryBar,
   VictoryChart,
+  VictoryLabel,
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from 'victory';
@@ -14,6 +15,7 @@ import {
   getVictoryTooltipStyles,
 } from '../../../themes/victory/getVictoryStyles';
 import {useThemeColor} from '../../../themes/hooks/useThemeColor';
+import {useUniqueId} from '../../../utils/hooks';
 
 const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
   (
@@ -52,6 +54,9 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
     const {tooltipFont, flyoutStyle, flyoutPadding, pointerLength} = getVictoryTooltipStyles({
       fontFamily,
     });
+    const uniqueDependentAxisId = useUniqueId();
+    const uniqueIndependentAxisId = useUniqueId();
+
     return (
       <div ref={ref}>
         <VictoryChart
@@ -72,11 +77,13 @@ const EzBarChartVictory = forwardRef<Ref, EzBarChartProps>(
             dependentAxis
             style={dependentAxisStyle}
             tickFormat={dependentAxisLabelFormatter}
+            tickLabelComponent={<VictoryLabel id={uniqueDependentAxisId} />}
             tickValues={dependentAxisLabelValues}
           />
           <VictoryAxis
             style={independentAxisStyle}
             tickFormat={independentAxisLabelFormatter}
+            tickLabelComponent={<VictoryLabel id={uniqueIndependentAxisId} />}
             tickValues={independentAxisLabelValues}
           />
           <VictoryBar
