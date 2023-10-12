@@ -172,7 +172,7 @@ const EzOrderSummary: FC<Props> = ({actions, items, subtitle, tableware, title, 
         />
       </TableCardSection>
       <EzCardSection className={totals()}>
-        <table>
+        <table role="presentation">
           <tbody>
             {summary.lineItems.map(subtotal => (
               <tr key={subtotal.label}>
