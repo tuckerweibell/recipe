@@ -1,5 +1,20 @@
 # @ezcater/recipe
 
+## 18.4.0
+
+### Minor Changes
+
+- feat: add topAlign option to EzTable and allowWrap option to EzTable columns [[sha]](https://github.com/ezcater/recipe/commit/338c0783)
+- feat: add blankState option to EzTable [[sha]](https://github.com/ezcater/recipe/commit/8d89b5f8)
+- feat: add numericPadded option to EzTable columns adding additional right padding [[sha]](https://github.com/ezcater/recipe/commit/f4e2b915)
+- feat: add optional `truncateHeading` prop to EzCard [[sha]](https://github.com/ezcater/recipe/commit/591b667f)
+
+### Patch Changes
+
+- docs: add stories to EzTable and update documentation [[sha]](https://github.com/ezcater/recipe/commit/2de0695a)
+- fix: change EzTable totalRowsSelected type to be optional [[sha]](https://github.com/ezcater/recipe/commit/9df1a653)
+- fix: align EzTable column headers correctly using emotion [[sha]](https://github.com/ezcater/recipe/commit/d211c8b3)
+
 ## 18.3.1
 
 ### Patch Changes
