@@ -11,6 +11,7 @@ const maybeReactUseId: undefined | (() => string) = (React as any)[`${useId}`];
 
 const useCustomUniqueId = (): string => React.useMemo(getUniqueId, []);
 
-const useUniqueId = maybeReactUseId !== undefined ? maybeReactUseId : useCustomUniqueId;
+const useUniqueId =
+  maybeReactUseId !== undefined ? () => `control__${maybeReactUseId()}` : useCustomUniqueId;
 
 export default useUniqueId;
