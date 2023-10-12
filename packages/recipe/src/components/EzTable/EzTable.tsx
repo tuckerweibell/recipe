@@ -612,6 +612,7 @@ const EzTable: FC<EzTableProps> = ({
             fullWidth && fullWidthTable(),
             transparent && transparentBackground()
           )}
+          role="table"
         >
           <Thead selectable={!!selection} />
           <Tbody />
