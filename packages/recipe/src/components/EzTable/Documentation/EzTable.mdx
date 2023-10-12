@@ -82,6 +82,7 @@ Use simple tables whenever the tabular data is directly related to the preceding
   - `numeric` (boolean): If true, the column is right aligned.
   - `numericPadded` (boolean): If true, the column is right aligned with a right padding of `32px`.
   - `width` (number): The width of the column.
+  - `allowWrap` (boolean): If true, the text in the column cells will wrap.
   - `component` (ReactNode | ComponentType): See [Interactive cells](#interactive-cells).
   - `sortable` (boolean): See [Sortable tables](#sortable).
   - `defaultSort` (`asc | desc`): See [Sortable tables](#sortable).
@@ -95,6 +96,12 @@ Use simple tables whenever the tabular data is directly related to the preceding
 Add the `fullWidth` property to allow a simple table to fill the parent element's width.
 
 <Canvas of={SimpleStories.SimpleFullWidth} meta={SimpleStories} />
+
+### `alignY`
+
+The `alignY` property will vertically align the table cells. Options are `center` (default), or `top`. Typically used if column cells have wrapping text (using the column `allowWrap` property).
+
+<Canvas of={SimpleStories.SimpleAlignY} meta={SimpleStories} />
 
 ## Composite
 

@@ -1,6 +1,7 @@
 import type {ComponentType, MouseEvent, MouseEventHandler, ReactNode} from 'react';
 
 type Column = {
+  allowWrap?: boolean;
   component?: ReactNode | ComponentType;
   defaultSort?: Direction;
   heading: string;
@@ -97,12 +98,13 @@ type PaginationSelectionCombination =
   | PaginationAndSelectionDisabled;
 
 type TableBase = {
-  subtitle?: string;
+  alignY?: 'center' | 'top';
   columns: Column[];
+  fullWidth?: boolean;
   items: any[];
   onSortClick?: onSortClick;
+  subtitle?: string;
   titleIcon?: ReactNode;
-  fullWidth?: boolean;
   transparent?: boolean;
 };
 

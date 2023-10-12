@@ -68,6 +68,10 @@ const numericPaddedCell = theme.css({
   paddingRight: '32px',
 });
 
+const noWrap = theme.css({
+  whiteSpace: 'nowrap',
+});
+
 const header = theme.css({
   fontWeight: '$table-heading',
   fontSize: '$table-heading',
@@ -103,6 +107,10 @@ const fullWidthTable = theme.css({
   width: '100%',
 });
 
+const alignTop = theme.css({
+  verticalAlign: 'top',
+});
+
 const transparentBackground = theme.css({
   backgroundColor: 'inherit',
 });
@@ -117,7 +125,6 @@ const base = theme.css({
   lineHeight: '$table',
   color: '$table-text',
   backgroundColor: 'white',
-  whiteSpace: 'nowrap',
 
   variants: {
     use: {
@@ -201,12 +208,12 @@ const SortIcon = ({direction, isSorted}) => (
 
 type ThProps = {
   children: any;
-  numeric?: boolean;
-  numericPadded?: boolean;
   isSelection?: boolean;
   isSortableColumn?: boolean;
-  sorted?: boolean;
+  numeric?: boolean;
+  numericPadded?: boolean;
   onClick?: any;
+  sorted?: boolean;
   width?: number;
 };
 
@@ -368,9 +375,14 @@ const TRow = ({item}) => {
           />
         </td>
       )}
-      {columns.map(({component, numeric, numericPadded}, cellIndex) => (
+      {columns.map(({allowWrap, component, numeric, numericPadded}, cellIndex) => (
         <td
-          className={clsx(cell(), numeric && numericCell(), numericPadded && numericPaddedCell())}
+          className={clsx(
+            cell(),
+            !allowWrap && noWrap(),
+            numeric && numericCell(),
+            numericPadded && numericPaddedCell()
+          )}
           key={cellIndex}
         >
           {createElement(component, {item, linkRef: targetRef})}
@@ -381,9 +393,9 @@ const TRow = ({item}) => {
 };
 
 const Tbody = () => {
-  const {items} = useContext(TableContext);
+  const {alignY, items} = useContext(TableContext);
   return (
-    <tbody>
+    <tbody className={clsx(alignY === 'top' && alignTop())}>
       {items.map((item, rowIndex) => (
         <TRow key={item.key || rowIndex} item={item} />
       ))}
@@ -394,10 +406,6 @@ const Tbody = () => {
 const iconSize = theme.css({
   height: 24,
   width: 24,
-});
-
-const rangeWrapper = theme.css({
-  whiteSpace: 'nowrap',
 });
 
 const paginationNav = theme.css({
@@ -486,7 +494,7 @@ const TablePagination = ({pagination}) => {
     <EzFooter>
       <EzLayout layout="right">
         <nav aria-label={t('Pagination')} className={paginationNav()}>
-          <span className={rangeWrapper()}>{t('{{range}} of {{count}}', {range, count})}</span>
+          <span className={noWrap()}>{t('{{range}} of {{count}}', {range, count})}</span>
 
           <div className={virtualTouchable()}>
             <EzIconButton
@@ -546,17 +554,18 @@ const TablePagination = ({pagination}) => {
  */
 const EzTable: FC<EzTableProps> = ({
   actions,
-  title,
-  subtitle,
+  alignY = 'center',
+  ariaLabel,
   columns,
+  fullWidth,
   items,
-  selection,
   onSortClick,
   pagination,
+  selection,
   showCardWithoutHeading,
-  ariaLabel,
+  subtitle,
+  title,
   titleIcon,
-  fullWidth,
   transparent,
 }) => {
   const rowsSelectedOnCurrentPage = selection && items.filter(selection.isRowSelected);
@@ -583,6 +592,7 @@ const EzTable: FC<EzTableProps> = ({
   const table = (
     <TableContext.Provider
       value={{
+        alignY,
         items,
         selection: selection && {
           ...selection,
@@ -629,5 +639,7 @@ const EzTable: FC<EzTableProps> = ({
     </EzCard>
   );
 };
+
+EzTable.displayName = 'EzTable';
 
 export default EzTable;

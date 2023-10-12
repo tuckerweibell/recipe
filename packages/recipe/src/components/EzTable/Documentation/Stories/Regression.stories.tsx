@@ -235,3 +235,41 @@ export const NumericPadded: Story = {
     />
   ),
 };
+
+export const TopAligned: Story = {
+  render: () => (
+    <EzTable
+      alignY="top"
+      columns={[
+        {heading: 'Store name', key: 'store', width: 200},
+        {heading: 'Description', key: 'description', allowWrap: true},
+      ]}
+      items={[
+        {
+          id: '#001',
+          store: 'Ten Forward',
+          description:
+            'Serves as the social center of the Enterprise and is equipped with a number of recreational activities such as three-dimensional chess, Terrace, and Strategema, tables and seating, and a bar which serves several alcoholic and syntheholic beverages. Designed with several large windows, which offers a spectacular view of space ahead of the vessel.',
+        },
+        {
+          id: '#002',
+          store: "Sisko's Kitchen",
+          description:
+            'A restaurant in the French Quarter of New Orleans serving blackened redfish, shrimp creole, shrimp remoulade, crawfish étouffée, jambalaya, pasta boudin, and gumbo.',
+        },
+        {
+          id: '#003',
+          store: "Quark's Bar",
+          description: 'A popular recreational facility located on the space station Deep Space 9.',
+        },
+        {
+          id: '#004',
+          store: 'Betazoid Bakery',
+          description:
+            'Produces and sells flour-based food baked in an oven such as bread, cookies, cakes, doughnuts, bagels, pastries, and pies.',
+        },
+      ]}
+      title="Store descriptions"
+    />
+  ),
+};

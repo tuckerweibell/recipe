@@ -20,6 +20,15 @@ const meta: Meta<typeof EzTable> = {
       description: 'The actions of the table. Must be used with table header.',
       table: {type: {summary: 'ReactNode'}},
     },
+    alignY: {
+      control: {type: 'select'},
+      description: 'The vertical alignment of the table.',
+      options: ['center', 'top'],
+      table: {
+        defaultValue: {summary: 'center'},
+        type: {summary: 'center | top'},
+      },
+    },
     ariaLabel: {
       control: {type: 'text'},
       description: 'The aria label of the table.',
@@ -33,6 +42,7 @@ const meta: Meta<typeof EzTable> = {
         type: {
           summary: `
             Column[
+              allowWrap?: boolean;
               component?: ReactNode | ComponentType;
               defaultSort?: 'asc' | 'desc';
               heading: string;
@@ -160,16 +170,14 @@ type Story = StoryObj<typeof EzTable>;
 
 const defaultArgs = {
   actions: <EzButton>Add store</EzButton>,
+  alignY: 'center',
   onSortClick: undefined,
   subtitle: 'Compared to the same period last year',
   title: 'All stores',
   titleIcon: <EzIcon icon={faCoffee} size="large" />,
-};
+} as EzTableProps;
 
-const defaultJSX = EzTableExampleJSX(
-  ['store', 'total', 'average', 'actions'],
-  defaultArgs as EzTableProps
-);
+const defaultJSX = EzTableExampleJSX(['store', 'total', 'average', 'actions'], defaultArgs);
 
 export const Default: Story = {
   args: defaultArgs,
