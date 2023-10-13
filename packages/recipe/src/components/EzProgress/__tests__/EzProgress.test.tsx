@@ -1,120 +1,89 @@
 import React from 'react';
-import {render} from '@testing-library/react';
-import {axe} from '../../../../test-utils';
+import {axe, render, screen} from '../../../../test-utils';
 import {EzProgress} from '../../index';
 
 describe('EzProgress logic', () => {
-  it('Passing a goal, subgoal, value, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {
+  it('Passing a goal, subgoal, value, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', () => {
     const value = 88;
     const label = `Q1 on-time delivery goal progress - ${value}%`;
-    const {findByLabelText, queryAllByLabelText} = render(
+    const {queryAllByLabelText} = render(
       <EzProgress value={value} goal={75} subgoal={25} label={label} />
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const chart = findByLabelText(label);
-
-    expect((await chart).firstChild.childNodes[0]).toHaveAttribute('aria-valuenow', '100');
-    expect((await chart).firstChild.childNodes[1]).toHaveAttribute(
-      'aria-valuenow',
-      value.toString()
-    );
-    expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`${value}%`);
+    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', value.toString());
+    expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
 
-  it('Passing a goal, subgoal, value less than 1, and label should show a full circle, a percentage circle matching the minimum value (1%), an aria-label matching the label, and text matching the value percentage', async () => {
+  it('Passing a goal, subgoal, value less than 1, and label should show a full circle, a percentage circle matching the minimum value (1%), an aria-label matching the label, and text matching the value percentage', () => {
     const value = 1;
     const label = `Q1 on-time delivery goal progress - ${value}%`;
-    const {findByLabelText, queryAllByLabelText} = render(
+    const {queryAllByLabelText} = render(
       <EzProgress value={value} goal={75} subgoal={25} label={label} />
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const chart = findByLabelText(label);
-
-    expect((await chart).firstChild.childNodes[0]).toHaveAttribute('aria-valuenow', '100');
-    expect((await chart).firstChild.childNodes[1]).toHaveAttribute('aria-valuenow', '1');
-    expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`${value}%`);
+    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', '1');
+    expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
 
-  it('Passing a value, color, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', async () => {
+  it('Passing a value, color, and label should show a full circle, a percentage circle matching the value, an aria-label matching the label, and text matching the value percentage', () => {
     const value = 44;
     const label = `Q1 on-time delivery goal progress - ${value}%`;
-    const {findByLabelText, queryAllByLabelText} = render(
-      <EzProgress value={value} color="blue" label={label} />
-    );
+    const {queryAllByLabelText} = render(<EzProgress value={value} color="blue" label={label} />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const chart = findByLabelText(label);
-
-    expect((await chart).firstChild.childNodes[0]).toHaveAttribute('aria-valuenow', '100');
-    expect((await chart).firstChild.childNodes[1]).toHaveAttribute(
-      'aria-valuenow',
-      value.toString()
-    );
-    expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`${value}%`);
+    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', value.toString());
+    expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
 
-  it('Passing a color and label without a value should show a full circle, a 0% circle, an aria-label matching the label, and empty text --%', async () => {
+  it('Passing a color and label without a value should show a full circle, a 0% circle, an aria-label matching the label, and empty text --%', () => {
     const label = `Q1 on-time delivery goal progress - empty value`;
-    const {findByLabelText, queryAllByLabelText} = render(
-      <EzProgress color="blue" label={label} />
-    );
+    const {queryAllByLabelText} = render(<EzProgress color="blue" label={label} />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const chart = findByLabelText(label);
-
-    expect((await chart).firstChild.childNodes[0]).toHaveAttribute('aria-valuenow', '100');
-    expect((await chart).firstChild.childNodes[1]).toHaveAttribute('aria-valuenow', '0');
-    expect((await chart).firstChild.childNodes[2]).toHaveTextContent(`--%`);
+    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', '0');
+    expect(screen.getByText('--%')).toBeInTheDocument();
   });
 
-  it('Passing a label, goal, metricOnly flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', async () => {
+  it('Passing a label, goal, metricOnly flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', () => {
     const label = `Q1 cancelled orders - 12% of 10% goal`;
-    const {findByLabelText, queryAllByLabelText} = render(
+    const {queryAllByLabelText} = render(
       <EzProgress label={label} value={12} goal={10} metricOnly />
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const metric = findByLabelText(label);
-
-    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('12%');
+    expect(screen.getByText('12%')).toBeInTheDocument();
   });
 
-  it('Passing a label, goal, and metricOnly flag without a value should show a square, an aria-label matching the label, and empty text --%', async () => {
+  it('Passing a label, goal, and metricOnly flag without a value should show a square, an aria-label matching the label, and empty text --%', () => {
     const label = `Q1 cancelled orders - --% of 10% goal`;
-    const {findByLabelText, queryAllByLabelText} = render(
-      <EzProgress label={label} goal={10} metricOnly />
-    );
+    const {queryAllByLabelText} = render(<EzProgress label={label} goal={10} metricOnly />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const metric = findByLabelText(label);
-
-    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('--%');
+    expect(screen.getByText('--%')).toBeInTheDocument();
   });
 
-  it('Passing a label, goal, metricOnly flag, inverted flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', async () => {
+  it('Passing a label, goal, metricOnly flag, inverted flag, and value should show a square, an aria-label matching the label, and text matching the value percentage', () => {
     const label = `Q1 cancelled orders - 3% of 0% goal`;
-    const {findByLabelText, queryAllByLabelText} = render(
+    const {queryAllByLabelText} = render(
       <EzProgress label={label} value={3} goal={0} metricOnly inverted />
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const metric = findByLabelText(label);
-
-    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('3%');
+    expect(screen.getByText('3%')).toBeInTheDocument();
   });
 
-  it('Passing a label, goal, metricOnly flag, and inverted flag without a value should show a square, an aria-label matching the label, and empty text --%', async () => {
+  it('Passing a label, goal, metricOnly flag, and inverted flag without a value should show a square, an aria-label matching the label, and empty text --%', () => {
     const label = `Q1 cancelled orders - --% of 0% goal`;
-    const {findByLabelText, queryAllByLabelText} = render(
-      <EzProgress label={label} goal={0} metricOnly inverted />
-    );
+    const {queryAllByLabelText} = render(<EzProgress label={label} goal={0} metricOnly inverted />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    const metric = findByLabelText(label);
-
-    expect((await metric).firstChild.childNodes[0]).toHaveTextContent('--%');
+    expect(screen.getByText('--%')).toBeInTheDocument();
   });
 });
 
