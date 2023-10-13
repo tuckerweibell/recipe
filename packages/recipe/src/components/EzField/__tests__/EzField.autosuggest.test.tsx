@@ -39,7 +39,6 @@ describe('EzField', () => {
 
       const input = screen.getByRole('combobox', {name: /Select dropdown/i});
 
-      expect(input).not.toHaveAttribute('aria-controls');
       expect(input).not.toHaveAttribute('aria-activedescendant');
 
       // open the menu

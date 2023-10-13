@@ -104,7 +104,7 @@ export function useComboBox(props, state): ComboBoxAria {
       ...mergeProps(inputProps, menuTriggerProps, domProps, {onBlur: onFocusLost}),
       role: 'combobox',
       'aria-haspopup': 'listbox',
-      'aria-controls': state.isOpen ? menuProps.id : undefined,
+      'aria-controls': menuProps.id,
       'aria-autocomplete': 'list',
       'aria-activedescendant': state.isOpen ? focusedKeyId : undefined,
     },
