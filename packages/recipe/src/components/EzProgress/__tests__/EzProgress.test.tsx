@@ -11,7 +11,10 @@ describe('EzProgress logic', () => {
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('presentation', {hidden: true})).toHaveAttribute(
+      'aria-valuenow',
+      '100'
+    );
     expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', value.toString());
     expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
@@ -24,7 +27,10 @@ describe('EzProgress logic', () => {
     );
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('presentation', {hidden: true})).toHaveAttribute(
+      'aria-valuenow',
+      '100'
+    );
     expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', '1');
     expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
@@ -35,7 +41,10 @@ describe('EzProgress logic', () => {
     const {queryAllByLabelText} = render(<EzProgress value={value} color="blue" label={label} />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('presentation', {hidden: true})).toHaveAttribute(
+      'aria-valuenow',
+      '100'
+    );
     expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', value.toString());
     expect(screen.getByText(`${value}%`)).toBeInTheDocument();
   });
@@ -45,7 +54,10 @@ describe('EzProgress logic', () => {
     const {queryAllByLabelText} = render(<EzProgress color="blue" label={label} />);
 
     expect(queryAllByLabelText(label).length).toEqual(1);
-    expect(screen.getByRole('progressbar', {hidden: true})).toHaveAttribute('aria-valuenow', '100');
+    expect(screen.getByRole('presentation', {hidden: true})).toHaveAttribute(
+      'aria-valuenow',
+      '100'
+    );
     expect(screen.getByRole('meter')).toHaveAttribute('aria-valuenow', '0');
     expect(screen.getByText('--%')).toBeInTheDocument();
   });

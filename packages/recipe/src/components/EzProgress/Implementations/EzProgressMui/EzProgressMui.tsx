@@ -18,6 +18,7 @@ const EzProgressMui: React.FC<EzProgressMuiProps> = ({children, color, label, va
     <Stack alignItems="center" justifyContent="center" p="20% 0" position="relative">
       <CircularProgress
         aria-hidden="true"
+        role="presentation"
         size={CIRCULAR_PROGRESS_SIZE}
         sx={{
           position: 'absolute',
