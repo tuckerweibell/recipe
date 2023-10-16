@@ -8,6 +8,7 @@ export interface DesignTokensPanelProps {
 }
 
 export interface DesignTokensDisplayProps {
-  tokens: EzThemeTokens[];
+  groupTokens: boolean;
+  tokens: Array<Array<string>>;
   tokenType: EzTokenTypes;
 }
