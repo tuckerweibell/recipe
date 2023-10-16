@@ -10,9 +10,8 @@ import {
   useTheme,
 } from '@mui/material';
 import {color as storybookColor} from '@storybook/theming';
-import {color, radius, shadow} from '../../../src/themes/tokens';
+import {color, radius, shadow, spacing} from '../../../src/themes/tokens';
 import {DesignTokensDisplayProps} from './DesignTokens.types';
-import {EzThemeTokens} from '../../../src/themes/themes.types';
 import CopyButton from './CopyButton';
 
 const CodeBlock = ({children, withCopy = false}) => {
@@ -63,7 +62,14 @@ const DesignTokenPreview = ({token, tokenType}) => {
       displayText: shadow[token[0]]?.displayText,
       sx: {boxShadow: shadow[token[0]]?.value},
     },
-    // spacing: {style: 'padding'},
+    spacing: {
+      displayText: spacing[token[0]]?.displayText,
+      sx: {
+        backgroundColor: theme.tokens['color-surface-neutral-default'],
+        borderRadius: theme.tokens['radius-none'],
+        minWidth: spacing[token[0]]?.value,
+      },
+    },
     // typography: {style: 'fontFamily'},
   };
 
