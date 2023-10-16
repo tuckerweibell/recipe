@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 import {color as storybookColor} from '@storybook/theming';
-import {color, shadow} from '../../../src/themes/tokens';
+import {color, radius, shadow} from '../../../src/themes/tokens';
 import {DesignTokensDisplayProps} from './DesignTokens.types';
 import {EzThemeTokens} from '../../../src/themes/themes.types';
 import CopyButton from './CopyButton';
@@ -44,16 +44,24 @@ const CodeBlock = ({children, withCopy = false}) => {
 };
 
 const DesignTokenPreview = ({token, tokenType}) => {
+  const theme = useTheme();
+
   // TODO: add remaining tokens
   const previewMap = {
     color: {
       displayText: color[token[0]]?.displayText,
-      style: 'bgcolor',
+      sx: {bgcolor: color[token[0]]?.value},
     },
-    // radius: {style: 'borderRadius'},
+    radius: {
+      displayText: radius[token[0]]?.displayText,
+      sx: {
+        backgroundColor: theme.tokens['color-surface-neutral-default'],
+        borderRadius: radius[token[0]]?.value,
+      },
+    },
     shadow: {
       displayText: shadow[token[0]]?.displayText,
-      style: 'boxShadow',
+      sx: {boxShadow: shadow[token[0]]?.value},
     },
     // spacing: {style: 'padding'},
     // typography: {style: 'fontFamily'},
@@ -61,12 +69,7 @@ const DesignTokenPreview = ({token, tokenType}) => {
 
   return (
     <Stack alignItems="center" direction="row" gap={3}>
-      <Box
-        borderRadius="4px"
-        height="40px"
-        minWidth="40px"
-        sx={{[previewMap[tokenType].style]: token[1]}}
-      />
+      <Box borderRadius="4px" height="40px" minWidth="40px" sx={previewMap[tokenType].sx} />
       <Box>{previewMap[tokenType].displayText}</Box>
     </Stack>
   );
