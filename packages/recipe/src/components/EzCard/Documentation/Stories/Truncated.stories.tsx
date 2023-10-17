@@ -17,7 +17,7 @@ export const Truncate: Story = {
   args: {
     ...Default.args,
     subtitle:
-      'A very long heading that is super long and definitely will not fit, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten',
+      'A very long subtitle that is super long and definitely will not fit, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten',
     title:
       'A very long title that is super long and definitely will not fit, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten, zero one two three four five six seven eight nine ten',
     truncateHeading: true,

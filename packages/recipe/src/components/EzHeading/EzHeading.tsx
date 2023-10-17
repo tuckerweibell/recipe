@@ -82,6 +82,7 @@ export interface EzHeadingProps
   subheading?: string;
   casing?: 'uppercase';
   color?: 'green' | 'blue';
+  truncateHeading?: boolean;
 }
 
 /**
@@ -89,20 +90,33 @@ export interface EzHeadingProps
  */
 const EzHeading = forwardRef<HTMLElement, EzHeadingProps>(
   (
-    {children: title, subheading: subtitle, align, size, casing, color, as, ...additionalProps},
+    {
+      align,
+      as,
+      casing,
+      children: title,
+      color,
+      size,
+      subheading: subtitle,
+      truncateHeading,
+      ...additionalProps
+    },
     ref
   ) => {
     const HeadingLevel = (as || (`h${size}` as any)) as Tag;
     const slotProps = useSlotProps({}, 'heading');
 
     const headingElement = (
-      <HeadingLevel className={headingCss({size, casing, color})}>
+      <HeadingLevel
+        className={headingCss({size, casing, color})}
+        title={truncateHeading ? title : undefined}
+      >
         <ClearSlots>{title}</ClearSlots>
       </HeadingLevel>
     );
 
     const subheadingElement = subtitle && (size === '3' || size === '5') && (
-      <div className={subheadingCss()}>
+      <div className={subheadingCss()} title={truncateHeading ? subtitle : undefined}>
         <ClearSlots>{subtitle}</ClearSlots>
       </div>
     );

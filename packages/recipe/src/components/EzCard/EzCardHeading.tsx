@@ -49,7 +49,7 @@ const EzCardHeading: FC<HeadingProps> = ({
   const heading = title && (
     <EzLayout layout="basic" alignY="top">
       {titleIcon}
-      <EzHeading size="3" subheading={subtitle}>
+      <EzHeading size="3" subheading={subtitle} truncateHeading={truncateHeading}>
         {title}
       </EzHeading>
     </EzLayout>
