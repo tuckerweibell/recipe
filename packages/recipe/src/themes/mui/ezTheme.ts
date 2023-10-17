@@ -1,7 +1,7 @@
 import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
 import type {EzPaletteOptions, EzThemeTokens} from '../themes.types';
-import {color, shadow} from '../tokens';
+import {color, radius, shadow} from '../tokens';
 
 declare module '@mui/material/styles/createTheme' {
   interface Theme {
@@ -380,6 +380,7 @@ const ezTheme = responsiveFontSizes(
     palette,
     tokens: {
       ...getTokens(color),
+      ...getTokens(radius),
       ...getTokens(shadow),
     },
     typography,

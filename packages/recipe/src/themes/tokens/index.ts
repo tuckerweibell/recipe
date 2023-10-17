@@ -1,2 +1,3 @@
 export {color} from './color';
+export {radius} from './radius';
 export {shadow} from './shadow';

@@ -12,7 +12,7 @@ type TokenType = {
 // TODO: add remaining tokens
 const TOKEN_TYPES: Array<TokenType> = [
   {type: 'color', group: true},
-  // {type: 'radius', group: false},
+  {type: 'radius', group: false},
   {type: 'shadow', group: false},
   // {type: 'spacing', group: false},
   // {type: 'typography', group: false},
