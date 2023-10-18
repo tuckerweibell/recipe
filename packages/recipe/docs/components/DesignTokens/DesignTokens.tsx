@@ -9,13 +9,12 @@ type TokenType = {
   group: boolean;
 };
 
-// TODO: add remaining tokens
 const TOKEN_TYPES: Array<TokenType> = [
   {type: 'color', group: true},
   {type: 'radius', group: false},
   {type: 'shadow', group: false},
   {type: 'spacing', group: false},
-  // {type: 'typography', group: false},
+  {type: 'typography', group: true},
 ];
 
 const getTokens = (themeTokens: EzThemeTokens, tokenType: string) => {
@@ -24,15 +23,15 @@ const getTokens = (themeTokens: EzThemeTokens, tokenType: string) => {
 };
 
 const DesignTokensPanel = ({children, index, value, ...args}: DesignTokensPanelProps) => (
-  <div
+  <Box
     role="tabpanel"
     hidden={value !== index}
     id={`design-tokens-panel-${index}`}
     aria-labelledby={`design-tokens-${index}`}
     {...args}
   >
-    {value === index && <Box py={3}>{children}</Box>}
-  </div>
+    {value === index && <Box my={3}>{children}</Box>}
+  </Box>
 );
 
 const DesignTokens: FC<unknown> = () => {

@@ -1,7 +1,7 @@
 import {createTheme, responsiveFontSizes} from '@mui/material';
 import {ezPalette, legacyColors} from '../ezColors';
 import type {EzPaletteOptions, EzThemeTokens} from '../themes.types';
-import {color, radius, shadow, spacing} from '../tokens';
+import {color, radius, shadow, spacing, typography} from '../tokens';
 
 declare module '@mui/material/styles/createTheme' {
   interface Theme {
@@ -153,7 +153,7 @@ const palette: EzPaletteOptions = {
 
 const defaultFont = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif';
 
-const typography = {
+const themeTypography = {
   defaultFont,
   fontFamily: defaultFont,
   headerFont: defaultFont,
@@ -383,8 +383,9 @@ const ezTheme = responsiveFontSizes(
       ...getTokens(radius),
       ...getTokens(shadow),
       ...getTokens(spacing),
+      ...getTokens(typography),
     },
-    typography,
+    typography: themeTypography,
   })
 );
 
