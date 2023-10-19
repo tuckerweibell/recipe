@@ -1,5 +1,27 @@
 # @ezcater/recipe
 
+## 18.4.1
+
+### Patch Changes
+
+- style: add spacing design tokens to themes [[sha]](https://github.com/ezcater/recipe/commit/2981e136)
+- style: add typography design tokens to themes [[sha]](https://github.com/ezcater/recipe/commit/70637f16)
+- fix: add `role="meter"` to `EzProgress` and make accessible [[sha]](https://github.com/ezcater/recipe/commit/b4874aaf)
+- style: add color design tokens to themes [[sha]](https://github.com/ezcater/recipe/commit/5f7826df)
+- fix: add `aria-controls` for all inputs with `role="combobox"` regardless if input is open for accessibility [[sha]](https://github.com/ezcater/recipe/commit/2fd888eb)
+- style: add radius design tokens to themes [[sha]](https://github.com/ezcater/recipe/commit/bc06ed1b)
+- fix: add `role="presentation"` to line items table in `EzOrderSummary` for accessibility [[sha]](https://github.com/ezcater/recipe/commit/9fcc963d)
+- fix: change `EzProgress` hidden svg to `presentation` role for accessibility [[sha]](https://github.com/ezcater/recipe/commit/4c9a6f8a)
+- fix: add `aria-hidden="true"` and `focusable="false"` attributes to decorative icons for accessibility [[sha]](https://github.com/ezcater/recipe/commit/16301b81)
+- fix: add accessible title to truncated EzCard headings [[sha]](https://github.com/ezcater/recipe/commit/d0335836)
+- fix: add `role="table"` to `EzTable` to distinguish from `role="presentation"` for accessibility [[sha]](https://github.com/ezcater/recipe/commit/f4ccd292)
+- fix: for `EzFlashMessage` components with no headline, apply label `id` to message instead for accessibility [[sha]](https://github.com/ezcater/recipe/commit/5326021a)
+- style: update fonts to add new lato (includes semibold) and roboto [[sha]](https://github.com/ezcater/recipe/commit/70637f16)
+- fix: add unique ids to `EzBarChart` and `EzLineChart` axis labels for accessibility [[sha]](https://github.com/ezcater/recipe/commit/737f2760)
+- fix: add prefix to unique ids for react 18 to fix aria labels which must start with a letter [[sha]](https://github.com/ezcater/recipe/commit/492c493e)
+- fix: add role to dropdown input elements when used with `aria-expanded` for accessibility [[sha]](https://github.com/ezcater/recipe/commit/80ef6d6a)
+- deps: upgrade jest-axe from 3.2.0 to 8.0.0 [[sha]](https://github.com/ezcater/recipe/commit/b50c0e9b)
+
 ## 18.4.0
 
 ### Minor Changes
