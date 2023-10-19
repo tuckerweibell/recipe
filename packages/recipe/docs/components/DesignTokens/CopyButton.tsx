@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {IconButton} from '@mui/material';
-import EzIcon from '../../../src/components/EzIcon';
+import {CopyButtonProps} from './DesignTokens.types';
 import {faCircleCheck, faCopy} from '@fortawesome/free-solid-svg-icons';
-
-interface CopyButtonProps {
-  darkMode?: boolean;
-  textToCopy: string;
-}
+import EzIcon from '../../../src/components/EzIcon';
 
 const CopyButton = ({textToCopy, darkMode = false}: CopyButtonProps) => {
   const [showCopied, setShowCopied] = useState(false);
