@@ -108,7 +108,6 @@
     "react-dom": "^17.0.2",
     "react-markdown": "^8.0.6",
     "react-router-dom": "^5.1.2",
-    "sosia-markdown": "^1.1.2",
     "storybook": "^7.0.21",
     "storybook-addon-playroom": "^4.0.0",
     "tocbot": "^4.20.1",
