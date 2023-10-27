@@ -15,6 +15,7 @@
 <br>
 
 <p align="center">
+  ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tuckerweibell/27228b9af08e477a7edff3e34f829454/raw/recipe.json)
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/npm/v/@ezcater/recipe.svg" /></a>
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM version" src="https://img.shields.io/bundlephobia/minzip/@ezcater/recipe" /></a>
   <a href="https://npmjs.org/package/@ezcater/recipe"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@ezcater/recipe.svg"></a>
